@@ -1,0 +1,133 @@
+type Comment {
+  comment_id: ID!
+  post: Post!
+  user: User!
+  comment: String!
+  likes: Int!
+  converted: Boolean!
+  day: Int!
+  hour: Int!
+  minute: Int!
+  month: Int!
+  year: Int!
+}
+type Directory {
+  directory_id: ID!
+  name: String!
+  parent_id: Directory
+  user: User
+  group: Group
+  root: Boolean!
+  directory: [Directory]
+  post: [Post]
+  image: [Image]
+  music: [Music]
+  video: [Video]
+}
+type Friend {
+  friend_id: ID!
+  proposer: User!
+  respondent: User!
+}
+type Group {
+  group_id: ID!
+  name: String!
+  purpose: String!
+  administrator: User!
+  participation_system: group_participation_system!
+  withdrawal_system: group_withdrawal_system!
+  identiti_back_img: String
+  identiti_profile_img: String
+  directory: [Directory]
+}
+type Image {
+  image_id: ID!
+  address: String!
+  caption: String!
+  volume: Int!
+  type: String
+  directory: Directory!
+}
+type Liked {
+  liked_id: ID!
+  post: Post!
+  user: User!
+}
+type Music {
+  music_id: ID!
+  address: String!
+  caption: String!
+  volume: Int!
+  type: String
+  directory: Directory!
+}
+type Post {
+  post_id: ID!
+  caption: String!
+  content: String
+  user: User!
+  views: Int!
+  likes: Int!
+  year: Int!
+  month: Int!
+  day: Int!
+  hour: Int!
+  minute: Int!
+  second: Int!
+  directory: Directory!
+  comment: [Comment]
+  liked: [Liked]
+  watched: [Watched]
+}
+type User {
+  user_id: ID!
+  email: String!
+  password: String!
+  username: String!
+  avatar: String
+  back_img: String
+  phone_number: Int
+  comment: [Comment]
+  directory: [Directory!]!
+  group: [Group]
+  liked: [Liked]
+  post: [Post]
+  watched: [Watched]
+}
+type Subscriber {
+  subscriber_id: ID!
+  author: User!
+  reader: User!
+}
+type Video {
+  video_id: ID!
+  address: String!
+  caption: String!
+  volume: Int!
+  type: String
+  thumbnail: String
+  directory: Directory!
+}
+type Watched {
+  watched_id: ID!
+  post: Post!
+  user: User!
+}
+
+enum group_participation_system {
+  Application_NoRequireApproval
+  Recommendation_Anyone
+  Recommendation_OnlyAdministrator
+  Recommendation_SomePeople
+  Application_RequireApproval_OnlyAdministrator
+  Application_RequireApproval_SomePeople
+  Application_RequireApproval_Voting
+  Application_RequireApproval_Unanimity
+}
+enum group_withdrawal_system {
+  Spontaneous
+  ExitOrder_OnlyAdministrator
+  ExitOrder_SomePeople
+  ExitOrder_Voting
+  ExitOrder_Unanimity
+}

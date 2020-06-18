@@ -1,0 +1,9 @@
+type Mutation {
+  musicUpload(
+    address: [String!]!
+    caption: [String!]!
+    volume: [Int!]!
+    directory_id: [Int!]!
+    type: [String]
+  ): Boolean!
+}

@@ -1,0 +1,391 @@
+// 시초
+
+CREATE SCHEMA `square_post` ;
+
+CREATE TABLE `square_post`.`user` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(60) NOT NULL,
+  `email` VARCHAR(150) NOT NULL,
+  `password` VARCHAR(45) NOT NULL,
+  `avatar` MEDIUMTEXT NULL,
+  `back_img` MEDIUMTEXT NULL,
+  `phone_number` INT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE,
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE);
+
+CREATE TABLE `square_post`.`group` (
+  `group_id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(100) NOT NULL,
+  `purpose` VARCHAR(200) NOT NULL,
+  `administrator` INT NOT NULL,
+  `participation_system` ENUM('Application_NoRequireApproval', 'Recommendation_Anyone', 'Recommendation_OnlyAdministrator', 'Recommendation_SomePeople', 'Application_RequireApproval_OnlyAdministrator', 'Application_RequireApproval_SomePeople', 'Application_RequireApproval_Voting', 'Application_RequireApproval_Unanimity') NULL,
+  `withdrawal_system` ENUM('Spontaneous', 'ExitOrder_OnlyAdministrator', 'ExitOrder_SomePeople', 'ExitOrder_Voting', 'ExitOrder_Unanimity') NULL,
+  `identiti_back_img` MEDIUMTEXT NULL,
+  `identiti_profile_img` MEDIUMTEXT NULL,
+  PRIMARY KEY (`group_id`),
+  UNIQUE INDEX `group_id_UNIQUE` (`group_id` ASC) VISIBLE,
+  UNIQUE INDEX `purpose_UNIQUE` (`purpose` ASC) VISIBLE,
+  INDEX `who_is_admin_idx` (`administrator` ASC) VISIBLE,
+  FULLTEXT INDEX `their_purpose` (`purpose`) VISIBLE,
+  CONSTRAINT `who_is_admin`
+    FOREIGN KEY (`administrator`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `square_post`.`directory` (
+  `directory_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL,
+  `parent_id` BIGINT NULL,
+  `user` INT NULL,
+  `group` INT NULL,
+  `root` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`directory_id`),
+  UNIQUE INDEX `directory_id_UNIQUE` (`directory_id` ASC) VISIBLE,
+  INDEX `group_own_idx` (`group` ASC) VISIBLE,
+  INDEX `user_id_idx` (`user` ASC) VISIBLE,
+  CONSTRAINT `group_own`
+    FOREIGN KEY (`group`)
+    REFERENCES `square_post`.`group` (`group_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `user_id`
+    FOREIGN KEY (`user`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+ALTER TABLE `square_post`.`directory` 
+DROP FOREIGN KEY `group_own`,
+DROP FOREIGN KEY `user_id`;
+ALTER TABLE `square_post`.`directory` 
+ADD INDEX `parent_id_idx` (`parent_id` ASC) VISIBLE;
+;
+ALTER TABLE `square_post`.`directory` 
+ADD CONSTRAINT `group_own`
+  FOREIGN KEY (`group`)
+  REFERENCES `square_post`.`group` (`group_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `user_id`
+  FOREIGN KEY (`user`)
+  REFERENCES `square_post`.`user` (`user_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `parent_id`
+  FOREIGN KEY (`parent_id`)
+  REFERENCES `square_post`.`directory` (`directory_id`)
+  ON DELETE CASCADE
+  ON UPDATE NO ACTION;
+
+CREATE TABLE `square_post`.`post` (
+  `post_id` BIGINT NOT NULL,
+  `user` INT NOT NULL,
+  `caption` VARCHAR(45) NOT NULL,
+  `content` LONGTEXT NULL,
+  `directory` BIGINT NOT NULL,
+  `year` INT NOT NULL,
+  `month` TINYINT NOT NULL,
+  `day` TINYINT NOT NULL,
+  `hour` TINYINT NOT NULL,
+  `minute` TINYINT NOT NULL,
+  `second` TINYINT NOT NULL,
+  PRIMARY KEY (`post_id`),
+  UNIQUE INDEX `post_id_UNIQUE` (`post_id` ASC) VISIBLE,
+  INDEX `directory_idx` (`directory` ASC) VISIBLE,
+  INDEX `user_idx` (`user` ASC) VISIBLE,
+  FULLTEXT INDEX `search_post` (`caption`, `content`) VISIBLE,
+  CONSTRAINT `directory`
+    FOREIGN KEY (`directory`)
+    REFERENCES `square_post`.`directory` (`directory_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `user`
+    FOREIGN KEY (`user`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `square_post`.`comment` (
+  `comment_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `post` BIGINT NOT NULL,
+  `user` INT NOT NULL,
+  `comment` VARCHAR(300) NOT NULL,
+  `year` INT NOT NULL,
+  `month` TINYINT NOT NULL,
+  `day` TINYINT NOT NULL,
+  `hour` TINYINT NOT NULL,
+  `minute` TINYINT NOT NULL,
+  `converted` TINYINT(1) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`comment_id`),
+  UNIQUE INDEX `comment_id_UNIQUE` (`comment_id` ASC) VISIBLE,
+  INDEX `what_post_idx` (`post` ASC) VISIBLE,
+  INDEX `who_said_idx` (`user` ASC) VISIBLE,
+  CONSTRAINT `what_post`
+    FOREIGN KEY (`post`)
+    REFERENCES `square_post`.`post` (`post_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `who_said`
+    FOREIGN KEY (`user`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `square_post`.`friend` (
+  `friend_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `proposer` INT NOT NULL,
+  `respondent` INT NOT NULL,
+  PRIMARY KEY (`friend_id`),
+  UNIQUE INDEX `friend_id_UNIQUE` (`friend_id` ASC) VISIBLE,
+  INDEX `proposer_idx` (`proposer` ASC) VISIBLE,
+  INDEX `respondent_idx` (`respondent` ASC) VISIBLE,
+  CONSTRAINT `proposer`
+    FOREIGN KEY (`proposer`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `respondent`
+    FOREIGN KEY (`respondent`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `square_post`.`image` (
+  `image_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `address` MEDIUMTEXT NOT NULL,
+  `caption` VARCHAR(60) NOT NULL,
+  `directory` BIGINT NOT NULL,
+  `volume` INT NOT NULL,
+  `type` VARCHAR(15) NULL,
+  PRIMARY KEY (`image_id`),
+  UNIQUE INDEX `image_id_UNIQUE` (`image_id` ASC) VISIBLE,
+  INDEX `image_to_dir_idx` (`directory` ASC) VISIBLE,
+  CONSTRAINT `image_to_dir`
+    FOREIGN KEY (`directory`)
+    REFERENCES `square_post`.`directory` (`directory_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `square_post`.`liked` (
+  `liked_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `user` INT NOT NULL,
+  `post` BIGINT NOT NULL,
+  PRIMARY KEY (`liked_id`),
+  UNIQUE INDEX `liked_id_UNIQUE` (`liked_id` ASC) VISIBLE,
+  INDEX `liked_post_idx` (`post` ASC) VISIBLE,
+  INDEX `liking_user_idx` (`user` ASC) VISIBLE,
+  CONSTRAINT `liked_post`
+    FOREIGN KEY (`post`)
+    REFERENCES `square_post`.`post` (`post_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `liking_user`
+    FOREIGN KEY (`user`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `square_post`.`music` (
+  `music_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `address` MEDIUMTEXT NOT NULL,
+  `caption` VARCHAR(60) NOT NULL,
+  `directory` BIGINT NOT NULL,
+  `volume` INT NOT NULL,
+  `type` VARCHAR(15) NULL,
+  PRIMARY KEY (`music_id`),
+  UNIQUE INDEX `music_id_UNIQUE` (`music_id` ASC) VISIBLE,
+  INDEX `music_to_dir_idx` (`directory` ASC) VISIBLE,
+  CONSTRAINT `music_to_dir`
+    FOREIGN KEY (`directory`)
+    REFERENCES `square_post`.`directory` (`directory_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `square_post`.`video` (
+  `video_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `address` MEDIUMTEXT NOT NULL,
+  `caption` VARCHAR(60) NOT NULL,
+  `directory` BIGINT NOT NULL,
+  `volume` INT NOT NULL,
+  `type` VARCHAR(15) NULL,
+  `thumbnail` MEDIUMTEXT NULL,
+  PRIMARY KEY (`video_id`),
+  UNIQUE INDEX `video_id_UNIQUE` (`video_id` ASC) VISIBLE,
+  INDEX `video_to_dir_idx` (`directory` ASC) VISIBLE,
+  CONSTRAINT `video_to_dir`
+    FOREIGN KEY (`directory`)
+    REFERENCES `square_post`.`directory` (`directory_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION);
+
+CREATE TABLE `square_post`.`watched` (
+  `watched_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `user` INT NOT NULL,
+  `post` BIGINT NOT NULL,
+  PRIMARY KEY (`watched_id`),
+  UNIQUE INDEX `watched_id_UNIQUE` (`watched_id` ASC) VISIBLE,
+  INDEX `watched_post_idx` (`post` ASC) VISIBLE,
+  INDEX `watching_user_idx` (`user` ASC) VISIBLE,
+  CONSTRAINT `watched_post`
+    FOREIGN KEY (`post`)
+    REFERENCES `square_post`.`post` (`post_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `watching_user`
+    FOREIGN KEY (`user`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+ALTER TABLE `square_post`.`post` 
+DROP INDEX `search_post` ,
+ADD FULLTEXT INDEX `search_post` (`caption`, `content`) WITH PARSER ngram VISIBLE;
+;
+
+ALTER TABLE `square_post`.`group` 
+CHANGE COLUMN `participation_system` `participation_system` ENUM('Application_NoRequireApproval', 'Recommendation_Anyone', 'Recommendation_OnlyAdministrator', 'Recommendation_SomePeople', 'Application_RequireApproval_OnlyAdministrator', 'Application_RequireApproval_SomePeople', 'Application_RequireApproval_Voting', 'Application_RequireApproval_Unanimity') NOT NULL ,
+CHANGE COLUMN `withdrawal_system` `withdrawal_system` ENUM('Spontaneous', 'ExitOrder_OnlyAdministrator', 'ExitOrder_SomePeople', 'ExitOrder_Voting', 'ExitOrder_Unanimity') NOT NULL ;
+
+ALTER TABLE `square_post`.`directory` 
+DROP FOREIGN KEY `user_id`;
+ALTER TABLE `square_post`.`directory` 
+ADD CONSTRAINT `user_id`
+  FOREIGN KEY (`user`)
+  REFERENCES `square_post`.`user` (`user_id`)
+  ON DELETE SET NULL;
+
+  ALTER TABLE `square_post`.`comment` 
+DROP FOREIGN KEY `what_post`;
+ALTER TABLE `square_post`.`comment` 
+DROP INDEX `what_post_idx` ;
+;
+
+ALTER TABLE `square_post`.`liked` 
+DROP FOREIGN KEY `liked_post`;
+ALTER TABLE `square_post`.`liked` 
+DROP INDEX `liked_post_idx` ;
+;
+ALTER TABLE `square_post`.`watched` 
+DROP FOREIGN KEY `watched_post`;
+ALTER TABLE `square_post`.`watched` 
+DROP INDEX `watched_post_idx` ;
+;
+ALTER TABLE `square_post`.`post` 
+CHANGE COLUMN `post_id` `post_id` BIGINT NOT NULL AUTO_INCREMENT ;
+ALTER TABLE `square_post`.`watched` 
+ADD INDEX `watched_post_idx` (`post` ASC) VISIBLE;
+;
+ALTER TABLE `square_post`.`watched` 
+ADD CONSTRAINT `watched_post`
+  FOREIGN KEY (`post`)
+  REFERENCES `square_post`.`post` (`post_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+ALTER TABLE `square_post`.`liked` 
+ADD INDEX `liked_post_idx` (`post` ASC) VISIBLE;
+;
+ALTER TABLE `square_post`.`liked` 
+ADD CONSTRAINT `liked_post`
+  FOREIGN KEY (`post`)
+  REFERENCES `square_post`.`post` (`post_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+ALTER TABLE `square_post`.`comment` 
+ADD INDEX `what_post_idx` (`post` ASC) VISIBLE;
+;
+ALTER TABLE `square_post`.`comment` 
+ADD CONSTRAINT `what_post`
+  FOREIGN KEY (`post`)
+  REFERENCES `square_post`.`post` (`post_id`)
+  ON DELETE CASCADE
+  ON UPDATE NO ACTION;
+
+ALTER TABLE `square_post`.`post` 
+ADD COLUMN `views` BIGINT NOT NULL DEFAULT 0 AFTER `directory`;
+ALTER TABLE `square_post`.`post` 
+ADD COLUMN `like` BIGINT NOT NULL DEFAULT 0 AFTER `views`;
+ALTER TABLE `square_post`.`comment` 
+ADD COLUMN `like` INT NOT NULL DEFAULT 0 AFTER `comment`;
+ALTER TABLE `square_post`.`post` 
+CHANGE COLUMN `like` `likes` BIGINT NOT NULL DEFAULT '0' ;
+ALTER TABLE `square_post`.`comment` 
+CHANGE COLUMN `like` `likes` INT NOT NULL DEFAULT '0' ;
+
+CREATE TABLE `square_post`.`subscriber` (
+  `subscriber_id` INT NOT NULL AUTO_INCREMENT,
+  `author` BIGINT NOT NULL,
+  `reader` BIGINT NOT NULL,
+  PRIMARY KEY (`subscriber_id`),
+  UNIQUE INDEX `subscriber_id_UNIQUE` (`subscriber_id` ASC) VISIBLE);
+ALTER TABLE `square_post`.`subscriber` 
+CHANGE COLUMN `author` `author` INT NOT NULL ,
+CHANGE COLUMN `reader` `reader` INT NOT NULL ,
+ADD INDEX `rfbfdbbdfbfdbfd_idx` (`author` ASC) VISIBLE,
+ADD INDEX `frfefrefwf_idx` (`reader` ASC) VISIBLE;
+;
+ALTER TABLE `square_post`.`subscriber` 
+ADD CONSTRAINT `author`
+  FOREIGN KEY (`author`)
+  REFERENCES `square_post`.`user` (`user_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `reader`
+  FOREIGN KEY (`reader`)
+  REFERENCES `square_post`.`user` (`user_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+ALTER TABLE `square_post`.`subscriber` 
+DROP FOREIGN KEY `author`,
+DROP FOREIGN KEY `reader`;
+ALTER TABLE `square_post`.`subscriber` 
+;
+ALTER TABLE `square_post`.`subscriber` RENAME INDEX `rfbfdbbdfbfdbfd_idx` TO `author_idx`;
+ALTER TABLE `square_post`.`subscriber` ALTER INDEX `author_idx` VISIBLE;
+ALTER TABLE `square_post`.`subscriber` RENAME INDEX `frfefrefwf_idx` TO `reader_idx`;
+ALTER TABLE `square_post`.`subscriber` ALTER INDEX `reader_idx` VISIBLE;
+ALTER TABLE `square_post`.`subscriber` 
+ADD CONSTRAINT `author`
+  FOREIGN KEY (`author`)
+  REFERENCES `square_post`.`user` (`user_id`)
+  ON DELETE CASCADE,
+ADD CONSTRAINT `reader`
+  FOREIGN KEY (`reader`)
+  REFERENCES `square_post`.`user` (`user_id`)
+  ON DELETE CASCADE;
+  ALTER TABLE `square_post`.`subscriber` 
+CHANGE COLUMN `subscriber_id` `subscriber_id` BIGINT NOT NULL AUTO_INCREMENT ;
+
+
+
+
+
+//2020-06-16
+
+ALTER TABLE `square_post`.`watched` 
+DROP FOREIGN KEY `watched_post`,
+DROP FOREIGN KEY `watching_user`;
+ALTER TABLE `square_post`.`watched` 
+ADD CONSTRAINT `watched_post`
+  FOREIGN KEY (`post`)
+  REFERENCES `square_post`.`post` (`post_id`)
+  ON DELETE CASCADE,
+ADD CONSTRAINT `watching_user`
+  FOREIGN KEY (`user`)
+  REFERENCES `square_post`.`user` (`user_id`)
+  ON DELETE CASCADE;
+  ALTER TABLE `square_post`.`liked` 
+DROP FOREIGN KEY `liked_post`;
+ALTER TABLE `square_post`.`liked` 
+ADD CONSTRAINT `liked_post`
+  FOREIGN KEY (`post`)
+  REFERENCES `square_post`.`post` (`post_id`)
+  ON DELETE CASCADE;
+ALTER TABLE `square_post`.`post` 
+DROP FOREIGN KEY `user`;
+ALTER TABLE `square_post`.`post` 
+ADD CONSTRAINT `user`
+  FOREIGN KEY (`user`)
+  REFERENCES `square_post`.`user` (`user_id`)
+  ON DELETE CASCADE;

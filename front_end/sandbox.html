@@ -1,0 +1,43 @@
+<style>
+  div {
+    display: inline-block;
+    position: relative;
+  }
+  .one {
+    background-color: yellowgreen;
+    width: 150px;
+    height: 150px;
+    z-index: 3;
+  }
+  .two {
+    background-color: black;
+    display: flex;
+    width: 180px;
+    height: 150px;
+    z-index: 7;
+  }
+  .three {
+    background-color: powderblue;
+    width: 150px;
+    height: 150px;
+    z-index: 6;
+  }
+  .four {
+    background-color: tomato;
+    width: 150px;
+    height: 150px;
+    z-index: 5;
+  }
+</style>
+
+<div class="one">
+  one
+</div>
+<div class="two">
+  <div class="three">
+    three
+  </div>
+  <div class="four">
+    four
+  </div>
+</div>

@@ -1,0 +1,3 @@
+type Query {
+  groupRootDir(groups_id: Int!): Directory
+}

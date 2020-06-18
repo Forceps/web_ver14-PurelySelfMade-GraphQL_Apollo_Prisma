@@ -1,0 +1,8 @@
+type Mutation {
+  editPost(
+    post_id: Int!
+    caption: String!
+    content: String!
+    directory_id: Int!
+  ): Boolean!
+}

@@ -1,0 +1,3 @@
+type Query {
+  seePost(post_id: Int!): Post
+}

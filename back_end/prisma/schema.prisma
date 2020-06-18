@@ -1,0 +1,190 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model comment {
+  comment    String
+  comment_id Int     @default(autoincrement()) @id
+  converted  Boolean @default(false)
+  day        Int
+  hour       Int
+  likes      Int     @default(0)
+  minute     Int
+  month      Int
+  year       Int
+  post       post
+  user       user
+
+  @@index([post], name: "what_post_idx")
+  @@index([user], name: "who_said_idx")
+}
+
+model directory {
+  directory_id Int         @default(autoincrement()) @id
+  name         String
+  root         Boolean     @default(false)
+  group        group?
+  parent_id    directory?  @relation("directoryTodirectory_parent_id")
+  user         user?
+  directory    directory[] @relation("directoryTodirectory_parent_id")
+  image        image[]
+  music        music[]
+  post         post[]
+  video        video[]
+
+  @@index([group], name: "group_own_idx")
+  @@index([parent_id], name: "parent_id_idx")
+  @@index([user], name: "user_id_idx")
+}
+
+model friend {
+  friend_id  Int  @default(autoincrement()) @id
+  proposer   user @relation("friend_proposerTouser")
+  respondent user @relation("friend_respondentTouser")
+
+  @@index([proposer], name: "proposer_idx")
+  @@index([respondent], name: "respondent_idx")
+}
+
+model group {
+  group_id             Int                        @default(autoincrement()) @id
+  identiti_back_img    String?
+  identiti_profile_img String?
+  name                 String
+  participation_system group_participation_system
+  purpose              String                     @unique
+  withdrawal_system    group_withdrawal_system
+  administrator        user
+  directory            directory[]
+
+  @@index([purpose], name: "their_purpose")
+  @@index([administrator], name: "who_is_admin_idx")
+}
+
+model image {
+  address   String
+  caption   String
+  image_id  Int       @default(autoincrement()) @id
+  type      String?
+  volume    Int
+  directory directory
+
+  @@index([directory], name: "image_to_dir_idx")
+}
+
+model liked {
+  liked_id Int  @default(autoincrement()) @id
+  post     post
+  user     user
+
+  @@index([post], name: "liked_post_idx")
+  @@index([user], name: "liking_user_idx")
+}
+
+model music {
+  address   String
+  caption   String
+  music_id  Int       @default(autoincrement()) @id
+  type      String?
+  volume    Int
+  directory directory
+
+  @@index([directory], name: "music_to_dir_idx")
+}
+
+model post {
+  caption   String
+  content   String?
+  day       Int
+  hour      Int
+  likes     Int       @default(0)
+  minute    Int
+  month     Int
+  post_id   Int       @default(autoincrement()) @id
+  second    Int
+  views     Int       @default(0)
+  year      Int
+  directory directory
+  user      user
+  comment   comment[]
+  liked     liked[]
+  watched   watched[]
+
+  @@index([directory], name: "directory_idx")
+  @@index([caption, content], name: "search_post")
+  @@index([user], name: "user_idx")
+}
+
+model subscriber {
+  subscriber_id Int  @default(autoincrement()) @id
+  author        user @relation("subscriber_authorTouser")
+  reader        user @relation("subscriber_readerTouser")
+
+  @@index([author], name: "author_idx")
+  @@index([reader], name: "reader_idx")
+}
+
+model user {
+  avatar                             String?
+  back_img                           String?
+  email                              String       @unique
+  password                           String
+  phone_number                       Int?
+  username                           String
+  user_id                            Int          @default(autoincrement()) @id
+  comment                            comment[]
+  directory                          directory[]
+  friend_friend_proposerTouser       friend[]     @relation("friend_proposerTouser")
+  friend_friend_respondentTouser     friend[]     @relation("friend_respondentTouser")
+  group                              group[]
+  liked                              liked[]
+  post                               post[]
+  subscriber_subscriber_authorTouser subscriber[] @relation("subscriber_authorTouser")
+  subscriber_subscriber_readerTouser subscriber[] @relation("subscriber_readerTouser")
+  watched                            watched[]
+}
+
+model video {
+  address   String
+  caption   String
+  thumbnail String?
+  type      String?
+  video_id  Int       @default(autoincrement()) @id
+  volume    Int
+  directory directory
+
+  @@index([directory], name: "video_to_dir_idx")
+}
+
+model watched {
+  watched_id Int  @default(autoincrement()) @id
+  post       post
+  user       user
+
+  @@index([post], name: "watched_post_idx")
+  @@index([user], name: "watching_user_idx")
+}
+
+enum group_participation_system {
+  Application_NoRequireApproval
+  Recommendation_Anyone
+  Recommendation_OnlyAdministrator
+  Recommendation_SomePeople
+  Application_RequireApproval_OnlyAdministrator
+  Application_RequireApproval_SomePeople
+  Application_RequireApproval_Voting
+  Application_RequireApproval_Unanimity
+}
+
+enum group_withdrawal_system {
+  Spontaneous
+  ExitOrder_OnlyAdministrator
+  ExitOrder_SomePeople
+  ExitOrder_Voting
+  ExitOrder_Unanimity
+}

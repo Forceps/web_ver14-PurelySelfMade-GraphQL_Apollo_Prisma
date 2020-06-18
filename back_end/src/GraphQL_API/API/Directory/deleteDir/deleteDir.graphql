@@ -1,0 +1,3 @@
+type Mutation {
+  deleteDir(directory_id: Int!): Boolean!
+}

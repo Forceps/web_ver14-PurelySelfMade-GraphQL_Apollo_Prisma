@@ -1,0 +1,10 @@
+type Mutation {
+  makeGroup(
+    name: String!
+    purpose: String
+    participation_system: String!
+    withdrawal_system: String!
+    identiti_back_img: String
+    identiti_profile_img: String
+  ): Boolean!
+}

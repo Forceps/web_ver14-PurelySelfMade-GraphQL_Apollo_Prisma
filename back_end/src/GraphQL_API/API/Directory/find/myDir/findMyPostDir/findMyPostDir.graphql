@@ -1,0 +1,3 @@
+type Query {
+  findMyPostDir(directory_id: Int!): Directory
+}

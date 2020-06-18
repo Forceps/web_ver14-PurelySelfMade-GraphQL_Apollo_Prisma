@@ -1,0 +1,18 @@
+import styled from "styled-components";
+
+export default styled.div`
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: calc(100% - 10px);
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #636e72;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #768185;
+  }
+  &::-webkit-scrollbar-thumb:active {
+    background-color: #2d3436;
+  }
+`;

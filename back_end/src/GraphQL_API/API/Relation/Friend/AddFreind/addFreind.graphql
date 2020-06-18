@@ -1,0 +1,3 @@
+type Mutation {
+  addFreind(respondent: String!): Boolean!
+}
