@@ -26,9 +26,9 @@ export default {
         } else {
           Rvalue = await prisma.friend.findMany({
             where: {
-              proposer: { user_id: user.user_id },
+              proposer: user.user_id,
             },
-            include: { respondent: true },
+            include: { user_friend_respondentTouser: true },
           });
         }
         let refinedRvalue: any[] = [];

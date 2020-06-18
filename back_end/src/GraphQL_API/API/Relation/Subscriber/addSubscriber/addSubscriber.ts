@@ -17,17 +17,17 @@ export default {
       try {
         const already_exists = await prisma.subscriber.findMany({
           where: {
-            author: { user_id: author },
-            reader: { user_id: user.user_id },
+            author,
+            reader: user.user_id,
           },
         });
         if (already_exists.length === 0) {
           await prisma.subscriber.create({
             data: {
-              author: {
+              user_subscriber_authorTouser: {
                 connect: { user_id: author },
               },
-              reader: {
+              user_subscriber_readerTouser: {
                 connect: { user_id: user.user_id },
               },
             },

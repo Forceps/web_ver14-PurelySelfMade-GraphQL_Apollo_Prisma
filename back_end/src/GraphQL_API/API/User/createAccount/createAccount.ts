@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, user } from "@prisma/client";
 const prisma = new PrismaClient();
 
 interface createAccountArgsTypes {
@@ -22,26 +22,29 @@ export default {
             password,
           },
         });
-        const retry = await prisma.user.findOne({ where: { email } });
-        console.log(retry);
-        await prisma.directory.create({
-          data: {
-            name: "My Post",
-            user: {
-              connect: { user_id: retry.user_id },
-            },
-            root: true,
-          },
+        const retry: user | null = await prisma.user.findOne({
+          where: { email },
         });
-        await prisma.directory.create({
-          data: {
-            name: "My Archive",
-            user: {
-              connect: { user_id: retry.user_id },
+        if (retry !== null) {
+          await prisma.directory.create({
+            data: {
+              name: "My Post",
+              user_directoryTouser: {
+                connect: { user_id: retry.user_id },
+              },
+              root: true,
             },
-            root: true,
-          },
-        });
+          });
+          await prisma.directory.create({
+            data: {
+              name: "My Archive",
+              user_directoryTouser: {
+                connect: { user_id: retry.user_id },
+              },
+              root: true,
+            },
+          });
+        }
         return true;
       } catch (e) {
         console.log(e);

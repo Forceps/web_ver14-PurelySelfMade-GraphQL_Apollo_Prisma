@@ -17,17 +17,17 @@ export default {
       try {
         const already_exists = await prisma.liked.findMany({
           where: {
-            user: { user_id: user.user_id },
-            post: { post_id },
+            user: user.user_id,
+            post: post_id,
           },
         });
         if (already_exists.length === 0) {
           await prisma.liked.create({
             data: {
-              user: {
+              user_likedTouser: {
                 connect: { user_id: user.user_id },
               },
-              post: {
+              post_likedTopost: {
                 connect: { post_id },
               },
             },

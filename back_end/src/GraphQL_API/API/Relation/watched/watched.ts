@@ -17,10 +17,10 @@ export default {
       try {
         await prisma.watched.create({
           data: {
-            user: {
+            user_userTowatched: {
               connect: { user_id: user.user_id },
             },
-            post: {
+            post_postTowatched: {
               connect: { post_id },
             },
           },

@@ -17,8 +17,8 @@ export default {
       try {
         return prisma.subscriber.findMany({
           where: {
-            author: { user_id: author },
-            reader: { user_id: user.user_id },
+            author,
+            reader: user.user_id,
           },
         });
       } catch (e) {

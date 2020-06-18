@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "start": "tsc-watch --onSuccess \"node dist/server.js\"",
     "prism": "npx prisma introspect && npx prisma generate"
   },
   "devDependencies": {
@@ -26,6 +26,7 @@
     "graphql-yoga": "^1.18.3",
     "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.7.8",
-    "python": "^0.0.4"
+    "python": "^0.0.4",
+    "typescript": "^3.9.5"
   }
 }

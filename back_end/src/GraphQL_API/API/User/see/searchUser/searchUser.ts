@@ -9,7 +9,7 @@ export default {
     searchUser: async (_: null, args: searchUserArgsTypes) => {
       const { keyWord } = args;
       try {
-        const I_found = await prisma.raw`
+        const I_found = await prisma.queryRaw`
         SELECT user_id ,
         MATCH (username)
         AGAINST(${keyWord}) 
