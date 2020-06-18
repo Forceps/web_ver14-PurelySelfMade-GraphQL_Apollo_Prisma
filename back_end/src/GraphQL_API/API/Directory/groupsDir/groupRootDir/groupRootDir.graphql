@@ -1,3 +1,3 @@
 type Query {
-  groupRootDir(groups_id: Int!): Directory
+  groupRootDir(group_id: Int!): Directory
 }

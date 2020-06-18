@@ -1,39 +1,31 @@
 {
-  "name": "back_end2",
+  "name": "back_end",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
+  "license": "MIT",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "prism": "prisma2 introspect && prisma2 generate",
-    "dev": "nodemon --exec babel-node src/server.js",
-    "start": "npx ts-node script.ts"
+    "start": "tsc-watch --onSuccess \"node dist/index.js\"",
+    "prism": "npx prisma introspect && npx prisma generate"
   },
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "prisma2": "2.0.0-preview024",
-    "ts-node": "^8.6.2",
-    "typescript": "^3.7.5"
+    "@prisma/cli": "^2.0.1",
+    "tsc-watch": "^4.2.8"
   },
   "dependencies": {
-    "@babel/cli": "^7.10.1",
-    "@babel/core": "^7.10.2",
-    "@babel/node": "^7.10.1",
-    "@babel/preset-env": "^7.10.2",
-    "@prisma/cli": "^2.0.1",
     "@prisma/client": "^2.0.1",
+    "@types/morgan": "^1.9.1",
+    "@types/multer": "^1.4.3",
+    "@types/passport": "^1.0.3",
+    "@types/passport-jwt": "^3.0.3",
+    "@types/python-shell": "^0.4.2",
     "cors": "^2.8.5",
-    "crypto-js": "^4.0.0",
+    "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
+    "graphql": "^15.1.0",
     "graphql-tools": "^6.0.10",
     "graphql-yoga": "^1.18.3",
     "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.7.8",
-    "morgan": "^1.10.0",
-    "multer": "^1.4.2",
-    "passport": "^0.4.1",
-    "passport-jwt": "^4.0.0",
-    "python-shell": "^2.0.1"
+    "python": "^0.0.4"
   }
 }

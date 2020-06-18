@@ -8,34 +8,39 @@ datasource db {
 }
 
 model comment {
-  comment    String
-  comment_id Int     @default(autoincrement()) @id
-  converted  Boolean @default(false)
-  day        Int
-  hour       Int
-  likes      Int     @default(0)
-  minute     Int
-  month      Int
-  year       Int
-  post       post
-  user       user
+  comment            String
+  comment_id         Int     @default(autoincrement()) @id
+  converted          Boolean @default(false)
+  day                Int
+  hour               Int
+  likes              Int     @default(0)
+  minute             Int
+  month              Int
+  post               Int
+  user               Int
+  year               Int
+  post_commentTopost post    @relation(fields: [post], references: [post_id])
+  user_commentTouser user    @relation(fields: [user], references: [user_id])
 
   @@index([post], name: "what_post_idx")
   @@index([user], name: "who_said_idx")
 }
 
 model directory {
-  directory_id Int         @default(autoincrement()) @id
-  name         String
-  root         Boolean     @default(false)
-  group        group?
-  parent_id    directory?  @relation("directoryTodirectory_parent_id")
-  user         user?
-  directory    directory[] @relation("directoryTodirectory_parent_id")
-  image        image[]
-  music        music[]
-  post         post[]
-  video        video[]
+  directory_id           Int         @default(autoincrement()) @id
+  group                  Int?
+  name                   String
+  parent_id              Int?
+  root                   Boolean     @default(false)
+  user                   Int?
+  group_directoryTogroup group?      @relation(fields: [group], references: [group_id])
+  directory              directory?  @relation("directoryTodirectory_parent_id", fields: [parent_id], references: [directory_id])
+  user_directoryTouser   user?       @relation(fields: [user], references: [user_id])
+  other_directory        directory[] @relation("directoryTodirectory_parent_id")
+  image                  image[]
+  music                  music[]
+  post                   post[]
+  video                  video[]
 
   @@index([group], name: "group_own_idx")
   @@index([parent_id], name: "parent_id_idx")
@@ -43,15 +48,18 @@ model directory {
 }
 
 model friend {
-  friend_id  Int  @default(autoincrement()) @id
-  proposer   user @relation("friend_proposerTouser")
-  respondent user @relation("friend_respondentTouser")
+  friend_id                    Int  @default(autoincrement()) @id
+  proposer                     Int
+  respondent                   Int
+  user_friend_proposerTouser   user @relation("friend_proposerTouser", fields: [proposer], references: [user_id])
+  user_friend_respondentTouser user @relation("friend_respondentTouser", fields: [respondent], references: [user_id])
 
   @@index([proposer], name: "proposer_idx")
   @@index([respondent], name: "respondent_idx")
 }
 
 model group {
+  administrator        Int
   group_id             Int                        @default(autoincrement()) @id
   identiti_back_img    String?
   identiti_profile_img String?
@@ -59,7 +67,7 @@ model group {
   participation_system group_participation_system
   purpose              String                     @unique
   withdrawal_system    group_withdrawal_system
-  administrator        user
+  user                 user                       @relation(fields: [administrator], references: [user_id])
   directory            directory[]
 
   @@index([purpose], name: "their_purpose")
@@ -67,53 +75,59 @@ model group {
 }
 
 model image {
-  address   String
-  caption   String
-  image_id  Int       @default(autoincrement()) @id
-  type      String?
-  volume    Int
-  directory directory
+  address                    String
+  caption                    String
+  directory                  Int
+  image_id                   Int       @default(autoincrement()) @id
+  type                       String?
+  volume                     Int
+  directory_directoryToimage directory @relation(fields: [directory], references: [directory_id])
 
   @@index([directory], name: "image_to_dir_idx")
 }
 
 model liked {
-  liked_id Int  @default(autoincrement()) @id
-  post     post
-  user     user
+  liked_id         Int  @default(autoincrement()) @id
+  post             Int
+  user             Int
+  post_likedTopost post @relation(fields: [post], references: [post_id])
+  user_likedTouser user @relation(fields: [user], references: [user_id])
 
   @@index([post], name: "liked_post_idx")
   @@index([user], name: "liking_user_idx")
 }
 
 model music {
-  address   String
-  caption   String
-  music_id  Int       @default(autoincrement()) @id
-  type      String?
-  volume    Int
-  directory directory
+  address                    String
+  caption                    String
+  directory                  Int
+  music_id                   Int       @default(autoincrement()) @id
+  type                       String?
+  volume                     Int
+  directory_directoryTomusic directory @relation(fields: [directory], references: [directory_id])
 
   @@index([directory], name: "music_to_dir_idx")
 }
 
 model post {
-  caption   String
-  content   String?
-  day       Int
-  hour      Int
-  likes     Int       @default(0)
-  minute    Int
-  month     Int
-  post_id   Int       @default(autoincrement()) @id
-  second    Int
-  views     Int       @default(0)
-  year      Int
-  directory directory
-  user      user
-  comment   comment[]
-  liked     liked[]
-  watched   watched[]
+  caption                   String
+  content                   String?
+  day                       Int
+  directory                 Int
+  hour                      Int
+  likes                     Int       @default(0)
+  minute                    Int
+  month                     Int
+  post_id                   Int       @default(autoincrement()) @id
+  second                    Int
+  user                      Int
+  views                     Int       @default(0)
+  year                      Int
+  directory_directoryTopost directory @relation(fields: [directory], references: [directory_id])
+  user_postTouser           user      @relation(fields: [user], references: [user_id])
+  comment                   comment[]
+  liked                     liked[]
+  watched                   watched[]
 
   @@index([directory], name: "directory_idx")
   @@index([caption, content], name: "search_post")
@@ -121,9 +135,11 @@ model post {
 }
 
 model subscriber {
-  subscriber_id Int  @default(autoincrement()) @id
-  author        user @relation("subscriber_authorTouser")
-  reader        user @relation("subscriber_readerTouser")
+  author                       Int
+  reader                       Int
+  subscriber_id                Int  @default(autoincrement()) @id
+  user_subscriber_authorTouser user @relation("subscriber_authorTouser", fields: [author], references: [user_id])
+  user_subscriber_readerTouser user @relation("subscriber_readerTouser", fields: [reader], references: [user_id])
 
   @@index([author], name: "author_idx")
   @@index([reader], name: "reader_idx")
@@ -150,21 +166,24 @@ model user {
 }
 
 model video {
-  address   String
-  caption   String
-  thumbnail String?
-  type      String?
-  video_id  Int       @default(autoincrement()) @id
-  volume    Int
-  directory directory
+  address                    String
+  caption                    String
+  directory                  Int
+  thumbnail                  String?
+  type                       String?
+  video_id                   Int       @default(autoincrement()) @id
+  volume                     Int
+  directory_directoryTovideo directory @relation(fields: [directory], references: [directory_id])
 
   @@index([directory], name: "video_to_dir_idx")
 }
 
 model watched {
-  watched_id Int  @default(autoincrement()) @id
-  post       post
-  user       user
+  post               Int
+  user               Int
+  watched_id         Int  @default(autoincrement()) @id
+  post_postTowatched post @relation(fields: [post], references: [post_id])
+  user_userTowatched user @relation(fields: [user], references: [user_id])
 
   @@index([post], name: "watched_post_idx")
   @@index([user], name: "watching_user_idx")
