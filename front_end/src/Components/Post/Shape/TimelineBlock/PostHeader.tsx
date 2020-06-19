@@ -66,7 +66,7 @@ export default ({ post }: PostHeaderProps) => {
         <div />
       ) : (
         <>
-          {post.user.user_id === MEdata.user_id ? (
+          {post.user_postTouser.user_id === MEdata.user_id ? (
             <PostCtrl className="ctrlpanel">
               <EditPost
                 onClick={async (e) => {

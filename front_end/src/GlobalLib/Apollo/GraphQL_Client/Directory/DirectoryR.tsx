@@ -6,11 +6,11 @@ export const FIND_MY_POST_DIR = gql`
     findMyPostDir(directory_id: $directory_id) {
       directory_id
       name
-      parent_id {
+      directory {
         directory_id
       }
       root
-      directory {
+      other_directory {
         directory_id
         name
       }
@@ -31,11 +31,11 @@ export const FIND_MY_ARCHIVE_DIR = gql`
     findMyArchiveDir(directory_id: $directory_id) {
       directory_id
       name
-      parent_id {
+      directory {
         directory_id
       }
       root
-      directory {
+      other_directory {
         directory_id
         name
       }
@@ -69,10 +69,10 @@ export const WHOSE_POST_DIR = gql`
       directory_id
       name
       root
-      directory {
+      other_directory {
         directory_id
         name
-        directory {
+        other_directory {
           directory_id
         }
       }
@@ -94,14 +94,14 @@ export const FIND_DIR_BY_ID = gql`
     findDirById(directory_id: $directory_id) {
       directory_id
       name
-      parent_id {
+      directory {
         directory_id
       }
       root
-      directory {
+      other_directory {
         directory_id
         name
-        directory {
+        other_directory {
           directory_id
         }
       }

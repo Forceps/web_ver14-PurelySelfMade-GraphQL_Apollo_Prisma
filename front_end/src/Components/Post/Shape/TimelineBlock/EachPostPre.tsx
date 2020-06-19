@@ -133,10 +133,13 @@ export default ({ post, Texts, ImgSamples, zIndex }: EachPostPreProps) => {
   return (
     <>
       <Inclosure zIndex={zIndex}>
-        {post.user?.avatar ? (
-          <Avatar to={`/blog/${post.user.user_id}`} url={post.user.avatar} />
+        {post.user_postTouser?.avatar ? (
+          <Avatar
+            to={`/blog/${post.user_postTouser.user_id}`}
+            url={post.user_postTouser.avatar}
+          />
         ) : (
-          <DACon to={`/blog/${post.user.user_id}`}>
+          <DACon to={`/blog/${post.user_postTouser.user_id}`}>
             <DefaultAvatar className="icon-noun_user_856030" />
           </DACon>
         )}
@@ -144,8 +147,8 @@ export default ({ post, Texts, ImgSamples, zIndex }: EachPostPreProps) => {
           <Rest>
             <PostHeader post={post} />
             <Divid>
-              <UName to={`/blog/${post.user.user_id}`}>
-                {post.user.username}
+              <UName to={`/blog/${post.user_postTouser.user_id}`}>
+                {post.user_postTouser.username}
               </UName>
               <Countable>
                 <i className="icon-eye-1" /> {post.views}{" "}

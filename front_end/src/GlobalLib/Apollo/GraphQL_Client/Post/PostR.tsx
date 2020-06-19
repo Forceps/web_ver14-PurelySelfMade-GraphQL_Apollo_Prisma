@@ -7,10 +7,10 @@ export const SEE_POST = gql`
       post_id
       caption
       content
-      directory {
+      directory_directoryTopost {
         directory_id
       }
-      user {
+      user_postTouser {
         user_id
         avatar
         username
@@ -35,12 +35,12 @@ export const SEE_POST_ALL = gql`
       post_id
       caption
       content
-      user {
+      user_postTouser {
         user_id
         username
         avatar
       }
-      directory {
+      directory_directoryTopost {
         directory_id
       }
       views
@@ -56,12 +56,12 @@ export const SEE_WHOSE_POSTS = gql`
       post_id
       caption
       content
-      user {
+      user_postTouser {
         user_id
         username
         avatar
       }
-      directory {
+      directory_directoryTopost {
         directory_id
       }
       views
@@ -84,12 +84,12 @@ export const SEE_SEARCH_POSTS = gql`
       post_id
       caption
       content
-      user {
+      user_postTouser {
         user_id
         username
         avatar
       }
-      directory {
+      directory_directoryTopost {
         directory_id
       }
       views

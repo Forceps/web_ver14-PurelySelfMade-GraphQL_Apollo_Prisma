@@ -18,7 +18,7 @@ export const GROUP_DETAIL = gql`
     groupDetail(group_id: $group_id) {
       name
       purpose
-      administrator {
+      user {
         user_id
         username
       }

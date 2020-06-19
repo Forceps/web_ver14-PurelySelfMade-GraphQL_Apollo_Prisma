@@ -40,7 +40,7 @@ export default ({
   const { setDummyState } = useDummyState();
   return (
     !DirByIdDataLoad &&
-    DirByIdData?.directory?.map((d: any) => {
+    DirByIdData?.other_directory?.map((d: any) => {
       const FurtherDownExist = d.directory?.length !== 0;
       const directory_id = S_N_to_N(d.directory_id);
       const closed = DirOpenArr.includes(directory_id);

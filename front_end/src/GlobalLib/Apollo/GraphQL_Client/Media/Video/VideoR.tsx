@@ -2,8 +2,8 @@ import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 
 export const VIDEO_GET = gql`
-  query videoGet($skip: Int, $first: Int) {
-    videoGet(skip: $skip, first: $first) {
+  query videoGet($skip: Int, $take: Int) {
+    videoGet(skip: $skip, take: $take) {
       video_id
       address
       caption
@@ -11,7 +11,7 @@ export const VIDEO_GET = gql`
     }
   }
 `;
-export const VideoGetUpToN = (skip?: number, first?: number) =>
+export const VideoGetUpToN = (skip?: number, take?: number) =>
   useQuery(VIDEO_GET, {
-    variables: { skip, first },
+    variables: { skip, take },
   });

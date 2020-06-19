@@ -210,8 +210,8 @@ export default ({
           {comments.map((i: any) => (
             <CommentCell key={i.comment_id}>
               <ForTheAvatar>
-                {i.user.avatar ? (
-                  <Avatar url={i.user.avatar} />
+                {i.user_commentTouser.avatar ? (
+                  <Avatar url={i.user_commentTouser.avatar} />
                 ) : (
                   <DACon>
                     <DefaultAvatar className="icon-noun_user_856030" />
@@ -220,10 +220,10 @@ export default ({
               </ForTheAvatar>
               <Hedge>
                 <FirstFloor>
-                  <Username>{i.user.username}</Username>
+                  <Username>{i.user_commentTouser.username}</Username>
                   {isLoggedIn &&
                     !MEloading &&
-                    i.user.user_id === MEdata.user_id && (
+                    i.user_commentTouser.user_id === MEdata.user_id && (
                       <CommentUpdateIcon className="icon-pencil-alt" />
                     )}
                 </FirstFloor>

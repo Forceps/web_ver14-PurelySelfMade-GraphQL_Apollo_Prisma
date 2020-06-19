@@ -114,27 +114,30 @@ export default ({ post, ImgSamples, zIndex }: EachPostProps) => {
           <i className="icon-heart-empty" /> {post.likes}
         </AdditionalInfo>
         <MiniProfile>
-          {post.user?.avatar ? (
+          {post.user_postTouser?.avatar ? (
             <Avatar
               onClick={(e) => {
                 e.stopPropagation();
               }}
-              to={`/blog/${post.user.user_id}`}
-              url={post.user.avatar}
+              to={`/blog/${post.user_postTouser.user_id}`}
+              url={post.user_postTouser.avatar}
             />
           ) : (
             <DACon
               onClick={(e) => {
                 e.stopPropagation();
               }}
-              to={`/blog/${post.user.user_id}`}
+              to={`/blog/${post.user_postTouser.user_id}`}
             >
               <DefaultAvatar className="icon-noun_user_856030" />
             </DACon>
           )}
           <UName>
-            <GoodLink to={`/blog/${post.user.user_id}`} color={"white"}>
-              {post.user.username}
+            <GoodLink
+              to={`/blog/${post.user_postTouser.user_id}`}
+              color={"white"}
+            >
+              {post.user_postTouser.username}
             </GoodLink>
           </UName>
         </MiniProfile>

@@ -97,18 +97,18 @@ export default ({ post, FirstImgSrc }: IntroProps) => {
         <CentreBox>
           <Title>{post.caption}</Title>
           <AuthorInfo>
-            {post.user.avatar ? (
+            {post.user_postTouser.avatar ? (
               <Avatar
-                to={`/blog/${post.user.user_id}`}
-                url={post.user.avatar}
+                to={`/blog/${post.user_postTouser.user_id}`}
+                url={post.user_postTouser.avatar}
               />
             ) : (
-              <DACon to={`/blog/${post.user.user_id}`}>
+              <DACon to={`/blog/${post.user_postTouser.user_id}`}>
                 <DefaultAvatar className="icon-noun_user_856030" />
               </DACon>
             )}
-            <UserName to={`/blog/${post.user.user_id}`}>
-              {post.user.username}
+            <UserName to={`/blog/${post.user_postTouser.user_id}`}>
+              {post.user_postTouser.username}
             </UserName>
           </AuthorInfo>
         </CentreBox>

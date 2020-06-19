@@ -5,10 +5,11 @@ export default {
   Query: {
     seePosts: async () => {
       try {
-        return prisma.post.findMany({
+        const result = await prisma.post.findMany({
           include: { user_postTouser: true, directory_directoryTopost: true },
           orderBy: { post_id: "desc" },
         });
+        return result;
       } catch (e) {
         console.log(e);
       }

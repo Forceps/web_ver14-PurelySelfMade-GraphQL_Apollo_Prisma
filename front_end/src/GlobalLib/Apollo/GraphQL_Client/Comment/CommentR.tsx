@@ -5,7 +5,7 @@ export const SEE_COMMENTS = gql`
   query seeComments($post_id: Int!) {
     seeComments(post_id: $post_id) {
       comment_id
-      user {
+      user_commentTouser {
         user_id
         avatar
         username

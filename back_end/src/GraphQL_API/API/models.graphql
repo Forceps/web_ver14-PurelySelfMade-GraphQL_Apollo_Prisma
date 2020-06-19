@@ -1,117 +1,168 @@
 type Comment {
   comment_id: ID!
-  post: Post!
-  user: User!
   comment: String!
-  likes: Int!
-  converted: Boolean!
   day: Int!
   hour: Int!
+  likes: Int!
   minute: Int!
   month: Int!
+  post: Int!
+  user: Int!
   year: Int!
+  converted: Boolean!
+
+  post_commentTopost: Post!
+  user_commentTouser: User!
 }
+
 type Directory {
   directory_id: ID!
+  group: Int
   name: String!
-  parent_id: Directory
-  user: User
-  group: Group
+  parent_id: Int
   root: Boolean!
-  directory: [Directory]
+  user: Int
+
+  group_directoryTogroup: Group
+  directory: Directory
+  user_directoryTouser: User
+
   post: [Post]
+  other_directory: [Directory]
   image: [Image]
   music: [Music]
   video: [Video]
 }
+
 type Friend {
   friend_id: ID!
-  proposer: User!
-  respondent: User!
+  proposer: Int!
+  respondent: Int!
+
+  user_friend_proposerTouser: User!
+  user_friend_respondentTouser: User!
 }
+
 type Group {
   group_id: ID!
   name: String!
   purpose: String!
-  administrator: User!
-  participation_system: group_participation_system!
-  withdrawal_system: group_withdrawal_system!
+  administrator: Int!
   identiti_back_img: String
   identiti_profile_img: String
-  directory: [Directory]
+
+  participation_system: group_participation_system!
+  withdrawal_system: group_withdrawal_system!
+
+  user: User!
+  directory: [Directory]!
 }
+
 type Image {
   image_id: ID!
-  address: String!
   caption: String!
-  volume: Int!
+  address: String!
   type: String
-  directory: Directory!
+  volume: Int!
+  directory: Int!
+
+  directory_directoryToimage: Directory!
 }
+
 type Liked {
   liked_id: ID!
-  post: Post!
-  user: User!
+  post: Int!
+  user: Int!
+
+  post_likedTopost: Post!
+  user_likedTouser: User!
 }
+
 type Music {
   music_id: ID!
-  address: String!
   caption: String!
-  volume: Int!
+  address: String!
+  directory: Int!
   type: String
-  directory: Directory!
+  volume: Int!
+
+  directory_directoryTomusic: Directory!
 }
+
 type Post {
   post_id: ID!
   caption: String!
   content: String
-  user: User!
-  views: Int!
-  likes: Int!
+  user: Int!
+  directory: Int!
+
   year: Int!
   month: Int!
   day: Int!
   hour: Int!
   minute: Int!
   second: Int!
-  directory: Directory!
-  comment: [Comment]
-  liked: [Liked]
-  watched: [Watched]
+
+  views: Int!
+  likes: Int!
+
+  directory_directoryTopost: Directory!
+  user_postTouser: User!
+
+  comment: [Comment]!
+  liked: [Liked]!
+  watched: [Watched]!
 }
+
+type Subscriber {
+  subscriber_id: ID!
+  reader: Int!
+  author: Int!
+
+  user_subscriber_authorTouser: User!
+  user_subscriber_readerTouser: User!
+}
+
 type User {
   user_id: ID!
+  username: String!
   email: String!
   password: String!
-  username: String!
   avatar: String
   back_img: String
   phone_number: Int
-  comment: [Comment]
-  directory: [Directory!]!
-  group: [Group]
-  liked: [Liked]
-  post: [Post]
-  watched: [Watched]
+
+  comment: [Comment]!
+  directory: [Directory]!
+  friend_friend_proposerTouser: [Friend]!
+  friend_friend_respondentTouser: [Friend]!
+  group: [Group]!
+  liked: [Liked]!
+  post: [Post]!
+  subscriber_subscriber_authorTouser: [Subscriber]!
+  subscriber_subscriber_readerTouser: [Subscriber]!
+  watched: [Watched]!
 }
-type Subscriber {
-  subscriber_id: ID!
-  author: User!
-  reader: User!
-}
+
 type Video {
   video_id: ID!
   address: String!
   caption: String!
-  volume: Int!
+  directory: Int!
   type: String
+  volume: Int!
   thumbnail: String
-  directory: Directory!
+
+  directory_directoryTovideo: Directory!
 }
+
 type Watched {
   watched_id: ID!
-  post: Post!
-  user: User!
+  post: Int!
+  user: Int!
+
+  post_postTowatched: Post!
+  user_userTowatched: User!
 }
 
 enum group_participation_system {
@@ -124,6 +175,7 @@ enum group_participation_system {
   Application_RequireApproval_Voting
   Application_RequireApproval_Unanimity
 }
+
 enum group_withdrawal_system {
   Spontaneous
   ExitOrder_OnlyAdministrator

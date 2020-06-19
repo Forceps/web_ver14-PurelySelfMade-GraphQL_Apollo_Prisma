@@ -10,13 +10,13 @@ export default ({
   setAddCommentOpen,
 }: UndersConProps) => {
   const { data: AuthorPost, loading: AuthorPostLoading } = SeeWhosePostsRequest(
-    S_N_to_N(post.user.user_id)
+    S_N_to_N(post.user_postTouser.user_id)
   );
 
   return (
     <UndersPre
       post_id={post_id}
-      AuthorName={post.user.username}
+      AuthorName={post.user_postTouser.username}
       AuthorPost={AuthorPost?.seeWhosePosts}
       AuthorPostLoading={AuthorPostLoading}
       AddCommentOpen={AddCommentOpen}

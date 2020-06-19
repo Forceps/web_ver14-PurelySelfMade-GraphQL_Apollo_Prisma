@@ -96,7 +96,7 @@ export default ({
         </Sbj>
         <Fold>
           {!RootDirDataLoad &&
-            RootDirData?.directory.map((d: any) => {
+            RootDirData?.other_directory.map((d: any) => {
               const [DirOpen, setDirOpen] = useState(false);
               const FurtherDownExist = d.directory?.length !== 0;
               const directory_id = S_N_to_N(d.directory_id);
