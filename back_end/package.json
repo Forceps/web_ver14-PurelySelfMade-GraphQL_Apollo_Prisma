@@ -4,7 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "cd src && nodemon --exec ts-node server.ts -e ts,graphql,gql",
+    "start": "cd src && nodemon --exec ts-node server.ts -e ts,graphql,gql",
     "prism": "npx prisma introspect && npx prisma generate"
   },
   "devDependencies": {

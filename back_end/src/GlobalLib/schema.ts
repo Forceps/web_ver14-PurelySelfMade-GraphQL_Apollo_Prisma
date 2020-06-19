@@ -3,7 +3,7 @@ import { makeExecutableSchema } from "graphql-tools";
 import { fileLoader, mergeResolvers, mergeTypes } from "merge-graphql-schemas";
 
 const allTypes = fileLoader(
-  path.join(__dirname, "/..", "/GraphQL_API/API/**/*.graphql")
+  path.join(__dirname, "/..", "/GraphQL_API/API/**/*.gql")
 );
 const allResolvers = fileLoader(
   path.join(__dirname, "/..", "/GraphQL_API/API/**/*.ts")
