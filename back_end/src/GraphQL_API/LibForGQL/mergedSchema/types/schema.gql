@@ -3,7 +3,7 @@ type Mutation {
   deleteDir(directory_id: Int!): Boolean!
   makeDir(name: String!, parent_id: Int!): Boolean!
   updateDir(directory_id: Int!, name: String!, parent_id: Int!): Boolean!
-  makeGroup(name: String!, purpose: String, participation_system: String!, withdrawal_system: String!, identiti_back_img: String, identiti_profile_img: String): Boolean!
+  makeGroup(name: String!, purpose: String!, participation_system: String!, withdrawal_system: String!, identiti_back_img: String, identiti_profile_img: String): Boolean!
   imgDelete(image_id: Int!): Boolean!
   imgUpdate(image_id: Int!, caption: String!, directory_id: Int!): Boolean!
   imgUpload(address: [String!]!, caption: [String!]!, volume: [Int!]!, directory_id: [Int!]!, type: [String]): Boolean!
@@ -46,7 +46,7 @@ type Query {
   seePost(post_id: Int!): Post
   seePosts: [Post]
   seeWhosePosts(user: Int!): [Post]!
-  seeFriends(proposer: String): [User]!
+  seeFriends(proposer: Int!): [User]!
   amISubscribeOne(author: Int!): [Subscriber]!
   me: User!
   searchUser(keyWord: String!): [User]!
