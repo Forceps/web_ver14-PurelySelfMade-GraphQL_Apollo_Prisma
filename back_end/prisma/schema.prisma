@@ -59,19 +59,31 @@ model friend {
 }
 
 model group {
-  administrator        Int
-  group_id             Int                        @default(autoincrement()) @id
-  identiti_back_img    String?
-  identiti_profile_img String?
-  name                 String
-  participation_system group_participation_system
-  purpose              String                     @unique
-  withdrawal_system    group_withdrawal_system
-  user                 user                       @relation(fields: [administrator], references: [user_id])
-  directory            directory[]
+  administrator                                         Int
+  group_id                                              Int          @default(autoincrement()) @id
+  identiti_back_img                                     String?
+  identiti_profile_img                                  String?
+  name                                                  String
+  participation_system                                  Int
+  purpose                                               String       @unique
+  withdrawal_system                                     Int
+  user                                                  user         @relation(fields: [administrator], references: [user_id])
+  group_system_group_participation_systemTogroup_system group_system @relation("group_participation_systemTogroup_system", fields: [participation_system], references: [group_system_id])
+  group_system_group_withdrawal_systemTogroup_system    group_system @relation("group_withdrawal_systemTogroup_system", fields: [withdrawal_system], references: [group_system_id])
+  directory                                             directory[]
 
+  @@index([participation_system], name: "participation_idx")
   @@index([purpose], name: "their_purpose")
   @@index([administrator], name: "who_is_admin_idx")
+  @@index([withdrawal_system], name: "withdrawal_idx")
+}
+
+model group_system {
+  category                                       String
+  group_system_id                                Int     @default(autoincrement()) @id
+  name                                           String
+  group_group_participation_systemTogroup_system group[] @relation("group_participation_systemTogroup_system")
+  group_group_withdrawal_systemTogroup_system    group[] @relation("group_withdrawal_systemTogroup_system")
 }
 
 model image {
@@ -187,23 +199,4 @@ model watched {
 
   @@index([post], name: "watched_post_idx")
   @@index([user], name: "watching_user_idx")
-}
-
-enum group_participation_system {
-  Application_NoRequireApproval
-  Recommendation_Anyone
-  Recommendation_OnlyAdministrator
-  Recommendation_SomePeople
-  Application_RequireApproval_OnlyAdministrator
-  Application_RequireApproval_SomePeople
-  Application_RequireApproval_Voting
-  Application_RequireApproval_Unanimity
-}
-
-enum group_withdrawal_system {
-  Spontaneous
-  ExitOrder_OnlyAdministrator
-  ExitOrder_SomePeople
-  ExitOrder_Voting
-  ExitOrder_Unanimity
 }

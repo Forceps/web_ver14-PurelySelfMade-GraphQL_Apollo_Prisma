@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { rootArchiveDir } from "../../../../LibForGQL/findRootDir";
+import { rootArchiveDir } from "../../../../LibForGQL/findByPrisma/findRootDir";
 import { VideoUpdateMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 

@@ -389,3 +389,49 @@ ADD CONSTRAINT `user`
   FOREIGN KEY (`user`)
   REFERENCES `square_post`.`user` (`user_id`)
   ON DELETE CASCADE;
+
+
+
+// 2020 - 06 - 23
+
+CREATE TABLE `square_post`.`group_system` (
+`group_system_id` TINYINT NOT NULL AUTO_INCREMENT,
+`name` VARCHAR(60) NOT NULL,
+`category` VARCHAR(30) NOT NULL,
+PRIMARY KEY (`group_system_id`),
+UNIQUE INDEX `groupSystem_id_UNIQUE` (`group_system_id` ASC) VISIBLE);
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('Application_NoRequireApproval', 'participation');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('Recommendation_Anyone', 'participation');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('Recommendation_OnlyAdministrator', 'participation');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('Recommendation_SomePeople', 'participation');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('Application_RequireApproval_OnlyAdministrator', 'participation');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('Application_RequireApproval_SomePeople', 'participation');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('Application_RequireApproval_Voting', 'participation');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('Application_RequireApproval_Unanimity', 'participation');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('Spontaneous', 'withdrawal');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('ExitOrder_OnlyAdministrator', 'withdrawal');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('ExitOrder_SomePeople', 'withdrawal');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('ExitOrder_Voting', 'withdrawal');
+INSERT INTO `square_post`.`group_system` (`name`, `category`) VALUES ('ExitOrder_Unanimity', 'withdrawal');
+ALTER TABLE `square_post`.`group_system` 
+CHANGE COLUMN `category` `category` VARCHAR(30) NOT NULL AFTER `group_system_id`;
+ALTER TABLE `square_post`.`group` 
+CHANGE COLUMN `participation_system` `participation_system` TINYINT NOT NULL ,
+CHANGE COLUMN `withdrawal_system` `withdrawal_system` TINYINT NOT NULL ,
+ADD INDEX `participation_idx` (`participation_system` ASC) VISIBLE,
+ADD INDEX `withdrawal_idx` (`withdrawal_system` ASC) VISIBLE;
+;
+ALTER TABLE `square_post`.`group` 
+ADD CONSTRAINT `participation`
+  FOREIGN KEY (`participation_system`)
+  REFERENCES `square_post`.`group_system` (`group_system_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `withdrawal`
+  FOREIGN KEY (`withdrawal_system`)
+  REFERENCES `square_post`.`group_system` (`group_system_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+ALTER TABLE `square_post`.`group` 
+CHANGE COLUMN `identiti_profile_img` `identiti_profile_img` MEDIUMTEXT NULL DEFAULT NULL AFTER `administrator`,
+CHANGE COLUMN `identiti_back_img` `identiti_back_img` MEDIUMTEXT NULL DEFAULT NULL AFTER `identiti_profile_img`;

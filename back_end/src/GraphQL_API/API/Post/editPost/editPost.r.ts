@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { rootPostDir } from "../../../LibForGQL/findRootDir";
+import { rootPostDir } from "../../../LibForGQL/findByPrisma/findRootDir";
 import { EditPostMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 

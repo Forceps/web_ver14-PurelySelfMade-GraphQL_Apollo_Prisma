@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { rootArchiveDir } from "../../../../LibForGQL/findRootDir";
+import { rootArchiveDir } from "../../../../LibForGQL/findByPrisma/findRootDir";
 import { VideoUploadMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
@@ -22,12 +22,12 @@ export default {
               data: {
                 address: address[i],
                 caption: caption[i],
-                type: type[i],
+                type: type ? type[i] : null,
                 volume: volume[i],
                 directory_directoryTovideo: {
                   connect: { directory_id: rootDir },
                 },
-                thumbnail: thumbnail[i],
+                thumbnail: thumbnail ? thumbnail[i] : null,
               },
             });
           } else {
@@ -35,12 +35,12 @@ export default {
               data: {
                 address: address[i],
                 caption: caption[i],
-                type: type[i],
+                type: type ? type[i] : null,
                 volume: volume[i],
                 directory_directoryTovideo: {
                   connect: { directory_id: directory_id[i] },
                 },
-                thumbnail: thumbnail[i],
+                thumbnail: thumbnail ? thumbnail[i] : null,
               },
             });
           }

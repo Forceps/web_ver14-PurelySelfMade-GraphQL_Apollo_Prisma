@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
-import { rootPostDir } from "../../../LibForGQL/findRootDir";
-import when_is_it_now from "../../../../GlobalLib/when_is_it_now";
+import { rootPostDir } from "../../../LibForGQL/findByPrisma/findRootDir";
+import when_is_it_now from "../../../../GlobalLib/RecycleFunction/when_is_it_now";
 import { CreatePostMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 
 export default {

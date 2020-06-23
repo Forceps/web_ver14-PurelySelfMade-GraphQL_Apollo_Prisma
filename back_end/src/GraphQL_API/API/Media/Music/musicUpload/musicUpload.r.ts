@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { rootArchiveDir } from "../../../../LibForGQL/findRootDir";
+import { rootArchiveDir } from "../../../../LibForGQL/findByPrisma/findRootDir";
 import { MusicUploadMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
@@ -22,7 +22,7 @@ export default {
               data: {
                 address: address[i],
                 caption: caption[i],
-                type: type[i],
+                type: type ? type[i] : null,
                 volume: volume[i],
                 directory_directoryTomusic: {
                   connect: { directory_id: rootDir },
@@ -34,7 +34,7 @@ export default {
               data: {
                 address: address[i],
                 caption: caption[i],
-                type: type[i],
+                type: type ? type[i] : null,
                 volume: volume[i],
                 directory_directoryTomusic: {
                   connect: { directory_id: directory_id[i] },

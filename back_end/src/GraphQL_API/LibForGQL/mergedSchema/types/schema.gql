@@ -94,19 +94,6 @@ type Friend {
   user_friend_respondentTouser: User!
 }
 
-type Group {
-  group_id: ID!
-  name: String!
-  purpose: String!
-  administrator: Int!
-  identiti_back_img: String
-  identiti_profile_img: String
-  participation_system: group_participation_system!
-  withdrawal_system: group_withdrawal_system!
-  user: User!
-  directory: [Directory]!
-}
-
 type Image {
   image_id: ID!
   caption: String!
@@ -203,21 +190,25 @@ type Watched {
   user_userTowatched: User!
 }
 
-enum group_participation_system {
-  Application_NoRequireApproval
-  Recommendation_Anyone
-  Recommendation_OnlyAdministrator
-  Recommendation_SomePeople
-  Application_RequireApproval_OnlyAdministrator
-  Application_RequireApproval_SomePeople
-  Application_RequireApproval_Voting
-  Application_RequireApproval_Unanimity
+type Group {
+  group_id: ID!
+  name: String!
+  purpose: String!
+  administrator: Int!
+  identiti_back_img: String
+  identiti_profile_img: String
+  participation_system: Int!
+  withdrawal_system: Int!
+  user: User!
+  group_system_group_participation_systemTogroup_system: Group_system!
+  group_system_group_withdrawal_systemTogroup_system: Group_system!
+  directory: [Directory]!
 }
 
-enum group_withdrawal_system {
-  Spontaneous
-  ExitOrder_OnlyAdministrator
-  ExitOrder_SomePeople
-  ExitOrder_Voting
-  ExitOrder_Unanimity
+type Group_system {
+  group_system_id: ID!
+  category: String!
+  name: String!
+  group_group_participation_systemTogroup_system: [Group]!
+  group_group_withdrawal_systemTogroup_system: [Group]!
 }

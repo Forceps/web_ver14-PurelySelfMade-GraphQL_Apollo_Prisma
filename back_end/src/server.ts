@@ -3,7 +3,7 @@ import { GraphQLServer } from "graphql-yoga";
 import logger from "morgan";
 import cors from "cors";
 import helmet from "helmet";
-import { authenticateJwt } from "./GlobalLib/passport";
+import { authenticateJwt } from "./GlobalLib/authSystem/passport";
 import { isAuthenticated } from "./REST_API/middleware/authVerify";
 import {
   localUploadProcessByMulter,
