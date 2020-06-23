@@ -2,6 +2,7 @@ import schema from "./GlobalLib/schema";
 import { GraphQLServer } from "graphql-yoga";
 import logger from "morgan";
 import cors from "cors";
+import helmet from "helmet";
 import { authenticateJwt } from "./GlobalLib/passport";
 import { isAuthenticated } from "./REST_API/middleware/authVerify";
 import {
@@ -25,6 +26,7 @@ server.express.post(
   localUploadResponse
 );
 server.express.use("/api/assets", fileRouter);
+server.express.use(helmet());
 
 server.start({ port: PORT }, () =>
   console.log(`✅  Server is running on localhost:${PORT}`)

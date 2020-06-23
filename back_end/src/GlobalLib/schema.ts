@@ -6,7 +6,7 @@ import { GraphQLSchema } from "graphql";
 const allTypes: GraphQLSchema[] = fileLoader(
   path.join(__dirname, "/..", "/GraphQL_API/API/**/*.gql")
 );
-const allResolvers = fileLoader(
+const allResolvers: any[] = fileLoader(
   path.join(__dirname, "/..", "/GraphQL_API/API/**/*.ts")
 );
 
