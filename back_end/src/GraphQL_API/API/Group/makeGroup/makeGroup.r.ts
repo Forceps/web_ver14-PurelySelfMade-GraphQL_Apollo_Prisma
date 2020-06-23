@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { MakeGroupMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
-import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/type_convert";
+import { S_N_to_N } from "../../../../GlobalLib/recycleFunction/type_convert";
 import { groupSystemId } from "../../../LibForGQL/findByPrisma/findGroupSystemId";
 const prisma = new PrismaClient();
 
@@ -46,10 +46,6 @@ export default {
               identiti_profile_img,
             },
           });
-        } else {
-          console.log(
-            "'participation_system_id' or 'withdrawal_system_id' can't find"
-          );
         }
         return true;
       } catch (e) {
