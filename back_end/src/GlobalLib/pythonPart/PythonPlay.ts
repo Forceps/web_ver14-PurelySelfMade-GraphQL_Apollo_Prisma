@@ -4,7 +4,7 @@ let Options = {
   pythonPath: "C:\\Users\\kwesm\\Anaconda3\\python.exe",
 };
 
-export default (AbsolutePath, fileName) => {
+export default (AbsolutePath: string, fileName: string) => {
   PythonShell.run(AbsolutePath, Options, (e) => {
     if (e) throw e;
     fileName === undefined || fileName === null || fileName === ""
