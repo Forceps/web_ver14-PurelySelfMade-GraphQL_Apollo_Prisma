@@ -1,4 +1,4 @@
-import schema from "./GlobalLib/schema";
+import mergedSchema from "./GraphQL_API/LibForGQL/mergedSchema/mergedSchema";
 import { GraphQLServer } from "graphql-yoga";
 import logger from "morgan";
 import cors from "cors";
@@ -13,8 +13,8 @@ import fileRouter from "./REST_API/fileResponse/sendFile";
 
 const PORT = 4002;
 const server = new GraphQLServer({
-  schema,
-  context: ({ request }: any) => ({ request, isAuthenticated }),
+  schema: mergedSchema,
+  context: ({ request }) => ({ request, isAuthenticated }),
 }); //passport.js에서 request에 담긴 user정보가 위의 context 함수에 담기게 되어 전역으로 사용 가능해진다.
 
 server.express.use(cors());
@@ -29,5 +29,5 @@ server.express.use("/api/assets", fileRouter);
 server.express.use(helmet());
 
 server.start({ port: PORT }, () =>
-  console.log(`✅  Server is running on localhost:${PORT}`)
+  console.log(`✅ Server is running on localhost:${PORT}`)
 );
