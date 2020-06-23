@@ -1,17 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { rootPostDir } from "../../../LibForGQL/findRootDir";
+import { UpdateDirMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface updateDirArgsTypes {
-  directory_id: number;
-  name: string;
-  parent_id: number;
-}
 export default {
   Mutation: {
     updateDir: async (
-      _: null,
-      args: updateDirArgsTypes,
+      _: void,
+      args: UpdateDirMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

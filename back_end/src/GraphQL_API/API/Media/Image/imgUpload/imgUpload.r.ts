@@ -1,19 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { rootArchiveDir } from "../../../../LibForGQL/findRootDir";
+import { ImgUploadMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface imgUploadArgsTypes {
-  address: string[];
-  caption: string[];
-  volume: number[];
-  directory_id: number[];
-  type: string[];
-}
 export default {
   Mutation: {
     imgUpload: async (
-      _: null,
-      args: imgUploadArgsTypes,
+      _: void,
+      args: ImgUploadMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

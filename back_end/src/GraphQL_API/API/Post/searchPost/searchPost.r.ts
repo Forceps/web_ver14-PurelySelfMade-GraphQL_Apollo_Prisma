@@ -1,13 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { SearchPostQueryArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface searchPostArgsTypes {
-  keyWord: string;
-  user_id: number;
-}
 export default {
   Query: {
-    searchPost: async (_: null, args: searchPostArgsTypes) => {
+    searchPost: async (_: void, args: SearchPostQueryArgs) => {
       const { keyWord, user_id } = args;
       try {
         const I_found = await prisma.queryRaw`

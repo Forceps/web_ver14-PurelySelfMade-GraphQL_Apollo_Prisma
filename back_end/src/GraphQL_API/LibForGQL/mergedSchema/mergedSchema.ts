@@ -9,9 +9,9 @@ const fileSpecific = (extension: string) =>
 const allTypes: GraphQLSchema[] = fileSpecific("*.gql");
 const allResolvers: any[] = fileSpecific("*.r.*");
 
-const schema: any = makeExecutableSchema({
+const mergedSchema: any = makeExecutableSchema({
   typeDefs: mergeTypes(allTypes),
   resolvers: mergeResolvers(allResolvers),
 });
 
-export default schema;
+export default mergedSchema;

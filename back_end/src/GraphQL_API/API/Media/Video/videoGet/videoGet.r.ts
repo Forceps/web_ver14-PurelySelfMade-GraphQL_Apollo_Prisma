@@ -1,15 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { VideoGetQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface videoGetArgsTypes {
-  skip: number;
-  take: number;
-}
 export default {
   Query: {
     videoGet: async (
-      _: null,
-      args: videoGetArgsTypes,
+      _: void,
+      args: VideoGetQueryArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

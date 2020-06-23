@@ -1,12 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { SeeCommentsQueryArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface seeCommentsArgsTypes {
-  post_id: number;
-}
 export default {
   Query: {
-    seeComments: async (_: null, args: seeCommentsArgsTypes) => {
+    seeComments: async (_: void, args: SeeCommentsQueryArgs) => {
       const { post_id } = args;
       try {
         return prisma.comment.findMany({

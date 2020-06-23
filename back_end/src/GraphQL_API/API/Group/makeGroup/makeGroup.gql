@@ -1,7 +1,7 @@
 type Mutation {
   makeGroup(
     name: String!
-    purpose: String
+    purpose: String!
     participation_system: String!
     withdrawal_system: String!
     identiti_back_img: String

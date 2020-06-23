@@ -1,15 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { MusicGetQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface musicGetArgsTypes {
-  skip: number;
-  take: number;
-}
 export default {
   Query: {
     musicGet: async (
-      _: null,
-      args: musicGetArgsTypes,
+      _: void,
+      args: MusicGetQueryArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

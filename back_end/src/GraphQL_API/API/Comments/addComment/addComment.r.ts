@@ -1,16 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import when_is_it_now from "../../../../GlobalLib/when_is_it_now";
+import { AddCommentMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface addCommentArgsTypes {
-  post_id: number;
-  comment: string;
-}
 export default {
   Mutation: {
     addComment: async (
-      _: null,
-      args: addCommentArgsTypes,
+      _: void,
+      args: AddCommentMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

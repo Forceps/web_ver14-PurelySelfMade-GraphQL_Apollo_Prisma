@@ -1,12 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { ViewPostMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface viewPostArgsTypes {
-  post_id: number;
-}
 export default {
   Mutation: {
-    viewPost: async (_: null, args: viewPostArgsTypes) => {
+    viewPost: async (_: void, args: ViewPostMutationArgs) => {
       const { post_id } = args;
 
       try {

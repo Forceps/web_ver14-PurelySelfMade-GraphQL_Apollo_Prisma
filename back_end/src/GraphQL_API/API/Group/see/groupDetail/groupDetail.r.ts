@@ -1,12 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { GroupDetailQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface groupDetailArgsTypes {
-  group_id: number;
-}
 export default {
   Query: {
-    groupDetail: async (_: null, args: groupDetailArgsTypes) => {
+    groupDetail: async (_: void, args: GroupDetailQueryArgs) => {
       const { group_id } = args;
       try {
         return prisma.group.findOne({

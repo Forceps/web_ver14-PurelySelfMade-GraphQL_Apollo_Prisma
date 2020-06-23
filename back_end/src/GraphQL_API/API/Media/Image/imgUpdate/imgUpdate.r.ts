@@ -1,17 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { rootArchiveDir } from "../../../../LibForGQL/findRootDir";
+import { ImgUpdateMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface imgUpdateArgsTypes {
-  image_id: number;
-  caption: string;
-  directory_id: number;
-}
 export default {
   Mutation: {
     imgUpdate: async (
-      _: null,
-      args: imgUpdateArgsTypes,
+      _: void,
+      args: ImgUpdateMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

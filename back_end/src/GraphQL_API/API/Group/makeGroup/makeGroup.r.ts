@@ -1,11 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { MakeGroupMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
 export default {
   Mutation: {
     makeGroup: async (
-      _: null,
-      args: any,
+      _: void,
+      args: MakeGroupMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

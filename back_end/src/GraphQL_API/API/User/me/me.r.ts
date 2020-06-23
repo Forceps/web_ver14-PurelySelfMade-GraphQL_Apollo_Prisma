@@ -3,7 +3,7 @@ const prisma = new PrismaClient();
 
 export default {
   Query: {
-    me: (_: null, __: null, { request, isAuthenticated }: any) => {
+    me: (_: void, __: void, { request, isAuthenticated }: any) => {
       isAuthenticated(request);
       const { user } = request;
       try {

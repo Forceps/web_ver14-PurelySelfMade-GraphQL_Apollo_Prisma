@@ -1,18 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { rootPostDir } from "../../../LibForGQL/findRootDir";
+import { EditPostMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface editPostArgsTypes {
-  post_id: number;
-  caption: string;
-  content: string;
-  directory_id: number;
-}
 export default {
   Mutation: {
     editPost: async (
-      _: null,
-      args: editPostArgsTypes,
+      _: void,
+      args: EditPostMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

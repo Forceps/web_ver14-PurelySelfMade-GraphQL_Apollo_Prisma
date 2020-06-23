@@ -1,20 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { rootArchiveDir } from "../../../../LibForGQL/findRootDir";
+import { VideoUploadMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface videoUploadArgsTypes {
-  address: string[];
-  caption: string[];
-  volume: number[];
-  directory_id: number[];
-  type: string[];
-  thumbnail: string[];
-}
 export default {
   Mutation: {
     videoUpload: async (
-      _: null,
-      args: videoUploadArgsTypes,
+      _: void,
+      args: VideoUploadMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

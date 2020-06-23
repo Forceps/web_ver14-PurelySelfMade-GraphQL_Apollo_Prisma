@@ -1,12 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { WhosePostDirQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface whosePostDirArgsTypes {
-  user_id: number;
-}
 export default {
   Query: {
-    whosePostDir: async (_: null, args: whosePostDirArgsTypes) => {
+    whosePostDir: async (_: void, args: WhosePostDirQueryArgs) => {
       const { user_id } = args;
       try {
         const ret = await prisma.directory.findMany({

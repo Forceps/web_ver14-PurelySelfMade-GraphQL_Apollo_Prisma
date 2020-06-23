@@ -1,14 +1,11 @@
 import { PrismaClient, user } from "@prisma/client";
 import { generateToken } from "../../../../GlobalLib/utils";
+import { LoginUserMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface loginUserArgsTypes {
-  email: string;
-  password: string;
-}
 export default {
   Mutation: {
-    loginUser: async (_: null, args: loginUserArgsTypes) => {
+    loginUser: async (_: void, args: LoginUserMutationArgs) => {
       const { email, password } = args;
       try {
         const user: user | null = await prisma.user.findOne({

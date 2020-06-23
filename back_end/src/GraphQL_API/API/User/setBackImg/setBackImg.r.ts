@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { SetBackImgMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface setBackImgArgsTypes {
-  back_img: string;
-}
 export default {
   Mutation: {
     setBackImg: async (
-      _: null,
-      args: setBackImgArgsTypes,
+      _: void,
+      args: SetBackImgMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

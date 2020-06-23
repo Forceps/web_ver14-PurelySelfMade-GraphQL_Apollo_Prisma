@@ -3,15 +3,13 @@ const prisma = new PrismaClient();
 import fs from "fs";
 import path from "path";
 import { assetsLocation } from "../../../../../../assets/im_here";
+import { ImgDeleteMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 
-interface imgDeleteArgsTypes {
-  image_id: number;
-}
 export default {
   Mutation: {
     imgDelete: async (
-      _: null,
-      args: imgDeleteArgsTypes,
+      _: void,
+      args: ImgDeleteMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

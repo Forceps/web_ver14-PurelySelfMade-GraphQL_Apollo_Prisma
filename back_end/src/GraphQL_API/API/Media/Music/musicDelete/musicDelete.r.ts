@@ -3,15 +3,13 @@ const prisma = new PrismaClient();
 import fs from "fs";
 import path from "path";
 import { assetsLocation } from "../../../../../../assets/im_here";
+import { MusicDeleteMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 
-interface musicDeleteArgsTypes {
-  music_id: number;
-}
 export default {
   Mutation: {
     musicDelete: async (
       _: null,
-      args: musicDeleteArgsTypes,
+      args: MusicDeleteMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

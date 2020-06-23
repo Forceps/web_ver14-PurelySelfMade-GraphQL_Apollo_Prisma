@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { SetAvatarMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface setAvatarArgsTypes {
-  avatar: string;
-}
 export default {
   Mutation: {
     setAvatar: async (
-      _: null,
-      args: setAvatarArgsTypes,
+      _: void,
+      args: SetAvatarMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { SeeFriendsQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface seeFriendsArgsTypes {
-  proposer: number;
-}
 export default {
   Query: {
     seeFriends: async (
-      _: null,
-      args: seeFriendsArgsTypes,
+      _: void,
+      args: SeeFriendsQueryArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

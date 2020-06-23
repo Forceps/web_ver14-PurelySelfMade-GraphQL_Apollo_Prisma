@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { WatchedMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface watchedArgsTypes {
-  post_id: number;
-}
 export default {
   Mutation: {
     watched: async (
-      _: null,
-      args: watchedArgsTypes,
+      _: void,
+      args: WatchedMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

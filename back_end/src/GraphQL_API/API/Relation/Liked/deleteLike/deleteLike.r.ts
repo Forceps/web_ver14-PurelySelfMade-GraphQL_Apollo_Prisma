@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { DeleteLikeMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface addCommentArgsTypes {
-  liked_id: number;
-}
 export default {
   Mutation: {
     deleteLike: async (
-      _: null,
-      args: addCommentArgsTypes,
+      _: void,
+      args: DeleteLikeMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

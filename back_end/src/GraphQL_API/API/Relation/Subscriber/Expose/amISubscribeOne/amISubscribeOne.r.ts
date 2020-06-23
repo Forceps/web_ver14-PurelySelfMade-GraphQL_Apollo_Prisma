@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { AmISubscribeOneQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface amISubscribeOneArgsTypes {
-  author: number;
-}
 export default {
   Query: {
     amISubscribeOne: async (
-      _: null,
-      args: amISubscribeOneArgsTypes,
+      _: void,
+      args: AmISubscribeOneQueryArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

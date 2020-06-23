@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { FindMyArchiveDirQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface findMyArchiveDirArgsTypes {
-  directory_id: number;
-}
 export default {
   Query: {
     findMyArchiveDir: async (
-      _: null,
-      args: findMyArchiveDirArgsTypes,
+      _: void,
+      args: FindMyArchiveDirQueryArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

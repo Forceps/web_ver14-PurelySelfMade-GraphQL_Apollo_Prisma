@@ -1,15 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { ImgGetQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface imgGetArgsTypes {
-  skip: number;
-  take: number;
-}
 export default {
   Query: {
     imgGet: async (
-      _: null,
-      args: imgGetArgsTypes,
+      _: void,
+      args: ImgGetQueryArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

@@ -1,14 +1,10 @@
 import { PrismaClient, user } from "@prisma/client";
+import { CreateAccountMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface createAccountArgsTypes {
-  username: string;
-  email: string;
-  password: string;
-}
 export default {
   Mutation: {
-    createAccount: async (_: null, args: createAccountArgsTypes) => {
+    createAccount: async (_: void, args: CreateAccountMutationArgs) => {
       const { username, email, password } = args;
       try {
         const exists = await prisma.user.findOne({ where: { email } });

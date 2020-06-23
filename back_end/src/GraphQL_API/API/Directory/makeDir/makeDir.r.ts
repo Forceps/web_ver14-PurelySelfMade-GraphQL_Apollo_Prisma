@@ -1,15 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { MakeDirMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface makeDirArgsTypes {
-  parent_id: number;
-  name: string;
-}
 export default {
   Mutation: {
     makeDir: async (
-      _: null,
-      args: makeDirArgsTypes,
+      _: void,
+      args: MakeDirMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

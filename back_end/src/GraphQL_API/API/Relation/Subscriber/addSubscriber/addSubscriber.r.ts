@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { AddSubscriberMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface addSubscriberArgsTypes {
-  author: number;
-}
 export default {
   Mutation: {
     addSubscriber: async (
-      _: null,
-      args: addSubscriberArgsTypes,
+      _: void,
+      args: AddSubscriberMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

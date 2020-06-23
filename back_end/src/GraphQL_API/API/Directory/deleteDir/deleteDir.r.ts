@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { DeleteDirMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface deleteDirArgsTypes {
-  directory_id: number;
-}
 export default {
   Mutation: {
     deleteDir: async (
-      _: null,
-      args: deleteDirArgsTypes,
+      _: void,
+      args: DeleteDirMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

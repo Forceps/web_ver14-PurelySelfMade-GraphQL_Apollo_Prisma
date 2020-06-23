@@ -1,12 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { SeeWhosePostsQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface seeWhosePostsArgsTypes {
-  user: number;
-}
 export default {
   Query: {
-    seeWhosePosts: async (_: null, args: seeWhosePostsArgsTypes) => {
+    seeWhosePosts: async (_: void, args: SeeWhosePostsQueryArgs) => {
       const { user } = args;
       try {
         return prisma.post.findMany({

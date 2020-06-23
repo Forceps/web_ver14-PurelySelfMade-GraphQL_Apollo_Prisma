@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { FindMyPostDirQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface findMyPostDirArgsTypes {
-  directory_id: number;
-}
 export default {
   Query: {
     findMyPostDir: async (
-      _: null,
-      args: findMyPostDirArgsTypes,
+      _: void,
+      args: FindMyPostDirQueryArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { DeletePostMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface deletePostArgsTypes {
-  post_id: number;
-}
 export default {
   Mutation: {
     deletePost: async (
-      _: null,
-      args: deletePostArgsTypes,
+      _: void,
+      args: DeletePostMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

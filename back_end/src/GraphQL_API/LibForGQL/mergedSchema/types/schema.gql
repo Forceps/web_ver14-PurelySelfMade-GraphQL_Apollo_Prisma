@@ -2,7 +2,7 @@ type Mutation {
   addComment(post_id: Int!, comment: String!): Boolean!
   deleteDir(directory_id: Int!): Boolean!
   makeDir(name: String!, parent_id: Int!): Boolean!
-  updateDir(directory_id: Int!, name: String, parent_id: Int!): Boolean!
+  updateDir(directory_id: Int!, name: String!, parent_id: Int!): Boolean!
   makeGroup(name: String!, purpose: String, participation_system: String!, withdrawal_system: String!, identiti_back_img: String, identiti_profile_img: String): Boolean!
   imgDelete(image_id: Int!): Boolean!
   imgUpdate(image_id: Int!, caption: String!, directory_id: Int!): Boolean!
@@ -18,7 +18,7 @@ type Mutation {
   editPost(post_id: Int!, caption: String!, content: String!, directory_id: Int!): Boolean!
   likePost(post_id: Int!): Boolean!
   viewPost(post_id: Int!): Boolean!
-  addFreind(respondent: String!): Boolean!
+  addFreind(respondent: Int!): Boolean!
   addLike(post_id: Int!): Boolean!
   deleteLike(liked_id: Int!): Boolean!
   addSubscriber(author: Int!): Boolean!

@@ -1,12 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { GroupsDirQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface groupsDirArgsTypes {
-  directory_id: number;
-}
 export default {
   Query: {
-    groupsDir: async (_: null, args: groupsDirArgsTypes) => {
+    groupsDir: async (_: void, args: GroupsDirQueryArgs) => {
       const { directory_id } = args;
       try {
         return prisma.directory.findOne({

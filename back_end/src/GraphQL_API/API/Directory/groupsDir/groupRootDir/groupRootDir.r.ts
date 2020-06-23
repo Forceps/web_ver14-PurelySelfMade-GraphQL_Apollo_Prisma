@@ -1,12 +1,10 @@
 import { PrismaClient } from "@prisma/client";
+import { GroupRootDirQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface groupRootDirArgsTypes {
-  group_id: number;
-}
 export default {
   Query: {
-    groupRootDir: async (_: null, args: groupRootDirArgsTypes) => {
+    groupRootDir: async (_: void, args: GroupRootDirQueryArgs) => {
       const { group_id } = args;
       try {
         const ret = await prisma.directory.findMany({

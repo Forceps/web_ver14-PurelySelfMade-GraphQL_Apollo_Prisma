@@ -1,14 +1,12 @@
 import { PrismaClient } from "@prisma/client";
+import { AddFreindMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface addFreindArgsTypes {
-  respondent: number;
-}
 export default {
   Mutation: {
     addFreind: async (
-      _: null,
-      args: addFreindArgsTypes,
+      _: void,
+      args: AddFreindMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);

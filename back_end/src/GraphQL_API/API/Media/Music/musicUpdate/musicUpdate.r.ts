@@ -1,17 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { rootArchiveDir } from "../../../../LibForGQL/findRootDir";
+import { MusicUpdateMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
-interface musicUpdateArgsTypes {
-  music_id: number;
-  caption: string;
-  directory_id: number;
-}
 export default {
   Mutation: {
     musicUpdate: async (
-      _: null,
-      args: musicUpdateArgsTypes,
+      _: void,
+      args: MusicUpdateMutationArgs,
       { request, isAuthenticated }: any
     ) => {
       isAuthenticated(request);
