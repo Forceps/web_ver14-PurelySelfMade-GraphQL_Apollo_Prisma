@@ -8,21 +8,18 @@ export default {
   Mutation: {
     makeGroup: async (
       _: void,
-      args: MakeGroupMutationArgs,
-      { request, isAuthenticated }: any
-    ) => {
-      isAuthenticated(request);
-      const {
-        user: { user_id },
-      } = request;
-      const {
+      {
         name,
         purpose,
         participation_system,
         withdrawal_system,
         identiti_back_img,
         identiti_profile_img,
-      } = args;
+      }: MakeGroupMutationArgs,
+      { request, isAuthenticated }: any
+    ) => {
+      isAuthenticated(request);
+      const user_id = S_N_to_N(request.user.user_id);
       const [participation_system_id, withdrawal_system_id] = [
         await groupSystemId(participation_system),
         await groupSystemId(withdrawal_system),
@@ -34,7 +31,7 @@ export default {
               name,
               purpose,
               user: {
-                connect: { user_id: S_N_to_N(user_id) },
+                connect: { user_id },
               },
               group_system_group_participation_systemTogroup_system: {
                 connect: { group_system_id: participation_system_id },

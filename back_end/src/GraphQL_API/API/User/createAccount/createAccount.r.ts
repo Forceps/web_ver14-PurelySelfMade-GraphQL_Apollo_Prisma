@@ -1,5 +1,6 @@
 import { PrismaClient, user } from "@prisma/client";
 import { CreateAccountMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
+import { S_N_to_N } from "../../../../GlobalLib/recycleFunction/type_convert";
 const prisma = new PrismaClient();
 
 export default {
@@ -22,11 +23,12 @@ export default {
           where: { email },
         });
         if (retry !== null) {
+          const user_id = S_N_to_N(retry.user_id);
           await prisma.directory.create({
             data: {
               name: "My Post",
               user_directoryTouser: {
-                connect: { user_id: retry.user_id },
+                connect: { user_id },
               },
               root: true,
             },
@@ -35,7 +37,7 @@ export default {
             data: {
               name: "My Archive",
               user_directoryTouser: {
-                connect: { user_id: retry.user_id },
+                connect: { user_id },
               },
               root: true,
             },
