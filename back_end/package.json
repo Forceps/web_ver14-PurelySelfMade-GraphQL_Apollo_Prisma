@@ -13,12 +13,11 @@
     "start": "cd dist && node ."
   },
   "devDependencies": {
-    "@prisma/cli": "^2.0.1",
+    "@types/bcrypt": "^3.0.0",
     "@types/helmet": "^0.0.47",
     "@types/morgan": "^1.9.1",
     "@types/multer": "^1.4.3",
-    "@types/node": "^14.0.13",
-    "@types/bcrypt": "^3.0.0",
+    "@types/node": "^14.0.14",
     "@types/passport": "^1.0.3",
     "@types/passport-jwt": "^3.0.3",
     "@types/python-shell": "^0.4.2",
@@ -29,15 +28,15 @@
     "typescript": "^3.9.5"
   },
   "dependencies": {
-    "@prisma/client": "^2.0.1",
+    "@prisma/client": "^2.1.1",
+    "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "graphql": "^15.1.0",
     "graphql-tools": "^6.0.10",
-    "bcrypt": "^5.0.0",
     "graphql-yoga": "^1.18.3",
-    "helmet": "^3.23.1",
+    "helmet": "^3.23.2",
     "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.7.8",
     "morgan": "^1.10.0",

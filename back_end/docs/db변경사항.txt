@@ -357,12 +357,6 @@ ADD CONSTRAINT `reader`
   ALTER TABLE `square_post`.`subscriber` 
 CHANGE COLUMN `subscriber_id` `subscriber_id` BIGINT NOT NULL AUTO_INCREMENT ;
 
-
-
-
-
-//2020-06-16
-
 ALTER TABLE `square_post`.`watched` 
 DROP FOREIGN KEY `watched_post`,
 DROP FOREIGN KEY `watching_user`;
@@ -389,10 +383,6 @@ ADD CONSTRAINT `user`
   FOREIGN KEY (`user`)
   REFERENCES `square_post`.`user` (`user_id`)
   ON DELETE CASCADE;
-
-
-
-// 2020 - 06 - 23
 
 CREATE TABLE `square_post`.`group_system` (
 `group_system_id` TINYINT NOT NULL AUTO_INCREMENT,
