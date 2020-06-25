@@ -20,10 +20,6 @@ export default {
           : (directory = directory_id);
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-        };
       }
 
       try {
@@ -36,16 +32,10 @@ export default {
           },
           where: { music_id },
         });
-        return {
-          ok: true,
-          error: null,
-        };
+        return true;
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-        };
+        return false;
       }
     },
   },

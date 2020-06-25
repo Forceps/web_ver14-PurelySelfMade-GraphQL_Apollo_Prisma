@@ -37,20 +37,20 @@ type Query {
   whosePostDir(user_id: Int!): Directory
   groupsDir(directory_id: Int!): Directory
   groupRootDir(group_id: Int!): Directory
-  groupDetail(group_id: Int!): Group!
-  seeGroups: [Group]!
+  groupDetail(group_id: Int!): Group
+  seeGroups: [Group]
   imgGet(skip: Int, take: Int): [Image]
   musicGet(skip: Int, take: Int): [Music]!
   videoGet(skip: Int, take: Int): [Video]
-  searchPost(keyWord: String!, user_id: Int): [Post]!
+  searchPost(keyWord: String!, user_id: Int): [Post]
   seePost(post_id: Int!): Post
   seePosts: [Post]
   seeWhosePosts(user: Int!): [Post]!
-  seeFriends(proposer: Int!): [User]!
-  amISubscribeOne(author: Int!): [Subscriber]!
-  me: User!
-  searchUser(keyWord: String!): [User]!
-  seeUser(user_id: Int!): User!
+  seeFriends(proposer: Int!): [User]
+  amISubscribeOne(author: Int!): [Subscriber]
+  me: User
+  searchUser(keyWord: String!): [User]
+  seeUser(user_id: Int!): User
 }
 
 type Comment {

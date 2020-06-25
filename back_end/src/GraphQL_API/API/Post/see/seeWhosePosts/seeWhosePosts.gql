@@ -1,8 +1,3 @@
-type SeeWhosePostsRes {
-  ok: Boolean!
-  error: String
-  data: [Post]
-}
 type Query {
-  seeWhosePosts(user: Int!): SeeWhosePostsRes!
+  seeWhosePosts(user: Int!): [Post]!
 }

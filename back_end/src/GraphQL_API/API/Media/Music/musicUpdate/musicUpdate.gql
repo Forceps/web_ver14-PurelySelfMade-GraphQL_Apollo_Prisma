@@ -1,11 +1,3 @@
-type MusicUpdateRes {
-  ok: Boolean!
-  error: String
-}
 type Mutation {
-  musicUpdate(
-    music_id: Int!
-    caption: String!
-    directory_id: Int!
-  ): MusicUpdateRes!
+  musicUpdate(music_id: Int!, caption: String!, directory_id: Int!): Boolean!
 }

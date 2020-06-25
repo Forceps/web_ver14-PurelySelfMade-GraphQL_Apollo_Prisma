@@ -14,19 +14,10 @@ export default {
           },
           include: { other_directory: true, post: true },
         });
-        const data = ret[0];
-        return {
-          ok: true,
-          error: null,
-          data,
-        };
+        return ret[0];
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-          data: null,
-        };
+        return null;
       }
     },
   },

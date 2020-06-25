@@ -1,8 +1,3 @@
-type SearchPostRes {
-  ok: Boolean!
-  error: String
-  data: [Post]
-}
 type Query {
-  searchPost(keyWord: String!, user_id: Int): SearchPostRes!
+  searchPost(keyWord: String!, user_id: Int): [Post]
 }

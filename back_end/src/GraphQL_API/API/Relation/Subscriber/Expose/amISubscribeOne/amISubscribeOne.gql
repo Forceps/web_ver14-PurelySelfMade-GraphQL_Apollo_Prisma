@@ -1,8 +1,3 @@
-type AmISubscribeOneRes {
-  ok: Boolean!
-  error: String
-  data: [Subscriber]
-}
 type Query {
-  amISubscribeOne(author: Int!): AmISubscribeOneRes!
+  amISubscribeOne(author: Int!): [Subscriber]
 }

@@ -15,11 +15,9 @@ export default {
       const { user } = request;
       let directory: any = null;
       try {
-        if (directory_id === 0) {
-          directory = await rootPostDir(user.user_id);
-        } else {
-          directory = directory_id;
-        }
+        directory_id === 0
+          ? (directory = await rootPostDir(user.user_id))
+          : (directory = directory_id);
       } catch (e) {
         console.log(e);
       }
@@ -35,16 +33,10 @@ export default {
           },
           where: { post_id },
         });
-        return {
-          ok: true,
-          error: null,
-        };
+        return true;
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-        };
+        return false;
       }
     },
   },

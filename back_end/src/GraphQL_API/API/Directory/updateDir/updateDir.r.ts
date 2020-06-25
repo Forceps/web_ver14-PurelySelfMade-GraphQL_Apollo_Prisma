@@ -17,7 +17,7 @@ export default {
       let contradictory_situation = false;
       try {
         if (parent_id === 0) {
-          Belong = await rootPostDir(user.user_id);
+          Belong = rootPostDir(user.user_id);
         } else if (directory_id === parent_id) {
           contradictory_situation = true;
         } else {
@@ -25,10 +25,7 @@ export default {
         }
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-        };
+        return false;
       }
 
       try {
@@ -48,16 +45,10 @@ export default {
             where: { directory_id },
           });
         }
-        return {
-          ok: true,
-          error: null,
-        };
+        return true;
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-        };
+        return false;
       }
     },
   },

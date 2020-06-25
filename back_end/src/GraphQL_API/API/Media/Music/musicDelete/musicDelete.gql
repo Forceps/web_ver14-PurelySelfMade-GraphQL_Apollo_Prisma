@@ -1,7 +1,3 @@
-type MusicDeleteRes {
-  ok: Boolean!
-  error: String
-}
 type Mutation {
-  musicDelete(music_id: Int!): MusicDeleteRes!
+  musicDelete(music_id: Int!): Boolean!
 }

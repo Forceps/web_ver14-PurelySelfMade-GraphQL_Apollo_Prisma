@@ -7,7 +7,6 @@ export default {
     whosePostDir: async (_: void, args: WhosePostDirQueryArgs) => {
       const { user_id } = args;
       try {
-        let data: any = {};
         const ret = await prisma.directory.findMany({
           where: {
             root: true,
@@ -23,19 +22,10 @@ export default {
             post: true,
           },
         });
-        data = ret[0];
-        return {
-          ok: true,
-          error: null,
-          data,
-        };
+        return ret[0];
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-          data: null,
-        };
+        return null;
       }
     },
   },

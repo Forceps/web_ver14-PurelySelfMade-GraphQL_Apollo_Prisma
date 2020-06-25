@@ -1,8 +1,3 @@
-type FindMyPostDirRes {
-  ok: Boolean!
-  error: String
-  data: Directory
-}
 type Query {
-  findMyPostDir(directory_id: Int!): FindMyPostDirRes!
+  findMyPostDir(directory_id: Int!): Directory
 }

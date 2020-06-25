@@ -17,44 +17,26 @@ export default {
       try {
         const rootDir = await rootArchiveDir(user.user_id);
         for (let i = 0; i < address.length; i++) {
-          if (directory_id[i] === 0) {
-            await prisma.video.create({
-              data: {
-                address: address[i],
-                caption: caption[i],
-                type: type ? type[i] : null,
-                volume: volume[i],
-                directory_directoryTovideo: {
-                  connect: { directory_id: rootDir },
+          await prisma.video.create({
+            data: {
+              address: address[i],
+              caption: caption[i],
+              type: type ? type[i] : null,
+              volume: volume[i],
+              directory_directoryTovideo: {
+                connect: {
+                  directory_id:
+                    directory_id[i] === 0 ? rootDir : directory_id[i],
                 },
-                thumbnail: thumbnail ? thumbnail[i] : null,
               },
-            });
-          } else {
-            await prisma.video.create({
-              data: {
-                address: address[i],
-                caption: caption[i],
-                type: type ? type[i] : null,
-                volume: volume[i],
-                directory_directoryTovideo: {
-                  connect: { directory_id: directory_id[i] },
-                },
-                thumbnail: thumbnail ? thumbnail[i] : null,
-              },
-            });
-          }
+              thumbnail: thumbnail ? thumbnail[i] : null,
+            },
+          });
         }
-        return {
-          ok: true,
-          error: null,
-        };
+        return true;
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-        };
+        return false;
       }
     },
   },

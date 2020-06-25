@@ -34,16 +34,10 @@ export default {
           },
           where: { image_id },
         });
-        return {
-          ok: true,
-          error: null,
-        };
+        return true;
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-        };
+        return false;
       }
     },
   },

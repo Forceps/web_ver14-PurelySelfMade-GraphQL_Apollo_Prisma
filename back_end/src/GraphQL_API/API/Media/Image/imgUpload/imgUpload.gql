@@ -1,7 +1,3 @@
-type ImgUploadRes {
-  ok: Boolean!
-  error: String
-}
 type Mutation {
   imgUpload(
     address: [String!]!
@@ -9,5 +5,5 @@ type Mutation {
     volume: [Int!]!
     directory_id: [Int!]!
     type: [String]
-  ): ImgUploadRes!
+  ): Boolean!
 }

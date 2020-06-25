@@ -1,7 +1,3 @@
-type UpdateDirRes {
-  ok: Boolean!
-  error: String
-}
 type Mutation {
-  updateDir(directory_id: Int!, name: String!, parent_id: Int!): UpdateDirRes!
+  updateDir(directory_id: Int!, name: String!, parent_id: Int!): Boolean!
 }

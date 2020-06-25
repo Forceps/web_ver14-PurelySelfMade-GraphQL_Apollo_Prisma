@@ -7,22 +7,13 @@ export default {
     groupDetail: async (_: void, args: GroupDetailQueryArgs) => {
       const { group_id } = args;
       try {
-        const data = await prisma.group.findOne({
+        return prisma.group.findOne({
           where: { group_id },
           include: { user: true },
         });
-        return {
-          ok: true,
-          error: null,
-          data,
-        };
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-          data: null,
-        };
+        return null;
       }
     },
   },

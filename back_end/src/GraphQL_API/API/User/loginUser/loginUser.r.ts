@@ -13,32 +13,16 @@ export default {
         });
         if (user !== null) {
           if (password === user.password) {
-            return {
-              ok: true,
-              error: null,
-              data: generateToken(user.user_id),
-            };
+            return generateToken(user.user_id);
           } else {
-            return {
-              ok: true,
-              error: null,
-              data: "WorngPW",
-            };
+            return "WorngPW";
           }
         } else {
-          return {
-            ok: true,
-            error: null,
-            data: "emailNotExist",
-          };
+          return "emailNotExist";
         }
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-          data: null,
-        };
+        return "error happened";
       }
     },
   },

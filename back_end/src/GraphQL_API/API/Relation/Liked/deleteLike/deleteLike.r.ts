@@ -15,16 +15,10 @@ export default {
         await prisma.liked.delete({
           where: { liked_id },
         });
-        return {
-          ok: true,
-          error: null,
-        };
+        return true;
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-        };
+        return false;
       }
     },
   },

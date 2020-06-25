@@ -1,7 +1,3 @@
-type WatchedRes {
-  ok: Boolean!
-  error: String
-}
 type Mutation {
-  watched(post_id: Int!): WatchedRes!
+  watched(post_id: Int!): Boolean!
 }

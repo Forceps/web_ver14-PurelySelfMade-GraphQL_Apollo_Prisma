@@ -24,18 +24,10 @@ export default {
           let { respondent: UserInfo } = Rvalue[i];
           refinedRvalue = refinedRvalue.concat(UserInfo);
         }
-        return {
-          ok: true,
-          error: null,
-          data: refinedRvalue,
-        };
+        return refinedRvalue;
       } catch (e) {
         console.log(e);
-        return {
-          ok: false,
-          error: e.message,
-          data: null,
-        };
+        return null;
       }
     },
   },

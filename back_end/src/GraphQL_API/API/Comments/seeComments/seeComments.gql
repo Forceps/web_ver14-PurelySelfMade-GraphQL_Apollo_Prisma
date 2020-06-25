@@ -1,9 +1,3 @@
-type SeeCommentsRes {
-  ok: Boolean!
-  error: String
-  data: [Comment]
-}
-
 type Query {
-  seeComments(post_id: Int!): SeeCommentsRes
+  seeComments(post_id: Int!): [Comment]
 }
