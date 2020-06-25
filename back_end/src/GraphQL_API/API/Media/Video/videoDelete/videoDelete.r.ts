@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import fs from "fs";
 import path from "path";
-import { assetsLocation } from "../../../../../../assets/im_here";
+import { assetsLocation } from "../../../../../GlobalLib/assets/im_here";
 import { VideoDeleteMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 
 export default {

@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import when_is_it_now from "../../../../GlobalLib/RecycleFunction/when_is_it_now";
 import { AddCommentMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
+import when_is_it_now from "../../../../GlobalLib/recycleFunction/when_is_it_now";
 const prisma = new PrismaClient();
 
 export default {

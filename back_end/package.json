@@ -7,7 +7,10 @@
     "dev": "cd src && nodemon --exec ts-node server.ts -e ts,graphql,gql",
     "prism": "npx prisma introspect && npx prisma generate",
     "pretypes": "gql-merge --out-file ./src/GraphQL_API/LibForGQL/mergedSchema/types/schema.gql ./src/GraphQL_API/API/**/*.gql",
-    "types": "graphql-to-typescript ./src/GraphQL_API/LibForGQL/mergedSchema/types/schema.gql ./src/GraphQL_API/LibForGQL/mergedSchema/types/graph.d.ts"
+    "types": "graphql-to-typescript ./src/GraphQL_API/LibForGQL/mergedSchema/types/schema.gql ./src/GraphQL_API/LibForGQL/mergedSchema/types/graph.d.ts",
+    "build": "tsc",
+    "postbuild": "cd src && copy ./GraphQL_API/API/**/*.gql ../dist/api",
+    "start": "cd dist && node ."
   },
   "devDependencies": {
     "@prisma/cli": "^2.0.1",

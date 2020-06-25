@@ -1,6 +1,6 @@
 import express from "express";
 import path from "path";
-import { assetsLocation } from "../../../assets/im_here";
+import { assetsLocation } from "../../GlobalLib/assets/im_here";
 
 const router = express.Router();
 
