@@ -1,3 +1,11 @@
+type CreateAccountRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  createAccount(username: String!, email: String!, password: String!): Boolean!
+  createAccount(
+    username: String!
+    email: String!
+    password: String!
+  ): CreateAccountRes!
 }

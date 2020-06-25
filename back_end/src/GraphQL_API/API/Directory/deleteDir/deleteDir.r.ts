@@ -13,10 +13,16 @@ export default {
       const { directory_id } = args;
       try {
         await prisma.queryRaw`DELETE FROM square_post.directory WHERE directory_id = ${directory_id};`;
-        return true;
+        return {
+          ok: true,
+          error: null,
+        };
       } catch (e) {
         console.log(e);
-        return false;
+        return {
+          ok: false,
+          error: e.message,
+        };
       }
     },
   },

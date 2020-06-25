@@ -1,3 +1,8 @@
+type MeRes {
+  ok: Boolean!
+  error: String
+  data: User
+}
 type Query {
-  me: User!
+  me: MeRes!
 }

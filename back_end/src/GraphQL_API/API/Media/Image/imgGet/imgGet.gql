@@ -1,3 +1,8 @@
+type ImgGetRes {
+  ok: Boolean!
+  error: String
+  data: [Image]
+}
 type Query {
-  imgGet(skip: Int, take: Int): [Image]
+  imgGet(skip: Int, take: Int): ImgGetRes!
 }

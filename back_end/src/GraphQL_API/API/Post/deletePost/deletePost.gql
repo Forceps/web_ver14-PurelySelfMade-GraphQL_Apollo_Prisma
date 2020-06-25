@@ -1,3 +1,7 @@
+type DeletePostRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  deletePost(post_id: Int!): Boolean!
+  deletePost(post_id: Int!): DeletePostRes!
 }

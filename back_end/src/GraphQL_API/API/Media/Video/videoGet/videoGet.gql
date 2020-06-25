@@ -1,3 +1,8 @@
+type VideoGetRes {
+  ok: Boolean!
+  error: String
+  data: [Video]
+}
 type Query {
-  videoGet(skip: Int, take: Int): [Video]
+  videoGet(skip: Int, take: Int): VideoGetRes!
 }

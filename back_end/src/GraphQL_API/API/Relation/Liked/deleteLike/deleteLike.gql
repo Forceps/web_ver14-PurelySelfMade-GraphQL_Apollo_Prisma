@@ -1,3 +1,7 @@
+type DeleteLikeRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  deleteLike(liked_id: Int!): Boolean!
+  deleteLike(liked_id: Int!): DeleteLikeRes!
 }

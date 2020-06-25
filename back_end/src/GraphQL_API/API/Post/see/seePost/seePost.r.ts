@@ -13,12 +13,22 @@ export default {
       // );
       try {
         await prisma.executeRaw`UPDATE square_post.post SET views = views + 1 WHERE post_id = ${post_id}`;
-        return prisma.post.findOne({
+        const data = await prisma.post.findOne({
           where: { post_id },
           include: { directory_directoryTopost: true, user_postTouser: true },
         });
+        return {
+          ok: true,
+          error: null,
+          data,
+        };
       } catch (e) {
         console.log(e);
+        return {
+          ok: false,
+          error: e.message,
+          data: null,
+        };
       }
     },
   },

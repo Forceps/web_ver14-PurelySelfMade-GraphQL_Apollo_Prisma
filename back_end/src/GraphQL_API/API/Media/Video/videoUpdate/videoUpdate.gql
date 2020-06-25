@@ -1,3 +1,11 @@
+type VideoUpdateRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  videoUpdate(video_id: Int!, caption: String!, directory_id: Int!): Boolean!
+  videoUpdate(
+    video_id: Int!
+    caption: String!
+    directory_id: Int!
+  ): VideoUpdateRes!
 }

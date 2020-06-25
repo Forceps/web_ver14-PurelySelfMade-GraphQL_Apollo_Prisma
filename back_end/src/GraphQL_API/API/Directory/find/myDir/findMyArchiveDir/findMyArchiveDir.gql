@@ -1,3 +1,8 @@
+type FindMyArchiveDirRes {
+  ok: Boolean!
+  error: String
+  data: Directory
+}
 type Query {
-  findMyArchiveDir(directory_id: Int!): Directory
+  findMyArchiveDir(directory_id: Int!): FindMyArchiveDirRes!
 }

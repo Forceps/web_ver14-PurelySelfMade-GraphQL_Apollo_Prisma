@@ -1,3 +1,8 @@
+type MusicGetRes {
+  ok: Boolean!
+  error: String
+  data: [Music]
+}
 type Query {
-  musicGet(skip: Int, take: Int): [Music]!
+  musicGet(skip: Int, take: Int): MusicGetRes!
 }

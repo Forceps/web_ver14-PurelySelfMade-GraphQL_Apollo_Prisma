@@ -1,3 +1,8 @@
+type GroupsDirRes {
+  ok: Boolean!
+  error: String
+  data: Directory
+}
 type Query {
-  groupsDir(directory_id: Int!): Directory
+  groupsDir(directory_id: Int!): GroupsDirRes!
 }

@@ -1,3 +1,7 @@
+type LikePostRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  likePost(post_id: Int!): Boolean!
+  likePost(post_id: Int!): LikePostRes!
 }

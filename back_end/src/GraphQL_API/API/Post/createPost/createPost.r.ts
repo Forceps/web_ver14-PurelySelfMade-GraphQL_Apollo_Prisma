@@ -17,11 +17,9 @@ export default {
       const { year, month, day, hour, minute, second } = when_is_it_now();
       let directory: any = null;
       try {
-        if (directory_id === 0) {
-          directory = await rootPostDir(user.user_id);
-        } else {
-          directory = directory_id;
-        }
+        directory_id === 0
+          ? (directory = await rootPostDir(user.user_id))
+          : (directory = directory_id);
       } catch (e) {
         console.log(e);
       }
@@ -43,10 +41,16 @@ export default {
             second,
           },
         });
-        return true;
+        return {
+          ok: true,
+          error: null,
+        };
       } catch (e) {
         console.log(e);
-        return false;
+        return {
+          ok: false,
+          error: e.message,
+        };
       }
     },
   },

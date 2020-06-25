@@ -30,10 +30,16 @@ export default {
             where: { video_id },
           });
         }
-        return true;
+        return {
+          ok: true,
+          error: null,
+        };
       } catch (e) {
         console.log(e);
-        return false;
+        return {
+          ok: false,
+          error: e.message,
+        };
       }
     },
   },

@@ -1,3 +1,8 @@
+type SearchUserRes {
+  ok: Boolean!
+  error: String
+  data: [User]
+}
 type Query {
-  searchUser(keyWord: String!): [User]!
+  searchUser(keyWord: String!): SearchUserRes!
 }

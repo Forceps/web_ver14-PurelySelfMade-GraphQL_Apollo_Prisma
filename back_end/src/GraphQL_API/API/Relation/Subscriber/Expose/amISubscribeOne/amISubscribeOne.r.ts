@@ -13,14 +13,24 @@ export default {
       const { user } = request;
       const { author } = args;
       try {
-        return prisma.subscriber.findMany({
+        const data = await prisma.subscriber.findMany({
           where: {
             author,
             reader: user.user_id,
           },
         });
+        return {
+          ok: true,
+          error: null,
+          data,
+        };
       } catch (e) {
         console.log(e);
+        return {
+          ok: false,
+          error: e.message,
+          data: null,
+        };
       }
     },
   },

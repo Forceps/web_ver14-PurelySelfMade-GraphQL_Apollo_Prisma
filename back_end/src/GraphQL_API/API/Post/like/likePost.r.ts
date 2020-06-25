@@ -15,10 +15,16 @@ export default {
       try {
         await prisma.executeRaw`UPDATE square_post.post SET likes = likes + 1 WHERE post_id = ${post_id}`;
 
-        return true;
+        return {
+          ok: true,
+          error: null,
+        };
       } catch (e) {
         console.log(e);
-        return false;
+        return {
+          ok: false,
+          error: e.message,
+        };
       }
     },
   },

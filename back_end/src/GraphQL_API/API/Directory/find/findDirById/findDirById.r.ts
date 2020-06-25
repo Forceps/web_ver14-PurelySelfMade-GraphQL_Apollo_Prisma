@@ -7,7 +7,7 @@ export default {
     findDirById: async (_: void, args: FindDirByIdQueryArgs) => {
       const { directory_id } = args;
       try {
-        return prisma.directory.findOne({
+        const data = await prisma.directory.findOne({
           where: { directory_id },
           include: {
             directory: true,
@@ -19,8 +19,18 @@ export default {
             post: true,
           },
         });
+        return {
+          ok: false,
+          error: null,
+          data,
+        };
       } catch (e) {
         console.log(e);
+        return {
+          ok: false,
+          error: e.message,
+          data: null,
+        };
       }
     },
   },

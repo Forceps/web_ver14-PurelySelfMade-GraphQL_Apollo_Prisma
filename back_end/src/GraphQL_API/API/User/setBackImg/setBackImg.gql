@@ -1,3 +1,7 @@
+type SetBackImgRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  setBackImg(back_img: String!): Boolean!
+  setBackImg(back_img: String!): SetBackImgRes!
 }

@@ -1,3 +1,11 @@
+type CreatePostRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  createPost(caption: String!, content: String, directory_id: Int!): Boolean!
+  createPost(
+    caption: String!
+    content: String
+    directory_id: Int!
+  ): CreatePostRes!
 }

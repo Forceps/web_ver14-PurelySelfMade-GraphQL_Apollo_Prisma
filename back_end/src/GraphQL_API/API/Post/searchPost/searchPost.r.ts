@@ -5,7 +5,7 @@ const prisma = new PrismaClient();
 export default {
   Query: {
     searchPost: async (_: void, args: SearchPostQueryArgs) => {
-      const { keyWord, user_id } = args;
+      const { keyWord } = args;
       try {
         const I_found = await prisma.queryRaw`
         SELECT post_id ,
@@ -25,9 +25,18 @@ export default {
           });
           ResultBarrel = ResultBarrel.concat(item);
         }
-        return ResultBarrel;
+        return {
+          ok: true,
+          error: null,
+          data: ResultBarrel,
+        };
       } catch (e) {
         console.log(e);
+        return {
+          ok: false,
+          error: e.message,
+          data: null,
+        };
       }
     },
   },

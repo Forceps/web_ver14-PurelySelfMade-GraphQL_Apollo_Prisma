@@ -1,3 +1,7 @@
+type DeleteDirRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  deleteDir(directory_id: Int!): Boolean!
+  deleteDir(directory_id: Int!): DeleteDirRes!
 }

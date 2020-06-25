@@ -17,36 +17,31 @@ export default {
       try {
         const RootDir = await rootArchiveDir(user.user_id);
         for (let i = 0; i < address.length; i++) {
-          if (directory_id[i] === 0) {
-            await prisma.image.create({
-              data: {
-                address: address[i],
-                caption: caption[i],
-                type: type ? type[i] : null,
-                volume: volume[i],
-                directory_directoryToimage: {
-                  connect: { directory_id: RootDir },
+          await prisma.image.create({
+            data: {
+              address: address[i],
+              caption: caption[i],
+              type: type ? type[i] : null,
+              volume: volume[i],
+              directory_directoryToimage: {
+                connect: {
+                  directory_id:
+                    directory_id[i] === 0 ? RootDir : directory_id[i],
                 },
               },
-            });
-          } else {
-            await prisma.image.create({
-              data: {
-                address: address[i],
-                caption: caption[i],
-                type: type ? type[i] : null,
-                volume: volume[i],
-                directory_directoryToimage: {
-                  connect: { directory_id: directory_id[i] },
-                },
-              },
-            });
-          }
+            },
+          });
         }
-        return true;
+        return {
+          ok: true,
+          error: null,
+        };
       } catch (e) {
         console.log(e);
-        return false;
+        return {
+          ok: false,
+          error: e.message,
+        };
       }
     },
   },

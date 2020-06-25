@@ -1,3 +1,7 @@
+type ImgUpdateRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  imgUpdate(image_id: Int!, caption: String!, directory_id: Int!): Boolean!
+  imgUpdate(image_id: Int!, caption: String!, directory_id: Int!): ImgUpdateRes!
 }

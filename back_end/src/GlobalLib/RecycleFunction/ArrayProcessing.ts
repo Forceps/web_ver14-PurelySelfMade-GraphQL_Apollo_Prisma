@@ -1,5 +1,5 @@
 export const removeDuplicatesArray = (arr: any[]): any[] => {
-  let tempArr = [];
+  let tempArr: any[] = [];
   for (let i = 0; i < arr.length; i++) {
     if (tempArr.length === 0) {
       tempArr.push(arr[i]);

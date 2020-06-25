@@ -15,13 +15,15 @@ export default {
       const { music_id, caption, directory_id } = args;
       let directory: any = null;
       try {
-        if (directory_id === 0) {
-          directory = await rootArchiveDir(user.user_id);
-        } else {
-          directory = directory_id;
-        }
+        directory_id === 0
+          ? (directory = await rootArchiveDir(user.user_id))
+          : (directory = directory_id);
       } catch (e) {
         console.log(e);
+        return {
+          ok: false,
+          error: e.message,
+        };
       }
 
       try {
@@ -34,10 +36,16 @@ export default {
           },
           where: { music_id },
         });
-        return true;
+        return {
+          ok: true,
+          error: null,
+        };
       } catch (e) {
         console.log(e);
-        return false;
+        return {
+          ok: false,
+          error: e.message,
+        };
       }
     },
   },

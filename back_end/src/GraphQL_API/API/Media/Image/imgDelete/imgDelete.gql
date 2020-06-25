@@ -1,3 +1,7 @@
+type ImgDeleteRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  imgDelete(image_id: Int!): Boolean!
+  imgDelete(image_id: Int!): ImgDeleteRes!
 }

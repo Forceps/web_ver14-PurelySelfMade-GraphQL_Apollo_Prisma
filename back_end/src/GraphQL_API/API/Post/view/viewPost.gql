@@ -1,3 +1,7 @@
+type ViewPostRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  viewPost(post_id: Int!): Boolean!
+  viewPost(post_id: Int!): ViewPostRes!
 }

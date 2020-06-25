@@ -24,9 +24,18 @@ export default {
           });
           ResultBarrel = ResultBarrel.concat(item);
         }
-        return ResultBarrel;
+        return {
+          ok: true,
+          error: null,
+          data: ResultBarrel,
+        };
       } catch (e) {
         console.log(e);
+        return {
+          ok: false,
+          error: e.message,
+          data: null,
+        };
       }
     },
   },

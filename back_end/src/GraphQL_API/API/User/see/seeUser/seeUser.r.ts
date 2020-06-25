@@ -7,9 +7,19 @@ export default {
     seeUser: async (_: void, args: SeeUserQueryArgs) => {
       const { user_id } = args;
       try {
-        return prisma.user.findOne({ where: { user_id } });
+        const data = await prisma.user.findOne({ where: { user_id } });
+        return {
+          ok: true,
+          error: null,
+          data,
+        };
       } catch (e) {
         console.log(e);
+        return {
+          ok: false,
+          error: e.message,
+          data: null,
+        };
       }
     },
   },

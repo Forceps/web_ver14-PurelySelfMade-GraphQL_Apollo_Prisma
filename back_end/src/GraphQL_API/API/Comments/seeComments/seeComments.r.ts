@@ -7,13 +7,23 @@ export default {
     seeComments: async (_: void, args: SeeCommentsQueryArgs) => {
       const { post_id } = args;
       try {
-        return prisma.comment.findMany({
+        const data = await prisma.comment.findMany({
           where: { post: post_id },
           include: { user_commentTouser: true },
           orderBy: { comment_id: "desc" },
         });
+        return {
+          ok: true,
+          error: null,
+          data,
+        };
       } catch (e) {
         console.log(e);
+        return {
+          ok: false,
+          error: e.message,
+          data: null,
+        };
       }
     },
   },

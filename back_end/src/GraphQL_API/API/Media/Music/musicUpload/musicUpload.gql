@@ -1,3 +1,7 @@
+type MusicUploadRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
   musicUpload(
     address: [String!]!
@@ -5,5 +9,5 @@ type Mutation {
     volume: [Int!]!
     directory_id: [Int!]!
     type: [String]
-  ): Boolean!
+  ): MusicUploadRes!
 }

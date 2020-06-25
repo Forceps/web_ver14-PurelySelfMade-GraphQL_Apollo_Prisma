@@ -1,3 +1,8 @@
+type SeeUserRes {
+  ok: Boolean!
+  error: String
+  data: User
+}
 type Query {
-  seeUser(user_id: Int!): User!
+  seeUser(user_id: Int!): SeeUserRes!
 }

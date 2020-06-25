@@ -1,3 +1,7 @@
+type VideoDeleteRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  videoDelete(video_id: Int!): Boolean!
+  videoDelete(video_id: Int!): VideoDeleteRes!
 }

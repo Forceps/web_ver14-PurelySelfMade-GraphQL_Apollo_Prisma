@@ -1,3 +1,8 @@
+type LoginUserRes {
+  ok: Boolean!
+  error: String
+  data: String
+}
 type Mutation {
-  loginUser(email: String!, password: String!): String!
+  loginUser(email: String!, password: String!): LoginUserRes!
 }

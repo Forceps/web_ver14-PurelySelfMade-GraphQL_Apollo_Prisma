@@ -12,9 +12,10 @@ export default {
       isAuthenticated(request);
       const { user } = request;
       const { skip, take } = args;
+      let data: any = {};
       try {
         if ((skip || skip === 0) && (take || take === 0)) {
-          return prisma.video.findMany({
+          data = await prisma.video.findMany({
             where: {
               directory_directoryTovideo: {
                 user: user.user_id,
@@ -27,7 +28,7 @@ export default {
             take,
           });
         } else if (skip) {
-          return prisma.video.findMany({
+          data = await prisma.video.findMany({
             where: {
               directory_directoryTovideo: {
                 user: user.user_id,
@@ -39,7 +40,7 @@ export default {
             take: skip,
           });
         } else {
-          return prisma.video.findMany({
+          data = await prisma.video.findMany({
             where: {
               directory_directoryTovideo: {
                 user: user.user_id,
@@ -51,9 +52,19 @@ export default {
             take: 4,
           });
         }
+        return {
+          ok: true,
+          error: null,
+          data,
+        };
       } catch (e) {
         console.log(e);
+        return {
+          ok: false,
+          error: e.message,
+          data: null,
+        };
       }
     },
   },
-}; // skip은 n개를 생략하고 first는 m개를 보여준다.
+};

@@ -1,3 +1,7 @@
+type SetAvatarRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  setAvatar(avatar: String!): Boolean!
+  setAvatar(avatar: String!): SetAvatarRes!
 }

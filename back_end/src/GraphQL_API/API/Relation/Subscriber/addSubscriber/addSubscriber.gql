@@ -1,3 +1,7 @@
+type AddSubscriberRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  addSubscriber(author: Int!): Boolean!
+  addSubscriber(author: Int!): AddSubscriberRes!
 }

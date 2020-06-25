@@ -1,3 +1,7 @@
+type MakeDirRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  makeDir(name: String!, parent_id: Int!): Boolean!
+  makeDir(name: String!, parent_id: Int!): MakeDirRes!
 }

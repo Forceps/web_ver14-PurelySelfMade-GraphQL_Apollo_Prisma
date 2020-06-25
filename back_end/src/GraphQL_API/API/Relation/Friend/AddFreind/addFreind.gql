@@ -1,3 +1,7 @@
+type AddFreindRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
-  addFreind(respondent: Int!): Boolean!
+  addFreind(respondent: Int!): AddFreindRes!
 }

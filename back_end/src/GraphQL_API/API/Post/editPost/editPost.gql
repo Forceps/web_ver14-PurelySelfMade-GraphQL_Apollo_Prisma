@@ -1,8 +1,12 @@
+type EditPostRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
   editPost(
     post_id: Int!
     caption: String!
     content: String!
     directory_id: Int!
-  ): Boolean!
+  ): EditPostRes!
 }

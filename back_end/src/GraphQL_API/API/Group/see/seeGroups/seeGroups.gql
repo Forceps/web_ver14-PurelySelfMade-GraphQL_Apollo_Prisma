@@ -1,3 +1,8 @@
+type SeeGroupsRes {
+  ok: Boolean!
+  error: String
+  data: [Group]
+}
 type Query {
-  seeGroups: [Group]!
+  seeGroups: SeeGroupsRes!
 }

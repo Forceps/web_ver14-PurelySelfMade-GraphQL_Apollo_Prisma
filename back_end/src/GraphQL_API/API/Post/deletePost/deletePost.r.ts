@@ -13,10 +13,16 @@ export default {
       const { post_id } = args;
       try {
         await prisma.executeRaw`DELETE FROM square_post.post WHERE post_id = ${post_id};`;
-        return true;
+        return {
+          ok: true,
+          error: null,
+        };
       } catch (e) {
         console.log(e);
-        return false;
+        return {
+          ok: false,
+          error: e.message,
+        };
       }
     },
   },

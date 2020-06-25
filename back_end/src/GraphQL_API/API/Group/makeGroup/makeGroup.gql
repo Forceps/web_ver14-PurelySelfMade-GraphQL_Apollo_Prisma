@@ -1,3 +1,7 @@
+type MakeGroupRes {
+  ok: Boolean!
+  error: String
+}
 type Mutation {
   makeGroup(
     name: String!
@@ -6,5 +10,5 @@ type Mutation {
     withdrawal_system: String!
     identiti_back_img: String
     identiti_profile_img: String
-  ): Boolean!
+  ): MakeGroupRes!
 }

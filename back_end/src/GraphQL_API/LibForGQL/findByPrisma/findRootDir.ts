@@ -13,6 +13,7 @@ export const rootPostDir = async (user_id: number) => {
     return TempDirectory[0].directory_id;
   } catch (e) {
     console.log(e);
+    return undefined;
   }
 };
 
@@ -28,5 +29,6 @@ export const rootArchiveDir = async (user_id: number) => {
     return TempDirectory[0].directory_id;
   } catch (e) {
     console.log(e);
+    return undefined;
   }
 };
