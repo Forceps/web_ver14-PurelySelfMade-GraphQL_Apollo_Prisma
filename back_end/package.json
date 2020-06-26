@@ -34,6 +34,7 @@
     "crypto": "^1.0.1",
     "dotenv": "^8.2.0",
     "graphql": "^15.1.0",
+    "graphql-subscriptions": "^1.1.0",
     "graphql-tools": "^6.0.10",
     "graphql-yoga": "^1.18.3",
     "helmet": "^3.23.2",

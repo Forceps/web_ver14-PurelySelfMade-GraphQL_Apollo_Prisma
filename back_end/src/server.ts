@@ -1,5 +1,6 @@
 import mergedSchema from "./GraphQL_API/LibForGQL/mergedSchema/mergedSchema";
 import { GraphQLServer } from "graphql-yoga";
+import { PubSub } from "graphql-subscriptions";
 import logger from "morgan";
 import cors from "cors";
 import helmet from "helmet";
@@ -12,6 +13,7 @@ import {
 import fileRouter from "./REST_API/fileResponse/sendFile";
 
 const PORT = 4002;
+const pubSub = new PubSub();
 const server = new GraphQLServer({
   schema: mergedSchema,
   context: ({ request }) => ({ request, isAuthenticated }),

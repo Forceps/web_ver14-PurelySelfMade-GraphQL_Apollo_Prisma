@@ -7,6 +7,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model chat {
+  chat_id         Int       @default(autoincrement()) @id
+  comment         String
+  day             Int
+  hour            Int
+  minute          Int
+  month           Int
+  room            Int
+  second          Int
+  user            Int
+  year            Int
+  chat_room       chat_room @relation(fields: [room], references: [chat_room_id])
+  user_chatTouser user      @relation(fields: [user], references: [user_id])
+
+  @@index([room], name: "Affiliation_idx")
+  @@index([user], name: "Participant_idx")
+}
+
+model chat_room {
+  chat_room_id Int    @default(autoincrement()) @id
+  name         String
+  chat         chat[]
+}
+
 model comment {
   comment            String
   comment_id         Int     @default(autoincrement()) @id
@@ -165,6 +189,7 @@ model user {
   phone_number                       Int?
   username                           String
   user_id                            Int          @default(autoincrement()) @id
+  chat                               chat[]
   comment                            comment[]
   directory                          directory[]
   friend_friend_proposerTouser       friend[]     @relation("friend_proposerTouser")
