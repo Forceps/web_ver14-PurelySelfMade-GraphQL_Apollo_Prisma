@@ -1,4 +1,9 @@
+type Subscription {
+  chatListening: Chat
+}
+
 type Mutation {
+  createRoom(name: String!): Boolean!
   addComment(post_id: Int!, comment: String!): Boolean!
   deleteDir(directory_id: Int!): Boolean!
   makeDir(name: String!, parent_id: Int!): Boolean!
@@ -159,16 +164,17 @@ type User {
   avatar: String
   back_img: String
   phone_number: Int
-  comment: [Comment]!
+  comment: [Comment]
   directory: [Directory]!
-  friend_friend_proposerTouser: [Friend]!
-  friend_friend_respondentTouser: [Friend]!
-  group: [Group]!
-  liked: [Liked]!
-  post: [Post]!
-  subscriber_subscriber_authorTouser: [Subscriber]!
-  subscriber_subscriber_readerTouser: [Subscriber]!
-  watched: [Watched]!
+  friend_friend_proposerTouser: [Friend]
+  friend_friend_respondentTouser: [Friend]
+  group: [Group]
+  liked: [Liked]
+  post: [Post]
+  subscriber_subscriber_authorTouser: [Subscriber]
+  subscriber_subscriber_readerTouser: [Subscriber]
+  chat: [Chat]
+  watched: [Watched]
 }
 
 type Video {
@@ -211,4 +217,25 @@ type Group_system {
   name: String!
   group_group_participation_systemTogroup_system: [Group]!
   group_group_withdrawal_systemTogroup_system: [Group]!
+}
+
+type Chat {
+  chat_id: ID!
+  user: Int!
+  room: Int!
+  comment: String!
+  year: Int!
+  month: Int!
+  day: Int!
+  hour: Int!
+  minute: Int!
+  second: Int!
+  chat_room: Chat_room!
+  user_chatTouser: User!
+}
+
+type Chat_room {
+  chat_room_id: ID!
+  name: String!
+  chat: [Chat]
 }
