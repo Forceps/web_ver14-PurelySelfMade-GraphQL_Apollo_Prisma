@@ -8,10 +8,10 @@ export default {
     musicUpdate: async (
       _: void,
       args: MusicUpdateMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { music_id, caption, directory_id } = args;
       let directory: any = null;
       try {

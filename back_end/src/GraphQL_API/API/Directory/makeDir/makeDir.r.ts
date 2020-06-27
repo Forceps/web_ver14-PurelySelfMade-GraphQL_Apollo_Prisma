@@ -7,10 +7,10 @@ export default {
     makeDir: async (
       _: void,
       args: MakeDirMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { name, parent_id } = args;
       try {
         await prisma.directory.create({

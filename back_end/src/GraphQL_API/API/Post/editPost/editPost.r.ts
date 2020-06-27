@@ -8,11 +8,11 @@ export default {
     editPost: async (
       _: void,
       args: EditPostMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { post_id, caption, content, directory_id } = args;
-      const { user } = request;
+      const { user } = req;
       let directory: any = null;
       try {
         directory_id === 0

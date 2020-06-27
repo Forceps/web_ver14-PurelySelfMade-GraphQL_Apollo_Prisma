@@ -7,10 +7,10 @@ export default {
     amISubscribeOne: async (
       _: void,
       args: AmISubscribeOneQueryArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { author } = args;
       try {
         return prisma.subscriber.findMany({

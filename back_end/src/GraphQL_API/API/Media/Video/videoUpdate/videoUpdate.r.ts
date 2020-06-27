@@ -8,11 +8,11 @@ export default {
     videoUpdate: async (
       _: void,
       args: VideoUpdateMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { video_id, caption, directory_id } = args;
-      const { user } = request;
+      const { user } = req;
       let directory: any = null;
       try {
         if (directory_id === 0) {

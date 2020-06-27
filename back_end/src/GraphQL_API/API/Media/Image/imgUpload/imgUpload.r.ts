@@ -8,10 +8,10 @@ export default {
     imgUpload: async (
       _: void,
       args: ImgUploadMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { address, caption, volume, directory_id, type } = args;
 
       try {

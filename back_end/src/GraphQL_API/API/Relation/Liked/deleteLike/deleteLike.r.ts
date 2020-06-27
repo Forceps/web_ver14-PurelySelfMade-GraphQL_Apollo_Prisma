@@ -7,9 +7,9 @@ export default {
     deleteLike: async (
       _: void,
       args: DeleteLikeMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { liked_id } = args;
       try {
         await prisma.liked.delete({

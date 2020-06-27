@@ -7,10 +7,10 @@ export default {
     findMyPostDir: async (
       _: void,
       args: FindMyPostDirQueryArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { directory_id } = args;
       try {
         if (directory_id === 0) {

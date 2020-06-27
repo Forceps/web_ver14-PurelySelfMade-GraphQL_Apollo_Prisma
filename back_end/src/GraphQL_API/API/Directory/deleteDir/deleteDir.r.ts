@@ -7,9 +7,9 @@ export default {
     deleteDir: async (
       _: void,
       args: DeleteDirMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { directory_id } = args;
       try {
         await prisma.queryRaw`DELETE FROM square_post.directory WHERE directory_id = ${directory_id};`;

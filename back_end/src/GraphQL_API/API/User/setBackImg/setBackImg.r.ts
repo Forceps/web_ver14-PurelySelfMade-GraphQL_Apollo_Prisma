@@ -7,11 +7,11 @@ export default {
     setBackImg: async (
       _: void,
       args: SetBackImgMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { back_img } = args;
-      const { user } = request;
+      const { user } = req;
 
       try {
         await prisma.user.update({

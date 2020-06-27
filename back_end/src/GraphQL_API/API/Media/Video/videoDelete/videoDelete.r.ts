@@ -10,9 +10,9 @@ export default {
     videoDelete: async (
       _: void,
       args: VideoDeleteMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { video_id } = args;
       try {
         interface fileThingType {

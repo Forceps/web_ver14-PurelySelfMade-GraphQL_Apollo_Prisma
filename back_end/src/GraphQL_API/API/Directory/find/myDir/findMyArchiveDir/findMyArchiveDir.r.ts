@@ -7,10 +7,10 @@ export default {
     findMyArchiveDir: async (
       _: void,
       args: FindMyArchiveDirQueryArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { directory_id } = args;
       try {
         if (directory_id === 0) {

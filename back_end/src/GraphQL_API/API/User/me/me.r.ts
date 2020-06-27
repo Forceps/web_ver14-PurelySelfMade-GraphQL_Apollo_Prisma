@@ -3,9 +3,9 @@ const prisma = new PrismaClient();
 
 export default {
   Query: {
-    me: (_: void, __: void, { request, isAuthenticated }: any) => {
-      isAuthenticated(request);
-      const { user } = request;
+    me: (_: void, __: void, { req, isAuthenticated }: any) => {
+      isAuthenticated(req);
+      const { user } = req;
       try {
         return prisma.user.findOne({ where: { user_id: user.user_id } });
       } catch (e) {

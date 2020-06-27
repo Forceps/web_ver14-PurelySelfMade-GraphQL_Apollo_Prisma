@@ -7,10 +7,10 @@ export default {
     addSubscriber: async (
       _: void,
       args: AddSubscriberMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { author } = args;
       try {
         const already_exists = await prisma.subscriber.findMany({

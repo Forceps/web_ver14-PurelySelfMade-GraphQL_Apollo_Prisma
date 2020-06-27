@@ -8,11 +8,11 @@ export default {
     imgUpdate: async (
       _: void,
       args: ImgUpdateMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { image_id, caption, directory_id } = args;
-      const { user } = request;
+      const { user } = req;
       let directory: any = null;
       try {
         if (directory_id === 0) {

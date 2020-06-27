@@ -10,10 +10,10 @@ export default {
     commenting: async (
       _: void,
       args: CommentingMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const user_id = S_N_to_N(request.user.user_id);
+      isAuthenticated(req);
+      const user_id = S_N_to_N(req.user.user_id);
       const { chat_room_id, comment } = args;
       const { year, month, day, hour, minute, second } = when_is_it_now();
 

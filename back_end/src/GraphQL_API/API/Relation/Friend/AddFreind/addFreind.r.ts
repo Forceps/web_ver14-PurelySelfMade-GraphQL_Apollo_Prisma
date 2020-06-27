@@ -7,10 +7,10 @@ export default {
     addFreind: async (
       _: void,
       args: AddFreindMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { respondent } = args;
       try {
         const already_exists = await prisma.friend.findMany({

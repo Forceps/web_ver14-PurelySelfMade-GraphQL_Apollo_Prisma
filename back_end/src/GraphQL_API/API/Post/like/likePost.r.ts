@@ -7,9 +7,9 @@ export default {
     likePost: async (
       _: void,
       args: LikePostMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { post_id } = args;
 
       try {

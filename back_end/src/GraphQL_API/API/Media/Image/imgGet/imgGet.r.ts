@@ -7,10 +7,10 @@ export default {
     imgGet: async (
       _: void,
       args: ImgGetQueryArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { skip, take } = args;
       try {
         if ((skip || skip === 0) && (take || take === 0)) {

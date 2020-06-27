@@ -11,32 +11,39 @@ import {
   localUploadResponse,
 } from "./REST_API/middleware/LocalUpload";
 import fileRouter from "./REST_API/fileResponse/sendFile";
+import decodeJWT from "./GlobalLib/authSystem/decodeJWT";
 
 const PORT = 4002;
 export const pubSub = new PubSub();
 const server = new GraphQLServer({
   schema: mergedSchema,
-  context: ({ request }) => ({ request, isAuthenticated }),
+  context: (req) => {
+    const { connection: { context = null } = {} } = req;
+    return {
+      req: req.request,
+      isAuthenticated,
+      context,
+    };
+  },
 }); //passport.js에서 request에 담긴 user정보가 위의 context 함수에 담기게 되어 전역으로 사용 가능해진다.
 const appOptions: Options = {
   port: PORT,
-  // playground: "/playground",
-  // endpoint: "/graphql",
-  // subscriptions: {
-  //   path: "/subscription",
-  //   onConnect: async connectionParams => {
-  //     const token = connectionParams["X-JWT"];
-  //     if (token) {
-  //       const user = await decodeJWT(token);
-  //       if (user) {
-  //         return {
-  //           currentUser: user
-  //         };
-  //       }
-  //     }
-  //     throw new Error("No JWT. Can't subscribe");
-  //   }
-  // },
+  subscriptions: {
+    onConnect: async (param: { Authorization: string }) => {
+      const token = param.Authorization.split(" ")[1];
+      if (token) {
+        const user = await decodeJWT(token);
+        if (user) {
+          return {
+            user,
+          };
+        }
+        throw new Error("JWT exists. But user not found");
+      } else {
+        throw new Error("No JWT. Can't subscribe");
+      }
+    },
+  },
 };
 
 server.express.use(helmet());

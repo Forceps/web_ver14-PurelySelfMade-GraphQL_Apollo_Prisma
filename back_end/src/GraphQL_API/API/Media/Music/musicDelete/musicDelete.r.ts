@@ -10,9 +10,9 @@ export default {
     musicDelete: async (
       _: null,
       args: MusicDeleteMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { music_id } = args;
       try {
         interface fileThingType {

@@ -8,11 +8,11 @@ export default {
     updateDir: async (
       _: void,
       args: UpdateDirMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { directory_id, name, parent_id } = args;
-      const { user } = request;
+      const { user } = req;
       let Belong: any = null;
       let contradictory_situation = false;
       try {

@@ -7,10 +7,10 @@ export default {
     seeFriends: async (
       _: void,
       args: SeeFriendsQueryArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { proposer } = args;
       try {
         let Rvalue = await prisma.friend.findMany({

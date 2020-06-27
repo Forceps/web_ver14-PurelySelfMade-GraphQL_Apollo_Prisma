@@ -16,10 +16,10 @@ export default {
         identiti_back_img,
         identiti_profile_img,
       }: MakeGroupMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const user_id = S_N_to_N(request.user.user_id);
+      isAuthenticated(req);
+      const user_id = S_N_to_N(req.user.user_id);
       const [participation_system_id, withdrawal_system_id] = [
         await groupSystemId(participation_system),
         await groupSystemId(withdrawal_system),

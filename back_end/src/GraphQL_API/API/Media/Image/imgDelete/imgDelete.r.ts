@@ -10,9 +10,9 @@ export default {
     imgDelete: async (
       _: void,
       args: ImgDeleteMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { image_id } = args;
       try {
         interface fileThingType {

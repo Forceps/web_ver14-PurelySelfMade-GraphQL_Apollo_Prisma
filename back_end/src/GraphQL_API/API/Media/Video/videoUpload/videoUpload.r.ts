@@ -8,10 +8,10 @@ export default {
     videoUpload: async (
       _: void,
       args: VideoUploadMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { address, caption, volume, directory_id, type, thumbnail } = args;
 
       try {

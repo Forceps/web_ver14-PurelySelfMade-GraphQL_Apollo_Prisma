@@ -9,10 +9,10 @@ export default {
     createPost: async (
       _: void,
       args: CreatePostMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { caption, content, directory_id } = args;
       const { year, month, day, hour, minute, second } = when_is_it_now();
       let directory: any = null;

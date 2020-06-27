@@ -7,9 +7,9 @@ export default {
     deletePost: async (
       _: void,
       args: DeletePostMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
+      isAuthenticated(req);
       const { post_id } = args;
       try {
         await prisma.executeRaw`DELETE FROM square_post.post WHERE post_id = ${post_id};`;

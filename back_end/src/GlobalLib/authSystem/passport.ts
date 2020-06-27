@@ -30,8 +30,9 @@ export const authenticateJwt = async (req: any, res: any, next: any) =>
   await passport.authenticate("jwt", { session: false }, (error, user) => {
     //이 콜백함수를 통해 사용자가 로그인 된 상태인지 검사하게 된다. (4)
     if (user) {
-      req.user = user; //로그인이 됐으면 user를 req 객체에 붙임.
+      req.user = user; //로그인이 됐으면 user를 request 객체에 붙임.
     }
+    error && console.log(error);
     next();
   })(req, res, next);
 

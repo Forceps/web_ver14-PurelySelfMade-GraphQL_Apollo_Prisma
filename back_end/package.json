@@ -8,8 +8,9 @@
     "prism": "npx prisma introspect && npx prisma generate",
     "pretypes": "gql-merge --out-file ./src/GraphQL_API/LibForGQL/mergedSchema/types/schema.gql ./src/GraphQL_API/API/**/*.gql",
     "types": "graphql-to-typescript ./src/GraphQL_API/LibForGQL/mergedSchema/types/schema.gql ./src/GraphQL_API/LibForGQL/mergedSchema/types/graph.d.ts",
+    "prebuild": "rm -rf dist",
     "build": "tsc",
-    "postbuild": "cd src && copy ./GraphQL_API/API/**/*.gql ../dist/api",
+    "postbuild": "cd src && copy ./GraphQL_API/API/**/*.gql ../dist/GraphQL_API/API",
     "start": "cd dist && node ."
   },
   "devDependencies": {

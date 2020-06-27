@@ -7,10 +7,10 @@ export default {
     watched: async (
       _: void,
       args: WatchedMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { post_id } = args;
       try {
         await prisma.watched.create({

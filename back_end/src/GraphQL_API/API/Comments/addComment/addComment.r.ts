@@ -8,10 +8,10 @@ export default {
     addComment: async (
       _: void,
       args: AddCommentMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { post_id, comment } = args;
       const { year, month, day, hour, minute } = when_is_it_now();
 

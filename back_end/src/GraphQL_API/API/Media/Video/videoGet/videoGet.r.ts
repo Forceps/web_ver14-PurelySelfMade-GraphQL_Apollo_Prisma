@@ -7,10 +7,10 @@ export default {
     videoGet: async (
       _: void,
       args: VideoGetQueryArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { skip, take } = args;
       try {
         if ((skip || skip === 0) && (take || take === 0)) {

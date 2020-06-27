@@ -7,10 +7,10 @@ export default {
     addLike: async (
       _: void,
       args: AddLikeMutationArgs,
-      { request, isAuthenticated }: any
+      { req, isAuthenticated }: any
     ) => {
-      isAuthenticated(request);
-      const { user } = request;
+      isAuthenticated(req);
+      const { user } = req;
       const { post_id } = args;
       try {
         const already_exists = await prisma.liked.findMany({
