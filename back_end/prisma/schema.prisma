@@ -25,10 +25,22 @@ model chat {
   @@index([user], name: "Participant_idx")
 }
 
+model chat_member {
+  chat_member_id         Int       @default(autoincrement()) @id
+  room                   Int
+  user                   Int
+  chat_room              chat_room @relation(fields: [room], references: [chat_room_id])
+  user_chat_memberTouser user      @relation(fields: [user], references: [user_id])
+
+  @@index([user], name: "member_idx")
+  @@index([room], name: "place_idx")
+}
+
 model chat_room {
-  chat_room_id Int    @default(autoincrement()) @id
+  chat_room_id Int           @default(autoincrement()) @id
   name         String
   chat         chat[]
+  chat_member  chat_member[]
 }
 
 model comment {
@@ -184,21 +196,22 @@ model subscriber {
 model user {
   avatar                             String?
   back_img                           String?
-  email                              String       @unique
+  email                              String        @unique
   password                           String
   phone_number                       Int?
   username                           String
-  user_id                            Int          @default(autoincrement()) @id
+  user_id                            Int           @default(autoincrement()) @id
   chat                               chat[]
+  chat_member                        chat_member[]
   comment                            comment[]
   directory                          directory[]
-  friend_friend_proposerTouser       friend[]     @relation("friend_proposerTouser")
-  friend_friend_respondentTouser     friend[]     @relation("friend_respondentTouser")
+  friend_friend_proposerTouser       friend[]      @relation("friend_proposerTouser")
+  friend_friend_respondentTouser     friend[]      @relation("friend_respondentTouser")
   group                              group[]
   liked                              liked[]
   post                               post[]
-  subscriber_subscriber_authorTouser subscriber[] @relation("subscriber_authorTouser")
-  subscriber_subscriber_readerTouser subscriber[] @relation("subscriber_readerTouser")
+  subscriber_subscriber_authorTouser subscriber[]  @relation("subscriber_authorTouser")
+  subscriber_subscriber_readerTouser subscriber[]  @relation("subscriber_readerTouser")
   watched                            watched[]
 }
 

@@ -126,6 +126,7 @@ type User {
   post: [Post]
   subscriber_subscriber_authorTouser: [Subscriber]
   subscriber_subscriber_readerTouser: [Subscriber]
+  chat_member: [Chat_member]
   chat: [Chat]
   watched: [Watched]
 }
@@ -197,4 +198,13 @@ type Chat_room {
   name: String!
 
   chat: [Chat]
+  chat_member: [Chat_member!]!
+}
+type Chat_member {
+  chat_member_id: ID!
+  room: Int!
+  user: Int!
+
+  chat_room: Chat_room!
+  user_chat_memberTouser: User!
 }

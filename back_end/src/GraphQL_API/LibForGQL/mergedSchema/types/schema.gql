@@ -3,6 +3,7 @@ type Subscription {
 }
 
 type Mutation {
+  commenting(chat_room_id: Int!, comment: String!): Boolean!
   createRoom(name: String!): Boolean!
   addComment(post_id: Int!, comment: String!): Boolean!
   deleteDir(directory_id: Int!): Boolean!
@@ -173,6 +174,7 @@ type User {
   post: [Post]
   subscriber_subscriber_authorTouser: [Subscriber]
   subscriber_subscriber_readerTouser: [Subscriber]
+  chat_member: [Chat_member]
   chat: [Chat]
   watched: [Watched]
 }
@@ -238,4 +240,13 @@ type Chat_room {
   chat_room_id: ID!
   name: String!
   chat: [Chat]
+  chat_member: [Chat_member!]!
+}
+
+type Chat_member {
+  chat_member_id: ID!
+  room: Int!
+  user: Int!
+  chat_room: Chat_room!
+  user_chat_memberTouser: User!
 }

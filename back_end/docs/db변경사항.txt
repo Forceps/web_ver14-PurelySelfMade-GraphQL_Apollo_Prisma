@@ -467,4 +467,22 @@ ADD COLUMN `day` TINYINT NOT NULL AFTER `month`,
 ADD COLUMN `hour` TINYINT NOT NULL AFTER `day`,
 ADD COLUMN `minute` TINYINT NOT NULL AFTER `hour`,
 ADD COLUMN `second` TINYINT NOT NULL AFTER `minute`;
+CREATE TABLE `square_post`.`chat_member` (
+  `chat_member_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `user` INT NOT NULL,
+  `room` INT NOT NULL,
+  PRIMARY KEY (`chat_member_id`),
+  UNIQUE INDEX `chat_member_id_UNIQUE` (`chat_member_id` ASC) VISIBLE,
+  INDEX `member_idx` (`user` ASC) VISIBLE,
+  INDEX `place_idx` (`room` ASC) VISIBLE,
+  CONSTRAINT `member`
+    FOREIGN KEY (`user`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `place`
+    FOREIGN KEY (`room`)
+    REFERENCES `square_post`.`chat_room` (`chat_room_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION);
 

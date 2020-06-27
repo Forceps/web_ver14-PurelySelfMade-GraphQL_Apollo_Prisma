@@ -1,4 +1,4 @@
-import { PrismaClient, user } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { CreateAccountMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 import { S_N_to_N } from "../../../../GlobalLib/recycleFunction/type_convert";
 const prisma = new PrismaClient();
@@ -12,18 +12,15 @@ export default {
         if (exists) {
           throw Error("This email is already taken");
         }
-        await prisma.user.create({
+        const OurMember = await prisma.user.create({
           data: {
             username,
             email,
             password,
           },
         });
-        const retry: user | null = await prisma.user.findOne({
-          where: { email },
-        });
-        if (retry !== null) {
-          const user_id = S_N_to_N(retry.user_id);
+        if (OurMember !== null) {
+          const user_id = S_N_to_N(OurMember.user_id);
           await prisma.directory.create({
             data: {
               name: "My Post",

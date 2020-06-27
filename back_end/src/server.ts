@@ -1,5 +1,5 @@
 import mergedSchema from "./GraphQL_API/LibForGQL/mergedSchema/mergedSchema";
-import { GraphQLServer } from "graphql-yoga";
+import { GraphQLServer, Options } from "graphql-yoga";
 import { PubSub } from "graphql-subscriptions";
 import logger from "morgan";
 import cors from "cors";
@@ -13,11 +13,31 @@ import {
 import fileRouter from "./REST_API/fileResponse/sendFile";
 
 const PORT = 4002;
-const pubSub = new PubSub();
+export const pubSub = new PubSub();
 const server = new GraphQLServer({
   schema: mergedSchema,
-  context: ({ request }) => ({ request, isAuthenticated, pubSub }),
+  context: ({ request }) => ({ request, isAuthenticated }),
 }); //passport.js에서 request에 담긴 user정보가 위의 context 함수에 담기게 되어 전역으로 사용 가능해진다.
+const appOptions: Options = {
+  port: PORT,
+  // playground: "/playground",
+  // endpoint: "/graphql",
+  // subscriptions: {
+  //   path: "/subscription",
+  //   onConnect: async connectionParams => {
+  //     const token = connectionParams["X-JWT"];
+  //     if (token) {
+  //       const user = await decodeJWT(token);
+  //       if (user) {
+  //         return {
+  //           currentUser: user
+  //         };
+  //       }
+  //     }
+  //     throw new Error("No JWT. Can't subscribe");
+  //   }
+  // },
+};
 
 server.express.use(helmet());
 server.express.use(cors());
@@ -30,6 +50,6 @@ server.express.post(
 );
 server.express.use("/api/assets", fileRouter);
 
-server.start({ port: PORT }, () =>
+server.start(appOptions, () =>
   console.log(`✅ Server is running on localhost:${PORT}`)
 );
