@@ -485,4 +485,7 @@ CREATE TABLE `square_post`.`chat_member` (
     REFERENCES `square_post`.`chat_room` (`chat_room_id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION);
+ALTER TABLE `square_post`.`watched` 
+ADD COLUMN `count` MEDIUMINT NOT NULL DEFAULT 1 AFTER `post`;
+
 
