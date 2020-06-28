@@ -9,9 +9,9 @@ import { Link } from "react-router-dom";
 import FatText from "../../../GlobalLib/Styles/IteratePattern/FatText";
 import useSearch from "../../../GlobalLib/RecycleFunction/Hooks/useSearch";
 import ToggleMenuCon from "./ToggleMenu/ToggleMenuCon";
-import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me/Me";
-import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn/IsLoggedIn";
+import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
 
 const Enclosing = styled(W100per)`
   display: grid;

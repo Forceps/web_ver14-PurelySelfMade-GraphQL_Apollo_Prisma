@@ -3,7 +3,7 @@ import RightPre from "./RightPre";
 import { useTargetsShown } from "../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
 import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { useSearchUser } from "../../../GlobalLib/Context/UserContext/SearchUser/SearchUser";
+import { useSearchUser } from "../../../GlobalLib/Context/UserContext/SearchUser";
 
 export default ({ setSeeMode }: RightConProps) => {
   const TSP = useTargetsShown();

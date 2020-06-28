@@ -5,7 +5,7 @@ import useInput from "../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useDirMode } from "../../../../../GlobalLib/Context/ProfileContext/DirMode";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { MAKE_DIRECTORY } from "../../../../../GlobalLib/Apollo/GraphQL_Client/Directory/DirectoryCUD";
-import { useMyInfo } from "../../../../../GlobalLib/Context/UserContext/Me/Me";
+import { useMyInfo } from "../../../../../GlobalLib/Context/UserContext/Me";
 import {
   WHOSE_POST_DIR,
   FIND_DIR_BY_ID,

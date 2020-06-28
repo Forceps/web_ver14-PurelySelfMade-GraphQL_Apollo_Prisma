@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
-import { useMyInfo } from "../UserContext/Me/Me";
+import { useMyInfo } from "../UserContext/Me";
 import { useMutation } from "@apollo/react-hooks";
 import { SET_BACKIMG } from "../../Apollo/GraphQL_Client/User/UserCUD";
 import { SEE_USER } from "../../Apollo/GraphQL_Client/User/UserR";

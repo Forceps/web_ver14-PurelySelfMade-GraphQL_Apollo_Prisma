@@ -1,6 +1,6 @@
 import React, { createContext, ReactNode, useContext } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { LOGIN_CHECK } from "./IsLoggedInLib";
+import { LOGIN_CHECK } from "../../Apollo/LocalState/auth/authQuery";
 
 interface LoginCheckingLetGo {
   isLoggedIn: boolean;

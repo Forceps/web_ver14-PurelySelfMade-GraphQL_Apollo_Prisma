@@ -3,9 +3,9 @@ import styled from "styled-components";
 import WH100per, {
   W100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { useSearchUser } from "../../../../GlobalLib/Context/UserContext/SearchUser/SearchUser";
-import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me/Me";
-import { useSeeFriends } from "../../../../GlobalLib/Context/UserContext/SeeFriends/SeeFriends";
+import { useSearchUser } from "../../../../GlobalLib/Context/UserContext/SearchUser";
+import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
+import { useSeeFriends } from "../../../../GlobalLib/Context/UserContext/SeeFriends";
 
 const Area = styled(W100per)`
   margin: 20px 0 0 0;

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me/Me";
+import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import { usePostDetail } from "../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
 import { useDeletePost } from "../../../../GlobalLib/Context/PostContext/PostCRUD/DeletePost";
 import { useUpdatePost } from "../../../../GlobalLib/Context/PostContext/PostCRUD/UpdatePost";

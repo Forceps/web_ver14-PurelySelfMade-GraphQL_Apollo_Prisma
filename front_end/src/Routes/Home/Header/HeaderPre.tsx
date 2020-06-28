@@ -4,10 +4,10 @@ import WH100per, {
   WH100perInput,
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me/Me";
-import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn/IsLoggedIn";
+import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import useSearch from "../../../GlobalLib/RecycleFunction/Hooks/useSearch";
 import LoginModalCon from "../../../Components/User/Auth/LoginModal/LoginModalCon";
+import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
 
 const Wrapper = styled(WH100per)`
   display: grid;

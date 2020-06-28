@@ -11,7 +11,7 @@ import {
   FindMyPostDirRequest,
   FindMyArchiveDirRequest,
 } from "../../Apollo/GraphQL_Client/Directory/DirectoryR";
-import { useLoginCheck } from "../UserContext/IsLoggedIn/IsLoggedIn";
+import { useLoginCheck } from "../UserContext/IsLoggedIn";
 
 const CurrentDirLocation = createContext<DirMode | undefined>(undefined);
 export const CDLProvider = ({ children }: { children: ReactNode }) => {

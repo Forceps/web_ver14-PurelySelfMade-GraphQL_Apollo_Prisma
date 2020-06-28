@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import IdentityPre from "./IdentityPre";
 import { useMutation } from "@apollo/react-hooks";
-import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me/Me";
+import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import { SET_AVATAR } from "../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
 import { SEE_USER } from "../../../../GlobalLib/Apollo/GraphQL_Client/User/UserR";
 import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";

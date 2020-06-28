@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me/Me";
+import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import FatText from "../../../GlobalLib/Styles/IteratePattern/FatText";
 import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 

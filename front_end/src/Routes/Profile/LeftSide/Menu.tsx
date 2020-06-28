@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useProfileMode } from "../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import HiddenLMore from "./HiddenLMore";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me/Me";
+import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 
 const Wrapper = styled.div`
   display: grid;

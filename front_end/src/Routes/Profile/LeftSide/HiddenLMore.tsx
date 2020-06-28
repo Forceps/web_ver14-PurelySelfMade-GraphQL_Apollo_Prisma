@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useMutation } from "@apollo/react-hooks";
-import { LOCAL_LOG_OUT } from "../../../GlobalLib/Apollo/LocalState";
+import { LOCAL_LOG_OUT } from "../../../GlobalLib/Apollo/LocalState/auth/authQuery";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useProfileMode } from "../../../GlobalLib/Context/ProfileContext/ProfileMode";
 

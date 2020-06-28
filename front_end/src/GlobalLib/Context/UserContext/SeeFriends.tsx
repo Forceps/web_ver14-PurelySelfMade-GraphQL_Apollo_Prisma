@@ -9,8 +9,8 @@ import { useLazyQuery } from "@apollo/react-hooks";
 import {
   SEE_MY_FRIENDS,
   SeeWhoseFriendsRequest,
-} from "../../../Apollo/GraphQL_Client/Relation/Friend/FriendR";
-import { useLoginCheck } from "../IsLoggedIn/IsLoggedIn";
+} from "../../Apollo/GraphQL_Client/Relation/Friend/FriendR";
+import { useLoginCheck } from "./IsLoggedIn";
 
 const SeeFriends = createContext<SeeFriendsContext | undefined>(undefined);
 export const SeeFriendsProvider = ({ children }: { children: ReactNode }) => {

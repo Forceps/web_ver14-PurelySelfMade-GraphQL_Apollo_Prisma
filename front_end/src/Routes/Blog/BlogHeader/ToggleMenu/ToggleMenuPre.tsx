@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { W100per } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me/Me";
+import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 const OutlineBox = styled.div`

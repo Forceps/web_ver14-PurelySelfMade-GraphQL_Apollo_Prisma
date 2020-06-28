@@ -1,5 +1,5 @@
 import useInput from "./useInput";
-import { useSearchUser } from "../../Context/UserContext/SearchUser/SearchUser";
+import { useSearchUser } from "../../Context/UserContext/SearchUser";
 import { useTargetsShown } from "../../Context/PostContext/TargetsShown/TargetsShown";
 import { spaped } from "../etc/StopAndPrevent";
 

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import LeftSideMenuPresenter from "./LeftSideMenuPre";
 import { useMutation } from "@apollo/react-hooks";
-import { LOCAL_LOG_OUT } from "../../../GlobalLib/Apollo/LocalState";
+import { LOCAL_LOG_OUT } from "../../../GlobalLib/Apollo/LocalState/auth/authQuery";
 
 export default () => {
   const [MoreMenu, setMoreMenu] = useState(false);

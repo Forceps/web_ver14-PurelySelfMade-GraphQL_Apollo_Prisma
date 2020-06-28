@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ParallelTilesCon from "./ParallelTiles/ParallelTilesCon";
 import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { useSearchUser } from "../../../GlobalLib/Context/UserContext/SearchUser/SearchUser";
+import { useSearchUser } from "../../../GlobalLib/Context/UserContext/SearchUser";
 import SearchedUser from "./SearchedUser/SearchedUserCon";
 
 const Wrapper = styled(W100per)`

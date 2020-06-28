@@ -6,7 +6,7 @@ import WH100per, {
   WH100perLink,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { url } from "../../../GlobalLib/RecycleFunction/etc/Types";
-import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me/Me";
+import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import Loading from "../../../Components/Effect/Loading";
 
 const Wrapper = styled(W100per)`

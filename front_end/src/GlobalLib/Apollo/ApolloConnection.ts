@@ -2,16 +2,14 @@ import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { HttpLink } from "apollo-link-http";
 import { onError } from "apollo-link-error";
-import { ApolloLink, split, Observable } from "apollo-link";
+import { ApolloLink, split, Observable, Operation } from "apollo-link";
 import { WebSocketLink } from "apollo-link-ws";
 import { getMainDefinition } from "apollo-utilities";
-import { withClientState } from "apollo-link-state";
-import { defaults, resolvers } from "./LocalState";
+import LocalState from "./LocalState/LocalState";
 
 const PORT = 4002;
 export const http_BackEnd = `http://127.0.0.1:${PORT}`;
 export const webSoket_BackEnd = `ws://127.0.0.1:${PORT}`;
-
 const httpLink = new HttpLink({
   uri: http_BackEnd,
 });
@@ -21,6 +19,14 @@ const wsLink = new WebSocketLink({
     reconnect: true,
   },
 });
+const combinedLinks = split(
+  ({ query }) => {
+    const { kind, operation }: any = getMainDefinition(query);
+    return kind === "OperationDefinition" && operation === "subscription";
+  },
+  wsLink,
+  httpLink
+);
 
 const request = async (operation: any) => {
   operation.setContext({
@@ -30,7 +36,7 @@ const request = async (operation: any) => {
   });
 };
 const requestLink = new ApolloLink(
-  (operation, forward) =>
+  (operation: Operation, forward) =>
     new Observable((observer) => {
       let handle: any;
       Promise.resolve(operation)
@@ -49,33 +55,18 @@ const requestLink = new ApolloLink(
       };
     })
 );
+
+const ErrorOccured = onError(({ graphQLErrors, networkError }) => {
+  graphQLErrors &&
+    graphQLErrors.forEach(({ message, locations, path }) =>
+      console.log(
+        `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
+      )
+    );
+  networkError && console.log(`[Network error]: ${networkError}`);
+});
+
 export default new ApolloClient({
-  link: ApolloLink.from([
-    onError(({ graphQLErrors, networkError }) => {
-      if (graphQLErrors)
-        graphQLErrors.forEach(({ message, locations, path }) =>
-          console.log(
-            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-          )
-        );
-      if (networkError) console.log(`[Network error]: ${networkError}`);
-    }),
-    requestLink,
-    withClientState({
-      defaults,
-      resolvers,
-    }),
-    split(
-      ({ query }) => {
-        const definition = getMainDefinition(query);
-        return (
-          definition.kind === "OperationDefinition" &&
-          definition.operation === "subscription"
-        );
-      },
-      wsLink,
-      httpLink
-    ),
-  ]),
+  link: ApolloLink.from([ErrorOccured, requestLink, LocalState, combinedLinks]),
   cache: new InMemoryCache(),
 });

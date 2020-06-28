@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import EachPostCon from "../../../../Components/Post/Shape/TimelineBlock/EachPostCon";
 import Loading from "../../../../Components/Effect/Loading";
-import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me/Me";
+import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 
 const Wrapper = styled.div`
   display: grid;

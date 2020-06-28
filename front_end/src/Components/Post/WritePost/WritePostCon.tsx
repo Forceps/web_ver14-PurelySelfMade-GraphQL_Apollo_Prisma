@@ -4,7 +4,7 @@ import { useMutation } from "@apollo/react-hooks";
 import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useTargetsShown } from "../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
 import { useDirMode } from "../../../GlobalLib/Context/ProfileContext/DirMode";
-import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me/Me";
+import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { CREATE_POST } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostCUD";
 import {
   SEE_POST_ALL,

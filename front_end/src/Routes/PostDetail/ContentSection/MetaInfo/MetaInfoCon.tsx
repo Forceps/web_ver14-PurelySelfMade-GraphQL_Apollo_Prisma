@@ -3,7 +3,7 @@ import MetaInfoPre from "./MetaInfoPre";
 import { useMutation } from "@apollo/react-hooks";
 import { LIKE_POST } from "../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostCUD";
 import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";
-import { useLoginCheck } from "../../../../GlobalLib/Context/UserContext/IsLoggedIn/IsLoggedIn";
+import { useLoginCheck } from "../../../../GlobalLib/Context/UserContext/IsLoggedIn";
 
 export default ({ post, setAddCommentOpen }: MetaInfoConProps) => {
   const { isLoggedIn } = useLoginCheck();
