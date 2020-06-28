@@ -10,9 +10,6 @@ export default {
     },
     logUserOut: (_: void, __: void, { cache }: any) => {
       localStorage.removeItem("token");
-      cache.writeData({
-        data: { isLoggedIn: false },
-      });
       window.location.href = "/";
       return null;
     },

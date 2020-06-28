@@ -1,5 +1,5 @@
 import Axios from "axios";
-import { http_BackEnd } from "../../Apollo/ApolloConnection";
+import { http_BackEnd } from "../../Apollo/apolloSetting/BackendWay";
 
 export default async (files: any) => {
   const formData = new FormData();
