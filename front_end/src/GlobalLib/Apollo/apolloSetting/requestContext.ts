@@ -1,9 +1,10 @@
 import { ApolloLink, Observable, Operation } from "apollo-link";
+import { jwt } from "./BackendWay";
 
 const request = async (operation: any) => {
   operation.setContext({
     headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      ...jwt,
     },
   });
 };
