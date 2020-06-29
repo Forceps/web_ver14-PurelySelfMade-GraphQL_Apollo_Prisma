@@ -11,7 +11,7 @@ export const LoginCheckingProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const isLoggedIn = useQuery(LOGIN_CHECK).data?.isLoggedIn;
+  const { isLoggedIn } = useQuery(LOGIN_CHECK).data;
   const obj = { isLoggedIn };
 
   return (

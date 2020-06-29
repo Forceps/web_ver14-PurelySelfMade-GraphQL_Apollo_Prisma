@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export default async (token: string) => {
+export default (token: string) => {
   try {
     const decoded: any = jwt.verify(token, process.env.JWT_SECRET || "");
     return prisma.user.findOne({
@@ -15,7 +15,7 @@ export default async (token: string) => {
       },
     });
   } catch (e) {
-    console.log("error catched at 'decodeJWT.ts'", e);
+    console.log("⚠ error catched at 'decodeJWT.ts'", e);
     return undefined;
   }
 };

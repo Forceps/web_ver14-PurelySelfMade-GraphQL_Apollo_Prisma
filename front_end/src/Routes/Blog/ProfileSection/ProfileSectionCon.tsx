@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ProfileSectionPre from "./ProfileSectionPre";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_SUBSCRIBER } from "../../../GlobalLib/Apollo/GraphQL_Client/Relation/Subscriber/SubscriberCUD";
@@ -6,6 +6,7 @@ import {
   AmISubscribeOneRequest,
   AM_I_SUBSCRIBE_ONE,
 } from "../../../GlobalLib/Apollo/GraphQL_Client/Relation/Subscriber/SubscriberR";
+import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
 
 export default ({
   user_id,
@@ -14,10 +15,16 @@ export default ({
   Mode,
   setMode,
 }: ProfileSectionCon) => {
-  const {
-    data: yesISubscribeData,
-    loading: yesISubscribeLoad,
-  } = AmISubscribeOneRequest(user_id);
+  const { isLoggedIn } = useLoginCheck();
+  const [
+    loadGreeting,
+    {
+      called: ysCalled,
+      data: yesISubscribeData,
+      loading: yesISubscribeLoading,
+    },
+  ] = AmISubscribeOneRequest(user_id);
+  const yesISubscribeLoad = yesISubscribeLoading || !ysCalled;
   const yesISubscribe =
     !yesISubscribeLoad && yesISubscribeData?.amISubscribeOne.length !== 0;
   const [addSubscriberMutation] = useMutation(ADD_SUBSCRIBER, {
@@ -39,6 +46,12 @@ export default ({
       console.log(e);
     }
   };
+  useEffect(() => {
+    if (isLoggedIn) {
+      loadGreeting();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn]);
   return (
     <ProfileSectionPre
       user_id={user_id}
