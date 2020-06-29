@@ -425,13 +425,6 @@ ADD CONSTRAINT withdrawal
 ALTER TABLE square_post.group 
 CHANGE COLUMN identiti_profile_img identiti_profile_img MEDIUMTEXT NULL DEFAULT NULL AFTER administrator,
 CHANGE COLUMN identiti_back_img identiti_back_img MEDIUMTEXT NULL DEFAULT NULL AFTER identiti_profile_img;
-
-
-
-
-
-// 2020 - 6 - 26
-
 CREATE TABLE square_post.chat_room (
   chat_room_id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(45) NOT NULL,
