@@ -2,10 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import ImgIsScnCon from "../../../../Components/Media/Insert/ImgInsertScreen/ImgInSCon";
+import {
+  W100per,
+  H100per,
+} from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 
-const Identi = styled.div`
-  padding-right: 20px;
-  width: 100%;
+const Identi = styled(W100per)`
+  padding: 0 20px 0 10px;
   display: grid;
   justify-self: right;
   @media (max-width: 1300px) {
@@ -88,6 +91,17 @@ const LoadingCon = styled(Con)`
 const LoadingTxt = styled.div`
   margin: 10px 0 0 10px;
 `;
+const Upside = styled(W100per)`
+  display: grid;
+  grid-template-columns: 1fr 150px;
+  height: 30px;
+`;
+const Menu = styled(H100per)`
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+`;
 
 export default ({
   UserDataLoading,
@@ -95,31 +109,42 @@ export default ({
   DesignateAvatar,
   setDesignateAvatar,
   AvatarPathInsert,
+  MenuMode,
+  setMenuMode,
 }: IdentityProps) => {
   return (
     <Identi>
-      {UserDataLoading ? (
-        <LoadingCon>
-          <LoadingTxt>Loading...</LoadingTxt>
-        </LoadingCon>
-      ) : UserData?.seeUser?.avatar ? (
-        <Avatar
-          url={UserData?.seeUser?.avatar}
-          onClick={(e: any) => {
-            spaped(e);
-            setDesignateAvatar(true);
-          }}
-        />
-      ) : (
-        <DACon
-          onClick={(e: any) => {
-            spaped(e);
-            setDesignateAvatar(true);
+      <Upside>
+        <Menu
+          onClick={() => {
+            setMenuMode((p: boolean) => !p);
           }}
         >
-          <DefaultAvatar className="icon-noun_user_856030" />
-        </DACon>
-      )}
+          {MenuMode ? "Control" : "Menu"}
+        </Menu>
+        {UserDataLoading ? (
+          <LoadingCon>
+            <LoadingTxt>Loading...</LoadingTxt>
+          </LoadingCon>
+        ) : UserData?.seeUser?.avatar ? (
+          <Avatar
+            url={UserData?.seeUser?.avatar}
+            onClick={(e: any) => {
+              spaped(e);
+              setDesignateAvatar(true);
+            }}
+          />
+        ) : (
+          <DACon
+            onClick={(e: any) => {
+              spaped(e);
+              setDesignateAvatar(true);
+            }}
+          >
+            <DefaultAvatar className="icon-noun_user_856030" />
+          </DACon>
+        )}
+      </Upside>
       {!UserDataLoading && (
         <UserNameCon>
           <UserName>{UserData?.seeUser?.username}</UserName>
@@ -142,4 +167,6 @@ type IdentityProps = {
   DesignateAvatar: boolean;
   setDesignateAvatar: any;
   AvatarPathInsert: any;
+  MenuMode: boolean;
+  setMenuMode: any;
 };

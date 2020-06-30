@@ -32,7 +32,7 @@ export const SeeFriendsProvider = ({ children }: { children: ReactNode }) => {
   ] = useLazyQuery(SEE_MY_FRIENDS);
   const myF_load = myF_loading || !myF_called;
   useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && proposer !== 0) {
       queryLoad_MyF();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

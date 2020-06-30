@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import WH100per from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { useSeeFriends } from "../../../GlobalLib/Context/UserContext/SeeFriends";
-import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import WH100per from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { useSeeFriends } from "../../../../GlobalLib/Context/UserContext/SeeFriends";
+import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 const Wrapper = styled.div`
   display: grid;

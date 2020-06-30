@@ -12,13 +12,13 @@ import WH100per, {
 const Wrapper = styled(WH100per)`
   display: flex;
   flex-direction: column;
-  padding: 10px 0 0 0;
+  padding: 10px 10px 0 10px;
 `;
 const SearchBox = styled(W100per)`
   display: grid;
   grid-template-columns: 35px 1fr;
   height: 35px;
-  margin: 15px 0 0 12px;
+  margin: 15px 0 0 0;
 `;
 const SearchTxt = styled(WH100perInput)`
   padding: 5px;
@@ -41,7 +41,7 @@ const WrBtn = styled(W100per)`
   align-items: center;
   height: 30px;
   padding: 5px;
-  margin: 20px 0 0 15px;
+  margin: 20px 0 0 0;
   font-size: 1rem;
   background-color: #dfe6e9;
   cursor: pointer;

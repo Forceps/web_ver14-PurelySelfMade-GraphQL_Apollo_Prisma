@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
-import Menu from "./Menu";
+import Menu from "./Menu/Menu";
 import Identity from "./Identity/IdentityCon";
-import ConnectionTile from "./ConnectionTile";
+import ConnectionTile from "./Menu/ConnectionTile";
 import { useBackImgInS } from "../../../GlobalLib/Context/ProfileContext/BackImgInS";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import ImgInSCon from "../../../Components/Media/Insert/ImgInsertScreen/ImgInSCon";
@@ -38,6 +38,7 @@ const BackImg = styled(Den2Up)<BackImgProp>`
 
 export default ({ UserDataLoading, UserData }: LeftSideProps) => {
   const BII = useBackImgInS();
+  const [MenuMode, setMenuMode] = useState(true);
   return (
     <>
       <Den1Left>
@@ -59,9 +60,20 @@ export default ({ UserDataLoading, UserData }: LeftSideProps) => {
         )}
 
         <Den2Down>
-          <Identity UserDataLoading={UserDataLoading} UserData={UserData} />
-          <Menu />
-          <ConnectionTile />
+          <Identity
+            UserDataLoading={UserDataLoading}
+            UserData={UserData}
+            MenuMode={MenuMode}
+            setMenuMode={setMenuMode}
+          />
+          {MenuMode ? (
+            <>
+              <Menu />
+              <ConnectionTile />
+            </>
+          ) : (
+            <div />
+          )}
         </Den2Down>
       </Den1Left>
       {BII.DesignateBackImg && (

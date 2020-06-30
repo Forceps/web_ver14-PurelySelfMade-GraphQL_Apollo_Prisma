@@ -76,7 +76,7 @@ export default ({ setSeeMode, LoginOpen, setLoginOpen }: RightPreProps) => {
           ME?.MEloading ? (
             <div>Loading...</div>
           ) : (
-            <div>{ME.MEdata.username}</div>
+            <div>{ME.MEdata?.username}</div>
           )
         ) : (
           <JumpToLogin

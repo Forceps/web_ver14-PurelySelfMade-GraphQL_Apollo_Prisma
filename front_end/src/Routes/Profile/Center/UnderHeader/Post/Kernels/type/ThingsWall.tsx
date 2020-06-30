@@ -1,12 +1,12 @@
 import React from "react";
-import { useTargetsShown } from "../../../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
-import { usePostDetail } from "../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
-import PostDetailT from "../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetailT";
-import Tile from "../../../../../../Components/Post/Shape/Tile/TileCon";
+import { useTargetsShown } from "../../../../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
+import { usePostDetail } from "../../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
+import PostDetailT from "../../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetailT";
+import Tile from "../../../../../../../Components/Post/Shape/Tile/TileCon";
 import styled from "styled-components";
-import WH100per from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import ControlsH from "../Controls/ControlsH";
-import IncludeScrollBar from "../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
+import WH100per from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import ControlsH from "../../Controls/ControlsH";
+import IncludeScrollBar from "../../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 
 const Embosom = styled(WH100per)`
   display: grid;

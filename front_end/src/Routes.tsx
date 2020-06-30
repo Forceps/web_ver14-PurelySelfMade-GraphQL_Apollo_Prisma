@@ -7,6 +7,7 @@ import HomeCon from "./Routes/Home/HomeCon";
 import PostDetailCon from "./Routes/PostDetail/PostDetailCon";
 import BlogCon from "./Routes/Blog/BlogCon";
 import { useLoginCheck } from "./GlobalLib/Context/UserContext/IsLoggedIn";
+import ChatCon from "./Routes/Chat/ChatCon";
 
 const LoggedInRoutes = () => (
   <Switch>
@@ -16,6 +17,7 @@ const LoggedInRoutes = () => (
     <Route exact path="/profile/:user_id" component={ProfileCon} />
     <Route exact path="/blog/:user_id" component={BlogCon} />
     <Route exact path="/group/:group_id" component={EachGroupsCon} />
+    <Route exact path="/chat" component={ChatCon} />
     <Redirect from="*" to="/" />
   </Switch>
 );

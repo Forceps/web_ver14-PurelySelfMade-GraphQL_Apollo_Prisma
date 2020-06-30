@@ -86,6 +86,7 @@ const UserName = styled(WH100perLink)`
   word-break: normal;
   overflow: hidden;
   line-height: 1.8rem;
+  color: white;
   cursor: pointer;
 `;
 

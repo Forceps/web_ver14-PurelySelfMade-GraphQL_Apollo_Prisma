@@ -1,10 +1,8 @@
 import React from "react";
-import KernelsIndexPre from "./KernelsIndexPre";
+import KernelsPre from "./KernelsPre";
 
 export default ({ UserData, UserDataLoading }: LSIcon) => {
-  return (
-    <KernelsIndexPre UserData={UserData} UserDataLoading={UserDataLoading} />
-  );
+  return <KernelsPre UserData={UserData} UserDataLoading={UserDataLoading} />;
 };
 
 type LSIcon = {

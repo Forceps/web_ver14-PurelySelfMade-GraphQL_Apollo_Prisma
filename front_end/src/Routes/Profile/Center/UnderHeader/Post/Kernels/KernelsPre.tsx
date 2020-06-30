@@ -1,14 +1,14 @@
 import React from "react";
 import styled from "styled-components";
-import ThingsWall from "../ThingsWall";
-import Loading from "../../../../../../../Components/Effect/Loading";
-import { useProfileDetailMode } from "../../../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
-import { useTargetsShown } from "../../../../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
-import PostList from "../PostList";
-import IncludeScrollBar from "../../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
-import ImgInSCon from "../../../../../../../Components/Media/Insert/ImgInsertScreen/ImgInSCon";
-import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { useBackImgInS } from "../../../../../../../GlobalLib/Context/ProfileContext/BackImgInS";
+import ThingsWall from "./type/ThingsWall";
+import Loading from "../../../../../../Components/Effect/Loading";
+import { useProfileDetailMode } from "../../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
+import { useTargetsShown } from "../../../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
+import PostList from "./type/PostList";
+import IncludeScrollBar from "../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
+import ImgInSCon from "../../../../../../Components/Media/Insert/ImgInsertScreen/ImgInSCon";
+import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { useBackImgInS } from "../../../../../../GlobalLib/Context/ProfileContext/BackImgInS";
 
 const LSec = styled(IncludeScrollBar)`
   min-width: 550px;

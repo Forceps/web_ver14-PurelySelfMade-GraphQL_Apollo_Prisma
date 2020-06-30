@@ -1,21 +1,21 @@
 import React from "react";
 import styled from "styled-components";
-import { useProfileDetailMode } from "../../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
-import { useTargetsShown } from "../../../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
-import { usePostDetail } from "../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
-import { useUpdatePost } from "../../../../../../GlobalLib/Context/PostContext/PostCRUD/UpdatePost";
-import { useDeletePost } from "../../../../../../GlobalLib/Context/PostContext/PostCRUD/DeletePost";
+import { useProfileDetailMode } from "../../../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
+import { useTargetsShown } from "../../../../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
+import { usePostDetail } from "../../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
+import { useUpdatePost } from "../../../../../../../GlobalLib/Context/PostContext/PostCRUD/UpdatePost";
+import { useDeletePost } from "../../../../../../../GlobalLib/Context/PostContext/PostCRUD/DeletePost";
 import WH100per, {
   W100per,
-} from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import PostDetailT from "../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetailT";
-import ControlsV from "../Controls/ControlsV";
-import IncludeScrollBar from "../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
+} from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import PostDetailT from "../../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetailT";
+import ControlsV from "../../Controls/ControlsV";
+import IncludeScrollBar from "../../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 
 const Belt = styled(W100per)`
   display: grid;
-  grid-template-columns: 1fr 240px;
+  grid-template-columns: 240px 1fr;
   width: 60vw;
   max-width: 900px;
   max-height: 100%;
@@ -26,7 +26,7 @@ const List = styled(IncludeScrollBar)`
   flex-direction: column;
   min-width: 200px;
 `;
-const Division = styled.div`
+const Division = styled(W100per)`
   display: grid;
   grid-template-columns: 1fr 65px;
   min-height: 40px;
@@ -74,6 +74,7 @@ export default () => {
   const DP = useDeletePost();
   return (
     <Belt>
+      <ControlsV />
       <List>
         {TSP.posts?.map((post: any) => (
           <Division key={post.post_id}>
@@ -106,7 +107,6 @@ export default () => {
           </Division>
         ))}
       </List>
-      <ControlsV />
       {PD.OpenSeePostDetail && <PostDetailT />}
     </Belt>
   );

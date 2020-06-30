@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import KernelsIndexCon from "./Kernels/KernelsIndex/KernelsIndexCon";
+import KernelsCon from "./Kernels/KernelsCon";
 
 const Under = styled.div``;
 
 export default ({ UserData, UserDataLoading }: PostModeProps) => {
   return (
     <Under>
-      <KernelsIndexCon UserData={UserData} UserDataLoading={UserDataLoading} />
+      <KernelsCon UserData={UserData} UserDataLoading={UserDataLoading} />
     </Under>
   );
 };
