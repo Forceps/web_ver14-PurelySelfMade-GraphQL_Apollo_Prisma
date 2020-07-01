@@ -1,12 +1,13 @@
 import { PrismaClient } from "@prisma/client";
 import { S_N_to_N } from "../../../../GlobalLib/recycleFunction/type_convert";
+import { SeeRoomsQueryArgs } from "../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
 export default {
   Query: {
     seeRooms: async (
       _: void,
-      { skip, take },
+      { skip, take }: SeeRoomsQueryArgs,
       { req, isAuthenticated }: any
     ) => {
       try {
@@ -20,7 +21,13 @@ export default {
               },
             },
           },
-          include: { chat: true, chat_member: true },
+          include: {
+            chat_member: {
+              include: {
+                user_chat_memberTouser: true,
+              },
+            },
+          },
           orderBy: { chat_room_id: "desc" },
           skip: skip ? skip : 0,
           take: take ? take : 6,

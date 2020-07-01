@@ -1,0 +1,3 @@
+type Query {
+  swatchForRoom(chat_room_id: Int): Chat
+}

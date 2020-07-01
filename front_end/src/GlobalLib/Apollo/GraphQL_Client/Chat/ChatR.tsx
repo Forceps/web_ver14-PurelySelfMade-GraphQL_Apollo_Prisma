@@ -6,14 +6,6 @@ export const SEE_ROOMS = gql`
     seeRooms(skip: $skip, take: $take) {
       chat_room_id
       name
-      chat {
-        chat_id
-        user
-        user_chatTouser {
-          avatar
-        }
-        comment
-      }
       chat_member {
         user
         user_chat_memberTouser {
@@ -26,4 +18,21 @@ export const SEE_ROOMS = gql`
 export const SeeRoomsRequest = (skip: number, take: number) =>
   useQuery(SEE_ROOMS, {
     variables: { skip, take },
+  });
+
+export const SWATCH_FOR_ROOM = gql`
+  query swatchForRoom($chat_room_id: Int) {
+    swatchForRoom(chat_room_id: $chat_room_id) {
+      chat_id
+      user
+      user_chatTouser {
+        avatar
+      }
+      comment
+    }
+  }
+`;
+export const SwatchForRoomRequest = (chat_room_id: number) =>
+  useQuery(SWATCH_FOR_ROOM, {
+    variables: { chat_room_id },
   });

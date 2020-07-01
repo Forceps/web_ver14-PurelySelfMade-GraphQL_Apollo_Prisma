@@ -36,7 +36,7 @@ type Mutation {
 }
 
 type Query {
-  seePosts: [Chat_room]
+  seeRooms(skip: Int, take: Int): [Chat_room]
   seeComments(post_id: Int!): [Comment]
   findDirById(directory_id: Int!): Directory
   findMyArchiveDir(directory_id: Int!): Directory
