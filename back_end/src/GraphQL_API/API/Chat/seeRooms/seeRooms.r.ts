@@ -4,7 +4,11 @@ const prisma = new PrismaClient();
 
 export default {
   Query: {
-    seeRooms: async (_: void, __: void, { req, isAuthenticated }: any) => {
+    seeRooms: async (
+      _: void,
+      { skip, take },
+      { req, isAuthenticated }: any
+    ) => {
       try {
         isAuthenticated(req);
         const user_id = S_N_to_N(req.user.user_id);
@@ -18,6 +22,8 @@ export default {
           },
           include: { chat: true, chat_member: true },
           orderBy: { chat_room_id: "desc" },
+          skip: skip ? skip : 0,
+          take: take ? take : 6,
         });
         return result;
       } catch (e) {

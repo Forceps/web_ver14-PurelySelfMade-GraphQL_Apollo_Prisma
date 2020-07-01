@@ -81,11 +81,11 @@ export default ({
           <Item>
             <Icon className="icon-bell" /> Notification
           </Item>
-          <Item>
-            <Icon className="icon-comment-empty" /> Chat
-          </Item>
           {ME?.MEloading ? (
             <>
+              <Item>
+                <Icon className="icon-comment-empty" /> Chat
+              </Item>
               <Item>
                 <Icon className="icon-bookmark-empty" /> Bookmark
               </Item>
@@ -103,6 +103,11 @@ export default ({
             </>
           ) : (
             <>
+              <Link to={`/chat`}>
+                <Item>
+                  <Icon className="icon-comment-empty" /> Chat
+                </Item>
+              </Link>
               <Link to={`/bookmark/${ME?.MEdata?.user_id}`}>
                 <Item>
                   <Icon className="icon-bookmark-empty" /> Bookmark

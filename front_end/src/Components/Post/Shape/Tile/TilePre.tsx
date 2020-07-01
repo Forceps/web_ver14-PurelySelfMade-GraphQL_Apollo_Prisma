@@ -6,6 +6,7 @@ import WH100per, {
   GoodLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import ContentEditable from "react-contenteditable";
+import Avatar from "../../../User/Avatar";
 
 interface zindexProp {
   zIndex: number;
@@ -30,27 +31,6 @@ const UName = styled(W100per)`
   align-items: center;
   font-size: 1rem;
   padding: 0 0 0 7px;
-`;
-const DACon = styled(WH100perLink)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  background-color: #dfe6e9;
-`;
-const DefaultAvatar = styled.i`
-  display: grid;
-  margin: 8px 0 0 0;
-  padding: 0;
-  color: black;
-`;
-interface AvatarProps {
-  url: string;
-}
-const Avatar = styled(DACon)<AvatarProps>`
-  background-image: url(${(props) => props.url});
-  background-size: cover;
-  background-position: center center;
 `;
 const Contents = styled(({ ...rest }) => <ContentEditable {...rest} />)`
   display: inline-block;
@@ -114,24 +94,11 @@ export default ({ post, ImgSamples, zIndex }: EachPostProps) => {
           <i className="icon-heart-empty" /> {post.likes}
         </AdditionalInfo>
         <MiniProfile>
-          {post.user_postTouser?.avatar ? (
-            <Avatar
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-              to={`/blog/${post.user_postTouser.user_id}`}
-              url={post.user_postTouser.avatar}
-            />
-          ) : (
-            <DACon
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-              to={`/blog/${post.user_postTouser.user_id}`}
-            >
-              <DefaultAvatar className="icon-noun_user_856030" />
-            </DACon>
-          )}
+          <Avatar
+            url={post.user_postTouser?.avatar}
+            size={40}
+            link={`/blog/${post.user_postTouser.user_id}`}
+          />
           <UName>
             <GoodLink
               to={`/blog/${post.user_postTouser.user_id}`}

@@ -13,44 +13,18 @@ export default {
       const { user } = req;
       const { skip, take } = args;
       try {
-        if ((skip || skip === 0) && (take || take === 0)) {
-          return prisma.video.findMany({
-            where: {
-              directory_directoryTovideo: {
-                user: user.user_id,
-              },
+        return prisma.video.findMany({
+          where: {
+            directory_directoryTovideo: {
+              user: user.user_id,
             },
-            orderBy: {
-              video_id: "desc",
-            },
-            skip,
-            take,
-          });
-        } else if (skip) {
-          return prisma.video.findMany({
-            where: {
-              directory_directoryTovideo: {
-                user: user.user_id,
-              },
-            },
-            orderBy: {
-              video_id: "desc",
-            },
-            take: skip,
-          });
-        } else {
-          return prisma.video.findMany({
-            where: {
-              directory_directoryTovideo: {
-                user: user.user_id,
-              },
-            },
-            orderBy: {
-              video_id: "desc",
-            },
-            take: 4,
-          });
-        }
+          },
+          orderBy: {
+            video_id: "desc",
+          },
+          skip: skip ? skip : 0,
+          take: take ? take : 6,
+        });
       } catch (e) {
         console.log(e);
         return null;

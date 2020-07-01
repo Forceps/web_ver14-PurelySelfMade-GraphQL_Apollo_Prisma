@@ -5,6 +5,7 @@ import WH100per, {
   W100per,
   WH100perLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import Avatar from "../../../../Components/User/Avatar";
 
 const Intro = styled(W100per)`
   position: relative;
@@ -60,25 +61,6 @@ const AuthorInfo = styled(WH100per)`
   display: grid;
   grid-template-columns: 60px 1fr;
 `;
-const DACon = styled(WH100perLink)`
-  display: flex;
-  align-items: center;
-  background-color: #dfe6e9;
-  font-size: 5rem;
-  border: 1px solid white;
-  cursor: pointer;
-`;
-const DefaultAvatar = styled.i`
-  margin: 10px 0 0 -7.5px;
-`;
-interface AvatarProp {
-  url: string;
-}
-const Avatar = styled(DACon)<AvatarProp>`
-  background-image: url(${(props: any) => props.url});
-  background-size: cover;
-  background-position: center center;
-`;
 const UserName = styled(WH100perLink)`
   display: flex;
   padding: 0 0 0 10px;
@@ -98,16 +80,11 @@ export default ({ post, FirstImgSrc }: IntroProps) => {
         <CentreBox>
           <Title>{post.caption}</Title>
           <AuthorInfo>
-            {post.user_postTouser.avatar ? (
-              <Avatar
-                to={`/blog/${post.user_postTouser.user_id}`}
-                url={post.user_postTouser.avatar}
-              />
-            ) : (
-              <DACon to={`/blog/${post.user_postTouser.user_id}`}>
-                <DefaultAvatar className="icon-noun_user_856030" />
-              </DACon>
-            )}
+            <Avatar
+              url={post.user_postTouser?.avatar}
+              size={60}
+              link={`/blog/${post.user_postTouser.user_id}`}
+            />
             <UserName to={`/blog/${post.user_postTouser.user_id}`}>
               {post.user_postTouser.username}
             </UserName>

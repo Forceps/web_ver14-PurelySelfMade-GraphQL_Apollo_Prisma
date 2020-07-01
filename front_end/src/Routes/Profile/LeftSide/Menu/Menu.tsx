@@ -192,15 +192,10 @@ export default () => {
               <MenuIcon className="icon-bookmark hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Bookmark</MenuTxt>
             </LinkS>
-            <MenuItem
-              onClick={(e) => {
-                spaped(e);
-                PfM.setMode("Chat");
-              }}
-            >
+            <LinkS to={`/chat`}>
               <MenuIcon className="icon-comment hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Chat</MenuTxt>
-            </MenuItem>
+            </LinkS>
           </>
         )}
 

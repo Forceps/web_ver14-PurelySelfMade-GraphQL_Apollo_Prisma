@@ -9,6 +9,7 @@ import Loading from "../../Effect/Loading";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import LoginModalCon from "../../User/Auth/LoginModal/LoginModalCon";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
+import Avatar from "../../User/Avatar";
 
 const Comments = styled(W100per)`
   display: flex;
@@ -100,29 +101,8 @@ const ForTheAvatar = styled(WH100per)`
   display: grid;
   grid-template-rows: 45px 1fr;
 `;
-interface AvatarProps {
-  url: string;
-}
-const Avatar = styled(WH100per)<AvatarProps>`
-  background-image: url(${(props) => props.url});
-  background-size: cover;
-  background-position: center center;
-  cursor: pointer;
-`;
-const DACon = styled(WH100per)`
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  font-size: 45px;
-  background-color: #dfe6e9;
-  cursor: pointer;
-`;
 const Username = styled.div`
   cursor: pointer;
-`;
-const DefaultAvatar = styled.i`
-  display: grid;
-  padding: 0;
 `;
 const Hedge = styled(WH100per)`
   display: grid;
@@ -210,13 +190,11 @@ export default ({
           {comments.map((i: any) => (
             <CommentCell key={i.comment_id}>
               <ForTheAvatar>
-                {i.user_commentTouser.avatar ? (
-                  <Avatar url={i.user_commentTouser.avatar} />
-                ) : (
-                  <DACon>
-                    <DefaultAvatar className="icon-noun_user_856030" />
-                  </DACon>
-                )}{" "}
+                <Avatar
+                  url={i.user_commentTouser?.avatar}
+                  size={45}
+                  link={`/blog/${i.user_commentTouser.user_id}`}
+                />{" "}
               </ForTheAvatar>
               <Hedge>
                 <FirstFloor>

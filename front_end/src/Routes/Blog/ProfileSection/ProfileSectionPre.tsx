@@ -8,6 +8,7 @@ import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
+import Avatar from "../../../Components/User/Avatar";
 
 const Circling = styled(W100per)`
   display: grid;
@@ -38,31 +39,10 @@ const Omphalos = styled(H100per)`
   width: 60vw;
   padding: 20px 0 0 0;
 `;
-const Con = styled(W100per)`
+const LoadingCon = styled(W100per)`
   display: grid;
   height: 90px;
   justify-self: right;
-`;
-const DACon = styled(Con)`
-  border: 3px solid white;
-  font-size: 110px;
-  background-color: #dfe6e9;
-`;
-const DefaultAvatar = styled.i`
-  display: grid;
-  margin: 24px 0 0 -4.5px;
-  padding: 0;
-`;
-interface AvatarProp {
-  url: string;
-}
-const Avatar = styled(Con)<AvatarProp>`
-  background-image: url(${(props: any) => props.url});
-  background-size: cover;
-  background-position: center center;
-  justify-self: right;
-`;
-const LoadingCon = styled(Con)`
   font-size: 1.2rem;
 `;
 const LoadingTxt = styled.div`
@@ -166,12 +146,8 @@ export default ({
             <LoadingCon>
               <LoadingTxt>Loading...</LoadingTxt>
             </LoadingCon>
-          ) : UserData.avatar ? (
-            <Avatar url={UserData.avatar} />
           ) : (
-            <DACon>
-              <DefaultAvatar className="icon-noun_user_856030" />
-            </DACon>
+            <Avatar url={UserData?.avatar} size={90} />
           )}
           {UserDataLoading ? (
             <div />

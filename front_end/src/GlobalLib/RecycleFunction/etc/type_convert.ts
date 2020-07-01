@@ -13,3 +13,7 @@ export const S_N_to_N = (id: string | number): number => {
   }
   return converted;
 };
+
+export const NOrU = (arg: any): boolean => {
+  return arg === null || arg === undefined;
+};

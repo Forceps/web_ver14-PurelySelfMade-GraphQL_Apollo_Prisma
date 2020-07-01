@@ -6,8 +6,8 @@ import WH100per, {
   WH100perLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import PostHeader from "./PostHeader";
-import { Link } from "react-router-dom";
 import ContentEditable from "react-contenteditable";
+import Avatar from "../../../User/Avatar";
 
 interface InclosureProps {
   zIndex: number;
@@ -35,37 +35,12 @@ const EachContain = styled(W100per)`
   position: relative;
   padding: 10px 0 0 0;
 `;
-interface AvatarProps {
-  url: string;
-}
-const Avatar = styled(Link)<AvatarProps>`
-  background-image: url(${(props) => props.url});
-  background-size: cover;
-  background-position: center center;
-  width: 50px;
-  height: 50px;
-`;
 const UName = styled(WH100perLink)`
   display: flex;
   align-items: center;
   font-size: 1rem;
   word-break: break-all;
   overflow: hidden;
-`;
-const DACon = styled(Link)`
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  font-size: 45px;
-  width: 50px;
-  height: 50px;
-  background-color: #dfe6e9;
-  cursor: default;
-`;
-const DefaultAvatar = styled.i`
-  display: grid;
-  margin: 10px 0 0 0;
-  padding: 0;
 `;
 const Countable = styled(WH100per)`
   display: flex;
@@ -133,16 +108,11 @@ export default ({ post, Texts, ImgSamples, zIndex }: EachPostPreProps) => {
   return (
     <>
       <Inclosure zIndex={zIndex}>
-        {post.user_postTouser?.avatar ? (
-          <Avatar
-            to={`/blog/${post.user_postTouser.user_id}`}
-            url={post.user_postTouser.avatar}
-          />
-        ) : (
-          <DACon to={`/blog/${post.user_postTouser.user_id}`}>
-            <DefaultAvatar className="icon-noun_user_856030" />
-          </DACon>
-        )}
+        <Avatar
+          url={post.user_postTouser?.avatar}
+          size={50}
+          link={`/blog/${post.user_postTouser.user_id}`}
+        />
         <Wrapper>
           <Rest>
             <PostHeader post={post} />
