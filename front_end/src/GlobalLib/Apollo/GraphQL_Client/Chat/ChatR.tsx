@@ -21,11 +21,12 @@ export const SeeRoomsRequest = (skip: number, take: number) =>
   });
 
 export const SWATCH_FOR_ROOM = gql`
-  query swatchForRoom($chat_room_id: Int) {
+  query swatchForRoom($chat_room_id: Int!) {
     swatchForRoom(chat_room_id: $chat_room_id) {
       chat_id
       user
       user_chatTouser {
+        username
         avatar
       }
       comment

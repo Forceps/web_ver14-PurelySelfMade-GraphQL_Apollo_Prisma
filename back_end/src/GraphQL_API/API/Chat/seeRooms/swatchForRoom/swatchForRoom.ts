@@ -12,17 +12,15 @@ export default {
         isAuthenticated(req);
         const result = await prisma.chat.findMany({
           where: {
-            chat_room: {
-              chat_room_id,
-            },
+            room: chat_room_id,
           },
           include: {
             user_chatTouser: true,
           },
           orderBy: { chat_id: "desc" },
-          take: 1,
+          take: 2,
         });
-        return result[0];
+        return result;
       } catch (e) {
         console.log(e);
         return null;
