@@ -22,11 +22,12 @@ const Oblong = styled.div`
   grid-template-rows: 40px 50px 120px 1fr;
   width: 300px;
   height: 400px;
-  background-color: white;
   margin: 10px 10px 0 0;
-
-  box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
-    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  background-color: rgba(223, 230, 233, 0.3);
+  &:hover {
+    box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
+      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  }
 `;
 const Oheader = styled(WH100per)`
   display: flex;
@@ -66,7 +67,7 @@ const ChatIcon = styled.i`
 export default ({ srLoading, srData, setMakeRoomOp }: RoomsPreProps) => {
   return (
     <Tent>
-      <Sbj>Chat rooms</Sbj>
+      <Sbj>Chanels</Sbj>
       <Exhibit>
         {srLoading ? (
           <Loading />
