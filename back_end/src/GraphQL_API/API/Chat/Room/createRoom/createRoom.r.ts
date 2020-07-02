@@ -1,13 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-import { CreateRoomMutationArgs } from "../../../LibForGQL/mergedSchema/types/graph";
-import { S_N_to_N } from "../../../../GlobalLib/recycleFunction/type_convert";
+import { S_N_to_N } from "../../../../../GlobalLib/recycleFunction/type_convert";
 const prisma = new PrismaClient();
 
 export default {
   Mutation: {
     createRoom: async (
       _: void,
-      { name }: CreateRoomMutationArgs,
+      { name, users },
       { req, isAuthenticated }: any
     ) => {
       isAuthenticated(req);
@@ -29,6 +28,18 @@ export default {
             },
           },
         });
+        for (let i = 0; i < users.length; i++) {
+          await prisma.chat_member.create({
+            data: {
+              chat_room: {
+                connect: { chat_room_id: foundation.chat_room_id },
+              },
+              user_chat_memberTouser: {
+                connect: { user_id: users[i] },
+              },
+            },
+          });
+        }
         return true;
       } catch (e) {
         console.log(e);

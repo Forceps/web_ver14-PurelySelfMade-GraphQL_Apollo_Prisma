@@ -1,30 +1,35 @@
 import { PrismaClient } from "@prisma/client";
-import { SeeFriendsQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
+import { S_N_to_N } from "../../../../../GlobalLib/recycleFunction/type_convert";
 const prisma = new PrismaClient();
 
 export default {
   Query: {
-    seeFriends: async (
-      _: void,
-      args: SeeFriendsQueryArgs,
-      { req, isAuthenticated }: any
-    ) => {
+    seeFriends: async (_: void, { user_id }, { req, isAuthenticated }: any) => {
       isAuthenticated(req);
-      const { user } = req;
-      const { proposer } = args;
+      const My_id = S_N_to_N(req.user.user_id);
       try {
-        let Rvalue = await prisma.friend.findMany({
+        const Rvalue1 = await prisma.user.findMany({
           where: {
-            proposer: proposer ? proposer : user.user_id,
+            friend_friend_proposerTouser: {
+              some: {
+                proposer: user_id ? user_id : My_id,
+                consent: true,
+              },
+            },
           },
-          include: { user_friend_respondentTouser: true },
         });
-        let refinedRvalue: any[] = [];
-        for (let i = 0; i < Rvalue.length; i++) {
-          let { respondent: UserInfo } = Rvalue[i];
-          refinedRvalue = refinedRvalue.concat(UserInfo);
-        }
-        return refinedRvalue;
+        const Rvalue2 = await prisma.user.findMany({
+          where: {
+            friend_friend_proposerTouser: {
+              some: {
+                respondent: user_id ? user_id : My_id,
+                consent: true,
+              },
+            },
+          },
+        });
+        const Rvalue = [...Rvalue1, ...Rvalue2];
+        return Rvalue;
       } catch (e) {
         console.log(e);
         return null;

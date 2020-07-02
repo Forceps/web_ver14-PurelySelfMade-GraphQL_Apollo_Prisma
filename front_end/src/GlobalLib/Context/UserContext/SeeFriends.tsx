@@ -7,8 +7,8 @@ import React, {
 } from "react";
 import { useLazyQuery } from "@apollo/react-hooks";
 import {
-  SEE_MY_FRIENDS,
-  SeeWhoseFriendsRequest,
+  SEE_FRIENDS,
+  SeeFriendsLazyRequest,
 } from "../../Apollo/GraphQL_Client/Relation/Friend/FriendR";
 import { useLoginCheck } from "./IsLoggedIn";
 
@@ -20,7 +20,7 @@ export const SeeFriendsProvider = ({ children }: { children: ReactNode }) => {
   const [
     loadGreeting,
     { called, data: whF, loading: whF_load, refetch: whF_refetch },
-  ] = SeeWhoseFriendsRequest(proposer);
+  ] = SeeFriendsLazyRequest(proposer);
   const [
     queryLoad_MyF,
     {
@@ -29,7 +29,7 @@ export const SeeFriendsProvider = ({ children }: { children: ReactNode }) => {
       loading: myF_loading,
       refetch: myF_refetch,
     },
-  ] = useLazyQuery(SEE_MY_FRIENDS);
+  ] = useLazyQuery(SEE_FRIENDS);
   const myF_load = myF_loading || !myF_called;
   useEffect(() => {
     if (isLoggedIn && proposer !== 0) {

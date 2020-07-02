@@ -63,7 +63,7 @@ const AddBtn = styled(Item)`
 `;
 
 export default ({ CItems, setCItems, AddNum, setAddNum }: Step3Props) => {
-  const DS = useDummyState();
+  const { setDummyState } = useDummyState();
   const ListMutate = (id: number, type: string, name?: string) => {
     const idx = CItems.findIndex((item) => {
       return item.id === id;
@@ -98,7 +98,7 @@ export default ({ CItems, setCItems, AddNum, setAddNum }: Step3Props) => {
               onClick={(e) => {
                 ListMutate(Elem.id, "Delete");
                 spaped(e);
-                DS.setDummyState((p: number) => p + 1);
+                setDummyState((p: number) => p + 1);
               }}
               className="DeleteCategoryInMakingGroupScreen"
             >

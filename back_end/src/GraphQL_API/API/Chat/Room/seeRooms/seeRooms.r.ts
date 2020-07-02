@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { S_N_to_N } from "../../../../GlobalLib/recycleFunction/type_convert";
-import { SeeRoomsQueryArgs } from "../../../LibForGQL/mergedSchema/types/graph";
+import { S_N_to_N } from "../../../../../GlobalLib/recycleFunction/type_convert";
+import { SeeRoomsQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
 export default {

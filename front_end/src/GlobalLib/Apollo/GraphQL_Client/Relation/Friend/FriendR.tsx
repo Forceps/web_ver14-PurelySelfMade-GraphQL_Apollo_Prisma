@@ -1,27 +1,20 @@
 import gql from "graphql-tag";
-import { useLazyQuery } from "@apollo/react-hooks";
+import { useLazyQuery, useQuery } from "@apollo/react-hooks";
 
-export const SEE_MY_FRIENDS = gql`
-  {
-    seeFriends {
+export const SEE_FRIENDS = gql`
+  query seeFriends($user_id: Int!) {
+    seeFriends(user_id: $user_id) {
       user_id
       username
       avatar
-      back_img
     }
   }
 `;
-export const SEE_WHOSE_FRIENDS = gql`
-  query seeFriends($proposer: Int!) {
-    seeFriends(proposer: $proposer) {
-      user_id
-      username
-      avatar
-      back_img
-    }
-  }
-`;
-export const SeeWhoseFriendsRequest = (proposer: number) =>
-  useLazyQuery(SEE_WHOSE_FRIENDS, {
-    variables: { proposer },
+export const SeeFriendsLazyRequest = (user_id: number) =>
+  useLazyQuery(SEE_FRIENDS, {
+    variables: { user_id },
+  });
+export const SeeFriendsRequest = (user_id?: number) =>
+  useQuery(SEE_FRIENDS, {
+    variables: { user_id },
   });

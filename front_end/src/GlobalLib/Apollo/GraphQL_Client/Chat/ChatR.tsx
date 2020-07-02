@@ -26,6 +26,7 @@ export const SWATCH_FOR_ROOM = gql`
       chat_id
       user
       user_chatTouser {
+        user_id
         username
         avatar
       }

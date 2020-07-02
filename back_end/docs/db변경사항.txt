@@ -482,3 +482,11 @@ ALTER TABLE `square_post`.`watched`
 ADD COLUMN `count` MEDIUMINT NOT NULL DEFAULT 1 AFTER `post`;
 
 
+
+
+
+
+// 2020 - 7 - 2
+
+ALTER TABLE `square_post`.`friend` 
+ADD COLUMN `consent` boolean NOT NULL DEFAULT false AFTER `respondent`;

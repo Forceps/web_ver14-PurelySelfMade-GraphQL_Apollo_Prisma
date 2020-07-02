@@ -84,11 +84,12 @@ model directory {
 }
 
 model friend {
-  friend_id                    Int  @default(autoincrement()) @id
+  consent                      Boolean @default(false)
+  friend_id                    Int     @default(autoincrement()) @id
   proposer                     Int
   respondent                   Int
-  user_friend_proposerTouser   user @relation("friend_proposerTouser", fields: [proposer], references: [user_id])
-  user_friend_respondentTouser user @relation("friend_respondentTouser", fields: [respondent], references: [user_id])
+  user_friend_proposerTouser   user    @relation("friend_proposerTouser", fields: [proposer], references: [user_id])
+  user_friend_respondentTouser user    @relation("friend_respondentTouser", fields: [respondent], references: [user_id])
 
   @@index([proposer], name: "proposer_idx")
   @@index([respondent], name: "respondent_idx")

@@ -1,0 +1,3 @@
+type Query {
+  talkComrades(skip: Int, take: Int): [User]
+}

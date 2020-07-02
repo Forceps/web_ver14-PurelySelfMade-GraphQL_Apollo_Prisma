@@ -38,6 +38,7 @@ type Friend {
   friend_id: ID!
   proposer: Int!
   respondent: Int!
+  consent: Boolean!
 
   user_friend_proposerTouser: User!
   user_friend_respondentTouser: User!
