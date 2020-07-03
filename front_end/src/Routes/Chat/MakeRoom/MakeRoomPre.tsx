@@ -145,7 +145,17 @@ export default ({
       <Template zIndex={zIndex + 2}>
         <Header>Make chat room</Header>
         <Naming>
-          Name: <NamingInput {...NameAssign} spellCheck="false" />
+          Name:{" "}
+          <NamingInput
+            {...NameAssign}
+            onKeyUp={(e: any) => {
+              if (e.keyCode === 13) {
+                spaped(e);
+                createRoomSubmit();
+              }
+            }}
+            spellCheck="false"
+          />
           <SubmitBtn
             onClick={(e) => {
               spaped(e);

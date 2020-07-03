@@ -18,7 +18,7 @@ export default {
             user_chatTouser: true,
           },
           orderBy: { chat_id: "desc" },
-          take: 2,
+          take: 3,
         });
         return result;
       } catch (e) {

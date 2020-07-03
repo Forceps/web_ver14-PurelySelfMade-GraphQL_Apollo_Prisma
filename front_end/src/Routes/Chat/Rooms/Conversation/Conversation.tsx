@@ -15,9 +15,12 @@ const Rails = styled(WH100per)`
   padding: 0 5px 0 5px;
   font-size: 0.85rem;
 `;
-const Comments = styled(W100per)`
+interface sizing {
+  size: number;
+}
+const Comments = styled(W100per)<sizing>`
   display: grid;
-  grid-template-columns: 34px 1fr;
+  grid-template-columns: ${(p) => `${(p.size * 17) / 15}px`} 1fr;
   margin: 0 0 10px 0;
 `;
 const CommentBox = styled(W100per)`
@@ -34,12 +37,12 @@ const Content = styled(W100per)`
 const Coloring = styled.div`
   display: inline-block;
   padding: 5px;
-  background-color: #dfe6e9;
+  background-color: rgba(178, 190, 195, 0.4);
   border-radius: 8px;
 `;
-const CommentsM = styled(W100per)`
+const CommentsM = styled(W100per)<sizing>`
   display: grid;
-  grid-template-columns: 1fr 34px;
+  grid-template-columns: 1fr ${(p) => `${(p.size * 17) / 15}px`};
   margin: 0 0 10px 0;
 `;
 const CommentBoxM = styled(W100per)`
@@ -63,14 +66,12 @@ const ContentM = styled(W100per)`
 const ColoringM = styled.div`
   display: inline-block;
   padding: 5px;
-  background-color: #dfe6e9;
+  background-color: rgba(178, 190, 195, 0.4);
   border-radius: 8px;
 `;
 
-export default ({ room_id }: ConversationProps) => {
-  console.log(room_id);
+export default ({ room_id, size = 30 }: ConversationProps) => {
   const { loading, data } = SwatchForRoomRequest(room_id);
-  console.log(data);
   const { MEdata, MEloading } = useMyInfo();
   return (
     <Rails>
@@ -78,7 +79,7 @@ export default ({ room_id }: ConversationProps) => {
         ? "Loading..."
         : data.swatchForRoom?.map((l: any) =>
             S_N_to_N(l.user) === S_N_to_N(MEdata.user_id) ? (
-              <CommentsM key={l.chat_id}>
+              <CommentsM key={l.chat_id} size={size}>
                 <CommentBoxM>
                   <UsernameM>{l.user_chatTouser.username}</UsernameM>
                   <ContentM>
@@ -86,12 +87,12 @@ export default ({ room_id }: ConversationProps) => {
                   </ContentM>
                 </CommentBoxM>
                 <Justify>
-                  <Avatar url={l.user_chatTouser.avatar} size={30} />
+                  <Avatar url={l.user_chatTouser.avatar} size={size} />
                 </Justify>
               </CommentsM>
             ) : (
-              <Comments key={l.chat_id}>
-                <Avatar url={l.user_chatTouser.avatar} size={30} />
+              <Comments key={l.chat_id} size={size}>
+                <Avatar url={l.user_chatTouser.avatar} size={size} />
                 <CommentBox>
                   <Username>{l.user_chatTouser.username}</Username>
                   <Content>
@@ -106,4 +107,5 @@ export default ({ room_id }: ConversationProps) => {
 };
 interface ConversationProps {
   room_id: number;
+  size?: number;
 }

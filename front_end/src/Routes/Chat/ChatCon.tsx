@@ -3,5 +3,13 @@ import ChatPre from "./ChatPre";
 
 export default () => {
   const [MakeRoomOp, setMakeRoomOp] = useState(false);
-  return <ChatPre MakeRoomOp={MakeRoomOp} setMakeRoomOp={setMakeRoomOp} />;
+  const [RoomEnter, setRoomEnter] = useState(true);
+  return (
+    <ChatPre
+      MakeRoomOp={MakeRoomOp}
+      setMakeRoomOp={setMakeRoomOp}
+      RoomEnter={RoomEnter}
+      setRoomEnter={setRoomEnter}
+    />
+  );
 };

@@ -38,3 +38,17 @@ export const SwatchForRoomRequest = (chat_room_id: number) =>
   useQuery(SWATCH_FOR_ROOM, {
     variables: { chat_room_id },
   });
+
+export const TALK_COMRADES = gql`
+  query talkComrades($skip: Int!, $take: Int) {
+    talkComrades(skip: $skip, take: $take) {
+      user_id
+      username
+      avatar
+    }
+  }
+`;
+export const TalkComradesRequest = (skip?: number, take?: number) =>
+  useQuery(TALK_COMRADES, {
+    variables: { skip: skip ? skip : 0, take: take ? take : 0 },
+  });

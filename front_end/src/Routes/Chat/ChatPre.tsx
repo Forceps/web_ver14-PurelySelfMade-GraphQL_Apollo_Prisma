@@ -4,6 +4,8 @@ import { W100per } from "../../GlobalLib/Styles/IteratePattern/WH100per";
 import MakeRoomCon from "./MakeRoom/MakeRoomCon";
 import RoomsCon from "./Rooms/RoomsCon";
 import PrivateCon from "./Private/PrivateCon";
+import HeaderCon from "./Header/HeaderCon";
+import ChattingChannelCon from "./ChattingChannel/ChattingChannelCon";
 
 const Wapper = styled(W100per)`
   display: flex;
@@ -26,24 +28,36 @@ const Main = styled(W100per)`
   min-height: 100px;
 `;
 
-export default ({ MakeRoomOp, setMakeRoomOp }: ChatPreProps) => {
+export default ({
+  MakeRoomOp,
+  setMakeRoomOp,
+  RoomEnter,
+  setRoomEnter,
+}: ChatPreProps) => {
   return (
     <Wapper>
+      <HeaderCon />
       <Invest>
         <div />
         <Center>
           <div />
           <Main>
             <PrivateCon />
-            <RoomsCon setMakeRoomOp={setMakeRoomOp} />
+            <RoomsCon
+              setMakeRoomOp={setMakeRoomOp}
+              setRoomEnter={setRoomEnter}
+            />
           </Main>
         </Center>
       </Invest>
       {MakeRoomOp && <MakeRoomCon setMakeRoomOpen={setMakeRoomOp} />}
+      {RoomEnter && <ChattingChannelCon setRoomEnter={setRoomEnter} />}
     </Wapper>
   );
 };
 interface ChatPreProps {
   MakeRoomOp: boolean;
   setMakeRoomOp: any;
+  RoomEnter: boolean;
+  setRoomEnter: any;
 }

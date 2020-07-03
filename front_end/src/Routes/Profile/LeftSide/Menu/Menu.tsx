@@ -24,7 +24,11 @@ const LeftMenu = styled.div`
     width: 100%;
   }
 `;
-const LinkS = styled(Link)`
+interface MenuItemProps {
+  curMode?: string;
+  staMode?: string;
+}
+const MenuItem = styled(({ ...rest }) => <Link {...rest} />)<MenuItemProps>`
   display: flex;
   align-items: center;
   width: 100%;
@@ -37,6 +41,15 @@ const LinkS = styled(Link)`
     background-color: #dfe6e9;
   }
   cursor: pointer;
+  ${(p) => {
+    if (p.curMode && p.staMode) {
+      if (p.curMode === p.staMode) {
+        return css`
+          border-left: 4px solid #2d3436;
+        `;
+      }
+    }
+  }}
   @media (max-width: 1300px) {
     display: grid;
     width: 100%;
@@ -48,31 +61,7 @@ const LinkS = styled(Link)`
     }
   }
 `;
-const MenuItem = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 40px;
-  font-size: 1.1rem;
-  padding: 0 0 0 10px;
-  justify-self: right;
-  color: black;
-  &:hover {
-    background-color: #dfe6e9;
-  }
-  cursor: pointer;
-  @media (max-width: 1300px) {
-    display: grid;
-    width: 100%;
-    padding: 10px 0 10px 0;
-    justify-content: center;
-    align-items: center;
-    &:hover {
-      background-color: #dfe6e9;
-    }
-  }
-`;
-const MenuItemO1 = styled(MenuItem)`
+const MenuItemO1 = styled(({ ...rest }) => <MenuItem {...rest} />)`
   display: none;
 `;
 const MenuIcon = styled.i`
@@ -155,28 +144,37 @@ export default () => {
         {Inside ? (
           <>
             <MenuItem
-              onClick={(e) => {
+              onClick={(e: any) => {
                 spaped(e);
                 PfM.setMode(["Post"]);
               }}
+              to={`/profile/${ME?.MEdata?.user_id}`}
+              curMode={PfM.Mode[0]}
+              staMode={"Post"}
             >
               <MenuIcon className="icon-pinboard hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Post</MenuTxt>
             </MenuItem>
             <MenuItem
-              onClick={(e) => {
+              onClick={(e: any) => {
                 spaped(e);
                 PfM.setMode(["Archive"]);
               }}
+              to={`/profile/${ME?.MEdata?.user_id}`}
+              curMode={PfM.Mode[0]}
+              staMode={"Archive"}
             >
               <MenuIcon className="icon-folder hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Archive</MenuTxt>
             </MenuItem>
             <MenuItem
-              onClick={(e) => {
+              onClick={(e: any) => {
                 spaped(e);
                 PfM.setMode(["Settings"]);
               }}
+              to={`/profile/${ME?.MEdata?.user_id}`}
+              curMode={PfM.Mode[0]}
+              staMode={"Settings"}
             >
               <MenuIcon className="icon-sliders hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Settings</MenuTxt>
@@ -184,18 +182,18 @@ export default () => {
           </>
         ) : (
           <>
-            <LinkS to={`/`}>
+            <MenuItem to={`/`}>
               <MenuIcon className="icon-home-1 hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Home</MenuTxt>
-            </LinkS>
-            <LinkS to={`/bookmark/${ME?.MEdata?.user_id}`}>
+            </MenuItem>
+            <MenuItem to={`/bookmark/${ME?.MEdata?.user_id}`}>
               <MenuIcon className="icon-bookmark hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Bookmark</MenuTxt>
-            </LinkS>
-            <LinkS to={`/chat`}>
+            </MenuItem>
+            <MenuItem to={`/chat`}>
               <MenuIcon className="icon-comment hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Chat</MenuTxt>
-            </LinkS>
+            </MenuItem>
           </>
         )}
 
@@ -203,10 +201,11 @@ export default () => {
           <HiddenLMore setMore={setMore} />
         ) : (
           <MenuItemO1
-            onClick={(e) => {
+            onClick={(e: any) => {
               spaped(e);
               setMore(true);
             }}
+            to={`/profile/${ME?.MEdata?.user_id}`}
           >
             <MenuIcon className="icon-dot-3" />
             <MenuTxt className="hovMenuTxt">More</MenuTxt>

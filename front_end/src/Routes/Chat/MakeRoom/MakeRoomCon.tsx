@@ -5,8 +5,9 @@ import { SeeFriendsRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Rela
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { CREATE_ROOM } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatCUD";
 import { useMutation } from "@apollo/react-hooks";
+import { SEE_ROOMS } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatR";
 
-export default ({ zIndex = 10, setMakeRoomOpen }: MakeRoomConProps) => {
+export default ({ zIndex = 20, setMakeRoomOpen }: MakeRoomConProps) => {
   const NameAssign = useInput("");
   const [Invited, setInvited] = useState<any[]>([]);
   const [Choiced, setChoiced] = useState<any[]>([]);
@@ -48,7 +49,17 @@ export default ({ zIndex = 10, setMakeRoomOpen }: MakeRoomConProps) => {
     return finded[0]?.invited;
   };
   const submitCheck = NameAssign.value !== "" && Invited.length > 0;
-  const [createRoomMutation] = useMutation(CREATE_ROOM);
+  const [createRoomMutation] = useMutation(CREATE_ROOM, {
+    refetchQueries: () => [
+      {
+        query: SEE_ROOMS,
+        variables: {
+          skip: 0,
+          take: 5,
+        },
+      },
+    ],
+  });
   const createRoomSubmit = () => {
     if (submitCheck) {
       let tempA: number[] = [];

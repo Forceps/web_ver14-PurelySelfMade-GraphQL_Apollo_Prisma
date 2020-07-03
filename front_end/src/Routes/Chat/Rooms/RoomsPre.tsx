@@ -23,11 +23,12 @@ const Oblong = styled.div`
   width: 300px;
   height: 400px;
   margin: 10px 10px 0 0;
-  background-color: rgba(223, 230, 233, 0.3);
+  background-color: rgba(223, 230, 233, 0.7);
   &:hover {
     box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
       0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
   }
+  cursor: pointer;
 `;
 const Oheader = styled(WH100per)`
   display: flex;
@@ -55,19 +56,21 @@ const OblongEmpty = styled(Oblong)`
   align-items: center;
   font-size: 1.2rem;
   cursor: pointer;
-  &:hover {
-    background-color: rgba(223, 230, 233, 0.3);
-  }
 `;
 const ChatIcon = styled.i`
   font-size: 2.7rem;
   margin: 0 0 10px 0;
 `;
 
-export default ({ srLoading, srData, setMakeRoomOp }: RoomsPreProps) => {
+export default ({
+  srLoading,
+  srData,
+  setMakeRoomOp,
+  setRoomEnter,
+}: RoomsPreProps) => {
   return (
     <Tent>
-      <Sbj>Chanels</Sbj>
+      <Sbj>Channels</Sbj>
       <Exhibit>
         {srLoading ? (
           <Loading />
@@ -82,7 +85,12 @@ export default ({ srLoading, srData, setMakeRoomOp }: RoomsPreProps) => {
           </OblongEmpty>
         ) : (
           srData.map((i: any) => (
-            <Oblong key={i.chat_room_id}>
+            <Oblong
+              key={i.chat_room_id}
+              onClick={() => {
+                setRoomEnter(true);
+              }}
+            >
               <Oheader>{i.name}</Oheader>
               <Info>
                 <i className="icon-group" /> {i.chat_member.length}
@@ -106,4 +114,5 @@ interface RoomsPreProps {
   srLoading: boolean;
   srData: any;
   setMakeRoomOp: any;
+  setRoomEnter: any;
 }

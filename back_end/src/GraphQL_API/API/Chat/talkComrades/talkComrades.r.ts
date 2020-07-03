@@ -16,14 +16,27 @@ export default {
           where: {
             chat_member: {
               some: {
-                user: user_id,
+                chat_room: {
+                  chat_member: {
+                    some: {
+                      user: user_id,
+                    },
+                  },
+                },
               },
             },
           },
           skip: skip ? skip : 0,
           take: take ? take : 6,
         });
-        return result;
+
+        const idx = result.findIndex((i) => {
+          return S_N_to_N(i.user_id) === user_id;
+        });
+        let tempA = result;
+        tempA.splice(idx, 1);
+
+        return tempA;
       } catch (e) {
         console.log(e);
         return null;
