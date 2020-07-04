@@ -45,7 +45,7 @@ export default ({ loading, data }: PrivatePreProps) => {
         <SubSbjF2>Connected people</SubSbjF2>
         {!loading &&
           data.map((o: any) => (
-            <Chip key={o.chat_id}>
+            <Chip key={o.user_id}>
               <Avatar url={o.avatar} size={40} />
               <Username>{o.username}</Username>
             </Chip>

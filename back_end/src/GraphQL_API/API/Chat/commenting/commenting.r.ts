@@ -30,6 +30,9 @@ export default {
             minute,
             second,
           },
+          include: {
+            user_chatTouser: true,
+          },
         });
         pubSub.publish("chatSting", { chatListening: chat });
         return true;

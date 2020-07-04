@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import { W100per } from "../../GlobalLib/Styles/IteratePattern/WH100per";
-import MakeRoomCon from "./MakeRoom/MakeRoomCon";
+import MakeRoomCon from "../../Components/Chat/MakeRoom/MakeRoomCon";
 import RoomsCon from "./Rooms/RoomsCon";
 import PrivateCon from "./Private/PrivateCon";
 import HeaderCon from "./Header/HeaderCon";
-import ChattingChannelCon from "./ChattingChannel/ChattingChannelCon";
+import ChattingChannelCon from "../../Components/Chat/ChattingChannel/ChattingChannelCon";
 
 const Wapper = styled(W100per)`
   display: flex;
@@ -33,6 +33,8 @@ export default ({
   setMakeRoomOp,
   RoomEnter,
   setRoomEnter,
+  ParticularRoom,
+  setParticularRoom,
 }: ChatPreProps) => {
   return (
     <Wapper>
@@ -46,12 +48,24 @@ export default ({
             <RoomsCon
               setMakeRoomOp={setMakeRoomOp}
               setRoomEnter={setRoomEnter}
+              setParticularRoom={setParticularRoom}
             />
           </Main>
         </Center>
       </Invest>
-      {MakeRoomOp && <MakeRoomCon setMakeRoomOpen={setMakeRoomOp} />}
-      {RoomEnter && <ChattingChannelCon setRoomEnter={setRoomEnter} />}
+      {MakeRoomOp && (
+        <MakeRoomCon
+          setMakeRoomOpen={setMakeRoomOp}
+          setRoomEnter={setRoomEnter}
+          setParticularRoom={setParticularRoom}
+        />
+      )}
+      {RoomEnter && (
+        <ChattingChannelCon
+          setRoomEnter={setRoomEnter}
+          ParticularRoom={ParticularRoom}
+        />
+      )}
     </Wapper>
   );
 };
@@ -60,4 +74,6 @@ interface ChatPreProps {
   setMakeRoomOp: any;
   RoomEnter: boolean;
   setRoomEnter: any;
+  ParticularRoom: number;
+  setParticularRoom: any;
 }

@@ -49,7 +49,7 @@ export default ({ size = 100, url, link, func }: AvatarProps) => {
       }}
       url={url}
       size={size}
-      to={link}
+      to={link ? link : `/`}
     />
   ) : (
     <DACon
@@ -59,7 +59,7 @@ export default ({ size = 100, url, link, func }: AvatarProps) => {
         func && func();
       }}
       size={size}
-      to={link}
+      to={link ? link : `/`}
     >
       <DefaultAvatar className="icon-noun_user_856030" size={size} />
     </DACon>

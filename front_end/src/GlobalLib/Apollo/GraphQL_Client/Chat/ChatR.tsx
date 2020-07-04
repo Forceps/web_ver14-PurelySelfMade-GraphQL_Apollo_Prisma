@@ -19,10 +19,22 @@ export const SeeRoomsRequest = (skip: number, take: number) =>
   useQuery(SEE_ROOMS, {
     variables: { skip, take },
   });
+export const SEE_ROOM = gql`
+  query seeRoom($chat_room_id: Int!) {
+    seeRoom(chat_room_id: $chat_room_id) {
+      chat_room_id
+      name
+    }
+  }
+`;
+export const SeeRoomRequest = (chat_room_id: number) =>
+  useQuery(SEE_ROOM, {
+    variables: { chat_room_id },
+  });
 
-export const SWATCH_FOR_ROOM = gql`
-  query swatchForRoom($chat_room_id: Int!) {
-    swatchForRoom(chat_room_id: $chat_room_id) {
+export const CHAT_DETAIL = gql`
+  query chatDetail($chat_room_id: Int!, $skip: Int, $take: Int) {
+    chatDetail(chat_room_id: $chat_room_id, skip: $skip, take: $take) {
       chat_id
       user
       user_chatTouser {
@@ -34,9 +46,13 @@ export const SWATCH_FOR_ROOM = gql`
     }
   }
 `;
-export const SwatchForRoomRequest = (chat_room_id: number) =>
-  useQuery(SWATCH_FOR_ROOM, {
-    variables: { chat_room_id },
+export const ChatDetailRequest = (
+  chat_room_id: number,
+  skip?: number,
+  take?: number
+) =>
+  useQuery(CHAT_DETAIL, {
+    variables: { chat_room_id, skip: skip ? skip : 0, take: take ? take : 4 },
   });
 
 export const TALK_COMRADES = gql`

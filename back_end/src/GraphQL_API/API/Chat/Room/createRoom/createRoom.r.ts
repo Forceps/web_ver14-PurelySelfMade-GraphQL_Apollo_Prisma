@@ -40,10 +40,10 @@ export default {
             },
           });
         }
-        return true;
+        return foundation.chat_room_id;
       } catch (e) {
         console.log(e);
-        return false;
+        return 0;
       }
     },
   },

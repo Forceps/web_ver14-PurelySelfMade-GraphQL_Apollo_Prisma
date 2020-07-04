@@ -1,0 +1,3 @@
+type Query {
+  seeRoom(chat_room_id: Int!): Chat_room
+}

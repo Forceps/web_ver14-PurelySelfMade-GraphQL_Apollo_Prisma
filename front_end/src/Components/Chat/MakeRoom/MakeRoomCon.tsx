@@ -7,7 +7,12 @@ import { CREATE_ROOM } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatC
 import { useMutation } from "@apollo/react-hooks";
 import { SEE_ROOMS } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatR";
 
-export default ({ zIndex = 20, setMakeRoomOpen }: MakeRoomConProps) => {
+export default ({
+  zIndex = 20,
+  setMakeRoomOpen,
+  setRoomEnter,
+  setParticularRoom,
+}: MakeRoomConProps) => {
   const NameAssign = useInput("");
   const [Invited, setInvited] = useState<any[]>([]);
   const [Choiced, setChoiced] = useState<any[]>([]);
@@ -60,20 +65,22 @@ export default ({ zIndex = 20, setMakeRoomOpen }: MakeRoomConProps) => {
       },
     ],
   });
-  const createRoomSubmit = () => {
+  const createRoomSubmit = async () => {
     if (submitCheck) {
       let tempA: number[] = [];
       for (let i = 0; i < Invited.length; i++) {
         tempA = tempA.concat(S_N_to_N(Invited[i].user_id));
       }
       try {
-        createRoomMutation({
+        const roomIdMade: any = await createRoomMutation({
           variables: {
             name: NameAssign.value,
             users: tempA,
           },
         });
         setMakeRoomOpen(false);
+        setParticularRoom(S_N_to_N(roomIdMade.data.createRoom));
+        setRoomEnter(true);
       } catch (e) {
         console.log(e);
       }
@@ -110,4 +117,6 @@ export default ({ zIndex = 20, setMakeRoomOpen }: MakeRoomConProps) => {
 interface MakeRoomConProps {
   zIndex?: number;
   setMakeRoomOpen: any;
+  setRoomEnter: any;
+  setParticularRoom: any;
 }

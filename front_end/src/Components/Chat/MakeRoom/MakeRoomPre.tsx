@@ -1,12 +1,12 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import TemporaryBackground from "../../../Components/Effect/TemporaryBackground";
+import TemporaryBackground from "../../Effect/TemporaryBackground";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import WH100per, {
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import IncludeScrollBar from "../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
-import Avatar from "../../../Components/User/Avatar";
+import Avatar from "../../User/Avatar";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { useDummyState } from "../../../GlobalLib/Context/Lib/DummyState";
 
@@ -117,6 +117,9 @@ const SubmitBtn = styled.div`
   height: 35px;
   background-color: #dfe6e9;
   margin: 0 0 0 15px;
+  &:hover {
+    background-color: #b2bec3;
+  }
   cursor: pointer;
 `;
 
