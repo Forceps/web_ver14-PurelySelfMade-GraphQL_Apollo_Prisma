@@ -89,16 +89,20 @@ export default ({
   ParticularRoom,
   loading,
   data,
+  refetch,
   chatText,
   commenting,
   chatListenData,
   chatListenLoad,
+  swatchRefetch,
 }: ChattingChannelPrePorops) => {
   return (
     <Wrapper zIndex={zIndex}>
       <TemporaryBackground
         onClick={(e: any) => {
           spaped(e);
+          refetch();
+          swatchRefetch();
           setRoomEnter(false);
         }}
         zIndex={zIndex + 1}
@@ -140,8 +144,10 @@ interface ChattingChannelPrePorops {
   ParticularRoom: number;
   loading: boolean;
   data: any;
+  refetch: any;
   chatText: any;
   commenting: () => void;
   chatListenLoad: boolean;
   chatListenData: any;
+  swatchRefetch: any;
 }

@@ -1,6 +1,9 @@
 import React from "react";
 import ChattingChannelPre from "./ChattingChannelPre";
-import { SeeRoomRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatR";
+import {
+  SeeRoomRequest,
+  ChatDetailRequest,
+} from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatR";
 import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useMutation, useSubscription } from "@apollo/react-hooks";
 import { COMMENTING } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatCUD";
@@ -11,7 +14,8 @@ export default ({
   setRoomEnter,
   ParticularRoom,
 }: ChattingChannelConPorops) => {
-  const { loading, data } = SeeRoomRequest(ParticularRoom);
+  const { loading, data, refetch } = SeeRoomRequest(ParticularRoom);
+  const { refetch: swatchRefetch } = ChatDetailRequest(ParticularRoom, 0, 4);
   const { data: chatListenData, loading: chatListenLoad } = useSubscription(
     CHAT_LISTENING
   );
@@ -39,10 +43,12 @@ export default ({
       ParticularRoom={ParticularRoom}
       loading={loading}
       data={data?.seeRoom}
+      refetch={refetch}
       chatText={chatText}
       commenting={commenting}
       chatListenData={chatListenData}
       chatListenLoad={chatListenLoad}
+      swatchRefetch={swatchRefetch}
     />
   );
 };
