@@ -130,6 +130,7 @@ type User {
   chat_member: [Chat_member]
   chat: [Chat]
   watched: [Watched]
+  notification: [Notification]
 }
 type Chat {
   chat_id: ID!
@@ -182,6 +183,22 @@ type Watched {
 
   post_postTowatched: Post!
   user_userTowatched: User!
+}
+
+type Notification {
+  notification_id: ID!
+  title: String!
+  content: String!
+  user: Int!
+  sender: String!
+  year: Int!
+  month: Int!
+  day: Int!
+  hour: Int!
+  minute: Int!
+  second: Int!
+
+  user_notificationTouser: User!
 }
 
 type Group {

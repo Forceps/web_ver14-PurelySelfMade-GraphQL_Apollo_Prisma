@@ -37,6 +37,9 @@ const ColoringM = styled.div`
   padding: 5px;
   background-color: rgba(178, 190, 195, 0.4);
   border-radius: 8px;
+  white-space: pre-line;
+  word-break: break-all;
+  word-wrap: break-word;
 `;
 
 export default ({ data, size, fontSize }: MyWordsProps) => {

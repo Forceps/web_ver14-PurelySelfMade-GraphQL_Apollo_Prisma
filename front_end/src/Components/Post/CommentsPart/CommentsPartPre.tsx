@@ -116,8 +116,10 @@ const FirstFloor = styled(WH100per)`
 const SecondFloor = styled(WH100per)`
   padding: 6px 0 6px 0;
   font-size: 0.9rem;
-  white-space: pre;
   line-height: 1.3rem;
+  white-space: pre-line;
+  word-break: break-all;
+  word-wrap: break-word;
 `;
 const CreatedAt = styled(WH100per)`
   color: #b2bec3;

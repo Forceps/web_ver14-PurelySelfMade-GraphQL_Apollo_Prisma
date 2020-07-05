@@ -483,3 +483,36 @@ ADD COLUMN `count` MEDIUMINT NOT NULL DEFAULT 1 AFTER `post`;
 ALTER TABLE `square_post`.`friend` 
 ADD COLUMN `consent` boolean NOT NULL DEFAULT false AFTER `respondent`;
 
+
+
+
+
+
+
+// 2020 - 07 - 05
+
+ALTER TABLE `square_post`.`comment` 
+CHANGE COLUMN `year` `year` MEDIUMINT NOT NULL ;
+CREATE TABLE `square_post`.`notification` (
+  `notification_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `title` VARCHAR(120) NOT NULL,
+  `content` LONGTEXT NOT NULL,
+  `user` INT NOT NULL,
+  `dispatcher` INT NOT NULL,
+  `year` MEDIUMINT NOT NULL,
+  `month` TINYINT NOT NULL,
+  `day` TINYINT NOT NULL,
+  `hour` TINYINT NOT NULL,
+  `minute` TINYINT NOT NULL,
+  `second` TINYINT NOT NULL,
+  PRIMARY KEY (`notification_id`),
+  UNIQUE INDEX `notification_id_UNIQUE` (`notification_id` ASC) VISIBLE,
+  INDEX `receiver_idx` (`user` ASC) VISIBLE,
+  CONSTRAINT `receiver`
+    FOREIGN KEY (`user`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION);
+ALTER TABLE `square_post`.`notification` 
+CHANGE COLUMN `dispatcher` `sender` VARCHAR(60) NOT NULL DEFAULT 'administrator' ;
+

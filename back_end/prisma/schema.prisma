@@ -158,6 +158,23 @@ model music {
   @@index([directory], name: "music_to_dir_idx")
 }
 
+model notification {
+  content                 String
+  day                     Int
+  hour                    Int
+  minute                  Int
+  month                   Int
+  notification_id         Int    @default(autoincrement()) @id
+  second                  Int
+  sender                  String @default("administrator")
+  title                   String
+  user                    Int
+  year                    Int
+  user_notificationTouser user   @relation(fields: [user], references: [user_id])
+
+  @@index([user], name: "receiver_idx")
+}
+
 model post {
   caption                   String
   content                   String?
@@ -197,22 +214,23 @@ model subscriber {
 model user {
   avatar                             String?
   back_img                           String?
-  email                              String        @unique
+  email                              String         @unique
   password                           String
   phone_number                       Int?
   username                           String
-  user_id                            Int           @default(autoincrement()) @id
+  user_id                            Int            @default(autoincrement()) @id
   chat                               chat[]
   chat_member                        chat_member[]
   comment                            comment[]
   directory                          directory[]
-  friend_friend_proposerTouser       friend[]      @relation("friend_proposerTouser")
-  friend_friend_respondentTouser     friend[]      @relation("friend_respondentTouser")
+  friend_friend_proposerTouser       friend[]       @relation("friend_proposerTouser")
+  friend_friend_respondentTouser     friend[]       @relation("friend_respondentTouser")
   group                              group[]
   liked                              liked[]
+  notification                       notification[]
   post                               post[]
-  subscriber_subscriber_authorTouser subscriber[]  @relation("subscriber_authorTouser")
-  subscriber_subscriber_readerTouser subscriber[]  @relation("subscriber_readerTouser")
+  subscriber_subscriber_authorTouser subscriber[]   @relation("subscriber_authorTouser")
+  subscriber_subscriber_readerTouser subscriber[]   @relation("subscriber_readerTouser")
   watched                            watched[]
 }
 

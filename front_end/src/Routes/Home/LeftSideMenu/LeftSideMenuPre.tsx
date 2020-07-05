@@ -78,11 +78,11 @@ export default ({
           <LogoText text="quare Post" />
         </LogoLink>
         <OutlineBox>
-          <Item>
-            <Icon className="icon-bell" /> Notification
-          </Item>
           {ME?.MEloading ? (
             <>
+              <Item>
+                <Icon className="icon-bell" /> Notification
+              </Item>
               <Item>
                 <Icon className="icon-comment-empty" /> Chat
               </Item>
@@ -103,6 +103,11 @@ export default ({
             </>
           ) : (
             <>
+              <Link to={`/notification`}>
+                <Item>
+                  <Icon className="icon-bell" /> Notification
+                </Item>
+              </Link>
               <Link to={`/chat`}>
                 <Item>
                   <Icon className="icon-comment-empty" /> Chat
