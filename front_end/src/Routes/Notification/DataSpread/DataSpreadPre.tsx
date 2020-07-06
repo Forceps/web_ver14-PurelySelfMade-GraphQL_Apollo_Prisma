@@ -26,7 +26,7 @@ const DateLine = styled(W100per)`
 `;
 const Slate = styled(W100per)`
   display: grid;
-  grid-template-columns: 17px 1fr;
+  grid-template-columns: 20px 1fr;
 `;
 const ForTheLine = styled(WH100per)`
   display: grid;
@@ -144,7 +144,7 @@ export default ({ NotiLoad, NotiData, timeNote }: DataSpreadPreProps) => {
         <Bar>
           <DateLine>
             <Indication>
-              <Date>Date</Date>
+              <Date>Date&nbsp;&nbsp;</Date>
               <Dot>
                 <BigRhombus />
                 <SmallRhombus />
@@ -156,13 +156,6 @@ export default ({ NotiLoad, NotiData, timeNote }: DataSpreadPreProps) => {
             <ForThePadding>
               <Stint>
                 <Title>No notification</Title>
-                <SampleContent>Content is displayed here.</SampleContent>
-                <Sender>
-                  <IdentiImg>
-                    <i className="icon-bell" />
-                  </IdentiImg>
-                  <Name>Administrator</Name>
-                </Sender>
               </Stint>
             </ForThePadding>
           </Slate>
