@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import WH100per from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import TemporaryBackground from "../../../../../../Components/Effect/TemporaryBackground";
+import TemporaryBackground from "../../../../../../Components/ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 interface EnvironProps {

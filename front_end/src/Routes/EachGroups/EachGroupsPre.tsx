@@ -1,5 +1,5 @@
 import React from "react";
-import Loading from "../../Components/Effect/Loading";
+import Loading from "../../Components/ElementEtc/Effect/Loading";
 import { W100per } from "../../GlobalLib/Styles/IteratePattern/WH100per";
 import styled from "styled-components";
 import HeaderCon from "./Header/HeaderCon";

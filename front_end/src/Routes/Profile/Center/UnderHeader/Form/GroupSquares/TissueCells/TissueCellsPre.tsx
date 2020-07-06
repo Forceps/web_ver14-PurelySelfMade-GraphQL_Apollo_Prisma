@@ -4,7 +4,7 @@ import IncludeScrollBar from "../../../../../../../GlobalLib/Styles/IteratePatte
 import WH100per, {
   H100per,
 } from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Loading from "../../../../../../../Components/Effect/Loading";
+import Loading from "../../../../../../../Components/ElementEtc/Effect/Loading";
 import { Link } from "react-router-dom";
 import { url } from "../../../../../../../GlobalLib/RecycleFunction/etc/Types";
 

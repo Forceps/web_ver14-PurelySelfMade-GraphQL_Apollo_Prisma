@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import TemporaryBackground from "../../../Effect/TemporaryBackground";
+import TemporaryBackground from "../../../ElementEtc/Effect/TemporaryBackground";
 import UploadMusicCon from "../../Upload/UploadMusic/UploadMusicCon";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import useGetImgExist from "../../../../GlobalLib/RecycleFunction/Hooks/useGetImgExist";

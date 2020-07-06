@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import TemporaryBackground from "../../../../Effect/TemporaryBackground";
+import TemporaryBackground from "../../../../ElementEtc/Effect/TemporaryBackground";
 import { restoreSelection } from "../../EditorLib";
 import { AnchorInsert } from "../LeftControlLib";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";

@@ -164,6 +164,22 @@ type Chat_member {
   user_chat_memberTouser: User!
 }
 
+type Notification {
+  notification_id: ID!
+  title: String!
+  content: String!
+  user: Int!
+  sender: String!
+  year: Int!
+  month: Int!
+  day: Int!
+  hour: Int!
+  minute: Int!
+  second: Int!
+
+  user_notificationTouser: User!
+}
+
 type Video {
   video_id: ID!
   address: String!
@@ -183,22 +199,6 @@ type Watched {
 
   post_postTowatched: Post!
   user_userTowatched: User!
-}
-
-type Notification {
-  notification_id: ID!
-  title: String!
-  content: String!
-  user: Int!
-  sender: String!
-  year: Int!
-  month: Int!
-  day: Int!
-  hour: Int!
-  minute: Int!
-  second: Int!
-
-  user_notificationTouser: User!
 }
 
 type Group {

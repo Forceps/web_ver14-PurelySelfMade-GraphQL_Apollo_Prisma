@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import LeftSideMenuCon from "./LeftSideMenu/LeftSideMenuCon";
+import LeftSideMenuCon from "../../Components/ElementEtc/LeftSideMenu/LeftSideMenuCon";
 import MiddleCon from "./Middle/MiddleCon";
 import HeaderCon from "./Header/HeaderCon";
 
@@ -15,15 +15,13 @@ const UpAndDown = styled.div`
 
 export default ({ SeeMode, setSeeMode }: HomePreProps) => {
   return (
-    <>
-      <Body>
-        <LeftSideMenuCon />
-        <UpAndDown>
-          <HeaderCon setSeeMode={setSeeMode} />
-          <MiddleCon SeeMode={SeeMode} />
-        </UpAndDown>
-      </Body>
-    </>
+    <Body>
+      <LeftSideMenuCon />
+      <UpAndDown>
+        <HeaderCon setSeeMode={setSeeMode} />
+        <MiddleCon SeeMode={SeeMode} />
+      </UpAndDown>
+    </Body>
   );
 };
 

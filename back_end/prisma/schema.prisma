@@ -166,7 +166,7 @@ model notification {
   month                   Int
   notification_id         Int    @default(autoincrement()) @id
   second                  Int
-  sender                  String @default("administrator")
+  sender                  String @default("Administrator")
   title                   String
   user                    Int
   year                    Int

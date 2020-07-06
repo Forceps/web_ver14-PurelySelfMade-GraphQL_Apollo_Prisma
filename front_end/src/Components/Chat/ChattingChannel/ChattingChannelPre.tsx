@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import TemporaryBackground from "../../Effect/TemporaryBackground";
+import TemporaryBackground from "../../ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import WH100per from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import IncludeScrollBar from "../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";

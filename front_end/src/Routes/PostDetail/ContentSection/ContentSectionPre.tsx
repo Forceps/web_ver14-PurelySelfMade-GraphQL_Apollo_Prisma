@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Loading from "../../../Components/Effect/Loading";
+import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import ContentEditable from "react-contenteditable";
 import MetaInfoCon from "./MetaInfo/MetaInfoCon";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";

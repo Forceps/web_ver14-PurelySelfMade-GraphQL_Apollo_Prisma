@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import WH100per, {
   W100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Loading from "../../../../Components/Effect/Loading";
+import Loading from "../../../../Components/ElementEtc/Effect/Loading";
 import Tile from "../../../../Components/Post/Shape/Tile/TileCon";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";

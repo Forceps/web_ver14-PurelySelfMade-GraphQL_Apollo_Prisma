@@ -4,7 +4,7 @@ import { W100per } from "../../GlobalLib/Styles/IteratePattern/WH100per";
 import BlogHeaderCon from "./BlogHeader/BlogHeaderCon";
 import LoginModalCon from "../../Components/User/Auth/LoginModal/LoginModalCon";
 import ProfileSectionCon from "./ProfileSection/ProfileSectionCon";
-import Loading from "../../Components/Effect/Loading";
+import Loading from "../../Components/ElementEtc/Effect/Loading";
 import DisplayCon from "./Display/DisplayCon";
 
 const Compass = styled(W100per)`

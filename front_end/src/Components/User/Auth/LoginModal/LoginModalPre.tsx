@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import CreateAccountCon from "../CreateAccount/CreateAccountCon";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import TemporaryBackground from "../../../Effect/TemporaryBackground";
+import TemporaryBackground from "../../../ElementEtc/Effect/TemporaryBackground";
 
 interface zIndexProp {
   zIndex: number;

@@ -5,7 +5,7 @@ import WH100per, {
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import Loading from "../../Effect/Loading";
+import Loading from "../../ElementEtc/Effect/Loading";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import LoginModalCon from "../../User/Auth/LoginModal/LoginModalCon";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";

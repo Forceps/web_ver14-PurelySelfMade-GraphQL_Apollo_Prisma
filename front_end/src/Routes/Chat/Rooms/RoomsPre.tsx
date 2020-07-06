@@ -5,7 +5,7 @@ import WH100per, {
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Avatar from "../../../Components/User/Avatar";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
-import Loading from "../../../Components/Effect/Loading";
+import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import Conversation from "../../../Components/Chat/Conversation/Conversation";
 
 const Tent = styled(W100per)``;

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import WH100per from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import TemporaryBackground from "../../../../../../../Components/Effect/TemporaryBackground";
+import TemporaryBackground from "../../../../../../../Components/ElementEtc/Effect/TemporaryBackground";
 import Step1 from "./Steps/Step1 2 3/Step1";
 import Header from "./HeadFoot/Header";
 import Footer from "./HeadFoot/Footer";

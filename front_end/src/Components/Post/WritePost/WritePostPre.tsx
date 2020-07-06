@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import TemporaryBackground from "../../Effect/TemporaryBackground";
+import TemporaryBackground from "../../ElementEtc/Effect/TemporaryBackground";
 import EditorCon from "../Editor/EditorCon";
 
 const Wrapper = styled.div`
@@ -26,7 +26,7 @@ export default ({
   createPostTrigger,
   create_post_toggle,
   Html,
-  setHtml
+  setHtml,
 }: WritePostPrePorps) => {
   return (
     <Wrapper>

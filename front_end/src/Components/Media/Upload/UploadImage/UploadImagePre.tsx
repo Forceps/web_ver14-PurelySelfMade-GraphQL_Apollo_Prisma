@@ -1,6 +1,6 @@
 import React, { ChangeEvent, MouseEvent } from "react";
 import styled, { css } from "styled-components";
-import TemporaryBackground from "../../../Effect/TemporaryBackground";
+import TemporaryBackground from "../../../ElementEtc/Effect/TemporaryBackground";
 import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 import WH100per, {
   WH100perInput,

@@ -1,5 +1,5 @@
 import React from "react";
-import TemporaryBackground from "../../../Effect/TemporaryBackground";
+import TemporaryBackground from "../../../ElementEtc/Effect/TemporaryBackground";
 import styled, { css } from "styled-components";
 import { Empt } from "../AuthLib";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";

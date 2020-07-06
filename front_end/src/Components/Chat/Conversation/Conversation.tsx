@@ -4,7 +4,7 @@ import WH100per from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { ChatDetailRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatR";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
-import Loading from "../../Effect/Loading";
+import Loading from "../../ElementEtc/Effect/Loading";
 import IncludeScrollBar from "../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 import MyWords from "./Speech/MyWords";
 import YourWords from "./Speech/YourWords";

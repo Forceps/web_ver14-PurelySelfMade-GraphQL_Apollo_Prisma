@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import styled from "styled-components";
-import TemporaryBackground from "../../../../Effect/TemporaryBackground";
+import TemporaryBackground from "../../../../ElementEtc/Effect/TemporaryBackground";
 import Header from "./Header";
 import DirList from "./DirList";
 import MakeDirCon from "../../../../../Routes/Profile/RightPanel/ToggleScreen/MakeDir/MakeDirCon";

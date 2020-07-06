@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import Loading from "../../../../Components/Effect/Loading";
-import TemporaryBackground from "../../../../Components/Effect/TemporaryBackground";
+import Loading from "../../../../Components/ElementEtc/Effect/Loading";
+import TemporaryBackground from "../../../../Components/ElementEtc/Effect/TemporaryBackground";
 import { Content } from "./PostDetailLib";
 import { usePostDetail } from "./PostDetail";
 import { useDummyState } from "../../Lib/DummyState";

@@ -8,7 +8,7 @@ import WH100per, {
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 import { useDirMode } from "../../../../GlobalLib/Context/ProfileContext/DirMode";
-import TemporaryBackground from "../../../Effect/TemporaryBackground";
+import TemporaryBackground from "../../../ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { byteUnitConversion } from "../../../../GlobalLib/RecycleFunction/etc/Arithmetic";
 import { totalVolum, typeNameCutting } from "../MediaUploadLib";

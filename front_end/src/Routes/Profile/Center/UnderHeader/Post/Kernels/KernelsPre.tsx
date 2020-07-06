@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ThingsWall from "./type/ThingsWall";
-import Loading from "../../../../../../Components/Effect/Loading";
+import Loading from "../../../../../../Components/ElementEtc/Effect/Loading";
 import { useProfileDetailMode } from "../../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
 import { useTargetsShown } from "../../../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
 import PostList from "./type/PostList";

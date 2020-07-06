@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import TemporaryBackground from "../../../../../../Components/Effect/TemporaryBackground";
+import TemporaryBackground from "../../../../../../Components/ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 const Consol = styled.div`

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import WH100per, {
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Loading from "../../../Components/Effect/Loading";
+import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import Tile from "../../../Components/Post/Shape/Tile/TileCon";
 import CommentsPartCon from "../../../Components/Post/CommentsPart/CommentsPartCon";
 import { LocateMiddle } from "../ContentSection/ContentSectionPre";

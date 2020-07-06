@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import UpdatePostCon from "../../../../Components/Post/UpdatePost/UpdatePostCon";
 import Tile from "../../../../Components/Post/Shape/Tile/TileCon";
-import Loading from "../../../../Components/Effect/Loading";
+import Loading from "../../../../Components/ElementEtc/Effect/Loading";
 import PostDetailT from "../../../../GlobalLib/Context/PostContext/PostDetail/PostDetailT";
 import { W100per } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 

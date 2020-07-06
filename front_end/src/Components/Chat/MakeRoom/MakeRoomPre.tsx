@@ -1,6 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import TemporaryBackground from "../../Effect/TemporaryBackground";
+import TemporaryBackground from "../../ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import WH100per, {
   W100per,

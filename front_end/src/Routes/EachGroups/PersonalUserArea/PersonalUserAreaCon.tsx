@@ -7,7 +7,7 @@ import WH100per, {
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { url } from "../../../GlobalLib/RecycleFunction/etc/Types";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
-import Loading from "../../../Components/Effect/Loading";
+import Loading from "../../../Components/ElementEtc/Effect/Loading";
 
 const Wrapper = styled(W100per)`
   display: grid;

@@ -483,14 +483,6 @@ ADD COLUMN `count` MEDIUMINT NOT NULL DEFAULT 1 AFTER `post`;
 ALTER TABLE `square_post`.`friend` 
 ADD COLUMN `consent` boolean NOT NULL DEFAULT false AFTER `respondent`;
 
-
-
-
-
-
-
-// 2020 - 07 - 05
-
 ALTER TABLE `square_post`.`comment` 
 CHANGE COLUMN `year` `year` MEDIUMINT NOT NULL ;
 CREATE TABLE `square_post`.`notification` (
@@ -515,4 +507,10 @@ CREATE TABLE `square_post`.`notification` (
     ON UPDATE NO ACTION);
 ALTER TABLE `square_post`.`notification` 
 CHANGE COLUMN `dispatcher` `sender` VARCHAR(60) NOT NULL DEFAULT 'administrator' ;
+
+
+
+
+
+
 
