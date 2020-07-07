@@ -41,7 +41,7 @@ export default ({
   const [Accumulate, setAccumulate] = useState<any[]>([]);
   useEffect(() => {
     if (!chatListenLoad && chatListenData) {
-      setAccumulate([chatListenData.chatListening, ...Accumulate]);
+      setAccumulate((p) => [chatListenData.chatListening, ...p]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatListenData]);
@@ -50,7 +50,7 @@ export default ({
       <Scr>
         {!MEloading &&
           Accumulate.map((m) =>
-            S_N_to_N(m.user) === S_N_to_N(MEdata.user_id) ? (
+            S_N_to_N(m.user) === S_N_to_N(MEdata?.user_id) ? (
               <MyWords data={m} size={size} fontSize={fontSize} />
             ) : (
               <YourWords data={m} size={size} fontSize={fontSize} />
@@ -60,7 +60,7 @@ export default ({
           <Loading />
         ) : (
           data.chatDetail?.map((l: any) =>
-            S_N_to_N(l.user) === S_N_to_N(MEdata.user_id) ? (
+            S_N_to_N(l.user) === S_N_to_N(MEdata?.user_id) ? (
               <MyWords data={l} size={size} fontSize={fontSize} />
             ) : (
               <YourWords data={l} size={size} fontSize={fontSize} />
