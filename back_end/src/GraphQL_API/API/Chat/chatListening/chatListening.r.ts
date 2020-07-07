@@ -1,5 +1,6 @@
 import { pubSub } from "../../../../server";
 import { withFilter } from "graphql-subscriptions";
+import { Chat_member } from "../../../LibForGQL/mergedSchema/types/graph";
 
 export default {
   Subscription: {
@@ -10,7 +11,10 @@ export default {
           const {
             chatListening: { room },
           } = payload;
-          return room === chat_room_id;
+          const member: Chat_member[] = context.user.chat_member.filter(
+            (p: Chat_member) => p.room == room
+          );
+          return member.length !== 0 && room === chat_room_id;
         }
       ),
     },
