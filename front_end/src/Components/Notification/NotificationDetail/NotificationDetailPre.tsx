@@ -40,6 +40,9 @@ const Contents = styled(IncludeScrollBar)`
   height: 100%;
   font-size: 1rem;
   padding: 10px;
+  white-space: pre-line;
+  word-break: break-all;
+  word-wrap: break-word;
 `;
 
 export default ({
@@ -59,7 +62,10 @@ export default ({
       />
       <Template zIndex={zIndex + 2}>
         {loading ? (
-          <Loading />
+          <>
+            <div />
+            <Loading />
+          </>
         ) : (
           <>
             <Title>{data.title}</Title>

@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import styled, { keyframes, css } from "styled-components";
+import WH100per from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 
 interface AppearDelay {
   AppearDelay: boolean;
 }
-const Wrapper = styled.div<AppearDelay>`
+const Wrapper = styled(WH100per)<AppearDelay>`
   display: ${(prop) => (prop.AppearDelay ? "none" : "inline-block")};
-  height: 100px;
   padding: 15px;
 `;
 interface IconSize {

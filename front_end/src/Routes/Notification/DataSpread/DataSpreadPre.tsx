@@ -5,6 +5,8 @@ import WH100per, {
   H100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
+import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 
 const DataSpread = styled(WH100per)`
   display: flex;
@@ -134,7 +136,13 @@ const ForThePadding = styled.div`
   padding: 6px 10px 6px 0;
 `;
 
-export default ({ NotiLoad, NotiData, timeNote }: DataSpreadPreProps) => {
+export default ({
+  NotiLoad,
+  NotiData,
+  timeNote,
+  setNotiDetlOp,
+  setNotiId,
+}: DataSpreadPreProps) => {
   return (
     <DataSpread>
       <Sbj>Notification</Sbj>
@@ -204,7 +212,13 @@ export default ({ NotiLoad, NotiData, timeNote }: DataSpreadPreProps) => {
                   <D last={ord === NotiData.length - 1} />
                 </ForTheLine>
                 <ForThePadding>
-                  <Stint>
+                  <Stint
+                    onClick={(e) => {
+                      spaped(e);
+                      setNotiId(S_N_to_N(n.notification_id));
+                      setNotiDetlOp(true);
+                    }}
+                  >
                     <Title>{n.title}</Title>
                     <SampleContent>{n.content}</SampleContent>
                     <Sender>
@@ -227,4 +241,6 @@ interface DataSpreadPreProps {
   NotiLoad: boolean;
   NotiData: any;
   timeNote: (hour: number | string, minute: number | string) => string;
+  setNotiDetlOp: any;
+  setNotiId: any;
 }

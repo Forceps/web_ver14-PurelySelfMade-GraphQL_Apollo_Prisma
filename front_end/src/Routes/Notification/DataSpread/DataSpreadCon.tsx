@@ -3,7 +3,7 @@ import DataSpreadPre from "./DataSpreadPre";
 import { SeeNotiRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Notification/NotificationR";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 
-export default () => {
+export default ({ setNotiDetlOp, setNotiId }: DataSpreadConProps) => {
   const { loading: NotiLoad, data: NotiData } = SeeNotiRequest(0, 9);
   const timeNote = (hour: number | string, minute: number | string): string => {
     hour = S_N_to_N(hour);
@@ -23,6 +23,12 @@ export default () => {
       NotiLoad={NotiLoad}
       NotiData={NotiData?.seeNoti}
       timeNote={timeNote}
+      setNotiDetlOp={setNotiDetlOp}
+      setNotiId={setNotiId}
     />
   );
 };
+interface DataSpreadConProps {
+  setNotiDetlOp: any;
+  setNotiId: any;
+}

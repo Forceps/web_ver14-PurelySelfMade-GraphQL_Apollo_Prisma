@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { W100per } from "../../GlobalLib/Styles/IteratePattern/WH100per";
 import DataSpreadCon from "./DataSpread/DataSpreadCon";
 import LeftSideMenuCon from "../../Components/ElementEtc/LeftSideMenu/LeftSideMenuCon";
+import NotificationDetailCon from "../../Components/Notification/NotificationDetail/NotificationDetailCon";
 
 const Packing = styled(W100per)`
   display: grid;
@@ -15,12 +16,22 @@ const NonPop = styled(W100per)`
 `;
 
 export default () => {
+  const [NotiDetlOp, setNotiDetlOp] = useState(false);
+  const [NotiId, setNotiId] = useState(0);
   return (
-    <Packing>
-      <LeftSideMenuCon />
-      <NonPop>
-        <DataSpreadCon />
-      </NonPop>
-    </Packing>
+    <>
+      <Packing>
+        <LeftSideMenuCon />
+        <NonPop>
+          <DataSpreadCon setNotiDetlOp={setNotiDetlOp} setNotiId={setNotiId} />
+        </NonPop>
+      </Packing>
+      {NotiDetlOp && (
+        <NotificationDetailCon
+          notification_id={NotiId}
+          setNotificationDetailOpen={setNotiDetlOp}
+        />
+      )}
+    </>
   );
 };
