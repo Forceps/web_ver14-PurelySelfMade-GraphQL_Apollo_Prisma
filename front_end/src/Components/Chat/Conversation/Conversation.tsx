@@ -35,31 +35,40 @@ export default ({
   justiConten = "flex-start",
   chatListenData,
   chatListenLoad,
+  fixNum = -1,
 }: ConversationProps) => {
   const { loading, data } = ChatDetailRequest(room_id, skip, take);
   const { MEdata, MEloading } = useMyInfo();
   const [Accumulate, setAccumulate] = useState<any[]>([]);
+
   useEffect(() => {
     if (!chatListenLoad && chatListenData) {
-      setAccumulate((p) => [chatListenData.chatListening, ...p]);
+      if (fixNum < 1) {
+        setAccumulate([chatListenData.chatListening, ...Accumulate]);
+      } else {
+        let arr: any[] = [];
+        for (let i = 0; i < fixNum - 1; i++) {
+          arr = arr.concat(Accumulate[i]);
+        }
+        setAccumulate([chatListenData.chatListening, ...arr]);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [chatListenData]);
+  useEffect(() => {
+    if (!loading && data) {
+      setAccumulate(data?.chatDetail);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [data]);
+
   return (
     <Rails fontSize={fontSize} justiConten={justiConten}>
       <Scr>
-        {!MEloading &&
-          Accumulate.map((m) =>
-            S_N_to_N(m.user) === S_N_to_N(MEdata?.user_id) ? (
-              <MyWords data={m} size={size} fontSize={fontSize} />
-            ) : (
-              <YourWords data={m} size={size} fontSize={fontSize} />
-            )
-          )}
         {loading || MEloading ? (
           <Loading />
         ) : (
-          data.chatDetail?.map((l: any) =>
+          Accumulate.map((l: any) =>
             S_N_to_N(l.user) === S_N_to_N(MEdata?.user_id) ? (
               <MyWords data={l} size={size} fontSize={fontSize} />
             ) : (
@@ -80,4 +89,5 @@ interface ConversationProps {
   justiConten?: string;
   chatListenData?: any;
   chatListenLoad?: boolean;
+  fixNum?: number;
 }

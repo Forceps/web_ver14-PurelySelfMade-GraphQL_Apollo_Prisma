@@ -27,6 +27,7 @@ const Oblong = styled.div`
   height: 390px;
   margin: 10px 10px 0 0;
   background-color: rgba(223, 230, 233, 0.7);
+  overflow: hidden;
   &:hover {
     box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
       0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
@@ -154,6 +155,7 @@ export default ({
                       room_id={S_N_to_N(i.chat_room_id)}
                       chatListenData={chatListenData}
                       chatListenLoad={chatListenLoad}
+                      fixNum={4}
                     />
                   </OverNot>
                 </Verticalize>
