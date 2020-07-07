@@ -16,9 +16,12 @@ export default ({
 }: ChattingChannelConPorops) => {
   const { loading, data, refetch } = SeeRoomRequest(ParticularRoom);
   const { refetch: swatchRefetch } = ChatDetailRequest(ParticularRoom, 0, 4);
-  const { data: chatListenData, loading: chatListenLoad } = useSubscription(
-    CHAT_LISTENING
-  );
+  const {
+    data: chatListenData,
+    loading: chatListenLoad,
+  } = useSubscription(CHAT_LISTENING, {
+    variables: { chat_room_id: ParticularRoom },
+  });
   if (!chatListenLoad) {
     console.log(chatListenData);
   }

@@ -7,6 +7,8 @@ import Avatar from "../../../Components/User/Avatar";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import Conversation from "../../../Components/Chat/Conversation/Conversation";
+import { useSubscription } from "@apollo/react-hooks";
+import { CHAT_LISTENING } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatSub";
 
 const Tent = styled(W100per)``;
 const Sbj = styled(W100per)`
@@ -117,35 +119,47 @@ export default ({
             Add chat room?
           </OblongEmpty>
         ) : (
-          srData.map((i: any) => (
-            <Oblong
-              key={i.chat_room_id}
-              onClick={() => {
-                setParticularRoom(S_N_to_N(i.chat_room_id));
-                setRoomEnter(true);
-              }}
-            >
-              <Oheader>{i.name}</Oheader>
-              <Info>
-                <i className="icon-group" /> {i.chat_member.length}
-              </Info>
-              <Verticalize>
-                <Plaque>
-                  {i.chat_member?.map((k: any) => (
-                    <Interval key={k.user}>
-                      <Avatar
-                        size={54}
-                        url={k.user_chat_memberTouser?.avatar}
-                      />
-                    </Interval>
-                  ))}
-                </Plaque>
-                <OverNot>
-                  <Conversation room_id={S_N_to_N(i.chat_room_id)} />
-                </OverNot>
-              </Verticalize>
-            </Oblong>
-          ))
+          srData.map((i: any) => {
+            const {
+              data: chatListenData,
+              loading: chatListenLoad,
+            } = useSubscription(CHAT_LISTENING, {
+              variables: { chat_room_id: S_N_to_N(i.chat_room_id) },
+            });
+            return (
+              <Oblong
+                key={i.chat_room_id}
+                onClick={() => {
+                  setParticularRoom(S_N_to_N(i.chat_room_id));
+                  setRoomEnter(true);
+                }}
+              >
+                <Oheader>{i.name}</Oheader>
+                <Info>
+                  <i className="icon-group" /> {i.chat_member.length}
+                </Info>
+                <Verticalize>
+                  <Plaque>
+                    {i.chat_member?.map((k: any) => (
+                      <Interval key={k.user}>
+                        <Avatar
+                          size={54}
+                          url={k.user_chat_memberTouser?.avatar}
+                        />
+                      </Interval>
+                    ))}
+                  </Plaque>
+                  <OverNot>
+                    <Conversation
+                      room_id={S_N_to_N(i.chat_room_id)}
+                      chatListenData={chatListenData}
+                      chatListenLoad={chatListenLoad}
+                    />
+                  </OverNot>
+                </Verticalize>
+              </Oblong>
+            );
+          })
         )}
       </Exhibit>
     </Tent>
