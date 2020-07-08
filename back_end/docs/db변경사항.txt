@@ -42,6 +42,23 @@ CREATE TABLE `square_post`.`group` (
   CONSTRAINT `withdrawal` FOREIGN KEY (`withdrawal_system`) REFERENCES `group_system` (`group_system_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `directory` (
+  `directory_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `parent_id` bigint unsigned DEFAULT NULL,
+  `user` int unsigned DEFAULT NULL,
+  `group` int unsigned DEFAULT NULL,
+  `root` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`directory_id`),
+  UNIQUE KEY `directory_id_UNIQUE` (`directory_id`),
+  KEY `parent_id_idx` (`parent_id`),
+  KEY `owner_idx` (`user`),
+  KEY `group_own_idx` (`group`),
+  CONSTRAINT `group_own` FOREIGN KEY (`group`) REFERENCES `group` (`group_id`) ON DELETE CASCADE,
+  CONSTRAINT `owner` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `parent_dir` FOREIGN KEY (`parent_id`) REFERENCES `directory` (`directory_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 CREATE TABLE `square_post`.`post` (
   `post_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user` int unsigned NOT NULL,
