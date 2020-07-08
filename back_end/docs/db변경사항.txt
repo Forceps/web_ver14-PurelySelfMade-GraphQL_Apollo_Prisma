@@ -1,4 +1,6 @@
-CREATE TABLE `user` (
+CREATE SCHEMA `square_post` ;
+
+CREATE TABLE `square_post`.`user` (
   `user_id` int unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(60) NOT NULL,
   `email` varchar(150) NOT NULL,
@@ -11,7 +13,7 @@ CREATE TABLE `user` (
   UNIQUE KEY `email_UNIQUE` (`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `group_system` (
+CREATE TABLE `square_post`.`group_system` (
   `group_system_id` tinyint unsigned NOT NULL AUTO_INCREMENT,
   `category` varchar(30) NOT NULL,
   `name` varchar(60) NOT NULL,
@@ -19,7 +21,7 @@ CREATE TABLE `group_system` (
   UNIQUE KEY `groupSystem_id_UNIQUE` (`group_system_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `group` (
+CREATE TABLE `square_post`.`group` (
   `group_id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(100) NOT NULL,
   `purpose` varchar(200) NOT NULL,
@@ -40,28 +42,7 @@ CREATE TABLE `group` (
   CONSTRAINT `withdrawal` FOREIGN KEY (`withdrawal_system`) REFERENCES `group_system` (`group_system_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `group` (
-  `group_id` int unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
-  `purpose` varchar(200) NOT NULL,
-  `administrator` int unsigned NOT NULL,
-  `identiti_profile_img` mediumtext,
-  `identiti_back_img` mediumtext,
-  `participation_system` tinyint unsigned NOT NULL,
-  `withdrawal_system` tinyint unsigned NOT NULL,
-  PRIMARY KEY (`group_id`),
-  UNIQUE KEY `group_id_UNIQUE` (`group_id`),
-  UNIQUE KEY `purpose_UNIQUE` (`purpose`),
-  KEY `who_is_admin_idx` (`administrator`),
-  KEY `participation_idx` (`participation_system`),
-  KEY `withdrawal_idx` (`withdrawal_system`),
-  FULLTEXT KEY `their_purpose` (`purpose`),
-  CONSTRAINT `participation` FOREIGN KEY (`participation_system`) REFERENCES `group_system` (`group_system_id`),
-  CONSTRAINT `who_is_admin` FOREIGN KEY (`administrator`) REFERENCES `user` (`user_id`),
-  CONSTRAINT `withdrawal` FOREIGN KEY (`withdrawal_system`) REFERENCES `group_system` (`group_system_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-CREATE TABLE `post` (
+CREATE TABLE `square_post`.`post` (
   `post_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user` int unsigned NOT NULL,
   `caption` varchar(45) NOT NULL,
@@ -98,7 +79,7 @@ INSERT INTO square_post.group_system (name, category) VALUES ('ExitOrder_SomePeo
 INSERT INTO square_post.group_system (name, category) VALUES ('ExitOrder_Voting', 'withdrawal');
 INSERT INTO square_post.group_system (name, category) VALUES ('ExitOrder_Unanimity', 'withdrawal');
 
-CREATE TABLE `watched` (
+CREATE TABLE `square_post`.`watched` (
   `watched_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user` int unsigned NOT NULL,
   `post` bigint unsigned NOT NULL,
@@ -112,7 +93,7 @@ CREATE TABLE `watched` (
   CONSTRAINT `watching_user` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `video` (
+CREATE TABLE `square_post`.`video` (
   `video_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `address` mediumtext NOT NULL,
   `caption` varchar(60) NOT NULL,
@@ -126,7 +107,7 @@ CREATE TABLE `video` (
   CONSTRAINT `video_dir` FOREIGN KEY (`directory`) REFERENCES `directory` (`directory_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `user_relevance` (
+CREATE TABLE `square_post`.`user_relevance` (
   `user_relevance_id` bigint unsigned NOT NULL,
   `user1` int unsigned NOT NULL,
   `user2` int unsigned NOT NULL,
@@ -138,7 +119,7 @@ CREATE TABLE `user_relevance` (
   CONSTRAINT `user2` FOREIGN KEY (`user2`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `subscriber` (
+CREATE TABLE `square_post`.`subscriber` (
   `subscriber_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `author` int unsigned NOT NULL,
   `reader` int unsigned NOT NULL,
@@ -152,7 +133,7 @@ CREATE TABLE `subscriber` (
   CONSTRAINT `distributer` FOREIGN KEY (`author`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `post_relevance` (
+CREATE TABLE `square_post`.`post_relevance` (
   `post_relevance_id` bigint unsigned NOT NULL,
   `post1` bigint unsigned NOT NULL,
   `post2` bigint unsigned NOT NULL,
@@ -165,7 +146,7 @@ CREATE TABLE `post_relevance` (
   CONSTRAINT `post2` FOREIGN KEY (`post2`) REFERENCES `post` (`post_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `notification` (
+CREATE TABLE `square_post`.`notification` (
   `notification_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `title` varchar(120) NOT NULL,
   `content` longtext NOT NULL,
@@ -183,7 +164,7 @@ CREATE TABLE `notification` (
   CONSTRAINT `to_who` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `music` (
+CREATE TABLE `square_post`.`music` (
   `music_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `address` mediumtext NOT NULL,
   `caption` varchar(60) NOT NULL,
@@ -196,7 +177,7 @@ CREATE TABLE `music` (
   CONSTRAINT `music_dir` FOREIGN KEY (`directory`) REFERENCES `directory` (`directory_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `liked` (
+CREATE TABLE `square_post`.`liked` (
   `liked_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user` int unsigned NOT NULL,
   `post` bigint unsigned NOT NULL,
@@ -208,7 +189,7 @@ CREATE TABLE `liked` (
   CONSTRAINT `liking_user` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `image` (
+CREATE TABLE `square_post`.`image` (
   `image_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `address` mediumtext NOT NULL,
   `caption` varchar(60) NOT NULL,
@@ -221,7 +202,7 @@ CREATE TABLE `image` (
   CONSTRAINT `image_dir` FOREIGN KEY (`directory`) REFERENCES `directory` (`directory_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `friend` (
+CREATE TABLE `square_post`.`friend` (
   `friend_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `proposer` int unsigned NOT NULL,
   `respondent` int unsigned NOT NULL,
@@ -234,7 +215,7 @@ CREATE TABLE `friend` (
   CONSTRAINT `respondent` FOREIGN KEY (`respondent`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `comment` (
+CREATE TABLE `square_post`.`comment` (
   `comment_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `post` bigint unsigned NOT NULL,
   `user` int unsigned NOT NULL,
@@ -254,14 +235,14 @@ CREATE TABLE `comment` (
   CONSTRAINT `who_user` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `chat_room` (
+CREATE TABLE `square_post`.`chat_room` (
   `chat_room_id` int unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   PRIMARY KEY (`chat_room_id`),
   UNIQUE KEY `room_id_UNIQUE` (`chat_room_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `chat_member` (
+CREATE TABLE `square_post`.`chat_member` (
   `chat_member_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user` int unsigned NOT NULL,
   `room` int unsigned NOT NULL,
@@ -273,7 +254,7 @@ CREATE TABLE `chat_member` (
   CONSTRAINT `room` FOREIGN KEY (`room`) REFERENCES `chat_room` (`chat_room_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `chat` (
+CREATE TABLE `square_post`.`chat` (
   `chat_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `user` int unsigned NOT NULL,
   `room` int unsigned NOT NULL,
