@@ -1,395 +1,89 @@
-// 시초
+CREATE TABLE `user` (
+  `user_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `username` varchar(60) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `avatar` mediumtext,
+  `back_img` mediumtext,
+  `phone_number` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`user_id`),
+  UNIQUE KEY `user_id_UNIQUE` (`user_id`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE SCHEMA square_post ;
+CREATE TABLE `group_system` (
+  `group_system_id` tinyint unsigned NOT NULL AUTO_INCREMENT,
+  `category` varchar(30) NOT NULL,
+  `name` varchar(60) NOT NULL,
+  PRIMARY KEY (`group_system_id`),
+  UNIQUE KEY `groupSystem_id_UNIQUE` (`group_system_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE square_post.user (
-  user_id INT NOT NULL AUTO_INCREMENT,
-  username VARCHAR(60) NOT NULL,
-  email VARCHAR(150) NOT NULL,
-  password VARCHAR(45) NOT NULL,
-  avatar MEDIUMTEXT NULL,
-  back_img MEDIUMTEXT NULL,
-  phone_number INT NULL,
-  PRIMARY KEY (user_id),
-  UNIQUE INDEX user_id_UNIQUE (user_id ASC) VISIBLE,
-  UNIQUE INDEX email_UNIQUE (email ASC) VISIBLE);
+CREATE TABLE `group` (
+  `group_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `purpose` varchar(200) NOT NULL,
+  `administrator` int unsigned NOT NULL,
+  `identiti_profile_img` mediumtext,
+  `identiti_back_img` mediumtext,
+  `participation_system` tinyint unsigned NOT NULL,
+  `withdrawal_system` tinyint unsigned NOT NULL,
+  PRIMARY KEY (`group_id`),
+  UNIQUE KEY `group_id_UNIQUE` (`group_id`),
+  UNIQUE KEY `purpose_UNIQUE` (`purpose`),
+  KEY `who_is_admin_idx` (`administrator`),
+  KEY `participation_idx` (`participation_system`),
+  KEY `withdrawal_idx` (`withdrawal_system`),
+  FULLTEXT KEY `their_purpose` (`purpose`),
+  CONSTRAINT `participation` FOREIGN KEY (`participation_system`) REFERENCES `group_system` (`group_system_id`),
+  CONSTRAINT `who_is_admin` FOREIGN KEY (`administrator`) REFERENCES `user` (`user_id`),
+  CONSTRAINT `withdrawal` FOREIGN KEY (`withdrawal_system`) REFERENCES `group_system` (`group_system_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE square_post.group (
-  group_id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(100) NOT NULL,
-  purpose VARCHAR(200) NOT NULL,
-  administrator INT NOT NULL,
-  participation_system ENUM('Application_NoRequireApproval', 'Recommendation_Anyone', 'Recommendation_OnlyAdministrator', 'Recommendation_SomePeople', 'Application_RequireApproval_OnlyAdministrator', 'Application_RequireApproval_SomePeople', 'Application_RequireApproval_Voting', 'Application_RequireApproval_Unanimity') NULL,
-  withdrawal_system ENUM('Spontaneous', 'ExitOrder_OnlyAdministrator', 'ExitOrder_SomePeople', 'ExitOrder_Voting', 'ExitOrder_Unanimity') NULL,
-  identiti_back_img MEDIUMTEXT NULL,
-  identiti_profile_img MEDIUMTEXT NULL,
-  PRIMARY KEY (group_id),
-  UNIQUE INDEX group_id_UNIQUE (group_id ASC) VISIBLE,
-  UNIQUE INDEX purpose_UNIQUE (purpose ASC) VISIBLE,
-  INDEX who_is_admin_idx (administrator ASC) VISIBLE,
-  FULLTEXT INDEX their_purpose (purpose) VISIBLE,
-  CONSTRAINT who_is_admin
-    FOREIGN KEY (administrator)
-    REFERENCES square_post.user (user_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+CREATE TABLE `group` (
+  `group_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `purpose` varchar(200) NOT NULL,
+  `administrator` int unsigned NOT NULL,
+  `identiti_profile_img` mediumtext,
+  `identiti_back_img` mediumtext,
+  `participation_system` tinyint unsigned NOT NULL,
+  `withdrawal_system` tinyint unsigned NOT NULL,
+  PRIMARY KEY (`group_id`),
+  UNIQUE KEY `group_id_UNIQUE` (`group_id`),
+  UNIQUE KEY `purpose_UNIQUE` (`purpose`),
+  KEY `who_is_admin_idx` (`administrator`),
+  KEY `participation_idx` (`participation_system`),
+  KEY `withdrawal_idx` (`withdrawal_system`),
+  FULLTEXT KEY `their_purpose` (`purpose`),
+  CONSTRAINT `participation` FOREIGN KEY (`participation_system`) REFERENCES `group_system` (`group_system_id`),
+  CONSTRAINT `who_is_admin` FOREIGN KEY (`administrator`) REFERENCES `user` (`user_id`),
+  CONSTRAINT `withdrawal` FOREIGN KEY (`withdrawal_system`) REFERENCES `group_system` (`group_system_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE square_post.directory (
-  directory_id BIGINT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(45) NOT NULL,
-  parent_id BIGINT NULL,
-  user INT NULL,
-  group INT NULL,
-  root TINYINT(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (directory_id),
-  UNIQUE INDEX directory_id_UNIQUE (directory_id ASC) VISIBLE,
-  INDEX group_own_idx (group ASC) VISIBLE,
-  INDEX user_id_idx (user ASC) VISIBLE,
-  CONSTRAINT group_own
-    FOREIGN KEY (group)
-    REFERENCES square_post.group (group_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT user_id
-    FOREIGN KEY (user)
-    REFERENCES square_post.user (user_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+CREATE TABLE `post` (
+  `post_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user` int unsigned NOT NULL,
+  `caption` varchar(45) NOT NULL,
+  `content` longtext,
+  `directory` bigint unsigned NOT NULL,
+  `views` bigint unsigned NOT NULL DEFAULT '0',
+  `likes` bigint unsigned NOT NULL DEFAULT '0',
+  `year` smallint unsigned NOT NULL,
+  `month` tinyint unsigned NOT NULL,
+  `day` tinyint unsigned NOT NULL,
+  `hour` tinyint unsigned NOT NULL,
+  `minute` tinyint unsigned NOT NULL,
+  `second` tinyint unsigned NOT NULL,
+  PRIMARY KEY (`post_id`),
+  UNIQUE KEY `post_id_UNIQUE` (`post_id`),
+  KEY `user_idx` (`user`),
+  KEY `belong_idx` (`directory`),
+  FULLTEXT KEY `search_post` (`caption`,`content`),
+  CONSTRAINT `author` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `belong` FOREIGN KEY (`directory`) REFERENCES `directory` (`directory_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-ALTER TABLE square_post.directory 
-DROP FOREIGN KEY group_own,
-DROP FOREIGN KEY user_id;
-ALTER TABLE square_post.directory 
-ADD INDEX parent_id_idx (parent_id ASC) VISIBLE;
-;
-ALTER TABLE square_post.directory 
-ADD CONSTRAINT group_own
-  FOREIGN KEY (group)
-  REFERENCES square_post.group (group_id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION,
-ADD CONSTRAINT user_id
-  FOREIGN KEY (user)
-  REFERENCES square_post.user (user_id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION,
-ADD CONSTRAINT parent_id
-  FOREIGN KEY (parent_id)
-  REFERENCES square_post.directory (directory_id)
-  ON DELETE CASCADE
-  ON UPDATE NO ACTION;
-
-CREATE TABLE square_post.post (
-  post_id BIGINT NOT NULL,
-  user INT NOT NULL,
-  caption VARCHAR(45) NOT NULL,
-  content LONGTEXT NULL,
-  directory BIGINT NOT NULL,
-  year INT NOT NULL,
-  month TINYINT NOT NULL,
-  day TINYINT NOT NULL,
-  hour TINYINT NOT NULL,
-  minute TINYINT NOT NULL,
-  second TINYINT NOT NULL,
-  PRIMARY KEY (post_id),
-  UNIQUE INDEX post_id_UNIQUE (post_id ASC) VISIBLE,
-  INDEX directory_idx (directory ASC) VISIBLE,
-  INDEX user_idx (user ASC) VISIBLE,
-  FULLTEXT INDEX search_post (caption, content) VISIBLE,
-  CONSTRAINT directory
-    FOREIGN KEY (directory)
-    REFERENCES square_post.directory (directory_id)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT user
-    FOREIGN KEY (user)
-    REFERENCES square_post.user (user_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-CREATE TABLE square_post.comment (
-  comment_id BIGINT NOT NULL AUTO_INCREMENT,
-  post BIGINT NOT NULL,
-  user INT NOT NULL,
-  comment VARCHAR(300) NOT NULL,
-  year INT NOT NULL,
-  month TINYINT NOT NULL,
-  day TINYINT NOT NULL,
-  hour TINYINT NOT NULL,
-  minute TINYINT NOT NULL,
-  converted TINYINT(1) NOT NULL DEFAULT 0,
-  PRIMARY KEY (comment_id),
-  UNIQUE INDEX comment_id_UNIQUE (comment_id ASC) VISIBLE,
-  INDEX what_post_idx (post ASC) VISIBLE,
-  INDEX who_said_idx (user ASC) VISIBLE,
-  CONSTRAINT what_post
-    FOREIGN KEY (post)
-    REFERENCES square_post.post (post_id)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT who_said
-    FOREIGN KEY (user)
-    REFERENCES square_post.user (user_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-CREATE TABLE square_post.friend (
-  friend_id BIGINT NOT NULL AUTO_INCREMENT,
-  proposer INT NOT NULL,
-  respondent INT NOT NULL,
-  PRIMARY KEY (friend_id),
-  UNIQUE INDEX friend_id_UNIQUE (friend_id ASC) VISIBLE,
-  INDEX proposer_idx (proposer ASC) VISIBLE,
-  INDEX respondent_idx (respondent ASC) VISIBLE,
-  CONSTRAINT proposer
-    FOREIGN KEY (proposer)
-    REFERENCES square_post.user (user_id)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT respondent
-    FOREIGN KEY (respondent)
-    REFERENCES square_post.user (user_id)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
-
-CREATE TABLE square_post.image (
-  image_id BIGINT NOT NULL AUTO_INCREMENT,
-  address MEDIUMTEXT NOT NULL,
-  caption VARCHAR(60) NOT NULL,
-  directory BIGINT NOT NULL,
-  volume INT NOT NULL,
-  type VARCHAR(15) NULL,
-  PRIMARY KEY (image_id),
-  UNIQUE INDEX image_id_UNIQUE (image_id ASC) VISIBLE,
-  INDEX image_to_dir_idx (directory ASC) VISIBLE,
-  CONSTRAINT image_to_dir
-    FOREIGN KEY (directory)
-    REFERENCES square_post.directory (directory_id)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
-
-CREATE TABLE square_post.liked (
-  liked_id BIGINT NOT NULL AUTO_INCREMENT,
-  user INT NOT NULL,
-  post BIGINT NOT NULL,
-  PRIMARY KEY (liked_id),
-  UNIQUE INDEX liked_id_UNIQUE (liked_id ASC) VISIBLE,
-  INDEX liked_post_idx (post ASC) VISIBLE,
-  INDEX liking_user_idx (user ASC) VISIBLE,
-  CONSTRAINT liked_post
-    FOREIGN KEY (post)
-    REFERENCES square_post.post (post_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT liking_user
-    FOREIGN KEY (user)
-    REFERENCES square_post.user (user_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-CREATE TABLE square_post.music (
-  music_id BIGINT NOT NULL AUTO_INCREMENT,
-  address MEDIUMTEXT NOT NULL,
-  caption VARCHAR(60) NOT NULL,
-  directory BIGINT NOT NULL,
-  volume INT NOT NULL,
-  type VARCHAR(15) NULL,
-  PRIMARY KEY (music_id),
-  UNIQUE INDEX music_id_UNIQUE (music_id ASC) VISIBLE,
-  INDEX music_to_dir_idx (directory ASC) VISIBLE,
-  CONSTRAINT music_to_dir
-    FOREIGN KEY (directory)
-    REFERENCES square_post.directory (directory_id)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
-
-CREATE TABLE square_post.video (
-  video_id BIGINT NOT NULL AUTO_INCREMENT,
-  address MEDIUMTEXT NOT NULL,
-  caption VARCHAR(60) NOT NULL,
-  directory BIGINT NOT NULL,
-  volume INT NOT NULL,
-  type VARCHAR(15) NULL,
-  thumbnail MEDIUMTEXT NULL,
-  PRIMARY KEY (video_id),
-  UNIQUE INDEX video_id_UNIQUE (video_id ASC) VISIBLE,
-  INDEX video_to_dir_idx (directory ASC) VISIBLE,
-  CONSTRAINT video_to_dir
-    FOREIGN KEY (directory)
-    REFERENCES square_post.directory (directory_id)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
-
-CREATE TABLE square_post.watched (
-  watched_id BIGINT NOT NULL AUTO_INCREMENT,
-  user INT NOT NULL,
-  post BIGINT NOT NULL,
-  PRIMARY KEY (watched_id),
-  UNIQUE INDEX watched_id_UNIQUE (watched_id ASC) VISIBLE,
-  INDEX watched_post_idx (post ASC) VISIBLE,
-  INDEX watching_user_idx (user ASC) VISIBLE,
-  CONSTRAINT watched_post
-    FOREIGN KEY (post)
-    REFERENCES square_post.post (post_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT watching_user
-    FOREIGN KEY (user)
-    REFERENCES square_post.user (user_id)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
-
-ALTER TABLE square_post.post 
-DROP INDEX search_post ,
-ADD FULLTEXT INDEX search_post (caption, content) WITH PARSER ngram VISIBLE;
-;
-
-ALTER TABLE square_post.group 
-CHANGE COLUMN participation_system participation_system ENUM('Application_NoRequireApproval', 'Recommendation_Anyone', 'Recommendation_OnlyAdministrator', 'Recommendation_SomePeople', 'Application_RequireApproval_OnlyAdministrator', 'Application_RequireApproval_SomePeople', 'Application_RequireApproval_Voting', 'Application_RequireApproval_Unanimity') NOT NULL ,
-CHANGE COLUMN withdrawal_system withdrawal_system ENUM('Spontaneous', 'ExitOrder_OnlyAdministrator', 'ExitOrder_SomePeople', 'ExitOrder_Voting', 'ExitOrder_Unanimity') NOT NULL ;
-
-ALTER TABLE square_post.directory 
-DROP FOREIGN KEY user_id;
-ALTER TABLE square_post.directory 
-ADD CONSTRAINT user_id
-  FOREIGN KEY (user)
-  REFERENCES square_post.user (user_id)
-  ON DELETE SET NULL;
-
-  ALTER TABLE square_post.comment 
-DROP FOREIGN KEY what_post;
-ALTER TABLE square_post.comment 
-DROP INDEX what_post_idx ;
-;
-
-ALTER TABLE square_post.liked 
-DROP FOREIGN KEY liked_post;
-ALTER TABLE square_post.liked 
-DROP INDEX liked_post_idx ;
-;
-ALTER TABLE square_post.watched 
-DROP FOREIGN KEY watched_post;
-ALTER TABLE square_post.watched 
-DROP INDEX watched_post_idx ;
-;
-ALTER TABLE square_post.post 
-CHANGE COLUMN post_id post_id BIGINT NOT NULL AUTO_INCREMENT ;
-ALTER TABLE square_post.watched 
-ADD INDEX watched_post_idx (post ASC) VISIBLE;
-;
-ALTER TABLE square_post.watched 
-ADD CONSTRAINT watched_post
-  FOREIGN KEY (post)
-  REFERENCES square_post.post (post_id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-ALTER TABLE square_post.liked 
-ADD INDEX liked_post_idx (post ASC) VISIBLE;
-;
-ALTER TABLE square_post.liked 
-ADD CONSTRAINT liked_post
-  FOREIGN KEY (post)
-  REFERENCES square_post.post (post_id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-ALTER TABLE square_post.comment 
-ADD INDEX what_post_idx (post ASC) VISIBLE;
-;
-ALTER TABLE square_post.comment 
-ADD CONSTRAINT what_post
-  FOREIGN KEY (post)
-  REFERENCES square_post.post (post_id)
-  ON DELETE CASCADE
-  ON UPDATE NO ACTION;
-
-ALTER TABLE square_post.post 
-ADD COLUMN views BIGINT NOT NULL DEFAULT 0 AFTER directory;
-ALTER TABLE square_post.post 
-ADD COLUMN like BIGINT NOT NULL DEFAULT 0 AFTER views;
-ALTER TABLE square_post.comment 
-ADD COLUMN like INT NOT NULL DEFAULT 0 AFTER comment;
-ALTER TABLE square_post.post 
-CHANGE COLUMN like likes BIGINT NOT NULL DEFAULT '0' ;
-ALTER TABLE square_post.comment 
-CHANGE COLUMN like likes INT NOT NULL DEFAULT '0' ;
-
-CREATE TABLE square_post.subscriber (
-  subscriber_id INT NOT NULL AUTO_INCREMENT,
-  author BIGINT NOT NULL,
-  reader BIGINT NOT NULL,
-  PRIMARY KEY (subscriber_id),
-  UNIQUE INDEX subscriber_id_UNIQUE (subscriber_id ASC) VISIBLE);
-ALTER TABLE square_post.subscriber 
-CHANGE COLUMN author author INT NOT NULL ,
-CHANGE COLUMN reader reader INT NOT NULL ,
-ADD INDEX rfbfdbbdfbfdbfd_idx (author ASC) VISIBLE,
-ADD INDEX frfefrefwf_idx (reader ASC) VISIBLE;
-;
-ALTER TABLE square_post.subscriber 
-ADD CONSTRAINT author
-  FOREIGN KEY (author)
-  REFERENCES square_post.user (user_id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION,
-ADD CONSTRAINT reader
-  FOREIGN KEY (reader)
-  REFERENCES square_post.user (user_id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-ALTER TABLE square_post.subscriber 
-DROP FOREIGN KEY author,
-DROP FOREIGN KEY reader;
-ALTER TABLE square_post.subscriber 
-;
-ALTER TABLE square_post.subscriber RENAME INDEX rfbfdbbdfbfdbfd_idx TO author_idx;
-ALTER TABLE square_post.subscriber ALTER INDEX author_idx VISIBLE;
-ALTER TABLE square_post.subscriber RENAME INDEX frfefrefwf_idx TO reader_idx;
-ALTER TABLE square_post.subscriber ALTER INDEX reader_idx VISIBLE;
-ALTER TABLE square_post.subscriber 
-ADD CONSTRAINT author
-  FOREIGN KEY (author)
-  REFERENCES square_post.user (user_id)
-  ON DELETE CASCADE,
-ADD CONSTRAINT reader
-  FOREIGN KEY (reader)
-  REFERENCES square_post.user (user_id)
-  ON DELETE CASCADE;
-  ALTER TABLE square_post.subscriber 
-CHANGE COLUMN subscriber_id subscriber_id BIGINT NOT NULL AUTO_INCREMENT ;
-
-ALTER TABLE square_post.watched 
-DROP FOREIGN KEY watched_post,
-DROP FOREIGN KEY watching_user;
-ALTER TABLE square_post.watched 
-ADD CONSTRAINT watched_post
-  FOREIGN KEY (post)
-  REFERENCES square_post.post (post_id)
-  ON DELETE CASCADE,
-ADD CONSTRAINT watching_user
-  FOREIGN KEY (user)
-  REFERENCES square_post.user (user_id)
-  ON DELETE CASCADE;
-  ALTER TABLE square_post.liked 
-DROP FOREIGN KEY liked_post;
-ALTER TABLE square_post.liked 
-ADD CONSTRAINT liked_post
-  FOREIGN KEY (post)
-  REFERENCES square_post.post (post_id)
-  ON DELETE CASCADE;
-ALTER TABLE square_post.post 
-DROP FOREIGN KEY user;
-ALTER TABLE square_post.post 
-ADD CONSTRAINT user
-  FOREIGN KEY (user)
-  REFERENCES square_post.user (user_id)
-  ON DELETE CASCADE;
-
-CREATE TABLE square_post.group_system (
-group_system_id TINYINT NOT NULL AUTO_INCREMENT,
-name VARCHAR(60) NOT NULL,
-category VARCHAR(30) NOT NULL,
-PRIMARY KEY (group_system_id),
-UNIQUE INDEX groupSystem_id_UNIQUE (group_system_id ASC) VISIBLE);
 INSERT INTO square_post.group_system (name, category) VALUES ('Application_NoRequireApproval', 'participation');
 INSERT INTO square_post.group_system (name, category) VALUES ('Recommendation_Anyone', 'participation');
 INSERT INTO square_post.group_system (name, category) VALUES ('Recommendation_OnlyAdministrator', 'participation');
@@ -403,142 +97,197 @@ INSERT INTO square_post.group_system (name, category) VALUES ('ExitOrder_OnlyAdm
 INSERT INTO square_post.group_system (name, category) VALUES ('ExitOrder_SomePeople', 'withdrawal');
 INSERT INTO square_post.group_system (name, category) VALUES ('ExitOrder_Voting', 'withdrawal');
 INSERT INTO square_post.group_system (name, category) VALUES ('ExitOrder_Unanimity', 'withdrawal');
-ALTER TABLE square_post.group_system 
-CHANGE COLUMN category category VARCHAR(30) NOT NULL AFTER group_system_id;
-ALTER TABLE square_post.group 
-CHANGE COLUMN participation_system participation_system TINYINT NOT NULL ,
-CHANGE COLUMN withdrawal_system withdrawal_system TINYINT NOT NULL ,
-ADD INDEX participation_idx (participation_system ASC) VISIBLE,
-ADD INDEX withdrawal_idx (withdrawal_system ASC) VISIBLE;
-;
-ALTER TABLE square_post.group 
-ADD CONSTRAINT participation
-  FOREIGN KEY (participation_system)
-  REFERENCES square_post.group_system (group_system_id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION,
-ADD CONSTRAINT withdrawal
-  FOREIGN KEY (withdrawal_system)
-  REFERENCES square_post.group_system (group_system_id)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-ALTER TABLE square_post.group 
-CHANGE COLUMN identiti_profile_img identiti_profile_img MEDIUMTEXT NULL DEFAULT NULL AFTER administrator,
-CHANGE COLUMN identiti_back_img identiti_back_img MEDIUMTEXT NULL DEFAULT NULL AFTER identiti_profile_img;
-CREATE TABLE square_post.chat_room (
-  chat_room_id INT NOT NULL AUTO_INCREMENT,
-  name VARCHAR(45) NOT NULL,
-  PRIMARY KEY (chat_room_id),
-  UNIQUE INDEX room_id_UNIQUE (chat_room_id ASC) VISIBLE);
-CREATE TABLE square_post.chat (
-  chat_member_id BIGINT NOT NULL AUTO_INCREMENT,
-  user INT NOT NULL,
-  room INT NOT NULL,
-  comment VARCHAR(300) NOT NULL,
-  PRIMARY KEY (chat_member_id),
-  UNIQUE INDEX chat_member_id_UNIQUE (chat_member_id ASC) VISIBLE,
-  INDEX Participant_idx (user ASC) VISIBLE,
-  INDEX Affiliation_idx (room ASC) VISIBLE,
-  CONSTRAINT Participant
-    FOREIGN KEY (user)
-    REFERENCES square_post.user (user_id)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT Affiliation
-    FOREIGN KEY (room)
-    REFERENCES square_post.chat_room (chat_room_id)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
-ALTER TABLE `square_post`.`chat` 
-CHANGE COLUMN `chat_member_id` `chat_id` BIGINT NOT NULL AUTO_INCREMENT ;
-ALTER TABLE `square_post`.`post` 
-CHANGE COLUMN `year` `year` MEDIUMINT NOT NULL ;
-ALTER TABLE `square_post`.`chat` 
-ADD COLUMN `year` MEDIUMINT NOT NULL AFTER `comment`,
-ADD COLUMN `month` TINYINT NOT NULL AFTER `year`,
-ADD COLUMN `day` TINYINT NOT NULL AFTER `month`,
-ADD COLUMN `hour` TINYINT NOT NULL AFTER `day`,
-ADD COLUMN `minute` TINYINT NOT NULL AFTER `hour`,
-ADD COLUMN `second` TINYINT NOT NULL AFTER `minute`;
-CREATE TABLE `square_post`.`chat_member` (
-  `chat_member_id` BIGINT NOT NULL AUTO_INCREMENT,
-  `user` INT NOT NULL,
-  `room` INT NOT NULL,
-  PRIMARY KEY (`chat_member_id`),
-  UNIQUE INDEX `chat_member_id_UNIQUE` (`chat_member_id` ASC) VISIBLE,
-  INDEX `member_idx` (`user` ASC) VISIBLE,
-  INDEX `place_idx` (`room` ASC) VISIBLE,
-  CONSTRAINT `member`
-    FOREIGN KEY (`user`)
-    REFERENCES `square_post`.`user` (`user_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `place`
-    FOREIGN KEY (`room`)
-    REFERENCES `square_post`.`chat_room` (`chat_room_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
-ALTER TABLE `square_post`.`watched` 
-ADD COLUMN `count` MEDIUMINT NOT NULL DEFAULT 1 AFTER `post`;
-ALTER TABLE `square_post`.`friend` 
-ADD COLUMN `consent` boolean NOT NULL DEFAULT false AFTER `respondent`;
 
-ALTER TABLE `square_post`.`comment` 
-CHANGE COLUMN `year` `year` MEDIUMINT NOT NULL ;
-CREATE TABLE `square_post`.`notification` (
-  `notification_id` BIGINT NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(120) NOT NULL,
-  `content` LONGTEXT NOT NULL,
-  `user` INT NOT NULL,
-  `dispatcher` INT NOT NULL,
-  `year` MEDIUMINT NOT NULL,
-  `month` TINYINT NOT NULL,
-  `day` TINYINT NOT NULL,
-  `hour` TINYINT NOT NULL,
-  `minute` TINYINT NOT NULL,
-  `second` TINYINT NOT NULL,
+CREATE TABLE `watched` (
+  `watched_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user` int unsigned NOT NULL,
+  `post` bigint unsigned NOT NULL,
+  `count` tinyint unsigned NOT NULL DEFAULT '1',
+  `interest` tinyint unsigned NOT NULL DEFAULT '5',
+  PRIMARY KEY (`watched_id`),
+  UNIQUE KEY `watched_id_UNIQUE` (`watched_id`),
+  KEY `watching_user_idx` (`user`),
+  KEY `watched_post_idx` (`post`),
+  CONSTRAINT `watched_post` FOREIGN KEY (`post`) REFERENCES `post` (`post_id`) ON DELETE CASCADE,
+  CONSTRAINT `watching_user` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `video` (
+  `video_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `address` mediumtext NOT NULL,
+  `caption` varchar(60) NOT NULL,
+  `directory` bigint unsigned NOT NULL,
+  `volume` int unsigned NOT NULL,
+  `type` varchar(15) DEFAULT NULL,
+  `thumbnail` mediumtext,
+  PRIMARY KEY (`video_id`),
+  UNIQUE KEY `video_id_UNIQUE` (`video_id`),
+  KEY `video_dir_idx` (`directory`),
+  CONSTRAINT `video_dir` FOREIGN KEY (`directory`) REFERENCES `directory` (`directory_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `user_relevance` (
+  `user_relevance_id` bigint unsigned NOT NULL,
+  `user1` int unsigned NOT NULL,
+  `user2` int unsigned NOT NULL,
+  `degree` smallint unsigned NOT NULL,
+  PRIMARY KEY (`user_relevance_id`),
+  KEY `user1_idx` (`user1`),
+  KEY `user2_idx` (`user2`),
+  CONSTRAINT `user1` FOREIGN KEY (`user1`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `user2` FOREIGN KEY (`user2`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `subscriber` (
+  `subscriber_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `author` int unsigned NOT NULL,
+  `reader` int unsigned NOT NULL,
+  PRIMARY KEY (`subscriber_id`),
+  UNIQUE KEY `subscriber_id_UNIQUE` (`subscriber_id`),
+  KEY `publisher_idx` (`author`),
+  KEY `reader_idx` (`reader`),
+  KEY `arrive_at_idx` (`reader`),
+  KEY `distributer_idx` (`author`),
+  CONSTRAINT `arrive_at` FOREIGN KEY (`reader`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `distributer` FOREIGN KEY (`author`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `post_relevance` (
+  `post_relevance_id` bigint unsigned NOT NULL,
+  `post1` bigint unsigned NOT NULL,
+  `post2` bigint unsigned NOT NULL,
+  `degree` smallint unsigned NOT NULL,
+  PRIMARY KEY (`post_relevance_id`),
+  UNIQUE KEY `post_relevance_id_UNIQUE` (`post_relevance_id`),
+  KEY `post1_idx` (`post1`),
+  KEY `post2_idx` (`post2`),
+  CONSTRAINT `post1` FOREIGN KEY (`post1`) REFERENCES `post` (`post_id`) ON DELETE CASCADE,
+  CONSTRAINT `post2` FOREIGN KEY (`post2`) REFERENCES `post` (`post_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `notification` (
+  `notification_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(120) NOT NULL,
+  `content` longtext NOT NULL,
+  `user` int unsigned NOT NULL,
+  `sender` varchar(60) NOT NULL DEFAULT 'Administrator',
+  `year` mediumint unsigned NOT NULL,
+  `month` tinyint unsigned NOT NULL,
+  `day` tinyint unsigned NOT NULL,
+  `hour` tinyint unsigned NOT NULL,
+  `minute` tinyint unsigned NOT NULL,
+  `second` tinyint unsigned NOT NULL,
   PRIMARY KEY (`notification_id`),
-  UNIQUE INDEX `notification_id_UNIQUE` (`notification_id` ASC) VISIBLE,
-  INDEX `receiver_idx` (`user` ASC) VISIBLE,
-  CONSTRAINT `receiver`
-    FOREIGN KEY (`user`)
-    REFERENCES `square_post`.`user` (`user_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
-ALTER TABLE `square_post`.`notification` 
-CHANGE COLUMN `dispatcher` `sender` VARCHAR(60) NOT NULL DEFAULT 'administrator' ;
+  UNIQUE KEY `notification_id_UNIQUE` (`notification_id`),
+  KEY `to_who_idx` (`user`),
+  CONSTRAINT `to_who` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `music` (
+  `music_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `address` mediumtext NOT NULL,
+  `caption` varchar(60) NOT NULL,
+  `directory` bigint unsigned NOT NULL,
+  `volume` int unsigned NOT NULL,
+  `type` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`music_id`),
+  UNIQUE KEY `music_id_UNIQUE` (`music_id`),
+  KEY `music_dir_idx` (`directory`),
+  CONSTRAINT `music_dir` FOREIGN KEY (`directory`) REFERENCES `directory` (`directory_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `liked` (
+  `liked_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user` int unsigned NOT NULL,
+  `post` bigint unsigned NOT NULL,
+  PRIMARY KEY (`liked_id`),
+  UNIQUE KEY `liked_id_UNIQUE` (`liked_id`),
+  KEY `liking_user_idx` (`user`),
+  KEY `liked_post_idx` (`post`),
+  CONSTRAINT `liked_post` FOREIGN KEY (`post`) REFERENCES `post` (`post_id`) ON DELETE CASCADE,
+  CONSTRAINT `liking_user` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `image` (
+  `image_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `address` mediumtext NOT NULL,
+  `caption` varchar(60) NOT NULL,
+  `directory` bigint unsigned NOT NULL,
+  `volume` int unsigned NOT NULL,
+  `type` varchar(15) DEFAULT NULL,
+  PRIMARY KEY (`image_id`),
+  UNIQUE KEY `image_id_UNIQUE` (`image_id`),
+  KEY `image_dir_idx` (`directory`),
+  CONSTRAINT `image_dir` FOREIGN KEY (`directory`) REFERENCES `directory` (`directory_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `friend` (
+  `friend_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `proposer` int unsigned NOT NULL,
+  `respondent` int unsigned NOT NULL,
+  `consent` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`friend_id`),
+  UNIQUE KEY `friend_id_UNIQUE` (`friend_id`),
+  KEY `respondent_idx` (`respondent`),
+  KEY `proposer_idx` (`proposer`),
+  CONSTRAINT `proposer` FOREIGN KEY (`proposer`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `respondent` FOREIGN KEY (`respondent`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+CREATE TABLE `comment` (
+  `comment_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `post` bigint unsigned NOT NULL,
+  `user` int unsigned NOT NULL,
+  `comment` varchar(300) NOT NULL,
+  `likes` int NOT NULL DEFAULT '0',
+  `year` smallint NOT NULL,
+  `month` tinyint NOT NULL,
+  `day` tinyint NOT NULL,
+  `hour` tinyint NOT NULL,
+  `minute` tinyint NOT NULL,
+  `converted` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`comment_id`),
+  UNIQUE KEY `comment_id_UNIQUE` (`comment_id`),
+  KEY `who_user_idx` (`user`),
+  KEY `what_post_idx` (`post`),
+  CONSTRAINT `what_post` FOREIGN KEY (`post`) REFERENCES `post` (`post_id`) ON DELETE CASCADE,
+  CONSTRAINT `who_user` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-// 2020 - 7 - 8
+CREATE TABLE `chat_room` (
+  `chat_room_id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  PRIMARY KEY (`chat_room_id`),
+  UNIQUE KEY `room_id_UNIQUE` (`chat_room_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-ALTER TABLE `square_post`.`comment` 
-CHANGE COLUMN `year` `year` SMALLINT NOT NULL ;
-ALTER TABLE `square_post`.`chat` 
-CHANGE COLUMN `year` `year` SMALLINT NOT NULL ;
-ALTER TABLE `square_post`.`post` 
-CHANGE COLUMN `year` `year` SMALLINT NOT NULL ;
-ALTER TABLE `square_post`.`watched` 
-ADD COLUMN `interest` TINYINT NOT NULL DEFAULT 5 AFTER `count`,
-CHANGE COLUMN `count` `count` TINYINT NOT NULL DEFAULT 1 ;
-CREATE TABLE `square_post`.`user_relevancy` (
-  `user_relevancy_id` BIGINT NOT NULL,
-  `user1` INT NOT NULL,
-  `user2` INT NOT NULL,
-  `evaluation` SMALLINT UNSIGNED NOT NULL DEFAULT 60000,
-  PRIMARY KEY (`user_relevancy_id`),
-  INDEX `user1_idx` (`user1` ASC) VISIBLE,
-  INDEX `user2_idx` (`user2` ASC) VISIBLE,
-  CONSTRAINT `user1`
-    FOREIGN KEY (`user1`)
-    REFERENCES `square_post`.`user` (`user_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `user2`
-    FOREIGN KEY (`user2`)
-    REFERENCES `square_post`.`user` (`user_id`)
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION);
+CREATE TABLE `chat_member` (
+  `chat_member_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user` int unsigned NOT NULL,
+  `room` int unsigned NOT NULL,
+  PRIMARY KEY (`chat_member_id`),
+  UNIQUE KEY `chat_member_id_UNIQUE` (`chat_member_id`),
+  KEY `member_idx` (`user`),
+  KEY `room_idx` (`room`),
+  CONSTRAINT `member` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `room` FOREIGN KEY (`room`) REFERENCES `chat_room` (`chat_room_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+CREATE TABLE `chat` (
+  `chat_id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `user` int unsigned NOT NULL,
+  `room` int unsigned NOT NULL,
+  `comment` varchar(300) NOT NULL,
+  `year` smallint NOT NULL,
+  `month` tinyint NOT NULL,
+  `day` tinyint NOT NULL,
+  `hour` tinyint NOT NULL,
+  `minute` tinyint NOT NULL,
+  `second` tinyint NOT NULL,
+  PRIMARY KEY (`chat_id`),
+  UNIQUE KEY `chat_member_id_UNIQUE` (`chat_id`),
+  KEY `Participant_idx` (`user`),
+  KEY `Affiliation_idx` (`room`),
+  CONSTRAINT `chatter` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
+  CONSTRAINT `where_is_the_room` FOREIGN KEY (`room`) REFERENCES `chat_room` (`chat_room_id`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
