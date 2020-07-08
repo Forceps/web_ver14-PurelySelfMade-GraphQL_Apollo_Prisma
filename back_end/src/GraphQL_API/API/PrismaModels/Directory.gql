@@ -1,0 +1,18 @@
+type Directory {
+  directory_id: ID!
+  group: Int
+  name: String!
+  parent_id: Int
+  root: Boolean!
+  user: Int
+
+  group_directoryTogroup: Group
+  directory: Directory
+  user_directoryTouser: User
+
+  post: [Post]
+  other_directory: [Directory]
+  image: [Image]
+  music: [Music]
+  video: [Video]
+}

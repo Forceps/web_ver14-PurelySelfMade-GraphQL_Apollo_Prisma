@@ -1,0 +1,33 @@
+type Image {
+  image_id: ID!
+  caption: String!
+  address: String!
+  type: String
+  volume: Int!
+  directory: Int!
+
+  directory_directoryToimage: Directory!
+}
+
+type Music {
+  music_id: ID!
+  caption: String!
+  address: String!
+  directory: Int!
+  type: String
+  volume: Int!
+
+  directory_directoryTomusic: Directory!
+}
+
+type Video {
+  video_id: ID!
+  address: String!
+  caption: String!
+  directory: Int!
+  type: String
+  volume: Int!
+  thumbnail: String
+
+  directory_directoryTovideo: Directory!
+}

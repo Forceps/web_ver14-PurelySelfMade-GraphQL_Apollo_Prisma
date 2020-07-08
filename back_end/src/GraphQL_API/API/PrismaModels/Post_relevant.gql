@@ -1,0 +1,70 @@
+type Post {
+  post_id: ID!
+  caption: String!
+  content: String
+  user: Int!
+  directory: Int!
+
+  year: Int!
+  month: Int!
+  day: Int!
+  hour: Int!
+  minute: Int!
+  second: Int!
+
+  views: Int!
+  likes: Int!
+
+  directory_directoryTopost: Directory!
+  user_postTouser: User!
+
+  comment: [Comment]!
+  liked: [Liked]!
+  watched: [Watched]!
+}
+
+type Comment {
+  comment_id: ID!
+  comment: String!
+  day: Int!
+  hour: Int!
+  likes: Int!
+  minute: Int!
+  month: Int!
+  post: Int!
+  user: Int!
+  year: Int!
+  converted: Boolean!
+
+  post_commentTopost: Post!
+  user_commentTouser: User!
+}
+
+type Liked {
+  liked_id: ID!
+  post: Int!
+  user: Int!
+
+  post_likedTopost: Post!
+  user_likedTouser: User!
+}
+
+type Watched {
+  watched_id: ID!
+  post: Int!
+  user: Int!
+  interest: Int!
+
+  post_postTowatched: Post!
+  user_userTowatched: User!
+}
+
+type Post_relevance {
+  post_relevance_id: ID!
+  post1: Int!
+  post2: Int!
+  degree: Int!
+
+  post_postTopost_relevance_post1: Post!
+  post_postTopost_relevance_post2: Post!
+}

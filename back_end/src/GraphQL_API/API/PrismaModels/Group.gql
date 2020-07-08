@@ -1,0 +1,24 @@
+type Group {
+  group_id: ID!
+  name: String!
+  purpose: String!
+  administrator: Int!
+  identiti_back_img: String
+  identiti_profile_img: String
+  participation_system: Int!
+  withdrawal_system: Int!
+
+  user: User!
+  group_system_group_participation_systemTogroup_system: Group_system!
+  group_system_group_withdrawal_systemTogroup_system: Group_system!
+
+  directory: [Directory]!
+}
+type Group_system {
+  group_system_id: ID!
+  category: String!
+  name: String!
+
+  group_group_participation_systemTogroup_system: [Group]!
+  group_group_withdrawal_systemTogroup_system: [Group]!
+}

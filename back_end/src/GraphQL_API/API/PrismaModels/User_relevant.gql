@@ -1,0 +1,70 @@
+type User {
+  user_id: ID!
+  username: String!
+  email: String!
+  password: String!
+  avatar: String
+  back_img: String
+  phone_number: Int
+
+  comment: [Comment]
+  directory: [Directory]!
+  friend_friend_proposerTouser: [Friend]
+  friend_friend_respondentTouser: [Friend]
+  group: [Group]
+  liked: [Liked]
+  post: [Post]
+  subscriber_subscriber_authorTouser: [Subscriber]
+  subscriber_subscriber_readerTouser: [Subscriber]
+  chat_member: [Chat_member]
+  chat: [Chat]
+  watched: [Watched]
+  notification: [Notification]
+  user_relevancy_userTouser_relevancy_user1: [User_relevancy]
+  user_relevancy_userTouser_relevancy_user2: [User_relevancy]
+}
+
+type Notification {
+  notification_id: ID!
+  title: String!
+  content: String!
+  user: Int!
+  sender: String!
+  year: Int!
+  month: Int!
+  day: Int!
+  hour: Int!
+  minute: Int!
+  second: Int!
+
+  user_notificationTouser: User!
+}
+
+type Friend {
+  friend_id: ID!
+  proposer: Int!
+  respondent: Int!
+  consent: Boolean!
+
+  user_friend_proposerTouser: User!
+  user_friend_respondentTouser: User!
+}
+
+type Subscriber {
+  subscriber_id: ID!
+  reader: Int!
+  author: Int!
+
+  user_subscriber_authorTouser: User!
+  user_subscriber_readerTouser: User!
+}
+
+type User_relevancy {
+  user_relevancy_id: ID!
+  user1: Int!
+  user2: Int!
+  degree: Int!
+
+  user_userTouser_relevancy_user1: User!
+  user_userTouser_relevancy_user2: User!
+}

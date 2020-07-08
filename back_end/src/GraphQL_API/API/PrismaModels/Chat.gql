@@ -1,0 +1,31 @@
+type Chat {
+  chat_id: ID!
+  user: Int!
+  room: Int!
+  comment: String!
+
+  year: Int!
+  month: Int!
+  day: Int!
+  hour: Int!
+  minute: Int!
+  second: Int!
+
+  chat_room: Chat_room!
+  user_chatTouser: User!
+}
+type Chat_room {
+  chat_room_id: ID!
+  name: String!
+
+  chat: [Chat]
+  chat_member: [Chat_member!]!
+}
+type Chat_member {
+  chat_member_id: ID!
+  room: Int!
+  user: Int!
+
+  chat_room: Chat_room!
+  user_chat_memberTouser: User!
+}

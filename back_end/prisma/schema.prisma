@@ -33,7 +33,7 @@ model chat_member {
   user_chat_memberTouser user      @relation(fields: [user], references: [user_id])
 
   @@index([user], name: "member_idx")
-  @@index([room], name: "place_idx")
+  @@index([room], name: "room_idx")
 }
 
 model chat_room {
@@ -59,7 +59,7 @@ model comment {
   user_commentTouser user    @relation(fields: [user], references: [user_id])
 
   @@index([post], name: "what_post_idx")
-  @@index([user], name: "who_said_idx")
+  @@index([user], name: "who_user_idx")
 }
 
 model directory {
@@ -79,8 +79,8 @@ model directory {
   video                  video[]
 
   @@index([group], name: "group_own_idx")
+  @@index([user], name: "owner_idx")
   @@index([parent_id], name: "parent_id_idx")
-  @@index([user], name: "user_id_idx")
 }
 
 model friend {
@@ -132,7 +132,7 @@ model image {
   volume                     Int
   directory_directoryToimage directory @relation(fields: [directory], references: [directory_id])
 
-  @@index([directory], name: "image_to_dir_idx")
+  @@index([directory], name: "image_dir_idx")
 }
 
 model liked {
@@ -155,7 +155,7 @@ model music {
   volume                     Int
   directory_directoryTomusic directory @relation(fields: [directory], references: [directory_id])
 
-  @@index([directory], name: "music_to_dir_idx")
+  @@index([directory], name: "music_dir_idx")
 }
 
 model notification {
@@ -172,32 +172,46 @@ model notification {
   year                    Int
   user_notificationTouser user   @relation(fields: [user], references: [user_id])
 
-  @@index([user], name: "receiver_idx")
+  @@index([user], name: "to_who_idx")
 }
 
 model post {
-  caption                   String
-  content                   String?
-  day                       Int
-  directory                 Int
-  hour                      Int
-  likes                     Int       @default(0)
-  minute                    Int
-  month                     Int
-  post_id                   Int       @default(autoincrement()) @id
-  second                    Int
-  user                      Int
-  views                     Int       @default(0)
-  year                      Int
-  directory_directoryTopost directory @relation(fields: [directory], references: [directory_id])
-  user_postTouser           user      @relation(fields: [user], references: [user_id])
-  comment                   comment[]
-  liked                     liked[]
-  watched                   watched[]
+  caption                                   String
+  content                                   String?
+  day                                       Int
+  directory                                 Int
+  hour                                      Int
+  likes                                     Int              @default(0)
+  minute                                    Int
+  month                                     Int
+  post_id                                   Int              @default(autoincrement()) @id
+  second                                    Int
+  user                                      Int
+  views                                     Int              @default(0)
+  year                                      Int
+  directory_directoryTopost                 directory        @relation(fields: [directory], references: [directory_id])
+  user_postTouser                           user             @relation(fields: [user], references: [user_id])
+  comment                                   comment[]
+  liked                                     liked[]
+  post_relevance_postTopost_relevance_post1 post_relevance[] @relation("postTopost_relevance_post1")
+  post_relevance_postTopost_relevance_post2 post_relevance[] @relation("postTopost_relevance_post2")
+  watched                                   watched[]
 
-  @@index([directory], name: "directory_idx")
+  @@index([directory], name: "belong_idx")
   @@index([caption, content], name: "search_post")
   @@index([user], name: "user_idx")
+}
+
+model post_relevance {
+  degree                          Int
+  post1                           Int
+  post2                           Int
+  post_relevance_id               Int  @id
+  post_postTopost_relevance_post1 post @relation("postTopost_relevance_post1", fields: [post1], references: [post_id])
+  post_postTopost_relevance_post2 post @relation("postTopost_relevance_post2", fields: [post2], references: [post_id])
+
+  @@index([post1], name: "post1_idx")
+  @@index([post2], name: "post2_idx")
 }
 
 model subscriber {
@@ -207,31 +221,47 @@ model subscriber {
   user_subscriber_authorTouser user @relation("subscriber_authorTouser", fields: [author], references: [user_id])
   user_subscriber_readerTouser user @relation("subscriber_readerTouser", fields: [reader], references: [user_id])
 
-  @@index([author], name: "author_idx")
+  @@index([reader], name: "arrive_at_idx")
+  @@index([author], name: "distributer_idx")
+  @@index([author], name: "publisher_idx")
   @@index([reader], name: "reader_idx")
 }
 
 model user {
-  avatar                             String?
-  back_img                           String?
-  email                              String         @unique
-  password                           String
-  phone_number                       Int?
-  username                           String
-  user_id                            Int            @default(autoincrement()) @id
-  chat                               chat[]
-  chat_member                        chat_member[]
-  comment                            comment[]
-  directory                          directory[]
-  friend_friend_proposerTouser       friend[]       @relation("friend_proposerTouser")
-  friend_friend_respondentTouser     friend[]       @relation("friend_respondentTouser")
-  group                              group[]
-  liked                              liked[]
-  notification                       notification[]
-  post                               post[]
-  subscriber_subscriber_authorTouser subscriber[]   @relation("subscriber_authorTouser")
-  subscriber_subscriber_readerTouser subscriber[]   @relation("subscriber_readerTouser")
-  watched                            watched[]
+  avatar                                    String?
+  back_img                                  String?
+  email                                     String           @unique
+  password                                  String
+  phone_number                              Int?
+  username                                  String
+  user_id                                   Int              @default(autoincrement()) @id
+  chat                                      chat[]
+  chat_member                               chat_member[]
+  comment                                   comment[]
+  directory                                 directory[]
+  friend_friend_proposerTouser              friend[]         @relation("friend_proposerTouser")
+  friend_friend_respondentTouser            friend[]         @relation("friend_respondentTouser")
+  group                                     group[]
+  liked                                     liked[]
+  notification                              notification[]
+  post                                      post[]
+  subscriber_subscriber_authorTouser        subscriber[]     @relation("subscriber_authorTouser")
+  subscriber_subscriber_readerTouser        subscriber[]     @relation("subscriber_readerTouser")
+  user_relevance_userTouser_relevance_user1 user_relevance[] @relation("userTouser_relevance_user1")
+  user_relevance_userTouser_relevance_user2 user_relevance[] @relation("userTouser_relevance_user2")
+  watched                                   watched[]
+}
+
+model user_relevance {
+  degree                          Int
+  user1                           Int
+  user2                           Int
+  user_relevance_id               Int  @id
+  user_userTouser_relevance_user1 user @relation("userTouser_relevance_user1", fields: [user1], references: [user_id])
+  user_userTouser_relevance_user2 user @relation("userTouser_relevance_user2", fields: [user2], references: [user_id])
+
+  @@index([user1], name: "user1_idx")
+  @@index([user2], name: "user2_idx")
 }
 
 model video {
@@ -244,11 +274,12 @@ model video {
   volume                     Int
   directory_directoryTovideo directory @relation(fields: [directory], references: [directory_id])
 
-  @@index([directory], name: "video_to_dir_idx")
+  @@index([directory], name: "video_dir_idx")
 }
 
 model watched {
   count              Int  @default(1)
+  interest           Int  @default(5)
   post               Int
   user               Int
   watched_id         Int  @default(autoincrement()) @id

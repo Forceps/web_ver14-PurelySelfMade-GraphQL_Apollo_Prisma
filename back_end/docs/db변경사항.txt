@@ -513,4 +513,32 @@ CHANGE COLUMN `dispatcher` `sender` VARCHAR(60) NOT NULL DEFAULT 'administrator'
 
 
 
+// 2020 - 7 - 8
 
+ALTER TABLE `square_post`.`comment` 
+CHANGE COLUMN `year` `year` SMALLINT NOT NULL ;
+ALTER TABLE `square_post`.`chat` 
+CHANGE COLUMN `year` `year` SMALLINT NOT NULL ;
+ALTER TABLE `square_post`.`post` 
+CHANGE COLUMN `year` `year` SMALLINT NOT NULL ;
+ALTER TABLE `square_post`.`watched` 
+ADD COLUMN `interest` TINYINT NOT NULL DEFAULT 5 AFTER `count`,
+CHANGE COLUMN `count` `count` TINYINT NOT NULL DEFAULT 1 ;
+CREATE TABLE `square_post`.`user_relevancy` (
+  `user_relevancy_id` BIGINT NOT NULL,
+  `user1` INT NOT NULL,
+  `user2` INT NOT NULL,
+  `evaluation` SMALLINT UNSIGNED NOT NULL DEFAULT 60000,
+  PRIMARY KEY (`user_relevancy_id`),
+  INDEX `user1_idx` (`user1` ASC) VISIBLE,
+  INDEX `user2_idx` (`user2` ASC) VISIBLE,
+  CONSTRAINT `user1`
+    FOREIGN KEY (`user1`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `user2`
+    FOREIGN KEY (`user2`)
+    REFERENCES `square_post`.`user` (`user_id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION);
