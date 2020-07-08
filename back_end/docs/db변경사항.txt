@@ -42,7 +42,7 @@ CREATE TABLE `square_post`.`group` (
   CONSTRAINT `withdrawal` FOREIGN KEY (`withdrawal_system`) REFERENCES `group_system` (`group_system_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-CREATE TABLE `directory` (
+CREATE TABLE `square_post`.`directory` (
   `directory_id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
   `parent_id` bigint unsigned DEFAULT NULL,
