@@ -289,3 +289,10 @@ CREATE TABLE `square_post`.`chat` (
   CONSTRAINT `chatter` FOREIGN KEY (`user`) REFERENCES `user` (`user_id`) ON DELETE CASCADE,
   CONSTRAINT `where_is_the_room` FOREIGN KEY (`room`) REFERENCES `chat_room` (`chat_room_id`) ON DELETE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+
+
+
+// 2020 - 7 - 9
+ALTER TABLE `square_post`.`watched` 
+CHANGE COLUMN `interest` `interest` SMALLINT UNSIGNED NOT NULL ;
