@@ -291,4 +291,18 @@ CREATE TABLE `square_post`.`chat` (
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ALTER TABLE `square_post`.`watched` 
 CHANGE COLUMN `interest` `interest` SMALLINT UNSIGNED NOT NULL ;
+ALTER TABLE `square_post`.`post` 
+DROP INDEX `search_post` ,
+ADD FULLTEXT INDEX `search_post` (`caption`, `content`) WITH PARSER ngram VISIBLE;
 
+
+
+
+
+
+
+
+// 2020 - 7 - 10
+
+ALTER TABLE `square_post`.`watched` 
+ADD COLUMN `deprecated` TINYINT UNSIGNED NOT NULL DEFAULT 0 AFTER `interest`;

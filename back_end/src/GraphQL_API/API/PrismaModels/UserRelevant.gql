@@ -20,8 +20,8 @@ type User {
   chat: [Chat]
   watched: [Watched]
   notification: [Notification]
-  user_relevancy_userTouser_relevancy_user1: [User_relevancy]
-  user_relevancy_userTouser_relevancy_user2: [User_relevancy]
+  user_relevance_userTouser_relevance_user1: [User_relevance]
+  user_relevance_userTouser_relevance_user2: [User_relevance]
 }
 
 type Notification {
@@ -67,4 +67,14 @@ type User_relevancy {
 
   user_userTouser_relevancy_user1: User!
   user_userTouser_relevancy_user2: User!
+}
+
+type User_relevance {
+  user_relevance_id: ID!
+  user1: Int!
+  user2: Int!
+  degree: Int!
+
+  user_userTouser_relevance_user1: User!
+  user_userTouser_relevance_user2: User!
 }

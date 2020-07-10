@@ -279,7 +279,8 @@ model video {
 
 model watched {
   count              Int  @default(1)
-  interest           Int  @default(5)
+  deprecated         Int  @default(0)
+  interest           Int
   post               Int
   user               Int
   watched_id         Int  @default(autoincrement()) @id

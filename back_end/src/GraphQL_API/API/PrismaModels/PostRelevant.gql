@@ -21,6 +21,8 @@ type Post {
   comment: [Comment]!
   liked: [Liked]!
   watched: [Watched]!
+  post_relevance_postTopost_relevance_post1: [Post_relevance]
+  post_relevance_postTopost_relevance_post2: [Post_relevance]
 }
 
 type Comment {
@@ -54,6 +56,7 @@ type Watched {
   post: Int!
   user: Int!
   interest: Int!
+  deprecated: Int!
 
   post_postTowatched: Post!
   user_userTowatched: User!
