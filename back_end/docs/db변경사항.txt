@@ -306,3 +306,7 @@ ADD FULLTEXT INDEX `search_post` (`caption`, `content`) WITH PARSER ngram VISIBL
 
 ALTER TABLE `square_post`.`watched` 
 ADD COLUMN `deprecated` TINYINT UNSIGNED NOT NULL DEFAULT 0 AFTER `interest`;
+ALTER TABLE `square_post`.`post_relevance` 
+CHANGE COLUMN `post_relevance_id` `post_relevance_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ;
+ALTER TABLE `square_post`.`user_relevance` 
+CHANGE COLUMN `user_relevance_id` `user_relevance_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ;

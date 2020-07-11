@@ -1,70 +1,84 @@
 import { PrismaClient } from "@prisma/client";
-import { relevanceSigmoid } from "../AbyssLib/formula";
+import { roundedGeometricMean, interestFade } from "../AbyssLib/formula";
 
 const prisma = new PrismaClient();
 
-export const PostInterconnection = async (user_id: number, post_id: number) => {
-  const readyMade = await prisma.watched.findMany({
+export const PostInterconnection = async (
+  user_id: number,
+  post_id: number,
+  latest: Latest
+) => {
+  const old = await prisma.watched.findMany({
     where: {
-      post_postTowatched: {
+      user: user_id,
+      deprecated: 0,
+    },
+    orderBy: {
+      watched_id: "desc",
+    },
+    take: 3,
+  });
+
+  for (let i = 0; i < old.length; i++) {
+    const exiCheck = await prisma.post_relevance.findMany({
+      where: {
         OR: [
           {
-            post_relevance_postTopost_relevance_post1: {
-              some: {
-                post1: post_id,
-              },
-            },
+            post1: old[i].post,
+            post2: post_id,
           },
           {
-            post_relevance_postTopost_relevance_post2: {
-              some: {
-                post2: post_id,
-              },
-            },
+            post1: post_id,
+            post2: old[i].post,
           },
         ],
       },
-    },
-  });
-  const alteration = await prisma.watched.findMany({
-    where: {
-      user: user_id,
-    },
-  });
-
-  for (let i = 0; i < alteration.length; i++) {
-    for (let j = 0; j < readyMade.length; j++) {
-      const exiCheck = await prisma.post_relevance.findMany({
+      select: {
+        post_relevance_id: true,
+      },
+    })[0];
+    if (exiCheck) {
+      prisma.post_relevance.update({
         where: {
-          OR: [
-            {
-              post1: alteration[i].post,
-              post2: readyMade[j].post,
-            },
-            {
-              post1: readyMade[j].post,
-              post2: alteration[i].post,
-            },
-          ],
+          post_relevance_id: exiCheck.post_relevance_id,
         },
-        select: {
-          post_relevance_id: true,
+        data: {
+          degree:
+            exiCheck.degree +
+            roundedGeometricMean(
+              interestFade(old[i].interest, i),
+              latest.interest
+            ),
         },
       });
-      if (exiCheck) {
-        prisma.post_relevance.update({
-          where: {
-            post_relevance_id: exiCheck[0].post_relevance_id,
+    } else {
+      prisma.post_relevance.create({
+        data: {
+          post_postTopost_relevance_post1: {
+            connect: {
+              post_id,
+            },
           },
-          data: {
-            degree: relevanceSigmoid(
-              alteration[i].interest,
-              readyMade[j].interest
-            ),
+          post_postTopost_relevance_post2: {
+            connect: {
+              post_id: old[i].post,
+            },
           },
-        });
-      } else {
-      }
+          degree: roundedGeometricMean(
+            interestFade(old[i].interest, i),
+            latest.interest
+          ),
+        },
+      });
     }
   }
 };
+
+interface Latest {
+  watched_id: number;
+  count: number;
+  interest: number;
+  deprecated: number;
+  post: number;
+  user: number;
+}

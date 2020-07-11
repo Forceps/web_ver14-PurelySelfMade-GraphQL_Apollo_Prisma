@@ -206,7 +206,7 @@ model post_relevance {
   degree                          Int
   post1                           Int
   post2                           Int
-  post_relevance_id               Int  @id
+  post_relevance_id               Int  @default(autoincrement()) @id
   post_postTopost_relevance_post1 post @relation("postTopost_relevance_post1", fields: [post1], references: [post_id])
   post_postTopost_relevance_post2 post @relation("postTopost_relevance_post2", fields: [post2], references: [post_id])
 
@@ -256,7 +256,7 @@ model user_relevance {
   degree                          Int
   user1                           Int
   user2                           Int
-  user_relevance_id               Int  @id
+  user_relevance_id               Int  @default(autoincrement()) @id
   user_userTouser_relevance_user1 user @relation("userTouser_relevance_user1", fields: [user1], references: [user_id])
   user_userTouser_relevance_user2 user @relation("userTouser_relevance_user2", fields: [user2], references: [user_id])
 

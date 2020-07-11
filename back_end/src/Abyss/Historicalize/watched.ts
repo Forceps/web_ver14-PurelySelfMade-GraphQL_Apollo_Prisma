@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { WatchSigmoid } from "../AbyssLib/formula";
+import { PostInterconnection } from "../Interconnectedness/PostToPost";
 
 const prisma = new PrismaClient();
 
@@ -11,41 +12,28 @@ export const watchingLoging = async (user_id: number, post_id: number) => {
         post: post_id,
         deprecated: 0,
       },
-      select: {
-        watched_id: true,
-        count: true,
-        interest: true,
-      },
-    })[0];
-    if (existCheck) {
-      if (existCheck.count < 100) {
-        prisma.watched.update({
-          where: {
-            watched_id: existCheck.watched_id,
-          },
-          data: {
-            count: existCheck.count + 1,
-            interest: WatchSigmoid(existCheck.count + 1),
-          },
-        });
-      }
-    } else {
-      prisma.watched.create({
-        data: {
-          user_userTowatched: {
-            connect: {
-              user_id,
-            },
-          },
-          post_postTowatched: {
-            connect: {
-              post_id,
-            },
-          },
-          interest: WatchSigmoid(1),
-        },
-      });
+    });
+    let arrCount: number = existCheck.length;
+    if (existCheck.length > 99) {
+      arrCount = 99;
     }
+    const Obj = await prisma.watched.create({
+      data: {
+        user_userTowatched: {
+          connect: {
+            user_id,
+          },
+        },
+        post_postTowatched: {
+          connect: {
+            post_id,
+          },
+        },
+        count: arrCount + 1,
+        interest: WatchSigmoid(arrCount + 1),
+      },
+    });
+    PostInterconnection(user_id, post_id, Obj);
   } catch (e) {
     console.log(e);
   }
