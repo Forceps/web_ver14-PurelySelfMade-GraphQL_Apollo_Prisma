@@ -1,5 +1,10 @@
 import { PrismaClient } from "@prisma/client";
-import { GeoMeanRound } from "../AbyssLib/formula";
+import {
+  GeoMeanRound,
+  relevanceSigmoid,
+  relevanceSigmoidInverse,
+  IntMemorySize,
+} from "../AbyssLib/formula";
 
 const prisma = new PrismaClient();
 
@@ -43,8 +48,11 @@ export const UserInterconnection = async (
           user_relevance_id: exiCheck.user_relevance_id,
         },
         data: {
-          degree:
-            exiCheck.degree + GeoMeanRound(old[i].interest, latest.interest),
+          degree: relevanceSigmoid(
+            (relevanceSigmoidInverse(exiCheck.degree) +
+              GeoMeanRound(old[i].interest, latest.interest)) /
+              IntMemorySize
+          ),
         },
       });
     } else {
@@ -60,7 +68,9 @@ export const UserInterconnection = async (
               user_id: old[i].user,
             },
           },
-          degree: GeoMeanRound(old[i].interest, latest.interest),
+          degree: relevanceSigmoid(
+            GeoMeanRound(old[i].interest, latest.interest) / IntMemorySize
+          ),
         },
       });
     }

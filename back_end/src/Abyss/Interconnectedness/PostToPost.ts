@@ -1,5 +1,11 @@
 import { PrismaClient } from "@prisma/client";
-import { GeoMeanRound, interestFade } from "../AbyssLib/formula";
+import {
+  GeoMeanRound,
+  interestFade,
+  relevanceSigmoid,
+  relevanceSigmoidInverse,
+  IntMemorySize,
+} from "../AbyssLib/formula";
 
 const prisma = new PrismaClient();
 
@@ -43,9 +49,11 @@ export const PostInterconnection = async (
           post_relevance_id: exiCheck.post_relevance_id,
         },
         data: {
-          degree:
-            exiCheck.degree +
-            GeoMeanRound(interestFade(old[i].interest, i), latest.interest),
+          degree: relevanceSigmoid(
+            (relevanceSigmoidInverse(exiCheck.degree) +
+              GeoMeanRound(interestFade(old[i].interest, i), latest.interest)) /
+              IntMemorySize
+          ),
         },
       });
     } else {
@@ -61,9 +69,9 @@ export const PostInterconnection = async (
               post_id: old[i].post,
             },
           },
-          degree: GeoMeanRound(
-            interestFade(old[i].interest, i),
-            latest.interest
+          degree: relevanceSigmoid(
+            GeoMeanRound(interestFade(old[i].interest, i), latest.interest) /
+              IntMemorySize
           ),
         },
       });
