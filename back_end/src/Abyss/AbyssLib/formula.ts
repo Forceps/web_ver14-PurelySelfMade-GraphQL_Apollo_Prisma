@@ -3,7 +3,7 @@ export const WatchSigmoid = (count: number) => {
   return Math.round(result);
 };
 
-export const roundedGeometricMean = (d1: number, d2: number) => {
+export const GeoMeanRound = (d1: number, d2: number) => {
   const result: number = Math.sqrt(d1 * d2);
   return Math.round(result);
 };

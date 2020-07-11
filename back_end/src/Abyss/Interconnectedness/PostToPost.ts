@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { roundedGeometricMean, interestFade } from "../AbyssLib/formula";
+import { GeoMeanRound, interestFade } from "../AbyssLib/formula";
 
 const prisma = new PrismaClient();
 
@@ -45,10 +45,7 @@ export const PostInterconnection = async (
         data: {
           degree:
             exiCheck.degree +
-            roundedGeometricMean(
-              interestFade(old[i].interest, i),
-              latest.interest
-            ),
+            GeoMeanRound(interestFade(old[i].interest, i), latest.interest),
         },
       });
     } else {
@@ -64,7 +61,7 @@ export const PostInterconnection = async (
               post_id: old[i].post,
             },
           },
-          degree: roundedGeometricMean(
+          degree: GeoMeanRound(
             interestFade(old[i].interest, i),
             latest.interest
           ),
