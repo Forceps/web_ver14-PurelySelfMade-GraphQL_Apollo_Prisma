@@ -1,11 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import {
-  GeoMeanRound,
   interestFade,
   relevanceSigmoid,
   relevanceSigmoidInverse,
   IntMemorySize,
 } from "../AbyssLib/formula";
+import { GeoMeanRound } from "../../GlobalLib/recycleFunction/Arithmetic";
 
 const prisma = new PrismaClient();
 
@@ -18,6 +18,10 @@ export const PostInterconnection = async (
     where: {
       user: user_id,
       deprecated: 0,
+    },
+    select: {
+      post: true,
+      interest: true,
     },
     orderBy: {
       watched_id: "desc",
@@ -41,19 +45,30 @@ export const PostInterconnection = async (
       },
       select: {
         post_relevance_id: true,
+        degree: true,
       },
     })[0];
     if (exiCheck) {
+      if (exiCheck.degree > 64999) {
+      }
       prisma.post_relevance.update({
         where: {
           post_relevance_id: exiCheck.post_relevance_id,
         },
         data: {
-          degree: relevanceSigmoid(
-            (relevanceSigmoidInverse(exiCheck.degree) +
-              GeoMeanRound(interestFade(old[i].interest, i), latest.interest)) /
-              IntMemorySize
-          ),
+          degree:
+            exiCheck.degree > 64999
+              ? 65000
+              : relevanceSigmoid(
+                  (relevanceSigmoidInverse(exiCheck.degree, "post") *
+                    IntMemorySize +
+                    GeoMeanRound(
+                      interestFade(old[i].interest, i),
+                      latest.interest
+                    )) /
+                    IntMemorySize,
+                  "post"
+                ),
         },
       });
     } else {
@@ -71,7 +86,8 @@ export const PostInterconnection = async (
           },
           degree: relevanceSigmoid(
             GeoMeanRound(interestFade(old[i].interest, i), latest.interest) /
-              IntMemorySize
+              IntMemorySize,
+            "post"
           ),
         },
       });
@@ -80,10 +96,5 @@ export const PostInterconnection = async (
 };
 
 interface Latest {
-  watched_id: number;
-  count: number;
   interest: number;
-  deprecated: number;
-  post: number;
-  user: number;
 }

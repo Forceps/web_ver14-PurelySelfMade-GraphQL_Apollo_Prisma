@@ -12,6 +12,9 @@ export const watchingLoging = async (user_id: number, post_id: number) => {
         post: post_id,
         deprecated: 0,
       },
+      select: {
+        watched_id: true,
+      },
     });
     let arrCount: number = existCheck.length;
     if (existCheck.length > 99) {
@@ -31,6 +34,9 @@ export const watchingLoging = async (user_id: number, post_id: number) => {
         },
         count: arrCount + 1,
         interest: WatchSigmoid(arrCount + 1),
+      },
+      select: {
+        interest: true,
       },
     });
     PostInterconnection(user_id, post_id, Obj);

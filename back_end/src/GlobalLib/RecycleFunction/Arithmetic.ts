@@ -13,3 +13,8 @@ export const byteUnitConversion = (byte: number): string => {
     return `${(byte / 1125899906842624).toFixed(2)} PB`;
   }
 };
+
+export const GeoMeanRound = (d1: number, d2: number): number => {
+  const result: number = Math.sqrt(d1 * d2);
+  return Math.round(result);
+};

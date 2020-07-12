@@ -1,10 +1,10 @@
 import { PrismaClient } from "@prisma/client";
 import {
-  GeoMeanRound,
   relevanceSigmoid,
   relevanceSigmoidInverse,
   IntMemorySize,
 } from "../AbyssLib/formula";
+import { GeoMeanRound } from "../../GlobalLib/recycleFunction/Arithmetic";
 
 const prisma = new PrismaClient();
 
@@ -17,6 +17,10 @@ export const UserInterconnection = async (
     where: {
       post: post_id,
       deprecated: 0,
+    },
+    select: {
+      user: true,
+      interest: true,
     },
     orderBy: {
       watched_id: "desc",
@@ -40,6 +44,7 @@ export const UserInterconnection = async (
       },
       select: {
         user_relevance_id: true,
+        degree: true,
       },
     })[0];
     if (exiCheck) {
@@ -48,11 +53,16 @@ export const UserInterconnection = async (
           user_relevance_id: exiCheck.user_relevance_id,
         },
         data: {
-          degree: relevanceSigmoid(
-            (relevanceSigmoidInverse(exiCheck.degree) +
-              GeoMeanRound(old[i].interest, latest.interest)) /
-              IntMemorySize
-          ),
+          degree:
+            exiCheck.degree > 64999
+              ? 65000
+              : relevanceSigmoid(
+                  (relevanceSigmoidInverse(exiCheck.degree, "user") *
+                    IntMemorySize +
+                    GeoMeanRound(old[i].interest, latest.interest)) /
+                    IntMemorySize,
+                  "user"
+                ),
         },
       });
     } else {
@@ -69,7 +79,8 @@ export const UserInterconnection = async (
             },
           },
           degree: relevanceSigmoid(
-            GeoMeanRound(old[i].interest, latest.interest) / IntMemorySize
+            GeoMeanRound(old[i].interest, latest.interest) / IntMemorySize,
+            "user"
           ),
         },
       });
@@ -78,10 +89,5 @@ export const UserInterconnection = async (
 };
 
 interface Latest {
-  watched_id: number;
-  count: number;
   interest: number;
-  deprecated: number;
-  post: number;
-  user: number;
 }
