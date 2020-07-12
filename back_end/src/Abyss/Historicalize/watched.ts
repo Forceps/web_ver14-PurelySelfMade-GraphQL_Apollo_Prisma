@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { WatchSigmoid } from "../AbyssLib/formula";
+import { interestSigmoid } from "../AbyssLib/formula";
 import { PostInterconnection } from "../Interconnectedness/PostToPost";
+import { UserInterconnection } from "../Interconnectedness/UserToUser";
 
 const prisma = new PrismaClient();
 
@@ -33,13 +34,14 @@ export const watchingLoging = async (user_id: number, post_id: number) => {
           },
         },
         count: arrCount + 1,
-        interest: WatchSigmoid(arrCount + 1),
+        interest: interestSigmoid(arrCount + 1),
       },
       select: {
         interest: true,
       },
     });
-    PostInterconnection(user_id, post_id, Obj);
+    await PostInterconnection(user_id, post_id, Obj);
+    await UserInterconnection(user_id, post_id, Obj);
   } catch (e) {
     console.log(e);
   }

@@ -14,7 +14,7 @@ export const byteUnitConversion = (byte: number): string => {
   }
 };
 
-export const GeoMeanRound = (d1: number, d2: number): number => {
+export const GeoMean = (d1: number, d2: number): number => {
   const result: number = Math.sqrt(d1 * d2);
-  return Math.round(result);
+  return result;
 };

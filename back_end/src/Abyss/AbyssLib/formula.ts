@@ -1,12 +1,19 @@
 export const IntMemorySize = 65000;
 
-export const WatchSigmoid = (count: number): number => {
-  const result: number = IntMemorySize / (1 + Math.exp(-(count / 1.8) + 1.8));
-  return Math.round(result);
+export const interestSigmoid = (count: number): number => {
+  let result = 0;
+  if (count > 19) {
+    result = IntMemorySize;
+  } else {
+    const reform: number =
+      IntMemorySize / (1 + Math.exp((-Math.log(11.5) * (count - 4)) / 3));
+    result = Math.round(reform);
+  }
+  return result;
 };
 
-const halfReachP: number = 300;
-const halfReachU: number = 80;
+const halfReachP: number = 30;
+const halfReachU: number = 33;
 const halfReach = (select: string): number => {
   if (select === "post") {
     return halfReachP;
@@ -25,16 +32,21 @@ export const relevanceSigmoidInverse = (y: number, select: string): number => {
   const CurveInverse =
     halfReach(select) +
     (5 * Math.log(IntMemorySize / y - 1)) / (-2 * Math.log(2));
-  const result = Math.round(CurveInverse);
+  const result = CurveInverse;
   return result;
 };
 
 export const interestFade = (obj: number, HowMuchOld: number): number => {
-  const coefficient = 33 / (HowMuchOld + 9) - 2.4;
-  if (0 > coefficient && coefficient > 1) {
-    console.log("Out of range numbers came out by formula!!!");
-    throw Error("error occured in 'formula.ts'!!!");
+  let coefficient: number = 1;
+  if (HowMuchOld === 1) {
+    coefficient = 0.9;
+  } else if (HowMuchOld === 2) {
+    coefficient = 0.6;
+  } else if (HowMuchOld === 3) {
+    coefficient = 0.35;
+  } else {
+    coefficient = 0;
   }
-  const result = Math.round(obj * coefficient);
+  const result = obj * coefficient;
   return result;
 };

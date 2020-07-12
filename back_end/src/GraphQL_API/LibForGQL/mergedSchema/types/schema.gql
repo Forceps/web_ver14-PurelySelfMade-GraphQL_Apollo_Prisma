@@ -1,227 +1,3 @@
-type Subscription {
-  chatListening: Chat
-}
-
-type Mutation {
-  commenting(chat_room_id: Int!, comment: String!): Boolean!
-  createRoom(name: String!): Boolean!
-  addComment(post_id: Int!, comment: String!): Boolean!
-  deleteDir(directory_id: Int!): Boolean!
-  makeDir(name: String!, parent_id: Int!): Boolean!
-  updateDir(directory_id: Int!, name: String!, parent_id: Int!): Boolean!
-  makeGroup(name: String!, purpose: String!, participation_system: String!, withdrawal_system: String!, identiti_back_img: String, identiti_profile_img: String): Boolean!
-  imgDelete(image_id: Int!): Boolean!
-  imgUpdate(image_id: Int!, caption: String!, directory_id: Int!): Boolean!
-  imgUpload(address: [String!]!, caption: [String!]!, volume: [Int!]!, directory_id: [Int!]!, type: [String]): Boolean!
-  musicDelete(music_id: Int!): Boolean!
-  musicUpdate(music_id: Int!, caption: String!, directory_id: Int!): Boolean!
-  musicUpload(address: [String!]!, caption: [String!]!, volume: [Int!]!, directory_id: [Int!]!, type: [String]): Boolean!
-  videoDelete(video_id: Int!): Boolean!
-  videoUpdate(video_id: Int!, caption: String!, directory_id: Int!): Boolean!
-  videoUpload(address: [String!]!, caption: [String!]!, volume: [Int!]!, directory_id: [Int!]!, type: [String], thumbnail: [String]): Boolean!
-  createPost(caption: String!, content: String, directory_id: Int!): Boolean!
-  deletePost(post_id: Int!): Boolean!
-  editPost(post_id: Int!, caption: String!, content: String!, directory_id: Int!): Boolean!
-  likePost(post_id: Int!): Boolean!
-  viewPost(post_id: Int!): Boolean!
-  addFreind(respondent: Int!): Boolean!
-  addLike(post_id: Int!): Boolean!
-  deleteLike(liked_id: Int!): Boolean!
-  addSubscriber(author: Int!): Boolean!
-  watched(post_id: Int!): Boolean!
-  createAccount(username: String!, email: String!, password: String!): Boolean!
-  loginUser(email: String!, password: String!): String!
-  setAvatar(avatar: String!): Boolean!
-  setBackImg(back_img: String!): Boolean!
-}
-
-type Query {
-  seeRooms(skip: Int, take: Int): [Chat_room]
-  seeComments(post_id: Int!): [Comment]
-  findDirById(directory_id: Int!): Directory
-  findMyArchiveDir(directory_id: Int!): Directory
-  findMyPostDir(directory_id: Int!): Directory
-  whosePostDir(user_id: Int!): Directory
-  groupsDir(directory_id: Int!): Directory
-  groupRootDir(group_id: Int!): Directory
-  groupDetail(group_id: Int!): Group
-  seeGroups: [Group]
-  imgGet(skip: Int, take: Int): [Image]
-  musicGet(skip: Int, take: Int): [Music]!
-  videoGet(skip: Int, take: Int): [Video]
-  searchPost(keyWord: String!, user_id: Int): [Post]
-  seePost(post_id: Int!): Post
-  seePosts: [Post]
-  seeWhosePosts(user: Int!): [Post]!
-  seeFriends(proposer: Int!): [User]
-  amISubscribeOne(author: Int!): [Subscriber]
-  me: User
-  searchUser(keyWord: String!): [User]
-  seeUser(user_id: Int!): User
-}
-
-type Comment {
-  comment_id: ID!
-  comment: String!
-  day: Int!
-  hour: Int!
-  likes: Int!
-  minute: Int!
-  month: Int!
-  post: Int!
-  user: Int!
-  year: Int!
-  converted: Boolean!
-  post_commentTopost: Post!
-  user_commentTouser: User!
-}
-
-type Directory {
-  directory_id: ID!
-  group: Int
-  name: String!
-  parent_id: Int
-  root: Boolean!
-  user: Int
-  group_directoryTogroup: Group
-  directory: Directory
-  user_directoryTouser: User
-  post: [Post]
-  other_directory: [Directory]
-  image: [Image]
-  music: [Music]
-  video: [Video]
-}
-
-type Friend {
-  friend_id: ID!
-  proposer: Int!
-  respondent: Int!
-  user_friend_proposerTouser: User!
-  user_friend_respondentTouser: User!
-}
-
-type Image {
-  image_id: ID!
-  caption: String!
-  address: String!
-  type: String
-  volume: Int!
-  directory: Int!
-  directory_directoryToimage: Directory!
-}
-
-type Liked {
-  liked_id: ID!
-  post: Int!
-  user: Int!
-  post_likedTopost: Post!
-  user_likedTouser: User!
-}
-
-type Music {
-  music_id: ID!
-  caption: String!
-  address: String!
-  directory: Int!
-  type: String
-  volume: Int!
-  directory_directoryTomusic: Directory!
-}
-
-type Post {
-  post_id: ID!
-  caption: String!
-  content: String
-  user: Int!
-  directory: Int!
-  year: Int!
-  month: Int!
-  day: Int!
-  hour: Int!
-  minute: Int!
-  second: Int!
-  views: Int!
-  likes: Int!
-  directory_directoryTopost: Directory!
-  user_postTouser: User!
-  comment: [Comment]!
-  liked: [Liked]!
-  watched: [Watched]!
-}
-
-type Subscriber {
-  subscriber_id: ID!
-  reader: Int!
-  author: Int!
-  user_subscriber_authorTouser: User!
-  user_subscriber_readerTouser: User!
-}
-
-type User {
-  user_id: ID!
-  username: String!
-  email: String!
-  password: String!
-  avatar: String
-  back_img: String
-  phone_number: Int
-  comment: [Comment]
-  directory: [Directory]!
-  friend_friend_proposerTouser: [Friend]
-  friend_friend_respondentTouser: [Friend]
-  group: [Group]
-  liked: [Liked]
-  post: [Post]
-  subscriber_subscriber_authorTouser: [Subscriber]
-  subscriber_subscriber_readerTouser: [Subscriber]
-  chat_member: [Chat_member]
-  chat: [Chat]
-  watched: [Watched]
-}
-
-type Video {
-  video_id: ID!
-  address: String!
-  caption: String!
-  directory: Int!
-  type: String
-  volume: Int!
-  thumbnail: String
-  directory_directoryTovideo: Directory!
-}
-
-type Watched {
-  watched_id: ID!
-  post: Int!
-  user: Int!
-  post_postTowatched: Post!
-  user_userTowatched: User!
-}
-
-type Group {
-  group_id: ID!
-  name: String!
-  purpose: String!
-  administrator: Int!
-  identiti_back_img: String
-  identiti_profile_img: String
-  participation_system: Int!
-  withdrawal_system: Int!
-  user: User!
-  group_system_group_participation_systemTogroup_system: Group_system!
-  group_system_group_withdrawal_systemTogroup_system: Group_system!
-  directory: [Directory]!
-}
-
-type Group_system {
-  group_system_id: ID!
-  category: String!
-  name: String!
-  group_group_participation_systemTogroup_system: [Group]!
-  group_group_withdrawal_systemTogroup_system: [Group]!
-}
-
 type Chat {
   chat_id: ID!
   user: Int!
@@ -250,4 +26,283 @@ type Chat_member {
   user: Int!
   chat_room: Chat_room!
   user_chat_memberTouser: User!
+}
+
+type Directory {
+  directory_id: ID!
+  group: Int
+  name: String!
+  parent_id: Int
+  root: Boolean!
+  user: Int
+  group_directoryTogroup: Group
+  directory: Directory
+  user_directoryTouser: User
+  post: [Post]
+  other_directory: [Directory]
+  image: [Image]
+  music: [Music]
+  video: [Video]
+}
+
+type Group {
+  group_id: ID!
+  name: String!
+  purpose: String!
+  administrator: Int!
+  identiti_back_img: String
+  identiti_profile_img: String
+  participation_system: Int!
+  withdrawal_system: Int!
+  user: User!
+  group_system_group_participation_systemTogroup_system: Group_system!
+  group_system_group_withdrawal_systemTogroup_system: Group_system!
+  directory: [Directory]!
+}
+
+type Group_system {
+  group_system_id: ID!
+  category: String!
+  name: String!
+  group_group_participation_systemTogroup_system: [Group]!
+  group_group_withdrawal_systemTogroup_system: [Group]!
+}
+
+type Image {
+  image_id: ID!
+  caption: String!
+  address: String!
+  type: String
+  volume: Int!
+  directory: Int!
+  directory_directoryToimage: Directory!
+}
+
+type Music {
+  music_id: ID!
+  caption: String!
+  address: String!
+  directory: Int!
+  type: String
+  volume: Int!
+  directory_directoryTomusic: Directory!
+}
+
+type Video {
+  video_id: ID!
+  address: String!
+  caption: String!
+  directory: Int!
+  type: String
+  volume: Int!
+  thumbnail: String
+  directory_directoryTovideo: Directory!
+}
+
+type Post {
+  post_id: ID!
+  caption: String!
+  content: String
+  user: Int!
+  directory: Int!
+  year: Int!
+  month: Int!
+  day: Int!
+  hour: Int!
+  minute: Int!
+  second: Int!
+  views: Int!
+  likes: Int!
+  directory_directoryTopost: Directory!
+  user_postTouser: User!
+  comment: [Comment]!
+  liked: [Liked]!
+  watched: [Watched]!
+  post_relevance_postTopost_relevance_post1: [Post_relevance]
+  post_relevance_postTopost_relevance_post2: [Post_relevance]
+}
+
+type Comment {
+  comment_id: ID!
+  comment: String!
+  day: Int!
+  hour: Int!
+  likes: Int!
+  minute: Int!
+  month: Int!
+  post: Int!
+  user: Int!
+  year: Int!
+  converted: Boolean!
+  post_commentTopost: Post!
+  user_commentTouser: User!
+}
+
+type Liked {
+  liked_id: ID!
+  post: Int!
+  user: Int!
+  post_likedTopost: Post!
+  user_likedTouser: User!
+}
+
+type Watched {
+  watched_id: ID!
+  post: Int!
+  user: Int!
+  interest: Int!
+  deprecated: Int!
+  post_postTowatched: Post!
+  user_userTowatched: User!
+}
+
+type Post_relevance {
+  post_relevance_id: ID!
+  post1: Int!
+  post2: Int!
+  degree: Int!
+  post_postTopost_relevance_post1: Post!
+  post_postTopost_relevance_post2: Post!
+}
+
+type User {
+  user_id: ID!
+  username: String!
+  email: String!
+  password: String!
+  avatar: String
+  back_img: String
+  phone_number: Int
+  comment: [Comment]
+  directory: [Directory]!
+  friend_friend_proposerTouser: [Friend]
+  friend_friend_respondentTouser: [Friend]
+  group: [Group]
+  liked: [Liked]
+  post: [Post]
+  subscriber_subscriber_authorTouser: [Subscriber]
+  subscriber_subscriber_readerTouser: [Subscriber]
+  chat_member: [Chat_member]
+  chat: [Chat]
+  watched: [Watched]
+  notification: [Notification]
+  user_relevance_userTouser_relevance_user1: [User_relevance]
+  user_relevance_userTouser_relevance_user2: [User_relevance]
+}
+
+type Notification {
+  notification_id: ID!
+  title: String!
+  content: String!
+  user: Int!
+  sender: String!
+  year: Int!
+  month: Int!
+  day: Int!
+  hour: Int!
+  minute: Int!
+  second: Int!
+  user_notificationTouser: User!
+}
+
+type Friend {
+  friend_id: ID!
+  proposer: Int!
+  respondent: Int!
+  consent: Boolean!
+  user_friend_proposerTouser: User!
+  user_friend_respondentTouser: User!
+}
+
+type Subscriber {
+  subscriber_id: ID!
+  reader: Int!
+  author: Int!
+  user_subscriber_authorTouser: User!
+  user_subscriber_readerTouser: User!
+}
+
+type User_relevancy {
+  user_relevancy_id: ID!
+  user1: Int!
+  user2: Int!
+  degree: Int!
+  user_userTouser_relevancy_user1: User!
+  user_userTouser_relevancy_user2: User!
+}
+
+type User_relevance {
+  user_relevance_id: ID!
+  user1: Int!
+  user2: Int!
+  degree: Int!
+  user_userTouser_relevance_user1: User!
+  user_userTouser_relevance_user2: User!
+}
+
+type Query {
+  chatDetail(chat_room_id: Int!, skip: Int, take: Int): [Chat]
+  seeRoom(chat_room_id: Int!): Chat_room
+  seeRooms(skip: Int, take: Int): [Chat_room]
+  talkComrades(skip: Int, take: Int): [User]
+  seeComments(post_id: Int!): [Comment]
+  findDirById(directory_id: Int!): Directory
+  findMyArchiveDir(directory_id: Int!): Directory
+  findMyPostDir(directory_id: Int!): Directory
+  whosePostDir(user_id: Int!): Directory
+  groupsDir(directory_id: Int!): Directory
+  groupRootDir(group_id: Int!): Directory
+  groupDetail(group_id: Int!): Group
+  seeGroups: [Group]
+  imgGet(skip: Int, take: Int): [Image]
+  musicGet(skip: Int, take: Int): [Music]!
+  videoGet(skip: Int, take: Int): [Video]
+  notiDetail(notification_id: Int!): Notification
+  seeNoti(skip: Int, take: Int): [Notification]
+  searchPost(keyWord: String!, user_id: Int): [Post]
+  seePost(post_id: Int!): Post
+  seePosts: [Post]
+  seeWhosePosts(user: Int!): [Post]!
+  seeFriends(user_id: Int): [User]
+  amISubscribeOne(author: Int!): [Subscriber]
+  me: User
+  searchUser(keyWord: String!): [User]
+  seeUser(user_id: Int!): User
+}
+
+type Subscription {
+  chatListening(chat_room_id: Int!): Chat
+}
+
+type Mutation {
+  commenting(chat_room_id: Int!, comment: String!): Boolean!
+  createRoom(name: String!, users: [Int!]!): Int!
+  addComment(post_id: Int!, comment: String!): Boolean!
+  deleteDir(directory_id: Int!): Boolean!
+  makeDir(name: String!, parent_id: Int!): Boolean!
+  updateDir(directory_id: Int!, name: String!, parent_id: Int!): Boolean!
+  makeGroup(name: String!, purpose: String!, participation_system: String!, withdrawal_system: String!, identiti_back_img: String, identiti_profile_img: String): Boolean!
+  imgDelete(image_id: Int!): Boolean!
+  imgUpdate(image_id: Int!, caption: String!, directory_id: Int!): Boolean!
+  imgUpload(address: [String!]!, caption: [String!]!, volume: [Int!]!, directory_id: [Int!]!, type: [String]): Boolean!
+  musicDelete(music_id: Int!): Boolean!
+  musicUpdate(music_id: Int!, caption: String!, directory_id: Int!): Boolean!
+  musicUpload(address: [String!]!, caption: [String!]!, volume: [Int!]!, directory_id: [Int!]!, type: [String]): Boolean!
+  videoDelete(video_id: Int!): Boolean!
+  videoUpdate(video_id: Int!, caption: String!, directory_id: Int!): Boolean!
+  videoUpload(address: [String!]!, caption: [String!]!, volume: [Int!]!, directory_id: [Int!]!, type: [String], thumbnail: [String]): Boolean!
+  createPost(caption: String!, content: String, directory_id: Int!): Boolean!
+  deletePost(post_id: Int!): Boolean!
+  editPost(post_id: Int!, caption: String!, content: String!, directory_id: Int!): Boolean!
+  likePost(post_id: Int!): Boolean!
+  viewPost(post_id: Int!): Boolean!
+  addFreind(respondent: Int!): Boolean!
+  addLike(post_id: Int!): Boolean!
+  deleteLike(liked_id: Int!): Boolean!
+  addSubscriber(author: Int!): Boolean!
+  watched(post_id: Int!): Boolean!
+  createAccount(username: String!, email: String!, password: String!): Boolean!
+  loginUser(email: String!, password: String!): String!
+  setAvatar(avatar: String!): Boolean!
+  setBackImg(back_img: String!): Boolean!
 }
