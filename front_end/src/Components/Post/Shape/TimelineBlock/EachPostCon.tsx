@@ -24,8 +24,6 @@ export default ({ post, zIndex = 0 }: EachPostConProps) => {
       if (text) {
         if (text.length > 200) {
           text = text.substring(0, 200) + " ......View more";
-        } else {
-          text = text + " ......View more";
         }
         setTexts(text);
       }

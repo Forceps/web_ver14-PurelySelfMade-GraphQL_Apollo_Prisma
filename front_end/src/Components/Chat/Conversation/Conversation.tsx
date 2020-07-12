@@ -67,6 +67,8 @@ export default ({
       <Scr>
         {loading || MEloading ? (
           <Loading />
+        ) : Accumulate.length === 0 || !MEdata ? (
+          <div />
         ) : (
           Accumulate.map((l: any) =>
             S_N_to_N(l.user) === S_N_to_N(MEdata?.user_id) ? (
