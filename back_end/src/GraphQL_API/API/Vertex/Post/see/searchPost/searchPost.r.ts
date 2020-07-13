@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { SearchPostQueryArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
+import { SearchPostQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
 export default {

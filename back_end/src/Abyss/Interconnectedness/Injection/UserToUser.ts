@@ -3,8 +3,8 @@ import {
   relevanceSigmoid,
   relevanceSigmoidInverse,
   IntMemorySize,
-} from "../AbyssLib/formula";
-import { GeoMean } from "../../GlobalLib/recycleFunction/Arithmetic";
+} from "../../AbyssLib/formula";
+import { GeoMean } from "../../../GlobalLib/recycleFunction/Arithmetic";
 
 const prisma = new PrismaClient();
 

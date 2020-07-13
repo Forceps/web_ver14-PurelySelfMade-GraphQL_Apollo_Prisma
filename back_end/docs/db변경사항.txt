@@ -310,3 +310,6 @@ ALTER TABLE `square_post`.`post_relevance`
 CHANGE COLUMN `post_relevance_id` `post_relevance_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ;
 ALTER TABLE `square_post`.`user_relevance` 
 CHANGE COLUMN `user_relevance_id` `user_relevance_id` BIGINT UNSIGNED NOT NULL AUTO_INCREMENT ;
+ALTER TABLE `square_post`.`user` 
+ADD COLUMN `creator` TINYINT UNSIGNED NOT NULL DEFAULT 0 AFTER `password`,
+CHANGE COLUMN `phone_number` `phone_number` INT UNSIGNED NULL DEFAULT NULL AFTER `creator`;
