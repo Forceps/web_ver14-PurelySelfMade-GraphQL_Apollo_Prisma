@@ -1,10 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import WH100per, {
-  W100per,
   WH100perInput,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import WritePostCon from "../../../Components/Post/WritePost/WritePostCon";
+import RecommendPostCon from "./RecommendBlock/RecommendPost/RecommendPostCon";
+import RecommendAuthorCon from "./RecommendBlock/RecommendAuthor/RecommendAuthorCon";
 
 const Wrapper = styled.div`
   display: flex;
@@ -55,25 +56,6 @@ const Post = styled.div`
   }
   cursor: pointer;
 `;
-const RecommendBlock = styled.div`
-  display: grid;
-  grid-template-rows: 21px 1fr;
-  margin: 0 0 10px 10px;
-  width: 250px;
-`;
-const RecommendUser = styled(RecommendBlock)`
-  height: 300px;
-`;
-const RecommendPost = styled(RecommendBlock)`
-  height: 340px;
-`;
-const RSubSbj = styled(W100per)`
-  display: grid;
-  justify-content: right;
-  padding: 0 5px 0 0;
-  font-size: 0.85rem;
-  border-bottom: 1px solid #b2bec3;
-`;
 const Icon = styled.i`
   margin: 0 0 0 -8px;
 `;
@@ -83,6 +65,7 @@ export default ({
   Search,
   createPost,
   setCreatePost,
+  user_id,
 }: RightPreProps) => {
   return (
     <Wrapper>
@@ -114,12 +97,8 @@ export default ({
         <Icon className="icon-plus" /> Post
       </Post>
       <Sbj>Recommend</Sbj>
-      <RecommendUser>
-        <RSubSbj>Author</RSubSbj>
-      </RecommendUser>
-      <RecommendPost>
-        <RSubSbj>Post</RSubSbj>
-      </RecommendPost>
+      <RecommendAuthorCon />
+      <RecommendPostCon user_id={user_id} />
       {createPost && <WritePostCon create_post_toggle={setCreatePost} />}
     </Wrapper>
   );
@@ -130,4 +109,5 @@ interface RightPreProps {
   Search: any;
   createPost: boolean;
   setCreatePost: any;
+  user_id: number;
 }

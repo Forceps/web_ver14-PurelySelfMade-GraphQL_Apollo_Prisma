@@ -4,14 +4,18 @@ export const historyState_defaults = {
   history: [],
 };
 
-export const LOGIN_CHECK = gql`
+export const HISTORY_READ = gql`
   {
-    isLoggedIn @client
+    history @client
   }
 `;
-
-export const LOCAL_LOG_OUT = gql`
-  mutation logUserOut {
-    logUserOut @client
+export const HISTORY_ADD = gql`
+  mutation historyAdd {
+    historyAdd @client
+  }
+`;
+export const HISTORY_DELETE_ALL = gql`
+  mutation historyDeleteAll {
+    historyDeleteAll @client
   }
 `;

@@ -4,12 +4,18 @@ import { useTargetsShown } from "../../../GlobalLib/Context/PostContext/TargetsS
 import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useSearchUser } from "../../../GlobalLib/Context/UserContext/SearchUser";
+import { useParams } from "react-router-dom";
+import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 
 export default ({ setSeeMode }: RightConProps) => {
+  const { user_id: user_id_extract }: any = useParams();
+  const user_id = S_N_to_N(user_id_extract);
   const TSP = useTargetsShown();
   const SU = useSearchUser();
   const SearchKeyWord = useInput("");
+
   const [createPost, setCreatePost] = useState(false);
+
   const Search = async (e: any) => {
     spaped(e);
     if (SearchKeyWord.value) {
@@ -23,12 +29,14 @@ export default ({ setSeeMode }: RightConProps) => {
       TSP.setPostTargetMode("All");
     }
   };
+
   return (
     <RightPre
       SearchKeyWord={SearchKeyWord}
       Search={Search}
       setCreatePost={setCreatePost}
       createPost={createPost}
+      user_id={user_id}
     />
   );
 };

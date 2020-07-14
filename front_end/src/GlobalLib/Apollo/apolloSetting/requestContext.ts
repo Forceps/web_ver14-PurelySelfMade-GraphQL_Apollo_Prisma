@@ -1,10 +1,10 @@
 import { ApolloLink, Observable, Operation } from "apollo-link";
-import { jwt } from "./BackendWay";
+import { jwt_header } from "./BackendWay";
 
 const request = async (operation: any) => {
   operation.setContext({
     headers: {
-      ...jwt,
+      ...jwt_header,
     },
   });
 };

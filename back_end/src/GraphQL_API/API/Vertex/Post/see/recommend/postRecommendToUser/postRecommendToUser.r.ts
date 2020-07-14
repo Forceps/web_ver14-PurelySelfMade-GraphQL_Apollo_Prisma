@@ -1,14 +1,15 @@
-import { PrismaClient } from "@prisma/client";
-const prisma = new PrismaClient();
+import stF_result from "../../../../../../../Abyss/Interconnectedness/Extraction/stF_result";
 
 export default {
   Query: {
-    postRecommendToUser: async () => {
+    postRecommendToUser: async (
+      _: void,
+      { user_id }: { user_id: number },
+      { req, isAuthenticated }: any
+    ) => {
+      isAuthenticated(req);
       try {
-        const result = await prisma.post.findMany({
-          include: { user_postTouser: true, directory_directoryTopost: true },
-          orderBy: { post_id: "desc" },
-        });
+        const result = await stF_result(user_id);
         return result;
       } catch (e) {
         console.log(e);

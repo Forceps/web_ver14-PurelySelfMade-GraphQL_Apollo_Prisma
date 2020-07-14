@@ -304,3 +304,13 @@ CHANGE COLUMN `user_relevance_id` `user_relevance_id` BIGINT UNSIGNED NOT NULL A
 ALTER TABLE `square_post`.`user` 
 ADD COLUMN `creator` TINYINT UNSIGNED NOT NULL DEFAULT 0 AFTER `password`,
 CHANGE COLUMN `phone_number` `phone_number` INT UNSIGNED NULL DEFAULT NULL AFTER `creator`;
+
+
+
+
+
+
+
+// 2020 - 7 - 14
+ALTER TABLE `square_post`.`post` 
+ADD COLUMN `face` MEDIUMTEXT NULL AFTER `likes`;

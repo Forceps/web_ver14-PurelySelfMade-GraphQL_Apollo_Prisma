@@ -29,7 +29,7 @@ const server = new GraphQLServer({
 const appOptions: Options = {
   port: PORT,
   subscriptions: {
-    onConnect: async (param) => {
+    onConnect: async (param: any) => {
       const token = param.Authorization.split(" ")[1];
       if (token && token !== "null") {
         const user = await decodeJWT(token);

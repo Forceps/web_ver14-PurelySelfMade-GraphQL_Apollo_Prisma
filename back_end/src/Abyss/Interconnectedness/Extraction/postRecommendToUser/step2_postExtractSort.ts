@@ -39,7 +39,7 @@ export default async (user_id: number) => {
         }
       }
       if (duplicatesFlag) {
-        tempArr = tempArr.concat(postCask[i]);
+        tempArr = tempArr.concat([postCask[i]]);
       }
     }
     postCask = tempArr;

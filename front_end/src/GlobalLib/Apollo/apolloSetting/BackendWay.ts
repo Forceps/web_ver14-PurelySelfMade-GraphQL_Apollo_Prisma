@@ -6,7 +6,7 @@ import { getMainDefinition } from "apollo-utilities";
 const PORT = 4002;
 export const http_BackEnd = `http://127.0.0.1:${PORT}`;
 export const webSoket_BackEnd = `ws://127.0.0.1:${PORT}`;
-export const jwt = {
+export const jwt_header = {
   Authorization: `Bearer ${localStorage.getItem("token")}`,
 };
 const httpLink = new HttpLink({
@@ -15,7 +15,7 @@ const httpLink = new HttpLink({
 const wsLink = new WebSocketLink({
   uri: webSoket_BackEnd,
   options: {
-    connectionParams: jwt,
+    connectionParams: jwt_header,
     reconnect: true,
   },
 });

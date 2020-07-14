@@ -1,9 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import ParallelTilesCon from "./ParallelTiles/ParallelTilesCon";
+import TspPostsCon from "./ParallelTiles/TspPosts/TspPostsCon";
 import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { useSearchUser } from "../../../GlobalLib/Context/UserContext/SearchUser";
 import SearchedUser from "./SearchedUser/SearchedUserCon";
+import RecommendPostsCon from "./ParallelTiles/RecommendPosts/RecommendPostsCon";
+import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
 
 const Wrapper = styled(W100per)`
   display: flex;
@@ -26,6 +28,7 @@ const SmallerTitle = styled(W100per)`
 
 export default ({ SeeMode }: MiddleConProps) => {
   const SU = useSearchUser();
+  const { isLoggedIn } = useLoginCheck();
   return (
     <Wrapper>
       {SeeMode === "Search" && SU.called ? (
@@ -33,13 +36,12 @@ export default ({ SeeMode }: MiddleConProps) => {
           <SmallTitle>Search</SmallTitle>
           <SmallerTitle>User</SmallerTitle>
           <SearchedUser />
-          <SmallerTitle>Post</SmallerTitle>
-          <ParallelTilesCon />
+          <TspPostsCon SeeMode={SeeMode} />
         </>
       ) : (
         <>
-          <SmallTitle>New</SmallTitle>
-          <ParallelTilesCon />
+          {isLoggedIn && <RecommendPostsCon />}
+          <TspPostsCon />
         </>
       )}
     </Wrapper>
