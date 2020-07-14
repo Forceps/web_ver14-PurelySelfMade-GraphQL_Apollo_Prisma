@@ -9,6 +9,7 @@ type LeftControlConProps = {
   ColorPiked: any;
   setColorPiked: any;
   IroColor: any;
+  zIndex: number;
 };
 export default ({
   CaretLocation,
@@ -17,6 +18,7 @@ export default ({
   ColorPiked,
   setColorPiked,
   IroColor,
+  zIndex,
 }: LeftControlConProps) => {
   const [AnchorInputOpen, setAnchorInputOpen] = useState(false);
   const URLText = useInput("");
@@ -43,6 +45,7 @@ export default ({
       setVideoSubMenuOp={setVideoSubMenuOp}
       AudioSubMenuOp={AudioSubMenuOp}
       setAudioSubMenuOp={setAudioSubMenuOp}
+      zIndex={zIndex}
     />
   );
 };

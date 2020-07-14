@@ -5,8 +5,12 @@ import DirAppoint from "./DirSetting/DirAppoint";
 import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import { useDummyState } from "../../../../GlobalLib/Context/Lib/DummyState";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import TitleImgAppointmentCon from "./TitleImgAppointment/TitleImgAppointmentCon";
 
-const ControlsR = styled.div`
+interface ControlsRProps {
+  zIndex: number;
+}
+const ControlsR = styled.div<ControlsRProps>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -15,7 +19,7 @@ const ControlsR = styled.div`
   top: 25px;
   left: 20px;
   width: 200px;
-  z-index: 11;
+  z-index: ${(p) => p.zIndex};
 `;
 const Dmm = styled.div`
   position: relative;
@@ -41,8 +45,9 @@ const RestButnPGap = styled(RestButn)`
 
 type RightControlProps = {
   Exit: any;
+  zIndex: number;
 };
-export default ({ Exit }: RightControlProps) => {
+export default ({ Exit, zIndex }: RightControlProps) => {
   const Pmode = useProfileMode();
   const DC = useDirMode();
   const DS = useDummyState();
@@ -53,7 +58,7 @@ export default ({ Exit }: RightControlProps) => {
   }, [DC]);
   return (
     <Dmm>
-      <ControlsR>
+      <ControlsR zIndex={zIndex}>
         <RestButn>
           <i className="icon-floppy" />
           Temporary Save
@@ -77,6 +82,7 @@ export default ({ Exit }: RightControlProps) => {
           <i className="icon-folder" />
           {DC.DirData?.name}
         </RestButnPGap>
+        <TitleImgAppointmentCon zIndex={zIndex} />
       </ControlsR>
       {DirApOpen && <DirAppoint setDirApOpen={setDirApOpen} />}
     </Dmm>

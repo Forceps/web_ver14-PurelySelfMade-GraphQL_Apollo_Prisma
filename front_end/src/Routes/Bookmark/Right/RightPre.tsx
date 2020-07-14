@@ -99,7 +99,8 @@ export default ({
       <Sbj>Recommend</Sbj>
       <RecommendAuthorCon />
       <RecommendPostCon user_id={user_id} />
-      {createPost && <WritePostCon create_post_toggle={setCreatePost} />}
+      {/* {createPost && <WritePostCon create_post_toggle={setCreatePost} />} */}
+      {true && <WritePostCon create_post_toggle={setCreatePost} />}
     </Wrapper>
   );
 };

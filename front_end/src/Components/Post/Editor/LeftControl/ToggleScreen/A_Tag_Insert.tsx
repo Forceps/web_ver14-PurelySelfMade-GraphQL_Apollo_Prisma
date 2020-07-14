@@ -5,7 +5,10 @@ import { restoreSelection } from "../../EditorLib";
 import { AnchorInsert } from "../LeftControlLib";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
-const Consol = styled.div`
+interface ConsolProps {
+  zIndex: number;
+}
+const Consol = styled.div<ConsolProps>`
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -15,7 +18,7 @@ const Consol = styled.div`
   height: 270px;
   padding: 30px;
   background-color: white;
-  z-index: 24;
+  z-index: ${(p) => p.zIndex};
 `;
 const Text = styled.div`
   display: grid;
@@ -59,21 +62,27 @@ type AnchorURL = {
   setAnchorInputOpen: any;
   URLText: any;
   CaretLocation: any;
+  zIndex: number;
 };
-export default ({ setAnchorInputOpen, URLText, CaretLocation }: AnchorURL) => {
+export default ({
+  setAnchorInputOpen,
+  URLText,
+  CaretLocation,
+  zIndex,
+}: AnchorURL) => {
   useEffect(() => {
     document.getElementById("Anchor_insert_screen")?.focus();
   }, []);
   return (
     <>
       <TemporaryBackground
-        zIndex={20}
+        zIndex={zIndex}
         onClick={(e: any) => {
           spaped(e);
           setAnchorInputOpen(false);
         }}
       />
-      <Consol>
+      <Consol zIndex={zIndex + 1}>
         <Text>URL Link</Text>
         <IURapper>
           <Input

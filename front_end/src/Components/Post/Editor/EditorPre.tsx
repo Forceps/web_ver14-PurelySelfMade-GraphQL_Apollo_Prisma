@@ -5,11 +5,14 @@ import LeftControlCon from "./LeftControl/LeftControlCon";
 import ContentEditor from "./ContentEditor";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
-const Template = styled.div`
+interface TemplateProps {
+  zIndex: number;
+}
+const Template = styled.div<TemplateProps>`
   display: flex;
   flex-direction: column;
   position: fixed;
-  z-index: 11;
+  z-index: ${(p) => p.zIndex};
   top: 7%;
   min-width: 530px;
   max-width: 720px;
@@ -66,10 +69,11 @@ export default ({
   IroColor,
   Mode,
   CaretLocation,
+  zIndex,
 }: EditorPreProps) => {
   console.log(Html);
   return (
-    <Template>
+    <Template zIndex={zIndex}>
       <Header>
         <InputCaption
           placeholder="Caption"
@@ -99,10 +103,11 @@ export default ({
         setColorPiked={setColorPiked}
         IroColor={IroColor}
         CaretLocation={CaretLocation}
+        zIndex={zIndex + 10}
       />
       <DmCon>
         <ContentEditor Html={Html} setHtml={setHtml} />
-        <RightControl Exit={Exit} />
+        <RightControl Exit={Exit} zIndex={zIndex + 10} />
       </DmCon>
     </Template>
   );
@@ -121,6 +126,7 @@ type EditorPreProps = {
   IroColor: any;
   Mode?: any;
   CaretLocation: any;
+  zIndex: number;
 };
 
 //꼭 sanitize-html을 해줄 것

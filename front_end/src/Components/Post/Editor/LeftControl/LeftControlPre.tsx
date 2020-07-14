@@ -6,6 +6,7 @@ import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent
 
 interface ControlsLProp {
   FcOpen: boolean;
+  zIndex: number;
 }
 const ControlsL = styled.div<ControlsLProp>`
   display: flex;
@@ -26,7 +27,7 @@ const ControlsL = styled.div<ControlsLProp>`
   }}
   left: -220px;
   width: 200px;
-  z-index: 11;
+  z-index: ${(p) => p.zIndex};
 `;
 
 export default ({
@@ -46,6 +47,7 @@ export default ({
   setVideoSubMenuOp,
   AudioSubMenuOp,
   setAudioSubMenuOp,
+  zIndex,
 }: LeftControlPreProps) => {
   return (
     <>
@@ -57,6 +59,7 @@ export default ({
             setColorPiked(IroColor.current.color.rgbString);
           }
         }}
+        zIndex={zIndex}
       >
         <BtnCollection
           FcOpen={FcOpen}
@@ -81,6 +84,7 @@ export default ({
         setVideoSubMenuOp={setVideoSubMenuOp}
         AudioSubMenuOp={AudioSubMenuOp}
         setAudioSubMenuOp={setAudioSubMenuOp}
+        zIndex={zIndex + 10}
       />
     </>
   );
@@ -102,4 +106,5 @@ type LeftControlPreProps = {
   setVideoSubMenuOp: any;
   AudioSubMenuOp: boolean;
   setAudioSubMenuOp: any;
+  zIndex: number;
 };

@@ -10,6 +10,7 @@ type EditorConProps = {
   Html: any;
   setHtml: any;
   Mode?: any;
+  zIndex?: number;
 };
 export default ({
   caption,
@@ -17,7 +18,8 @@ export default ({
   Exit,
   Html,
   setHtml,
-  Mode
+  Mode,
+  zIndex = 10,
 }: EditorConProps) => {
   const [FcOpen, setFcOpen] = useState(false);
   const [ColorPiked, setColorPiked] = useState(null);
@@ -51,6 +53,7 @@ export default ({
       IroColor={IroColor}
       Mode={Mode}
       CaretLocation={CaretLocation}
+      zIndex={zIndex}
     />
   );
 };

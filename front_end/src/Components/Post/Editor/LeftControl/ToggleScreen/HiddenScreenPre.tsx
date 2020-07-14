@@ -19,6 +19,7 @@ type HiddenScreenProps = {
   AudioSubMenuOp: boolean;
   setAudioSubMenuOp: any;
   AudioInsert: any;
+  zIndex: number;
 };
 export default ({
   CaretLocation,
@@ -34,6 +35,7 @@ export default ({
   AudioSubMenuOp,
   setAudioSubMenuOp,
   AudioInsert,
+  zIndex,
 }: HiddenScreenProps) => {
   return (
     <>
@@ -42,21 +44,28 @@ export default ({
           setAnchorInputOpen={setAnchorInputOpen}
           URLText={URLText}
           CaretLocation={CaretLocation}
+          zIndex={zIndex}
         />
       )}
       {ImgSubMenuOp && (
-        <ImgInS setImgSubMenuOp={setImgSubMenuOp} ImgInsert={ImgInsert} />
+        <ImgInS
+          setImgSubMenuOp={setImgSubMenuOp}
+          ImgInsert={ImgInsert}
+          zIndex={zIndex}
+        />
       )}
       {VideoSubMenuOp && (
         <VideoInS
           setVideoSubMenuOp={setVideoSubMenuOp}
           VideoInsert={VideoInsert}
+          zIndex={zIndex}
         />
       )}
       {AudioSubMenuOp && (
         <AudioInS
           setAudioSubMenuOp={setAudioSubMenuOp}
           AudioInsert={AudioInsert}
+          zIndex={zIndex}
         />
       )}
     </>
