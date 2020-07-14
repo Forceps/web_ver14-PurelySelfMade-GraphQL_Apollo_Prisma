@@ -50,3 +50,14 @@ export const interestFade = (obj: number, HowMuchOld: number): number => {
   const result = obj * coefficient;
   return result;
 };
+
+export const interestFadeSigmoid = (
+  obj: number,
+  HowMuchOld: number
+): number => {
+  let coefficient: number =
+    1 / (1 + Math.exp((Math.log(9) * (HowMuchOld - 6)) / 2));
+
+  const result = obj * coefficient;
+  return result;
+};

@@ -230,6 +230,7 @@ model subscriber {
 model user {
   avatar                                    String?
   back_img                                  String?
+  creator                                   Int              @default(0)
   email                                     String           @unique
   password                                  String
   phone_number                              Int?

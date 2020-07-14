@@ -295,15 +295,6 @@ ALTER TABLE `square_post`.`post`
 DROP INDEX `search_post` ,
 ADD FULLTEXT INDEX `search_post` (`caption`, `content`) WITH PARSER ngram VISIBLE;
 
-
-
-
-
-
-
-
-// 2020 - 7 - 10
-
 ALTER TABLE `square_post`.`watched` 
 ADD COLUMN `deprecated` TINYINT UNSIGNED NOT NULL DEFAULT 0 AFTER `interest`;
 ALTER TABLE `square_post`.`post_relevance` 
