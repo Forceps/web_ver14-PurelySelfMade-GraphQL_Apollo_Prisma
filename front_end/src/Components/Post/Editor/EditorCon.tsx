@@ -11,6 +11,8 @@ type EditorConProps = {
   setHtml: any;
   Mode?: any;
   zIndex?: number;
+  TitleImg: string;
+  setTitleImg: any;
 };
 export default ({
   caption,
@@ -20,6 +22,8 @@ export default ({
   setHtml,
   Mode,
   zIndex = 10,
+  TitleImg,
+  setTitleImg,
 }: EditorConProps) => {
   const [FcOpen, setFcOpen] = useState(false);
   const [ColorPiked, setColorPiked] = useState(null);
@@ -39,6 +43,7 @@ export default ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(Html);
   return (
     <EditorPre
       caption={caption}
@@ -54,6 +59,8 @@ export default ({
       Mode={Mode}
       CaretLocation={CaretLocation}
       zIndex={zIndex}
+      TitleImg={TitleImg}
+      setTitleImg={setTitleImg}
     />
   );
 };

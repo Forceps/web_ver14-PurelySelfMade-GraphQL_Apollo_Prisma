@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import RightControl from "./RightControl/RightControl";
 import LeftControlCon from "./LeftControl/LeftControlCon";
-import ContentEditor from "./ContentEditor";
+import ContentEditor from "./ContentEditor/ContentEditorCon";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 interface TemplateProps {
@@ -70,8 +70,9 @@ export default ({
   Mode,
   CaretLocation,
   zIndex,
+  TitleImg,
+  setTitleImg,
 }: EditorPreProps) => {
-  console.log(Html);
   return (
     <Template zIndex={zIndex}>
       <Header>
@@ -106,8 +107,17 @@ export default ({
         zIndex={zIndex + 10}
       />
       <DmCon>
-        <ContentEditor Html={Html} setHtml={setHtml} />
-        <RightControl Exit={Exit} zIndex={zIndex + 10} />
+        <ContentEditor
+          Html={Html}
+          setHtml={setHtml}
+          setTitleImg={setTitleImg}
+        />
+        <RightControl
+          Exit={Exit}
+          zIndex={zIndex + 10}
+          TitleImg={TitleImg}
+          setTitleImg={setTitleImg}
+        />
       </DmCon>
     </Template>
   );
@@ -127,6 +137,8 @@ type EditorPreProps = {
   Mode?: any;
   CaretLocation: any;
   zIndex: number;
+  TitleImg: string;
+  setTitleImg: any;
 };
 
 //꼭 sanitize-html을 해줄 것

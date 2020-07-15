@@ -20,6 +20,8 @@ type UpdatePostPreProps = {
   Exit: any;
   Html: any;
   setHtml: any;
+  TitleImg: string;
+  setTitleImg: any;
 };
 export default ({
   caption,
@@ -27,6 +29,8 @@ export default ({
   Exit,
   Html,
   setHtml,
+  TitleImg,
+  setTitleImg,
 }: UpdatePostPreProps) => {
   const UpdateMode = useRef("update");
   return (
@@ -39,6 +43,8 @@ export default ({
         Html={Html}
         setHtml={setHtml}
         Mode={UpdateMode}
+        TitleImg={TitleImg}
+        setTitleImg={setTitleImg}
       />
     </Wrapper>
   );

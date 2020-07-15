@@ -259,6 +259,8 @@ type Query {
   videoGet(skip: Int, take: Int): [Video]
   notiDetail(notification_id: Int!): Notification
   seeNoti(skip: Int, take: Int): [Notification]
+  postRecommendByPost: [Post]
+  postRecommendToUser(user_id: Int!): [Post]
   searchPost(keyWord: String!, user_id: Int): [Post]
   seePost(post_id: Int!): Post
   seePosts: [Post]
@@ -291,7 +293,7 @@ type Mutation {
   videoDelete(video_id: Int!): Boolean!
   videoUpdate(video_id: Int!, caption: String!, directory_id: Int!): Boolean!
   videoUpload(address: [String!]!, caption: [String!]!, volume: [Int!]!, directory_id: [Int!]!, type: [String], thumbnail: [String]): Boolean!
-  createPost(caption: String!, content: String, directory_id: Int!): Boolean!
+  createPost(caption: String!, content: String, directory_id: Int!, face: String): Boolean!
   deletePost(post_id: Int!): Boolean!
   editPost(post_id: Int!, caption: String!, content: String!, directory_id: Int!): Boolean!
   likePost(post_id: Int!): Boolean!
@@ -300,7 +302,6 @@ type Mutation {
   addLike(post_id: Int!): Boolean!
   deleteLike(liked_id: Int!): Boolean!
   addSubscriber(author: Int!): Boolean!
-  watched(post_id: Int!): Boolean!
   createAccount(username: String!, email: String!, password: String!): Boolean!
   loginUser(email: String!, password: String!): String!
   setAvatar(avatar: String!): Boolean!

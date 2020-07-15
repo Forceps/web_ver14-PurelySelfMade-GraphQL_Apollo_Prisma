@@ -20,6 +20,8 @@ type WritePostPrePorps = {
   create_post_toggle: any;
   Html: any;
   setHtml: any;
+  TitleImg: string;
+  setTitleImg: any;
 };
 export default ({
   caption,
@@ -27,6 +29,8 @@ export default ({
   create_post_toggle,
   Html,
   setHtml,
+  TitleImg,
+  setTitleImg,
 }: WritePostPrePorps) => {
   return (
     <Wrapper>
@@ -37,6 +41,8 @@ export default ({
         Exit={create_post_toggle}
         Html={Html}
         setHtml={setHtml}
+        TitleImg={TitleImg}
+        setTitleImg={setTitleImg}
       />
     </Wrapper>
   );

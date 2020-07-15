@@ -21,6 +21,7 @@ export default ({ create_post_toggle }: WritePostConProps) => {
   const DC = useDirMode();
   const { MEdata } = useMyInfo();
   const [Html, setHtml] = useState(``);
+  const [TitleImg, setTitleImg] = useState("");
   const [createPostMutation] = useMutation(CREATE_POST, {
     refetchQueries: () => [
       { query: SEE_POST_ALL },
@@ -37,6 +38,7 @@ export default ({ create_post_toggle }: WritePostConProps) => {
           caption: caption.value,
           content: Html,
           directory_id: S_N_to_N(DC.Location),
+          face: TitleImg ? TitleImg : null,
         },
       });
       create_post_toggle(false);
@@ -55,6 +57,8 @@ export default ({ create_post_toggle }: WritePostConProps) => {
       create_post_toggle={create_post_toggle}
       Html={Html}
       setHtml={setHtml}
+      TitleImg={TitleImg}
+      setTitleImg={setTitleImg}
     />
   );
 };

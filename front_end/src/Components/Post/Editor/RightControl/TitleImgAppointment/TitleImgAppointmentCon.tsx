@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import TitleImgAppointmentPre from "./TitleImgAppointmentPre";
 
-export default ({ zIndex }: TitleImgAppointmentConProps) => {
+export default ({
+  zIndex,
+  TitleImg,
+  setTitleImg,
+}: TitleImgAppointmentConProps) => {
   const [ImgSet, setImgSet] = useState(false);
-  const [TitleImg, setTitleImg] = useState("");
 
   const ImgInsert = async (address: string) => {
     setTitleImg(address);
@@ -24,4 +27,6 @@ export default ({ zIndex }: TitleImgAppointmentConProps) => {
 
 interface TitleImgAppointmentConProps {
   zIndex: number;
+  TitleImg: string;
+  setTitleImg: any;
 }

@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import ContentEditable from "react-contenteditable";
-import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 const Editor = styled(ContentEditable)`
   display: block;
@@ -38,20 +37,20 @@ export default ({ Html, setHtml }: ContentEditorProps) => {
       className="editable"
       tagName="article"
       html={Html}
-      onChange={e => {
+      onChange={(e) => {
         setHtml(e.target.value);
       }}
       spellCheck="false"
-      onMouseUp={(e: any) => {
-        spaped(e);
+      onMouseUp={(e) => {
+        e.stopPropagation();
         document.getElementById("CUedit")?.focus();
       }}
     />
   );
 };
-type ContentEditorProps = {
+interface ContentEditorProps {
   Html: any;
   setHtml: any;
-};
+}
 
 //꼭 sanitize-html을 해줄 것

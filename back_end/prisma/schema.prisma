@@ -180,6 +180,7 @@ model post {
   content                                   String?
   day                                       Int
   directory                                 Int
+  face                                      String?
   hour                                      Int
   likes                                     Int              @default(0)
   minute                                    Int

@@ -46,8 +46,10 @@ const RestButnPGap = styled(RestButn)`
 type RightControlProps = {
   Exit: any;
   zIndex: number;
+  TitleImg: string;
+  setTitleImg: any;
 };
-export default ({ Exit, zIndex }: RightControlProps) => {
+export default ({ Exit, zIndex, TitleImg, setTitleImg }: RightControlProps) => {
   const Pmode = useProfileMode();
   const DC = useDirMode();
   const DS = useDummyState();
@@ -82,7 +84,11 @@ export default ({ Exit, zIndex }: RightControlProps) => {
           <i className="icon-folder" />
           {DC.DirData?.name}
         </RestButnPGap>
-        <TitleImgAppointmentCon zIndex={zIndex} />
+        <TitleImgAppointmentCon
+          zIndex={zIndex}
+          TitleImg={TitleImg}
+          setTitleImg={setTitleImg}
+        />
       </ControlsR>
       {DirApOpen && <DirAppoint setDirApOpen={setDirApOpen} />}
     </Dmm>

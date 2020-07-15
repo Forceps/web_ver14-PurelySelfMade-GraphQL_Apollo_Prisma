@@ -5,11 +5,13 @@ export const CREATE_POST = gql`
     $caption: String!
     $content: String
     $directory_id: Int!
+    $face: String
   ) {
     createPost(
       caption: $caption
       content: $content
       directory_id: $directory_id
+      face: $face
     )
   }
 `;
@@ -19,12 +21,14 @@ export const EDIT_POST = gql`
     $caption: String!
     $content: String!
     $directory_id: Int!
+    $face: String
   ) {
     editPost(
       post_id: $post_id
       caption: $caption
       content: $content
       directory_id: $directory_id
+      face: $face
     )
   }
 `;

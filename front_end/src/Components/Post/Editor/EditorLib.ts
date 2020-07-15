@@ -13,7 +13,7 @@ export const Operation = (e: any, cmd: string, arg?: any) => {
 };
 export const saveSelection = () => {
   if (window.getSelection) {
-    var sel = window.getSelection();
+    const sel = window.getSelection();
     if (sel?.getRangeAt && sel?.rangeCount) {
       return sel.getRangeAt(0);
     }
@@ -25,7 +25,7 @@ export const restoreSelection = (range: any) => {
   return new Promise((sol, jec) => {
     if (range) {
       if (window.getSelection) {
-        var sel: any = window.getSelection();
+        const sel: any = window.getSelection();
         sel.removeAllRanges();
         sel.addRange(range);
       }

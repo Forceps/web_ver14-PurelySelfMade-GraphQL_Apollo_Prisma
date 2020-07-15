@@ -13,6 +13,7 @@ export default () => {
   const UP = useUpdatePost();
   const caption = useInput(PD.postByID?.caption);
   const [Html, setHtml] = useState(PD.postByID?.content);
+  const [TitleImg, setTitleImg] = useState(PD.postByID?.face);
   const [editPostMutation] = useMutation(EDIT_POST);
   const UpdateProcess = async () => {
     try {
@@ -22,6 +23,7 @@ export default () => {
           caption: caption.value,
           content: Html,
           directory_id: DC.Location,
+          face: TitleImg ? TitleImg : null,
         },
       });
       UP.setUpdatePost(false);
@@ -48,6 +50,8 @@ export default () => {
           Html={Html}
           setHtml={setHtml}
           UpdateProcess={UpdateProcess}
+          TitleImg={TitleImg}
+          setTitleImg={setTitleImg}
         />
       }
     </>
