@@ -4,5 +4,6 @@ type Mutation {
     content: String
     directory_id: Int!
     face: String
+    face_type: String
   ): Boolean!
 }

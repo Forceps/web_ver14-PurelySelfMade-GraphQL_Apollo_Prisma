@@ -181,6 +181,7 @@ model post {
   day                                       Int
   directory                                 Int
   face                                      String?
+  face_type                                 post_face_type   @default(text)
   hour                                      Int
   likes                                     Int              @default(0)
   minute                                    Int
@@ -291,4 +292,9 @@ model watched {
 
   @@index([post], name: "watched_post_idx")
   @@index([user], name: "watching_user_idx")
+}
+
+enum post_face_type {
+  image
+  text
 }

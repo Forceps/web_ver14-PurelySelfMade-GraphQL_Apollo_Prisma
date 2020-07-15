@@ -4,6 +4,8 @@ type Post {
   content: String
   user: Int!
   directory: Int!
+  face: String
+  face_type: post_face_type!
 
   year: Int!
   month: Int!
@@ -24,7 +26,10 @@ type Post {
   post_relevance_postTopost_relevance_post1: [Post_relevance]
   post_relevance_postTopost_relevance_post2: [Post_relevance]
 }
-
+enum post_face_type {
+  image
+  text
+}
 type Comment {
   comment_id: ID!
   comment: String!

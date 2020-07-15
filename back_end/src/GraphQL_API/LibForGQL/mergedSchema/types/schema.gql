@@ -105,6 +105,8 @@ type Post {
   content: String
   user: Int!
   directory: Int!
+  face: String
+  face_type: post_face_type!
   year: Int!
   month: Int!
   day: Int!
@@ -120,6 +122,11 @@ type Post {
   watched: [Watched]!
   post_relevance_postTopost_relevance_post1: [Post_relevance]
   post_relevance_postTopost_relevance_post2: [Post_relevance]
+}
+
+enum post_face_type {
+  image
+  text
 }
 
 type Comment {
@@ -293,7 +300,7 @@ type Mutation {
   videoDelete(video_id: Int!): Boolean!
   videoUpdate(video_id: Int!, caption: String!, directory_id: Int!): Boolean!
   videoUpload(address: [String!]!, caption: [String!]!, volume: [Int!]!, directory_id: [Int!]!, type: [String], thumbnail: [String]): Boolean!
-  createPost(caption: String!, content: String, directory_id: Int!, face: String): Boolean!
+  createPost(caption: String!, content: String, directory_id: Int!, face: String, face_type: String): Boolean!
   deletePost(post_id: Int!): Boolean!
   editPost(post_id: Int!, caption: String!, content: String!, directory_id: Int!): Boolean!
   likePost(post_id: Int!): Boolean!

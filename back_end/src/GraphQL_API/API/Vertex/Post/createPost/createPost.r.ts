@@ -13,7 +13,11 @@ export default {
     ) => {
       isAuthenticated(req);
       const { user } = req;
-      const { caption, content, directory_id, face } = args;
+      const { caption, content, directory_id, face, face_type } = args;
+      let face_type_t: "image" | "text" = "text";
+      if (face_type === "image") {
+        face_type_t = "image";
+      }
       const { year, month, day, hour, minute, second } = when_is_it_now();
       let directory: any = null;
       try {
@@ -33,7 +37,8 @@ export default {
             directory_directoryTopost: {
               connect: { directory_id: directory },
             },
-            face: face ? face : null,
+            face: face ? face : "",
+            face_type: face_type_t,
             year,
             month,
             day,

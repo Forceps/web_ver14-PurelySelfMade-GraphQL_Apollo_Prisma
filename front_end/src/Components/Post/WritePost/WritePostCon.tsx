@@ -39,6 +39,7 @@ export default ({ create_post_toggle }: WritePostConProps) => {
           content: Html,
           directory_id: S_N_to_N(DC.Location),
           face: TitleImg ? TitleImg : null,
+          face_type_t: TitleImg ? "image" : "text",
         },
       });
       create_post_toggle(false);

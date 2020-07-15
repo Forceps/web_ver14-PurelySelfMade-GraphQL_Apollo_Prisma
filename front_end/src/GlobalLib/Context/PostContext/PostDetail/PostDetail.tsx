@@ -43,8 +43,6 @@ export const PostDetailProvider = ({ children }: { children: ReactNode }) => {
     if (PostID !== 0 && called) {
       if (data) {
         setPostByID(data.seePost);
-      } else {
-        setPostByID(null);
       }
       setPostLoadingByID(loading);
       setPostRefetchByID(() => refetch);

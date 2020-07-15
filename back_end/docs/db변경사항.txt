@@ -307,3 +307,12 @@ CHANGE COLUMN `phone_number` `phone_number` INT UNSIGNED NULL DEFAULT NULL AFTER
 ALTER TABLE `square_post`.`post` 
 ADD COLUMN `face` MEDIUMTEXT NULL AFTER `likes`;
 
+
+
+
+
+
+
+// 2020 - 7 - 15
+ALTER TABLE `square_post`.`post` 
+ADD COLUMN `face_type` ENUM("image", "text") NOT NULL DEFAULT 'text' AFTER `second`;

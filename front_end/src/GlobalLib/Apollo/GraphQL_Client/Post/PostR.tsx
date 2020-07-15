@@ -7,9 +7,7 @@ export const SEE_POST = gql`
       post_id
       caption
       content
-      directory_directoryTopost {
-        directory_id
-      }
+      directory
       user_postTouser {
         user_id
         avatar
@@ -17,6 +15,8 @@ export const SEE_POST = gql`
       }
       views
       likes
+      face
+      face_type
     }
   }
 `;
@@ -40,11 +40,11 @@ export const SEE_POST_ALL = gql`
         username
         avatar
       }
-      directory_directoryTopost {
-        directory_id
-      }
+      directory
       views
       likes
+      face
+      face_type
     }
   }
 `;
@@ -61,11 +61,11 @@ export const SEE_WHOSE_POSTS = gql`
         username
         avatar
       }
-      directory_directoryTopost {
-        directory_id
-      }
+      directory
       views
       likes
+      face
+      face_type
     }
   }
 `;
@@ -89,11 +89,11 @@ export const SEE_SEARCH_POSTS = gql`
         username
         avatar
       }
-      directory_directoryTopost {
-        directory_id
-      }
+      directory
       views
       likes
+      face
+      face_type
     }
   }
 `;

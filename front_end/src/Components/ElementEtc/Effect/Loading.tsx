@@ -145,13 +145,18 @@ type LoadingIconProps = {
 export const LoadingIcon = ({ size = 80 }: LoadingIconProps) => {
   const [Phase, setPhase] = useState(1);
   useEffect(() => {
-    setTimeout(() => {
+    const Temping = setTimeout(() => {
       if (Phase === 4) {
         setPhase(Phase - 3);
       } else if (Phase < 4) {
         setPhase(Phase + 1);
       }
     }, 1400);
+
+    return () => {
+      clearTimeout(Temping);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Phase]);
   return (
     <Icon size={size}>
@@ -165,9 +170,14 @@ export const LoadingIcon = ({ size = 80 }: LoadingIconProps) => {
 export default () => {
   const [AppearDelay, setAppearDelay] = useState(true);
   useEffect(() => {
-    setTimeout(() => {
+    const Temping = setTimeout(() => {
       setAppearDelay(false);
     }, 1400);
+
+    return () => {
+      clearTimeout(Temping);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <Wrapper AppearDelay={AppearDelay}>

@@ -34,7 +34,8 @@ export default ({ recoP_loading, recoP_data }: RecommendPostPreProps) => {
     <RecommendPost>
       <RSubSbj>Post</RSubSbj>
       <Lists>
-        {!recoP_loading && recoP_data.map((rc: any) => <Rectangle></Rectangle>)}
+        {!recoP_loading &&
+          recoP_data.map((rc: any) => <Rectangle key={rc.post_id}></Rectangle>)}
       </Lists>
     </RecommendPost>
   );

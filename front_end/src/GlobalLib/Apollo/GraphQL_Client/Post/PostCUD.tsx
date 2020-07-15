@@ -6,12 +6,14 @@ export const CREATE_POST = gql`
     $content: String
     $directory_id: Int!
     $face: String
+    $face_type: String
   ) {
     createPost(
       caption: $caption
       content: $content
       directory_id: $directory_id
       face: $face
+      face_type: $face_type
     )
   }
 `;
@@ -22,6 +24,7 @@ export const EDIT_POST = gql`
     $content: String!
     $directory_id: Int!
     $face: String
+    $face_type: String
   ) {
     editPost(
       post_id: $post_id
@@ -29,6 +32,7 @@ export const EDIT_POST = gql`
       content: $content
       directory_id: $directory_id
       face: $face
+      face_type: $face_type
     )
   }
 `;

@@ -29,7 +29,7 @@ export default () => {
       <ControlsH />
       <RestArea>
         {TSP.posts?.map((post: any) => (
-          <Tile post={post} />
+          <Tile key={post.post_id} post={post} />
         ))}
       </RestArea>
       {PD.OpenSeePostDetail && <PostDetailT />}

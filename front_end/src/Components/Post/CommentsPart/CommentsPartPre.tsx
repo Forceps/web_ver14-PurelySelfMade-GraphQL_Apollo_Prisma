@@ -25,7 +25,9 @@ const AddBox = styled(W100per)`
 interface AddingProps {
   submitCheck: boolean;
 }
-const Adding = styled(TextareaAutosize)<AddingProps>`
+const Adding = styled(({ submitCheck, ...rest }) => (
+  <TextareaAutosize {...rest} />
+))<AddingProps>`
   width: 100%;
   height: 100%;
   font-size: 0.9rem;
@@ -159,7 +161,6 @@ export default ({
     <Comments>
       <AddBox>
         <Adding
-          {...commentInput}
           placeholder="Add comment (300 characters or less)"
           spellCheck="false"
           submitCheck={submitCheck}
@@ -168,6 +169,8 @@ export default ({
               setLoginOpen(true);
             }
           }}
+          onChange={commentInput.onChange}
+          value={commentInput.value}
         />
         <CommentSubmit
           onClick={(e: any) => {

@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import HiddenLMore from "./HiddenLMore";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
-import WH100per from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import WH100per, {
+  W100per,
+} from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 
 const Wrapper = styled.div`
   display: grid;
@@ -28,10 +30,9 @@ interface MenuItemProps {
   curMode?: string;
   staMode?: string;
 }
-const MenuItem = styled(({ ...rest }) => <Link {...rest} />)<MenuItemProps>`
+const MenuItem = styled(W100per)<MenuItemProps>`
   display: flex;
   align-items: center;
-  width: 100%;
   height: 40px;
   font-size: 1.1rem;
   padding: 0 0 0 10px;
@@ -120,6 +121,7 @@ export default () => {
   const ME = useMyInfo();
   const [More, setMore] = useState(false);
   const [Inside, setInside] = useState(true);
+  const history = useHistory();
   return (
     <Wrapper>
       <MetaSelect>
@@ -147,8 +149,8 @@ export default () => {
               onClick={(e: any) => {
                 spaped(e);
                 PfM.setMode(["Post"]);
+                history.push(`/profile/${ME?.MEdata?.user_id}`);
               }}
-              to={`/profile/${ME?.MEdata?.user_id}`}
               curMode={PfM.Mode[0]}
               staMode={"Post"}
             >
@@ -159,8 +161,8 @@ export default () => {
               onClick={(e: any) => {
                 spaped(e);
                 PfM.setMode(["Archive"]);
+                history.push(`/profile/${ME?.MEdata?.user_id}`);
               }}
-              to={`/profile/${ME?.MEdata?.user_id}`}
               curMode={PfM.Mode[0]}
               staMode={"Archive"}
             >
@@ -171,8 +173,8 @@ export default () => {
               onClick={(e: any) => {
                 spaped(e);
                 PfM.setMode(["Settings"]);
+                history.push(`/profile/${ME?.MEdata?.user_id}`);
               }}
-              to={`/profile/${ME?.MEdata?.user_id}`}
               curMode={PfM.Mode[0]}
               staMode={"Settings"}
             >
@@ -182,15 +184,30 @@ export default () => {
           </>
         ) : (
           <>
-            <MenuItem to={`/`}>
+            <MenuItem
+              onClick={(e: any) => {
+                spaped(e);
+                history.push(`/`);
+              }}
+            >
               <MenuIcon className="icon-home-1 hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Home</MenuTxt>
             </MenuItem>
-            <MenuItem to={`/bookmark/${ME?.MEdata?.user_id}`}>
+            <MenuItem
+              onClick={(e: any) => {
+                spaped(e);
+                history.push(`/bookmark/${ME?.MEdata?.user_id}`);
+              }}
+            >
               <MenuIcon className="icon-bookmark hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Bookmark</MenuTxt>
             </MenuItem>
-            <MenuItem to={`/chat`}>
+            <MenuItem
+              onClick={(e: any) => {
+                spaped(e);
+                history.push(`/chat`);
+              }}
+            >
               <MenuIcon className="icon-comment hovMenuIcon" />
               <MenuTxt className="hovMenuTxt">Chat</MenuTxt>
             </MenuItem>

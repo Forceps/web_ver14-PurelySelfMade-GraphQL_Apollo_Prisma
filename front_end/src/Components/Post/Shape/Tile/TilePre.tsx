@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import WH100per, {
   W100per,
-  WH100perLink,
   GoodLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import ContentEditable from "react-contenteditable";
 import Avatar from "../../../User/Avatar";
+import { useHistory } from "react-router-dom";
 
 interface zindexProp {
   zIndex: number;
@@ -46,7 +46,7 @@ const Title = styled.div`
   overflow: hidden;
   font-size: 1rem;
 `;
-const Menifesting = styled(WH100perLink)`
+const Menifesting = styled(WH100per)`
   display: grid;
   grid-template-rows: 1fr 30px 40px;
   position: absolute;
@@ -69,6 +69,7 @@ const TitleImage = styled(WH100per)<TitleImageProp>`
 `;
 
 export default ({ post, ImgSamples, zIndex }: EachPostProps) => {
+  const history = useHistory();
   return (
     <Wrapper zIndex={zIndex}>
       {ImgSamples[1] === true &&
@@ -84,7 +85,11 @@ export default ({ post, ImgSamples, zIndex }: EachPostProps) => {
           <TitleImage url={ImgSamples[0][0].src} />
         ))}
 
-      <Menifesting to={`/post/detail/${post.post_id}`}>
+      <Menifesting
+        onClick={() => {
+          history.push(`/post/detail/${post.post_id}`);
+        }}
+      >
         <PostHeader className="hovP">
           <Title>{post.caption}</Title>
         </PostHeader>

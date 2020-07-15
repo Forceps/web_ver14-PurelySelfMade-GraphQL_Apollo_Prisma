@@ -24,6 +24,7 @@ export default () => {
           content: Html,
           directory_id: DC.Location,
           face: TitleImg ? TitleImg : null,
+          face_type_t: TitleImg ? "image" : "text",
         },
       });
       UP.setUpdatePost(false);
@@ -37,7 +38,7 @@ export default () => {
     UP.setUpdatePost(false);
   };
   useEffect(() => {
-    DC.setLocation(parseInt(PD.postByID?.directory.directory_id));
+    DC.setLocation(parseInt(PD.postByID?.directory));
     console.log(PD.postByID);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [PD.postByID]);
