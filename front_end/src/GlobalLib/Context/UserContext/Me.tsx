@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useState,
 } from "react";
-import { useLazyQuery } from "@apollo/react-hooks";
+import { useLazyQuery } from "@apollo/client";
 import { ME } from "../../Apollo/GraphQL_Client/User/UserR";
 import { useLoginCheck } from "./IsLoggedIn";
 

@@ -1,8 +1,4 @@
-import gql from "graphql-tag";
-
-export const authState_defaults = {
-  isLoggedIn: Boolean(localStorage.getItem("token")),
-};
+import { gql } from "@apollo/client";
 
 export const LOGIN_CHECK = gql`
   {

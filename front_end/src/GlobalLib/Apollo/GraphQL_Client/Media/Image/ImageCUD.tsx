@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const IMG_UPLOAD = gql`
   mutation imgUpload(

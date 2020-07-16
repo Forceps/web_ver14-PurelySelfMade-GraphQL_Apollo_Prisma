@@ -1,5 +1,4 @@
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
+import { gql, useQuery } from "@apollo/client";
 
 export const VIDEO_GET = gql`
   query videoGet($skip: Int, $take: Int) {

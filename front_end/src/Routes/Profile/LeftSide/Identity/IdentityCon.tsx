@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import IdentityPre from "./IdentityPre";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import { SET_AVATAR } from "../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
 import { SEE_USER } from "../../../../GlobalLib/Apollo/GraphQL_Client/User/UserR";

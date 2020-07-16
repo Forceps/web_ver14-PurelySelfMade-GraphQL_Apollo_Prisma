@@ -4,5 +4,7 @@ type Mutation {
     caption: String!
     content: String!
     directory_id: Int!
+    face: String
+    face_type: String
   ): Boolean!
 }

@@ -6,7 +6,7 @@ import React, {
   useEffect,
 } from "react";
 import UploadVideoPre from "./UploadVideoPre";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { useDummyState } from "../../../../GlobalLib/Context/Lib/DummyState";
 import { BatchInfoMidPros, argsProcess } from "./UploadVideoLib";
 import { useDirMode } from "../../../../GlobalLib/Context/ProfileContext/DirMode";

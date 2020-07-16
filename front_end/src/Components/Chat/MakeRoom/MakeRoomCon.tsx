@@ -4,7 +4,7 @@ import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { SeeFriendsRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Relation/Friend/FriendR";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { CREATE_ROOM } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatCUD";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { SEE_ROOMS } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatR";
 
 export default ({

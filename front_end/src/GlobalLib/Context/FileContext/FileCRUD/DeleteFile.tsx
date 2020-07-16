@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, ReactNode } from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { useDirMode } from "../../ProfileContext/DirMode";
 import { DELETE_FILE } from "../../../Apollo/GraphQL_Client/Media/MediaD";
 

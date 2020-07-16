@@ -1,8 +1,4 @@
-import gql from "graphql-tag";
-
-export const historyState_defaults = {
-  history: [],
-};
+import { gql } from "@apollo/client";
 
 export const HISTORY_READ = gql`
   {

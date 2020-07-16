@@ -1,5 +1,4 @@
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
+import { gql, useQuery } from "@apollo/client";
 
 export const SEE_NOTI = gql`
   query seeNoti($skip: Int, $take: Int) {

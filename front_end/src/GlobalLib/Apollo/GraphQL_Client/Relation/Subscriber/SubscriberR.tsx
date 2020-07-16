@@ -1,5 +1,4 @@
-import gql from "graphql-tag";
-import { useLazyQuery } from "@apollo/react-hooks";
+import { gql, useLazyQuery } from "@apollo/client";
 
 export const AM_I_SUBSCRIBE_ONE = gql`
   query amISubscribeOne($author: Int!) {

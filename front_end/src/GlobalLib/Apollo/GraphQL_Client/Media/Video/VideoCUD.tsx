@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const VIDEO_UPLOAD = gql`
   mutation videoUpload(

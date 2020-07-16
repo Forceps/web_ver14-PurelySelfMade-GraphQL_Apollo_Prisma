@@ -1,4 +1,4 @@
-import { ApolloLink, Observable, Operation } from "apollo-link";
+import { ApolloLink, Observable, Operation } from "@apollo/client";
 import { jwt_header } from "./BackendWay";
 
 const request = async (operation: any) => {

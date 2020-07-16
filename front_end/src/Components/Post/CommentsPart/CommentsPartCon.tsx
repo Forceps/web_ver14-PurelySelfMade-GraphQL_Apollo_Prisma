@@ -5,7 +5,7 @@ import {
   SEE_COMMENTS,
   SeeCommentsRequest,
 } from "../../../GlobalLib/Apollo/GraphQL_Client/Comment/CommentR";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../../../GlobalLib/Apollo/GraphQL_Client/Comment/CommentCUD";
 
 export default ({ post_id, setAddCommentOpen }: CommentsPartConProps) => {

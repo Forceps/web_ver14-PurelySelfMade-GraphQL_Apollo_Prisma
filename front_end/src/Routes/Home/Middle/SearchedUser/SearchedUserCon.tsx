@@ -1,6 +1,6 @@
 import React from "react";
 import SearchedUserPre from "./SearchedUserPre";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { SEE_FRIENDS } from "../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Friend/FriendR";
 import { ADD_FRIEND } from "../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Friend/FriendCUD";
 

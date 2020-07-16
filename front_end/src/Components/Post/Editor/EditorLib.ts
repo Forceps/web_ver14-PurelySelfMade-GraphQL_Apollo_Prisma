@@ -33,6 +33,13 @@ export const restoreSelection = (range: any) => {
     sol("");
   });
 };
+
+export const titleImgSubstitute = () => {
+  const node: any = document.getElementById("CUedit");
+  document.getSelection()?.selectAllChildren(node);
+  const sel: any = window.getSelection();
+  return sel.toString().substring(0, 280);
+};
 // export const colorPickerConfig = {
 //   layout: [
 //     {

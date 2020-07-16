@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import ProfileSectionPre from "./ProfileSectionPre";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { ADD_SUBSCRIBER } from "../../../GlobalLib/Apollo/GraphQL_Client/Relation/Subscriber/SubscriberCUD";
 import {
   AmISubscribeOneRequest,

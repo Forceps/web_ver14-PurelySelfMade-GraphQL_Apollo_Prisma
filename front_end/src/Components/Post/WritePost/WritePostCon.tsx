@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import WritePostPre from "./WritePostPre";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useTargetsShown } from "../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
 import { useDirMode } from "../../../GlobalLib/Context/ProfileContext/DirMode";
@@ -11,6 +11,7 @@ import {
   SEE_WHOSE_POSTS,
 } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostR";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
+import { titleImgSubstitute } from "../Editor/EditorLib";
 
 type WritePostConProps = {
   create_post_toggle: any;
@@ -38,7 +39,7 @@ export default ({ create_post_toggle }: WritePostConProps) => {
           caption: caption.value,
           content: Html,
           directory_id: S_N_to_N(DC.Location),
-          face: TitleImg ? TitleImg : null,
+          face: TitleImg ? TitleImg : titleImgSubstitute(),
           face_type_t: TitleImg ? "image" : "text",
         },
       });

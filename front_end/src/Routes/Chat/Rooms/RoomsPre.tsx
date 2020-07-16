@@ -7,7 +7,7 @@ import Avatar from "../../../Components/User/Avatar";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import Conversation from "../../../Components/Chat/Conversation/Conversation";
-import { useSubscription } from "@apollo/react-hooks";
+import { useSubscription } from "@apollo/client";
 import { CHAT_LISTENING } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatSub";
 
 const Tent = styled(W100per)``;

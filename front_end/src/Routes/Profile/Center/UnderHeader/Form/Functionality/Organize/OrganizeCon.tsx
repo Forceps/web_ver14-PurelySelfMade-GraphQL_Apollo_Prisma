@@ -4,7 +4,7 @@ import useInput from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useIn
 import { TerminalM } from "./Steps/Step4/Step4";
 import { TerminalD } from "./Steps/Step5/Step5";
 import { useDummyState } from "../../../../../../../GlobalLib/Context/Lib/DummyState";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { MAKE_GROUPS } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Group/GroupCUD";
 
 export default ({ zIndex = 10, setGroupMakeOpen }: OrganizeConProps) => {

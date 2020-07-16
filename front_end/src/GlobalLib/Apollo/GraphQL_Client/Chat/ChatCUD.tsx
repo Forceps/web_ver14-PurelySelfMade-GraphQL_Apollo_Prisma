@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const COMMENTING = gql`
   mutation commenting($chat_room_id: Int!, $comment: String!) {

@@ -1,7 +1,6 @@
-import { HttpLink } from "apollo-link-http";
-import { split } from "apollo-link";
-import { WebSocketLink } from "apollo-link-ws";
-import { getMainDefinition } from "apollo-utilities";
+import { HttpLink, split } from "@apollo/client";
+import { WebSocketLink } from "@apollo/client/link/ws";
+import { getMainDefinition } from "@apollo/client/utilities";
 
 const PORT = 4002;
 export const http_BackEnd = `http://127.0.0.1:${PORT}`;

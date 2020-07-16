@@ -1,4 +1,4 @@
-import { onError } from "apollo-link-error";
+import { onError } from "@apollo/client/link/error";
 
 export default onError(({ graphQLErrors, networkError }) => {
   graphQLErrors &&

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import MetaInfoPre from "./MetaInfoPre";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { LIKE_POST } from "../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostCUD";
 import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { useLoginCheck } from "../../../../GlobalLib/Context/UserContext/IsLoggedIn";

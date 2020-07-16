@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import UpdateDirPre from "./UpdateDirPre";
 import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import useInput from "../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";

@@ -1,17 +1,16 @@
 import { PrismaClient } from "@prisma/client";
 import { rootPostDir } from "../../../../LibForGQL/findByPrisma/findRootDir";
-import { EditPostMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
 export default {
   Mutation: {
-    editPost: async (
-      _: void,
-      args: EditPostMutationArgs,
-      { req, isAuthenticated }: any
-    ) => {
+    editPost: async (_: void, args, { req, isAuthenticated }: any) => {
       isAuthenticated(req);
-      const { post_id, caption, content, directory_id } = args;
+      const { post_id, caption, content, directory_id, face, face_type } = args;
+      let face_type_t: "image" | "text" = "text";
+      if (face_type === "image") {
+        face_type_t = "image";
+      }
       const { user } = req;
       let directory: any = null;
       try {
@@ -30,6 +29,8 @@ export default {
             directory_directoryTopost: {
               connect: { directory_id: directory },
             },
+            face: face ? face : "",
+            face_type: face_type_t,
           },
           where: { post_id },
         });

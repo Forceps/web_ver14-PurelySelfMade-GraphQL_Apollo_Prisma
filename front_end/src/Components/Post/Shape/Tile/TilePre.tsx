@@ -4,7 +4,6 @@ import WH100per, {
   W100per,
   GoodLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import ContentEditable from "react-contenteditable";
 import Avatar from "../../../User/Avatar";
 import { useHistory } from "react-router-dom";
 
@@ -31,12 +30,6 @@ const UName = styled(W100per)`
   align-items: center;
   font-size: 1rem;
   padding: 0 0 0 7px;
-`;
-const Contents = styled(({ ...rest }) => <ContentEditable {...rest} />)`
-  display: inline-block;
-  overflow: hidden;
-  word-break: break-all;
-  font-size: 0.75rem;
 `;
 const PostHeader = styled(WH100per)`
   display: flex;
@@ -67,49 +60,57 @@ const TitleImage = styled(WH100per)<TitleImageProp>`
   background-size: cover;
   background-position: center center;
 `;
+const TitleImgSubstitude = styled.div`
+  white-space: pre-line;
+  word-break: break-all;
+  word-wrap: break-word;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+`;
+const Capsel = styled(WH100per)`
+  display: flex;
+  padding: 35px 0 0 3px;
+`;
 
-export default ({ post, ImgSamples, zIndex }: EachPostProps) => {
+export default ({ post, zIndex }: EachPostProps) => {
   const history = useHistory();
+  const {
+    post_id,
+    caption,
+    views,
+    likes,
+    user_postTouser: { avatar, user_id, username },
+    face,
+    face_type,
+  } = post;
   return (
     <Wrapper zIndex={zIndex}>
-      {ImgSamples[1] === true &&
-        (ImgSamples[0].length === 0 || !ImgSamples[0][0]?.src ? (
-          <Contents
-            className="postCells"
-            tagName="article"
-            html={post.content}
-            spellCheck="false"
-            disabled={true}
-          />
-        ) : (
-          <TitleImage url={ImgSamples[0][0].src} />
-        ))}
+      {face_type !== "image" ? (
+        <Capsel>
+          <TitleImgSubstitude>{face}</TitleImgSubstitude>
+        </Capsel>
+      ) : (
+        <TitleImage url={face} />
+      )}
 
       <Menifesting
         onClick={() => {
-          history.push(`/post/detail/${post.post_id}`);
+          history.push(`/post/detail/${post_id}`);
         }}
       >
         <PostHeader className="hovP">
-          <Title>{post.caption}</Title>
+          <Title>{caption}</Title>
         </PostHeader>
         <AdditionalInfo>
-          <i className="icon-eye-1" /> {post.views}
+          <i className="icon-eye-1" /> {views}
           {"  "}
-          <i className="icon-heart-empty" /> {post.likes}
+          <i className="icon-heart-empty" /> {likes}
         </AdditionalInfo>
         <MiniProfile>
-          <Avatar
-            url={post.user_postTouser?.avatar}
-            size={40}
-            link={`/blog/${post.user_postTouser.user_id}`}
-          />
+          <Avatar url={avatar} size={40} link={`/blog/${user_id}`} />
           <UName>
-            <GoodLink
-              to={`/blog/${post.user_postTouser.user_id}`}
-              color={"white"}
-            >
-              {post.user_postTouser.username}
+            <GoodLink to={`/blog/${user_id}`} color={"white"}>
+              {username}
             </GoodLink>
           </UName>
         </MiniProfile>
@@ -120,6 +121,5 @@ export default ({ post, ImgSamples, zIndex }: EachPostProps) => {
 
 interface EachPostProps {
   post: any;
-  ImgSamples: any;
   zIndex: number;
 }

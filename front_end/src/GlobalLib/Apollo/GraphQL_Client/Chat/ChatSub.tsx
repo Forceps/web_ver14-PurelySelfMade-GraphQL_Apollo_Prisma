@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const CHAT_LISTENING = gql`
   subscription chatListening($chat_room_id: Int!) {

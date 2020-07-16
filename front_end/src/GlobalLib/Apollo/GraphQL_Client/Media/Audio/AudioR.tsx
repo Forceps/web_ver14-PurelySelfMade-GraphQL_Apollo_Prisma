@@ -1,5 +1,4 @@
-import gql from "graphql-tag";
-import { useQuery } from "@apollo/react-hooks";
+import { gql, useQuery } from "@apollo/client";
 
 export const MUSIC_GET = gql`
   query musicGet($skip: Int, $take: Int) {

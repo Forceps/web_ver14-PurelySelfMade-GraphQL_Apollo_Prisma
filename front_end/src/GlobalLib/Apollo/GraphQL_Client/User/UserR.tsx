@@ -1,5 +1,4 @@
-import gql from "graphql-tag";
-import { useQuery, useLazyQuery } from "@apollo/react-hooks";
+import { gql, useQuery, useLazyQuery } from "@apollo/client";
 
 export const SEE_USER = gql`
   query seeUser($user_id: Int!) {

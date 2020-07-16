@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import DeleteDirPre from "./DeleteDirPre";
 import { useDirMode } from "../../../../../GlobalLib/Context/ProfileContext/DirMode";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";

@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import { gql } from "@apollo/client";
 
 export const DELETE_FILE = gql`
   mutation deleteFile($image_id: Int!) {

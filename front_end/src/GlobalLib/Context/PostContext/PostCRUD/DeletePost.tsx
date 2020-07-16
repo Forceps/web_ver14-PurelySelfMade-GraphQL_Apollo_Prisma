@@ -1,5 +1,5 @@
 import React, { createContext, useContext, ReactNode } from "react";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import { S_N_to_N } from "../../../RecycleFunction/etc/type_convert";
 import { DELETE_POST } from "../../../Apollo/GraphQL_Client/Post/PostCUD";
 

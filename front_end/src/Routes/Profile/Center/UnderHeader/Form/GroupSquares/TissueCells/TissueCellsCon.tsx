@@ -1,6 +1,6 @@
 import React from "react";
 import TissueCellsPre from "./TissueCellsPre";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { SEE_MY_GROUPS } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Group/GroupR";
 
 export default () => {

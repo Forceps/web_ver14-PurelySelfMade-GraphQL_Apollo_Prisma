@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CreateAccountPre from "./CreateAccountPre";
 import useInput from "../../../../GlobalLib/RecycleFunction/Hooks/useInput";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import {
   CREATE_ACCOUNT,
   LOGIN_USER,

@@ -1,5 +1,5 @@
 import React, { createContext, ReactNode, useContext } from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery } from "@apollo/client";
 import { LOGIN_CHECK } from "../../Apollo/LocalState/auth/authQuery";
 
 interface LoginCheckingLetGo {

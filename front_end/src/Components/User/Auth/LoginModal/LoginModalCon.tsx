@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import AuthPre from "./LoginModalPre";
 import useInput from "../../../../GlobalLib/RecycleFunction/Hooks/useInput";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import {
   LOGIN_USER,
   LOCAL_LOG_IN,

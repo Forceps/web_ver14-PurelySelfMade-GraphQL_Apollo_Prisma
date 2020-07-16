@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import MakeDirPre from "./MakeDirPre";
-import { useMutation } from "@apollo/react-hooks";
+import { useMutation } from "@apollo/client";
 import useInput from "../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useDirMode } from "../../../../../GlobalLib/Context/ProfileContext/DirMode";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
