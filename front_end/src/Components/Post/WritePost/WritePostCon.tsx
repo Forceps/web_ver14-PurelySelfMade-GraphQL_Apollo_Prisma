@@ -17,9 +17,9 @@ type WritePostConProps = {
   create_post_toggle: any;
 };
 export default ({ create_post_toggle }: WritePostConProps) => {
-  const TSP = useTargetsShown();
+  const { posts_refetch } = useTargetsShown();
   const caption = useInput("");
-  const DC = useDirMode();
+  const { Location, DirData_refetch } = useDirMode();
   const { MEdata } = useMyInfo();
   const [Html, setHtml] = useState(``);
   const [TitleImg, setTitleImg] = useState("");
@@ -38,17 +38,17 @@ export default ({ create_post_toggle }: WritePostConProps) => {
         variables: {
           caption: caption.value,
           content: Html,
-          directory_id: S_N_to_N(DC.Location),
+          directory_id: S_N_to_N(Location),
           face: TitleImg ? TitleImg : titleImgSubstitute(),
-          face_type_t: TitleImg ? "image" : "text",
+          face_type: TitleImg ? "image" : "text",
         },
       });
       create_post_toggle(false);
     } catch (e) {
       console.log(e);
     } finally {
-      TSP.posts_refetch();
-      DC.DirData_refetch();
+      posts_refetch();
+      DirData_refetch();
     }
   };
 

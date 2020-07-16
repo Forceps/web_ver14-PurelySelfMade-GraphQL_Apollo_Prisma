@@ -9,25 +9,24 @@ import { EDIT_POST } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostCUD
 import { titleImgSubstitute } from "../Editor/EditorLib";
 
 export default () => {
-  const PD = usePostDetail();
-  const DC = useDirMode();
+  const { postByID, PostID } = usePostDetail();
+  const { Location, setLocation } = useDirMode();
   const { setUpdatePost } = useUpdatePost();
-  const caption = useInput(PD.postByID?.caption);
-  const [Html, setHtml] = useState(PD.postByID?.content);
-  const [TitleImg, setTitleImg] = useState(
-    PD.postByID.face_type === "image" ? PD.postByID?.face : ""
-  );
+  const caption = useInput(postByID?.caption);
+  const [Html, setHtml] = useState(postByID?.content);
+  const [TitleImg, setTitleImg] = useState("");
   const [editPostMutation] = useMutation(EDIT_POST);
+
   const UpdateProcess = async () => {
     try {
       await editPostMutation({
         variables: {
-          post_id: PD.PostID,
+          post_id: PostID,
           caption: caption.value,
           content: Html,
-          directory_id: DC.Location,
+          directory_id: Location,
           face: TitleImg ? TitleImg : titleImgSubstitute(),
-          face_type_t: TitleImg ? "image" : "text",
+          face_type: TitleImg ? "image" : "text",
         },
       });
       setUpdatePost(false);
@@ -40,24 +39,26 @@ export default () => {
   const Exit = () => {
     setUpdatePost(false);
   };
+
   useEffect(() => {
-    DC.setLocation(parseInt(PD.postByID?.directory));
-    console.log(PD.postByID);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [PD.postByID]);
-  return (
-    <>
-      {
-        <UpdatePostPre
-          caption={caption}
-          Exit={Exit}
-          Html={Html}
-          setHtml={setHtml}
-          UpdateProcess={UpdateProcess}
-          TitleImg={TitleImg}
-          setTitleImg={setTitleImg}
-        />
+    if (postByID) {
+      setLocation(parseInt(postByID.directory));
+      if (postByID.face_type === "image") {
+        setTitleImg(postByID.face);
       }
-    </>
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [postByID]);
+
+  return (
+    <UpdatePostPre
+      caption={caption}
+      Exit={Exit}
+      Html={Html}
+      setHtml={setHtml}
+      UpdateProcess={UpdateProcess}
+      TitleImg={TitleImg}
+      setTitleImg={setTitleImg}
+    />
   );
 };
