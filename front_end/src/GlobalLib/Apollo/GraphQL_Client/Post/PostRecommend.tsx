@@ -5,7 +5,6 @@ export const POST_RECOMMEND_TO_USER = gql`
     postRecommendToUser(user_id: $user_id) {
       post_id
       caption
-      content
       user_postTouser {
         user_id
         avatar
@@ -13,6 +12,8 @@ export const POST_RECOMMEND_TO_USER = gql`
       }
       views
       likes
+      face
+      face_type
     }
   }
 `;

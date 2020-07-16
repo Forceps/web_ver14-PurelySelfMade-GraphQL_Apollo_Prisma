@@ -33,7 +33,6 @@ export const SEE_POST_ALL = gql`
     seePosts {
       post_id
       caption
-      content
       user_postTouser {
         user_id
         username
@@ -54,7 +53,6 @@ export const SEE_WHOSE_POSTS = gql`
     seeWhosePosts(user: $user) {
       post_id
       caption
-      content
       user_postTouser {
         user_id
         username
@@ -82,7 +80,6 @@ export const SEE_SEARCH_POSTS = gql`
     searchPost(keyWord: $keyWord) {
       post_id
       caption
-      content
       user_postTouser {
         user_id
         username
