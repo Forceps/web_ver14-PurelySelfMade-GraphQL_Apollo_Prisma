@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { interestFadeSigmoid } from "../../AbyssLib/formula";
+import { interestFadeSigmoid } from "../../../AbyssLib/formula";
 import st1_watchingLogExtract from "./st1_watchingLogExtract";
 
 const prisma = new PrismaClient();
@@ -63,7 +63,6 @@ export default async (user_id: number, eachTake: number = 6) => {
         return b[1] - a[1];
       });
 
-      console.log(postLine);
       let tempArr: number[][] = [postLine[0]];
       for (let i = 1; i < postLine.length; i++) {
         let duplicatesFlag = true;
@@ -79,7 +78,6 @@ export default async (user_id: number, eachTake: number = 6) => {
       }
       postLine = tempArr;
     }
-    console.log(postLine);
 
     return postLine;
   } else {

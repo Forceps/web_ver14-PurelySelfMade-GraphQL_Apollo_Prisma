@@ -30,3 +30,5 @@ yarn-error.log*
 Sample video
 debug.log
 uploadedFiles
+
+yarn.lock

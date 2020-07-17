@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import BlogPostPre from "./BlogPostPre";
-import { SeeWhosePostsRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostR";
+import { SeeWhosePostsRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostR";
 import { WhosePostDirRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Directory/DirectoryR";
 
 export default ({ user_id }: DisplayCon) => {

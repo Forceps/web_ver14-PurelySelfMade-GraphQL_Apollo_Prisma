@@ -1,4 +1,4 @@
-import stF_result from "../../../../../../../Abyss/Interconnectedness/Extraction/stF_result";
+import stF_result from "../../../../../../../Abyss/Interconnectedness/Extraction/postRecommendToUser/stF_result";
 
 export default {
   Query: {

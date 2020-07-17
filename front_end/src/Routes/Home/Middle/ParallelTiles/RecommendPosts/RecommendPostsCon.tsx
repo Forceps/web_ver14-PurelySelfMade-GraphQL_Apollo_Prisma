@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { PostRecommendToUserLazyRequest } from "../../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRecommend";
+import { PostRecommendToUserLazyRequest } from "../../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostRecommend";
 import { useLoginCheck } from "../../../../../GlobalLib/Context/UserContext/IsLoggedIn";
 import { useMyInfo } from "../../../../../GlobalLib/Context/UserContext/Me";
 import { usePostDetail } from "../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";

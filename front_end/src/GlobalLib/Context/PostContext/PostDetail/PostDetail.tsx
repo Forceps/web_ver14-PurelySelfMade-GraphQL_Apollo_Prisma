@@ -8,7 +8,7 @@ import React, {
   SetStateAction,
 } from "react";
 import { S_N_to_N } from "../../../RecycleFunction/etc/type_convert";
-import { SeePostLazyRequest } from "../../../Apollo/GraphQL_Client/Post/PostR";
+import { SeePostLazyRequest } from "../../../Apollo/GraphQL_Client/Post/PostRseries/PostR";
 
 interface PostDetailContext {
   PostID: number;

@@ -1,6 +1,6 @@
 import React from "react";
 import RecommendPostPre from "./RecommendPostPre";
-import { PostRecommendToUserRequest } from "../../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRecommend";
+import { PostRecommendToUserRequest } from "../../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostRecommend";
 
 export default ({ user_id }: RecommendPostConProps) => {
   const {

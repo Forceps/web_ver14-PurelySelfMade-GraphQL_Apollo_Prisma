@@ -1,6 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { W100per } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import WH100per, {
+  W100per,
+  H100per,
+} from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import Avatar from "../../../../../Components/User/Avatar";
 
 const RecommendBlock = styled.div`
   display: grid;
@@ -24,9 +28,51 @@ const Lists = styled(W100per)`
 `;
 const Rectangle = styled(W100per)`
   display: grid;
-  grid-template-columns: 50px 1fr;
-  height: 50px;
-  margin: 5px 0 10px 0;
+  grid-template-columns: 70px 1fr;
+  height: 70px;
+  margin: 5px 0 1px 0;
+  padding: 0 3px 0 0;
+  &:hover {
+    border-right: 3px solid #636e72;
+    padding: 0 0 0 0;
+  }
+  cursor: pointer;
+`;
+const Face = styled(WH100per)``;
+const FaceT = styled(Face)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  padding: 5px;
+  background-color: #dfe6e9;
+`;
+interface TitleImageProp {
+  url: string;
+}
+const FaceI = styled(Face)<TitleImageProp>`
+  background-image: url(${(p: any) => p.url});
+  background-size: cover;
+  background-position: center center;
+`;
+const TextMain = styled(WH100per)`
+  display: grid;
+  grid-template-rows: 1fr 28px;
+`;
+const Caption = styled(WH100per)`
+  padding: 5px;
+  font-size: 0.9rem;
+`;
+const Author = styled(WH100per)`
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5px;
+  font-size: 0.8rem;
+`;
+const AuthorName = styled(H100per)`
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 6px;
 `;
 
 export default ({ recoP_loading, recoP_data }: RecommendPostPreProps) => {
@@ -35,7 +81,22 @@ export default ({ recoP_loading, recoP_data }: RecommendPostPreProps) => {
       <RSubSbj>Post</RSubSbj>
       <Lists>
         {!recoP_loading &&
-          recoP_data.map((rc: any) => <Rectangle key={rc.post_id}></Rectangle>)}
+          recoP_data.map((rc: any) => (
+            <Rectangle key={rc.post_id}>
+              {rc.face_type === "text" ? (
+                <FaceT>Post</FaceT>
+              ) : (
+                <FaceI url={rc.face} />
+              )}
+              <TextMain>
+                <Caption>{rc.caption}</Caption>
+                <Author>
+                  <Avatar size={28} url={rc.user_postTouser.avatar} />
+                  <AuthorName>{rc.user_postTouser.username}</AuthorName>
+                </Author>
+              </TextMain>
+            </Rectangle>
+          ))}
       </Lists>
     </RecommendPost>
   );

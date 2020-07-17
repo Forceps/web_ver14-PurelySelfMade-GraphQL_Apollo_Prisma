@@ -1,7 +1,7 @@
 import React from "react";
 import UndersPre from "./UndersPre";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
-import { SeeWhosePostsRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostR";
+import { SeeWhosePostsRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostR";
 
 export default ({
   post_id,

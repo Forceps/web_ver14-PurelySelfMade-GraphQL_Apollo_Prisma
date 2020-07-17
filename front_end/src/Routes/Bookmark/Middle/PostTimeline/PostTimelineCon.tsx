@@ -1,17 +1,15 @@
 import React, { useEffect } from "react";
 import PostTimelinePre from "./PostTimelinePre";
-import { useTargetsShown } from "../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
 import { usePostDetail } from "../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
 import { useDummyState } from "../../../../GlobalLib/Context/Lib/DummyState";
-import { useUpdatePost } from "../../../../GlobalLib/Context/PostContext/PostCRUD/UpdatePost";
 import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import { useDirMode } from "../../../../GlobalLib/Context/ProfileContext/DirMode";
+import { SubscriptionPostRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostSubscription";
 
 export default () => {
-  const TSP = useTargetsShown();
+  const { loading, data } = SubscriptionPostRequest();
   const PD = usePostDetail();
-  const DS = useDummyState();
-  const UP = useUpdatePost();
+  const { setDummyState } = useDummyState();
   const Pmode = useProfileMode();
   const DC = useDirMode();
   const Pretreatment = async () => {
@@ -27,9 +25,9 @@ export default () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
-    DS.setDummyState((p: number) => p + 1);
+    setDummyState((p: number) => p + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [PD]);
 
-  return <PostTimelinePre TSP={TSP} PD={PD} UP={UP} />;
+  return <PostTimelinePre loading={loading} data={data?.subscriptionPost} />;
 };

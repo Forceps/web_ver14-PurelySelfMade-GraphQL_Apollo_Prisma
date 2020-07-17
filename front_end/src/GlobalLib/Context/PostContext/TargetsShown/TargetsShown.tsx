@@ -10,7 +10,7 @@ import {
   SeePostAllRequest,
   SeeWhosePostsLazyRequest,
   SeeSearchPostsRequest,
-} from "../../../Apollo/GraphQL_Client/Post/PostR";
+} from "../../../Apollo/GraphQL_Client/Post/PostRseries/PostR";
 
 const TargetsShown = createContext<TargetsShownContext | undefined>(undefined);
 export const TargetsShownProvider = ({ children }: { children: ReactNode }) => {

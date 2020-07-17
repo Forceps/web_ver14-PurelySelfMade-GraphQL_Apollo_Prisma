@@ -96,7 +96,7 @@ export default ({
       >
         <Icon className="icon-plus" /> Post
       </Post>
-      <Sbj>Recommend</Sbj>
+      <Sbj>Expand</Sbj>
       <RecommendAuthorCon />
       <RecommendPostCon user_id={user_id} />
       {createPost && <WritePostCon create_post_toggle={setCreatePost} />}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PostDetailPre from "./PostDetailPre";
 import { useParams } from "react-router-dom";
-import { SeePostRequest } from "../../GlobalLib/Apollo/GraphQL_Client/Post/PostR";
+import { SeePostRequest } from "../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostR";
 import { S_N_to_N } from "../../GlobalLib/RecycleFunction/etc/type_convert";
 
 export default () => {

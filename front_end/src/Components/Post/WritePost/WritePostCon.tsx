@@ -9,7 +9,7 @@ import { CREATE_POST } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostC
 import {
   SEE_POST_ALL,
   SEE_WHOSE_POSTS,
-} from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostR";
+} from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostR";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { titleImgSubstitute } from "../Editor/EditorLib";
 

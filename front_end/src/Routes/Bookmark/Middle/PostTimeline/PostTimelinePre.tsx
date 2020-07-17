@@ -21,18 +21,17 @@ const Posts = styled.div`
 `;
 
 type PostTimelinePreProps = {
-  TSP: any;
-  PD: any;
-  UP: any;
+  loading: boolean;
+  data: any;
 };
-export default ({ TSP, PD, UP }: PostTimelinePreProps) => {
+export default ({ loading, data }: PostTimelinePreProps) => {
   const me = useMyInfo();
-  const Initiation = !TSP.posts_loading && !me.MEloading;
+  const Initiation = !loading && !me.MEloading;
   return (
     <Wrapper>
       {Initiation ? (
         <Posts>
-          {TSP.posts?.map((post: any) => (
+          {data.map((post: any) => (
             <EachPostCon key={post.post_id} post={post} />
           ))}
         </Posts>
