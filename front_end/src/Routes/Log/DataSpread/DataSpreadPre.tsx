@@ -9,6 +9,7 @@ import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { timeNote } from "../../../GlobalLib/RecycleFunction/etc/Time";
 import { usePostDetail } from "../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
+import Avatar from "../../../Components/User/Avatar";
 
 const DataSpread = styled(WH100per)`
   display: flex;
@@ -88,14 +89,6 @@ const Sender = styled.div`
   flex-direction: row;
   padding: 5px 0 8px 0;
 `;
-const IdentiImg = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 32px;
-  height: 32px;
-  background-color: #b2bec3;
-`;
 const Name = styled(H100per)`
   display: flex;
   align-items: center;
@@ -166,27 +159,27 @@ export default ({ loading, data }: DataSpreadPreProps) => {
           </Slate>
         </Bar>
       ) : (
-        data.map((n: any) => {
-          const ord = data.findIndex((i: any) => i.post_id === n.post_id);
+        data.map((p: any) => {
+          const ord = data.findIndex((i: any) => i.post_id === p.post_id);
           const remvDupl =
-            data[ord - 1]?.year === n.year &&
-            data[ord - 1]?.month === n.month &&
-            data[ord - 1]?.day === n.day;
-          const sameYear = data[ord - 1]?.year === n.year;
+            data[ord - 1]?.year === p.year &&
+            data[ord - 1]?.month === p.month &&
+            data[ord - 1]?.day === p.day;
+          const sameYear = data[ord - 1]?.year === p.year;
           return (
-            <Bar key={n.post_id}>
+            <Bar key={p.post_id}>
               <DateLine>
                 <Indication>
                   <Date>
                     {ord === 0
-                      ? `${n.year}. ${n.month}. ${n.day}.`
+                      ? `${p.year}. ${p.month}. ${p.day}.`
                       : remvDupl
                       ? ""
                       : sameYear
-                      ? `${n.month}. ${n.day}.`
-                      : `${n.year}. ${n.month}. ${n.day}.`}
+                      ? `${p.month}. ${p.day}.`
+                      : `${p.year}. ${p.month}. ${p.day}.`}
                     &nbsp;&nbsp;
-                    {timeNote(n.hour, n.minute)}
+                    {timeNote(p.hour, p.minute)}
                     {ord === 0 || !remvDupl ? <>&nbsp;</> : ""}
                   </Date>
                   <Dot>
@@ -210,17 +203,15 @@ export default ({ loading, data }: DataSpreadPreProps) => {
                   <Stint
                     onClick={(e) => {
                       spaped(e);
-                      PD.setPostID(S_N_to_N(n.post_id));
+                      PD.setPostID(S_N_to_N(p.post_id));
                       PD.setOpenSeePostDetail(true);
                     }}
                   >
-                    <Title>{n.caption}</Title>
-                    <SampleContent>{n.content}</SampleContent>
+                    <Title>{p.caption}</Title>
+                    <SampleContent>{p.content}</SampleContent>
                     <Sender>
-                      <IdentiImg>
-                        <i className="icon-bell" />
-                      </IdentiImg>
-                      <Name>Administrator</Name>
+                      <Avatar size={32} url={p.user_postTouser.avatar} />
+                      <Name>{p.user_postTouser.username}</Name>
                     </Sender>
                   </Stint>
                 </ForThePadding>
