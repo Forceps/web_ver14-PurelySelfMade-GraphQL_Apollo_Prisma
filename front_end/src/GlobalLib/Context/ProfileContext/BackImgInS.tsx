@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext, ReactNode } from "react";
 import { useMyInfo } from "../UserContext/Me";
 import { useMutation } from "@apollo/client";
 import { SET_BACKIMG } from "../../Apollo/GraphQL_Client/User/UserCUD";
-import { SEE_USER } from "../../Apollo/GraphQL_Client/User/UserR";
+import { SEE_USER } from "../../Apollo/GraphQL_Client/User/UserRseries/UserR";
 import { S_N_to_N } from "../../RecycleFunction/etc/type_convert";
 
 const BackgroundImageInsert = createContext<DirSelectorModeObj | undefined>(

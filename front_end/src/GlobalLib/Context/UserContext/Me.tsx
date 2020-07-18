@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import { useLazyQuery } from "@apollo/client";
-import { ME } from "../../Apollo/GraphQL_Client/User/UserR";
+import { ME } from "../../Apollo/GraphQL_Client/User/UserRseries/UserR";
 import { useLoginCheck } from "./IsLoggedIn";
 
 interface MeContext {

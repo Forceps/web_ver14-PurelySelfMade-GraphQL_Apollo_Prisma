@@ -49,11 +49,11 @@ const BackStep = styled.div`
 `;
 
 export default () => {
-  const DC = useDirMode();
+  const { DirData, setLocation } = useDirMode();
   const DirSelectorMode = useDirSelectorMode();
   return (
     <>
-      {DC.DirData?.parent_id === null || DC.DirData === null ? (
+      {!DirData || !DirData?.directory ? (
         <SbJCon>
           <HeadRootSbj />
           <Folding
@@ -67,19 +67,19 @@ export default () => {
       ) : (
         <SbJCon2>
           <BackStep
-            onClick={async (e) => {
+            onClick={(e) => {
               spaped(e);
-              const Test = parseInt(DC.DirData?.parent_id?.directory_id);
-              if (!DC.DirData?.parent_id.root) {
-                DC.setLocation(Test);
+              const Test = parseInt(DirData?.parent_id);
+              if (!DirData?.directory.root) {
+                setLocation(Test);
               } else {
-                DC.setLocation(0);
+                setLocation(0);
               }
             }}
           >
             <i className="icon-left-big" />
           </BackStep>
-          <SbJ>{DC.DirData?.name}</SbJ>
+          <SbJ>{DirData?.name}</SbJ>
           <Folding
             className="icon-right-open"
             onClick={(e) => {

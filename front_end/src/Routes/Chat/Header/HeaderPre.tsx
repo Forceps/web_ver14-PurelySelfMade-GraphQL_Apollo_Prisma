@@ -4,10 +4,9 @@ import WH100per, {
   W100per,
   H100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { Link } from "react-router-dom";
-import FatText from "../../../GlobalLib/Styles/IteratePattern/FatText";
 import useScroll from "../../../GlobalLib/RecycleFunction/Hooks/useScroll";
 import ToggleMenuCon from "./ToggleMenu/ToggleMenuCon";
+import Logo from "../../../Components/ElementEtc/Effect/Logo";
 
 interface EnclosingProps {
   Position: any;
@@ -36,27 +35,6 @@ const Left = styled(WH100per)`
   display: flex;
   align-items: center;
   padding: 0 0 0 20px;
-`;
-const LogoLink = styled(Link)`
-  display: flex;
-  align-items: center;
-`;
-const LI = styled.div`
-  display: grid;
-  justify-content: right;
-  width: 22px;
-  height: 22px;
-  background-color: #2d3436;
-  padding: 5px 2px 0 0;
-`;
-const LIT = styled.div`
-  color: white;
-  font-size: 1rem;
-`;
-const LogoText = styled(({ ...rest }) => <FatText {...rest} />)`
-  display: inline-block;
-  font-size: 20px;
-  color: black;
 `;
 const Center = styled(WH100per)`
   display: flex;
@@ -90,12 +68,7 @@ export default () => {
   return (
     <Enclosing Direction={Direction} Position={Position}>
       <Left>
-        <LogoLink to="/home">
-          <LI>
-            <LIT>S</LIT>
-          </LI>
-          <LogoText text="quare Post" />
-        </LogoLink>
+        <Logo size={22} />
       </Left>
       <Center></Center>
       <Right>

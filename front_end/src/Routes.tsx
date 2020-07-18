@@ -9,6 +9,7 @@ import BlogCon from "./Routes/Blog/BlogCon";
 import { useLoginCheck } from "./GlobalLib/Context/UserContext/IsLoggedIn";
 import ChatCon from "./Routes/Chat/ChatCon";
 import NotificationCon from "./Routes/Notification/NotificationCon";
+import LogCon from "./Routes/Log/LogCon";
 
 const LoggedInRoutes = () => (
   <Switch>
@@ -20,6 +21,7 @@ const LoggedInRoutes = () => (
     <Route exact path="/group/:group_id" component={EachGroupsCon} />
     <Route exact path="/chat" component={ChatCon} />
     <Route exact path="/notification" component={NotificationCon} />
+    <Route exact path="/log" component={LogCon} />
     <Redirect from="*" to="/" />
   </Switch>
 );

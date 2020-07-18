@@ -11,6 +11,7 @@ const Compass = styled(W100per)`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding: 0 0 420px 0;
 `;
 
 export default ({

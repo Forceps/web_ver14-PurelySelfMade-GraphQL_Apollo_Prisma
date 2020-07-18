@@ -2,37 +2,20 @@ import React from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
-import FatText from "../../../GlobalLib/Styles/IteratePattern/FatText";
 import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
+import Logo from "../Effect/Logo";
 
-const Wrapper = styled(W100per)`
+const JustifyPosition = styled(W100per)`
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+`;
+const MenuTopContainer = styled.div`
   display: grid;
   grid-template-rows: 50px 1fr;
   justify-content: right;
-  padding: 10px;
   user-select: none;
-`;
-const LogoLink = styled(Link)`
-  display: flex;
-  align-items: center;
-  margin-right: 30px;
-`;
-const LI = styled.div`
-  display: grid;
-  justify-content: right;
-  width: 27px;
-  height: 27px;
-  background-color: #2d3436;
-  padding: 6px 2.5px 0 0;
-`;
-const LIT = styled.div`
-  color: white;
-  font-size: 1.2rem;
-`;
-const LogoText = styled(({ ...rest }) => <FatText {...rest} />)`
-  display: inline-block;
-  font-size: 27px;
-  color: black;
 `;
 const OutlineBox = styled.div`
   display: flex;
@@ -55,7 +38,7 @@ const Item = styled(W100per)`
 `;
 const LittleItem = styled(Item)`
   height: 40px;
-  font-size: 1.1rem;
+  font-size: 1rem;
 `;
 const Icon = styled.i`
   margin: 0 10px 0 0;
@@ -65,30 +48,36 @@ export default ({
   MoreMenu,
   setMoreMenu,
   localLogOutMutation,
+  Notification,
+  Chat,
+  Bookmark,
+  Log,
 }: LeftSideMenuPreProps) => {
-  const ME = useMyInfo();
+  const { isLoggedIn } = useLoginCheck();
+  const { MEloading, MEdata } = useMyInfo();
 
   return (
-    <>
-      <Wrapper>
-        <LogoLink to="/home">
-          <LI>
-            <LIT>S</LIT>
-          </LI>
-          <LogoText text="quare Post" />
-        </LogoLink>
+    <JustifyPosition>
+      <MenuTopContainer>
+        <Logo />
         <OutlineBox>
-          {ME?.MEloading ? (
+          {MEloading ? (
             <>
-              <Item>
-                <Icon className="icon-bell" /> Notification
-              </Item>
-              <Item>
-                <Icon className="icon-comment-empty" /> Chat
-              </Item>
-              <Item>
-                <Icon className="icon-bookmark-empty" /> Bookmark
-              </Item>
+              {Notification && (
+                <Item>
+                  <Icon className="icon-bell" /> Notification
+                </Item>
+              )}
+              {Chat && (
+                <Item>
+                  <Icon className="icon-comment-empty" /> Chat
+                </Item>
+              )}
+              {Bookmark && (
+                <Item>
+                  <Icon className="icon-bookmark-empty" /> Bookmark
+                </Item>
+              )}
               <Item>
                 <Icon
                   className="icon-noun_user_856030"
@@ -103,22 +92,28 @@ export default ({
             </>
           ) : (
             <>
-              <Link to={`/notification`}>
-                <Item>
-                  <Icon className="icon-bell" /> Notification
-                </Item>
-              </Link>
-              <Link to={`/chat`}>
-                <Item>
-                  <Icon className="icon-comment-empty" /> Chat
-                </Item>
-              </Link>
-              <Link to={`/bookmark/${ME?.MEdata?.user_id}`}>
-                <Item>
-                  <Icon className="icon-bookmark-empty" /> Bookmark
-                </Item>
-              </Link>
-              <Link to={`/profile/${ME?.MEdata?.user_id}`}>
+              {Notification && (
+                <Link to={`/notification`}>
+                  <Item>
+                    <Icon className="icon-bell" /> Notification
+                  </Item>
+                </Link>
+              )}
+              {Chat && (
+                <Link to={`/chat`}>
+                  <Item>
+                    <Icon className="icon-comment-empty" /> Chat
+                  </Item>
+                </Link>
+              )}
+              {Bookmark && (
+                <Link to={`/bookmark/${MEdata?.user_id}`}>
+                  <Item>
+                    <Icon className="icon-bookmark-empty" /> Bookmark
+                  </Item>
+                </Link>
+              )}
+              <Link to={`/profile/${MEdata?.user_id}`}>
                 <Item>
                   <Icon
                     className="icon-noun_user_856030"
@@ -143,13 +138,26 @@ export default ({
                 <Icon className="icon-up-open" />
                 Close
               </LittleItem>
-              <LittleItem
-                onClick={() => {
-                  localLogOutMutation();
-                }}
-              >
-                Log out
+              {Log && (
+                <Link to={`/Log`}>
+                  <LittleItem>
+                    <Icon className="icon-history" /> Log
+                  </LittleItem>
+                </Link>
+              )}
+              <LittleItem>
+                <Icon className="icon-info" />
+                Information
               </LittleItem>
+              {isLoggedIn && (
+                <LittleItem
+                  onClick={() => {
+                    localLogOutMutation();
+                  }}
+                >
+                  Log out
+                </LittleItem>
+              )}
             </>
           ) : (
             <Item
@@ -161,8 +169,8 @@ export default ({
             </Item>
           )}
         </OutlineBox>
-      </Wrapper>
-    </>
+      </MenuTopContainer>
+    </JustifyPosition>
   );
 };
 
@@ -170,4 +178,8 @@ interface LeftSideMenuPreProps {
   MoreMenu: boolean;
   setMoreMenu: any;
   localLogOutMutation: any;
+  Notification: boolean;
+  Chat: boolean;
+  Bookmark: boolean;
+  Log: boolean;
 }

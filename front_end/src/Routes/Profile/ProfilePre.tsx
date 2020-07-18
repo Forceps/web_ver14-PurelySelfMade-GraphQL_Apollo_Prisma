@@ -9,7 +9,7 @@ import { useProfileMode } from "../../GlobalLib/Context/ProfileContext/ProfileMo
 const Wrapper = styled.div``;
 const BottomBody = styled.div`
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 311px 1fr;
   min-height: 100vh;
   @media (max-width: 1300px) {
     grid-template-columns: 101px 1fr;

@@ -13,18 +13,18 @@ import {
 import { S_N_to_N } from "../../../../../GlobalLib/RecycleFunction/etc/type_convert";
 
 export default ({ setMakeDirOpen }: MakeDirCon) => {
-  const DC = useDirMode();
-  const ME = useMyInfo();
+  const { DirData, DirData_refetch } = useDirMode();
+  const { MEdata } = useMyInfo();
   const DirName = useInput("");
   const [MakeDirMutation] = useMutation(MAKE_DIRECTORY, {
     refetchQueries: () => [
       {
         query: WHOSE_POST_DIR,
-        variables: { user_id: S_N_to_N(ME.MEdata.user_id) },
+        variables: { user_id: S_N_to_N(MEdata.user_id) },
       },
       {
         query: FIND_DIR_BY_ID,
-        variables: { directory_id: S_N_to_N(DC.DirData.directory_id) },
+        variables: { directory_id: S_N_to_N(DirData.directory_id) },
       },
     ],
   });
@@ -34,13 +34,13 @@ export default ({ setMakeDirOpen }: MakeDirCon) => {
       await MakeDirMutation({
         variables: {
           name: DirName.value,
-          parent_id: parseInt(DC.DirData.directory_id),
+          parent_id: parseInt(DirData.directory_id),
         },
       });
     } catch (e) {
       console.log(e);
     } finally {
-      DC.DirData_refetch();
+      DirData_refetch();
       setMakeDirOpen(false);
     }
   };

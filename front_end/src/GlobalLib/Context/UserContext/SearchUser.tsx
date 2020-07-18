@@ -1,5 +1,5 @@
 import React, { createContext, useState, ReactNode, useContext } from "react";
-import { SearchUserRequest } from "../../Apollo/GraphQL_Client/User/UserR";
+import { SearchUserRequest } from "../../Apollo/GraphQL_Client/User/UserRseries/UserR";
 
 const SearchUser = createContext<SearchUserContext | undefined>(undefined);
 export const SearchUserProvider = ({ children }: { children: ReactNode }) => {

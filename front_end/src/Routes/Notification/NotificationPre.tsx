@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { W100per } from "../../GlobalLib/Styles/IteratePattern/WH100per";
 import DataSpreadCon from "./DataSpread/DataSpreadCon";
@@ -15,13 +15,16 @@ const NonPop = styled(W100per)`
   padding: 30px 0 0 0;
 `;
 
-export default () => {
-  const [NotiDetlOp, setNotiDetlOp] = useState(false);
-  const [NotiId, setNotiId] = useState(0);
+export default ({
+  NotiDetlOp,
+  setNotiDetlOp,
+  NotiId,
+  setNotiId,
+}: NotificationPreProps) => {
   return (
     <>
       <Packing>
-        <LeftSideMenuCon />
+        <LeftSideMenuCon Notification={false} />
         <NonPop>
           <DataSpreadCon setNotiDetlOp={setNotiDetlOp} setNotiId={setNotiId} />
         </NonPop>
@@ -35,3 +38,9 @@ export default () => {
     </>
   );
 };
+interface NotificationPreProps {
+  NotiDetlOp: boolean;
+  setNotiDetlOp: any;
+  NotiId: number;
+  setNotiId: any;
+}

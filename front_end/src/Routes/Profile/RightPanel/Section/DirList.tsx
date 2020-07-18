@@ -69,7 +69,7 @@ export default ({
   setShowOneOpen,
   setDetailInfo,
 }: DirListProp) => {
-  const DC = useDirMode();
+  const { DirData, setLocation } = useDirMode();
   const PfDM = useProfileDetailMode();
   const PD = usePostDetail();
   const DP = useDeletePost();
@@ -77,12 +77,12 @@ export default ({
   const UP = useUpdatePost();
   return (
     <Wrapper>
-      {DC.DirData?.directory?.map((dir: any) => (
+      {DirData?.other_directory?.map((dir: any) => (
         <Node
           key={dir.directory_id}
           onClick={(e: any) => {
             spaped(e);
-            DC.setLocation(parseInt(dir.directory_id));
+            setLocation(parseInt(dir.directory_id));
           }}
         >
           <Select>
@@ -109,7 +109,7 @@ export default ({
           </Ctrl>
         </Node>
       ))}
-      {DC.DirData?.post?.map((post: any) => (
+      {DirData?.post?.map((post: any) => (
         <EndPoint key={post.post_id}>
           <Select
             onClick={async (e: any) => {
@@ -141,7 +141,7 @@ export default ({
           </Ctrl>
         </EndPoint>
       ))}
-      {DC.DirData?.image?.map((image: any) => (
+      {DirData?.image?.map((image: any) => (
         <EndPoint
           key={image.image_id}
           onClick={(e) => {
@@ -179,7 +179,7 @@ export default ({
           </Ctrl>
         </EndPoint>
       ))}
-      {DC.DirData?.video?.map((video: any) => (
+      {DirData?.video?.map((video: any) => (
         <EndPoint
           key={video.video_id}
           onClick={(e) => {
@@ -217,7 +217,7 @@ export default ({
           </Ctrl>
         </EndPoint>
       ))}
-      {DC.DirData?.music?.map((music: any) => (
+      {DirData?.music?.map((music: any) => (
         <EndPoint
           key={music.music_id}
           onClick={(e) => {

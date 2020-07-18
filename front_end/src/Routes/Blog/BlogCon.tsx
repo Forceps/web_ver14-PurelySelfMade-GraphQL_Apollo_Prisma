@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import BlogPre from "./BlogPre";
 import { useParams } from "react-router-dom";
 import { S_N_to_N } from "../../GlobalLib/RecycleFunction/etc/type_convert";
-import { SeeUserRequest } from "../../GlobalLib/Apollo/GraphQL_Client/User/UserR";
+import { SeeUserRequest } from "../../GlobalLib/Apollo/GraphQL_Client/User/UserRseries/UserR";
 
 export default () => {
   const { user_id: user_id_extract }: any = useParams();

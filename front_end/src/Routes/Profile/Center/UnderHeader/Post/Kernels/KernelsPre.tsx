@@ -6,7 +6,6 @@ import { useProfileDetailMode } from "../../../../../../GlobalLib/Context/Profil
 import { useTargetsShown } from "../../../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
 import PostList from "./type/PostList";
 import IncludeScrollBar from "../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
-import ImgInSCon from "../../../../../../Components/Media/Insert/ImgInsertScreen/ImgInSCon";
 import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useBackImgInS } from "../../../../../../GlobalLib/Context/ProfileContext/BackImgInS";
 
@@ -56,49 +55,40 @@ export default ({ UserData, UserDataLoading }: LSIpre) => {
   const TSP = useTargetsShown();
   const BII = useBackImgInS();
   return (
-    <>
-      <LSec>
-        {UserDataLoading || !UserData?.seeUser?.back_img ? (
-          <BackImgDefault
-            onClick={(e: any) => {
-              spaped(e);
-              BII.setDesignateBackImg(true);
-            }}
-          >
-            <UserName>{UserData?.seeUser?.username}</UserName>
-          </BackImgDefault>
-        ) : PfDM.Mode === "PostDetail" ? (
-          <div />
-        ) : (
-          <BackImg
-            url={UserData?.seeUser?.back_img}
-            onClick={(e: any) => {
-              spaped(e);
-              BII.setDesignateBackImg(true);
-            }}
-          />
-        )}
-
-        <Posts>
-          {TSP.posts_loading ? (
-            <LDWrap>
-              <Loading />
-            </LDWrap>
-          ) : PfDM.Mode === "TimeLine" ? (
-            <ThingsWall />
-          ) : (
-            <PostList />
-          )}
-        </Posts>
-      </LSec>
-      {BII.DesignateBackImg && (
-        <ImgInSCon
-          setImgSubMenuOp={BII.setDesignateBackImg}
-          ImgInsert={BII.BackImgPathInsert}
-          zIndex={30}
+    <LSec>
+      {UserDataLoading || !UserData?.seeUser?.back_img ? (
+        <BackImgDefault
+          onClick={(e: any) => {
+            spaped(e);
+            BII.setDesignateBackImg(true);
+          }}
+        >
+          <UserName>{UserData?.seeUser?.username}</UserName>
+        </BackImgDefault>
+      ) : PfDM.Mode === "PostDetail" ? (
+        <div />
+      ) : (
+        <BackImg
+          url={UserData?.seeUser?.back_img}
+          onClick={(e: any) => {
+            spaped(e);
+            BII.setDesignateBackImg(true);
+          }}
         />
       )}
-    </>
+
+      <Posts>
+        {TSP.posts_loading ? (
+          <LDWrap>
+            <Loading />
+          </LDWrap>
+        ) : PfDM.Mode === "TimeLine" ? (
+          <ThingsWall />
+        ) : (
+          <PostList />
+        )}
+      </Posts>
+    </LSec>
   );
 };
 

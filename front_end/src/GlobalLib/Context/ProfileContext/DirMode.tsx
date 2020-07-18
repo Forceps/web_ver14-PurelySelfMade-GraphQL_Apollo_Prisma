@@ -16,7 +16,7 @@ import { useLoginCheck } from "../UserContext/IsLoggedIn";
 const CurrentDirLocation = createContext<DirMode | undefined>(undefined);
 export const CDLProvider = ({ children }: { children: ReactNode }) => {
   const { isLoggedIn } = useLoginCheck();
-  const PfM = useProfileMode();
+  const { Mode } = useProfileMode();
   const [OnlyOnce, setOnlyOnce] = useState(true);
   const [Location, setLocation] = useState(0);
   const rememberLocation = useRef(0);
@@ -33,36 +33,36 @@ export const CDLProvider = ({ children }: { children: ReactNode }) => {
   ] = FindMyArchiveDirRequest(Location);
 
   useEffect(() => {
-    if (PfM.Mode[0] === "Post") {
+    if (Mode[0] === "Post") {
       setDirData(PsData?.findMyPostDir);
       setDirData_loading(PsLoading);
       setDirData_refetch(() => PsRefetch);
-    } else if (PfM.Mode[0] === "Archive") {
+    } else if (Mode[0] === "Archive") {
       setDirData(AcData?.findMyArchiveDir);
       setDirData_loading(AcLoading);
       setDirData_refetch(() => AcRefetch);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [PfM.Mode, PsLoading, AcLoading, Location, PsData, AcData]);
+  }, [Mode, PsLoading, AcLoading, Location, PsData, AcData]);
 
   const [RemmPostDirLo, setRemmPostDirLo] = useState(0);
   const [RemmArcvDirLo, setRemmArcvDirLo] = useState(0);
   useEffect(() => {
-    if (PfM.Mode[0] === "Post") {
+    if (Mode[0] === "Post") {
       setRemmPostDirLo(Location);
-    } else if (PfM.Mode[0] === "Archive") {
+    } else if (Mode[0] === "Archive") {
       setRemmArcvDirLo(Location);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Location]);
   useEffect(() => {
-    if (PfM.Mode[0] === "Post") {
+    if (Mode[0] === "Post") {
       setLocation(RemmPostDirLo);
-    } else if (PfM.Mode[0] === "Archive") {
+    } else if (Mode[0] === "Archive") {
       setLocation(RemmArcvDirLo);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [PfM.Mode[0]]);
+  }, [Mode[0]]);
   useEffect(() => {
     if (isLoggedIn && OnlyOnce) {
       queryLoad_Pdir();

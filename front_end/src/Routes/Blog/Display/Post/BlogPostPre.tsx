@@ -98,7 +98,7 @@ export default ({
           {!RootDirDataLoad &&
             RootDirData?.other_directory.map((d: any) => {
               const [DirOpen, setDirOpen] = useState(false);
-              const FurtherDownExist = d.directory?.length !== 0;
+              const FurtherDownExist = d.other_directory?.length !== 0;
               const directory_id = S_N_to_N(d.directory_id);
               return (
                 <div key={directory_id}>

@@ -97,3 +97,27 @@ export const SeeSearchPostsRequest = (keyWord: string, user_id?: number) =>
   useLazyQuery(SEE_SEARCH_POSTS, {
     variables: { keyWord, user_id },
   });
+
+export const MY_WATCHING_LOG = gql`
+  query myWatchingLog {
+    myWatchingLog {
+      post_id
+      caption
+      user_postTouser {
+        user_id
+        username
+        avatar
+      }
+      views
+      likes
+      face
+      face_type
+      year
+      month
+      day
+      hour
+      minute
+    }
+  }
+`;
+export const MyWatchingLogRequest = () => useLazyQuery(MY_WATCHING_LOG);

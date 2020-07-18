@@ -4,7 +4,7 @@ import st1_watchingLogExtract from "./st1_watchingLogExtract";
 
 const prisma = new PrismaClient();
 
-export default async (user_id: number, eachTake: number = 6) => {
+export default async (user_id: number, eachTake: number = 8) => {
   const myHistory = await st1_watchingLogExtract(user_id);
 
   if (
@@ -17,9 +17,17 @@ export default async (user_id: number, eachTake: number = 6) => {
       const { post, interest } = myHistory[i];
       const bundle = await prisma.post_relevance.findMany({
         where: {
-          post1: post,
+          OR: [
+            {
+              post1: post,
+            },
+            {
+              post2: post,
+            },
+          ],
         },
         select: {
+          post1: true,
           post2: true,
           degree: true,
         },
@@ -29,32 +37,16 @@ export default async (user_id: number, eachTake: number = 6) => {
         take: eachTake,
       });
       for (let j = 0; j < bundle.length; j++) {
-        const { post2, degree } = bundle[j];
-        postLine = postLine.concat([
-          [post2, degree * interestFadeSigmoid(interest, i + 1)],
-        ]);
-      }
-    }
-    for (let i = 0; i < myHistory.length; i++) {
-      const { post, interest } = myHistory[i];
-      const bundle = await prisma.post_relevance.findMany({
-        where: {
-          post2: post,
-        },
-        select: {
-          post1: true,
-          degree: true,
-        },
-        orderBy: {
-          degree: "desc",
-        },
-        take: eachTake,
-      });
-      for (let j = 0; j < bundle.length; j++) {
-        const { post1, degree } = bundle[j];
-        postLine = postLine.concat([
-          [post1, degree * interestFadeSigmoid(interest, i + 1)],
-        ]);
+        const { post1, post2, degree } = bundle[j];
+        if (post1 === post) {
+          postLine = postLine.concat([
+            [post2, degree * interestFadeSigmoid(interest, i + 1)],
+          ]);
+        } else {
+          postLine = postLine.concat([
+            [post1, degree * interestFadeSigmoid(interest, i + 1)],
+          ]);
+        }
       }
     }
 

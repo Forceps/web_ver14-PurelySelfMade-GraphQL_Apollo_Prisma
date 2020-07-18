@@ -3,7 +3,7 @@ import IdentityPre from "./IdentityPre";
 import { useMutation } from "@apollo/client";
 import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import { SET_AVATAR } from "../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
-import { SEE_USER } from "../../../../GlobalLib/Apollo/GraphQL_Client/User/UserR";
+import { SEE_USER } from "../../../../GlobalLib/Apollo/GraphQL_Client/User/UserRseries/UserR";
 import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";
 
 export default ({
@@ -36,7 +36,7 @@ export default ({
   return (
     <IdentityPre
       UserDataLoading={UserDataLoading}
-      UserData={UserData}
+      UserData={UserData?.seeUser}
       DesignateAvatar={DesignateAvatar}
       setDesignateAvatar={setDesignateAvatar}
       AvatarPathInsert={AvatarPathInsert}

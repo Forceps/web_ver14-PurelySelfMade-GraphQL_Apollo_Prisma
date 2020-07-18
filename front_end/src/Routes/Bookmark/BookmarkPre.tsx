@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import LeftSideMenuCon from "./LeftSideMenu/LeftSideMenuCon";
+import LeftSideCon from "./LeftSide/LeftSideCon";
 import MiddleCon from "./Middle/MiddleCon";
 import RightCon from "./Right/RightCon";
 import { W100per } from "../../GlobalLib/Styles/IteratePattern/WH100per";
@@ -20,7 +20,7 @@ export default ({ SeeMode, setSeeMode }: BookmarkPreProps) => {
   const UP = useUpdatePost();
   return (
     <Body>
-      <LeftSideMenuCon />
+      <LeftSideCon />
       <MiddleCon SeeMode={SeeMode} />
       <RightCon setSeeMode={setSeeMode} />
       {PD.OpenSeePostDetail && <PostDetailT zIndex={20} commentsShow={true} />}

@@ -6,11 +6,11 @@ import ConnectionTile from "./Menu/ConnectionTile";
 import { useBackImgInS } from "../../../GlobalLib/Context/ProfileContext/BackImgInS";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import ImgInSCon from "../../../Components/Media/Insert/ImgInsertScreen/ImgInSCon";
+import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 
-const Den1Left = styled.div`
+const Den1Left = styled(W100per)`
   display: grid;
-  min-width: 311px;
-  grid-template-rows: 210px 1fr;
+  grid-template-rows: 180px 1fr;
   @media (max-width: 1300px) {
     display: flex;
     min-width: 0;

@@ -1,10 +1,10 @@
 type Directory {
   directory_id: ID!
-  group: Int
   name: String!
   parent_id: Int
   root: Boolean!
   user: Int
+  group: Int
 
   group_directoryTogroup: Group
   directory: Directory

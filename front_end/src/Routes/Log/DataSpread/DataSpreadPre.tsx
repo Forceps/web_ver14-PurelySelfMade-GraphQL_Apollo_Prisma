@@ -6,8 +6,9 @@ import WH100per, {
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { timeNote } from "../../../GlobalLib/RecycleFunction/etc/Time";
+import { usePostDetail } from "../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
+import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 
 const DataSpread = styled(WH100per)`
   display: flex;
@@ -137,18 +138,14 @@ const ForThePadding = styled.div`
   padding: 6px 10px 6px 0;
 `;
 
-export default ({
-  NotiLoad,
-  NotiData,
-  setNotiDetlOp,
-  setNotiId,
-}: DataSpreadPreProps) => {
+export default ({ loading, data }: DataSpreadPreProps) => {
+  const PD = usePostDetail();
   return (
     <DataSpread>
-      <Sbj>Notification</Sbj>
-      {NotiLoad ? (
+      <Sbj>History</Sbj>
+      {loading ? (
         <Loading />
-      ) : NotiData.length === 0 ? (
+      ) : data.length === 0 ? (
         <Bar>
           <DateLine>
             <Indication>
@@ -163,23 +160,21 @@ export default ({
             <ForTheLine />
             <ForThePadding>
               <Stint>
-                <Title>No notification</Title>
+                <Title>No Watched</Title>
               </Stint>
             </ForThePadding>
           </Slate>
         </Bar>
       ) : (
-        NotiData.map((n: any) => {
-          const ord = NotiData.findIndex(
-            (i: any) => i.notification_id === n.notification_id
-          );
+        data.map((n: any) => {
+          const ord = data.findIndex((i: any) => i.post_id === n.post_id);
           const remvDupl =
-            NotiData[ord - 1]?.year === n.year &&
-            NotiData[ord - 1]?.month === n.month &&
-            NotiData[ord - 1]?.day === n.day;
-          const sameYear = NotiData[ord - 1]?.year === n.year;
+            data[ord - 1]?.year === n.year &&
+            data[ord - 1]?.month === n.month &&
+            data[ord - 1]?.day === n.day;
+          const sameYear = data[ord - 1]?.year === n.year;
           return (
-            <Bar key={n.notification_id}>
+            <Bar key={n.post_id}>
               <DateLine>
                 <Indication>
                   <Date>
@@ -209,17 +204,17 @@ export default ({
               <Slate>
                 <ForTheLine>
                   <U first={ord === 0} />
-                  <D last={ord === NotiData.length - 1} />
+                  <D last={ord === data.length - 1} />
                 </ForTheLine>
                 <ForThePadding>
                   <Stint
                     onClick={(e) => {
                       spaped(e);
-                      setNotiId(S_N_to_N(n.notification_id));
-                      setNotiDetlOp(true);
+                      PD.setPostID(S_N_to_N(n.post_id));
+                      PD.setOpenSeePostDetail(true);
                     }}
                   >
-                    <Title>{n.title}</Title>
+                    <Title>{n.caption}</Title>
                     <SampleContent>{n.content}</SampleContent>
                     <Sender>
                       <IdentiImg>
@@ -238,8 +233,6 @@ export default ({
   );
 };
 interface DataSpreadPreProps {
-  NotiLoad: boolean;
-  NotiData: any;
-  setNotiDetlOp: any;
-  setNotiId: any;
+  loading: boolean;
+  data: any;
 }

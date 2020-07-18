@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import { useHistory } from "react-router-dom";
-import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import HiddenLMore from "./HiddenLMore";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import WH100per, {
   W100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import OutsideMenu from "./InsideOutside/OutsideMenu";
+import InsideMenu from "./InsideOutside/InsideMenu";
 
 const Wrapper = styled.div`
   display: grid;
@@ -117,11 +117,9 @@ const MetaItem2 = styled(MetaItem)<InsideProp>`
 `;
 
 export default () => {
-  const PfM = useProfileMode();
-  const ME = useMyInfo();
+  const { MEdata } = useMyInfo();
   const [More, setMore] = useState(false);
   const [Inside, setInside] = useState(true);
-  const history = useHistory();
   return (
     <Wrapper>
       <MetaSelect>
@@ -143,76 +141,7 @@ export default () => {
         </MetaItem2>
       </MetaSelect>
       <LeftMenu>
-        {Inside ? (
-          <>
-            <MenuItem
-              onClick={(e: any) => {
-                spaped(e);
-                PfM.setMode(["Post"]);
-                history.push(`/profile/${ME?.MEdata?.user_id}`);
-              }}
-              curMode={PfM.Mode[0]}
-              staMode={"Post"}
-            >
-              <MenuIcon className="icon-pinboard hovMenuIcon" />
-              <MenuTxt className="hovMenuTxt">Post</MenuTxt>
-            </MenuItem>
-            <MenuItem
-              onClick={(e: any) => {
-                spaped(e);
-                PfM.setMode(["Archive"]);
-                history.push(`/profile/${ME?.MEdata?.user_id}`);
-              }}
-              curMode={PfM.Mode[0]}
-              staMode={"Archive"}
-            >
-              <MenuIcon className="icon-folder hovMenuIcon" />
-              <MenuTxt className="hovMenuTxt">Archive</MenuTxt>
-            </MenuItem>
-            <MenuItem
-              onClick={(e: any) => {
-                spaped(e);
-                PfM.setMode(["Settings"]);
-                history.push(`/profile/${ME?.MEdata?.user_id}`);
-              }}
-              curMode={PfM.Mode[0]}
-              staMode={"Settings"}
-            >
-              <MenuIcon className="icon-sliders hovMenuIcon" />
-              <MenuTxt className="hovMenuTxt">Settings</MenuTxt>
-            </MenuItem>
-          </>
-        ) : (
-          <>
-            <MenuItem
-              onClick={(e: any) => {
-                spaped(e);
-                history.push(`/`);
-              }}
-            >
-              <MenuIcon className="icon-home-1 hovMenuIcon" />
-              <MenuTxt className="hovMenuTxt">Home</MenuTxt>
-            </MenuItem>
-            <MenuItem
-              onClick={(e: any) => {
-                spaped(e);
-                history.push(`/bookmark/${ME?.MEdata?.user_id}`);
-              }}
-            >
-              <MenuIcon className="icon-bookmark hovMenuIcon" />
-              <MenuTxt className="hovMenuTxt">Bookmark</MenuTxt>
-            </MenuItem>
-            <MenuItem
-              onClick={(e: any) => {
-                spaped(e);
-                history.push(`/chat`);
-              }}
-            >
-              <MenuIcon className="icon-comment hovMenuIcon" />
-              <MenuTxt className="hovMenuTxt">Chat</MenuTxt>
-            </MenuItem>
-          </>
-        )}
+        {Inside ? <InsideMenu /> : <OutsideMenu />}
 
         {More ? (
           <HiddenLMore setMore={setMore} />
@@ -222,7 +151,7 @@ export default () => {
               spaped(e);
               setMore(true);
             }}
-            to={`/profile/${ME?.MEdata?.user_id}`}
+            to={`/profile/${MEdata?.user_id}`}
           >
             <MenuIcon className="icon-dot-3" />
             <MenuTxt className="hovMenuTxt">More</MenuTxt>

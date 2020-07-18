@@ -10,7 +10,7 @@ import {
   ProfileDetailModeProvider,
   DirSelectorModeProvider,
 } from "../../GlobalLib/Context/ProfileContext/PfDetailMode";
-import { SeeUserRequest } from "../../GlobalLib/Apollo/GraphQL_Client/User/UserR";
+import { SeeUserRequest } from "../../GlobalLib/Apollo/GraphQL_Client/User/UserRseries/UserR";
 import { S_N_to_N } from "../../GlobalLib/RecycleFunction/etc/type_convert";
 
 export default () => {

@@ -1,11 +1,16 @@
-import st1_myRelatedUser from "../../../../../../Abyss/Interconnectedness/Extraction/userRecommend/directlyByRelevance/st1_myRelatedUser";
+import stF_result from "../../../../../../Abyss/Interconnectedness/Extraction/userRecommend/directlyByRelevance/stF_result";
 
 export default {
   Query: {
-    recommendAuthorByUserId: async (_: void, args) => {
-      const { user_id } = args;
+    recommendAuthorByUserId: async (
+      _: void,
+      __: void,
+      { req, isAuthenticated }: any
+    ) => {
+      isAuthenticated(req);
+      const { user } = req;
       try {
-        const usersCloseToMe = await st1_myRelatedUser(user_id);
+        const usersCloseToMe = await stF_result(user.user_id);
         return usersCloseToMe;
       } catch (e) {
         console.log(e);

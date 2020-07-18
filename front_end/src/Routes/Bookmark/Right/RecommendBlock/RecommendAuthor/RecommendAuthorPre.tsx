@@ -46,21 +46,32 @@ const AuthorName = styled(WH100per)`
   font-size: 0.9rem;
 `;
 
-export default () => {
+export default ({ recoU_loading, recoU_data }: RecommendAuthorPreProps) => {
   return (
     <RecommendAuthor>
       <RSubSbj>Author</RSubSbj>
       <Lists>
-        {!true &&
-          [].map((rc: any) => (
-            <Rectangle key={rc.post_id}>
-              <Avatar size={50} />
-              <Author>
-                <AuthorName>{rc.caption}</AuthorName>
-              </Author>
-            </Rectangle>
+        {!recoU_loading &&
+          (recoU_data === null ||
+          recoU_data === undefined ||
+          recoU_data.length === 0 ? (
+            <div />
+          ) : (
+            recoU_data.map((rc: any) => (
+              <Rectangle key={rc.user_id}>
+                <Avatar size={50} url={rc.avatar} />
+                <Author>
+                  <AuthorName>{rc.username}</AuthorName>
+                </Author>
+              </Rectangle>
+            ))
           ))}
       </Lists>
     </RecommendAuthor>
   );
 };
+
+interface RecommendAuthorPreProps {
+  recoU_loading: boolean;
+  recoU_data: any;
+}
