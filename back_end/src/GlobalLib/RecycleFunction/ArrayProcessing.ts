@@ -9,7 +9,7 @@ export const removeDuplicatesArray = (arr: any[]): any[] => {
       }
     }
     if (duplicatesFlag) {
-      tempArr.push(arr[i]);
+      tempArr = tempArr.concat(arr[i]);
     }
   }
   return tempArr;

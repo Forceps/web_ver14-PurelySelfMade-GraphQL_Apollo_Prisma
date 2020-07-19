@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import WH100per, {
   W100per,
@@ -73,9 +73,14 @@ export default ({ addFriend }: SearchedUserPreProps) => {
   const SU = useSearchUser();
   const ME = useMyInfo();
   const SF = useSeeFriends();
+  useEffect(() => {
+    SU.loadGreeting();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <Area>
-      {!SU.loading &&
+      {SU.called &&
+        !SU.loading &&
         SU.data.searchUser.map((item: any) => (
           <Cell key={item.user_id}>
             {item.avatar ? (

@@ -293,7 +293,7 @@ ALTER TABLE `square_post`.`watched`
 CHANGE COLUMN `interest` `interest` SMALLINT UNSIGNED NOT NULL ;
 ALTER TABLE `square_post`.`post` 
 DROP INDEX `search_post` ,
-ADD FULLTEXT INDEX `search_post` (`caption`, `content`) WITH PARSER ngram VISIBLE;
+ADD FULLTEXT INDEX `search_post` (`caption`, `content`) WITH PARSER `ngram` VISIBLE;
 
 ALTER TABLE `square_post`.`watched` 
 ADD COLUMN `deprecated` TINYINT UNSIGNED NOT NULL DEFAULT 0 AFTER `interest`;
@@ -308,3 +308,111 @@ ALTER TABLE `square_post`.`post`
 ADD COLUMN `face` MEDIUMTEXT NULL AFTER `likes`;
 ALTER TABLE `square_post`.`post` 
 ADD COLUMN `face_type` ENUM("image", "text") NOT NULL DEFAULT 'text' AFTER `second`;
+
+
+
+
+
+
+
+// 2020 - 7 - 19
+
+ALTER TABLE `square_post`.`user` 
+ADD FULLTEXT INDEX `name_search` (`username`) WITH PARSER ngram VISIBLE;
+CREATE TABLE `square_post`.`ngram_post_stopwords` (
+  `value` VARCHAR(18) NOT NULL,
+  PRIMARY KEY (`value`));
+  INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('a');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('about');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('an');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('are');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('as');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('at');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('be');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('by');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('com');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('de');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('en');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('for');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('from');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('how');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('i');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('in');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('is');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('it');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('la');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('of');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('on');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('or');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('that');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('the');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('this');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('to');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('was');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('what');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('when');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('where');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('who');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('will');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('with');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('und');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('www');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('<div>');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('<div/>');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('<img');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('</div');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('<br>');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('<video');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('<audio');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('<source');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES (' div ');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES (' br ');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES (' img ');
+INSERT INTO `square_post`.`ngram_post_stopwords` (`value`) VALUES ('<p');
+
+CREATE SCHEMA `customisable_system_default` ;
+CREATE TABLE `customisable_system_default`.`ngram_stopwords` (
+  `value` varchar(18) NOT NULL,
+  PRIMARY KEY (`value`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('a');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('about');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('an');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('are');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('as');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('at');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('be');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('by');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('com');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('de');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('en');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('for');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('from');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('how');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('i');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('in');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('is');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('it');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('la');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('of');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('on');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('or');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('that');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('the');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('this');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('to');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('was');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('what');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('when');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('where');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('who');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('will');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('with');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('und');
+INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('www');
+
+ALTER TABLE `square_post`.`post` 
+ADD FULLTEXT INDEX `search_post` (`caption`) WITH PARSER `ngram` VISIBLE;
+ALTER TABLE `square_post`.`post` 
+DROP INDEX `search_post` ,
+ADD FULLTEXT INDEX `search_post` (`caption`, `content`) WITH PARSER `ngram` VISIBLE;

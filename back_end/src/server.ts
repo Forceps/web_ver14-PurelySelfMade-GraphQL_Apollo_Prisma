@@ -55,7 +55,7 @@ server.express.post(
   localUploadProcessByMulter,
   localUploadResponse
 );
-server.express.use("/api/assets", fileRouter);
+server.express.use("/api/media", fileRouter);
 
 server.start(appOptions, () =>
   console.log(`✅ Server is running on localhost:${PORT}`)

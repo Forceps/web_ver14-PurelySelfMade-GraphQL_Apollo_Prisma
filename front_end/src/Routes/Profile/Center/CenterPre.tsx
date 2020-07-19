@@ -12,13 +12,13 @@ const Wrapper = styled.div`
 `;
 
 export default ({ UserData, UserDataLoading }: CenterPre) => {
-  const Mode = useProfileMode();
+  const { Mode } = useProfileMode();
   return (
     <Wrapper>
       <Header />
-      {Mode.Mode[0] === "Archive" ? (
+      {Mode[0] === "Archive" ? (
         <ArchiveMode />
-      ) : Mode.Mode[0] === "Form" ? (
+      ) : Mode[0] === "Form" ? (
         <FormCon />
       ) : (
         <PostMode UserData={UserData} UserDataLoading={UserDataLoading} />

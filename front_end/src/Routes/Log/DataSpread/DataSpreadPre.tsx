@@ -2,14 +2,10 @@ import React from "react";
 import styled, { css } from "styled-components";
 import WH100per, {
   W100per,
-  H100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
-import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import TileCon from "../../../Components/Post/Shape/Tile/TileCon";
 import { timeNote } from "../../../GlobalLib/RecycleFunction/etc/Time";
-import { usePostDetail } from "../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
-import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
-import Avatar from "../../../Components/User/Avatar";
 
 const DataSpread = styled(WH100per)`
   display: flex;
@@ -79,21 +75,7 @@ const Title = styled.div`
   align-items: center;
   height: 35px;
   font-size: 1rem;
-`;
-const SampleContent = styled.div`
-  padding: 5px 0 5px 0;
-  font-size: 0.85rem;
-`;
-const Sender = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 5px 0 8px 0;
-`;
-const Name = styled(H100per)`
-  display: flex;
-  align-items: center;
-  height: 32px;
-  padding: 0 0 0 8px;
+  margin: 0 20px 0 0;
 `;
 const Indication = styled(WH100per)`
   display: grid;
@@ -132,7 +114,6 @@ const ForThePadding = styled.div`
 `;
 
 export default ({ loading, data }: DataSpreadPreProps) => {
-  const PD = usePostDetail();
   return (
     <DataSpread>
       <Sbj>History</Sbj>
@@ -200,20 +181,7 @@ export default ({ loading, data }: DataSpreadPreProps) => {
                   <D last={ord === data.length - 1} />
                 </ForTheLine>
                 <ForThePadding>
-                  <Stint
-                    onClick={(e) => {
-                      spaped(e);
-                      PD.setPostID(S_N_to_N(p.post_id));
-                      PD.setOpenSeePostDetail(true);
-                    }}
-                  >
-                    <Title>{p.caption}</Title>
-                    <SampleContent>{p.content}</SampleContent>
-                    <Sender>
-                      <Avatar size={32} url={p.user_postTouser.avatar} />
-                      <Name>{p.user_postTouser.username}</Name>
-                    </Sender>
-                  </Stint>
+                  <TileCon post={p} />
                 </ForThePadding>
               </Slate>
             </Bar>

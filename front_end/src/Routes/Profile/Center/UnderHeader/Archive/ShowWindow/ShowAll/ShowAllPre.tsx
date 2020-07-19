@@ -9,7 +9,7 @@ import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopA
 
 const Collection = styled(WH100per)``;
 const Block = styled.div`
-  min-height: 60px;
+  min-height: 160px;
   width: 100%;
   margin: 0 0 10px 0;
   overflow: hidden;
@@ -21,7 +21,6 @@ const Header = styled.div`
   height: 40px;
   padding: 0 0 0 8px;
   /* margin: 12px 0 0 0; */
-  background: linear-gradient(to right, #dfe6e9, #fafafa);
 `;
 const MediaFiles = styled(WH100per)`
   display: flex;
@@ -163,7 +162,7 @@ export default ({
                   spaped(e);
                   setDetailInfo({
                     MediaType: "img",
-                    URL: `http://127.0.0.1:4002/api/${item.address}/image/read`,
+                    URL: `http://127.0.0.1:4002/api/media/${item.address}/image/read`,
                     Title: item.caption,
                   });
                   setShowOneOpen(true);
@@ -171,7 +170,7 @@ export default ({
               >
                 <ImgSample>
                   <ImgPrev
-                    src={`http://127.0.0.1:4002/api/${item.address}/image/read`}
+                    src={`http://127.0.0.1:4002/api/media/${item.address}/image/read`}
                     alt="image"
                   />
                 </ImgSample>
@@ -206,7 +205,7 @@ export default ({
                   spaped(e);
                   setDetailInfo({
                     MediaType: "video",
-                    URL: `http://127.0.0.1:4002/api/${item.address}/video/read`,
+                    URL: `http://127.0.0.1:4002/api/media/${item.address}/video/read`,
                     Title: item.caption,
                   });
                   setShowOneOpen(true);
@@ -244,7 +243,7 @@ export default ({
                   spaped(e);
                   setDetailInfo({
                     MediaType: "audio",
-                    URL: `http://127.0.0.1:4002/api/${item.address}/audio/read`,
+                    URL: `http://127.0.0.1:4002/api/media/${item.address}/audio/read`,
                     Title: item.caption,
                   });
                   setShowOneOpen(true);
