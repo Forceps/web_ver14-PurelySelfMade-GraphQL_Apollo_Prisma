@@ -9,6 +9,7 @@ import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent
 import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 import UploadImageCon from "../../Upload/UploadImage/UploadImageCon";
 import useGetImgExist from "../../../../GlobalLib/RecycleFunction/Hooks/useGetImgExist";
+import { mediaSummon } from "../../../../Routes/Profile/Center/UnderHeader/Archive/ShowWindow/ShowAll/ShowAllLib";
 
 const Container = styled(WH100per)<ConsoleProps>`
   display: flex;
@@ -287,20 +288,11 @@ export default ({
                     key={item.address}
                     onClick={(e: any) => {
                       spaped(e);
-                      ImgInsert(
-                        `http://127.0.0.1:4002/api/${item.address}/image/read`.replace(
-                          /\\/gi,
-                          "/"
-                        )
-                      );
-                      setImgSubMenuOp(false);
+                      ImgInsert(mediaSummon(item.address));
                     }}
                   >
                     <ImgSample>
-                      <ImgPrev
-                        src={`http://127.0.0.1:4002/api/${item.address}/image/read`}
-                        alt="image"
-                      />
+                      <ImgPrev src={mediaSummon(item.address)} alt="image" />
                     </ImgSample>
                     <ImgCaption>{item.caption}</ImgCaption>
                   </ImgBox>

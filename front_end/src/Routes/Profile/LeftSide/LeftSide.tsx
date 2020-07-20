@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Menu from "./Menu/Menu";
 import Identity from "./Identity/IdentityCon";
-import ConnectionTile from "./Menu/ConnectionTile";
 import { useBackImgInS } from "../../../GlobalLib/Context/ProfileContext/BackImgInS";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import ImgInSCon from "../../../Components/Media/Insert/ImgInsertScreen/ImgInSCon";
-import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
+import WH100per, {
+  W100per,
+} from "../../../GlobalLib/Styles/IteratePattern/WH100per";
+import LeftControlsRouter from "./Controls/LeftControlsRouter";
 
 const Den1Left = styled(W100per)`
   display: grid;
@@ -24,7 +26,9 @@ const Den2Up = styled.div`
     display: none;
   }
 `;
-const Den2Down = styled.div`
+const Den2Down = styled(WH100per)`
+  display: flex;
+  flex-direction: column;
   background-color: rgba(223, 230, 233, 0.25);
 `;
 interface BackImgProp {
@@ -38,7 +42,7 @@ const BackImg = styled(Den2Up)<BackImgProp>`
 
 export default ({ UserDataLoading, UserData }: LeftSideProps) => {
   const BII = useBackImgInS();
-  const [MenuMode, setMenuMode] = useState(true);
+  const [MenuMode, setMenuMode] = useState(false);
   return (
     <>
       <Den1Left>
@@ -66,14 +70,7 @@ export default ({ UserDataLoading, UserData }: LeftSideProps) => {
             MenuMode={MenuMode}
             setMenuMode={setMenuMode}
           />
-          {MenuMode ? (
-            <>
-              <Menu />
-              <ConnectionTile />
-            </>
-          ) : (
-            <div />
-          )}
+          {MenuMode ? <Menu /> : <LeftControlsRouter />}
         </Den2Down>
       </Den1Left>
       {BII.DesignateBackImg && (

@@ -6,6 +6,7 @@ import WH100per, {
 } from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { useProfileDetailMode } from "../../../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
 import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { mediaSummon } from "../ShowAll/ShowAllLib";
 
 const Block = styled.div`
   min-height: 60px;
@@ -111,17 +112,14 @@ export default ({
                 spaped(e);
                 setDetailInfo({
                   MediaType: "img",
-                  URL: `http://127.0.0.1:4002/api/${item.address}/image/read`,
+                  URL: mediaSummon(item.address),
                   Title: item.caption,
                 });
                 setShowOneOpen(true);
               }}
             >
               <ImgSample>
-                <ImgPrev
-                  src={`http://127.0.0.1:4002/api/${item.address}/image/read`}
-                  alt="image"
-                />
+                <ImgPrev src={mediaSummon(item.address)} alt="image" />
               </ImgSample>
               <ImgCaption>{item.caption}</ImgCaption>
             </ImgBox>

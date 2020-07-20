@@ -6,6 +6,7 @@ import WH100per, {
 } from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { useProfileDetailMode } from "../../../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
 import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { mediaSummon } from "../ShowAll/ShowAllLib";
 
 const Block = styled.div`
   min-height: 60px;
@@ -110,13 +111,13 @@ export default ({
                 spaped(e);
                 setDetailInfo({
                   MediaType: "video",
-                  URL: `http://127.0.0.1:4002/api/${item.address}/video/read`,
+                  URL: mediaSummon(item.address, "video"),
                   Title: item.caption,
                 });
                 setShowOneOpen(true);
               }}
             >
-              <Thumbnail url={item.thumbnail.replace(/\\/gi, "/")} />
+              <Thumbnail url={mediaSummon(item.address, "video")} />
               <ImgCaption>{item.caption}</ImgCaption>
             </VideoBox>
           ))}

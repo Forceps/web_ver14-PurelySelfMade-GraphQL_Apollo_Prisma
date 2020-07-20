@@ -4,11 +4,9 @@ import ScreensToUpload from "../../../../../Components/Media/Upload/ScreensToUpl
 import { H100per } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import ShowWindow from "./ShowWindow/ShowWindow";
 import ShowOne from "./ShowOne/ShowOne";
-import SituationBoardCon from "./SituationBoard/SituationBoardCon";
 
 const Wrapper = styled(H100per)`
-  display: grid;
-  grid-template-rows: 150px 1fr;
+  display: flex;
   overflow: hidden;
 `;
 
@@ -25,7 +23,6 @@ export default () => {
   return (
     <>
       <Wrapper>
-        <SituationBoardCon />
         <ShowWindow
           setAddImgScn={setAddImgScn}
           setAddVideoScn={setAddVideoScn}

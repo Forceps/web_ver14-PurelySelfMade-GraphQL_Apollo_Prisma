@@ -7,6 +7,8 @@ import { useDeletePost } from "../../../../GlobalLib/Context/PostContext/PostCRU
 import { useUpdatePost } from "../../../../GlobalLib/Context/PostContext/PostCRUD/UpdatePost";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useDeleteFile } from "../../../../GlobalLib/Context/FileContext/FileCRUD/DeleteFile";
+import { mediaSummon } from "../../Center/UnderHeader/Archive/ShowWindow/ShowAll/ShowAllLib";
+import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";
 
 const Wrapper = styled.div`
   display: flex;
@@ -82,7 +84,7 @@ export default ({
           key={dir.directory_id}
           onClick={(e: any) => {
             spaped(e);
-            setLocation(parseInt(dir.directory_id));
+            setLocation(S_N_to_N(dir.directory_id));
           }}
         >
           <Select>
@@ -153,7 +155,7 @@ export default ({
               spaped(e);
               setDetailInfo({
                 MediaType: "img",
-                URL: `http://127.0.0.1:4002/api/${image.address}/image/read`,
+                URL: mediaSummon(image.address),
                 Title: image.caption,
               });
               setShowOneOpen(true);
@@ -173,7 +175,7 @@ export default ({
               className="icon-noun_x_2939490"
               onClick={(e: any) => {
                 spaped(e);
-                DF.FileDeleteProcess(parseInt(image.image_id));
+                DF.FileDeleteProcess(S_N_to_N(image.image_id));
               }}
             />
           </Ctrl>
@@ -191,7 +193,7 @@ export default ({
               spaped(e);
               setDetailInfo({
                 MediaType: "video",
-                URL: `http://127.0.0.1:4002/api/${video.address}/video/read`,
+                URL: mediaSummon(video.address, "video"),
                 Title: video.caption,
               });
               setShowOneOpen(true);
@@ -211,7 +213,7 @@ export default ({
               className="icon-noun_x_2939490"
               onClick={(e: any) => {
                 spaped(e);
-                DF.FileDeleteProcess(parseInt(video.video_id));
+                DF.FileDeleteProcess(S_N_to_N(video.video_id));
               }}
             />
           </Ctrl>
@@ -229,7 +231,7 @@ export default ({
               spaped(e);
               setDetailInfo({
                 MediaType: "audio",
-                URL: `http://127.0.0.1:4002/api/${music.address}/audio/read`,
+                URL: mediaSummon(music.address, "audio"),
                 Title: music.caption,
               });
               setShowOneOpen(true);
@@ -249,7 +251,7 @@ export default ({
               className="icon-noun_x_2939490"
               onClick={(e: any) => {
                 spaped(e);
-                DF.FileDeleteProcess(parseInt(music.music_id));
+                DF.FileDeleteProcess(S_N_to_N(music.music_id));
               }}
             />
           </Ctrl>

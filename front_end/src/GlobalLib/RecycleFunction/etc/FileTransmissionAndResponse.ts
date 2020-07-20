@@ -9,11 +9,11 @@ export default async (files: any) => {
     }
   }
   const {
-    data: { paths },
+    data: { fileNames },
   } = await Axios.post(http_BackEnd.toString() + "/api/upload", formData, {
     headers: {
       "content-type": "multipart/form-data",
     },
   });
-  return paths;
+  return fileNames;
 };

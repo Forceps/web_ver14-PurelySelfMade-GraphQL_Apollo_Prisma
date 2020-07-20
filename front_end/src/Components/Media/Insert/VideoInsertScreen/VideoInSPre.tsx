@@ -9,6 +9,7 @@ import WH100per, {
   H100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
+import { mediaSummon } from "../../../../Routes/Profile/Center/UnderHeader/Archive/ShowWindow/ShowAll/ShowAllLib";
 
 const Container = styled(WH100per)<ConsoleProps>`
   display: flex;
@@ -328,7 +329,7 @@ export default ({
                     onClick={(e) => {
                       spaped(e);
                       VideoInsert(
-                        `http://127.0.0.1:4002/api/${item.address}/image/read`,
+                        mediaSummon(item.address, "video"),
                         "Archive"
                       );
                     }}

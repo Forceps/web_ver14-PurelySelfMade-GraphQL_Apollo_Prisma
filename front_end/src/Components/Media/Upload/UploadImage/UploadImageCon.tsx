@@ -74,11 +74,11 @@ export default ({
     if (!UploadLoading) {
       setUploadLoading(true);
       try {
-        const paths = await FileTransmissionAndResponse(files.current);
+        const fileNames = await FileTransmissionAndResponse(files.current);
         const { caption, volume, type } = argsProcess(files);
         await uploadMutation({
           variables: {
-            address: paths,
+            address: fileNames,
             caption: caption,
             volume: volume,
             directory_id: AssignDirSeries,
