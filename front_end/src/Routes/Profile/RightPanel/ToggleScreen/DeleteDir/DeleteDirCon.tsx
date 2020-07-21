@@ -4,6 +4,7 @@ import DeleteDirPre from "./DeleteDirPre";
 import { useDirMode } from "../../../../../GlobalLib/Context/ProfileContext/DirMode";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { DELETE_DIR } from "../../../../../GlobalLib/Apollo/GraphQL_Client/Directory/DirectoryCUD";
+import { S_N_to_N } from "../../../../../GlobalLib/RecycleFunction/etc/type_convert";
 
 export default ({
   setDeleteDirOpen,
@@ -25,20 +26,22 @@ export default ({
   };
   const [DeleteDirMutation] = useMutation(DELETE_DIR, {
     variables: {
-      directory_id: parseInt(UDirObj.directory_id),
+      directory_id: S_N_to_N(UDirObj.directory_id),
     },
   });
-  useEffect(() => {
-    setDKeyActive(true);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  document.addEventListener("keydown", (e: any) => {
+  const EnterKeyTrigger = (e: any) => {
     spaped(e);
     if (DKeyActive === true && e.keyCode === 13) {
       DeleteDirTrigger(e);
       setDKeyActive(false);
     }
-  });
+  };
+  useEffect(() => {
+    setDKeyActive(true);
+    document.addEventListener("keydown", EnterKeyTrigger);
+    return () => document.removeEventListener("keydown", EnterKeyTrigger);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <DeleteDirPre

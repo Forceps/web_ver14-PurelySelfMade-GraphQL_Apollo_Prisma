@@ -104,6 +104,7 @@ export default ({
         setColorPiked={setColorPiked}
         IroColor={IroColor}
         CaretLocation={CaretLocation}
+        Html={Html}
         zIndex={zIndex + 10}
       />
       <DmCon>

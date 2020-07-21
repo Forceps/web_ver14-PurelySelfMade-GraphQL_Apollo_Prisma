@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import HiddenScreen from "./ToggleScreen/HiddenScreenCon";
 import BtnCollection from "./ButtonPart/BtnCollection";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import AudioActionLogic from "./HTML_insert/AudioInsert/AudioActionLogic";
 
 interface ControlsLProp {
   FcOpen: boolean;
@@ -47,6 +48,7 @@ export default ({
   setVideoSubMenuOp,
   AudioSubMenuOp,
   setAudioSubMenuOp,
+  Html,
   zIndex,
 }: LeftControlPreProps) => {
   return (
@@ -86,6 +88,7 @@ export default ({
         setAudioSubMenuOp={setAudioSubMenuOp}
         zIndex={zIndex + 10}
       />
+      <AudioActionLogic Html={Html} />
     </>
   );
 };
@@ -106,5 +109,6 @@ type LeftControlPreProps = {
   setVideoSubMenuOp: any;
   AudioSubMenuOp: boolean;
   setAudioSubMenuOp: any;
+  Html: string;
   zIndex: number;
 };

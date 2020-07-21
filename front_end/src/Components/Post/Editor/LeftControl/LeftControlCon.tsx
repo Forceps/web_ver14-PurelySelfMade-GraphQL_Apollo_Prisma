@@ -9,6 +9,7 @@ type LeftControlConProps = {
   ColorPiked: any;
   setColorPiked: any;
   IroColor: any;
+  Html: string;
   zIndex: number;
 };
 export default ({
@@ -18,6 +19,7 @@ export default ({
   ColorPiked,
   setColorPiked,
   IroColor,
+  Html,
   zIndex,
 }: LeftControlConProps) => {
   const [AnchorInputOpen, setAnchorInputOpen] = useState(false);
@@ -45,6 +47,7 @@ export default ({
       setVideoSubMenuOp={setVideoSubMenuOp}
       AudioSubMenuOp={AudioSubMenuOp}
       setAudioSubMenuOp={setAudioSubMenuOp}
+      Html={Html}
       zIndex={zIndex}
     />
   );

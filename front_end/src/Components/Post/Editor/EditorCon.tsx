@@ -42,8 +42,10 @@ export default ({
     document.getElementById("EditorPostCaption")?.focus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(Html);
+  useEffect(() => {
+    console.log(Html);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [Html]);
   return (
     <EditorPre
       caption={caption}

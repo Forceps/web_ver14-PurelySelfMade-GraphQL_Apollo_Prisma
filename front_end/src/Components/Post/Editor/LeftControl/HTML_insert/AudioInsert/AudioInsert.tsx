@@ -6,6 +6,8 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
       const AudioHtml = /*html*/ `
       <div><br></div>
 
+      <div contenteditable="false">
+      <div><br></div>
       <div class="audioPlayer" contenteditable="false">
         <audio>
           <source src="${address}" >
@@ -42,6 +44,8 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
             </div>
           </div>
         </div>
+      </div>
+      <div><br></div>
       </div>
 
       <div><br></div>`;
