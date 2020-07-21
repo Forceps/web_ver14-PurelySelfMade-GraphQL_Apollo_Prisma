@@ -8,6 +8,17 @@ export default {
       isAuthenticated(req);
       const { user } = req;
       try {
+        await prisma.image.findMany({
+          where: {
+            directory_directoryToimage: {
+              user: user.user_id,
+            },
+          },
+          select: {
+            volume: true,
+          },
+        });
+        return null;
       } catch (e) {
         console.log(e);
         return null;
