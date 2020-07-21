@@ -158,6 +158,10 @@ model music {
   @@index([directory], name: "music_dir_idx")
 }
 
+model ngram_post_stopwords {
+  value String @id
+}
+
 model notification {
   content                 String
   day                     Int
@@ -233,7 +237,9 @@ model user {
   avatar                                    String?
   back_img                                  String?
   creator                                   Int              @default(0)
+  daily_allocated_capacity                  Int              @default(50)
   email                                     String           @unique
+  guaranteed_capacity                       Int              @default(300)
   password                                  String
   phone_number                              Int?
   username                                  String
@@ -253,6 +259,8 @@ model user {
   user_relevance_userTouser_relevance_user1 user_relevance[] @relation("userTouser_relevance_user1")
   user_relevance_userTouser_relevance_user2 user_relevance[] @relation("userTouser_relevance_user2")
   watched                                   watched[]
+
+  @@index([username], name: "name_search")
 }
 
 model user_relevance {
