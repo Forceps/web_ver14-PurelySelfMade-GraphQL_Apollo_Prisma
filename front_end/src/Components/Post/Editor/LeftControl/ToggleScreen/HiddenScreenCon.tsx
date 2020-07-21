@@ -52,11 +52,11 @@ export default ({
     }
     setVideoSubMenuOp(false);
   };
-  const AudioInsert = async (address: string) => {
+  const AudioInsert = async (address: string, audioInfo?: any) => {
     console.log(address);
     await restoreSelection(CaretLocation?.current);
     document.getElementById("CUedit")?.focus();
-    await AudioHtmlInsert(address);
+    await AudioHtmlInsert(address, audioInfo);
     setAudioSubMenuOp(false);
   };
   useEffect(() => {

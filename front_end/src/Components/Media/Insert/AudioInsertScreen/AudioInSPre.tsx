@@ -283,12 +283,12 @@ export default ({
                   <AddAdoPlus className="icon-plus-1" />
                   Add Music?
                 </AddAdo>
-                {AudioList?.musicGet?.map((item: any) => (
+                {AudioList?.map((item: any) => (
                   <AdoBox
                     key={item.address}
                     onClick={(e) => {
                       spaped(e);
-                      AudioInsert(mediaSummon(item.address, "audio"));
+                      AudioInsert(mediaSummon(item.address, "audio"), item);
                     }}
                   >
                     {item.caption}

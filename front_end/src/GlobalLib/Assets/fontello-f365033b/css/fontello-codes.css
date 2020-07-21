@@ -97,6 +97,12 @@
 .icon-resize-full:before { content: '\e85f'; } /* '' */
 .icon-clock:before { content: '\e860'; } /* '' */
 .icon-info-circled:before { content: '\e861'; } /* '' */
+.icon-stop:before { content: '\e862'; } /* '' */
+.icon-pause-1:before { content: '\e863'; } /* '' */
+.icon-volume-off:before { content: '\e864'; } /* '' */
+.icon-volume-down:before { content: '\e865'; } /* '' */
+.icon-volume:before { content: '\e866'; } /* '' */
+.icon-volume-up:before { content: '\e867'; } /* '' */
 .icon-down-open-1:before { content: '\f004'; } /* '' */
 .icon-up-open-1:before { content: '\f005'; } /* '' */
 .icon-right-open-1:before { content: '\f006'; } /* '' */
