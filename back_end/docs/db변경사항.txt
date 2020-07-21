@@ -403,3 +403,7 @@ INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('w
 INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('und');
 INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('www');
 
+ALTER TABLE `square_post`.`user` 
+ADD COLUMN `guaranteed_capacity` MEDIUMINT UNSIGNED NOT NULL DEFAULT 300 AFTER `back_img`,
+ADD COLUMN `daily_allocated_capacity` SMALLINT UNSIGNED NOT NULL DEFAULT 50 AFTER `guaranteed_capacity`;
+
