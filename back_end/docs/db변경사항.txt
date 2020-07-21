@@ -309,14 +309,6 @@ ADD COLUMN `face` MEDIUMTEXT NULL AFTER `likes`;
 ALTER TABLE `square_post`.`post` 
 ADD COLUMN `face_type` ENUM("image", "text") NOT NULL DEFAULT 'text' AFTER `second`;
 
-
-
-
-
-
-
-// 2020 - 7 - 19
-
 ALTER TABLE `square_post`.`user` 
 ADD FULLTEXT INDEX `name_search` (`username`) WITH PARSER ngram VISIBLE;
 CREATE TABLE `square_post`.`ngram_post_stopwords` (
@@ -411,8 +403,3 @@ INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('w
 INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('und');
 INSERT INTO `customisable_system_default`.`ngram_stopwords` (`value`) VALUES ('www');
 
-ALTER TABLE `square_post`.`post` 
-ADD FULLTEXT INDEX `search_post` (`caption`) WITH PARSER `ngram` VISIBLE;
-ALTER TABLE `square_post`.`post` 
-DROP INDEX `search_post` ,
-ADD FULLTEXT INDEX `search_post` (`caption`, `content`) WITH PARSER `ngram` VISIBLE;

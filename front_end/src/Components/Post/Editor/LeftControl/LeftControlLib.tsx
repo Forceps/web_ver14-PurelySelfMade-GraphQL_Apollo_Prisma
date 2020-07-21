@@ -1,4 +1,4 @@
-import "./LeftControl.css";
+import "./LeftControl.scss";
 
 export const ImgHtmlInsert = (address: string) => {
   return new Promise((sol, jec) => {
