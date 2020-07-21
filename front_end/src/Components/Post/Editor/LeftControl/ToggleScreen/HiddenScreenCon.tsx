@@ -1,13 +1,11 @@
 import React, { useEffect } from "react";
 import HiddenScreenPre from "./HiddenScreenPre";
 import { restoreSelection } from "../../EditorLib";
-import {
-  ImgHtmlInsert,
-  VideoInsertByYoutube,
-  VideoInsertByGeneral,
-  AudioHtmlInsert,
-} from "../LeftControlLib";
 import { useProfileMode } from "../../../../../GlobalLib/Context/ProfileContext/ProfileMode";
+import { ImgHtmlInsert } from "../HTML_insert/ImageInsert/ImageInsert";
+import { VideoInsertByYoutube } from "../HTML_insert/VideoInsert/YouTubePlayer/YouTubePlayer";
+import { VideoInsertByGeneral } from "../HTML_insert/VideoInsert/NativePlayer/NativePlayer";
+import { AudioHtmlInsert } from "../HTML_insert/AudioInsert/AudioInsert";
 
 type HiddenScreenProps = {
   CaretLocation: any;
@@ -37,7 +35,7 @@ export default ({
   setAudioSubMenuOp,
   zIndex,
 }: HiddenScreenProps) => {
-  const PfM = useProfileMode();
+  const { setMode } = useProfileMode();
   const ImgInsert = async (address: string) => {
     await restoreSelection(CaretLocation?.current);
     document.getElementById("CUedit")?.focus();
@@ -63,7 +61,7 @@ export default ({
   };
   useEffect(() => {
     if (!ImgSubMenuOp && !VideoSubMenuOp && !AudioSubMenuOp) {
-      PfM.setMode(["Post"]);
+      setMode(["Post"]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ImgSubMenuOp, VideoSubMenuOp, AudioSubMenuOp]);

@@ -1,10 +1,3 @@
-.InsertedImg {
-  max-width: 100%;
-  cursor: default;
-}
-.InsertedImg::selection {
-  background: #dfe6e9;
-}
 .OutSide {
   display: flex;
   width: 648px;
@@ -36,14 +29,4 @@
   height: 23px;
   opacity: 0;
   background-color: red;
-}
-.SelfVideo {
-  display: flex;
-  min-width: 200px;
-  max-width: 100%;
-  min-height: 200px;
-  position: relative;
-  resize: both;
-  outline: none;
-  user-select: text;
 }
