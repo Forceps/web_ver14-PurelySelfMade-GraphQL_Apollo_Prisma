@@ -7,7 +7,7 @@ const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
-export default ({ Html }: AudioActionLogicProps) => {
+export default ({ rerenderingPoint }: AudioActionLogicProps) => {
   const audioContainers = document.getElementsByClassName("audioPlayer");
   const audioTarget = audioContainers[0];
   const audioPlayer = audioTarget?.querySelector("audio");
@@ -21,6 +21,10 @@ export default ({ Html }: AudioActionLogicProps) => {
   const audioTimeBarContainer = audioTarget?.querySelector(
     ".audio_timebase_bar_container"
   );
+  const audioBackToStartIcon = audioTarget?.querySelector(".audioBackToStart");
+  const audioFrontMoveIcon = audioTarget?.querySelector(".audioFrontMove");
+  const audioBackMoveIcon = audioTarget?.querySelector(".audioBackMove");
+
   const audioDuration = useRef(0);
 
   const handleAudioPlayClick = () => {
@@ -86,40 +90,101 @@ export default ({ Html }: AudioActionLogicProps) => {
     }
   };
   const handleAudioEnded = () => {
-    if (audioPlayer) {
-      audioPlayer.currentTime = 0;
-      audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
-    }
+    audioPlayer?.pause();
+    audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
   };
-  const audioVolumeControl = (e: any) => {
+  const audioGauge_x_axis = (e: any, viewNode: any, clickNode?: any) => {
+    let x = 0;
+    x = e.pageX - viewNode.getBoundingClientRect().left;
+    x = x / (clickNode ? clickNode.clientWidth : viewNode.clientWidth);
+    if (x > 1) {
+      x = 1;
+    }
+    if (x < 0) {
+      x = 0;
+    }
+    return x;
+  };
+  const audioVolumeControlMouseMove = (e: any) => {
     if (audioPlayer && audioVolumeBar) {
-      const clickedValue = e.offsetX / audioVolumeBar.clientWidth;
-      audioVolumeBar?.setAttribute("value", `${clickedValue}`);
-      audioPlayer.volume = clickedValue;
+      const movedValue = audioGauge_x_axis(e, audioVolumeBar);
+      audioVolumeBar?.setAttribute("value", `${movedValue}`);
+      audioPlayer.volume = movedValue;
     }
   };
-  const audioCurrentTimeControl = async (e: any) => {
-    if (audioPlayer && audioTimeBarContainer && audioCurrentTime) {
-      const clickedValue = e.offsetX / audioTimeBarContainer.clientWidth;
-      audioTimeBar?.setAttribute("value", `${clickedValue}`);
-      audioPlayer.currentTime = clickedValue * audioDuration.current;
+  const audioVolumeControlMouseDown = (e: any) => {
+    if (e.button === 0) {
+      audioVolumeControlMouseMove(e);
+      document.addEventListener("mousemove", audioVolumeControlMouseMove);
+    }
+  };
+  const audioVolumeControlMouseUp = (e: any) => {
+    if (e.button === 0) {
+      document.removeEventListener("mousemove", audioVolumeControlMouseMove);
+    }
+  };
+  const audioSetTimeDenote = (movedValue: number) => {
+    if (audioPlayer && audioCurrentTime) {
+      audioTimeBar?.setAttribute("value", `${movedValue}`);
       audioCurrentTime.textContent = MediaClock(
         Math.floor(audioPlayer.currentTime)
       );
     }
   };
+  const audioCurrentTimeControlMouseMove = (e: any) => {
+    if (audioPlayer && audioCurrentTime) {
+      const movedValue = audioGauge_x_axis(
+        e,
+        audioTimeBar,
+        audioTimeBarContainer
+      );
+      audioPlayer.currentTime = movedValue * audioDuration.current;
+      audioSetTimeDenote(movedValue);
+    }
+  };
+  const audioCurrentTimeControlMouseDown = (e: any) => {
+    if (e.button === 0) {
+      audioCurrentTimeControlMouseMove(e);
+      document.addEventListener("mousemove", audioCurrentTimeControlMouseMove);
+    }
+  };
+  const audioCurrentTimeControlMouseUp = (e: any) => {
+    if (e.button === 0) {
+      document.removeEventListener(
+        "mousemove",
+        audioCurrentTimeControlMouseMove
+      );
+    }
+  };
+  const audioBackToStart = () => {
+    if (audioPlayer) {
+      audioPlayer.pause();
+      audioPlayer.currentTime = 0;
+      audioSetTimeDenote(0);
+    }
+  };
+  const audioFrontMediumMove = () => {};
+  const audioBackMediumMove = () => {};
 
   useEffect(() => {
-    console.log(audioContainers);
-    console.log(audioPlayer);
-    console.log(audioPlayBtn);
     if (audioPlayer) {
       audioPlayBtn?.addEventListener("click", handleAudioPlayClick);
       audioVolumeBtn?.addEventListener("click", handleAudioVolumeClick);
       audioPlayer.addEventListener("loadedmetadata", setAudioTotalTime);
       audioPlayer.addEventListener("ended", handleAudioEnded);
-      audioVolumeBar?.addEventListener("click", audioVolumeControl);
-      audioTimeBarContainer?.addEventListener("click", audioCurrentTimeControl);
+      audioVolumeBar?.addEventListener(
+        "mousedown",
+        audioVolumeControlMouseDown
+      );
+      audioTimeBarContainer?.addEventListener(
+        "mousedown",
+        audioCurrentTimeControlMouseDown
+      );
+      document?.addEventListener("mouseup", audioCurrentTimeControlMouseUp);
+      document?.addEventListener("mouseup", audioVolumeControlMouseUp);
+      audioBackToStartIcon?.addEventListener("click", audioBackToStart);
+      audioFrontMoveIcon?.addEventListener("click", audioFrontMediumMove);
+      audioBackMoveIcon?.addEventListener("click", audioBackMediumMove);
     }
     return () => {
       if (audioPlayer) {
@@ -127,17 +192,28 @@ export default ({ Html }: AudioActionLogicProps) => {
         audioVolumeBtn?.removeEventListener("click", handleAudioVolumeClick);
         audioPlayer.removeEventListener("loadedmetadata", setAudioTotalTime);
         audioPlayer.removeEventListener("ended", handleAudioEnded);
-        audioVolumeBar?.removeEventListener("click", audioVolumeControl);
-        audioTimeBarContainer?.removeEventListener(
-          "click",
-          audioCurrentTimeControl
+        audioVolumeBar?.removeEventListener(
+          "mousedown",
+          audioVolumeControlMouseDown
         );
+        audioTimeBarContainer?.removeEventListener(
+          "mousedown",
+          audioCurrentTimeControlMouseDown
+        );
+        document?.removeEventListener(
+          "mouseup",
+          audioCurrentTimeControlMouseUp
+        );
+        document?.removeEventListener("mouseup", audioVolumeControlMouseUp);
+        audioBackToStartIcon?.removeEventListener("click", audioBackToStart);
+        audioFrontMoveIcon?.removeEventListener("click", audioFrontMediumMove);
+        audioBackMoveIcon?.removeEventListener("click", audioBackMediumMove);
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Html]);
+  }, [rerenderingPoint]);
   return <UnnecessaryDiv />;
 };
 interface AudioActionLogicProps {
-  Html: string;
+  rerenderingPoint?: any;
 }

@@ -88,7 +88,7 @@ export default ({
         setAudioSubMenuOp={setAudioSubMenuOp}
         zIndex={zIndex + 10}
       />
-      <AudioActionLogic Html={Html} />
+      <AudioActionLogic rerenderingPoint={Html} />
     </>
   );
 };

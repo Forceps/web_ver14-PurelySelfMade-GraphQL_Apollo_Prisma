@@ -25,9 +25,9 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
           <div class="audioPlayer_controls_manipulator">
             <div class="audioPlayer_controls_buttons">
               <i class="icon-play audioPlayIcon"></i>
-              <i class="icon-stop audioStopIcon"></i>
-              <i class="icon-fast-bw audioStopIcon"></i>
-              <i class="icon-fast-fw audioStopIcon"></i>
+              <i class="icon-to-start audioRestIcon audioBackToStart"></i>
+              <i class="icon-fast-bw audioRestIcon audioFrontMove"></i>
+              <i class="icon-fast-fw audioRestIcon audioBackMove"></i>
             </div>
             <div class="audioPlayer_controls_volume">
               <i class="icon-volume audioVolumeIcon"></i>
