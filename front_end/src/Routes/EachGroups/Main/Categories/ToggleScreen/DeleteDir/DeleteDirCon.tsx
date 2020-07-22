@@ -31,7 +31,7 @@ export default ({
   });
   const EnterKeyTrigger = (e: any) => {
     spaped(e);
-    if (DKeyActive === true && e.keyCode === 13) {
+    if (DKeyActive && e.keyCode === 13) {
       DeleteDirTrigger(e);
       setDKeyActive(false);
     }

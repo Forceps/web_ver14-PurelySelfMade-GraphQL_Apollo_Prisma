@@ -1,6 +1,6 @@
 import { S_N_to_N } from "./type_convert";
 
-export const timeNote = (
+export const LogClock = (
   hour: number | string,
   minute: number | string
 ): string => {
@@ -15,4 +15,26 @@ export const timeNote = (
     : (string = `${hour}:${minute} am`);
 
   return string;
+};
+
+export const MediaClock = (seconds: string | number): string => {
+  seconds = `${seconds}`;
+  const secondsNumber = parseInt(seconds, 10);
+  let hours: string | number = Math.floor(secondsNumber / 3600);
+  let minutes: string | number = Math.floor(
+    (secondsNumber - hours * 3600) / 60
+  );
+  let totalSeconds: string | number =
+    secondsNumber - hours * 3600 - minutes * 60;
+
+  if (S_N_to_N(totalSeconds) < 10) {
+    totalSeconds = `0${totalSeconds}`;
+  }
+  if (hours < 1) {
+    if (minutes < 1) {
+      return `0:${totalSeconds}`;
+    }
+    return `${minutes}:${totalSeconds}`;
+  }
+  return `${hours}:${minutes}:${totalSeconds}`;
 };

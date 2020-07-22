@@ -7,7 +7,7 @@ import WH100per, {
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
-import { timeNote } from "../../../GlobalLib/RecycleFunction/etc/Time";
+import { LogClock } from "../../../GlobalLib/RecycleFunction/etc/Time";
 
 const DataSpread = styled(WH100per)`
   display: flex;
@@ -191,7 +191,7 @@ export default ({
                       ? `${n.month}. ${n.day}.`
                       : `${n.year}. ${n.month}. ${n.day}.`}
                     &nbsp;&nbsp;
-                    {timeNote(n.hour, n.minute)}
+                    {LogClock(n.hour, n.minute)}
                     {ord === 0 || !remvDupl ? <>&nbsp;</> : ""}
                   </Date>
                   <Dot>

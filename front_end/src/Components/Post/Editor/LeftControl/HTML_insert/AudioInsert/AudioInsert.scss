@@ -16,33 +16,27 @@
       font-size: 1.1rem;
     }
     .audioPlayer_controls_timebase {
-      display: grid;
-      grid-template-columns: 39px 1fr;
+      display: flex;
       height: 100%;
       width: 100%;
       .audio_timebase_number {
         display: flex;
         align-items: center;
-        padding: 0 0 0 2px;
+        padding: 0 7px 0 2px;
         height: 100%;
-        width: 100%;
+        max-width: 100px;
+        white-space: nowrap;
       }
-      .audio_timebase_bar {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
+      .audio_timebase_bar_container {
+        display: flex;
         align-items: center;
         height: 100%;
         width: 100%;
         cursor: pointer;
-        .audio_timebase_seen {
+        .audio_timebase_bar {
+          display: flex;
           height: 4px;
           width: 100%;
-          background-color: #636e72;
-        }
-        .audio_timebase_willsee {
-          height: 4px;
-          width: 100%;
-          background-color: #dfe6e9;
         }
       }
     }
@@ -80,21 +74,11 @@
           align-items: flex-end;
           padding: 0 0 2px 0;
           .audio_volume_bar {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
+            display: flex;
             height: 15px;
             width: 90px;
+            background-color: #dfe6e9;
             cursor: pointer;
-            .audio_volume_take {
-              height: 100%;
-              width: 100%;
-              background-color: #636e72;
-            }
-            .audio_volume_take_yet {
-              height: 100%;
-              width: 100%;
-              background-color: #dfe6e9;
-            }
           }
         }
       }

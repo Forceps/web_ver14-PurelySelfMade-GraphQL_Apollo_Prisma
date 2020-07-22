@@ -5,7 +5,7 @@ import WH100per, {
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import TileCon from "../../../Components/Post/Shape/Tile/TileCon";
-import { timeNote } from "../../../GlobalLib/RecycleFunction/etc/Time";
+import { LogClock } from "../../../GlobalLib/RecycleFunction/etc/Time";
 
 const DataSpread = styled(WH100per)`
   display: flex;
@@ -160,7 +160,7 @@ export default ({ loading, data }: DataSpreadPreProps) => {
                       ? `${p.month}. ${p.day}.`
                       : `${p.year}. ${p.month}. ${p.day}.`}
                     &nbsp;&nbsp;
-                    {timeNote(p.hour, p.minute)}
+                    {LogClock(p.hour, p.minute)}
                     {ord === 0 || !remvDupl ? <>&nbsp;</> : ""}
                   </Date>
                   <Dot>
