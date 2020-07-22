@@ -99,10 +99,13 @@ export default ({ Html }: AudioActionLogicProps) => {
     }
   };
   const audioCurrentTimeControl = async (e: any) => {
-    if (audioPlayer && audioTimeBarContainer) {
+    if (audioPlayer && audioTimeBarContainer && audioCurrentTime) {
       const clickedValue = e.offsetX / audioTimeBarContainer.clientWidth;
       audioTimeBar?.setAttribute("value", `${clickedValue}`);
       audioPlayer.currentTime = clickedValue * audioDuration.current;
+      audioCurrentTime.textContent = MediaClock(
+        Math.floor(audioPlayer.currentTime)
+      );
     }
   };
 
@@ -124,6 +127,11 @@ export default ({ Html }: AudioActionLogicProps) => {
         audioVolumeBtn?.removeEventListener("click", handleAudioVolumeClick);
         audioPlayer.removeEventListener("loadedmetadata", setAudioTotalTime);
         audioPlayer.removeEventListener("ended", handleAudioEnded);
+        audioVolumeBar?.removeEventListener("click", audioVolumeControl);
+        audioTimeBarContainer?.removeEventListener(
+          "click",
+          audioCurrentTimeControl
+        );
       }
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
