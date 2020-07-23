@@ -1,0 +1,61 @@
+.audioPlayer_controls_manipulator {
+  display: grid;
+  grid-template-columns: 125px 130px 1fr;
+  height: 100%;
+  width: 100%;
+  .audioPlayer_controls_buttons {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 5px 0;
+    .audioPlayIcon {
+      font-size: 1.4rem;
+      cursor: pointer;
+    }
+    .audioRestIcon {
+      font-size: 0.8rem;
+      padding: 3px;
+      margin: 0 2px 0 2px;
+      cursor: pointer;
+    }
+  }
+  .audioPlayer_controls_volume {
+    display: flex;
+    align-items: flex-end;
+    padding: 0 0 5px 0;
+    .audioVolumeIcon {
+      font-size: 0.9rem;
+      padding: 3px;
+      margin: 0 5px 0 3px;
+      cursor: pointer;
+    }
+    .audio_volume_bar_align {
+      display: flex;
+      align-items: flex-end;
+      padding: 0 0 2px 0;
+      .audio_volume_bar {
+        display: flex;
+        height: 15px;
+        width: 90px;
+        cursor: pointer;
+      }
+    }
+  }
+  .audio_end_time_box {
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    min-width: 60px;
+    .audio_end_time {
+      margin: -5px 0 0 0;
+    }
+    .audio_resize_handle {
+      position: absolute;
+      align-self: flex-end;
+      width: 12px;
+      height: 12px;
+      border-right: 4px solid #2d3436;
+      border-bottom: 4px solid #2d3436;
+      cursor: nw-resize;
+    }
+  }
+}

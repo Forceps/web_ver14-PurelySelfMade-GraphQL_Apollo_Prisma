@@ -1,0 +1,57 @@
+.audio_time_navigation {
+  display: flex;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  .audio_time_navigate_number {
+    display: none;
+    position: absolute;
+    height: 100%;
+    align-items: center;
+    white-space: nowrap;
+  }
+}
+.audioPlayer_controls_timebase {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  .audio_timebase_number {
+    display: flex;
+    align-items: center;
+    padding: 0 7px 0 2px;
+    height: 100%;
+    max-width: 100px;
+    white-space: nowrap;
+  }
+  .audio_timebase_bar_container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    cursor: pointer;
+    &:hover {
+      .audio_timebase_bar_handle {
+        width: 8px;
+        height: 8px;
+      }
+    }
+    .audio_timebase_bar {
+      display: flex;
+      height: 4px;
+      width: 100%;
+    }
+    .audio_timebase_bar_handle {
+      display: inline-block;
+      position: absolute;
+      width: 0px;
+      height: 0px;
+      border-radius: 50%;
+      background-color: #636e72;
+      left: 0px;
+      transition-property: width, height;
+      transition-duration: 0.06s;
+      transition-timing-function: linear;
+    }
+  }
+}

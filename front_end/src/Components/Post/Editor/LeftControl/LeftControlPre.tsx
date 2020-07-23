@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import HiddenScreen from "./ToggleScreen/HiddenScreenCon";
 import BtnCollection from "./ButtonPart/BtnCollection";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import AudioActionLogic from "./HTML_insert/AudioInsert/AudioActionLogic";
+import AudioActionInHTML from "./HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
 
 interface ControlsLProp {
   FcOpen: boolean;
@@ -88,7 +88,7 @@ export default ({
         setAudioSubMenuOp={setAudioSubMenuOp}
         zIndex={zIndex + 10}
       />
-      <AudioActionLogic rerenderingPoint={Html} />
+      <AudioActionInHTML rerenderingPoint={Html} />
     </>
   );
 };
