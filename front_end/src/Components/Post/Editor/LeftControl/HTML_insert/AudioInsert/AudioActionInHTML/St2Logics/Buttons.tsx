@@ -6,7 +6,7 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
-  audioDuration,
+  audioInfoMemory,
   audioPlayer,
   audioPlayBtn,
   audioBackToStartIcon,
@@ -31,11 +31,12 @@ export default ({
     }
   };
   const audioFrontMediumMove = () => {
-    if (audioPlayer) {
-      if (audioDuration.current > audioPlayer.currentTime + 15) {
+    if (audioPlayer && audioInfoMemory.textContent) {
+      const totaltime = parseInt(audioInfoMemory.textContent);
+      if (totaltime > audioPlayer.currentTime + 15) {
         audioPlayer.currentTime = audioPlayer.currentTime + 15;
       } else {
-        audioPlayer.currentTime = audioDuration.current;
+        audioPlayer.currentTime = totaltime;
       }
       audioSetTimeDenote();
     }
@@ -73,7 +74,7 @@ interface St2AudioActionLogicProps {
   audioBackToStartIcon: HTMLElement;
   audioFrontMoveIcon: HTMLElement;
   audioBackMoveIcon: HTMLElement;
-  audioDuration: React.MutableRefObject<number>;
+  audioInfoMemory: HTMLElement;
   audioSetTimeDenote: any;
   rerenderingPoint?: any;
 }

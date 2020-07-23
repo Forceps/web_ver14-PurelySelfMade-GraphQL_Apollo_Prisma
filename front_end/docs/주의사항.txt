@@ -35,3 +35,4 @@ splice함수는 추출함수여서 추출되고 남은 부분은 원래 정의�
 
 11. "The left-hand side of an assignment expression may not be an optional property access."이런 에러가 나오면 typescript에서 optional chaining 연산자 "?."를 쓴 경우일 수 있다. 조건문을 서서 제거해보자.
 
+12. React와 Vanilla JavaScript를 혼용해서 쓰면서 변동되는 값을 let이나 useRef와 같은  변수가 아니라 HTML에 저장하는 기상천외한 방법을 발견했다. 예컨데 값을 저장할 노드를 node라 하면 "node.textContent = 값"이런 식으로 쓰고 다시 불러올때는 node.textContent를 쓰는 것이다. 그 Element는 css style을 "dispaly: none;"으로 설정하는 것이다. 이는 보안상 가치가 없는 값에서 유용하게 활용 될 것으로 기대된다. 

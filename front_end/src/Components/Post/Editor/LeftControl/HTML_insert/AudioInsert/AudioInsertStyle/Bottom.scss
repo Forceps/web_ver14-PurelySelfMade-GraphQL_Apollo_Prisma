@@ -48,6 +48,12 @@
     .audio_end_time {
       margin: -5px 0 0 0;
     }
+    .audio_info_memory {
+      display: none;
+      width: 0px;
+      height: 0px;
+      opacity: 0;
+    }
     .audio_resize_handle {
       position: absolute;
       align-self: flex-end;

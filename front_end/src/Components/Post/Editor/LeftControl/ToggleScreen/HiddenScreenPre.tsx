@@ -3,6 +3,7 @@ import AnchorURL from "./A_Tag_Insert";
 import VideoInS from "../../../../Media/Insert/VideoInsertScreen/VideoInSCon";
 import ImgInS from "../../../../Media/Insert/ImgInsertScreen/ImgInSCon";
 import AudioInS from "../../../../Media/Insert/AudioInsertScreen/AudioInSCon";
+import AudioActionInHTML from "../HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
 
 type HiddenScreenProps = {
   CaretLocation: any;
@@ -20,6 +21,7 @@ type HiddenScreenProps = {
   setAudioSubMenuOp: any;
   AudioInsert: any;
   zIndex: number;
+  Html: string;
 };
 export default ({
   CaretLocation,
@@ -36,6 +38,7 @@ export default ({
   setAudioSubMenuOp,
   AudioInsert,
   zIndex,
+  Html,
 }: HiddenScreenProps) => {
   return (
     <>
@@ -68,6 +71,7 @@ export default ({
           zIndex={zIndex}
         />
       )}
+      <AudioActionInHTML rerenderingPoint={Html} />
     </>
   );
 };

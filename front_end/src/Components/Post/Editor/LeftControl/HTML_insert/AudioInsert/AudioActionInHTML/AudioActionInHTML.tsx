@@ -3,7 +3,6 @@ import AudioTargetSpecific from "./St1ReusableItems/AudioTargetSpecific";
 
 export default ({ rerenderingPoint }: AudioActionInHTMLProps) => {
   const audioContainers = document.getElementsByClassName("audioPlayer");
-
   return (
     <>
       {(() => {

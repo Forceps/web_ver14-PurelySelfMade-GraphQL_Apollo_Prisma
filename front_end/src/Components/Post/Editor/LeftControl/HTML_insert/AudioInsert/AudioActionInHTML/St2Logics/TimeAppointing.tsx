@@ -6,7 +6,7 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
-  audioDuration,
+  audioInfoMemory,
   audioPlayer,
   audioCurrentTime,
   audioTimeBar,
@@ -16,13 +16,14 @@ export default ({
   rerenderingPoint,
 }: St2AudioActionLogicProps) => {
   const audioCurrentTimeControlMouseMove = (e: any) => {
-    if (audioPlayer && audioCurrentTime) {
+    if (audioPlayer && audioCurrentTime && audioInfoMemory.textContent) {
       const movedValue = audioGauge_x_axis(
         e,
         audioTimeBar,
         audioTimeBarContainer
       );
-      audioPlayer.currentTime = movedValue * audioDuration.current;
+      audioPlayer.currentTime =
+        movedValue * parseInt(audioInfoMemory.textContent);
       audioSetTimeDenote();
     }
   };
@@ -60,7 +61,7 @@ export default ({
   return <UnnecessaryDiv />;
 };
 interface St2AudioActionLogicProps {
-  audioDuration: React.MutableRefObject<number>;
+  audioInfoMemory: HTMLElement;
   audioPlayer: HTMLAudioElement;
   audioCurrentTime: HTMLElement;
   audioTimeBar: HTMLElement;

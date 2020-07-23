@@ -12,9 +12,9 @@ export default ({
   audioPlayBtn,
   rerenderingPoint,
   audioEndTime,
-  audioDuration,
   getAudioCurrentTime,
   statusBarMoving,
+  audioInfoMemory,
 }: St2AudioActionLogicProps) => {
   const getAudioDuration = async (audioPlayer: any) => {
     let duration: number;
@@ -31,8 +31,8 @@ export default ({
   const setAudioTotalTime = async () => {
     if (audioPlayer && audioEndTime) {
       audioPlayer.volume = 0.5;
-      audioDuration.current = await getAudioDuration(audioPlayer);
-      const totalTimeString = MediaClock(audioDuration.current);
+      audioInfoMemory.textContent = `${await getAudioDuration(audioPlayer)}`;
+      const totalTimeString = MediaClock(parseInt(audioInfoMemory.textContent));
       audioEndTime.textContent = totalTimeString;
       setInterval(getAudioCurrentTime, 1000);
       setInterval(statusBarMoving, 100);
@@ -60,8 +60,8 @@ interface St2AudioActionLogicProps {
   audioPlayer: HTMLAudioElement;
   audioPlayBtn: HTMLElement;
   audioEndTime: HTMLElement;
-  audioDuration: React.MutableRefObject<number>;
   getAudioCurrentTime: () => void;
   statusBarMoving: () => void;
   rerenderingPoint?: any;
+  audioInfoMemory: HTMLElement;
 }

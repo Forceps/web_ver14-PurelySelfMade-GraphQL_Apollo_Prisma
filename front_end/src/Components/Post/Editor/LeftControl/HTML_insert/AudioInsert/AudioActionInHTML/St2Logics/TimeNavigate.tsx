@@ -7,7 +7,7 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
-  audioDuration,
+  audioInfoMemory,
   audioCurrentTime,
   audioTimeBar,
   audioTimeBarContainer,
@@ -21,10 +21,13 @@ export default ({
       audioTimeNavigateNumber &&
       audioTimeBar &&
       audioTimeBarContainer &&
+      audioInfoMemory.textContent &&
       audioTimeNavigation
     ) {
       const movedValue = audioGauge_x_axis(e, audioTimeBarContainer);
-      const virtualTime = MediaClock(movedValue * audioDuration.current);
+      const virtualTime = MediaClock(
+        movedValue * parseInt(audioInfoMemory.textContent)
+      );
       audioTimeNavigateNumber.style.display = "flex";
       audioTimeNavigateNumber.textContent = virtualTime;
 
@@ -75,7 +78,7 @@ export default ({
 };
 
 interface St2AudioActionLogicProps {
-  audioDuration: React.MutableRefObject<number>;
+  audioInfoMemory: HTMLElement;
   audioCurrentTime: HTMLElement;
   audioTimeBar: HTMLElement;
   audioTimeBarContainer: HTMLElement;

@@ -7,7 +7,6 @@ import Volume from "../St2Logics/Volume";
 import TimeAppointing from "../St2Logics/TimeAppointing";
 
 export default ({
-  audioDuration,
   audioPlayer,
   audioPlayBtn,
   audioVolumeBtn,
@@ -23,6 +22,7 @@ export default ({
   audioTimeNavigation,
   audioTimeNavigateNumber,
   rerenderingPoint,
+  audioInfoMemory,
 }: ReusingLogicProps) => {
   const getAudioCurrentTime = () => {
     if (audioPlayer && audioCurrentTime) {
@@ -32,8 +32,14 @@ export default ({
     }
   };
   const statusBarMoving = () => {
-    if (audioPlayer && audioTimeBar) {
-      const progressRatio = audioPlayer.currentTime / audioDuration.current;
+    if (
+      audioPlayer &&
+      audioTimeBar &&
+      audioInfoMemory.textContent &&
+      parseInt(audioInfoMemory.textContent)
+    ) {
+      const progressRatio =
+        audioPlayer.currentTime / parseInt(audioInfoMemory.textContent);
       audioTimeBar?.setAttribute("value", `${progressRatio}`);
       let HandleLocation = audioTimeBar?.clientWidth * progressRatio;
       if (HandleLocation < 4) {
@@ -70,12 +76,12 @@ export default ({
         audioPlayBtn={audioPlayBtn}
         rerenderingPoint={rerenderingPoint}
         audioEndTime={audioEndTime}
-        audioDuration={audioDuration}
         getAudioCurrentTime={getAudioCurrentTime}
         statusBarMoving={statusBarMoving}
+        audioInfoMemory={audioInfoMemory}
       />
       <Buttons
-        audioDuration={audioDuration}
+        audioInfoMemory={audioInfoMemory}
         audioPlayer={audioPlayer}
         audioPlayBtn={audioPlayBtn}
         audioBackToStartIcon={audioBackToStartIcon}
@@ -85,7 +91,7 @@ export default ({
         audioSetTimeDenote={audioSetTimeDenote}
       />
       <TimeNavigate
-        audioDuration={audioDuration}
+        audioInfoMemory={audioInfoMemory}
         audioCurrentTime={audioCurrentTime}
         audioTimeBar={audioTimeBar}
         audioTimeBarContainer={audioTimeBarContainer}
@@ -95,7 +101,7 @@ export default ({
         rerenderingPoint={rerenderingPoint}
       />
       <TimeAppointing
-        audioDuration={audioDuration}
+        audioInfoMemory={audioInfoMemory}
         audioPlayer={audioPlayer}
         audioCurrentTime={audioCurrentTime}
         audioTimeBar={audioTimeBar}
@@ -115,7 +121,6 @@ export default ({
   );
 };
 interface ReusingLogicProps {
-  audioDuration: React.MutableRefObject<number>;
   audioPlayer: HTMLAudioElement;
   audioPlayBtn: HTMLElement;
   audioVolumeBtn: HTMLElement;
@@ -130,5 +135,6 @@ interface ReusingLogicProps {
   audioBarHandle: HTMLElement;
   audioTimeNavigation: HTMLElement;
   audioTimeNavigateNumber: HTMLElement;
+  audioInfoMemory: HTMLElement;
   rerenderingPoint?: any;
 }
