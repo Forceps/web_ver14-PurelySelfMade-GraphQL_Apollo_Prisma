@@ -47,7 +47,6 @@ export default ({
   setVideoSubMenuOp,
   AudioSubMenuOp,
   setAudioSubMenuOp,
-  Html,
   zIndex,
 }: LeftControlPreProps) => {
   return (
@@ -86,7 +85,6 @@ export default ({
         AudioSubMenuOp={AudioSubMenuOp}
         setAudioSubMenuOp={setAudioSubMenuOp}
         zIndex={zIndex + 10}
-        Html={Html}
       />
     </>
   );
@@ -108,6 +106,5 @@ type LeftControlPreProps = {
   setVideoSubMenuOp: any;
   AudioSubMenuOp: boolean;
   setAudioSubMenuOp: any;
-  Html: string;
   zIndex: number;
 };

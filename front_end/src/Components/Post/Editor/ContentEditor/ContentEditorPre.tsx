@@ -32,20 +32,18 @@ const Editor = styled(ContentEditable)`
 
 export default ({ Html, setHtml }: ContentEditorProps) => {
   return (
-    <Editor
-      id="CUedit"
-      className="editable"
-      tagName="article"
-      html={Html}
-      onChange={(e) => {
-        setHtml(e.target.value);
-      }}
-      spellCheck="false"
-      onMouseUp={(e) => {
-        e.stopPropagation();
-        document.getElementById("CUedit")?.focus();
-      }}
-    />
+    <>
+      <Editor
+        id="CUedit"
+        className="editable"
+        tagName="article"
+        html={Html}
+        onChange={(e) => {
+          setHtml(e.target.value);
+        }}
+        spellCheck="false"
+      />
+    </>
   );
 };
 interface ContentEditorProps {

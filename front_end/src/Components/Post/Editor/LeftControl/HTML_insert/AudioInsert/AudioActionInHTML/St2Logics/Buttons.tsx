@@ -65,7 +65,7 @@ export default ({
       audioBackMoveIcon?.removeEventListener("click", audioBackMediumMove);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rerenderingPoint]);
+  }, []);
   return <UnnecessaryDiv />;
 };
 interface St2AudioActionLogicProps {

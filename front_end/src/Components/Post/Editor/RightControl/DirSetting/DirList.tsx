@@ -24,16 +24,16 @@ type DirListProps = {
   UDirObj?: any;
 };
 export default ({ UDirObj }: DirListProps) => {
-  const DC = useDirMode();
+  const { DirData, setLocation } = useDirMode();
   return (
     <Wrapper>
-      {DC.DirData?.directory?.map((dir: any) => (
+      {DirData?.other_directory?.map((dir: any) => (
         <div key={dir.directory_id}>
           {(!UDirObj || UDirObj.directory_id !== dir.directory_id) && (
             <Folder
               onClick={(e: any) => {
                 spaped(e);
-                DC.setLocation(parseInt(dir.directory_id));
+                setLocation(parseInt(dir.directory_id));
               }}
             >
               <FolderIcon className="icon-folder" />

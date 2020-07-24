@@ -57,7 +57,7 @@ export default ({
       document?.removeEventListener("mouseup", audioCurrentTimeControlMouseUp);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rerenderingPoint]);
+  }, []);
   return <UnnecessaryDiv />;
 };
 interface St2AudioActionLogicProps {

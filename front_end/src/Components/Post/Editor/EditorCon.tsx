@@ -46,23 +46,26 @@ export default ({
     console.log(Html);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Html]);
+
   return (
-    <EditorPre
-      caption={caption}
-      Mutation={Mutation}
-      Exit={Exit}
-      Html={Html}
-      setHtml={setHtml}
-      FcOpen={FcOpen}
-      setFcOpen={setFcOpen}
-      ColorPiked={ColorPiked}
-      setColorPiked={setColorPiked}
-      IroColor={IroColor}
-      Mode={Mode}
-      CaretLocation={CaretLocation}
-      zIndex={zIndex}
-      TitleImg={TitleImg}
-      setTitleImg={setTitleImg}
-    />
+    <>
+      <EditorPre
+        caption={caption}
+        Mutation={Mutation}
+        Exit={Exit}
+        Html={Html}
+        setHtml={setHtml}
+        FcOpen={FcOpen}
+        setFcOpen={setFcOpen}
+        ColorPiked={ColorPiked}
+        setColorPiked={setColorPiked}
+        IroColor={IroColor}
+        Mode={Mode}
+        CaretLocation={CaretLocation}
+        zIndex={zIndex}
+        TitleImg={TitleImg}
+        setTitleImg={setTitleImg}
+      />
+    </>
   );
 };

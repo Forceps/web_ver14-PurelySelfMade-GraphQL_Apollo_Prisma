@@ -20,7 +20,6 @@ type HiddenScreenProps = {
   AudioSubMenuOp: boolean;
   setAudioSubMenuOp: any;
   zIndex: number;
-  Html: string;
 };
 export default ({
   CaretLocation,
@@ -35,7 +34,6 @@ export default ({
   AudioSubMenuOp,
   setAudioSubMenuOp,
   zIndex,
-  Html,
 }: HiddenScreenProps) => {
   const { setMode } = useProfileMode();
   const ImgInsert = async (address: string) => {
@@ -84,7 +82,6 @@ export default ({
       setAudioSubMenuOp={setAudioSubMenuOp}
       AudioInsert={AudioInsert}
       zIndex={zIndex}
-      Html={Html}
     />
   );
 };

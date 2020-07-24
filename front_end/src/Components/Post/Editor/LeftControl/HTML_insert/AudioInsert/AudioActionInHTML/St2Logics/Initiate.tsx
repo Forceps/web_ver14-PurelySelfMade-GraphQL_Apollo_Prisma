@@ -34,8 +34,6 @@ export default ({
       audioInfoMemory.textContent = `${await getAudioDuration(audioPlayer)}`;
       const totalTimeString = MediaClock(parseInt(audioInfoMemory.textContent));
       audioEndTime.textContent = totalTimeString;
-      setInterval(getAudioCurrentTime, 1000);
-      setInterval(statusBarMoving, 100);
     }
   };
   const handleAudioEnded = () => {
@@ -44,15 +42,21 @@ export default ({
   };
 
   useEffect(() => {
-    audioPlayer?.addEventListener("loadedmetadata", setAudioTotalTime);
     audioPlayer?.addEventListener("ended", handleAudioEnded);
-
+    setInterval(getAudioCurrentTime, 1000);
+    setInterval(statusBarMoving, 100);
     return () => {
-      audioPlayer?.removeEventListener("loadedmetadata", setAudioTotalTime);
       audioPlayer?.removeEventListener("ended", handleAudioEnded);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rerenderingPoint]);
+  }, []);
+  useEffect(() => {
+    audioPlayer?.addEventListener("loadedmetadata", setAudioTotalTime);
+    return () => {
+      audioPlayer?.removeEventListener("loadedmetadata", setAudioTotalTime);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return <UnnecessaryDiv />;
 };
 

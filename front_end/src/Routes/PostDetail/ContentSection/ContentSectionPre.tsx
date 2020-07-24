@@ -6,6 +6,7 @@ import ContentEditable from "react-contenteditable";
 import MetaInfoCon from "./MetaInfo/MetaInfoCon";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import Intro from "./Intro/Intro";
+import AudioActionInHTML from "../../../Components/Post/Editor/LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
 
 const Surrounding = styled(W100per)`
   display: flex;
@@ -107,6 +108,7 @@ export default ({
           </Mean>
         </>
       )}
+      <AudioActionInHTML rerenderingPoint={post} />
     </Surrounding>
   );
 };

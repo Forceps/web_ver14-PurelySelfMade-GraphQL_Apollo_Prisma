@@ -41,10 +41,10 @@ const BackStep = styled.div`
 `;
 
 export default () => {
-  const DC = useDirMode();
+  const { DirData, setLocation } = useDirMode();
   return (
     <>
-      {DC.DirData?.root ? (
+      {DirData?.root ? (
         <SbJCon>
           <HeadRootSbj />
         </SbJCon>
@@ -53,17 +53,16 @@ export default () => {
           <BackStep
             onClick={async (e) => {
               spaped(e);
-              const Test = parseInt(DC.DirData?.parent_id?.directory_id);
-              if (!DC.DirData?.parent_id?.root) {
-                DC.setLocation(Test);
+              if (!DirData?.directory?.root) {
+                setLocation(parseInt(DirData?.parent_id));
               } else {
-                DC.setLocation(0);
+                setLocation(0);
               }
             }}
           >
             <i className="icon-left-big" />
           </BackStep>
-          <SbJ>{DC.DirData?.name}</SbJ>
+          <SbJ>{DirData?.name}</SbJ>
         </SbJCon2>
       )}
     </>
