@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import TemporaryBackground from "../../ElementEtc/Effect/TemporaryBackground";
 import EditorCon from "../Editor/EditorCon";
-import AudioActionInHTML from "../Editor/LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
 
 const Wrapper = styled.div`
   position: fixed;
@@ -45,7 +44,6 @@ export default ({
         TitleImg={TitleImg}
         setTitleImg={setTitleImg}
       />
-      <AudioActionInHTML InEditor={true} />
     </Wrapper>
   );
 };

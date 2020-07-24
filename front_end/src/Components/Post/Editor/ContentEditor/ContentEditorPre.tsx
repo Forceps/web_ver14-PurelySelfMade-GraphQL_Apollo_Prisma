@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import ContentEditable from "react-contenteditable";
+import AudioActionInHTML from "../LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
 
 const Editor = styled(ContentEditable)`
   display: block;
@@ -31,6 +32,7 @@ const Editor = styled(ContentEditable)`
 `;
 
 export default ({ Html, setHtml }: ContentEditorProps) => {
+  const [dd, setdd] = useState(true);
   return (
     <>
       <Editor
@@ -42,7 +44,26 @@ export default ({ Html, setHtml }: ContentEditorProps) => {
           setHtml(e.target.value);
         }}
         spellCheck="false"
+        onBlur={() => {
+          const dersdd = document.getElementById("CUedit");
+          const dsdd = dersdd?.getElementsByClassName(
+            "audioPlayIcon"
+          ) as HTMLCollectionOf<HTMLElement>;
+          const gdfs = dersdd?.getElementsByTagName(
+            "audio"
+          ) as HTMLCollectionOf<HTMLAudioElement>;
+          for (let i = 0; i < dsdd.length; i++) {
+            dsdd[i].setAttribute("class", "icon-play audioPlayIcon");
+            gdfs[i].pause();
+          }
+          console.log(1234);
+          setdd(false);
+        }}
+        onFocus={() => {
+          setdd(true);
+        }}
       />
+      {dd && <AudioActionInHTML InEditor={true} />}
     </>
   );
 };

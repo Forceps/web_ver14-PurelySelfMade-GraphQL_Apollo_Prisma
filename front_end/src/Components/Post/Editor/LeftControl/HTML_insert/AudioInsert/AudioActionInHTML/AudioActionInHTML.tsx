@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import cryptoRandomString from "crypto-random-string";
+// import cryptoRandomString from "crypto-random-string";
 import AudioTargetSpecific from "./St1ReusableItems/AudioTargetSpecific";
 import { useDummyState } from "../../../../../../../GlobalLib/Context/Lib/DummyState";
 
@@ -33,7 +33,7 @@ export default ({
           for (let i = 0; i < audioContainers.length; i++) {
             arr = arr.concat(
               <AudioTargetSpecific
-                key={cryptoRandomString({ length: 10 })}
+                // key={cryptoRandomString({ length: 10 })}
                 audioTarget={audioContainers[i]}
                 rerenderingPoint={rerenderingPoint}
               />

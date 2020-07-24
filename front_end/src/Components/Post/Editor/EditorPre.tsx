@@ -78,12 +78,13 @@ export default ({
       <Header>
         <InputCaption
           placeholder="Caption"
-          {...caption}
+          value={caption.value}
+          onChange={caption.onChange}
           spellCheck="false"
           id="EditorPostCaption"
           onKeyUp={(e: any) => {
-            e.stopPropagation();
             if (e.keyCode === 13) {
+              e.stopPropagation();
               Mutation();
             }
           }}

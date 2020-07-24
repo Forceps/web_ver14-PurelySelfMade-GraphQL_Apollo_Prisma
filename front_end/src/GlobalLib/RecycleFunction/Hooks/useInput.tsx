@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default (defaultValue: string) => {
+export default (defaultValue: string): useInputReturn => {
   const [value, setValue] = useState(defaultValue);
 
   const onChange = (e: any) => {
@@ -12,3 +12,9 @@ export default (defaultValue: string) => {
 
   return { value, onChange, setValue };
 };
+
+interface useInputReturn {
+  value: string;
+  onChange: (e: any) => void;
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+}

@@ -42,21 +42,20 @@ export default ({
   };
 
   useEffect(() => {
-    audioPlayer?.addEventListener("ended", handleAudioEnded);
-    setInterval(getAudioCurrentTime, 1000);
-    setInterval(statusBarMoving, 100);
-    return () => {
-      audioPlayer?.removeEventListener("ended", handleAudioEnded);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  useEffect(() => {
+    setAudioTotalTime();
     audioPlayer?.addEventListener("loadedmetadata", setAudioTotalTime);
+    audioPlayer?.addEventListener("ended", handleAudioEnded);
+    const timeGo1 = setInterval(getAudioCurrentTime, 1000);
+    const timeGo2 = setInterval(statusBarMoving, 100);
     return () => {
       audioPlayer?.removeEventListener("loadedmetadata", setAudioTotalTime);
+      audioPlayer?.removeEventListener("ended", handleAudioEnded);
+      window.clearInterval(timeGo1);
+      window.clearInterval(timeGo2);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return <UnnecessaryDiv />;
 };
 
