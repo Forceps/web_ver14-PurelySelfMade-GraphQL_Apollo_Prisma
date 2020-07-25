@@ -14,7 +14,6 @@ export default ({
   audioTimeNavigation,
   audioTimeNavigateNumber,
   audioGauge_x_axis,
-  rerenderingPoint,
 }: St2AudioActionLogicProps) => {
   const audioTimeNavigate = (e: any) => {
     if (
@@ -85,5 +84,4 @@ interface St2AudioActionLogicProps {
   audioTimeNavigation: HTMLElement;
   audioTimeNavigateNumber: HTMLElement;
   audioGauge_x_axis: any;
-  rerenderingPoint?: any;
 }

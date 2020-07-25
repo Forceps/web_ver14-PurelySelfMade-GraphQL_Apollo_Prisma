@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import ContentEditable from "react-contenteditable";
 import AudioActionInHTML from "../LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
@@ -31,8 +31,13 @@ const Editor = styled(ContentEditable)`
   }
 `;
 
-export default ({ Html, setHtml }: ContentEditorProps) => {
-  const [dd, setdd] = useState(true);
+export default ({
+  Html,
+  setHtml,
+  BlurComeback,
+  onBlurEvent,
+  onFocusEvent,
+}: ContentEditorProps) => {
   return (
     <>
       <Editor
@@ -44,32 +49,19 @@ export default ({ Html, setHtml }: ContentEditorProps) => {
           setHtml(e.target.value);
         }}
         spellCheck="false"
-        onBlur={() => {
-          const dersdd = document.getElementById("CUedit");
-          const dsdd = dersdd?.getElementsByClassName(
-            "audioPlayIcon"
-          ) as HTMLCollectionOf<HTMLElement>;
-          const gdfs = dersdd?.getElementsByTagName(
-            "audio"
-          ) as HTMLCollectionOf<HTMLAudioElement>;
-          for (let i = 0; i < dsdd.length; i++) {
-            dsdd[i].setAttribute("class", "icon-play audioPlayIcon");
-            gdfs[i].pause();
-          }
-          console.log(1234);
-          setdd(false);
-        }}
-        onFocus={() => {
-          setdd(true);
-        }}
+        onBlur={onBlurEvent}
+        onFocus={onFocusEvent}
       />
-      {dd && <AudioActionInHTML InEditor={true} />}
+      {BlurComeback && <AudioActionInHTML InEditor={true} />}
     </>
   );
 };
 interface ContentEditorProps {
   Html: any;
   setHtml: any;
+  BlurComeback: boolean;
+  onBlurEvent: () => void;
+  onFocusEvent: () => void;
 }
 
 //꼭 sanitize-html을 해줄 것

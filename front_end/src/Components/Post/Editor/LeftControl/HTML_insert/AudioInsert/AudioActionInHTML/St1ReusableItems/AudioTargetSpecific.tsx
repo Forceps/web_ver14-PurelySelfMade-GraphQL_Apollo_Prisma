@@ -1,10 +1,7 @@
 import React from "react";
 import ReusingLogic from "./ReusingLogic";
 
-export default ({
-  audioTarget,
-  rerenderingPoint,
-}: AudioTargetSpecificProps) => {
+export default ({ audioTarget }: AudioTargetSpecificProps) => {
   const audioPlayer = audioTarget.querySelector("audio") as HTMLAudioElement;
   const audioPlayBtn = audioTarget.querySelector(
     ".audioPlayIcon"
@@ -51,6 +48,7 @@ export default ({
 
   return (
     <ReusingLogic
+      audioTarget={audioTarget}
       audioPlayer={audioPlayer}
       audioPlayBtn={audioPlayBtn}
       audioVolumeBtn={audioVolumeBtn}
@@ -65,12 +63,10 @@ export default ({
       audioBarHandle={audioBarHandle}
       audioTimeNavigation={audioTimeNavigation}
       audioTimeNavigateNumber={audioTimeNavigateNumber}
-      rerenderingPoint={rerenderingPoint}
       audioInfoMemory={audioInfoMemory}
     />
   );
 };
 interface AudioTargetSpecificProps {
   audioTarget: Element;
-  rerenderingPoint?: any;
 }

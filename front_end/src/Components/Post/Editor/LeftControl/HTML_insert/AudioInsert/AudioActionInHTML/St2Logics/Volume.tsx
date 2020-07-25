@@ -10,7 +10,6 @@ export default ({
   audioVolumeBtn,
   audioVolumeBar,
   audioGauge_x_axis,
-  rerenderingPoint,
 }: St2AudioActionLogicProps) => {
   const handleAudioVolumeClick = () => {
     if (audioPlayer) {
@@ -82,5 +81,4 @@ interface St2AudioActionLogicProps {
   audioVolumeBtn: HTMLElement;
   audioVolumeBar: HTMLElement;
   audioGauge_x_axis: any;
-  rerenderingPoint?: any;
 }

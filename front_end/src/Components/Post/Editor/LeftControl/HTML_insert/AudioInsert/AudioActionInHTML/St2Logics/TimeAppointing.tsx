@@ -13,7 +13,6 @@ export default ({
   audioTimeBarContainer,
   audioGauge_x_axis,
   audioSetTimeDenote,
-  rerenderingPoint,
 }: St2AudioActionLogicProps) => {
   const audioCurrentTimeControlMouseMove = (e: any) => {
     if (audioPlayer && audioCurrentTime && audioInfoMemory.textContent) {
@@ -68,5 +67,4 @@ interface St2AudioActionLogicProps {
   audioTimeBarContainer: HTMLElement;
   audioGauge_x_axis: any;
   audioSetTimeDenote: any;
-  rerenderingPoint?: any;
 }

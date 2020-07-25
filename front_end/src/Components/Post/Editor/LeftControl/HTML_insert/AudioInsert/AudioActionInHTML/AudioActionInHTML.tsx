@@ -33,17 +33,13 @@ export default ({
           for (let i = 0; i < audioContainers.length; i++) {
             if (InEditor) {
               arr = arr.concat(
-                <AudioTargetSpecific
-                  audioTarget={audioContainers[i]}
-                  rerenderingPoint={rerenderingPoint}
-                />
+                <AudioTargetSpecific audioTarget={audioContainers[i]} />
               );
             } else {
               arr = arr.concat(
                 <AudioTargetSpecific
                   key={cryptoRandomString({ length: 10 })}
                   audioTarget={audioContainers[i]}
-                  rerenderingPoint={rerenderingPoint}
                 />
               );
             }

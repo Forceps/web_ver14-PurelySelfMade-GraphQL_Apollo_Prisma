@@ -8,9 +8,9 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
+  audioTarget,
   audioPlayer,
   audioPlayBtn,
-  rerenderingPoint,
   audioEndTime,
   getAudioCurrentTime,
   statusBarMoving,
@@ -40,6 +40,9 @@ export default ({
     audioPlayer?.pause();
     audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
   };
+  const clickPlayer = () => {
+    document.getElementById("CUedit")?.focus();
+  };
 
   useEffect(() => {
     setAudioTotalTime();
@@ -47,11 +50,13 @@ export default ({
     audioPlayer?.addEventListener("ended", handleAudioEnded);
     const timeGo1 = setInterval(getAudioCurrentTime, 1000);
     const timeGo2 = setInterval(statusBarMoving, 100);
+    audioTarget?.addEventListener("mousedown", clickPlayer);
     return () => {
       audioPlayer?.removeEventListener("loadedmetadata", setAudioTotalTime);
       audioPlayer?.removeEventListener("ended", handleAudioEnded);
       window.clearInterval(timeGo1);
       window.clearInterval(timeGo2);
+      audioTarget?.removeEventListener("mousedown", clickPlayer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -60,11 +65,11 @@ export default ({
 };
 
 interface St2AudioActionLogicProps {
+  audioTarget: Element;
   audioPlayer: HTMLAudioElement;
   audioPlayBtn: HTMLElement;
   audioEndTime: HTMLElement;
   getAudioCurrentTime: () => void;
   statusBarMoving: () => void;
-  rerenderingPoint?: any;
   audioInfoMemory: HTMLElement;
 }

@@ -7,6 +7,7 @@ import Volume from "../St2Logics/Volume";
 import TimeAppointing from "../St2Logics/TimeAppointing";
 
 export default ({
+  audioTarget,
   audioPlayer,
   audioPlayBtn,
   audioVolumeBtn,
@@ -21,7 +22,6 @@ export default ({
   audioBarHandle,
   audioTimeNavigation,
   audioTimeNavigateNumber,
-  rerenderingPoint,
   audioInfoMemory,
 }: ReusingLogicProps) => {
   const getAudioCurrentTime = () => {
@@ -72,9 +72,9 @@ export default ({
   return (
     <>
       <Initiate
+        audioTarget={audioTarget}
         audioPlayer={audioPlayer}
         audioPlayBtn={audioPlayBtn}
-        rerenderingPoint={rerenderingPoint}
         audioEndTime={audioEndTime}
         getAudioCurrentTime={getAudioCurrentTime}
         statusBarMoving={statusBarMoving}
@@ -87,7 +87,6 @@ export default ({
         audioBackToStartIcon={audioBackToStartIcon}
         audioFrontMoveIcon={audioFrontMoveIcon}
         audioBackMoveIcon={audioBackMoveIcon}
-        rerenderingPoint={rerenderingPoint}
         audioSetTimeDenote={audioSetTimeDenote}
       />
       <TimeNavigate
@@ -98,7 +97,6 @@ export default ({
         audioTimeNavigation={audioTimeNavigation}
         audioTimeNavigateNumber={audioTimeNavigateNumber}
         audioGauge_x_axis={audioGauge_x_axis}
-        rerenderingPoint={rerenderingPoint}
       />
       <TimeAppointing
         audioInfoMemory={audioInfoMemory}
@@ -108,19 +106,18 @@ export default ({
         audioTimeBarContainer={audioTimeBarContainer}
         audioGauge_x_axis={audioGauge_x_axis}
         audioSetTimeDenote={audioSetTimeDenote}
-        rerenderingPoint={rerenderingPoint}
       />
       <Volume
         audioPlayer={audioPlayer}
         audioVolumeBtn={audioVolumeBtn}
         audioVolumeBar={audioVolumeBar}
         audioGauge_x_axis={audioGauge_x_axis}
-        rerenderingPoint={rerenderingPoint}
       />
     </>
   );
 };
 interface ReusingLogicProps {
+  audioTarget: Element;
   audioPlayer: HTMLAudioElement;
   audioPlayBtn: HTMLElement;
   audioVolumeBtn: HTMLElement;
@@ -136,5 +133,4 @@ interface ReusingLogicProps {
   audioTimeNavigation: HTMLElement;
   audioTimeNavigateNumber: HTMLElement;
   audioInfoMemory: HTMLElement;
-  rerenderingPoint?: any;
 }

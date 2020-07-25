@@ -44,6 +44,7 @@ const Adding = styled(({ submitCheck, ...rest }) => (
       `;
     }
   }}
+  resize: none;
   &:focus {
     outline: none;
   }

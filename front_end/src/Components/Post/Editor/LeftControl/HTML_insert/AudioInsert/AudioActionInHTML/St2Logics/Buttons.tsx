@@ -12,7 +12,6 @@ export default ({
   audioBackToStartIcon,
   audioFrontMoveIcon,
   audioBackMoveIcon,
-  rerenderingPoint,
   audioSetTimeDenote,
 }: St2AudioActionLogicProps) => {
   const handleAudioPlayClick = () => {
@@ -76,5 +75,4 @@ interface St2AudioActionLogicProps {
   audioBackMoveIcon: HTMLElement;
   audioInfoMemory: HTMLElement;
   audioSetTimeDenote: any;
-  rerenderingPoint?: any;
 }
