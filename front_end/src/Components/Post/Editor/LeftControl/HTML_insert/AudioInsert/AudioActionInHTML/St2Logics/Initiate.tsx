@@ -50,7 +50,7 @@ export default ({
     audioPlayer?.addEventListener("ended", handleAudioEnded);
     const timeGo1 = setInterval(getAudioCurrentTime, 1000);
     const timeGo2 = setInterval(statusBarMoving, 100);
-    audioTarget?.addEventListener("mousedown", clickPlayer);
+    // audioTarget?.addEventListener("mousedown", clickPlayer);
     return () => {
       audioPlayer?.removeEventListener("loadedmetadata", setAudioTotalTime);
       audioPlayer?.removeEventListener("ended", handleAudioEnded);

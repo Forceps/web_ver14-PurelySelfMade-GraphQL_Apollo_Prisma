@@ -1,19 +1,69 @@
 @import "./Top.scss";
 @import "./Middle.scss";
 @import "./Bottom.scss";
+@import "./MoreMenu.scss";
+@import "./BackgroundImage.scss";
 
 .audioPlayer {
   display: inline-block;
   user-select: none;
+  max-width: 100%;
+  width: 350px;
+  position: relative;
   .audioPlayer_controls {
     display: grid;
     grid-template-rows: 1fr 18px 20px 45px;
     width: 100%;
-    max-width: 350px;
+    height: 100%;
     min-height: 123px;
     min-width: 323px;
     border-left: 3px solid #636e72;
     padding: 0 0 0 5px;
     overflow: hidden;
+    position: relative;
+  }
+  .audioPlayer_controls_with_img {
+    &:hover {
+      box-shadow: 0px 100px 30px -70px rgba(0, 0, 0, 0.3) inset,
+        0px -150px 50px -60px rgba(0, 0, 0, 0.3) inset;
+      & .audio_time_navigation {
+        opacity: 1;
+      }
+      & .audioPlayer_controls_timebase_padding {
+        opacity: 1;
+      }
+      & .audioPlayer_controls_manipulator {
+        opacity: 1;
+      }
+    }
+    transition-property: box-shadow, opacity;
+    transition-duration: 0.18s;
+    transition-timing-function: ease;
+    border-left: 0;
+    color: #fafafa;
+    & .audio_resize_handle {
+      border-color: #dfe6e9;
+    }
+    & .audio_player_three_dot_menu {
+      color: black;
+    }
+    & .audio_time_navigation {
+      opacity: 0;
+      transition-property: box-shadow, opacity;
+      transition-duration: 0.18s;
+      transition-timing-function: ease;
+    }
+    & .audioPlayer_controls_timebase_padding {
+      opacity: 0;
+      transition-property: box-shadow, opacity;
+      transition-duration: 0.18s;
+      transition-timing-function: ease;
+    }
+    & .audioPlayer_controls_manipulator {
+      opacity: 0;
+      transition-property: box-shadow, opacity;
+      transition-duration: 0.18s;
+      transition-timing-function: ease;
+    }
   }
 }

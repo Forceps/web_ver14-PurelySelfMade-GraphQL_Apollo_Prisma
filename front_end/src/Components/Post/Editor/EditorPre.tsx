@@ -112,6 +112,7 @@ export default ({
           Html={Html}
           setHtml={setHtml}
           setTitleImg={setTitleImg}
+          zIndex={zIndex}
         />
         <RightControl
           Exit={Exit}

@@ -5,6 +5,8 @@ import Initiate from "../St2Logics/Initiate";
 import TimeNavigate from "../St2Logics/TimeNavigate";
 import Volume from "../St2Logics/Volume";
 import TimeAppointing from "../St2Logics/TimeAppointing";
+import Resizing from "../St2Logics/Resizing";
+import MoreMenu from "../St2Logics/MoreMenu";
 
 export default ({
   audioTarget,
@@ -23,6 +25,15 @@ export default ({
   audioTimeNavigation,
   audioTimeNavigateNumber,
   audioInfoMemory,
+  audioResizeHandle,
+  audioMoreMenuIcon,
+  audioMoreMenuScreen,
+  audioMoreMenuClose,
+  audioMoreMenuThumbnail,
+  audioThumbnailTargetNode,
+  setImgSubMenuOp2,
+  th,
+  audioControlsIntro,
 }: ReusingLogicProps) => {
   const getAudioCurrentTime = () => {
     if (audioPlayer && audioCurrentTime) {
@@ -88,6 +99,7 @@ export default ({
         audioFrontMoveIcon={audioFrontMoveIcon}
         audioBackMoveIcon={audioBackMoveIcon}
         audioSetTimeDenote={audioSetTimeDenote}
+        audioControlsIntro={audioControlsIntro}
       />
       <TimeNavigate
         audioInfoMemory={audioInfoMemory}
@@ -113,6 +125,20 @@ export default ({
         audioVolumeBar={audioVolumeBar}
         audioGauge_x_axis={audioGauge_x_axis}
       />
+      <Resizing
+        audioTarget={audioTarget}
+        audioResizeHandle={audioResizeHandle}
+      />
+      <MoreMenu
+        audioMoreMenuIcon={audioMoreMenuIcon}
+        audioMoreMenuScreen={audioMoreMenuScreen}
+        audioMoreMenuClose={audioMoreMenuClose}
+        audioMoreMenuThumbnail={audioMoreMenuThumbnail}
+        audioTarget={audioTarget}
+        audioThumbnailTargetNode={audioThumbnailTargetNode}
+        setImgSubMenuOp2={setImgSubMenuOp2}
+        th={th}
+      />
     </>
   );
 };
@@ -133,4 +159,13 @@ interface ReusingLogicProps {
   audioTimeNavigation: HTMLElement;
   audioTimeNavigateNumber: HTMLElement;
   audioInfoMemory: HTMLElement;
+  audioResizeHandle: HTMLElement;
+  audioMoreMenuIcon: HTMLElement;
+  audioMoreMenuScreen: HTMLElement;
+  audioMoreMenuClose: HTMLElement;
+  audioMoreMenuThumbnail: HTMLElement;
+  audioThumbnailTargetNode: any;
+  setImgSubMenuOp2?: any;
+  th: number;
+  audioControlsIntro: HTMLElement;
 }

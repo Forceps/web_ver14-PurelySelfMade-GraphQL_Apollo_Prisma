@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import ContentEditable from "react-contenteditable";
 import AudioActionInHTML from "../LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
+import ImgInSCon from "../../../Media/Insert/ImgInsertScreen/ImgInSCon";
 
 const Editor = styled(ContentEditable)`
   display: block;
@@ -37,6 +38,11 @@ export default ({
   BlurComeback,
   onBlurEvent,
   onFocusEvent,
+  ImgSubMenuOp2,
+  setImgSubMenuOp2,
+  audioThumbnailInsert,
+  zIndex,
+  audioThumbnailTargetNode,
 }: ContentEditorProps) => {
   return (
     <>
@@ -52,7 +58,20 @@ export default ({
         onBlur={onBlurEvent}
         onFocus={onFocusEvent}
       />
-      {BlurComeback && <AudioActionInHTML InEditor={true} />}
+      {BlurComeback && (
+        <AudioActionInHTML
+          InEditor={true}
+          audioThumbnailTargetNode={audioThumbnailTargetNode}
+          setImgSubMenuOp2={setImgSubMenuOp2}
+        />
+      )}
+      {ImgSubMenuOp2 && (
+        <ImgInSCon
+          setImgSubMenuOp={setImgSubMenuOp2}
+          ImgInsert={audioThumbnailInsert}
+          zIndex={zIndex + 10}
+        />
+      )}
     </>
   );
 };
@@ -62,6 +81,11 @@ interface ContentEditorProps {
   BlurComeback: boolean;
   onBlurEvent: () => void;
   onFocusEvent: () => void;
+  ImgSubMenuOp2: boolean;
+  setImgSubMenuOp2: any;
+  audioThumbnailInsert: (address: string) => void;
+  zIndex: number;
+  audioThumbnailTargetNode: any;
 }
 
 //꼭 sanitize-html을 해줄 것

@@ -89,6 +89,13 @@ export default ({ Exit, zIndex, TitleImg, setTitleImg }: RightControlProps) => {
           TitleImg={TitleImg}
           setTitleImg={setTitleImg}
         />
+        <RestButnPGap
+          onClick={(e) => {
+            spaped(e);
+          }}
+        >
+          test
+        </RestButnPGap>
       </ControlsR>
       {DirApOpen && <DirAppoint setDirApOpen={setDirApOpen} />}
     </Dmm>

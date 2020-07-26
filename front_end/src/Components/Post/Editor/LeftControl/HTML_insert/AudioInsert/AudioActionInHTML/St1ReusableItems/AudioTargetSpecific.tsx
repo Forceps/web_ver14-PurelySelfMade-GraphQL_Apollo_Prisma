@@ -1,7 +1,12 @@
 import React from "react";
 import ReusingLogic from "./ReusingLogic";
 
-export default ({ audioTarget }: AudioTargetSpecificProps) => {
+export default ({
+  audioTarget,
+  audioThumbnailTargetNode,
+  setImgSubMenuOp2,
+  th,
+}: AudioTargetSpecificProps) => {
   const audioPlayer = audioTarget.querySelector("audio") as HTMLAudioElement;
   const audioPlayBtn = audioTarget.querySelector(
     ".audioPlayIcon"
@@ -45,6 +50,24 @@ export default ({ audioTarget }: AudioTargetSpecificProps) => {
   const audioInfoMemory = audioTarget.querySelector(
     ".audio_info_memory"
   ) as HTMLElement;
+  const audioResizeHandle = audioTarget.querySelector(
+    ".audio_resize_handle"
+  ) as HTMLElement;
+  const audioMoreMenuIcon = audioTarget.querySelector(
+    ".audio_more_menu_icon"
+  ) as HTMLElement;
+  const audioMoreMenuScreen = audioTarget.querySelector(
+    ".audio_player_three_dot_menu"
+  ) as HTMLElement;
+  const audioMoreMenuClose = audioTarget.querySelector(
+    ".audio_player_three_dot_menu_back"
+  ) as HTMLElement;
+  const audioMoreMenuThumbnail = audioTarget.querySelector(
+    ".audio_player_three_dot_menu_thumbnail"
+  ) as HTMLElement;
+  const audioControlsIntro = audioTarget.querySelector(
+    ".audioPlayer_controls_intro"
+  ) as HTMLElement;
 
   return (
     <ReusingLogic
@@ -64,9 +87,21 @@ export default ({ audioTarget }: AudioTargetSpecificProps) => {
       audioTimeNavigation={audioTimeNavigation}
       audioTimeNavigateNumber={audioTimeNavigateNumber}
       audioInfoMemory={audioInfoMemory}
+      audioResizeHandle={audioResizeHandle}
+      audioMoreMenuIcon={audioMoreMenuIcon}
+      audioMoreMenuScreen={audioMoreMenuScreen}
+      audioMoreMenuClose={audioMoreMenuClose}
+      audioMoreMenuThumbnail={audioMoreMenuThumbnail}
+      audioThumbnailTargetNode={audioThumbnailTargetNode}
+      setImgSubMenuOp2={setImgSubMenuOp2}
+      th={th}
+      audioControlsIntro={audioControlsIntro}
     />
   );
 };
 interface AudioTargetSpecificProps {
   audioTarget: Element;
+  audioThumbnailTargetNode?: any;
+  setImgSubMenuOp2?: any;
+  th: number;
 }

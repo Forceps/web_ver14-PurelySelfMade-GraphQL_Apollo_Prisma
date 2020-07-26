@@ -6,6 +6,8 @@ import { useDummyState } from "../../../../../../../GlobalLib/Context/Lib/DummyS
 export default ({
   rerenderingPoint,
   InEditor = false,
+  audioThumbnailTargetNode,
+  setImgSubMenuOp2,
 }: AudioActionInHTMLProps) => {
   const { setDummyState } = useDummyState();
   const [audioContainers, setAudioContainers] = useState<any>([]);
@@ -33,13 +35,22 @@ export default ({
           for (let i = 0; i < audioContainers.length; i++) {
             if (InEditor) {
               arr = arr.concat(
-                <AudioTargetSpecific audioTarget={audioContainers[i]} />
+                <AudioTargetSpecific
+                  key={i}
+                  audioTarget={audioContainers[i]}
+                  audioThumbnailTargetNode={audioThumbnailTargetNode}
+                  setImgSubMenuOp2={setImgSubMenuOp2}
+                  th={i}
+                />
               );
             } else {
               arr = arr.concat(
                 <AudioTargetSpecific
                   key={cryptoRandomString({ length: 10 })}
                   audioTarget={audioContainers[i]}
+                  audioThumbnailTargetNode={audioThumbnailTargetNode}
+                  setImgSubMenuOp2={setImgSubMenuOp2}
+                  th={i}
                 />
               );
             }
@@ -53,4 +64,6 @@ export default ({
 interface AudioActionInHTMLProps {
   rerenderingPoint?: any;
   InEditor?: boolean;
+  audioThumbnailTargetNode?: any;
+  setImgSubMenuOp2?: any;
 }

@@ -42,6 +42,7 @@ export const titleImgSubstitute = () => {
   sel.removeAllRanges();
   return abriv;
 };
+
 // export const colorPickerConfig = {
 //   layout: [
 //     {
