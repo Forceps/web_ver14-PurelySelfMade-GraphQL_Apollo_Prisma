@@ -41,7 +41,7 @@ export default ({
   DKeyActive,
   setDKeyActive,
 }: RightPanelPreProps) => {
-  const DirSelectorMode = useDirSelectorMode();
+  const { Mode } = useDirSelectorMode();
   const [ShowOneOpen, setShowOneOpen] = useState(false);
   const [DetailInfo, setDetailInfo] = useState({
     MediaType: "img",
@@ -50,7 +50,7 @@ export default ({
   });
   return (
     <>
-      {DirSelectorMode.Mode && (
+      {Mode && (
         <>
           <RightRootPanel>
             <Header />
