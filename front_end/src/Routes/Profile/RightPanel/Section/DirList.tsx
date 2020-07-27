@@ -30,6 +30,7 @@ const Node = styled.div`
     }
   }
   cursor: pointer;
+  overflow: hidden;
 `;
 const Select = styled.div`
   padding: 10px;

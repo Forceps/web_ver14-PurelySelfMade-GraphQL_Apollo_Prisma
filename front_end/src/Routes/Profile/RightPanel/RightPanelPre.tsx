@@ -8,18 +8,24 @@ import { useDirSelectorMode } from "../../../GlobalLib/Context/ProfileContext/Pf
 import ToggleScreen from "./ToggleScreen/ToggleScreen";
 import ShowOne from "../Center/UnderHeader/Archive/ShowOne/ShowOne";
 
-const RightRootPanel = styled.div`
+interface RightRootPanelProps {
+  Mode: boolean;
+}
+const RightRootPanel = styled.div<RightRootPanelProps>`
   position: fixed;
   top: 0;
   right: 0;
-  min-width: 345px;
-  width: 21vw;
+  width: 345px;
   height: 100vh;
   z-index: 3;
   font-size: 1rem;
+  margin-right: ${(p) => (p.Mode ? "0px" : "-345px")};
   backdrop-filter: saturate(200%) blur(10px);
   background-color: rgba(223, 230, 233, 0.5);
   overflow: hidden;
+  transition-property: margin-right;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
 `;
 const ScrollArea = styled(IncludeScrollBar)`
   display: flex;
@@ -50,34 +56,30 @@ export default ({
   });
   return (
     <>
-      {Mode && (
-        <>
-          <RightRootPanel>
-            <Header />
-            <ScrollArea>
-              <DirList
-                setUpdateDirOpen={setUpdateDirOpen}
-                setUDirObj={setUDirObj}
-                setDeleteDirOpen={setDeleteDirOpen}
-                setShowOneOpen={setShowOneOpen}
-                setDetailInfo={setDetailInfo}
-              />
-              <DirCtrlPanel setMakeDirOpen={setMakeDirOpen} />
-            </ScrollArea>
-          </RightRootPanel>
-          <ToggleScreen
-            MakeDirOpen={MakeDirOpen}
-            setMakeDirOpen={setMakeDirOpen}
-            UpdateDirOpen={UpdateDirOpen}
+      <RightRootPanel Mode={Mode}>
+        <Header />
+        <ScrollArea>
+          <DirList
             setUpdateDirOpen={setUpdateDirOpen}
-            UDirObj={UDirObj}
-            DeleteDirOpen={DeleteDirOpen}
+            setUDirObj={setUDirObj}
             setDeleteDirOpen={setDeleteDirOpen}
-            DKeyActive={DKeyActive}
-            setDKeyActive={setDKeyActive}
+            setShowOneOpen={setShowOneOpen}
+            setDetailInfo={setDetailInfo}
           />
-        </>
-      )}
+          <DirCtrlPanel setMakeDirOpen={setMakeDirOpen} />
+        </ScrollArea>
+      </RightRootPanel>
+      <ToggleScreen
+        MakeDirOpen={MakeDirOpen}
+        setMakeDirOpen={setMakeDirOpen}
+        UpdateDirOpen={UpdateDirOpen}
+        setUpdateDirOpen={setUpdateDirOpen}
+        UDirObj={UDirObj}
+        DeleteDirOpen={DeleteDirOpen}
+        setDeleteDirOpen={setDeleteDirOpen}
+        DKeyActive={DKeyActive}
+        setDKeyActive={setDKeyActive}
+      />
       {ShowOneOpen && (
         <ShowOne
           setOpen={setShowOneOpen}

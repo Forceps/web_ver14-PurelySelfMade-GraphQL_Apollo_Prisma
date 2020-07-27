@@ -50,7 +50,7 @@ const BackStep = styled.div`
 
 export default () => {
   const { DirData, setLocation } = useDirMode();
-  const DirSelectorMode = useDirSelectorMode();
+  const { setMode } = useDirSelectorMode();
   return (
     <>
       {!DirData || !DirData?.directory ? (
@@ -60,7 +60,7 @@ export default () => {
             className="icon-right-open"
             onClick={(e) => {
               spaped(e);
-              DirSelectorMode.setMode(false);
+              setMode(false);
             }}
           />
         </SbJCon>
@@ -84,7 +84,7 @@ export default () => {
             className="icon-right-open"
             onClick={(e) => {
               spaped(e);
-              DirSelectorMode.setMode(false);
+              setMode(false);
             }}
           />
         </SbJCon2>
