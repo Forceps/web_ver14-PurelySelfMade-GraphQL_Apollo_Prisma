@@ -34,6 +34,8 @@ export default ({
   setImgSubMenuOp2,
   th,
   audioControlsIntro,
+  PseudoFocus,
+  setPseudoFocus,
 }: ReusingLogicProps) => {
   const getAudioCurrentTime = () => {
     if (audioPlayer && audioCurrentTime) {
@@ -90,8 +92,11 @@ export default ({
         getAudioCurrentTime={getAudioCurrentTime}
         statusBarMoving={statusBarMoving}
         audioInfoMemory={audioInfoMemory}
+        setPseudoFocus={setPseudoFocus}
+        th={th}
       />
       <Buttons
+        audioTarget={audioTarget}
         audioInfoMemory={audioInfoMemory}
         audioPlayer={audioPlayer}
         audioPlayBtn={audioPlayBtn}
@@ -100,6 +105,8 @@ export default ({
         audioBackMoveIcon={audioBackMoveIcon}
         audioSetTimeDenote={audioSetTimeDenote}
         audioControlsIntro={audioControlsIntro}
+        PseudoFocus={PseudoFocus}
+        th={th}
       />
       <TimeNavigate
         audioInfoMemory={audioInfoMemory}
@@ -168,4 +175,6 @@ interface ReusingLogicProps {
   setImgSubMenuOp2?: any;
   th: number;
   audioControlsIntro: HTMLElement;
+  PseudoFocus: number;
+  setPseudoFocus: any;
 }

@@ -15,6 +15,8 @@ export default ({
   getAudioCurrentTime,
   statusBarMoving,
   audioInfoMemory,
+  setPseudoFocus,
+  th,
 }: St2AudioActionLogicProps) => {
   const getAudioDuration = async (audioPlayer: any) => {
     let duration: number;
@@ -41,7 +43,8 @@ export default ({
     audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
   };
   const clickPlayer = () => {
-    document.getElementById("CUedit")?.focus();
+    setPseudoFocus(th);
+    console.log(th);
   };
 
   useEffect(() => {
@@ -50,13 +53,14 @@ export default ({
     audioPlayer?.addEventListener("ended", handleAudioEnded);
     const timeGo1 = setInterval(getAudioCurrentTime, 1000);
     const timeGo2 = setInterval(statusBarMoving, 100);
-    // audioTarget?.addEventListener("mousedown", clickPlayer);
+    audioTarget?.addEventListener("click", clickPlayer);
+
     return () => {
       audioPlayer?.removeEventListener("loadedmetadata", setAudioTotalTime);
       audioPlayer?.removeEventListener("ended", handleAudioEnded);
       window.clearInterval(timeGo1);
       window.clearInterval(timeGo2);
-      audioTarget?.removeEventListener("mousedown", clickPlayer);
+      audioTarget?.removeEventListener("click", clickPlayer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -72,4 +76,6 @@ interface St2AudioActionLogicProps {
   getAudioCurrentTime: () => void;
   statusBarMoving: () => void;
   audioInfoMemory: HTMLElement;
+  th: number;
+  setPseudoFocus: any;
 }

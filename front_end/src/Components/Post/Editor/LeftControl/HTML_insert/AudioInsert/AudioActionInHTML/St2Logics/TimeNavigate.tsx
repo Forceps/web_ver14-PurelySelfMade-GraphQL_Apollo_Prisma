@@ -53,8 +53,13 @@ export default ({
     audioTimeBarContainer?.addEventListener("mousemove", audioTimeNavigate);
   };
   const audioTimeNavigateHide = () => {
-    audioTimeNavigateNumber.style.display = "none";
-    audioTimeBarContainer?.removeEventListener("mousemove", audioTimeNavigate);
+    if (audioTimeNavigateNumber) {
+      audioTimeNavigateNumber.style.display = "none";
+      audioTimeBarContainer?.removeEventListener(
+        "mousemove",
+        audioTimeNavigate
+      );
+    }
   };
 
   useEffect(() => {

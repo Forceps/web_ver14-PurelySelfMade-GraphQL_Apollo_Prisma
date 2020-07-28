@@ -6,6 +6,7 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
+  audioTarget,
   audioInfoMemory,
   audioPlayer,
   audioPlayBtn,
@@ -14,14 +15,36 @@ export default ({
   audioBackMoveIcon,
   audioSetTimeDenote,
   audioControlsIntro,
+  PseudoFocus,
+  th,
 }: St2AudioActionLogicProps) => {
   const handleAudioPlayClick = () => {
     if (audioPlayer?.paused) {
       audioPlayer.play();
       audioPlayBtn?.setAttribute("class", "icon-pause-1 audioPlayIcon");
+      const playerControle = audioTarget.querySelector(
+        ".audioPlayer_controls_with_img_stop"
+      );
+      if (playerControle) {
+        setTimeout(() => {
+          playerControle.setAttribute(
+            "class",
+            "audioPlayer_controls audioPlayer_controls_with_img_playing"
+          );
+        }, 1000);
+      }
     } else {
       audioPlayer?.pause();
       audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
+      const playerControle = audioTarget.querySelector(
+        ".audioPlayer_controls_with_img_playing"
+      );
+      if (playerControle) {
+        playerControle.setAttribute(
+          "class",
+          "audioPlayer_controls audioPlayer_controls_with_img_stop"
+        );
+      }
     }
   };
   const audioBackToStart = () => {
@@ -51,6 +74,12 @@ export default ({
       audioSetTimeDenote();
     }
   };
+  const pressSpacebar = (e: any) => {
+    console.log(PseudoFocus);
+    if (e.keyCode === 32 && th === PseudoFocus) {
+      handleAudioPlayClick();
+    }
+  };
 
   useEffect(() => {
     audioPlayBtn?.addEventListener("click", handleAudioPlayClick);
@@ -58,6 +87,7 @@ export default ({
     audioFrontMoveIcon?.addEventListener("click", audioFrontMediumMove);
     audioBackMoveIcon?.addEventListener("click", audioBackMediumMove);
     audioControlsIntro?.addEventListener("click", handleAudioPlayClick);
+    document.addEventListener("keydown", pressSpacebar);
 
     return () => {
       audioPlayBtn?.removeEventListener("click", handleAudioPlayClick);
@@ -65,12 +95,14 @@ export default ({
       audioFrontMoveIcon?.removeEventListener("click", audioFrontMediumMove);
       audioBackMoveIcon?.removeEventListener("click", audioBackMediumMove);
       audioControlsIntro?.removeEventListener("click", handleAudioPlayClick);
+      document.removeEventListener("keydown", pressSpacebar);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <UnnecessaryDiv />;
 };
 interface St2AudioActionLogicProps {
+  audioTarget: Element;
   audioPlayer: HTMLAudioElement;
   audioPlayBtn: HTMLElement;
   audioBackToStartIcon: HTMLElement;
@@ -79,4 +111,6 @@ interface St2AudioActionLogicProps {
   audioInfoMemory: HTMLElement;
   audioSetTimeDenote: any;
   audioControlsIntro: HTMLElement;
+  PseudoFocus: number;
+  th: number;
 }

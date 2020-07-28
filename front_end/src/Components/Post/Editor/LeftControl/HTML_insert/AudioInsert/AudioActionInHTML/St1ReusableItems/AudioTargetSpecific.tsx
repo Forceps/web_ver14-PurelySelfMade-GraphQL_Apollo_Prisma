@@ -6,6 +6,8 @@ export default ({
   audioThumbnailTargetNode,
   setImgSubMenuOp2,
   th,
+  PseudoFocus,
+  setPseudoFocus,
 }: AudioTargetSpecificProps) => {
   const audioPlayer = audioTarget.querySelector("audio") as HTMLAudioElement;
   const audioPlayBtn = audioTarget.querySelector(
@@ -96,6 +98,8 @@ export default ({
       setImgSubMenuOp2={setImgSubMenuOp2}
       th={th}
       audioControlsIntro={audioControlsIntro}
+      PseudoFocus={PseudoFocus}
+      setPseudoFocus={setPseudoFocus}
     />
   );
 };
@@ -104,4 +108,6 @@ interface AudioTargetSpecificProps {
   audioThumbnailTargetNode?: any;
   setImgSubMenuOp2?: any;
   th: number;
+  PseudoFocus: number;
+  setPseudoFocus: any;
 }

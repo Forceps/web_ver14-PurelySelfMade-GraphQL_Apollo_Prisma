@@ -16,12 +16,8 @@ export default ({ Html, setHtml, setTitleImg, zIndex }: ContentEditorProps) => {
     const dsdd = InEditor?.getElementsByClassName(
       "audioPlayIcon"
     ) as HTMLCollectionOf<HTMLElement>;
-    const gdfs = InEditor?.getElementsByTagName("audio") as HTMLCollectionOf<
-      HTMLAudioElement
-    >;
     for (let i = 0; i < dsdd?.length; i++) {
       dsdd[i].setAttribute("class", "icon-play audioPlayIcon");
-      gdfs[i].pause();
     }
     CaretLocation2.current = saveSelection();
     setBlurComeback(false);
@@ -49,7 +45,7 @@ export default ({ Html, setHtml, setTitleImg, zIndex }: ContentEditorProps) => {
     backImgArea.setAttribute("style", `background-image: url(${address});`);
     playerControle.setAttribute(
       "class",
-      "audioPlayer_controls audioPlayer_controls_with_img"
+      "audioPlayer_controls audioPlayer_controls_with_img_stop"
     );
 
     document.execCommand("insertHTML", false, "<div></div>");
