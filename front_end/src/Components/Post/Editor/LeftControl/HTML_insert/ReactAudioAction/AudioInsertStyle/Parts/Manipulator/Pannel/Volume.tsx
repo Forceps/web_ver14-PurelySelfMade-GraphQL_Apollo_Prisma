@@ -24,7 +24,23 @@ const VolumeBar = styled.progress`
   cursor: pointer;
 `;
 
-export default () => {
+export default ({ audioTag }: VolumeProps) => {
+  const handleAudioVolumeClick = () => {
+    if (audioTag) {
+      if (audioTag.muted) {
+        audioTag.muted = false;
+        audioVolumeBtn?.setAttribute("class", "icon-volume audioVolumeIcon");
+        audioVolumeBar?.setAttribute("value", `${audioTag.volume}`);
+      } else {
+        audioTag.muted = true;
+        audioVolumeBtn?.setAttribute(
+          "class",
+          "icon-volume-off audioVolumeIcon"
+        );
+        audioVolumeBar?.setAttribute("value", "0");
+      }
+    }
+  };
   return (
     <VolumeContainer>
       <VolumeIcon />
@@ -34,3 +50,6 @@ export default () => {
     </VolumeContainer>
   );
 };
+interface VolumeProps {
+  audioTag: HTMLAudioElement | null;
+}

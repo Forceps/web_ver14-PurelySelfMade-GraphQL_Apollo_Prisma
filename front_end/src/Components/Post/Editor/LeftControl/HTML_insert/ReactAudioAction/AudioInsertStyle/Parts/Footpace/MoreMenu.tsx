@@ -1,8 +1,11 @@
 import React from "react";
-import styled from "styled-components";
-import { H100per } from "../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import styled, { css } from "styled-components";
+import { H100per } from "../../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 
-const MenuOpen = styled(H100per)`
+interface BaileyProps {
+  WithImg: boolean;
+}
+const Bailey = styled(H100per)<BaileyProps>`
   display: flex;
   flex-direction: column;
   width: 0px;
@@ -24,6 +27,13 @@ const MenuOpen = styled(H100per)`
     background-color: #dfe6e9;
     cursor: pointer;
   }
+  ${(p) => {
+    if (p.WithImg) {
+      return css`
+        color: black;
+      `;
+    }
+  }}
 `;
 const CloseMenu = styled.div`
   display: flex;
@@ -42,15 +52,18 @@ const RestMenu = styled.div`
   align-items: center;
 `;
 
-export default () => {
+export default ({ WithImg }: MoreMenuProps) => {
   return (
-    <MenuOpen>
+    <Bailey WithImg={WithImg}>
       <CloseMenu>
         <MenuBackIconContainer>
           <i className="icon-right-open" />
         </MenuBackIconContainer>
       </CloseMenu>
       <RestMenu>Thumbnail</RestMenu>
-    </MenuOpen>
+    </Bailey>
   );
 };
+interface MoreMenuProps {
+  WithImg: boolean;
+}

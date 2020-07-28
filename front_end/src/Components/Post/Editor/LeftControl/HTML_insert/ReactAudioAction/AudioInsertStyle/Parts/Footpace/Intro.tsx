@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import WH100per from "../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import WH100per from "../../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 
 const Intro = styled(WH100per)`
   display: grid;
