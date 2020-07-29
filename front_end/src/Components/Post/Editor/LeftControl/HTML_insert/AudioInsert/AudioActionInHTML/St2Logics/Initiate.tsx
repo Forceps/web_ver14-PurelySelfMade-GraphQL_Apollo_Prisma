@@ -15,7 +15,6 @@ export default ({
   getAudioCurrentTime,
   statusBarMoving,
   audioInfoMemory,
-  setPseudoFocus,
   th,
 }: St2AudioActionLogicProps) => {
   const getAudioDuration = async (audioPlayer: any) => {
@@ -43,7 +42,6 @@ export default ({
     audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
   };
   const clickPlayer = () => {
-    setPseudoFocus(th);
     console.log(th);
   };
 
@@ -77,5 +75,4 @@ interface St2AudioActionLogicProps {
   statusBarMoving: () => void;
   audioInfoMemory: HTMLElement;
   th: number;
-  setPseudoFocus: any;
 }

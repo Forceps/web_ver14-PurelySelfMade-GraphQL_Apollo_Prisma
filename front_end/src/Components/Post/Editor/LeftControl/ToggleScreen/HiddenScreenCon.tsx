@@ -53,10 +53,10 @@ export default ({
     setVideoSubMenuOp(false);
   };
   const AudioInsert = async (address: string, audioInfo?: any) => {
-    console.log(address);
     await restoreSelection(CaretLocation?.current);
     document.getElementById("CUedit")?.focus();
     await AudioHtmlInsert(address, audioInfo);
+    console.log(address);
     setAudioSubMenuOp(false);
   };
   useEffect(() => {

@@ -7,12 +7,12 @@ import React, {
   RefObject,
 } from "react";
 import styled from "styled-components";
-import WH100per from "../../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import WH100per from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Buttons from "./Pannel/Buttons";
 import Volume from "./Pannel/Volume";
 import RestZone from "./Pannel/RestZone";
 import TimeBar from "./TimeBar/TimeBarCon";
-import { MediaClock } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import { MediaClock } from "../../../../../../../GlobalLib/RecycleFunction/etc/Time";
 
 const Bottom = styled(WH100per)`
   display: grid;
@@ -101,7 +101,7 @@ export default ({
           audioSetTimeDenote={audioSetTimeDenote}
           TotalTime={TotalTime}
         />
-        <Volume audioTag={audioTag} />
+        <Volume audioTag={audioTag} audioGauge_x_axis={audioGauge_x_axis} />
         <RestZone
           TotalTime={TotalTime}
           WithImg={WithImg}

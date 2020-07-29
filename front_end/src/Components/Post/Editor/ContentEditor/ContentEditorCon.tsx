@@ -9,7 +9,6 @@ export default ({ Html, setHtml, setTitleImg, zIndex }: ContentEditorProps) => {
   const Imgs = document.getElementById(`CUedit`)?.getElementsByTagName("img");
   const CaretLocation2 = useRef<any>();
   const audioThumbnailTargetNode = useRef<any>();
-  // const [AudioThumnailUrl,setAudioThumnailUrl] = useState("")
 
   const onBlurEvent = () => {
     const InEditor = document.getElementById(`CUedit`);

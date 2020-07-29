@@ -1,5 +1,5 @@
 import React, { RefObject, useRef } from "react";
-import { MediaClock } from "../../../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
 import TimeBarPre from "./TimeBarPre";
 
 export default ({
@@ -18,7 +18,11 @@ export default ({
 
   const audioCurrentTimeControlMouseMove = (e: any) => {
     if (audioTag) {
-      const movedValue = audioGauge_x_axis(e, audioTimeBar, e.currentTarget);
+      const movedValue = audioGauge_x_axis(
+        e,
+        audioTimeBar.current,
+        e.currentTarget
+      );
       audioTag.currentTime = movedValue * TotalTime;
       audioSetTimeDenote();
     }

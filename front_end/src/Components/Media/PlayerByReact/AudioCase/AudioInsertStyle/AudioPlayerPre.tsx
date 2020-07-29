@@ -1,6 +1,6 @@
 import React, { RefObject, Dispatch, SetStateAction } from "react";
 import styled, { css } from "styled-components";
-import WH100per from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import WH100per from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Intro from "./Parts/Footpace/Intro";
 import MoreMenu from "./Parts/Footpace/MoreMenu";
 import Manipulator from "./Parts/Manipulator/Manipulator";
@@ -99,6 +99,9 @@ export default ({
   WithImg,
   setWithImg,
   audioTarget,
+  MoreMenuOpen,
+  setMoreMenuOpen,
+  backImgArea,
 }: AudioPlayerPreProps) => {
   return (
     <div>
@@ -111,7 +114,11 @@ export default ({
         />
         <Thumbnail />
         <Controls WithImg={WithImg} Playing={Playing}>
-          <Intro />
+          <Intro
+            setMoreMenuOpen={setMoreMenuOpen}
+            audioTag={audioTag.current}
+            setPlaying={setPlaying}
+          />
           <Manipulator
             audioTag={audioTag.current}
             TotalTime={TotalTime}
@@ -120,7 +127,14 @@ export default ({
             WithImg={WithImg}
             audioTarget={audioTarget}
           />
-          <MoreMenu WithImg={WithImg} />
+          <MoreMenu
+            audioTag={audioTag.current}
+            WithImg={WithImg}
+            MoreMenuOpen={MoreMenuOpen}
+            setMoreMenuOpen={setMoreMenuOpen}
+            setWithImg={setWithImg}
+            backImgArea={backImgArea.current}
+          />
         </Controls>
       </AudioPlayer>
     </div>
@@ -136,4 +150,7 @@ interface AudioPlayerPreProps {
   WithImg: boolean;
   setWithImg: Dispatch<SetStateAction<boolean>>;
   audioTarget: RefObject<HTMLDivElement>;
+  MoreMenuOpen: boolean;
+  setMoreMenuOpen: Dispatch<SetStateAction<boolean>>;
+  backImgArea: RefObject<HTMLDivElement>;
 }

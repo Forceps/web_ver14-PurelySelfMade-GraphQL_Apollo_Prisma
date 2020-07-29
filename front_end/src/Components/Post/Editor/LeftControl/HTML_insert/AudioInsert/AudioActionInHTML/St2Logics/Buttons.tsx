@@ -15,7 +15,6 @@ export default ({
   audioBackMoveIcon,
   audioSetTimeDenote,
   audioControlsIntro,
-  PseudoFocus,
   th,
 }: St2AudioActionLogicProps) => {
   const handleAudioPlayClick = () => {
@@ -75,8 +74,7 @@ export default ({
     }
   };
   const pressSpacebar = (e: any) => {
-    console.log(PseudoFocus);
-    if (e.keyCode === 32 && th === PseudoFocus) {
+    if (e.keyCode === 32 && th === 0) {
       handleAudioPlayClick();
     }
   };
@@ -111,6 +109,5 @@ interface St2AudioActionLogicProps {
   audioInfoMemory: HTMLElement;
   audioSetTimeDenote: any;
   audioControlsIntro: HTMLElement;
-  PseudoFocus: number;
   th: number;
 }

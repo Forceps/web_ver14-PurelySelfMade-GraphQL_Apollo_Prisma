@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
-import WH100per from "../../../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { MediaClock } from "../../../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import WH100per from "../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
 
 const RestZone = styled(WH100per)`
   display: flex;

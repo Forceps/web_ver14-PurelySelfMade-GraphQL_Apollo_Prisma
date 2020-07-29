@@ -4,9 +4,10 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
   return new Promise((sol, jec) => {
     if (address) {
       const AudioHtml = /*html*/ `
-      <div><br></div>
-      
-      <div><div class="audioPlayer" contenteditable="false">
+      <div>
+        <br>
+      </div>
+      <div class="audioPlayer" contenteditable="false">
         <audio>
           <source src="${address}" >
         </audio>
@@ -60,9 +61,10 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
             </div>
           </div>
         </div>
-      </div></div>
-
-      <div><br></div>`;
+      </div>
+      <div>
+        <br>
+      </div>`;
       document.execCommand("insertHTML", false, AudioHtml);
     }
     sol("");
