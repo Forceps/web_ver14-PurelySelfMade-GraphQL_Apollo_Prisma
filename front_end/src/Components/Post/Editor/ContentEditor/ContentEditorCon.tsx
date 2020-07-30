@@ -11,6 +11,7 @@ export default ({ Html, setHtml, setTitleImg, zIndex }: ContentEditorProps) => {
   const audioThumbnailTargetNode = useRef<any>();
 
   const onBlurEvent = () => {
+    CaretLocation2.current = saveSelection();
     const InEditor = document.getElementById(`CUedit`);
     const dsdd = InEditor?.getElementsByClassName(
       "audioPlayIcon"
@@ -18,14 +19,13 @@ export default ({ Html, setHtml, setTitleImg, zIndex }: ContentEditorProps) => {
     for (let i = 0; i < dsdd?.length; i++) {
       dsdd[i].setAttribute("class", "icon-play audioPlayIcon");
     }
-    CaretLocation2.current = saveSelection();
     setBlurComeback(false);
   };
   const onFocusEvent = async () => {
+    setBlurComeback(true);
     if (CaretLocation2.current) {
       await restoreSelection(CaretLocation2.current);
     }
-    setBlurComeback(true);
   };
   const audioThumbnailInsert = (address: string) => {
     const editor = document.getElementById("CUedit");
@@ -55,6 +55,13 @@ export default ({ Html, setHtml, setTitleImg, zIndex }: ContentEditorProps) => {
     if (Imgs && Imgs[0] && Imgs[0].src && OnlyOnce) {
       setTitleImg(Imgs[0].src);
       setOnlyOnce(false);
+    }
+    const editor = document.getElementById("CUedit");
+    const ddd = editor?.getElementsByClassName("audioPlayer") || [];
+    for (let i = 0; i < ddd.length; i++) {
+      if (!ddd[i].querySelector("source")) {
+        ddd[i].parentNode?.removeChild(ddd[i]);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [Html]);

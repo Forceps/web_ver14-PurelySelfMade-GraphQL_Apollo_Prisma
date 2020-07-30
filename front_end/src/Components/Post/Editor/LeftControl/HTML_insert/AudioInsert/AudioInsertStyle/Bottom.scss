@@ -50,9 +50,9 @@
       padding-right: 6px;
     }
     .audio_info_memory {
-      display: none;
-      width: 0px;
-      height: 0px;
+      position: absolute;
+      width: 1px;
+      height: 1px;
       opacity: 0;
     }
     .audio_resize_handle {
