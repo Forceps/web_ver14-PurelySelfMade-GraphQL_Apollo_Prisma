@@ -9,6 +9,7 @@ import App from "./App";
 ReactDOM.render(
   <ApolloProvider client={client}>
     <Helmet>
+      <title>Square Post</title>
       <link
         rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700"
