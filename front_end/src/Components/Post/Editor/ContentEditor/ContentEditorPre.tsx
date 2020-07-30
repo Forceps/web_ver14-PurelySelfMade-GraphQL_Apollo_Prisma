@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import ContentEditable from "react-contenteditable";
-import AudioActionInHTML from "../LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
+// import AudioActionInHTML from "../LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
 import ImgInSCon from "../../../Media/Insert/ImgInsertScreen/ImgInSCon";
 
 const Editor = styled(ContentEditable)`
@@ -58,13 +58,13 @@ export default ({
         onBlur={onBlurEvent}
         onFocus={onFocusEvent}
       />
-      {BlurComeback && (
+      {/* {BlurComeback && (
         <AudioActionInHTML
           InEditor={true}
           audioThumbnailTargetNode={audioThumbnailTargetNode}
           setImgSubMenuOp2={setImgSubMenuOp2}
         />
-      )}
+      )} */}
       {ImgSubMenuOp2 && (
         <ImgInSCon
           setImgSubMenuOp={setImgSubMenuOp2}
