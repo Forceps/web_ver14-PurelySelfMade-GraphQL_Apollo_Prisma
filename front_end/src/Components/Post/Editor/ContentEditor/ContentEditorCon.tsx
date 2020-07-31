@@ -35,12 +35,16 @@ export const CediCon = ({
     const backImgArea = player?.querySelector(
       ".audio_player_thumbnail_container"
     ) as HTMLElement;
+    const audioMoreMenuScreen = player?.querySelector(
+      ".audio_player_three_dot_menu"
+    ) as HTMLElement;
 
     backImgArea.setAttribute("style", `background-image: url(${address});`);
     playerControle.setAttribute(
       "class",
       "audioPlayer_controls audioPlayer_controls_with_img_stop"
     );
+    audioMoreMenuScreen.style.width = "0px";
 
     setImgSubMenuOp2(false);
   };
