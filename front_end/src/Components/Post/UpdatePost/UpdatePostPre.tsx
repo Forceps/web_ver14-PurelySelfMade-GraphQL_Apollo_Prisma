@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, MutableRefObject } from "react";
 import styled from "styled-components";
 import TemporaryBackground from "../../ElementEtc/Effect/TemporaryBackground";
 import EditorCon from "../Editor/EditorCon";
@@ -18,8 +18,7 @@ type UpdatePostPreProps = {
   caption: any;
   UpdateProcess: any;
   Exit: any;
-  Html: any;
-  setHtml: any;
+  Html: MutableRefObject<string>;
   TitleImg: string;
   setTitleImg: any;
 };
@@ -28,7 +27,6 @@ export default ({
   UpdateProcess,
   Exit,
   Html,
-  setHtml,
   TitleImg,
   setTitleImg,
 }: UpdatePostPreProps) => {
@@ -41,7 +39,6 @@ export default ({
         Mutation={UpdateProcess}
         Exit={Exit}
         Html={Html}
-        setHtml={setHtml}
         Mode={UpdateMode}
         TitleImg={TitleImg}
         setTitleImg={setTitleImg}

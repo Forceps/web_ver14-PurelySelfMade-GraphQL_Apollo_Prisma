@@ -7,7 +7,6 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
       <div>
         <br>
       </div>
-      <div></div>
       <div><div class="audioPlayer" contenteditable="false">
         <audio>
           <source src="${address}" style="opacity: 0;" >
@@ -63,7 +62,6 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
           </div>
         </div>
       </div></div>
-      <div></div>
       <div>
         <br>
       </div>`;

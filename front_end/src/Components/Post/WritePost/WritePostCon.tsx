@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import WritePostPre from "./WritePostPre";
 import { useMutation } from "@apollo/client";
 import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
@@ -21,7 +21,7 @@ export default ({ create_post_toggle }: WritePostConProps) => {
   const caption = useInput("");
   const { Location, DirData_refetch } = useDirMode();
   const { MEdata } = useMyInfo();
-  const [Html, setHtml] = useState(``);
+  const Html = useRef(``);
   const [TitleImg, setTitleImg] = useState("");
   const [createPostMutation] = useMutation(CREATE_POST, {
     refetchQueries: () => [
@@ -37,7 +37,7 @@ export default ({ create_post_toggle }: WritePostConProps) => {
       await createPostMutation({
         variables: {
           caption: caption.value,
-          content: Html,
+          content: Html.current,
           directory_id: S_N_to_N(Location),
           face: TitleImg ? TitleImg : titleImgSubstitute(),
           face_type: TitleImg ? "image" : "text",
@@ -58,7 +58,6 @@ export default ({ create_post_toggle }: WritePostConProps) => {
       createPostTrigger={createPostTrigger}
       create_post_toggle={create_post_toggle}
       Html={Html}
-      setHtml={setHtml}
       TitleImg={TitleImg}
       setTitleImg={setTitleImg}
     />

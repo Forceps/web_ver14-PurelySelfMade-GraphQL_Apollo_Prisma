@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, RefObject } from "react";
 import useInput from "../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import LeftControlPre from "./LeftControlPre";
 
@@ -10,8 +10,10 @@ type LeftControlConProps = {
   setColorPiked: any;
   IroColor: any;
   zIndex: number;
+  InEditor: RefObject<HTMLElement>;
 };
 export default ({
+  InEditor,
   CaretLocation,
   FcOpen,
   setFcOpen,
@@ -29,6 +31,7 @@ export default ({
 
   return (
     <LeftControlPre
+      InEditor={InEditor}
       FcOpen={FcOpen}
       setFcOpen={setFcOpen}
       ColorPiked={ColorPiked}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, MutableRefObject } from "react";
 import EditorPre from "./EditorPre";
 // import iro from "@jaames/iro";
 // import { colorPickerConfig } from "./EditorLib";
@@ -7,8 +7,7 @@ type EditorConProps = {
   caption: any;
   Mutation: any;
   Exit: any;
-  Html: any;
-  setHtml: any;
+  Html: MutableRefObject<string>;
   Mode?: any;
   zIndex?: number;
   TitleImg: string;
@@ -19,7 +18,6 @@ export default ({
   Mutation,
   Exit,
   Html,
-  setHtml,
   Mode,
   zIndex = 10,
   TitleImg,
@@ -29,6 +27,7 @@ export default ({
   const [ColorPiked, setColorPiked] = useState(null);
   const IroColor = useRef(null);
   const CaretLocation = useRef();
+  const InEditor = useRef<HTMLElement>(null);
 
   // useEffect(() => {
   //   if (FcOpen) {
@@ -42,19 +41,15 @@ export default ({
     document.getElementById("EditorPostCaption")?.focus();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  useEffect(() => {
-    console.log(Html);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [Html]);
 
   return (
     <>
       <EditorPre
+        InEditor={InEditor}
         caption={caption}
         Mutation={Mutation}
         Exit={Exit}
         Html={Html}
-        setHtml={setHtml}
         FcOpen={FcOpen}
         setFcOpen={setFcOpen}
         ColorPiked={ColorPiked}

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MutableRefObject } from "react";
 import styled from "styled-components";
 import TemporaryBackground from "../../ElementEtc/Effect/TemporaryBackground";
 import EditorCon from "../Editor/EditorCon";
@@ -18,8 +18,7 @@ type WritePostPrePorps = {
   caption: any;
   createPostTrigger: any;
   create_post_toggle: any;
-  Html: any;
-  setHtml: any;
+  Html: MutableRefObject<string>;
   TitleImg: string;
   setTitleImg: any;
 };
@@ -28,7 +27,6 @@ export default ({
   createPostTrigger,
   create_post_toggle,
   Html,
-  setHtml,
   TitleImg,
   setTitleImg,
 }: WritePostPrePorps) => {
@@ -40,7 +38,6 @@ export default ({
         Mutation={createPostTrigger}
         Exit={create_post_toggle}
         Html={Html}
-        setHtml={setHtml}
         TitleImg={TitleImg}
         setTitleImg={setTitleImg}
       />

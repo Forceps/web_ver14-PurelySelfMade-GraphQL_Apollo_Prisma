@@ -42,7 +42,7 @@ export default ({
     audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
   };
   const clickPlayer = () => {
-    console.log(th);
+    document.getElementById("CUedit")?.focus();
   };
 
   useEffect(() => {

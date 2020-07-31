@@ -26,7 +26,7 @@ type VideoInsertBtn = {
 export default ({ CaretLocation, setAudioSubMenuOp }: VideoInsertBtn) => {
   return (
     <EdBtn
-      onMouseDown={(e) => {
+      onMouseDown={async (e) => {
         spaped(e);
         CaretLocation.current = saveSelection();
       }}

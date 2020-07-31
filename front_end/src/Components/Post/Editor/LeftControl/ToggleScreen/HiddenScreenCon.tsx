@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, RefObject } from "react";
 import HiddenScreenPre from "./HiddenScreenPre";
 import { restoreSelection } from "../../EditorLib";
 import { useProfileMode } from "../../../../../GlobalLib/Context/ProfileContext/ProfileMode";
@@ -20,6 +20,7 @@ type HiddenScreenProps = {
   AudioSubMenuOp: boolean;
   setAudioSubMenuOp: any;
   zIndex: number;
+  InEditor: RefObject<HTMLElement>;
 };
 export default ({
   CaretLocation,
@@ -34,17 +35,18 @@ export default ({
   AudioSubMenuOp,
   setAudioSubMenuOp,
   zIndex,
+  InEditor,
 }: HiddenScreenProps) => {
   const { setMode } = useProfileMode();
   const ImgInsert = async (address: string) => {
     await restoreSelection(CaretLocation?.current);
-    document.getElementById("CUedit")?.focus();
+    InEditor.current?.focus();
     await ImgHtmlInsert(address);
     setImgSubMenuOp(false);
   };
   const VideoInsert = async (address: string, state?: string) => {
     await restoreSelection(CaretLocation?.current);
-    document.getElementById("CUedit")?.focus();
+    InEditor.current?.focus();
     if (state === "Youtube") {
       await VideoInsertByYoutube(address);
     } else {
@@ -54,7 +56,7 @@ export default ({
   };
   const AudioInsert = async (address: string, audioInfo?: any) => {
     await restoreSelection(CaretLocation?.current);
-    document.getElementById("CUedit")?.focus();
+    InEditor.current?.focus();
     await AudioHtmlInsert(address, audioInfo);
     console.log(address);
     setAudioSubMenuOp(false);

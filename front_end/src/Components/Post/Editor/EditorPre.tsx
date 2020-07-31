@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefObject, MutableRefObject } from "react";
 import styled from "styled-components";
 import RightControl from "./RightControl/RightControl";
 import LeftControlCon from "./LeftControl/LeftControlCon";
@@ -57,11 +57,11 @@ const DmCon = styled.div`
 `;
 
 export default ({
+  InEditor,
   caption,
   Mutation,
   Exit,
   Html,
-  setHtml,
   FcOpen,
   setFcOpen,
   ColorPiked,
@@ -99,6 +99,7 @@ export default ({
         </SubmitButton>
       </Header>
       <LeftControlCon
+        InEditor={InEditor}
         FcOpen={FcOpen}
         setFcOpen={setFcOpen}
         ColorPiked={ColorPiked}
@@ -109,9 +110,10 @@ export default ({
       />
       <DmCon>
         <ContentEditor
+          InEditor={InEditor}
           Html={Html}
-          setHtml={setHtml}
           setTitleImg={setTitleImg}
+          CaretLocation={CaretLocation}
           zIndex={zIndex + 10}
         />
         <RightControl
@@ -126,11 +128,11 @@ export default ({
 };
 
 type EditorPreProps = {
+  InEditor: RefObject<HTMLElement>;
   caption: any;
   Mutation: any;
   Exit: any;
-  Html: any;
-  setHtml: any;
+  Html: MutableRefObject<string>;
   FcOpen: boolean;
   setFcOpen: any;
   ColorPiked: any;

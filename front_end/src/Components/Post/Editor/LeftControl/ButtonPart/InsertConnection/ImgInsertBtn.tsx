@@ -26,7 +26,7 @@ type ImgInsertBtn = {
 export default ({ CaretLocation, setImgSubMenuOp }: ImgInsertBtn) => {
   return (
     <EdBtn
-      onMouseDown={(e) => {
+      onMouseDown={async (e) => {
         spaped(e);
         CaretLocation.current = saveSelection();
       }}

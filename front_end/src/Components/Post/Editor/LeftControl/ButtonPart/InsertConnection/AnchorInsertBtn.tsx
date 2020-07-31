@@ -22,7 +22,7 @@ const EdBtn = styled.div`
 export default ({ CaretLocation, setAnchorInputOpen }: AnchorInsertBtn) => {
   return (
     <EdBtn
-      onMouseDown={(e) => {
+      onMouseDown={async (e) => {
         spaped(e);
         CaretLocation.current = saveSelection();
       }}

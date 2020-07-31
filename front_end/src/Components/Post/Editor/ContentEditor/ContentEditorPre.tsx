@@ -1,8 +1,12 @@
-import React from "react";
+import React, {
+  RefObject,
+  MutableRefObject,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import styled from "styled-components";
 import ContentEditable from "react-contenteditable";
 import AudioActionInHTML from "../LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
-import ImgInSCon from "../../../Media/Insert/ImgInsertScreen/ImgInSCon";
 
 const Editor = styled(ContentEditable)`
   display: block;
@@ -32,60 +36,45 @@ const Editor = styled(ContentEditable)`
   }
 `;
 
-export default ({
+export const CediPre = ({
+  InEditor,
   Html,
-  setHtml,
-  BlurComeback,
-  onBlurEvent,
-  onFocusEvent,
-  ImgSubMenuOp2,
   setImgSubMenuOp2,
-  audioThumbnailInsert,
-  zIndex,
   audioThumbnailTargetNode,
+  setHtmlChange,
+  HtmlChange,
 }: ContentEditorProps) => {
   return (
     <>
       <Editor
         id="CUedit"
         className="editable"
+        innerRef={InEditor}
         tagName="article"
-        html={Html}
+        html={Html.current}
         onChange={(e) => {
-          setHtml(e.target.value);
+          Html.current = e.target.value;
+          setHtmlChange((p) => p + 1);
         }}
         spellCheck="false"
-        onBlur={onBlurEvent}
-        onFocus={onFocusEvent}
       />
-      {BlurComeback && (
-        <AudioActionInHTML
-          InEditor={true}
-          audioThumbnailTargetNode={audioThumbnailTargetNode}
-          setImgSubMenuOp2={setImgSubMenuOp2}
-        />
-      )}
-      {ImgSubMenuOp2 && (
-        <ImgInSCon
-          setImgSubMenuOp={setImgSubMenuOp2}
-          ImgInsert={audioThumbnailInsert}
-          zIndex={zIndex + 10}
-        />
-      )}
+      <AudioActionInHTML
+        InEditor={true}
+        rerenderingPoint={HtmlChange}
+        audioThumbnailTargetNode={audioThumbnailTargetNode}
+        setImgSubMenuOp2={setImgSubMenuOp2}
+      />
     </>
   );
 };
 interface ContentEditorProps {
-  Html: any;
-  setHtml: any;
-  BlurComeback: boolean;
-  onBlurEvent: () => void;
-  onFocusEvent: () => void;
-  ImgSubMenuOp2: boolean;
+  InEditor: RefObject<HTMLElement>;
+  Html: MutableRefObject<string>;
   setImgSubMenuOp2: any;
-  audioThumbnailInsert: (address: string) => void;
-  zIndex: number;
   audioThumbnailTargetNode: any;
+  setHtmlChange: Dispatch<SetStateAction<number>>;
+  HtmlChange: number;
 }
 
+export default React.memo(CediPre);
 //꼭 sanitize-html을 해줄 것

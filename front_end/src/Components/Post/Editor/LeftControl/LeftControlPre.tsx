@@ -1,4 +1,4 @@
-import React from "react";
+import React, { RefObject } from "react";
 import styled, { css } from "styled-components";
 import HiddenScreen from "./ToggleScreen/HiddenScreenCon";
 import BtnCollection from "./ButtonPart/BtnCollection";
@@ -48,6 +48,7 @@ export default ({
   AudioSubMenuOp,
   setAudioSubMenuOp,
   zIndex,
+  InEditor,
 }: LeftControlPreProps) => {
   return (
     <>
@@ -73,6 +74,7 @@ export default ({
         />
       </ControlsL>
       <HiddenScreen
+        InEditor={InEditor}
         CaretLocation={CaretLocation}
         AnchorInputOpen={AnchorInputOpen}
         setAnchorInputOpen={setAnchorInputOpen}
@@ -107,4 +109,5 @@ type LeftControlPreProps = {
   AudioSubMenuOp: boolean;
   setAudioSubMenuOp: any;
   zIndex: number;
+  InEditor: RefObject<HTMLElement>;
 };

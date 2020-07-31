@@ -9,16 +9,19 @@ export default ({
   audioThumbnailTargetNode,
   setImgSubMenuOp2,
 }: AudioActionInHTMLProps) => {
-  const { setDummyState } = useDummyState();
+  const { DummyState, setDummyState } = useDummyState();
   const [audioContainers, setAudioContainers] = useState<any>([]);
   useEffect(() => {
+    setDummyState((p: number) => p + 1);
     if (InEditor) {
       setAudioContainers(
         document.getElementById("CUedit")?.getElementsByClassName("audioPlayer")
       );
     }
+    console.log(audioContainers);
+    console.log(DummyState);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [rerenderingPoint]);
   useEffect(() => {
     if (!InEditor && rerenderingPoint) {
       setDummyState((p: number) => p + 1);
@@ -26,7 +29,6 @@ export default ({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rerenderingPoint]);
-  console.log(audioContainers);
   return (
     <>
       {audioContainers &&

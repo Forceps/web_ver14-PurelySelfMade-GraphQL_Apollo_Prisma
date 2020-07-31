@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import UpdatePostPre from "./UpdatePostPre";
 import { useMutation } from "@apollo/client";
 import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
@@ -13,7 +13,7 @@ export default () => {
   const { Location, setLocation } = useDirMode();
   const { setUpdatePost } = useUpdatePost();
   const caption = useInput(postByID?.caption);
-  const [Html, setHtml] = useState(postByID?.content);
+  const Html = useRef<string>(postByID?.content);
   const [TitleImg, setTitleImg] = useState("");
   const [editPostMutation] = useMutation(EDIT_POST);
 
@@ -23,7 +23,7 @@ export default () => {
         variables: {
           post_id: PostID,
           caption: caption.value,
-          content: Html,
+          content: Html.current,
           directory_id: Location,
           face: TitleImg ? TitleImg : titleImgSubstitute(),
           face_type: TitleImg ? "image" : "text",
@@ -55,7 +55,6 @@ export default () => {
       caption={caption}
       Exit={Exit}
       Html={Html}
-      setHtml={setHtml}
       UpdateProcess={UpdateProcess}
       TitleImg={TitleImg}
       setTitleImg={setTitleImg}
