@@ -15,7 +15,6 @@ export default ({
   getAudioCurrentTime,
   statusBarMoving,
   audioInfoMemory,
-  th,
 }: St2AudioActionLogicProps) => {
   const getAudioDuration = async (audioPlayer: any) => {
     let duration: number;
@@ -74,5 +73,4 @@ interface St2AudioActionLogicProps {
   getAudioCurrentTime: () => void;
   statusBarMoving: () => void;
   audioInfoMemory: HTMLElement;
-  th: number;
 }

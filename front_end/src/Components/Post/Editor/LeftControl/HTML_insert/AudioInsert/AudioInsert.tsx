@@ -1,13 +1,15 @@
 import "./AudioInsertStyle/Synthesis.scss";
+import cryptoRandomString from "crypto-random-string";
 
 export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
+  const temp_id = cryptoRandomString({ length: 10 });
   return new Promise((sol, jec) => {
     if (address) {
       const AudioHtml = /*html*/ `
       <div>
         <br>
       </div>
-      <div><div class="audioPlayer" contenteditable="false">
+      <div><div id="${temp_id}" class="audioPlayer" contenteditable="false">
         <audio>
           <source src="${address}" style="opacity: 0;" >
         </audio>

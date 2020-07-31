@@ -13,7 +13,6 @@ export default ({
   audioThumbnailTargetNode,
   audioTarget,
   setImgSubMenuOp2,
-  th,
 }: St2AudioActionLogicProps) => {
   const audioMoreMenuIconClick = (e: any) => {
     e.stopPropagation();
@@ -22,9 +21,10 @@ export default ({
   const audioMoreMenuCloseClick = () => {
     audioMoreMenuScreen.style.width = "0px";
   };
-  const audioMoreMenuThumbnailClick = () => {
-    audioThumbnailTargetNode.current = th;
-    console.log(audioThumbnailTargetNode.current);
+  const audioMoreMenuThumbnailClick = (e: any) => {
+    audioThumbnailTargetNode.current = e.currentTarget.closest(
+      ".audioPlayer"
+    ).id;
     setImgSubMenuOp2(true);
   };
 
@@ -56,5 +56,4 @@ interface St2AudioActionLogicProps {
   audioThumbnailTargetNode: any;
   audioTarget: Element;
   setImgSubMenuOp2: any;
-  th: number;
 }

@@ -15,7 +15,6 @@ export default ({
   audioBackMoveIcon,
   audioSetTimeDenote,
   audioControlsIntro,
-  th,
 }: St2AudioActionLogicProps) => {
   const handleAudioPlayClick = () => {
     if (audioPlayer?.paused) {
@@ -74,7 +73,7 @@ export default ({
     }
   };
   const pressSpacebar = (e: any) => {
-    if (e.keyCode === 32 && th === 0) {
+    if (e.keyCode === 32) {
       handleAudioPlayClick();
     }
   };
@@ -109,5 +108,4 @@ interface St2AudioActionLogicProps {
   audioInfoMemory: HTMLElement;
   audioSetTimeDenote: any;
   audioControlsIntro: HTMLElement;
-  th: number;
 }

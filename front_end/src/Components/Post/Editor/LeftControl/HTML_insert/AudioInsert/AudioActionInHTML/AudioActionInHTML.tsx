@@ -1,71 +1,46 @@
-import React, { useEffect, useState } from "react";
-import cryptoRandomString from "crypto-random-string";
+import React, { useEffect, useState, RefObject } from "react";
 import AudioTargetSpecific from "./St1ReusableItems/AudioTargetSpecific";
-import { useDummyState } from "../../../../../../../GlobalLib/Context/Lib/DummyState";
 
 export default ({
   rerenderingPoint,
-  InEditor = false,
+  InEditor,
   audioThumbnailTargetNode,
   setImgSubMenuOp2,
 }: AudioActionInHTMLProps) => {
-  const { DummyState, setDummyState } = useDummyState();
   const [audioContainers, setAudioContainers] = useState<any>([]);
   useEffect(() => {
-    setDummyState((p: number) => p + 1);
-    if (InEditor) {
-      setAudioContainers(
-        document.getElementById("CUedit")?.getElementsByClassName("audioPlayer")
-      );
+    const allAudio =
+      InEditor.current?.getElementsByClassName("audioPlayer") || [];
+    let arr: any[] = [];
+    for (let i = 0; i < allAudio.length; i++) {
+      arr = arr.concat(allAudio[i].id);
     }
+    setAudioContainers(arr);
     console.log(audioContainers);
-    console.log(DummyState);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [rerenderingPoint]);
-  useEffect(() => {
-    if (!InEditor && rerenderingPoint) {
-      setDummyState((p: number) => p + 1);
-      setAudioContainers(document.getElementsByClassName("audioPlayer"));
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rerenderingPoint]);
   return (
-    <>
-      {audioContainers &&
-        (() => {
-          let arr: any[] = [];
-          for (let i = 0; i < audioContainers.length; i++) {
-            if (InEditor) {
-              arr = arr.concat(
-                <AudioTargetSpecific
-                  key={i}
-                  audioTarget={audioContainers[i]}
-                  audioThumbnailTargetNode={audioThumbnailTargetNode}
-                  setImgSubMenuOp2={setImgSubMenuOp2}
-                  th={i}
-                />
-              );
-            } else {
-              arr = arr.concat(
-                <AudioTargetSpecific
-                  key={cryptoRandomString({ length: 10 })}
-                  audioTarget={audioContainers[i]}
-                  audioThumbnailTargetNode={audioThumbnailTargetNode}
-                  setImgSubMenuOp2={setImgSubMenuOp2}
-                  th={i}
-                />
-              );
-            }
-          }
-          return arr;
-        })()}
-    </>
+    audioContainers.length !== 0 &&
+    audioContainers.map((i: string) => {
+      const audioTarget = document.getElementById(i);
+      if (audioTarget) {
+        return (
+          <AudioTargetSpecific
+            key={i}
+            audioTarget={audioTarget}
+            audioThumbnailTargetNode={audioThumbnailTargetNode}
+            setImgSubMenuOp2={setImgSubMenuOp2}
+          />
+        );
+      }
+      return <></>;
+    })
   );
 };
 
 interface AudioActionInHTMLProps {
-  rerenderingPoint?: any;
-  InEditor?: boolean;
+  rerenderingPoint: any;
+  InEditor: RefObject<HTMLElement>;
   audioThumbnailTargetNode?: any;
   setImgSubMenuOp2?: any;
 }

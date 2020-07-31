@@ -59,7 +59,7 @@ export const CediPre = ({
         spellCheck="false"
       />
       <AudioActionInHTML
-        InEditor={true}
+        InEditor={InEditor}
         rerenderingPoint={HtmlChange}
         audioThumbnailTargetNode={audioThumbnailTargetNode}
         setImgSubMenuOp2={setImgSubMenuOp2}
@@ -77,4 +77,5 @@ interface ContentEditorProps {
 }
 
 export default React.memo(CediPre);
+
 //꼭 sanitize-html을 해줄 것

@@ -32,7 +32,6 @@ export default ({
   audioMoreMenuThumbnail,
   audioThumbnailTargetNode,
   setImgSubMenuOp2,
-  th,
   audioControlsIntro,
 }: ReusingLogicProps) => {
   const getAudioCurrentTime = () => {
@@ -90,7 +89,6 @@ export default ({
         getAudioCurrentTime={getAudioCurrentTime}
         statusBarMoving={statusBarMoving}
         audioInfoMemory={audioInfoMemory}
-        th={th}
       />
       <Buttons
         audioTarget={audioTarget}
@@ -102,7 +100,6 @@ export default ({
         audioBackMoveIcon={audioBackMoveIcon}
         audioSetTimeDenote={audioSetTimeDenote}
         audioControlsIntro={audioControlsIntro}
-        th={th}
       />
       <TimeNavigate
         audioInfoMemory={audioInfoMemory}
@@ -140,7 +137,6 @@ export default ({
         audioTarget={audioTarget}
         audioThumbnailTargetNode={audioThumbnailTargetNode}
         setImgSubMenuOp2={setImgSubMenuOp2}
-        th={th}
       />
     </>
   );
@@ -169,6 +165,5 @@ interface ReusingLogicProps {
   audioMoreMenuThumbnail: HTMLElement;
   audioThumbnailTargetNode: any;
   setImgSubMenuOp2?: any;
-  th: number;
   audioControlsIntro: HTMLElement;
 }

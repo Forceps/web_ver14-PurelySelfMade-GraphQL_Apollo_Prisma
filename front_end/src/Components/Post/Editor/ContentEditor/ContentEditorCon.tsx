@@ -18,15 +18,15 @@ export const CediCon = ({
   const [OnlyOnce, setOnlyOnce] = useState(true);
   const [ImgSubMenuOp2, setImgSubMenuOp2] = useState(false);
   const Imgs = InEditor.current?.getElementsByTagName("img");
-  const audioThumbnailTargetNode = useRef<any>();
+  const audioThumbnailTargetNode = useRef<string>("");
   const [HtmlChange, setHtmlChange] = useState(0);
 
   const audioThumbnailInsert = (address: string) => {
     InEditor.current?.focus();
 
-    const player = InEditor.current?.getElementsByClassName("audioPlayer")[
+    const player = document.getElementById(
       audioThumbnailTargetNode.current
-    ] as HTMLElement;
+    ) as HTMLElement;
     const playerControle = player.querySelector(
       ".audioPlayer_controls"
     ) as HTMLElement;
