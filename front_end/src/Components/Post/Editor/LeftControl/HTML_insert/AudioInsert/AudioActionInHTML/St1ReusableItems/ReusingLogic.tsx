@@ -33,6 +33,7 @@ export default ({
   audioThumbnailTargetNode,
   setImgSubMenuOp2,
   audioControlsIntro,
+  CaretLocation,
 }: ReusingLogicProps) => {
   const getAudioCurrentTime = () => {
     if (audioPlayer && audioCurrentTime) {
@@ -134,9 +135,9 @@ export default ({
         audioMoreMenuScreen={audioMoreMenuScreen}
         audioMoreMenuClose={audioMoreMenuClose}
         audioMoreMenuThumbnail={audioMoreMenuThumbnail}
-        audioTarget={audioTarget}
         audioThumbnailTargetNode={audioThumbnailTargetNode}
         setImgSubMenuOp2={setImgSubMenuOp2}
+        CaretLocation={CaretLocation}
       />
     </>
   );
@@ -166,4 +167,5 @@ interface ReusingLogicProps {
   audioThumbnailTargetNode: any;
   setImgSubMenuOp2?: any;
   audioControlsIntro: HTMLElement;
+  CaretLocation: any;
 }

@@ -13,9 +13,17 @@ export default ({
   const audioResizeHandleMouseMove = (e: any) => {
     if (audioTarget) {
       let width = 0;
-      width = e.pageX - audioTarget.getBoundingClientRect().left + 5;
+      width =
+        e.pageX -
+        audioTarget.getBoundingClientRect().left +
+        window.pageXOffset +
+        5;
       let height = 0;
-      height = e.pageY - audioTarget.getBoundingClientRect().top + 5;
+      height =
+        e.pageY -
+        audioTarget.getBoundingClientRect().top +
+        window.pageYOffset +
+        5;
       audioTarget.setAttribute(
         "style",
         `width: ${width}px; height: ${height}px;`

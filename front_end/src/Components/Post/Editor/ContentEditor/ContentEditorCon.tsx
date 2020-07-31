@@ -7,6 +7,7 @@ import React, {
 } from "react";
 import ContentEditorPre from "./ContentEditorPre";
 import ImgInSCon from "../../../Media/Insert/ImgInsertScreen/ImgInSCon";
+import { restoreSelection } from "../EditorLib";
 
 export const CediCon = ({
   InEditor,
@@ -21,7 +22,8 @@ export const CediCon = ({
   const audioThumbnailTargetNode = useRef<string>("");
   const [HtmlChange, setHtmlChange] = useState(0);
 
-  const audioThumbnailInsert = (address: string) => {
+  const audioThumbnailInsert = async (address: string) => {
+    await restoreSelection(CaretLocation.current);
     InEditor.current?.focus();
 
     const player = document.getElementById(
@@ -40,7 +42,6 @@ export const CediCon = ({
       "audioPlayer_controls audioPlayer_controls_with_img_stop"
     );
 
-    document.execCommand("insertHTML", false, "<div></div>");
     setImgSubMenuOp2(false);
   };
 
@@ -67,6 +68,7 @@ export const CediCon = ({
         audioThumbnailTargetNode={audioThumbnailTargetNode}
         setHtmlChange={setHtmlChange}
         HtmlChange={HtmlChange}
+        CaretLocation={CaretLocation}
       />
       {ImgSubMenuOp2 && (
         <ImgInSCon

@@ -43,6 +43,7 @@ export const CediPre = ({
   audioThumbnailTargetNode,
   setHtmlChange,
   HtmlChange,
+  CaretLocation,
 }: ContentEditorProps) => {
   return (
     <>
@@ -63,6 +64,7 @@ export const CediPre = ({
         rerenderingPoint={HtmlChange}
         audioThumbnailTargetNode={audioThumbnailTargetNode}
         setImgSubMenuOp2={setImgSubMenuOp2}
+        CaretLocation={CaretLocation}
       />
     </>
   );
@@ -74,6 +76,7 @@ interface ContentEditorProps {
   audioThumbnailTargetNode: any;
   setHtmlChange: Dispatch<SetStateAction<number>>;
   HtmlChange: number;
+  CaretLocation: any;
 }
 
 export default React.memo(CediPre);

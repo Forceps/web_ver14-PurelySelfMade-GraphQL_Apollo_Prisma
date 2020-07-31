@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { saveSelection } from "../../../../../EditorLib";
 
 const UnnecessaryDiv = styled.div`
   display: none;
@@ -11,12 +12,13 @@ export default ({
   audioMoreMenuClose,
   audioMoreMenuThumbnail,
   audioThumbnailTargetNode,
-  audioTarget,
   setImgSubMenuOp2,
+  CaretLocation,
 }: St2AudioActionLogicProps) => {
   const audioMoreMenuIconClick = (e: any) => {
     e.stopPropagation();
     audioMoreMenuScreen.style.width = "100px";
+    CaretLocation.current = saveSelection();
   };
   const audioMoreMenuCloseClick = () => {
     audioMoreMenuScreen.style.width = "0px";
@@ -54,6 +56,6 @@ interface St2AudioActionLogicProps {
   audioMoreMenuClose: HTMLElement;
   audioMoreMenuThumbnail: HTMLElement;
   audioThumbnailTargetNode: any;
-  audioTarget: Element;
   setImgSubMenuOp2: any;
+  CaretLocation: any;
 }

@@ -58,7 +58,6 @@ export default ({
     await restoreSelection(CaretLocation?.current);
     InEditor.current?.focus();
     await AudioHtmlInsert(address, audioInfo);
-    console.log(address);
     setAudioSubMenuOp(false);
   };
   useEffect(() => {

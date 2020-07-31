@@ -6,6 +6,7 @@ export default ({
   InEditor,
   audioThumbnailTargetNode,
   setImgSubMenuOp2,
+  CaretLocation,
 }: AudioActionInHTMLProps) => {
   const [audioContainers, setAudioContainers] = useState<any>([]);
   useEffect(() => {
@@ -16,9 +17,9 @@ export default ({
       arr = arr.concat(allAudio[i].id);
     }
     setAudioContainers(arr);
-    console.log(audioContainers);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rerenderingPoint]);
+
   return (
     audioContainers.length !== 0 &&
     audioContainers.map((i: string) => {
@@ -30,6 +31,7 @@ export default ({
             audioTarget={audioTarget}
             audioThumbnailTargetNode={audioThumbnailTargetNode}
             setImgSubMenuOp2={setImgSubMenuOp2}
+            CaretLocation={CaretLocation}
           />
         );
       }
@@ -43,4 +45,5 @@ interface AudioActionInHTMLProps {
   InEditor: RefObject<HTMLElement>;
   audioThumbnailTargetNode?: any;
   setImgSubMenuOp2?: any;
+  CaretLocation: any;
 }
