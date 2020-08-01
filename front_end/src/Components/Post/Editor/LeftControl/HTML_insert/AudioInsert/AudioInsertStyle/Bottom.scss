@@ -36,7 +36,13 @@
         display: flex;
         height: 15px;
         width: 90px;
+        background-color: #dfe6e9;
         cursor: pointer;
+        .audio_volume_bar_value {
+          height: 100%;
+          width: 50%;
+          background-color: #636e72;
+        }
       }
     }
   }

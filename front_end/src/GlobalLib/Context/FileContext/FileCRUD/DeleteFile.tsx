@@ -1,7 +1,11 @@
-import React, { createContext, useState, useContext, ReactNode } from "react";
+import React, { createContext, useContext, ReactNode } from "react";
 import { useMutation } from "@apollo/client";
 import { useDirMode } from "../../ProfileContext/DirMode";
-import { DELETE_FILE } from "../../../Apollo/GraphQL_Client/Media/MediaD";
+import {
+  MUSIC_DELETE,
+  VIDEO_DELETE,
+  IMG_DELETE,
+} from "../../../Apollo/GraphQL_Client/Media/MediaD";
 
 const FileDeleteCtx = createContext<FileDeleteProcessObj | undefined>(
   undefined
@@ -11,25 +15,33 @@ export const FileDeleteProcessProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const DC = useDirMode();
-  const [DeleteTargetId, setDeleteTargetId] = useState<number | null>(null);
-  const AwaitableSetDT = (e: number) => {
-    return new Promise((sol, jec) => {
-      setDeleteTargetId(e);
-      sol("");
-    });
-  };
-  const [deleteFileMutation] = useMutation(DELETE_FILE, {
-    variables: { image_id: DeleteTargetId },
-  });
-  const FileDeleteProcess = async (delete_target_id: number) => {
-    await AwaitableSetDT(delete_target_id);
+  const { DirData_refetch } = useDirMode();
+  const [deleteImageMutation] = useMutation(IMG_DELETE);
+  const [deleteVideoMutation] = useMutation(VIDEO_DELETE);
+  const [deleteAudioMutation] = useMutation(MUSIC_DELETE);
+
+  const FileDeleteProcess = async (
+    delete_target_id: number,
+    mediaType: string
+  ) => {
     try {
-      await deleteFileMutation();
+      if (mediaType === "image") {
+        await deleteImageMutation({
+          variables: { image_id: delete_target_id },
+        });
+      } else if (mediaType === "audio") {
+        await deleteAudioMutation({
+          variables: { music_id: delete_target_id },
+        });
+      } else {
+        await deleteVideoMutation({
+          variables: { video_id: delete_target_id },
+        });
+      }
     } catch (e) {
       console.log(e);
     } finally {
-      DC.DirData_refetch();
+      DirData_refetch();
     }
   };
 
@@ -40,7 +52,7 @@ export const FileDeleteProcessProvider = ({
   );
 };
 interface FileDeleteProcessObj {
-  FileDeleteProcess: (delete_target_id: number) => any;
+  FileDeleteProcess: (delete_target_id: number, mediaType: string) => any;
 }
 export const useDeleteFile = () => {
   const state = useContext(FileDeleteCtx);

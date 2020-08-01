@@ -4,7 +4,7 @@ import AudioTargetSpecific from "./St1ReusableItems/AudioTargetSpecific";
 export default ({
   rerenderingPoint,
   InEditor,
-  audioThumbnailTargetNode,
+  mediaTargetId,
   setImgSubMenuOp2,
   CaretLocation,
 }: AudioActionInHTMLProps) => {
@@ -29,9 +29,10 @@ export default ({
           <AudioTargetSpecific
             key={i}
             audioTarget={audioTarget}
-            audioThumbnailTargetNode={audioThumbnailTargetNode}
+            mediaTargetId={mediaTargetId}
             setImgSubMenuOp2={setImgSubMenuOp2}
             CaretLocation={CaretLocation}
+            InEditor={InEditor}
           />
         );
       }
@@ -43,7 +44,7 @@ export default ({
 interface AudioActionInHTMLProps {
   rerenderingPoint: any;
   InEditor: RefObject<HTMLElement>;
-  audioThumbnailTargetNode?: any;
+  mediaTargetId?: any;
   setImgSubMenuOp2?: any;
   CaretLocation: any;
 }

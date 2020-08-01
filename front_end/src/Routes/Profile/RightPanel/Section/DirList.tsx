@@ -76,7 +76,7 @@ export default ({
   const PfDM = useProfileDetailMode();
   const PD = usePostDetail();
   const DP = useDeletePost();
-  const DF = useDeleteFile();
+  const { FileDeleteProcess } = useDeleteFile();
   const UP = useUpdatePost();
   return (
     <Wrapper>
@@ -176,7 +176,7 @@ export default ({
               className="icon-noun_x_2939490"
               onClick={(e: any) => {
                 spaped(e);
-                DF.FileDeleteProcess(S_N_to_N(image.image_id));
+                FileDeleteProcess(S_N_to_N(image.image_id), "image");
               }}
             />
           </Ctrl>
@@ -214,7 +214,7 @@ export default ({
               className="icon-noun_x_2939490"
               onClick={(e: any) => {
                 spaped(e);
-                DF.FileDeleteProcess(S_N_to_N(video.video_id));
+                FileDeleteProcess(S_N_to_N(video.video_id), "video");
               }}
             />
           </Ctrl>
@@ -252,7 +252,7 @@ export default ({
               className="icon-noun_x_2939490"
               onClick={(e: any) => {
                 spaped(e);
-                DF.FileDeleteProcess(S_N_to_N(music.music_id));
+                FileDeleteProcess(S_N_to_N(music.music_id), "audio");
               }}
             />
           </Ctrl>

@@ -13,7 +13,7 @@
 
   .audioPlayer_controls {
     display: grid;
-    grid-template-rows: 1fr 18px 20px 45px;
+    grid-template-rows: 1fr 18px 20px 40px;
     width: 100%;
     height: 100%;
     min-height: 123px;
@@ -22,6 +22,31 @@
     padding: 0 0 0 5px;
     overflow: hidden;
     position: relative;
+  }
+  @mixin audioBackImgExist {
+    border-left: 0;
+    color: #fafafa;
+    & .audio_resize_handle {
+      border-color: rgba(223, 230, 233, 0.6);
+    }
+    & .audio_player_three_dot_menu {
+      color: black;
+    }
+    & .audio_timebase_bar_handle {
+      background-color: #fafafa !important;
+    }
+    & .audio_timebase_bar {
+      background-color: rgba(223, 230, 233, 0.5) !important;
+    }
+    & .audio_timebase_bar_value {
+      background-color: #fafafa !important;
+    }
+    & .audio_volume_bar {
+      background-color: rgba(223, 230, 233, 0.5) !important;
+    }
+    & .audio_volume_bar_value {
+      background-color: #fafafa !important;
+    }
   }
   .audioPlayer_controls_with_img_playing {
     &:hover {
@@ -36,47 +61,36 @@
       & .audioPlayer_controls_manipulator {
         opacity: 1;
       }
+      & .audioPlayer_more_menu {
+        opacity: 1;
+      }
     }
-    transition-property: box-shadow, opacity;
+    transition-property: box-shadow;
     transition-duration: 0.18s;
     transition-timing-function: ease;
-    border-left: 0;
-    color: #fafafa;
-    & .audio_resize_handle {
-      border-color: #dfe6e9;
-    }
-    & .audio_player_three_dot_menu {
-      color: black;
+    @include audioBackImgExist;
+    @mixin audioBlickerTransition {
+      opacity: 0;
+      transition-property: opacity;
+      transition-duration: 0.18s;
+      transition-timing-function: ease;
     }
     & .audio_time_navigation {
-      opacity: 0;
-      transition-property: opacity;
-      transition-duration: 0.18s;
-      transition-timing-function: ease;
+      @include audioBlickerTransition;
     }
     & .audioPlayer_controls_timebase_padding {
-      opacity: 0;
-      transition-property: opacity;
-      transition-duration: 0.18s;
-      transition-timing-function: ease;
+      @include audioBlickerTransition;
     }
     & .audioPlayer_controls_manipulator {
-      opacity: 0;
-      transition-property: opacity;
-      transition-duration: 0.18s;
-      transition-timing-function: ease;
+      @include audioBlickerTransition;
+    }
+    & .audioPlayer_more_menu {
+      @include audioBlickerTransition;
     }
   }
   .audioPlayer_controls_with_img_stop {
     box-shadow: 0px 100px 30px -70px rgba(0, 0, 0, 0.3) inset,
       0px -150px 50px -60px rgba(0, 0, 0, 0.3) inset;
-    border-left: 0;
-    color: #fafafa;
-    & .audio_resize_handle {
-      border-color: #dfe6e9;
-    }
-    & .audio_player_three_dot_menu {
-      color: black;
-    }
+    @include audioBackImgExist;
   }
 }

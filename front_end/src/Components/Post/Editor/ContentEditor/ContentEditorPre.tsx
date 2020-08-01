@@ -40,7 +40,7 @@ export const CediPre = ({
   InEditor,
   Html,
   setImgSubMenuOp2,
-  audioThumbnailTargetNode,
+  mediaTargetId,
   setHtmlChange,
   HtmlChange,
   CaretLocation,
@@ -62,7 +62,7 @@ export const CediPre = ({
       <AudioActionInHTML
         InEditor={InEditor}
         rerenderingPoint={HtmlChange}
-        audioThumbnailTargetNode={audioThumbnailTargetNode}
+        mediaTargetId={mediaTargetId}
         setImgSubMenuOp2={setImgSubMenuOp2}
         CaretLocation={CaretLocation}
       />
@@ -73,7 +73,7 @@ interface ContentEditorProps {
   InEditor: RefObject<HTMLElement>;
   Html: MutableRefObject<string>;
   setImgSubMenuOp2: any;
-  audioThumbnailTargetNode: any;
+  mediaTargetId: any;
   setHtmlChange: Dispatch<SetStateAction<number>>;
   HtmlChange: number;
   CaretLocation: any;

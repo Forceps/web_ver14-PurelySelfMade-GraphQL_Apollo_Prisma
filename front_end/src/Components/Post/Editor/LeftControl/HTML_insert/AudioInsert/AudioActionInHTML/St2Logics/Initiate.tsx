@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, RefObject } from "react";
 import styled from "styled-components";
 import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
 import getBlobDuration from "get-blob-duration";
@@ -8,6 +8,7 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
+  InEditor,
   audioTarget,
   audioPlayer,
   audioPlayBtn,
@@ -15,6 +16,8 @@ export default ({
   getAudioCurrentTime,
   statusBarMoving,
   audioInfoMemory,
+  mediaTargetId,
+  playerClicked,
 }: St2AudioActionLogicProps) => {
   const getAudioDuration = async (audioPlayer: any) => {
     let duration: number;
@@ -40,8 +43,18 @@ export default ({
     audioPlayer?.pause();
     audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
   };
-  const clickPlayer = () => {
-    document.getElementById("CUedit")?.focus();
+  const clickPlayer = (e: any) => {
+    const plau = e.target.closest(".audioPlayer");
+    if (plau && plau.closest("#CUedit")) {
+      e.stopPropagation();
+      InEditor.current?.blur();
+      mediaTargetId.current = plau.id;
+      playerClicked.current = true;
+    } else {
+      if (playerClicked.current) {
+        playerClicked.current = false;
+      }
+    }
   };
 
   useEffect(() => {
@@ -50,14 +63,14 @@ export default ({
     audioPlayer?.addEventListener("ended", handleAudioEnded);
     const timeGo1 = setInterval(getAudioCurrentTime, 1000);
     const timeGo2 = setInterval(statusBarMoving, 100);
-    audioTarget?.addEventListener("click", clickPlayer);
+    document.addEventListener("click", clickPlayer);
 
     return () => {
       audioPlayer?.removeEventListener("loadedmetadata", setAudioTotalTime);
       audioPlayer?.removeEventListener("ended", handleAudioEnded);
       window.clearInterval(timeGo1);
       window.clearInterval(timeGo2);
-      audioTarget?.removeEventListener("click", clickPlayer);
+      document.removeEventListener("click", clickPlayer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -66,6 +79,7 @@ export default ({
 };
 
 interface St2AudioActionLogicProps {
+  InEditor: RefObject<HTMLElement>;
   audioTarget: Element;
   audioPlayer: HTMLAudioElement;
   audioPlayBtn: HTMLElement;
@@ -73,4 +87,6 @@ interface St2AudioActionLogicProps {
   getAudioCurrentTime: () => void;
   statusBarMoving: () => void;
   audioInfoMemory: HTMLElement;
+  mediaTargetId: any;
+  playerClicked: React.MutableRefObject<boolean>;
 }

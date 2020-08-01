@@ -8,8 +8,9 @@ import React, {
 import ContentEditorPre from "./ContentEditorPre";
 import ImgInSCon from "../../../Media/Insert/ImgInsertScreen/ImgInSCon";
 import { restoreSelection } from "../EditorLib";
+import { audioStyleChange } from "./ContentEditorConLib";
 
-export const CediCon = ({
+const CediCon = ({
   InEditor,
   Html,
   CaretLocation,
@@ -19,33 +20,13 @@ export const CediCon = ({
   const [OnlyOnce, setOnlyOnce] = useState(true);
   const [ImgSubMenuOp2, setImgSubMenuOp2] = useState(false);
   const Imgs = InEditor.current?.getElementsByTagName("img");
-  const audioThumbnailTargetNode = useRef<string>("");
+  const mediaTargetId = useRef<string>("");
   const [HtmlChange, setHtmlChange] = useState(0);
 
   const audioThumbnailInsert = async (address: string) => {
     await restoreSelection(CaretLocation.current);
     InEditor.current?.focus();
-
-    const player = document.getElementById(
-      audioThumbnailTargetNode.current
-    ) as HTMLElement;
-    const playerControle = player.querySelector(
-      ".audioPlayer_controls"
-    ) as HTMLElement;
-    const backImgArea = player?.querySelector(
-      ".audio_player_thumbnail_container"
-    ) as HTMLElement;
-    const audioMoreMenuScreen = player?.querySelector(
-      ".audio_player_three_dot_menu"
-    ) as HTMLElement;
-
-    backImgArea.setAttribute("style", `background-image: url(${address});`);
-    playerControle.setAttribute(
-      "class",
-      "audioPlayer_controls audioPlayer_controls_with_img_stop"
-    );
-    audioMoreMenuScreen.style.width = "0px";
-
+    audioStyleChange(mediaTargetId.current, address);
     setImgSubMenuOp2(false);
   };
 
@@ -54,7 +35,7 @@ export const CediCon = ({
       setTitleImg(Imgs[0].src);
       setOnlyOnce(false);
     }
-    const ddd = InEditor?.current?.getElementsByClassName("audioPlayer") || [];
+    const ddd = InEditor.current?.getElementsByClassName("audioPlayer") || [];
     for (let i = 0; i < ddd.length; i++) {
       if (!ddd[i].querySelector("source")) {
         ddd[i].parentNode?.removeChild(ddd[i]);
@@ -69,7 +50,7 @@ export const CediCon = ({
         InEditor={InEditor}
         Html={Html}
         setImgSubMenuOp2={setImgSubMenuOp2}
-        audioThumbnailTargetNode={audioThumbnailTargetNode}
+        mediaTargetId={mediaTargetId}
         setHtmlChange={setHtmlChange}
         HtmlChange={HtmlChange}
         CaretLocation={CaretLocation}

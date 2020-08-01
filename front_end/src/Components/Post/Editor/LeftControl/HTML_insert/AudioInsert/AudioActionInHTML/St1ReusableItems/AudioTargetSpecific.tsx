@@ -1,11 +1,19 @@
-import React from "react";
+import React, { RefObject } from "react";
 import ReusingLogic from "./ReusingLogic";
 
+interface AudioTargetSpecificProps {
+  audioTarget: Element;
+  mediaTargetId?: any;
+  setImgSubMenuOp2?: any;
+  CaretLocation: any;
+  InEditor: RefObject<HTMLElement>;
+}
 export default ({
   audioTarget,
-  audioThumbnailTargetNode,
+  mediaTargetId,
   setImgSubMenuOp2,
   CaretLocation,
+  InEditor,
 }: AudioTargetSpecificProps) => {
   const audioPlayer = audioTarget.querySelector("audio") as HTMLAudioElement;
   const audioPlayBtn = audioTarget.querySelector(
@@ -17,6 +25,9 @@ export default ({
   const audioVolumeBar = audioTarget.querySelector(
     ".audio_volume_bar"
   ) as HTMLElement;
+  const audioVolumeBarValue = audioTarget.querySelector(
+    ".audio_volume_bar_value"
+  ) as HTMLElement;
   const audioCurrentTime = audioTarget.querySelector(
     ".audio_timebase_number"
   ) as HTMLElement;
@@ -25,6 +36,9 @@ export default ({
   ) as HTMLElement;
   const audioTimeBar = audioTarget.querySelector(
     ".audio_timebase_bar"
+  ) as HTMLElement;
+  const audioTimeBarValue = audioTarget.querySelector(
+    ".audio_timebase_bar_value"
   ) as HTMLElement;
   const audioTimeBarContainer = audioTarget.querySelector(
     ".audio_timebase_bar_container"
@@ -71,6 +85,7 @@ export default ({
 
   return (
     <ReusingLogic
+      InEditor={InEditor}
       audioTarget={audioTarget}
       audioPlayer={audioPlayer}
       audioPlayBtn={audioPlayBtn}
@@ -92,16 +107,12 @@ export default ({
       audioMoreMenuScreen={audioMoreMenuScreen}
       audioMoreMenuClose={audioMoreMenuClose}
       audioMoreMenuThumbnail={audioMoreMenuThumbnail}
-      audioThumbnailTargetNode={audioThumbnailTargetNode}
+      mediaTargetId={mediaTargetId}
       setImgSubMenuOp2={setImgSubMenuOp2}
       audioControlsIntro={audioControlsIntro}
       CaretLocation={CaretLocation}
+      audioTimeBarValue={audioTimeBarValue}
+      audioVolumeBarValue={audioVolumeBarValue}
     />
   );
 };
-interface AudioTargetSpecificProps {
-  audioTarget: Element;
-  audioThumbnailTargetNode?: any;
-  setImgSubMenuOp2?: any;
-  CaretLocation: any;
-}

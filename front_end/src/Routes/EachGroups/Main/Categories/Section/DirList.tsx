@@ -163,7 +163,7 @@ export default ({
               className="icon-noun_x_2939490"
               onClick={(e: any) => {
                 spaped(e);
-                DF.FileDeleteProcess(parseInt(image.image_id));
+                DF.FileDeleteProcess(parseInt(image.image_id), "image");
               }}
             />
           </Ctrl>
@@ -195,7 +195,7 @@ export default ({
               className="icon-noun_x_2939490"
               onClick={(e: any) => {
                 spaped(e);
-                DF.FileDeleteProcess(parseInt(video.video_id));
+                DF.FileDeleteProcess(parseInt(video.video_id), "video");
               }}
             />
           </Ctrl>
@@ -227,7 +227,7 @@ export default ({
               className="icon-noun_x_2939490"
               onClick={(e: any) => {
                 spaped(e);
-                DF.FileDeleteProcess(parseInt(music.music_id));
+                DF.FileDeleteProcess(parseInt(music.music_id), "audio");
               }}
             />
           </Ctrl>

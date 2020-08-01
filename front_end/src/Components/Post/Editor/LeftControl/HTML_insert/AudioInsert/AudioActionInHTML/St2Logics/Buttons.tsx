@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { spaped } from "../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 const UnnecessaryDiv = styled.div`
   display: none;
@@ -15,6 +16,7 @@ export default ({
   audioBackMoveIcon,
   audioSetTimeDenote,
   audioControlsIntro,
+  keyboardShortCutAble,
 }: St2AudioActionLogicProps) => {
   const handleAudioPlayClick = () => {
     if (audioPlayer?.paused) {
@@ -51,48 +53,64 @@ export default ({
       audioSetTimeDenote();
     }
   };
-  const audioFrontMediumMove = () => {
+  const audioTimeMediumMove = (direction: string, degree: number) => {
     if (audioPlayer && audioInfoMemory.textContent) {
-      const totaltime = parseInt(audioInfoMemory.textContent);
-      if (totaltime > audioPlayer.currentTime + 15) {
-        audioPlayer.currentTime = audioPlayer.currentTime + 15;
+      if (direction === "front") {
+        const totaltime = parseInt(audioInfoMemory.textContent);
+        if (totaltime > audioPlayer.currentTime + degree) {
+          audioPlayer.currentTime = audioPlayer.currentTime + degree;
+        } else {
+          audioPlayer.currentTime = totaltime;
+        }
       } else {
-        audioPlayer.currentTime = totaltime;
+        if (degree < audioPlayer.currentTime) {
+          audioPlayer.currentTime = audioPlayer.currentTime - degree;
+        } else {
+          audioPlayer.currentTime = 0;
+        }
       }
       audioSetTimeDenote();
     }
   };
-  const audioBackMediumMove = () => {
-    if (audioPlayer) {
-      if (15 < audioPlayer.currentTime) {
-        audioPlayer.currentTime = audioPlayer.currentTime - 15;
-      } else {
-        audioPlayer.currentTime = 0;
+  const keyboardShortCut = (e: any) => {
+    if (keyboardShortCutAble()) {
+      spaped(e);
+      switch (e.keyCode) {
+        case 32:
+          handleAudioPlayClick();
+          break;
+        case 39:
+          audioTimeMediumMove("front", 4);
+          break;
+        case 37:
+          audioTimeMediumMove("back", 4);
       }
-      audioSetTimeDenote();
-    }
-  };
-  const pressSpacebar = (e: any) => {
-    if (e.keyCode === 32) {
-      handleAudioPlayClick();
     }
   };
 
   useEffect(() => {
     audioPlayBtn?.addEventListener("click", handleAudioPlayClick);
     audioBackToStartIcon?.addEventListener("click", audioBackToStart);
-    audioFrontMoveIcon?.addEventListener("click", audioFrontMediumMove);
-    audioBackMoveIcon?.addEventListener("click", audioBackMediumMove);
+    audioFrontMoveIcon?.addEventListener("click", () => {
+      audioTimeMediumMove("front", 15);
+    });
+    audioBackMoveIcon?.addEventListener("click", () => {
+      audioTimeMediumMove("back", 15);
+    });
     audioControlsIntro?.addEventListener("click", handleAudioPlayClick);
-    document.addEventListener("keydown", pressSpacebar);
+    document.addEventListener("keydown", keyboardShortCut);
 
     return () => {
       audioPlayBtn?.removeEventListener("click", handleAudioPlayClick);
       audioBackToStartIcon?.removeEventListener("click", audioBackToStart);
-      audioFrontMoveIcon?.removeEventListener("click", audioFrontMediumMove);
-      audioBackMoveIcon?.removeEventListener("click", audioBackMediumMove);
+      audioFrontMoveIcon?.removeEventListener("click", () => {
+        audioTimeMediumMove("front", 15);
+      });
+      audioBackMoveIcon?.removeEventListener("click", () => {
+        audioTimeMediumMove("back", 15);
+      });
       audioControlsIntro?.removeEventListener("click", handleAudioPlayClick);
-      document.removeEventListener("keydown", pressSpacebar);
+      document.removeEventListener("keydown", keyboardShortCut);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -108,4 +126,5 @@ interface St2AudioActionLogicProps {
   audioInfoMemory: HTMLElement;
   audioSetTimeDenote: any;
   audioControlsIntro: HTMLElement;
+  keyboardShortCutAble: () => boolean;
 }

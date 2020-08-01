@@ -11,7 +11,6 @@ export default ({
   audioMoreMenuScreen,
   audioMoreMenuClose,
   audioMoreMenuThumbnail,
-  audioThumbnailTargetNode,
   setImgSubMenuOp2,
   CaretLocation,
 }: St2AudioActionLogicProps) => {
@@ -24,9 +23,6 @@ export default ({
     audioMoreMenuScreen.style.width = "0px";
   };
   const audioMoreMenuThumbnailClick = (e: any) => {
-    audioThumbnailTargetNode.current = e.currentTarget.closest(
-      ".audioPlayer"
-    ).id;
     setImgSubMenuOp2(true);
   };
 
@@ -55,7 +51,6 @@ interface St2AudioActionLogicProps {
   audioMoreMenuScreen: HTMLElement;
   audioMoreMenuClose: HTMLElement;
   audioMoreMenuThumbnail: HTMLElement;
-  audioThumbnailTargetNode: any;
   setImgSubMenuOp2: any;
   CaretLocation: any;
 }

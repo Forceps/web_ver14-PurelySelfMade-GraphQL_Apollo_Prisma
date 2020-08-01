@@ -18,18 +18,15 @@ export default {
         interface fileThingType {
           address: string;
         }
-        const fileThing: fileThingType | null = await prisma.video.findOne({
+        const fileThing: fileThingType | null = await prisma.video.delete({
           where: { video_id },
           select: { address: true },
         });
-        if (fileThing !== null) {
-          fs.unlinkSync(
-            path.join(assetsLocation() + "/.." + `/${fileThing.address}`)
-          );
-          await prisma.video.delete({
-            where: { video_id },
-          });
-        }
+        fs.unlinkSync(
+          path.join(
+            assetsLocation() + "/uploadedFiles" + `/${fileThing.address}`
+          )
+        );
         return true;
       } catch (e) {
         console.log(e);

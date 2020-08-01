@@ -2,7 +2,7 @@ import "./AudioInsertStyle/Synthesis.scss";
 import cryptoRandomString from "crypto-random-string";
 
 export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
-  const temp_id = cryptoRandomString({ length: 10 });
+  const temp_id = cryptoRandomString({ length: 20 });
   return new Promise((sol, jec) => {
     if (address) {
       const AudioHtml = /*html*/ `
@@ -28,7 +28,9 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
             <div class="audioPlayer_controls_timebase">
               <div class="audio_timebase_number">0:00</div>
               <div class="audio_timebase_bar_container">
-                <progress class="audio_timebase_bar" value="0" max="1"></progress>
+                <div class="audio_timebase_bar">
+                  <div class="audio_timebase_bar_value"></div>
+                </div>
                 <div class="audio_timebase_bar_handle"></div>
               </div>
             </div>
@@ -43,7 +45,9 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
             <div class="audioPlayer_controls_volume">
               <i class="icon-volume audioVolumeIcon"></i>
               <div class="audio_volume_bar_align">
-                <progress class="audio_volume_bar" value="0.5" max="1"></progress>
+                <div class="audio_volume_bar">
+                  <div class="audio_volume_bar_value"></div>
+                </div>
               </div>
             </div>
             <div class="audio_end_time_box WH100per">
