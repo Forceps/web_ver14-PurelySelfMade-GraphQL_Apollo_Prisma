@@ -50,10 +50,8 @@ export default ({
       InEditor.current?.blur();
       mediaTargetId.current = plau.id;
       playerClicked.current = true;
-    } else {
-      if (playerClicked.current) {
-        playerClicked.current = false;
-      }
+    } else if (playerClicked.current) {
+      playerClicked.current = false;
     }
   };
 
