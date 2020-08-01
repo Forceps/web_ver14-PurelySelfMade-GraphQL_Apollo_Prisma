@@ -127,7 +127,6 @@ export default ({
     <>
       <Initiate
         InEditor={InEditor}
-        audioTarget={audioTarget}
         audioPlayer={audioPlayer}
         audioPlayBtn={audioPlayBtn}
         audioEndTime={audioEndTime}

@@ -89,12 +89,21 @@ export default ({
       }
     }
   };
+  const mouseWheelVolume = (e: WheelEvent) => {
+    e.preventDefault();
+    if (e.deltaY < 0) {
+      audioVolumeMediumMove("up", 0.04);
+    } else {
+      audioVolumeMediumMove("down", 0.04);
+    }
+  };
 
   useEffect(() => {
     audioVolumeBtn.addEventListener("click", handleAudioVolumeClick);
     audioVolumeBar.addEventListener("mousedown", audioVolumeControlMouseDown);
     document.addEventListener("mouseup", audioVolumeControlMouseUp);
     document.addEventListener("keydown", keyboardShortCut);
+    audioVolumeBar.addEventListener("wheel", mouseWheelVolume);
     return () => {
       audioVolumeBtn.removeEventListener("click", handleAudioVolumeClick);
       audioVolumeBar.removeEventListener(
@@ -103,6 +112,7 @@ export default ({
       );
       document.removeEventListener("mouseup", audioVolumeControlMouseUp);
       document.removeEventListener("keydown", keyboardShortCut);
+      audioVolumeBar.removeEventListener("wheel", mouseWheelVolume);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

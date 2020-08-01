@@ -9,7 +9,6 @@ const UnnecessaryDiv = styled.div`
 
 export default ({
   InEditor,
-  audioTarget,
   audioPlayer,
   audioPlayBtn,
   audioEndTime,
@@ -78,7 +77,6 @@ export default ({
 
 interface St2AudioActionLogicProps {
   InEditor: RefObject<HTMLElement>;
-  audioTarget: Element;
   audioPlayer: HTMLAudioElement;
   audioPlayBtn: HTMLElement;
   audioEndTime: HTMLElement;
