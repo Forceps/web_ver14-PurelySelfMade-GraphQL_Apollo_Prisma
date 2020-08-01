@@ -1,4 +1,4 @@
-import "./NativePlayer.scss";
+import "./NativeVideoPlayerInsertStyle/NativePlayer.scss";
 
 export const VideoInsertByGeneral = (address: string) => {
   return new Promise((sol, jec) => {

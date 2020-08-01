@@ -1,11 +1,8 @@
 import express from "express";
-import path from "path";
-import { assetsLocation } from "../../GlobalLib/assets/im_here";
+import { binaryFileLocation } from "../../GlobalLib/assets/im_here";
 
 const whereFile = (req: any) =>
-  path.join(
-    assetsLocation() + `/uploadedFiles/${req.params.convertedFileName}`
-  );
+  binaryFileLocation(req.params.convertedFileName);
 
 const router = express.Router();
 
