@@ -8,7 +8,7 @@ export default (address: string, videoInfo?: any) => {
       const VideoHtml = /*html*/ `
       <div><br></div>
 
-      <div id="${temp_id}" class="videoPlayer" contenteditable="false">
+      <div><div id="${temp_id}" class="videoPlayer" contenteditable="false">
         <video class="video_tag">
           <source src="${address}" >
         </video>
@@ -68,7 +68,7 @@ export default (address: string, videoInfo?: any) => {
             </div>
           </div>
         </div>
-      </div>
+      </div></div>
 
       <div><br></div>`;
       document.execCommand("insertHTML", false, VideoHtml);
