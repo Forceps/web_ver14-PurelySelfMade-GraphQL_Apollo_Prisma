@@ -205,103 +205,101 @@ export default ({
   zIndex,
 }: ImgURLProps) => {
   return (
-    <>
-      <Container zIndex={zIndex}>
-        <TemporaryBackground
-          zIndex={zIndex}
-          onClick={(e: any) => {
-            spaped(e);
-            setImgSubMenuOp(false);
-          }}
-        />
-        <Consol zIndex={zIndex + 4}>
-          <Header>
-            <Subject>Image</Subject>
-            <UrlMode
-              onClick={(e: any) => {
-                spaped(e);
-                setimgSelectMode("URL");
-              }}
-              imgSelectMode={imgSelectMode}
-            >
-              URL
-            </UrlMode>
-            <ArchiveMode
-              onClick={(e: any) => {
-                spaped(e);
-                setimgSelectMode("Archive");
-              }}
-              imgSelectMode={imgSelectMode}
-            >
-              Archive
-            </ArchiveMode>
-          </Header>
-          <ImgCollect>
-            {imgSelectMode === "URL" && (
-              <ConForUrl>
-                <Input
-                  type="text"
-                  placeholder="Paste Image Link"
-                  id="ImgURLTextInput"
-                  {...ImgURLText}
-                  onKeyUp={(e: any) => {
-                    if (e.keyCode === 13) {
-                      spaped(e);
-                      ImgInsert(ImgURLText.value.replace(/\\/gi, "/"));
-                    }
-                  }}
-                />
-                <ImgPreviewURL>
-                  <ImgSampleURL>
-                    {ImgURLText.value === "" ? (
-                      <PreviewMessage>Preview</PreviewMessage>
-                    ) : !useGetImgExist(ImgURLText.value) ? (
-                      <PreviewMessage>No Result</PreviewMessage>
-                    ) : (
-                      <ImgPrev src={ImgURLText.value} />
-                    )}
-                  </ImgSampleURL>
-                </ImgPreviewURL>
-                <Submit
-                  onClick={(e: any) => {
+    <Container zIndex={zIndex}>
+      <TemporaryBackground
+        zIndex={zIndex}
+        onClick={(e: any) => {
+          spaped(e);
+          setImgSubMenuOp(false);
+        }}
+      />
+      <Consol zIndex={zIndex + 4}>
+        <Header>
+          <Subject>Image</Subject>
+          <UrlMode
+            onClick={(e: any) => {
+              spaped(e);
+              setimgSelectMode("URL");
+            }}
+            imgSelectMode={imgSelectMode}
+          >
+            URL
+          </UrlMode>
+          <ArchiveMode
+            onClick={(e: any) => {
+              spaped(e);
+              setimgSelectMode("Archive");
+            }}
+            imgSelectMode={imgSelectMode}
+          >
+            Archive
+          </ArchiveMode>
+        </Header>
+        <ImgCollect>
+          {imgSelectMode === "URL" && (
+            <ConForUrl>
+              <Input
+                type="text"
+                placeholder="Paste Image Link"
+                id="ImgURLTextInput"
+                {...ImgURLText}
+                onKeyUp={(e: any) => {
+                  if (e.keyCode === 13) {
                     spaped(e);
                     ImgInsert(ImgURLText.value.replace(/\\/gi, "/"));
-                  }}
-                >
-                  input
-                </Submit>
-              </ConForUrl>
-            )}
-            {imgSelectMode === "Archive" && !ImgListLod && (
-              <MediaFiles>
-                <AddImg
+                  }
+                }}
+              />
+              <ImgPreviewURL>
+                <ImgSampleURL>
+                  {ImgURLText.value === "" ? (
+                    <PreviewMessage>Preview</PreviewMessage>
+                  ) : !useGetImgExist(ImgURLText.value) ? (
+                    <PreviewMessage>No Result</PreviewMessage>
+                  ) : (
+                    <ImgPrev src={ImgURLText.value} />
+                  )}
+                </ImgSampleURL>
+              </ImgPreviewURL>
+              <Submit
+                onClick={(e: any) => {
+                  spaped(e);
+                  ImgInsert(ImgURLText.value.replace(/\\/gi, "/"));
+                }}
+              >
+                input
+              </Submit>
+            </ConForUrl>
+          )}
+          {imgSelectMode === "Archive" && !ImgListLod && (
+            <MediaFiles>
+              <AddImg
+                onClick={(e: any) => {
+                  spaped(e);
+                  setAddImgOpen(true);
+                }}
+              >
+                Add Image?
+                <AddImgPlus className="icon-plus-1" />
+              </AddImg>
+              {ImgList?.imgGet?.map((item: any) => (
+                <ImgBox
+                  key={item.address}
                   onClick={(e: any) => {
                     spaped(e);
-                    setAddImgOpen(true);
+                    ImgInsert(mediaSummon(item.address));
                   }}
                 >
-                  Add Image?
-                  <AddImgPlus className="icon-plus-1" />
-                </AddImg>
-                {ImgList?.imgGet?.map((item: any) => (
-                  <ImgBox
-                    key={item.address}
-                    onClick={(e: any) => {
-                      spaped(e);
-                      ImgInsert(mediaSummon(item.address));
-                    }}
-                  >
-                    <ImgSample>
-                      <ImgPrev src={mediaSummon(item.address)} alt="image" />
-                    </ImgSample>
-                    <ImgCaption>{item.caption}</ImgCaption>
-                  </ImgBox>
-                ))}
-              </MediaFiles>
-            )}
-          </ImgCollect>
-        </Consol>
-      </Container>
+                  <ImgSample>
+                    <ImgPrev src={mediaSummon(item.address)} alt="image" />
+                  </ImgSample>
+                  <ImgCaption>{item.caption}</ImgCaption>
+                </ImgBox>
+              ))}
+            </MediaFiles>
+          )}
+        </ImgCollect>
+      </Consol>
       {AddImgOpen && (
         <UploadImageCon
           setAddImgScn={setAddImgOpen}
@@ -309,6 +307,6 @@ export default ({
           refetch={ImgListRefetch}
         />
       )}
-    </>
+    </Container>
   );
 };

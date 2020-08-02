@@ -103,6 +103,10 @@
 .icon-volume-down { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe865;&nbsp;'); }
 .icon-volume { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe866;&nbsp;'); }
 .icon-volume-up { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe867;&nbsp;'); }
+.icon-cancel { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe868;&nbsp;'); }
+.icon-noun_sign-out_1713306 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe869;&nbsp;'); }
+.icon-noun_fullscreen_1399012 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe86a;&nbsp;'); }
+.icon-noun_fullscreen_1399010 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xe86b;&nbsp;'); }
 .icon-down-open-1 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf004;&nbsp;'); }
 .icon-up-open-1 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf005;&nbsp;'); }
 .icon-right-open-1 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf006;&nbsp;'); }
@@ -118,7 +122,11 @@
 .icon-comment-empty { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e5;&nbsp;'); }
 .icon-chat-empty { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0e6;&nbsp;'); }
 .icon-lightbulb { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0eb;&nbsp;'); }
+.icon-bell-alt { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f3;&nbsp;'); }
 .icon-doc-text { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf0f6;&nbsp;'); }
+.icon-quote-left { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf10d;&nbsp;'); }
+.icon-quote-right { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf10e;&nbsp;'); }
+.icon-code { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf121;&nbsp;'); }
 .icon-help { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf128;&nbsp;'); }
 .icon-info { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf129;&nbsp;'); }
 .icon-attention-alt { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf12a;&nbsp;'); }
@@ -134,6 +142,8 @@
 .icon-history { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf1da;&nbsp;'); }
 .icon-sliders { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf1de;&nbsp;'); }
 .icon-share { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf1e0;&nbsp;'); }
+.icon-bell-off { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf1f6;&nbsp;'); }
+.icon-bell-off-empty { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf1f7;&nbsp;'); }
 .icon-trash-1 { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf1f8;&nbsp;'); }
 .icon-cart-plus { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf217;&nbsp;'); }
 .icon-cart-arrow-down { *zoom: expression( this.runtimeStyle['zoom'] = '1', this.innerHTML = '&#xf218;&nbsp;'); }

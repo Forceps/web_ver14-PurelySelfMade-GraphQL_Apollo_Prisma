@@ -1,27 +1,28 @@
-.audioPlayer_controls_intro {
+.videoPlayer_controls_intro {
   display: grid;
   grid-template-columns: 1fr 30px;
   min-height: 40px;
   width: 100%;
   height: 100%;
-  padding: 3px 0 0 0;
-  font-size: 1.1rem;
-  .audio_caption {
+  padding: 5px 0 0 5px;
+  .video_caption {
     display: flex;
     width: 100%;
     height: 100%;
+    font-size: 1rem;
     white-space: pre-line;
     word-break: break-all;
     word-wrap: break-word;
   }
-  .audioPlayer_more_menu {
+  .videoPlayer_more_menu {
     display: flex;
     width: 100%;
     height: 100%;
     justify-content: flex-end;
-    .audio_more_menu_icon {
+    .video_more_menu_icon {
       display: inline-block;
       height: 24px;
+      font-size: 1.1rem;
       cursor: pointer;
     }
   }

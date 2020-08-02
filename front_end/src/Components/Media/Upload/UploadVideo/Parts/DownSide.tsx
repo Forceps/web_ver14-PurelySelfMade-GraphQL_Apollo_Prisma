@@ -35,8 +35,8 @@ const VideoPrev = styled.video<VideoPrevProps>`
   max-width: 100%;
   max-height: 100%;
   object-fit: scale-down;
-  ${(prop) => {
-    if (prop.OrgNum !== prop.SelectedNum) {
+  ${(p) => {
+    if (p.OrgNum !== p.SelectedNum) {
       return css`
         display: none;
       `;

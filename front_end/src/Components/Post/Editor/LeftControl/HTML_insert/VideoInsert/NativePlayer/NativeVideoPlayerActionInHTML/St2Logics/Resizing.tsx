@@ -6,25 +6,25 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
-  audioTarget,
+  videoTarget,
   audioResizeHandle,
 }: St2AudioActionLogicProps) => {
   const resizeHandleActive = useRef(false);
   const audioResizeHandleMouseMove = (e: any) => {
-    if (audioTarget) {
+    if (videoTarget) {
       let width = 0;
       width =
         e.pageX -
-        audioTarget.getBoundingClientRect().left +
+        videoTarget.getBoundingClientRect().left +
         window.pageXOffset +
         5;
       let height = 0;
       height =
         e.pageY -
-        audioTarget.getBoundingClientRect().top +
+        videoTarget.getBoundingClientRect().top +
         window.pageYOffset +
         5;
-      audioTarget.setAttribute(
+      videoTarget.setAttribute(
         "style",
         `width: ${width}px; height: ${height}px;`
       );
@@ -67,6 +67,6 @@ export default ({
 };
 
 interface St2AudioActionLogicProps {
-  audioTarget: Element;
+  videoTarget: Element;
   audioResizeHandle: HTMLElement;
 }

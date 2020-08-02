@@ -155,6 +155,14 @@ export default ({
                     localLogOutMutation();
                   }}
                 >
+                  <Icon
+                    className="icon-noun_sign-out_1713306"
+                    style={{
+                      fontSize: 25,
+                      marginBottom: -7,
+                      marginLeft: -9,
+                    }}
+                  />
                   Log out
                 </LittleItem>
               )}

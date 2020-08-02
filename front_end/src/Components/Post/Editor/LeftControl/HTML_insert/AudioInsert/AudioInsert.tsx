@@ -11,7 +11,7 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
       </div>
       <div><div id="${temp_id}" class="audioPlayer" contenteditable="false">
         <audio>
-          <source src="${address}" style="opacity: 0;" >
+          <source src="${address}">
         </audio>
         <div class="audio_player_thumbnail_container"></div>
         <div class="audioPlayer_controls">

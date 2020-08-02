@@ -7,7 +7,7 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
-  audioTarget,
+  videoTarget,
   audioInfoMemory,
   audioPlayer,
   audioPlayBtn,
@@ -22,7 +22,7 @@ export default ({
     if (audioPlayer?.paused) {
       audioPlayer.play();
       audioPlayBtn?.setAttribute("class", "icon-pause-1 audioPlayIcon");
-      const playerControle = audioTarget.querySelector(
+      const playerControle = videoTarget.querySelector(
         ".audioPlayer_controls_with_img_stop"
       );
       if (playerControle) {
@@ -36,7 +36,7 @@ export default ({
     } else {
       audioPlayer?.pause();
       audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
-      const playerControle = audioTarget.querySelector(
+      const playerControle = videoTarget.querySelector(
         ".audioPlayer_controls_with_img_playing"
       );
       if (playerControle) {
@@ -117,7 +117,7 @@ export default ({
   return <UnnecessaryDiv />;
 };
 interface St2AudioActionLogicProps {
-  audioTarget: Element;
+  videoTarget: Element;
   audioPlayer: HTMLAudioElement;
   audioPlayBtn: HTMLElement;
   audioBackToStartIcon: HTMLElement;

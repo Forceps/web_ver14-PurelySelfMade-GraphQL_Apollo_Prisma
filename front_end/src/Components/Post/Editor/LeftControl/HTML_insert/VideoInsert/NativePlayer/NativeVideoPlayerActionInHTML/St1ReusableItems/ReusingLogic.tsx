@@ -10,7 +10,7 @@ import { MediaClock } from "../../../../../../../../../GlobalLib/RecycleFunction
 
 interface ReusingLogicProps {
   InEditor: RefObject<HTMLElement>;
-  audioTarget: Element;
+  videoTarget: Element;
   audioPlayer: HTMLAudioElement;
   audioPlayBtn: HTMLElement;
   audioVolumeBtn: HTMLElement;
@@ -40,7 +40,7 @@ interface ReusingLogicProps {
 }
 export default ({
   InEditor,
-  audioTarget,
+  videoTarget,
   audioPlayer,
   audioPlayBtn,
   audioVolumeBtn,
@@ -119,7 +119,7 @@ export default ({
     const bool =
       InEditor.current !== document.activeElement &&
       playerClicked.current &&
-      mediaTargetId.current === audioTarget.id;
+      mediaTargetId.current === videoTarget.id;
     return bool;
   };
 
@@ -137,7 +137,7 @@ export default ({
         playerClicked={playerClicked}
       />
       <Buttons
-        audioTarget={audioTarget}
+        videoTarget={videoTarget}
         audioInfoMemory={audioInfoMemory}
         audioPlayer={audioPlayer}
         audioPlayBtn={audioPlayBtn}
@@ -176,7 +176,7 @@ export default ({
         keyboardShortCutAble={keyboardShortCutAble}
       />
       <Resizing
-        audioTarget={audioTarget}
+        videoTarget={videoTarget}
         audioResizeHandle={audioResizeHandle}
       />
       <MoreMenu

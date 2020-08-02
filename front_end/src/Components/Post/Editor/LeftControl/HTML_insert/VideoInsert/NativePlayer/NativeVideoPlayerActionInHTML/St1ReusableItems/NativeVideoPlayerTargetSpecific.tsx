@@ -2,91 +2,91 @@ import React, { RefObject } from "react";
 import ReusingLogic from "./ReusingLogic";
 
 interface AudioTargetSpecificProps {
-  audioTarget: Element;
+  videoTarget: Element;
   mediaTargetId?: any;
   setImgSubMenuOp2?: any;
   CaretLocation: any;
   InEditor: RefObject<HTMLElement>;
 }
 export default ({
-  audioTarget,
+  videoTarget,
   mediaTargetId,
   setImgSubMenuOp2,
   CaretLocation,
   InEditor,
 }: AudioTargetSpecificProps) => {
-  const audioPlayer = audioTarget.querySelector("audio") as HTMLAudioElement;
-  const audioPlayBtn = audioTarget.querySelector(
+  const audioPlayer = videoTarget.querySelector("audio") as HTMLAudioElement;
+  const audioPlayBtn = videoTarget.querySelector(
     ".audioPlayIcon"
   ) as HTMLElement;
-  const audioVolumeBtn = audioTarget.querySelector(
+  const audioVolumeBtn = videoTarget.querySelector(
     ".audioVolumeIcon"
   ) as HTMLElement;
-  const audioVolumeBar = audioTarget.querySelector(
+  const audioVolumeBar = videoTarget.querySelector(
     ".audio_volume_bar"
   ) as HTMLElement;
-  const audioVolumeBarValue = audioTarget.querySelector(
+  const audioVolumeBarValue = videoTarget.querySelector(
     ".audio_volume_bar_value"
   ) as HTMLElement;
-  const audioCurrentTime = audioTarget.querySelector(
+  const audioCurrentTime = videoTarget.querySelector(
     ".audio_timebase_number"
   ) as HTMLElement;
-  const audioEndTime = audioTarget.querySelector(
+  const audioEndTime = videoTarget.querySelector(
     ".audio_end_time"
   ) as HTMLElement;
-  const audioTimeBar = audioTarget.querySelector(
+  const audioTimeBar = videoTarget.querySelector(
     ".audio_timebase_bar"
   ) as HTMLElement;
-  const audioTimeBarValue = audioTarget.querySelector(
+  const audioTimeBarValue = videoTarget.querySelector(
     ".audio_timebase_bar_value"
   ) as HTMLElement;
-  const audioTimeBarContainer = audioTarget.querySelector(
+  const audioTimeBarContainer = videoTarget.querySelector(
     ".audio_timebase_bar_container"
   ) as HTMLElement;
-  const audioBackToStartIcon = audioTarget.querySelector(
+  const audioBackToStartIcon = videoTarget.querySelector(
     ".audioBackToStart"
   ) as HTMLElement;
-  const audioFrontMoveIcon = audioTarget.querySelector(
+  const audioFrontMoveIcon = videoTarget.querySelector(
     ".audioFrontMove"
   ) as HTMLElement;
-  const audioBackMoveIcon = audioTarget.querySelector(
+  const audioBackMoveIcon = videoTarget.querySelector(
     ".audioBackMove"
   ) as HTMLElement;
-  const audioBarHandle = audioTarget.querySelector(
+  const audioBarHandle = videoTarget.querySelector(
     ".audio_timebase_bar_handle"
   ) as HTMLElement;
-  const audioTimeNavigation = audioTarget.querySelector(
+  const audioTimeNavigation = videoTarget.querySelector(
     ".audio_time_navigation"
   ) as HTMLElement;
-  const audioTimeNavigateNumber = audioTarget.querySelector(
+  const audioTimeNavigateNumber = videoTarget.querySelector(
     ".audio_time_navigate_number"
   ) as HTMLElement;
-  const audioInfoMemory = audioTarget.querySelector(
+  const audioInfoMemory = videoTarget.querySelector(
     ".audio_info_memory"
   ) as HTMLElement;
-  const audioResizeHandle = audioTarget.querySelector(
+  const audioResizeHandle = videoTarget.querySelector(
     ".audio_resize_handle"
   ) as HTMLElement;
-  const audioMoreMenuIcon = audioTarget.querySelector(
+  const audioMoreMenuIcon = videoTarget.querySelector(
     ".audio_more_menu_icon"
   ) as HTMLElement;
-  const audioMoreMenuScreen = audioTarget.querySelector(
+  const audioMoreMenuScreen = videoTarget.querySelector(
     ".audio_player_three_dot_menu"
   ) as HTMLElement;
-  const audioMoreMenuClose = audioTarget.querySelector(
+  const audioMoreMenuClose = videoTarget.querySelector(
     ".audio_player_three_dot_menu_back"
   ) as HTMLElement;
-  const audioMoreMenuThumbnail = audioTarget.querySelector(
+  const audioMoreMenuThumbnail = videoTarget.querySelector(
     ".audio_player_three_dot_menu_thumbnail"
   ) as HTMLElement;
-  const audioControlsIntro = audioTarget.querySelector(
+  const audioControlsIntro = videoTarget.querySelector(
     ".audioPlayer_controls_intro"
   ) as HTMLElement;
 
   return (
     <ReusingLogic
       InEditor={InEditor}
-      audioTarget={audioTarget}
+      videoTarget={videoTarget}
       audioPlayer={audioPlayer}
       audioPlayBtn={audioPlayBtn}
       audioVolumeBtn={audioVolumeBtn}

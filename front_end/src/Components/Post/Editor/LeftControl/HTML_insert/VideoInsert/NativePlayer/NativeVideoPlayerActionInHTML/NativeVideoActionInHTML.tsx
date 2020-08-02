@@ -7,28 +7,28 @@ export default ({
   mediaTargetId,
   setImgSubMenuOp2,
   CaretLocation,
-}: AudioActionInHTMLProps) => {
-  const [audioContainers, setAudioContainers] = useState<any>([]);
+}: NativeVideoActionInHTMLProps) => {
+  const [videoContainers, setVideoContainers] = useState<any>([]);
   useEffect(() => {
-    const allAudio =
-      InEditor.current?.getElementsByClassName("audioPlayer") || [];
+    const allVideo =
+      InEditor.current?.getElementsByClassName("videoPlayer") || [];
     let arr: any[] = [];
-    for (let i = 0; i < allAudio.length; i++) {
-      arr = arr.concat(allAudio[i].id);
+    for (let i = 0; i < allVideo.length; i++) {
+      arr = arr.concat(allVideo[i].id);
     }
-    setAudioContainers(arr);
+    setVideoContainers(arr);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rerenderingPoint]);
 
   return (
-    audioContainers.length !== 0 &&
-    audioContainers.map((i: string) => {
-      const audioTarget = document.getElementById(i);
-      if (audioTarget) {
+    videoContainers.length !== 0 &&
+    videoContainers.map((i: string) => {
+      const videoTarget = document.getElementById(i);
+      if (videoTarget) {
         return (
           <NativeVideoPlayerTargetSpecific
             key={i}
-            audioTarget={audioTarget}
+            videoTarget={videoTarget}
             mediaTargetId={mediaTargetId}
             setImgSubMenuOp2={setImgSubMenuOp2}
             CaretLocation={CaretLocation}
@@ -41,7 +41,7 @@ export default ({
   );
 };
 
-interface AudioActionInHTMLProps {
+interface NativeVideoActionInHTMLProps {
   rerenderingPoint: any;
   InEditor: RefObject<HTMLElement>;
   mediaTargetId?: any;

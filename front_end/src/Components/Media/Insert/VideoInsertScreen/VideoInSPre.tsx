@@ -324,7 +324,8 @@ export default ({
                       spaped(e);
                       VideoInsert(
                         mediaSummon(item.address, "video"),
-                        "Archive"
+                        "Archive",
+                        item
                       );
                     }}
                   >

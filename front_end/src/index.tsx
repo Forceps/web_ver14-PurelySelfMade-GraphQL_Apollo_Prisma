@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Helmet } from "react-helmet";
-import "./GlobalLib/Assets/fontello-ffae2900/css/fontello.css";
+import "./GlobalLib/Assets/fontello-b4e33aeb/css/fontello.css";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./GlobalLib/Apollo/ApolloConnection";
 import App from "./App";
