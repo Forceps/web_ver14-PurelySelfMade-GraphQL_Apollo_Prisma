@@ -30,7 +30,7 @@ export default ({
 }: UploadVideoConProps) => {
   const DS = useDummyState();
   const DC = useDirMode();
-  const PfM = useProfileMode();
+  const { setMode } = useProfileMode();
   const [FileName, setFileName] = useState<any>([]);
   const [ImSelected, setImSelected] = useState<any>(null);
   const [AssignDirSeries, setAssignDirSeries] = useState<number[]>([]);
@@ -116,8 +116,7 @@ export default ({
     }
   };
   const Selected = FileName.length !== 0;
-  const thumbnailPathInsert = (e: any, address: string) => {
-    spaped(e);
+  const thumbnailPathInsert = (address: string) => {
     document.getElementById("CUedit")?.focus();
     const { num } = ImSelected;
     setThumbnails((p: string[]) => {
@@ -132,7 +131,7 @@ export default ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ImSelected, ReadFiles]);
   useEffect(() => {
-    PfM.setMode(["Archive"]);
+    setMode(["Archive"]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (

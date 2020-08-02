@@ -19,11 +19,11 @@ export default ({
     </>
   );
 };
-type ShowAllPreProps = {
+interface ShowAllPreProps {
   AddImgScn: boolean;
   setAddImgScn: any;
   AddVideoScn: boolean;
   setAddVideoScn: any;
   AddAudioScn: boolean;
   setAddAudioScn: any;
-};
+}

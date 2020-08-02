@@ -178,16 +178,11 @@ const Notification = styled.div`
   color: #636e72;
   padding: 30px 0 0 30px;
 `;
-const VideoBox = styled.div`
+const VideoBox = styled(VdoBox)`
   width: 190px;
   display: grid;
   grid-template-rows: 106.875px 40px;
   margin: 5px 5px 10px 5px;
-  @media (max-width: 1300px) {
-    &:nth-child(4) {
-      display: none;
-    }
-  }
   cursor: pointer;
 `;
 const VideoCaption = styled(W100per)`
@@ -196,7 +191,6 @@ const VideoCaption = styled(W100per)`
   align-items: center;
   overflow: hidden;
   word-break: break-all;
-  font-size: 1rem;
   padding: 0 5px 0 5px;
 `;
 interface ThumbnailProp {
