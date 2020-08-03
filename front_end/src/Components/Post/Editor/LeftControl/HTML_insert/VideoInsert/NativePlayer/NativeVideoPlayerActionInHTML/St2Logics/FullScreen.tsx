@@ -46,6 +46,8 @@ export default ({
       setTimeout(() => {
         videoPlayerControls.style.opacity = "0";
       }, 2000);
+    } else {
+      videoPlayerControls.style.opacity = "1";
     }
   };
   const nativeVideoFullscreenDesignProcess = () => {
@@ -72,6 +74,7 @@ export default ({
       );
       videoTarget.setAttribute("class", "videoPlayer");
       videoTarget.removeEventListener("mousemove", videoPlayerControlerFlash);
+      videoPlayerControls.removeAttribute("style");
     }
   };
   const keyboardShortCut = (e: any) => {
