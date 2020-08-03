@@ -1,0 +1,99 @@
+.nativeVideoFullScreenAdjust {
+  & .videoPlayer_controls {
+    grid-template-rows: 1fr 27px 66px !important;
+    & .videoPlayer_controls_intro {
+      padding: 10px 5px 0 10px;
+      & .video_caption {
+        font-size: 1.25rem;
+      }
+      & .video_more_menu_icon {
+        font-size: 1.35rem;
+      }
+    }
+    & .video_time_navigation {
+      width: calc(100% - 12px) !important;
+    }
+    & .videoPlayer_controls_timebase_padding {
+      padding: 0 18px 0 18px;
+      & .video_timebase_bar_container {
+        &:hover {
+          .video_timebase_bar_handle {
+            width: 18px;
+            height: 18px;
+          }
+          .video_timebase_bar {
+            transform: scaleY(1.5);
+          }
+        }
+        & .video_timebase_bar {
+          height: 4.5px;
+          transition-duration: 0.08s;
+        }
+      }
+    }
+    & .videoPlayer_bottom {
+      grid-template-rows: 20px 1fr;
+      & .videoPlayer_controls_manipulator {
+        padding: 0 0 0 30px;
+        & .videoPlayer_controls_buttons {
+          align-items: center;
+          padding: 0 0 0 0;
+          & .videoPlayIcon {
+            font-size: 1.55rem;
+            padding: 2px;
+          }
+          & .videoBackToStart {
+            font-size: 1.3rem;
+            padding: 2px;
+            margin: 0 1.5px 0 16px;
+          }
+        }
+        & .video_timebase_number_container {
+          padding: 0 20px 0 20px;
+          font-size: 1.245rem;
+          align-items: center;
+          & .video_time_slash {
+            padding: 0 0 1.3px 0;
+          }
+        }
+        & .videoPlayer_controls_volume {
+          padding: 0 3px 0 3px;
+          & .videoVolumeIcon {
+            font-size: 1.35rem;
+            margin: 0 6px 7px 3px;
+          }
+          & .video_volume_bar_wide {
+            height: 20px;
+            width: 120px;
+            margin: 0 0 12px 0;
+            cursor: pointer;
+            & .video_volume_bar {
+              display: flex;
+              height: 21px;
+              & .video_volume_bar_value {
+                width: 30px;
+              }
+            }
+          }
+        }
+        & .videoVolumeBarHide {
+          width: 50px;
+        }
+        & .videoVolumeBarShow {
+          width: 180px;
+        }
+        & .video_tool_box {
+          & .video_native_fullscreen {
+            padding: 3px 4.5px 3px 4.5px;
+            margin: 0 21px 0 0;
+            font-size: 1.77rem;
+            align-items: center;
+          }
+          & .video_resize_handle {
+            display: none;
+          }
+        }
+      }
+    }
+  }
+}

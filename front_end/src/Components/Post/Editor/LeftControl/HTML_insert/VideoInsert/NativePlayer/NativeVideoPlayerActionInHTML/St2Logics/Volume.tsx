@@ -7,122 +7,163 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
-  audioPlayer,
-  audioVolumeBtn,
-  audioVolumeBar,
-  audioGauge_x_axis,
-  audioVolumeBarValue,
+  videoPlayer,
+  videoVolumeBtn,
+  videoVolumeBar,
+  videoGauge_x_axis,
+  videoVolumeBarValue,
   keyboardShortCutAble,
-}: St2AudioActionLogicProps) => {
-  const handleAudioVolumeClick = () => {
-    if (audioPlayer) {
-      if (audioPlayer.muted) {
-        audioPlayer.muted = false;
-        audioVolumeBtn.setAttribute("class", "icon-volume audioVolumeIcon");
-        audioVolumeBarValue.style.width = `${
-          audioPlayer.volume * audioVolumeBar.clientWidth
+  videoVolumeBarWide,
+  videoControlsVolume,
+  videoPlayerBottom,
+  videoPlayerControls,
+}: St2videoActionLogicProps) => {
+  const handlevideoVolumeClick = () => {
+    if (videoPlayer) {
+      if (videoPlayer.muted) {
+        videoPlayer.muted = false;
+        videoVolumeBtn.setAttribute("class", "icon-volume videoVolumeIcon");
+        videoVolumeBarValue.style.width = `${
+          videoPlayer.volume * videoVolumeBar.clientWidth
         }px`;
       } else {
-        audioPlayer.muted = true;
-        audioVolumeBtn.setAttribute("class", "icon-volume-off audioVolumeIcon");
-        audioVolumeBarValue.style.width = "0px";
+        videoPlayer.muted = true;
+        videoVolumeBtn.setAttribute("class", "icon-volume-off videoVolumeIcon");
+        videoVolumeBarValue.style.width = "0px";
       }
     }
   };
-  const audioVolumeControlMouseMove = (e: any) => {
-    if (audioPlayer) {
-      const movedValue = audioGauge_x_axis(e, audioVolumeBar);
-      audioVolumeBarValue.style.width = `${
-        movedValue * audioVolumeBar.clientWidth
+  const videoVolumeIconChange = () => {
+    if (videoPlayer.volume > 0.5) {
+      videoVolumeBtn.setAttribute("class", "icon-volume videoVolumeIcon");
+    } else if (videoPlayer.volume > 0) {
+      videoVolumeBtn.setAttribute("class", "icon-volume-down videoVolumeIcon");
+    } else {
+      videoVolumeBtn.setAttribute("class", "icon-volume-off videoVolumeIcon");
+    }
+  };
+  const videoVolumeControlMouseMove = (e: any) => {
+    if (videoPlayer) {
+      const movedValue = videoGauge_x_axis(e, videoVolumeBar);
+      videoVolumeBarValue.style.width = `${
+        movedValue * videoVolumeBar.clientWidth
       }px`;
-      audioPlayer.volume = movedValue;
-      if (audioPlayer.volume > 0.5) {
-        audioVolumeBtn.setAttribute("class", "icon-volume audioVolumeIcon");
-      } else if (audioPlayer.volume > 0) {
-        audioVolumeBtn.setAttribute(
-          "class",
-          "icon-volume-down audioVolumeIcon"
-        );
-      } else {
-        audioVolumeBtn.setAttribute("class", "icon-volume-off audioVolumeIcon");
-      }
+      videoPlayer.volume = movedValue;
     }
+    videoVolumeIconChange();
   };
-  const audioVolumeControlMouseDown = (e: any) => {
+  const videoVolumeControlMouseDown = (e: any) => {
     if (e.button === 0) {
-      audioVolumeControlMouseMove(e);
-      document.addEventListener("mousemove", audioVolumeControlMouseMove);
+      videoVolumeControlMouseMove(e);
+      document.addEventListener("mousemove", videoVolumeControlMouseMove);
+      videoPlayerBottom.removeEventListener("mouseleave", videoVolumeBarHide);
     }
   };
-  const audioVolumeControlMouseUp = (e: any) => {
+  const videoVolumeControlMouseUp = (e: any) => {
     if (e.button === 0) {
-      document.removeEventListener("mousemove", audioVolumeControlMouseMove);
+      document.removeEventListener("mousemove", videoVolumeControlMouseMove);
     }
   };
-  const audioVolumeMediumMove = (direction: string, degree: number) => {
+  const videoVolumeMediumMove = (direction: string, degree: number) => {
     if (direction === "up") {
-      if (audioPlayer.volume > 1 - degree) {
-        audioPlayer.volume = 1;
+      if (videoPlayer.volume > 1 - degree) {
+        videoPlayer.volume = 1;
       } else {
-        audioPlayer.volume = audioPlayer.volume + degree;
+        videoPlayer.volume = videoPlayer.volume + degree;
       }
     } else {
-      if (audioPlayer.volume < degree) {
-        audioPlayer.volume = 0;
+      if (videoPlayer.volume < degree) {
+        videoPlayer.volume = 0;
       } else {
-        audioPlayer.volume = audioPlayer.volume - degree;
+        videoPlayer.volume = videoPlayer.volume - degree;
       }
     }
-    audioVolumeBarValue.style.width = `${
-      audioPlayer.volume * audioVolumeBar.clientWidth
+    videoVolumeBarValue.style.width = `${
+      videoPlayer.volume * videoVolumeBar.clientWidth
     }px`;
+    videoVolumeIconChange();
   };
   const keyboardShortCut = (e: any) => {
     if (keyboardShortCutAble()) {
       spaped(e);
       switch (e.keyCode) {
         case 38:
-          audioVolumeMediumMove("up", 0.04);
+          videoVolumeMediumMove("up", 0.04);
           break;
         case 40:
-          audioVolumeMediumMove("down", 0.04);
+          videoVolumeMediumMove("down", 0.04);
       }
     }
   };
   const mouseWheelVolume = (e: WheelEvent) => {
     e.preventDefault();
     if (e.deltaY < 0) {
-      audioVolumeMediumMove("up", 0.04);
+      videoVolumeMediumMove("up", 0.1);
     } else {
-      audioVolumeMediumMove("down", 0.04);
+      videoVolumeMediumMove("down", 0.1);
+    }
+  };
+  const videoVolumeBarShow = () => {
+    videoControlsVolume.setAttribute(
+      "class",
+      "videoPlayer_controls_volume videoVolumeBarShow"
+    );
+  };
+  const videoVolumeBarHide = () => {
+    videoControlsVolume.setAttribute(
+      "class",
+      "videoPlayer_controls_volume videoVolumeBarHide"
+    );
+  };
+  const videoVolumeBarHideResurrection = (e: any) => {
+    if (
+      e.target &&
+      e.target.closest(".videoPlayer_controls_volume") !== videoControlsVolume
+    ) {
+      videoVolumeBarHide();
+      videoPlayerBottom.addEventListener("mouseleave", videoVolumeBarHide);
     }
   };
 
   useEffect(() => {
-    audioVolumeBtn.addEventListener("click", handleAudioVolumeClick);
-    audioVolumeBar.addEventListener("mousedown", audioVolumeControlMouseDown);
-    document.addEventListener("mouseup", audioVolumeControlMouseUp);
+    videoVolumeBtn.addEventListener("click", handlevideoVolumeClick);
+    videoVolumeBarWide.addEventListener(
+      "mousedown",
+      videoVolumeControlMouseDown
+    );
+    document.addEventListener("mouseup", videoVolumeControlMouseUp);
     document.addEventListener("keydown", keyboardShortCut);
-    audioVolumeBar.addEventListener("wheel", mouseWheelVolume);
+    videoVolumeBarWide.addEventListener("wheel", mouseWheelVolume);
+    videoVolumeBtn.addEventListener("mouseenter", videoVolumeBarShow);
+    videoPlayerBottom.addEventListener("mouseleave", videoVolumeBarHide);
+    document.addEventListener("mousedown", videoVolumeBarHideResurrection);
+
     return () => {
-      audioVolumeBtn.removeEventListener("click", handleAudioVolumeClick);
-      audioVolumeBar.removeEventListener(
+      videoVolumeBtn.removeEventListener("click", handlevideoVolumeClick);
+      videoVolumeBarWide.removeEventListener(
         "mousedown",
-        audioVolumeControlMouseDown
+        videoVolumeControlMouseDown
       );
-      document.removeEventListener("mouseup", audioVolumeControlMouseUp);
+      document.removeEventListener("mouseup", videoVolumeControlMouseUp);
       document.removeEventListener("keydown", keyboardShortCut);
-      audioVolumeBar.removeEventListener("wheel", mouseWheelVolume);
+      videoVolumeBarWide.removeEventListener("wheel", mouseWheelVolume);
+      videoVolumeBtn.removeEventListener("mouseenter", videoVolumeBarShow);
+      videoPlayerBottom.removeEventListener("mouseleave", videoVolumeBarHide);
+      document.removeEventListener("mousedown", videoVolumeBarHideResurrection);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <UnnecessaryDiv />;
 };
-interface St2AudioActionLogicProps {
-  audioPlayer: HTMLAudioElement;
-  audioVolumeBtn: HTMLElement;
-  audioVolumeBar: HTMLElement;
-  audioGauge_x_axis: any;
-  audioVolumeBarValue: HTMLElement;
+interface St2videoActionLogicProps {
+  videoPlayer: HTMLVideoElement;
+  videoVolumeBtn: HTMLElement;
+  videoVolumeBar: HTMLElement;
+  videoGauge_x_axis: any;
+  videoVolumeBarValue: HTMLElement;
   keyboardShortCutAble: () => boolean;
+  videoVolumeBarWide: HTMLElement;
+  videoControlsVolume: HTMLElement;
+  videoPlayerBottom: HTMLElement;
+  videoPlayerControls: HTMLElement;
 }

@@ -7,6 +7,7 @@ import React, {
 import styled from "styled-components";
 import ContentEditable from "react-contenteditable";
 import AudioActionInHTML from "../LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
+import NativeVideoActionInHTML from "../LeftControl/HTML_insert/VideoInsert/NativePlayer/NativeVideoPlayerActionInHTML/NativeVideoActionInHTML";
 
 const Editor = styled(ContentEditable)`
   display: block;
@@ -60,6 +61,13 @@ export const CediPre = ({
         spellCheck="false"
       />
       <AudioActionInHTML
+        InEditor={InEditor}
+        rerenderingPoint={HtmlChange}
+        mediaTargetId={mediaTargetId}
+        setImgSubMenuOp2={setImgSubMenuOp2}
+        CaretLocation={CaretLocation}
+      />
+      <NativeVideoActionInHTML
         InEditor={InEditor}
         rerenderingPoint={HtmlChange}
         mediaTargetId={mediaTargetId}

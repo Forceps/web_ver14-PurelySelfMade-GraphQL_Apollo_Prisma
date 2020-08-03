@@ -7,10 +7,11 @@ const UnnecessaryDiv = styled.div`
 
 export default ({
   videoTarget,
-  audioResizeHandle,
-}: St2AudioActionLogicProps) => {
+  videoResizeHandle,
+  videoPlayer,
+}: St2VideoActionLogicProps) => {
   const resizeHandleActive = useRef(false);
-  const audioResizeHandleMouseMove = (e: any) => {
+  const videoResizeHandleMouseMove = (e: any) => {
     if (videoTarget) {
       let width = 0;
       width =
@@ -24,6 +25,14 @@ export default ({
         videoTarget.getBoundingClientRect().top +
         window.pageYOffset +
         5;
+      if (width > (height * 16) / 9) {
+        height = (width * 9) / 16;
+      } else {
+        width = (height * 16) / 9;
+      }
+      if (height > videoPlayer.clientHeight) {
+        height = videoPlayer.clientHeight;
+      }
       videoTarget.setAttribute(
         "style",
         `width: ${width}px; height: ${height}px;`
@@ -31,15 +40,15 @@ export default ({
       resizeHandleActive.current = true;
     }
   };
-  const audioResizeHandleMouseDown = (e: any) => {
+  const videoResizeHandleMouseDown = (e: any) => {
     if (e.button === 0) {
-      audioResizeHandleMouseMove(e);
-      document.addEventListener("mousemove", audioResizeHandleMouseMove);
+      videoResizeHandleMouseMove(e);
+      document.addEventListener("mousemove", videoResizeHandleMouseMove);
     }
   };
-  const audioResizeHandleMouseUp = (e: any) => {
+  const videoResizeHandleMouseUp = (e: any) => {
     if (e.button === 0) {
-      document.removeEventListener("mousemove", audioResizeHandleMouseMove);
+      document.removeEventListener("mousemove", videoResizeHandleMouseMove);
       if (resizeHandleActive.current) {
         document.execCommand("insertHTML", false, "<div></div>");
         resizeHandleActive.current = false;
@@ -48,25 +57,26 @@ export default ({
   };
 
   useEffect(() => {
-    audioResizeHandle?.addEventListener(
+    videoResizeHandle?.addEventListener(
       "mousedown",
-      audioResizeHandleMouseDown
+      videoResizeHandleMouseDown
     );
-    document?.addEventListener("mouseup", audioResizeHandleMouseUp);
+    document?.addEventListener("mouseup", videoResizeHandleMouseUp);
 
     return () => {
-      audioResizeHandle?.removeEventListener(
+      videoResizeHandle?.removeEventListener(
         "mousedown",
-        audioResizeHandleMouseDown
+        videoResizeHandleMouseDown
       );
-      document?.removeEventListener("mouseup", audioResizeHandleMouseUp);
+      document?.removeEventListener("mouseup", videoResizeHandleMouseUp);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <UnnecessaryDiv />;
 };
 
-interface St2AudioActionLogicProps {
+interface St2VideoActionLogicProps {
   videoTarget: Element;
-  audioResizeHandle: HTMLElement;
+  videoResizeHandle: HTMLElement;
+  videoPlayer: HTMLVideoElement;
 }

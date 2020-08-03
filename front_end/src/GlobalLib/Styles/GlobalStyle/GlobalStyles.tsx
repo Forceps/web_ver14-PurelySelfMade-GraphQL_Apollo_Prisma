@@ -15,6 +15,8 @@ export default createGlobalStyle<GlobalStyleProps>`
     color: ${(props) => props.theme.balckColor};
     font-size: 1rem;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: subpixel-antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   textarea {
     font-size: 1rem;

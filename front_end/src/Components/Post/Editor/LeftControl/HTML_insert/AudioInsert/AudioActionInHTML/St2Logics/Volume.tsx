@@ -29,6 +29,15 @@ export default ({
       }
     }
   };
+  const audioVolumeIconChange = () => {
+    if (audioPlayer.volume > 0.5) {
+      audioVolumeBtn.setAttribute("class", "icon-volume audioVolumeIcon");
+    } else if (audioPlayer.volume > 0) {
+      audioVolumeBtn.setAttribute("class", "icon-volume-down audioVolumeIcon");
+    } else {
+      audioVolumeBtn.setAttribute("class", "icon-volume-off audioVolumeIcon");
+    }
+  };
   const audioVolumeControlMouseMove = (e: any) => {
     if (audioPlayer) {
       const movedValue = audioGauge_x_axis(e, audioVolumeBar);
@@ -36,16 +45,7 @@ export default ({
         movedValue * audioVolumeBar.clientWidth
       }px`;
       audioPlayer.volume = movedValue;
-      if (audioPlayer.volume > 0.5) {
-        audioVolumeBtn.setAttribute("class", "icon-volume audioVolumeIcon");
-      } else if (audioPlayer.volume > 0) {
-        audioVolumeBtn.setAttribute(
-          "class",
-          "icon-volume-down audioVolumeIcon"
-        );
-      } else {
-        audioVolumeBtn.setAttribute("class", "icon-volume-off audioVolumeIcon");
-      }
+      audioVolumeIconChange();
     }
   };
   const audioVolumeControlMouseDown = (e: any) => {
@@ -76,6 +76,7 @@ export default ({
     audioVolumeBarValue.style.width = `${
       audioPlayer.volume * audioVolumeBar.clientWidth
     }px`;
+    audioVolumeIconChange();
   };
   const keyboardShortCut = (e: any) => {
     if (keyboardShortCutAble()) {

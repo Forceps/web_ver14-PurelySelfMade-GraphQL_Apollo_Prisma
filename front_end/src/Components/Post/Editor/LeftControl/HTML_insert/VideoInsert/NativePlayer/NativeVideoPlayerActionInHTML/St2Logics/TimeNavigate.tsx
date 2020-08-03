@@ -7,73 +7,71 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
-  audioInfoMemory,
-  audioCurrentTime,
-  audioTimeBar,
-  audioTimeBarContainer,
-  audioTimeNavigation,
-  audioTimeNavigateNumber,
-  audioGauge_x_axis,
-}: St2AudioActionLogicProps) => {
-  const audioTimeNavigate = (e: any) => {
+  videoInfoMemory,
+  videoTimeBar,
+  videoTimeBarContainer,
+  videoTimeNavigation,
+  videoTimeNavigateNumber,
+  videoGauge_x_axis,
+}: St2videoActionLogicProps) => {
+  const videoTimeNavigate = (e: any) => {
     if (
-      audioTimeNavigateNumber &&
-      audioTimeBar &&
-      audioTimeBarContainer &&
-      audioInfoMemory.textContent &&
-      audioTimeNavigation
+      videoTimeNavigateNumber &&
+      videoTimeBar &&
+      videoTimeBarContainer &&
+      videoInfoMemory.textContent &&
+      videoTimeNavigation
     ) {
-      const movedValue = audioGauge_x_axis(e, audioTimeBarContainer);
+      const movedValue = videoGauge_x_axis(e, videoTimeBarContainer);
       const virtualTime = MediaClock(
-        movedValue * parseInt(audioInfoMemory.textContent)
+        movedValue * parseInt(videoInfoMemory.textContent)
       );
-      audioTimeNavigateNumber.style.display = "flex";
-      audioTimeNavigateNumber.textContent = virtualTime;
+      videoTimeNavigateNumber.textContent = virtualTime;
 
-      const fullGapSize = audioCurrentTime.offsetWidth;
-      const gapSize = fullGapSize - 9;
+      const gapSize = videoTimeNavigateNumber.offsetWidth;
       const MousePosition =
-        e.pageX - audioTimeNavigation.getBoundingClientRect().left;
+        e.pageX - videoTimeNavigation.getBoundingClientRect().left;
       let x = 0;
-      if (MousePosition < fullGapSize + gapSize / 2) {
-        x = fullGapSize;
+      if (MousePosition < gapSize / 2) {
+        x = 0;
       } else if (
         MousePosition >
-        audioTimeNavigation.clientWidth - gapSize / 2
+        videoTimeNavigation.clientWidth - gapSize / 2
       ) {
-        x = audioTimeNavigation.clientWidth - gapSize;
+        x = videoTimeNavigation.clientWidth - gapSize;
       } else {
         x = MousePosition - gapSize / 2;
       }
-      audioTimeNavigateNumber.style.left = `${x}px`;
+      videoTimeNavigateNumber.style.left = `${x}px`;
     }
   };
-  const audioTimeNavigateShow = (e: any) => {
-    audioTimeNavigate(e);
-    audioTimeBarContainer?.addEventListener("mousemove", audioTimeNavigate);
+  const videoTimeNavigateShow = (e: any) => {
+    videoTimeNavigate(e);
+    videoTimeNavigateNumber.style.display = "flex";
+    videoTimeBarContainer?.addEventListener("mousemove", videoTimeNavigate);
   };
-  const audioTimeNavigateHide = () => {
-    if (audioTimeNavigateNumber) {
-      audioTimeNavigateNumber.style.display = "none";
-      audioTimeBarContainer?.removeEventListener(
+  const videoTimeNavigateHide = () => {
+    if (videoTimeNavigateNumber) {
+      videoTimeNavigateNumber.style.display = "none";
+      videoTimeBarContainer?.removeEventListener(
         "mousemove",
-        audioTimeNavigate
+        videoTimeNavigate
       );
     }
   };
 
   useEffect(() => {
-    audioTimeBarContainer?.addEventListener("mouseover", audioTimeNavigateShow);
-    audioTimeBarContainer?.addEventListener("mouseout", audioTimeNavigateHide);
+    videoTimeBarContainer?.addEventListener("mouseover", videoTimeNavigateShow);
+    videoTimeBarContainer?.addEventListener("mouseout", videoTimeNavigateHide);
 
     return () => {
-      audioTimeBarContainer?.removeEventListener(
+      videoTimeBarContainer?.removeEventListener(
         "mouseover",
-        audioTimeNavigateShow
+        videoTimeNavigateShow
       );
-      audioTimeBarContainer?.removeEventListener(
+      videoTimeBarContainer?.removeEventListener(
         "mouseout",
-        audioTimeNavigateHide
+        videoTimeNavigateHide
       );
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -81,12 +79,11 @@ export default ({
   return <UnnecessaryDiv />;
 };
 
-interface St2AudioActionLogicProps {
-  audioInfoMemory: HTMLElement;
-  audioCurrentTime: HTMLElement;
-  audioTimeBar: HTMLElement;
-  audioTimeBarContainer: HTMLElement;
-  audioTimeNavigation: HTMLElement;
-  audioTimeNavigateNumber: HTMLElement;
-  audioGauge_x_axis: any;
+interface St2videoActionLogicProps {
+  videoInfoMemory: HTMLElement;
+  videoTimeBar: HTMLElement;
+  videoTimeBarContainer: HTMLElement;
+  videoTimeNavigation: HTMLElement;
+  videoTimeNavigateNumber: HTMLElement;
+  videoGauge_x_axis: any;
 }

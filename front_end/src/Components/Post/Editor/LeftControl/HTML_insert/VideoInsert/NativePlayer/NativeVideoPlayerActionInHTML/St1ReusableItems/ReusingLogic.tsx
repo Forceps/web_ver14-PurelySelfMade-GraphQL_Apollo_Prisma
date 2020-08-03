@@ -7,98 +7,109 @@ import TimeAppointing from "../St2Logics/TimeAppointing";
 import Resizing from "../St2Logics/Resizing";
 import MoreMenu from "../St2Logics/MoreMenu";
 import { MediaClock } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import FullScreen from "../St2Logics/FullScreen";
 
 interface ReusingLogicProps {
   InEditor: RefObject<HTMLElement>;
   videoTarget: Element;
-  audioPlayer: HTMLAudioElement;
-  audioPlayBtn: HTMLElement;
-  audioVolumeBtn: HTMLElement;
-  audioVolumeBar: HTMLElement;
-  audioCurrentTime: HTMLElement;
-  audioEndTime: HTMLElement;
-  audioTimeBar: HTMLElement;
-  audioTimeBarContainer: HTMLElement;
-  audioBackToStartIcon: HTMLElement;
-  audioFrontMoveIcon: HTMLElement;
-  audioBackMoveIcon: HTMLElement;
-  audioBarHandle: HTMLElement;
-  audioTimeNavigation: HTMLElement;
-  audioTimeNavigateNumber: HTMLElement;
-  audioInfoMemory: HTMLElement;
-  audioResizeHandle: HTMLElement;
-  audioMoreMenuIcon: HTMLElement;
-  audioMoreMenuScreen: HTMLElement;
-  audioMoreMenuClose: HTMLElement;
-  audioMoreMenuThumbnail: HTMLElement;
+  videoPlayer: HTMLVideoElement;
+  videoPlayBtn: HTMLElement;
+  videoVolumeBtn: HTMLElement;
+  videoVolumeBar: HTMLElement;
+  videoCurrentTime: HTMLElement;
+  videoEndTime: HTMLElement;
+  videoTimeBar: HTMLElement;
+  videoTimeBarContainer: HTMLElement;
+  videoBackToStartIcon: HTMLElement;
+  videoFrontMoveIcon: HTMLElement;
+  videoBackMoveIcon: HTMLElement;
+  videoBarHandle: HTMLElement;
+  videoTimeNavigation: HTMLElement;
+  videoTimeNavigateNumber: HTMLElement;
+  videoInfoMemory: HTMLElement;
+  videoResizeHandle: HTMLElement;
+  videoMoreMenuIcon: HTMLElement;
+  videoMoreMenuScreen: HTMLElement;
+  videoMoreMenuClose: HTMLElement;
+  videoMoreMenuThumbnail: HTMLElement;
   mediaTargetId: any;
   setImgSubMenuOp2?: any;
-  audioControlsIntro: HTMLElement;
+  videoControlsIntro: HTMLElement;
   CaretLocation: any;
-  audioTimeBarValue: HTMLElement;
-  audioVolumeBarValue: HTMLElement;
+  videoTimeBarValue: HTMLElement;
+  videoVolumeBarValue: HTMLElement;
+  videoVolumeBarWide: HTMLElement;
+  videoControlsVolume: HTMLElement;
+  videoPlayerBottom: HTMLElement;
+  videoNativeFullscreenIcon: HTMLElement;
+  videoPlayerControls: HTMLElement;
 }
 export default ({
   InEditor,
   videoTarget,
-  audioPlayer,
-  audioPlayBtn,
-  audioVolumeBtn,
-  audioVolumeBar,
-  audioCurrentTime,
-  audioEndTime,
-  audioTimeBar,
-  audioTimeBarContainer,
-  audioBackToStartIcon,
-  audioFrontMoveIcon,
-  audioBackMoveIcon,
-  audioBarHandle,
-  audioTimeNavigation,
-  audioTimeNavigateNumber,
-  audioInfoMemory,
-  audioResizeHandle,
-  audioMoreMenuIcon,
-  audioMoreMenuScreen,
-  audioMoreMenuClose,
-  audioMoreMenuThumbnail,
+  videoPlayer,
+  videoPlayBtn,
+  videoVolumeBtn,
+  videoVolumeBar,
+  videoCurrentTime,
+  videoEndTime,
+  videoTimeBar,
+  videoTimeBarContainer,
+  videoBackToStartIcon,
+  videoFrontMoveIcon,
+  videoBackMoveIcon,
+  videoBarHandle,
+  videoTimeNavigation,
+  videoTimeNavigateNumber,
+  videoInfoMemory,
+  videoResizeHandle,
+  videoMoreMenuIcon,
+  videoMoreMenuScreen,
+  videoMoreMenuClose,
+  videoMoreMenuThumbnail,
   mediaTargetId,
   setImgSubMenuOp2,
-  audioControlsIntro,
+  videoControlsIntro,
   CaretLocation,
-  audioTimeBarValue,
-  audioVolumeBarValue,
+  videoTimeBarValue,
+  videoVolumeBarValue,
+  videoVolumeBarWide,
+  videoControlsVolume,
+  videoPlayerBottom,
+  videoNativeFullscreenIcon,
+  videoPlayerControls,
 }: ReusingLogicProps) => {
-  const getAudioCurrentTime = () => {
-    audioTimeBarValue.style.width = `100%`;
-    if (audioPlayer && audioCurrentTime) {
-      audioCurrentTime.textContent = MediaClock(
-        Math.floor(audioPlayer.currentTime)
+  const getvideoCurrentTime = () => {
+    videoTimeBarValue.style.width = `100%`;
+    if (videoPlayer && videoCurrentTime) {
+      videoCurrentTime.textContent = MediaClock(
+        Math.floor(videoPlayer.currentTime)
       );
     }
   };
   const statusBarMoving = () => {
     if (
-      audioPlayer &&
-      audioTimeBar &&
-      audioTimeBarValue &&
-      audioInfoMemory.textContent &&
-      parseInt(audioInfoMemory.textContent)
+      videoPlayer &&
+      videoTimeBar &&
+      videoTimeBarValue &&
+      videoInfoMemory.textContent &&
+      parseInt(videoInfoMemory.textContent)
     ) {
       const progressRatio =
-        audioPlayer.currentTime / parseInt(audioInfoMemory.textContent);
-      let HandleLocation = audioTimeBar?.clientWidth * progressRatio;
-      audioTimeBarValue.style.transform = `scaleX(${progressRatio})`;
+        videoPlayer.currentTime / parseInt(videoInfoMemory.textContent);
+      let HandleLocation = videoTimeBar?.clientWidth * progressRatio;
+      videoTimeBarValue.style.transform = `scaleX(${progressRatio})`;
       if (HandleLocation < 5) {
         HandleLocation = 0;
-      } else if (HandleLocation > audioTimeBar?.clientWidth - 5) {
-        HandleLocation = audioTimeBar?.clientWidth - 10;
+      } else if (HandleLocation > videoTimeBar?.clientWidth - 5) {
+        HandleLocation = videoTimeBar?.clientWidth - 10;
       } else {
         HandleLocation = HandleLocation - 5;
       }
-      audioBarHandle.style.transform = `translateX(${HandleLocation}px)`;
+      videoBarHandle.style.transform = `translateX(${HandleLocation}px)`;
     }
   };
-  const audioGauge_x_axis = (e: any, viewNode: any, clickNode?: any) => {
+  const videoGauge_x_axis = (e: any, viewNode: any, clickNode?: any) => {
     let x = 0;
     x = e.pageX - viewNode.getBoundingClientRect().left;
     x = x / (clickNode ? clickNode.clientWidth : viewNode.clientWidth);
@@ -110,8 +121,8 @@ export default ({
     }
     return x;
   };
-  const audioSetTimeDenote = () => {
-    getAudioCurrentTime();
+  const videoSetTimeDenote = () => {
+    getvideoCurrentTime();
     statusBarMoving();
   };
   const playerClicked = useRef(false);
@@ -127,63 +138,73 @@ export default ({
     <>
       <Initiate
         InEditor={InEditor}
-        audioPlayer={audioPlayer}
-        audioPlayBtn={audioPlayBtn}
-        audioEndTime={audioEndTime}
-        getAudioCurrentTime={getAudioCurrentTime}
+        videoPlayer={videoPlayer}
+        videoPlayBtn={videoPlayBtn}
+        videoEndTime={videoEndTime}
+        getvideoCurrentTime={getvideoCurrentTime}
         statusBarMoving={statusBarMoving}
-        audioInfoMemory={audioInfoMemory}
+        videoInfoMemory={videoInfoMemory}
         mediaTargetId={mediaTargetId}
         playerClicked={playerClicked}
       />
       <Buttons
-        videoTarget={videoTarget}
-        audioInfoMemory={audioInfoMemory}
-        audioPlayer={audioPlayer}
-        audioPlayBtn={audioPlayBtn}
-        audioBackToStartIcon={audioBackToStartIcon}
-        audioFrontMoveIcon={audioFrontMoveIcon}
-        audioBackMoveIcon={audioBackMoveIcon}
-        audioSetTimeDenote={audioSetTimeDenote}
-        audioControlsIntro={audioControlsIntro}
+        videoInfoMemory={videoInfoMemory}
+        videoPlayer={videoPlayer}
+        videoPlayBtn={videoPlayBtn}
+        videoBackToStartIcon={videoBackToStartIcon}
+        videoFrontMoveIcon={videoFrontMoveIcon}
+        videoBackMoveIcon={videoBackMoveIcon}
+        videoSetTimeDenote={videoSetTimeDenote}
+        videoControlsIntro={videoControlsIntro}
         keyboardShortCutAble={keyboardShortCutAble}
+        videoPlayerControls={videoPlayerControls}
       />
       <TimeNavigate
-        audioInfoMemory={audioInfoMemory}
-        audioCurrentTime={audioCurrentTime}
-        audioTimeBar={audioTimeBar}
-        audioTimeBarContainer={audioTimeBarContainer}
-        audioTimeNavigation={audioTimeNavigation}
-        audioTimeNavigateNumber={audioTimeNavigateNumber}
-        audioGauge_x_axis={audioGauge_x_axis}
+        videoInfoMemory={videoInfoMemory}
+        videoTimeBar={videoTimeBar}
+        videoTimeBarContainer={videoTimeBarContainer}
+        videoTimeNavigation={videoTimeNavigation}
+        videoTimeNavigateNumber={videoTimeNavigateNumber}
+        videoGauge_x_axis={videoGauge_x_axis}
       />
       <TimeAppointing
-        audioInfoMemory={audioInfoMemory}
-        audioPlayer={audioPlayer}
-        audioCurrentTime={audioCurrentTime}
-        audioTimeBar={audioTimeBar}
-        audioTimeBarContainer={audioTimeBarContainer}
-        audioGauge_x_axis={audioGauge_x_axis}
-        audioSetTimeDenote={audioSetTimeDenote}
-        audioTimeBarValue={audioTimeBarValue}
+        videoInfoMemory={videoInfoMemory}
+        videoPlayer={videoPlayer}
+        videoCurrentTime={videoCurrentTime}
+        videoTimeBar={videoTimeBar}
+        videoTimeBarContainer={videoTimeBarContainer}
+        videoGauge_x_axis={videoGauge_x_axis}
+        videoSetTimeDenote={videoSetTimeDenote}
       />
       <Volume
-        audioPlayer={audioPlayer}
-        audioVolumeBtn={audioVolumeBtn}
-        audioVolumeBar={audioVolumeBar}
-        audioGauge_x_axis={audioGauge_x_axis}
-        audioVolumeBarValue={audioVolumeBarValue}
+        videoPlayer={videoPlayer}
+        videoVolumeBtn={videoVolumeBtn}
+        videoVolumeBar={videoVolumeBar}
+        videoGauge_x_axis={videoGauge_x_axis}
+        videoVolumeBarValue={videoVolumeBarValue}
         keyboardShortCutAble={keyboardShortCutAble}
+        videoVolumeBarWide={videoVolumeBarWide}
+        videoControlsVolume={videoControlsVolume}
+        videoPlayerBottom={videoPlayerBottom}
+        videoPlayerControls={videoPlayerControls}
       />
       <Resizing
         videoTarget={videoTarget}
-        audioResizeHandle={audioResizeHandle}
+        videoResizeHandle={videoResizeHandle}
+        videoPlayer={videoPlayer}
+      />
+      <FullScreen
+        videoTarget={videoTarget}
+        videoNativeFullscreenIcon={videoNativeFullscreenIcon}
+        keyboardShortCutAble={keyboardShortCutAble}
+        videoPlayerControls={videoPlayerControls}
+        videoPlayer={videoPlayer}
       />
       <MoreMenu
-        audioMoreMenuIcon={audioMoreMenuIcon}
-        audioMoreMenuScreen={audioMoreMenuScreen}
-        audioMoreMenuClose={audioMoreMenuClose}
-        audioMoreMenuThumbnail={audioMoreMenuThumbnail}
+        videoMoreMenuIcon={videoMoreMenuIcon}
+        videoMoreMenuScreen={videoMoreMenuScreen}
+        videoMoreMenuClose={videoMoreMenuClose}
+        videoMoreMenuThumbnail={videoMoreMenuThumbnail}
         setImgSubMenuOp2={setImgSubMenuOp2}
         CaretLocation={CaretLocation}
       />

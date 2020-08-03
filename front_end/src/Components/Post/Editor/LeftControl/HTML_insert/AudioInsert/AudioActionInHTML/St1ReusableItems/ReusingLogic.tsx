@@ -165,7 +165,6 @@ export default ({
         audioTimeBarContainer={audioTimeBarContainer}
         audioGauge_x_axis={audioGauge_x_axis}
         audioSetTimeDenote={audioSetTimeDenote}
-        audioTimeBarValue={audioTimeBarValue}
       />
       <Volume
         audioPlayer={audioPlayer}

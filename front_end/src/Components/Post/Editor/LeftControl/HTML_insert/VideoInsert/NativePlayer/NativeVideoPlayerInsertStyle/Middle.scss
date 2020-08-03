@@ -29,8 +29,11 @@
       cursor: pointer;
       &:hover {
         .video_timebase_bar_handle {
-          width: 10px;
-          height: 10px;
+          width: 12px;
+          height: 12px;
+        }
+        .video_timebase_bar {
+          transform: scaleY(1.6667);
         }
       }
       .video_timebase_bar {
@@ -39,6 +42,9 @@
         height: 3px;
         width: 100%;
         background-color: rgba(223, 230, 233, 0.6);
+        transition-property: transform;
+        transition-duration: 0.14s;
+        transition-timing-function: ease-out;
         .video_timebase_bar_value {
           height: 100%;
           background-color: #fafafa;

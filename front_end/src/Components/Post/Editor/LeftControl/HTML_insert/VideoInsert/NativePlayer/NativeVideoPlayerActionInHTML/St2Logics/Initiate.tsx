@@ -9,41 +9,41 @@ const UnnecessaryDiv = styled.div`
 
 export default ({
   InEditor,
-  audioPlayer,
-  audioPlayBtn,
-  audioEndTime,
-  getAudioCurrentTime,
+  videoPlayer,
+  videoPlayBtn,
+  videoEndTime,
+  getvideoCurrentTime,
   statusBarMoving,
-  audioInfoMemory,
+  videoInfoMemory,
   mediaTargetId,
   playerClicked,
-}: St2AudioActionLogicProps) => {
-  const getAudioDuration = async (audioPlayer: any) => {
+}: St2VideoActionLogicProps) => {
+  const getVideoDuration = async (videoPlayer: any) => {
     let duration: number;
-    if (!isFinite(audioPlayer.duration)) {
-      const blob = await fetch(audioPlayer.src).then((response) =>
+    if (!isFinite(videoPlayer.duration)) {
+      const blob = await fetch(videoPlayer.src).then((response) =>
         response.blob()
       );
       duration = await getBlobDuration(blob);
     } else {
-      duration = audioPlayer.duration;
+      duration = videoPlayer.duration;
     }
     return duration;
   };
-  const setAudioTotalTime = async () => {
-    if (audioPlayer && audioEndTime) {
-      audioPlayer.volume = 0.5;
-      audioInfoMemory.textContent = `${await getAudioDuration(audioPlayer)}`;
-      const totalTimeString = MediaClock(parseInt(audioInfoMemory.textContent));
-      audioEndTime.textContent = totalTimeString;
+  const setVideoTotalTime = async () => {
+    if (videoPlayer && videoEndTime) {
+      videoPlayer.volume = 0.5;
+      videoInfoMemory.textContent = `${await getVideoDuration(videoPlayer)}`;
+      const totalTimeString = MediaClock(parseInt(videoInfoMemory.textContent));
+      videoEndTime.textContent = totalTimeString;
     }
   };
-  const handleAudioEnded = () => {
-    audioPlayer?.pause();
-    audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
+  const handleVideoEnded = () => {
+    videoPlayer?.pause();
+    videoPlayBtn?.setAttribute("class", "icon-play videoPlayIcon");
   };
   const clickPlayer = (e: any) => {
-    const plau = e.target.closest(".audioPlayer");
+    const plau = e.target.closest(".videoPlayer");
     if (plau && plau.closest("#CUedit")) {
       e.stopPropagation();
       InEditor.current?.blur();
@@ -55,16 +55,16 @@ export default ({
   };
 
   useEffect(() => {
-    setAudioTotalTime();
-    audioPlayer?.addEventListener("loadedmetadata", setAudioTotalTime);
-    audioPlayer?.addEventListener("ended", handleAudioEnded);
-    const timeGo1 = setInterval(getAudioCurrentTime, 1000);
+    setVideoTotalTime();
+    videoPlayer?.addEventListener("loadedmetadata", setVideoTotalTime);
+    videoPlayer?.addEventListener("ended", handleVideoEnded);
+    const timeGo1 = setInterval(getvideoCurrentTime, 1000);
     const timeGo2 = setInterval(statusBarMoving, 100);
     document.addEventListener("click", clickPlayer);
 
     return () => {
-      audioPlayer?.removeEventListener("loadedmetadata", setAudioTotalTime);
-      audioPlayer?.removeEventListener("ended", handleAudioEnded);
+      videoPlayer?.removeEventListener("loadedmetadata", setVideoTotalTime);
+      videoPlayer?.removeEventListener("ended", handleVideoEnded);
       window.clearInterval(timeGo1);
       window.clearInterval(timeGo2);
       document.removeEventListener("click", clickPlayer);
@@ -75,14 +75,14 @@ export default ({
   return <UnnecessaryDiv />;
 };
 
-interface St2AudioActionLogicProps {
+interface St2VideoActionLogicProps {
   InEditor: RefObject<HTMLElement>;
-  audioPlayer: HTMLAudioElement;
-  audioPlayBtn: HTMLElement;
-  audioEndTime: HTMLElement;
-  getAudioCurrentTime: () => void;
+  videoPlayer: HTMLVideoElement;
+  videoPlayBtn: HTMLElement;
+  videoEndTime: HTMLElement;
+  getvideoCurrentTime: () => void;
   statusBarMoving: () => void;
-  audioInfoMemory: HTMLElement;
+  videoInfoMemory: HTMLElement;
   mediaTargetId: any;
   playerClicked: React.MutableRefObject<boolean>;
 }

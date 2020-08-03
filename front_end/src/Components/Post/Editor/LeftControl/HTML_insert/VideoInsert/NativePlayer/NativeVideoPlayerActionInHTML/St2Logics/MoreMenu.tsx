@@ -7,50 +7,50 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
-  audioMoreMenuIcon,
-  audioMoreMenuScreen,
-  audioMoreMenuClose,
-  audioMoreMenuThumbnail,
+  videoMoreMenuIcon,
+  videoMoreMenuScreen,
+  videoMoreMenuClose,
+  videoMoreMenuThumbnail,
   setImgSubMenuOp2,
   CaretLocation,
-}: St2AudioActionLogicProps) => {
-  const audioMoreMenuIconClick = (e: any) => {
+}: St2VideoActionLogicProps) => {
+  const videoMoreMenuIconClick = (e: any) => {
     e.stopPropagation();
-    audioMoreMenuScreen.style.width = "100px";
+    videoMoreMenuScreen.style.width = "100px";
     CaretLocation.current = saveSelection();
   };
-  const audioMoreMenuCloseClick = () => {
-    audioMoreMenuScreen.style.width = "0px";
+  const videoMoreMenuCloseClick = () => {
+    videoMoreMenuScreen.style.width = "0px";
   };
-  const audioMoreMenuThumbnailClick = (e: any) => {
+  const videoMoreMenuThumbnailClick = (e: any) => {
     setImgSubMenuOp2(true);
   };
 
   useEffect(() => {
-    audioMoreMenuIcon?.addEventListener("click", audioMoreMenuIconClick);
-    audioMoreMenuClose?.addEventListener("click", audioMoreMenuCloseClick);
-    audioMoreMenuThumbnail?.addEventListener(
+    videoMoreMenuIcon?.addEventListener("click", videoMoreMenuIconClick);
+    videoMoreMenuClose?.addEventListener("click", videoMoreMenuCloseClick);
+    videoMoreMenuThumbnail?.addEventListener(
       "click",
-      audioMoreMenuThumbnailClick
+      videoMoreMenuThumbnailClick
     );
 
     return () => {
-      audioMoreMenuIcon?.removeEventListener("click", audioMoreMenuIconClick);
-      audioMoreMenuClose?.removeEventListener("click", audioMoreMenuCloseClick);
-      audioMoreMenuClose?.removeEventListener(
+      videoMoreMenuIcon?.removeEventListener("click", videoMoreMenuIconClick);
+      videoMoreMenuClose?.removeEventListener("click", videoMoreMenuCloseClick);
+      videoMoreMenuClose?.removeEventListener(
         "click",
-        audioMoreMenuThumbnailClick
+        videoMoreMenuThumbnailClick
       );
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <UnnecessaryDiv />;
 };
-interface St2AudioActionLogicProps {
-  audioMoreMenuIcon: HTMLElement;
-  audioMoreMenuScreen: HTMLElement;
-  audioMoreMenuClose: HTMLElement;
-  audioMoreMenuThumbnail: HTMLElement;
+interface St2VideoActionLogicProps {
+  videoMoreMenuIcon: HTMLElement;
+  videoMoreMenuScreen: HTMLElement;
+  videoMoreMenuClose: HTMLElement;
+  videoMoreMenuThumbnail: HTMLElement;
   setImgSubMenuOp2: any;
   CaretLocation: any;
 }

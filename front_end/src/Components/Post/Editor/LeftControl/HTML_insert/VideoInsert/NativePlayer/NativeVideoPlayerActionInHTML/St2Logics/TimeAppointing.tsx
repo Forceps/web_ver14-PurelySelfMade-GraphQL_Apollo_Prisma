@@ -6,67 +6,65 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
-  audioInfoMemory,
-  audioPlayer,
-  audioCurrentTime,
-  audioTimeBar,
-  audioTimeBarContainer,
-  audioGauge_x_axis,
-  audioSetTimeDenote,
-  audioTimeBarValue,
-}: St2AudioActionLogicProps) => {
-  const audioCurrentTimeControlMouseMove = (e: any) => {
-    if (audioPlayer && audioCurrentTime && audioInfoMemory.textContent) {
-      const movedValue = audioGauge_x_axis(
+  videoInfoMemory,
+  videoPlayer,
+  videoCurrentTime,
+  videoTimeBar,
+  videoTimeBarContainer,
+  videoGauge_x_axis,
+  videoSetTimeDenote,
+}: St2VideoActionLogicProps) => {
+  const videoCurrentTimeControlMouseMove = (e: any) => {
+    if (videoPlayer && videoCurrentTime && videoInfoMemory.textContent) {
+      const movedValue = videoGauge_x_axis(
         e,
-        audioTimeBar,
-        audioTimeBarContainer
+        videoTimeBar,
+        videoTimeBarContainer
       );
-      audioPlayer.currentTime =
-        movedValue * parseInt(audioInfoMemory.textContent);
-      audioSetTimeDenote();
+      videoPlayer.currentTime =
+        movedValue * parseInt(videoInfoMemory.textContent);
+      videoSetTimeDenote();
     }
   };
-  const audioCurrentTimeControlMouseDown = (e: any) => {
+  const videoCurrentTimeControlMouseDown = (e: any) => {
     if (e.button === 0) {
-      audioCurrentTimeControlMouseMove(e);
-      document.addEventListener("mousemove", audioCurrentTimeControlMouseMove);
+      videoCurrentTimeControlMouseMove(e);
+      document.addEventListener("mousemove", videoCurrentTimeControlMouseMove);
     }
   };
-  const audioCurrentTimeControlMouseUp = (e: any) => {
+  const videoCurrentTimeControlMouseUp = (e: any) => {
     if (e.button === 0) {
       document.removeEventListener(
         "mousemove",
-        audioCurrentTimeControlMouseMove
+        videoCurrentTimeControlMouseMove
       );
     }
   };
 
   useEffect(() => {
-    audioTimeBarContainer?.addEventListener(
+    videoTimeBarContainer?.addEventListener(
       "mousedown",
-      audioCurrentTimeControlMouseDown
+      videoCurrentTimeControlMouseDown
     );
-    document?.addEventListener("mouseup", audioCurrentTimeControlMouseUp);
+    document?.addEventListener("mouseup", videoCurrentTimeControlMouseUp);
 
     return () => {
-      audioTimeBarContainer?.removeEventListener(
+      videoTimeBarContainer?.removeEventListener(
         "mousedown",
-        audioCurrentTimeControlMouseDown
+        videoCurrentTimeControlMouseDown
       );
-      document?.removeEventListener("mouseup", audioCurrentTimeControlMouseUp);
+      document?.removeEventListener("mouseup", videoCurrentTimeControlMouseUp);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <UnnecessaryDiv />;
 };
-interface St2AudioActionLogicProps {
-  audioInfoMemory: HTMLElement;
-  audioPlayer: HTMLAudioElement;
-  audioCurrentTime: HTMLElement;
-  audioTimeBar: HTMLElement;
-  audioTimeBarContainer: HTMLElement;
-  audioGauge_x_axis: any;
-  audioSetTimeDenote: any;
-  audioTimeBarValue: HTMLElement;
+interface St2VideoActionLogicProps {
+  videoInfoMemory: HTMLElement;
+  videoPlayer: HTMLVideoElement;
+  videoCurrentTime: HTMLElement;
+  videoTimeBar: HTMLElement;
+  videoTimeBarContainer: HTMLElement;
+  videoGauge_x_axis: any;
+  videoSetTimeDenote: any;
 }

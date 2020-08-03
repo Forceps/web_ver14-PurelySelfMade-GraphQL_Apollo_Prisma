@@ -1,7 +1,7 @@
 import React, { RefObject } from "react";
 import ReusingLogic from "./ReusingLogic";
 
-interface AudioTargetSpecificProps {
+interface VideoTargetSpecificProps {
   videoTarget: Element;
   mediaTargetId?: any;
   setImgSubMenuOp2?: any;
@@ -14,105 +14,125 @@ export default ({
   setImgSubMenuOp2,
   CaretLocation,
   InEditor,
-}: AudioTargetSpecificProps) => {
-  const audioPlayer = videoTarget.querySelector("audio") as HTMLAudioElement;
-  const audioPlayBtn = videoTarget.querySelector(
-    ".audioPlayIcon"
+}: VideoTargetSpecificProps) => {
+  const videoPlayer = videoTarget.querySelector("video") as HTMLVideoElement;
+  const videoPlayBtn = videoTarget.querySelector(
+    ".videoPlayIcon"
   ) as HTMLElement;
-  const audioVolumeBtn = videoTarget.querySelector(
-    ".audioVolumeIcon"
+  const videoVolumeBtn = videoTarget.querySelector(
+    ".videoVolumeIcon"
   ) as HTMLElement;
-  const audioVolumeBar = videoTarget.querySelector(
-    ".audio_volume_bar"
+  const videoVolumeBarWide = videoTarget.querySelector(
+    ".video_volume_bar_wide"
   ) as HTMLElement;
-  const audioVolumeBarValue = videoTarget.querySelector(
-    ".audio_volume_bar_value"
+  const videoVolumeBar = videoTarget.querySelector(
+    ".video_volume_bar"
   ) as HTMLElement;
-  const audioCurrentTime = videoTarget.querySelector(
-    ".audio_timebase_number"
+  const videoVolumeBarValue = videoTarget.querySelector(
+    ".video_volume_bar_value"
   ) as HTMLElement;
-  const audioEndTime = videoTarget.querySelector(
-    ".audio_end_time"
+  const videoCurrentTime = videoTarget.querySelector(
+    ".video_timebase_number"
   ) as HTMLElement;
-  const audioTimeBar = videoTarget.querySelector(
-    ".audio_timebase_bar"
+  const videoEndTime = videoTarget.querySelector(
+    ".video_end_time"
   ) as HTMLElement;
-  const audioTimeBarValue = videoTarget.querySelector(
-    ".audio_timebase_bar_value"
+  const videoTimeBar = videoTarget.querySelector(
+    ".video_timebase_bar"
   ) as HTMLElement;
-  const audioTimeBarContainer = videoTarget.querySelector(
-    ".audio_timebase_bar_container"
+  const videoTimeBarValue = videoTarget.querySelector(
+    ".video_timebase_bar_value"
   ) as HTMLElement;
-  const audioBackToStartIcon = videoTarget.querySelector(
-    ".audioBackToStart"
+  const videoTimeBarContainer = videoTarget.querySelector(
+    ".video_timebase_bar_container"
   ) as HTMLElement;
-  const audioFrontMoveIcon = videoTarget.querySelector(
-    ".audioFrontMove"
+  const videoBackToStartIcon = videoTarget.querySelector(
+    ".videoBackToStart"
   ) as HTMLElement;
-  const audioBackMoveIcon = videoTarget.querySelector(
-    ".audioBackMove"
+  const videoFrontMoveIcon = videoTarget.querySelector(
+    ".videoFrontMove"
   ) as HTMLElement;
-  const audioBarHandle = videoTarget.querySelector(
-    ".audio_timebase_bar_handle"
+  const videoBackMoveIcon = videoTarget.querySelector(
+    ".videoBackMove"
   ) as HTMLElement;
-  const audioTimeNavigation = videoTarget.querySelector(
-    ".audio_time_navigation"
+  const videoBarHandle = videoTarget.querySelector(
+    ".video_timebase_bar_handle"
   ) as HTMLElement;
-  const audioTimeNavigateNumber = videoTarget.querySelector(
-    ".audio_time_navigate_number"
+  const videoTimeNavigation = videoTarget.querySelector(
+    ".video_time_navigation"
   ) as HTMLElement;
-  const audioInfoMemory = videoTarget.querySelector(
-    ".audio_info_memory"
+  const videoTimeNavigateNumber = videoTarget.querySelector(
+    ".video_time_navigate_number"
   ) as HTMLElement;
-  const audioResizeHandle = videoTarget.querySelector(
-    ".audio_resize_handle"
+  const videoInfoMemory = videoTarget.querySelector(
+    ".video_info_memory"
   ) as HTMLElement;
-  const audioMoreMenuIcon = videoTarget.querySelector(
-    ".audio_more_menu_icon"
+  const videoResizeHandle = videoTarget.querySelector(
+    ".video_resize_handle"
   ) as HTMLElement;
-  const audioMoreMenuScreen = videoTarget.querySelector(
-    ".audio_player_three_dot_menu"
+  const videoMoreMenuIcon = videoTarget.querySelector(
+    ".video_more_menu_icon"
   ) as HTMLElement;
-  const audioMoreMenuClose = videoTarget.querySelector(
-    ".audio_player_three_dot_menu_back"
+  const videoMoreMenuScreen = videoTarget.querySelector(
+    ".video_player_three_dot_menu"
   ) as HTMLElement;
-  const audioMoreMenuThumbnail = videoTarget.querySelector(
-    ".audio_player_three_dot_menu_thumbnail"
+  const videoMoreMenuClose = videoTarget.querySelector(
+    ".video_player_three_dot_menu_back"
   ) as HTMLElement;
-  const audioControlsIntro = videoTarget.querySelector(
-    ".audioPlayer_controls_intro"
+  const videoMoreMenuThumbnail = videoTarget.querySelector(
+    ".video_player_three_dot_menu_thumbnail"
+  ) as HTMLElement;
+  const videoControlsIntro = videoTarget.querySelector(
+    ".videoPlayer_controls_intro"
+  ) as HTMLElement;
+  const videoControlsVolume = videoTarget.querySelector(
+    ".videoPlayer_controls_volume"
+  ) as HTMLElement;
+  const videoPlayerBottom = videoTarget.querySelector(
+    ".videoPlayer_bottom"
+  ) as HTMLElement;
+  const videoNativeFullscreenIcon = videoTarget.querySelector(
+    ".video_native_fullscreen"
+  ) as HTMLElement;
+  const videoPlayerControls = videoTarget.querySelector(
+    ".videoPlayer_controls"
   ) as HTMLElement;
 
   return (
     <ReusingLogic
       InEditor={InEditor}
       videoTarget={videoTarget}
-      audioPlayer={audioPlayer}
-      audioPlayBtn={audioPlayBtn}
-      audioVolumeBtn={audioVolumeBtn}
-      audioVolumeBar={audioVolumeBar}
-      audioCurrentTime={audioCurrentTime}
-      audioEndTime={audioEndTime}
-      audioTimeBar={audioTimeBar}
-      audioTimeBarContainer={audioTimeBarContainer}
-      audioBackToStartIcon={audioBackToStartIcon}
-      audioFrontMoveIcon={audioFrontMoveIcon}
-      audioBackMoveIcon={audioBackMoveIcon}
-      audioBarHandle={audioBarHandle}
-      audioTimeNavigation={audioTimeNavigation}
-      audioTimeNavigateNumber={audioTimeNavigateNumber}
-      audioInfoMemory={audioInfoMemory}
-      audioResizeHandle={audioResizeHandle}
-      audioMoreMenuIcon={audioMoreMenuIcon}
-      audioMoreMenuScreen={audioMoreMenuScreen}
-      audioMoreMenuClose={audioMoreMenuClose}
-      audioMoreMenuThumbnail={audioMoreMenuThumbnail}
+      videoPlayer={videoPlayer}
+      videoPlayBtn={videoPlayBtn}
+      videoVolumeBtn={videoVolumeBtn}
+      videoVolumeBar={videoVolumeBar}
+      videoCurrentTime={videoCurrentTime}
+      videoEndTime={videoEndTime}
+      videoTimeBar={videoTimeBar}
+      videoTimeBarContainer={videoTimeBarContainer}
+      videoBackToStartIcon={videoBackToStartIcon}
+      videoFrontMoveIcon={videoFrontMoveIcon}
+      videoBackMoveIcon={videoBackMoveIcon}
+      videoBarHandle={videoBarHandle}
+      videoTimeNavigation={videoTimeNavigation}
+      videoTimeNavigateNumber={videoTimeNavigateNumber}
+      videoInfoMemory={videoInfoMemory}
+      videoResizeHandle={videoResizeHandle}
+      videoMoreMenuIcon={videoMoreMenuIcon}
+      videoMoreMenuScreen={videoMoreMenuScreen}
+      videoMoreMenuClose={videoMoreMenuClose}
+      videoMoreMenuThumbnail={videoMoreMenuThumbnail}
       mediaTargetId={mediaTargetId}
       setImgSubMenuOp2={setImgSubMenuOp2}
-      audioControlsIntro={audioControlsIntro}
+      videoControlsIntro={videoControlsIntro}
       CaretLocation={CaretLocation}
-      audioTimeBarValue={audioTimeBarValue}
-      audioVolumeBarValue={audioVolumeBarValue}
+      videoTimeBarValue={videoTimeBarValue}
+      videoVolumeBarValue={videoVolumeBarValue}
+      videoVolumeBarWide={videoVolumeBarWide}
+      videoControlsVolume={videoControlsVolume}
+      videoPlayerBottom={videoPlayerBottom}
+      videoNativeFullscreenIcon={videoNativeFullscreenIcon}
+      videoPlayerControls={videoPlayerControls}
     />
   );
 };

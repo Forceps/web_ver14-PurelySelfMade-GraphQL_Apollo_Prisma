@@ -27,7 +27,6 @@ export default ({
       const virtualTime = MediaClock(
         movedValue * parseInt(audioInfoMemory.textContent)
       );
-      audioTimeNavigateNumber.style.display = "flex";
       audioTimeNavigateNumber.textContent = virtualTime;
 
       const fullGapSize = audioCurrentTime.offsetWidth;
@@ -50,6 +49,7 @@ export default ({
   };
   const audioTimeNavigateShow = (e: any) => {
     audioTimeNavigate(e);
+    audioTimeNavigateNumber.style.display = "flex";
     audioTimeBarContainer?.addEventListener("mousemove", audioTimeNavigate);
   };
   const audioTimeNavigateHide = () => {

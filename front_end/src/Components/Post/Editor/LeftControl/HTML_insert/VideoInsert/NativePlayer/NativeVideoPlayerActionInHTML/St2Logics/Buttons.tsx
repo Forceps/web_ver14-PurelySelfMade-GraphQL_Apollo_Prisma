@@ -7,69 +7,59 @@ const UnnecessaryDiv = styled.div`
 `;
 
 export default ({
-  videoTarget,
-  audioInfoMemory,
-  audioPlayer,
-  audioPlayBtn,
-  audioBackToStartIcon,
-  audioFrontMoveIcon,
-  audioBackMoveIcon,
-  audioSetTimeDenote,
-  audioControlsIntro,
+  videoInfoMemory,
+  videoPlayer,
+  videoPlayBtn,
+  videoBackToStartIcon,
+  videoFrontMoveIcon,
+  videoBackMoveIcon,
+  videoSetTimeDenote,
+  videoControlsIntro,
   keyboardShortCutAble,
-}: St2AudioActionLogicProps) => {
-  const handleAudioPlayClick = () => {
-    if (audioPlayer?.paused) {
-      audioPlayer.play();
-      audioPlayBtn?.setAttribute("class", "icon-pause-1 audioPlayIcon");
-      const playerControle = videoTarget.querySelector(
-        ".audioPlayer_controls_with_img_stop"
-      );
-      if (playerControle) {
-        setTimeout(() => {
-          playerControle.setAttribute(
-            "class",
-            "audioPlayer_controls audioPlayer_controls_with_img_playing"
-          );
-        }, 1000);
-      }
-    } else {
-      audioPlayer?.pause();
-      audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
-      const playerControle = videoTarget.querySelector(
-        ".audioPlayer_controls_with_img_playing"
-      );
-      if (playerControle) {
-        playerControle.setAttribute(
+  videoPlayerControls,
+}: St2VideoActionLogicProps) => {
+  const handleVideoPlayClick = () => {
+    if (videoPlayer?.paused) {
+      videoPlayer.play();
+      videoPlayBtn?.setAttribute("class", "icon-pause-1 videoPlayIcon");
+      setTimeout(() => {
+        videoPlayerControls.setAttribute(
           "class",
-          "audioPlayer_controls audioPlayer_controls_with_img_stop"
+          "videoPlayer_controls videoPlayer_controls_with_img_playing"
         );
-      }
+      }, 1000);
+    } else {
+      videoPlayer?.pause();
+      videoPlayBtn?.setAttribute("class", "icon-play videoPlayIcon");
+      videoPlayerControls.setAttribute(
+        "class",
+        "videoPlayer_controls videoPlayer_controls_with_img_stop"
+      );
     }
   };
-  const audioBackToStart = () => {
-    if (audioPlayer) {
-      audioPlayer.currentTime = 0;
-      audioSetTimeDenote();
+  const videoBackToStart = () => {
+    if (videoPlayer) {
+      videoPlayer.currentTime = 0;
+      videoSetTimeDenote();
     }
   };
-  const audioTimeMediumMove = (direction: string, degree: number) => {
-    if (audioPlayer && audioInfoMemory.textContent) {
+  const videoTimeMediumMove = (direction: string, degree: number) => {
+    if (videoPlayer && videoInfoMemory.textContent) {
       if (direction === "front") {
-        const totaltime = parseInt(audioInfoMemory.textContent);
-        if (totaltime > audioPlayer.currentTime + degree) {
-          audioPlayer.currentTime = audioPlayer.currentTime + degree;
+        const totaltime = parseInt(videoInfoMemory.textContent);
+        if (totaltime > videoPlayer.currentTime + degree) {
+          videoPlayer.currentTime = videoPlayer.currentTime + degree;
         } else {
-          audioPlayer.currentTime = totaltime;
+          videoPlayer.currentTime = totaltime;
         }
       } else {
-        if (degree < audioPlayer.currentTime) {
-          audioPlayer.currentTime = audioPlayer.currentTime - degree;
+        if (degree < videoPlayer.currentTime) {
+          videoPlayer.currentTime = videoPlayer.currentTime - degree;
         } else {
-          audioPlayer.currentTime = 0;
+          videoPlayer.currentTime = 0;
         }
       }
-      audioSetTimeDenote();
+      videoSetTimeDenote();
     }
   };
   const keyboardShortCut = (e: any) => {
@@ -77,54 +67,54 @@ export default ({
       spaped(e);
       switch (e.keyCode) {
         case 32:
-          handleAudioPlayClick();
+          handleVideoPlayClick();
           break;
         case 39:
-          audioTimeMediumMove("front", 4);
+          videoTimeMediumMove("front", 4);
           break;
         case 37:
-          audioTimeMediumMove("back", 4);
+          videoTimeMediumMove("back", 4);
       }
     }
   };
 
   useEffect(() => {
-    audioPlayBtn?.addEventListener("click", handleAudioPlayClick);
-    audioBackToStartIcon?.addEventListener("click", audioBackToStart);
-    audioFrontMoveIcon?.addEventListener("click", () => {
-      audioTimeMediumMove("front", 15);
+    videoPlayBtn?.addEventListener("click", handleVideoPlayClick);
+    videoBackToStartIcon?.addEventListener("click", videoBackToStart);
+    videoFrontMoveIcon?.addEventListener("click", () => {
+      videoTimeMediumMove("front", 15);
     });
-    audioBackMoveIcon?.addEventListener("click", () => {
-      audioTimeMediumMove("back", 15);
+    videoBackMoveIcon?.addEventListener("click", () => {
+      videoTimeMediumMove("back", 15);
     });
-    audioControlsIntro?.addEventListener("click", handleAudioPlayClick);
+    videoControlsIntro?.addEventListener("click", handleVideoPlayClick);
     document.addEventListener("keydown", keyboardShortCut);
 
     return () => {
-      audioPlayBtn?.removeEventListener("click", handleAudioPlayClick);
-      audioBackToStartIcon?.removeEventListener("click", audioBackToStart);
-      audioFrontMoveIcon?.removeEventListener("click", () => {
-        audioTimeMediumMove("front", 15);
+      videoPlayBtn?.removeEventListener("click", handleVideoPlayClick);
+      videoBackToStartIcon?.removeEventListener("click", videoBackToStart);
+      videoFrontMoveIcon?.removeEventListener("click", () => {
+        videoTimeMediumMove("front", 15);
       });
-      audioBackMoveIcon?.removeEventListener("click", () => {
-        audioTimeMediumMove("back", 15);
+      videoBackMoveIcon?.removeEventListener("click", () => {
+        videoTimeMediumMove("back", 15);
       });
-      audioControlsIntro?.removeEventListener("click", handleAudioPlayClick);
+      videoControlsIntro?.removeEventListener("click", handleVideoPlayClick);
       document.removeEventListener("keydown", keyboardShortCut);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return <UnnecessaryDiv />;
 };
-interface St2AudioActionLogicProps {
-  videoTarget: Element;
-  audioPlayer: HTMLAudioElement;
-  audioPlayBtn: HTMLElement;
-  audioBackToStartIcon: HTMLElement;
-  audioFrontMoveIcon: HTMLElement;
-  audioBackMoveIcon: HTMLElement;
-  audioInfoMemory: HTMLElement;
-  audioSetTimeDenote: any;
-  audioControlsIntro: HTMLElement;
+interface St2VideoActionLogicProps {
+  videoPlayer: HTMLVideoElement;
+  videoPlayBtn: HTMLElement;
+  videoBackToStartIcon: HTMLElement;
+  videoFrontMoveIcon: HTMLElement;
+  videoBackMoveIcon: HTMLElement;
+  videoInfoMemory: HTMLElement;
+  videoSetTimeDenote: any;
+  videoControlsIntro: HTMLElement;
   keyboardShortCutAble: () => boolean;
+  videoPlayerControls: HTMLElement;
 }

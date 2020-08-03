@@ -1,3 +1,7 @@
+.videoPlayer_bottom {
+  display: grid;
+  grid-template-rows: 20px 1fr;
+}
 .videoPlayer_controls_manipulator {
   display: flex;
   height: 100%;
@@ -44,11 +48,9 @@
     align-items: flex-end;
     padding: 0 2px 0 2px;
     height: 100%;
-    &:hover {
-      .video_volume_bar_wide {
-        width: 60px;
-      }
-    }
+    transition-property: width;
+    transition-duration: 0.3s;
+    transition-timing-function: cubic-bezier(0.05, 0.95, 0.58, 1);
     .videoVolumeIcon {
       font-size: 0.9rem;
       padding: 3px 4px 5px 4px;
@@ -58,10 +60,7 @@
     .video_volume_bar_wide {
       display: flex;
       height: 20px;
-      width: 0;
-      transition-property: width;
-      transition-duration: 0.13s;
-      transition-timing-function: ease-out;
+      width: 80px;
       overflow: hidden;
       margin: 0 0 7px 0;
       position: relative;
@@ -69,25 +68,22 @@
       cursor: pointer;
       .video_volume_bar {
         display: flex;
-        height: 3px;
+        height: 14px;
         width: 100%;
         background-color: rgba(223, 230, 233, 0.6);
         .video_volume_bar_value {
           height: 100%;
-          width: 50%;
+          width: 30px;
           background-color: #fafafa;
         }
       }
-      .video_volume_bar_handle {
-        display: inline-block;
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        left: calc(50% - 5px);
-        background-color: #fafafa;
-      }
     }
+  }
+  .videoVolumeBarHide {
+    width: 38px;
+  }
+  .videoVolumeBarShow {
+    width: 120px;
   }
   .video_tool_box {
     display: flex;
