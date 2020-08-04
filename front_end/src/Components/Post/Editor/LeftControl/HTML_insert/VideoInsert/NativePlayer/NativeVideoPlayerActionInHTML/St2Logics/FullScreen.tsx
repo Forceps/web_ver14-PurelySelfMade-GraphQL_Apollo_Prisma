@@ -56,16 +56,21 @@ export default ({
     }
   };
   const mouseMoving = useRef(0);
+  const fullscreenFlashClear = () => {
+    if (mouseMoving.current) {
+      clearTimeout(mouseMoving.current);
+    }
+  };
   const videoPlayerControlerFlash = () => {
     if (!videoPlayer.paused) {
+      fullscreenFlashClear();
       videoPlayerControls.setAttribute(
         "class",
         "videoPlayer_controls videoPlayer_controls_at_stop"
       );
-      if (mouseMoving.current) {
-        clearTimeout(mouseMoving.current);
-      }
       mouseMoving.current = setTimeout(stopGoAtFullscreen, 1500);
+    } else {
+      fullscreenFlashClear();
     }
   };
   const nativeVideoFullscreenDesignProcess = () => {
@@ -85,6 +90,7 @@ export default ({
       stopGoAtFullscreen();
       fullscreenChangeEntailVolumeWidth(120);
     } else {
+      fullscreenFlashClear();
       videoNativeFullscreenIcon.removeEventListener("click", goFullScreen);
       videoNativeFullscreenIcon.removeEventListener("click", exitFullScreen);
       videoNativeFullscreenIcon.addEventListener("click", goFullScreen);
@@ -106,9 +112,6 @@ export default ({
         );
       }
       fullscreenChangeEntailVolumeWidth(80);
-      if (mouseMoving.current) {
-        clearTimeout(mouseMoving.current);
-      }
     }
     videoMoreMenuScreen.style.width = "0px";
   };

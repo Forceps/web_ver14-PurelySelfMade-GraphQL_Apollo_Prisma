@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 import { spaped } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
@@ -18,19 +18,20 @@ export default ({
   keyboardShortCutAble,
   videoPlayerControls,
 }: St2VideoActionLogicProps) => {
+  const flashClear = useRef(0);
   const handleVideoPlayClick = () => {
     if (videoPlayer.paused) {
       videoPlayer.play();
       videoPlayBtn.setAttribute("class", "icon-pause-1 videoPlayIcon");
       if (document.fullscreenElement !== null) {
-        setTimeout(() => {
+        flashClear.current = setTimeout(() => {
           videoPlayerControls.setAttribute(
             "class",
             "videoPlayer_controls videoPlayer_controls_fullscreen_flash"
           );
         }, 1000);
       } else {
-        setTimeout(() => {
+        flashClear.current = setTimeout(() => {
           videoPlayerControls.setAttribute(
             "class",
             "videoPlayer_controls videoPlayer_controls_at_play"
@@ -38,6 +39,7 @@ export default ({
         }, 1000);
       }
     } else {
+      clearTimeout(flashClear.current);
       videoPlayer.pause();
       videoPlayBtn.setAttribute("class", "icon-play videoPlayIcon");
       videoPlayerControls.setAttribute(
