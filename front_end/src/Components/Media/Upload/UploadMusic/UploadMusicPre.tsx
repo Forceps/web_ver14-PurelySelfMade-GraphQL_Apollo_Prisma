@@ -10,7 +10,7 @@ import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/Includ
 import { useDirMode } from "../../../../GlobalLib/Context/ProfileContext/DirMode";
 import TemporaryBackground from "../../../ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { byteUnitConversion } from "../../../../GlobalLib/RecycleFunction/etc/Arithmetic";
+import { byteUnitConversion } from "../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
 import { totalVolum, typeNameCutting } from "../MediaUploadLib";
 import DirAppoint from "../../../Post/Editor/RightControl/DirSetting/DirAppoint";
 

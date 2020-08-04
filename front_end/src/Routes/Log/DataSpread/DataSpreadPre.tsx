@@ -5,7 +5,7 @@ import WH100per, {
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import TileCon from "../../../Components/Post/Shape/Tile/TileCon";
-import { LogClock } from "../../../GlobalLib/RecycleFunction/etc/Time";
+import { LogClock } from "../../../GlobalLib/RecycleFunction/etc/Math/Time";
 
 const DataSpread = styled(WH100per)`
   display: flex;

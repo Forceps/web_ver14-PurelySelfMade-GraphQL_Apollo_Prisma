@@ -7,7 +7,7 @@ import WH100per, {
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
-import { LogClock } from "../../../GlobalLib/RecycleFunction/etc/Time";
+import { LogClock } from "../../../GlobalLib/RecycleFunction/etc/Math/Time";
 
 const DataSpread = styled(WH100per)`
   display: flex;

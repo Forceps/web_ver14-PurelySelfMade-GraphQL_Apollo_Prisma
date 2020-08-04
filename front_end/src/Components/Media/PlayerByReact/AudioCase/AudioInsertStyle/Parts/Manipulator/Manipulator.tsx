@@ -12,7 +12,7 @@ import Buttons from "./Pannel/Buttons";
 import Volume from "./Pannel/Volume";
 import RestZone from "./Pannel/RestZone";
 import TimeBar from "./TimeBar/TimeBarCon";
-import { MediaClock } from "../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import { MediaClock } from "../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
 
 const Bottom = styled(WH100per)`
   display: grid;

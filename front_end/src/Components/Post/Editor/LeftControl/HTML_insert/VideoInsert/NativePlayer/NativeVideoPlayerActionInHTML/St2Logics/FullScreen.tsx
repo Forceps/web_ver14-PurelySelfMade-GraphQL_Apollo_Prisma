@@ -55,7 +55,7 @@ export default ({
       );
     }
   };
-  const mouseMoving = useRef<number>();
+  const mouseMoving = useRef(0);
   const videoPlayerControlerFlash = () => {
     if (!videoPlayer.paused) {
       videoPlayerControls.setAttribute(
@@ -106,6 +106,9 @@ export default ({
         );
       }
       fullscreenChangeEntailVolumeWidth(80);
+      if (mouseMoving.current) {
+        clearTimeout(mouseMoving.current);
+      }
     }
     videoMoreMenuScreen.style.width = "0px";
   };

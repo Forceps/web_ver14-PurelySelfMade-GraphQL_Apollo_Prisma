@@ -1,5 +1,5 @@
 import React, { RefObject, useRef } from "react";
-import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
 import Buttons from "../St2Logics/Buttons";
 import Initiate from "../St2Logics/Initiate";
 import TimeNavigate from "../St2Logics/TimeNavigate";

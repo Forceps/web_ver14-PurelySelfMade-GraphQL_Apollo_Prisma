@@ -10,7 +10,7 @@ import WH100per, {
 import DirAppoint from "../../../Post/Editor/RightControl/DirSetting/DirAppoint";
 import { useDirMode } from "../../../../GlobalLib/Context/ProfileContext/DirMode";
 import { totalVolum, typeNameCutting } from "../MediaUploadLib";
-import { byteUnitConversion } from "../../../../GlobalLib/RecycleFunction/etc/Arithmetic";
+import { byteUnitConversion } from "../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 type zIndex = {

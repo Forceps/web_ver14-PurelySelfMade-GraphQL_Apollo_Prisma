@@ -7,7 +7,7 @@ import WH100per, {
   WH100perI,
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import IncludeScrollBar from "../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
-import { byteUnitConversion } from "../../../../../GlobalLib/RecycleFunction/etc/Arithmetic";
+import { byteUnitConversion } from "../../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
 import { totalVolum } from "../../MediaUploadLib";
 
 const Left = styled(H100per)`

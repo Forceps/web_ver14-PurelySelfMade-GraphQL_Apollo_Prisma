@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import WH100per, {
   W100per,
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { byteUnitConversion } from "../../../../../GlobalLib/RecycleFunction/etc/Arithmetic";
+import { byteUnitConversion } from "../../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
 import { typeNameCutting } from "../../MediaUploadLib";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import useGetImgExist from "../../../../../GlobalLib/RecycleFunction/Hooks/useGetImgExist";

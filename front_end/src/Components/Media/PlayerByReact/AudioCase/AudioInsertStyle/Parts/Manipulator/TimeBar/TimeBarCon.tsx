@@ -1,5 +1,5 @@
 import React, { RefObject, useRef } from "react";
-import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
 import TimeBarPre from "./TimeBarPre";
 
 export default ({

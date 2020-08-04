@@ -1,7 +1,8 @@
-import React, { useEffect, RefObject } from "react";
+import React, { useEffect, RefObject, useRef } from "react";
 import styled from "styled-components";
 import getBlobDuration from "get-blob-duration";
-import { MediaClock } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import { MediaClock } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
+import { mediaStateRenewalCycle } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Formula";
 
 const UnnecessaryDiv = styled.div`
   display: none;
@@ -30,12 +31,18 @@ export default ({
     }
     return duration;
   };
+  const timeGo2 = useRef(0);
   const setVideoTotalTime = async () => {
     if (videoPlayer && videoEndTime) {
       videoPlayer.volume = 0.5;
-      videoInfoMemory.textContent = `${await getVideoDuration(videoPlayer)}`;
-      const totalTimeString = MediaClock(parseInt(videoInfoMemory.textContent));
+      const Duration = await getVideoDuration(videoPlayer);
+      videoInfoMemory.textContent = `${Duration}`;
+      const totalTimeString = MediaClock(Duration);
       videoEndTime.textContent = totalTimeString;
+      timeGo2.current = setInterval(
+        statusBarMoving,
+        mediaStateRenewalCycle(Duration)
+      );
     }
   };
   const handleVideoEnded = () => {
@@ -59,14 +66,13 @@ export default ({
     videoPlayer?.addEventListener("loadedmetadata", setVideoTotalTime);
     videoPlayer?.addEventListener("ended", handleVideoEnded);
     const timeGo1 = setInterval(getvideoCurrentTime, 1000);
-    const timeGo2 = setInterval(statusBarMoving, 30);
     document.addEventListener("click", clickPlayer);
 
     return () => {
       videoPlayer?.removeEventListener("loadedmetadata", setVideoTotalTime);
       videoPlayer?.removeEventListener("ended", handleVideoEnded);
       window.clearInterval(timeGo1);
-      window.clearInterval(timeGo2);
+      window.clearInterval(timeGo2.current);
       document.removeEventListener("click", clickPlayer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
 import styled from "styled-components";
 
 const UnnecessaryDiv = styled.div`

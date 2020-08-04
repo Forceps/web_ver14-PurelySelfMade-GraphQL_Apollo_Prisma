@@ -6,7 +6,7 @@ import Volume from "../St2Logics/Volume";
 import TimeAppointing from "../St2Logics/TimeAppointing";
 import Resizing from "../St2Logics/Resizing";
 import MoreMenu from "../St2Logics/MoreMenu";
-import { MediaClock } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import { MediaClock } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
 import FullScreen from "../St2Logics/FullScreen";
 
 interface ReusingLogicProps {

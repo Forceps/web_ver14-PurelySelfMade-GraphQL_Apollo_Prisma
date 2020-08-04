@@ -1,4 +1,4 @@
-import { S_N_to_N } from "./type_convert";
+import { S_N_to_N } from "../type_convert";
 
 export const LogClock = (
   hour: number | string,

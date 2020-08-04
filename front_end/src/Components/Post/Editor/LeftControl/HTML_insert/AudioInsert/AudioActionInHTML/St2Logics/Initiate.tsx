@@ -1,7 +1,8 @@
-import React, { useEffect, RefObject } from "react";
+import React, { useEffect, RefObject, useRef } from "react";
 import styled from "styled-components";
-import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Time";
+import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
 import getBlobDuration from "get-blob-duration";
+import { mediaStateRenewalCycle } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Formula";
 
 const UnnecessaryDiv = styled.div`
   display: none;
@@ -30,12 +31,18 @@ export default ({
     }
     return duration;
   };
+  const timeGo2 = useRef(0);
   const setAudioTotalTime = async () => {
     if (audioPlayer && audioEndTime) {
       audioPlayer.volume = 0.5;
-      audioInfoMemory.textContent = `${await getAudioDuration(audioPlayer)}`;
-      const totalTimeString = MediaClock(parseInt(audioInfoMemory.textContent));
+      const Duration = await getAudioDuration(audioPlayer);
+      audioInfoMemory.textContent = `${Duration}`;
+      const totalTimeString = MediaClock(Duration);
       audioEndTime.textContent = totalTimeString;
+      timeGo2.current = setInterval(
+        statusBarMoving,
+        mediaStateRenewalCycle(Duration)
+      );
     }
   };
   const handleAudioEnded = () => {
@@ -59,14 +66,13 @@ export default ({
     audioPlayer?.addEventListener("loadedmetadata", setAudioTotalTime);
     audioPlayer?.addEventListener("ended", handleAudioEnded);
     const timeGo1 = setInterval(getAudioCurrentTime, 1000);
-    const timeGo2 = setInterval(statusBarMoving, 100);
     document.addEventListener("click", clickPlayer);
 
     return () => {
       audioPlayer?.removeEventListener("loadedmetadata", setAudioTotalTime);
       audioPlayer?.removeEventListener("ended", handleAudioEnded);
       window.clearInterval(timeGo1);
-      window.clearInterval(timeGo2);
+      window.clearInterval(timeGo2.current);
       document.removeEventListener("click", clickPlayer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
