@@ -161,6 +161,7 @@ const AddVdo = styled(VdoBox)`
   align-items: center;
   color: #636e72;
   font-size: 1.2rem;
+  min-height: 130px;
 `;
 const AddVdoPlus = styled.i`
   margin: 15px 0 0 0;

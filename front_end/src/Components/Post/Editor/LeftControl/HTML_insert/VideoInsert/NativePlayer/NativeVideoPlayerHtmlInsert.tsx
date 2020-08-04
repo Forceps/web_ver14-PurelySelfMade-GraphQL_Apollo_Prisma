@@ -12,7 +12,7 @@ export default (address: string, videoInfo?: any) => {
         <video class="video_tag">
           <source src="${address}" >
         </video>
-        <div class="videoPlayer_controls videoPlayer_controls_with_img_stop">
+        <div class="videoPlayer_controls videoPlayer_controls_at_stop">
           <div class="videoPlayer_controls_intro">
             <div class="video_caption">${videoInfo.caption}</div>
             <div class="videoPlayer_more_menu">

@@ -59,7 +59,7 @@ export default ({
     videoPlayer?.addEventListener("loadedmetadata", setVideoTotalTime);
     videoPlayer?.addEventListener("ended", handleVideoEnded);
     const timeGo1 = setInterval(getvideoCurrentTime, 1000);
-    const timeGo2 = setInterval(statusBarMoving, 100);
+    const timeGo2 = setInterval(statusBarMoving, 30);
     document.addEventListener("click", clickPlayer);
 
     return () => {

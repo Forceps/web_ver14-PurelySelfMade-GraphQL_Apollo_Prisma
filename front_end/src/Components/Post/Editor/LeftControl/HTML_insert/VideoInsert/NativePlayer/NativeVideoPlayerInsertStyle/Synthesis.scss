@@ -3,7 +3,7 @@
 @import "./Bottom.scss";
 @import "./MoreMenu.scss";
 @import "./video_tag.scss";
-@import "./FullScreenadjust.scss";
+@import "./FullScreenAdjust.scss";
 
 .videoPlayer {
   display: inline-block;
@@ -36,14 +36,17 @@
       0px -100px 40px -85px rgba(0, 0, 0, 0.3) inset,
       0px -100px 40px -85px rgba(0, 0, 0, 0.3) inset;
   }
-  .videoPlayer_controls_with_img_playing {
+  .videoPlayer_controls_at_play {
     &:hover {
       opacity: 1;
       @include videoControlShade();
     }
     opacity: 0;
   }
-  .videoPlayer_controls_with_img_stop {
+  .videoPlayer_controls_at_stop {
     @include videoControlShade();
+  }
+  .videoPlayer_controls_fullscreen_flash {
+    opacity: 0;
   }
 }

@@ -16,7 +16,11 @@ export default ({
 }: St2VideoActionLogicProps) => {
   const videoMoreMenuIconClick = (e: any) => {
     e.stopPropagation();
-    videoMoreMenuScreen.style.width = "100px";
+    if (document.fullscreenElement !== null) {
+      videoMoreMenuScreen.style.width = "300px";
+    } else {
+      videoMoreMenuScreen.style.width = "100px";
+    }
     CaretLocation.current = saveSelection();
   };
   const videoMoreMenuCloseClick = () => {

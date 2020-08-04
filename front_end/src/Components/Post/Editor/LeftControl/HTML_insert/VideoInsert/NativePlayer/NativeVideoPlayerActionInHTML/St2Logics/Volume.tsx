@@ -16,7 +16,6 @@ export default ({
   videoVolumeBarWide,
   videoControlsVolume,
   videoPlayerBottom,
-  videoPlayerControls,
 }: St2videoActionLogicProps) => {
   const handlevideoVolumeClick = () => {
     if (videoPlayer) {
@@ -165,5 +164,4 @@ interface St2videoActionLogicProps {
   videoVolumeBarWide: HTMLElement;
   videoControlsVolume: HTMLElement;
   videoPlayerBottom: HTMLElement;
-  videoPlayerControls: HTMLElement;
 }

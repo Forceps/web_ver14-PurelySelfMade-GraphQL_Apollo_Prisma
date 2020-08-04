@@ -19,21 +19,30 @@ export default ({
   videoPlayerControls,
 }: St2VideoActionLogicProps) => {
   const handleVideoPlayClick = () => {
-    if (videoPlayer?.paused) {
+    if (videoPlayer.paused) {
       videoPlayer.play();
-      videoPlayBtn?.setAttribute("class", "icon-pause-1 videoPlayIcon");
-      setTimeout(() => {
-        videoPlayerControls.setAttribute(
-          "class",
-          "videoPlayer_controls videoPlayer_controls_with_img_playing"
-        );
-      }, 1000);
+      videoPlayBtn.setAttribute("class", "icon-pause-1 videoPlayIcon");
+      if (document.fullscreenElement !== null) {
+        setTimeout(() => {
+          videoPlayerControls.setAttribute(
+            "class",
+            "videoPlayer_controls videoPlayer_controls_fullscreen_flash"
+          );
+        }, 1000);
+      } else {
+        setTimeout(() => {
+          videoPlayerControls.setAttribute(
+            "class",
+            "videoPlayer_controls videoPlayer_controls_at_play"
+          );
+        }, 1000);
+      }
     } else {
-      videoPlayer?.pause();
-      videoPlayBtn?.setAttribute("class", "icon-play videoPlayIcon");
+      videoPlayer.pause();
+      videoPlayBtn.setAttribute("class", "icon-play videoPlayIcon");
       videoPlayerControls.setAttribute(
         "class",
-        "videoPlayer_controls videoPlayer_controls_with_img_stop"
+        "videoPlayer_controls videoPlayer_controls_at_stop"
       );
     }
   };
@@ -44,7 +53,7 @@ export default ({
     }
   };
   const videoTimeMediumMove = (direction: string, degree: number) => {
-    if (videoPlayer && videoInfoMemory.textContent) {
+    if (videoInfoMemory.textContent) {
       if (direction === "front") {
         const totaltime = parseInt(videoInfoMemory.textContent);
         if (totaltime > videoPlayer.currentTime + degree) {

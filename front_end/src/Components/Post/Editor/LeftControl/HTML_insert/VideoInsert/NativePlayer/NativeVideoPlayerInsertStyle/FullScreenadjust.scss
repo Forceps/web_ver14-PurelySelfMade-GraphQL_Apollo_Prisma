@@ -10,6 +10,16 @@
         font-size: 1.35rem;
       }
     }
+    & .video_player_three_dot_menu {
+      font-size: 1.3rem;
+      & > div {
+        height: 45px;
+      }
+      & .video_player_three_dot_menu_back_icon {
+        width: 45px;
+        height: 45px;
+      }
+    }
     & .video_time_navigation {
       width: calc(100% - 12px) !important;
     }
@@ -27,7 +37,6 @@
         }
         & .video_timebase_bar {
           height: 4.5px;
-          transition-duration: 0.08s;
         }
       }
     }

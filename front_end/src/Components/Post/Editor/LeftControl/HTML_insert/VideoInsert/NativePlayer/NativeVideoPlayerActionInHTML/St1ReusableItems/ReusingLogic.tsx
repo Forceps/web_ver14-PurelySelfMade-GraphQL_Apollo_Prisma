@@ -88,13 +88,7 @@ export default ({
     }
   };
   const statusBarMoving = () => {
-    if (
-      videoPlayer &&
-      videoTimeBar &&
-      videoTimeBarValue &&
-      videoInfoMemory.textContent &&
-      parseInt(videoInfoMemory.textContent)
-    ) {
+    if (videoInfoMemory.textContent) {
       const progressRatio =
         videoPlayer.currentTime / parseInt(videoInfoMemory.textContent);
       let HandleLocation = videoTimeBar?.clientWidth * progressRatio;
@@ -186,7 +180,6 @@ export default ({
         videoVolumeBarWide={videoVolumeBarWide}
         videoControlsVolume={videoControlsVolume}
         videoPlayerBottom={videoPlayerBottom}
-        videoPlayerControls={videoPlayerControls}
       />
       <Resizing
         videoTarget={videoTarget}
@@ -199,6 +192,8 @@ export default ({
         keyboardShortCutAble={keyboardShortCutAble}
         videoPlayerControls={videoPlayerControls}
         videoPlayer={videoPlayer}
+        videoVolumeBarValue={videoVolumeBarValue}
+        videoMoreMenuScreen={videoMoreMenuScreen}
       />
       <MoreMenu
         videoMoreMenuIcon={videoMoreMenuIcon}
