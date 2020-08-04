@@ -7,6 +7,7 @@ import Volume from "../St2Logics/Volume";
 import TimeAppointing from "../St2Logics/TimeAppointing";
 import Resizing from "../St2Logics/Resizing";
 import MoreMenu from "../St2Logics/MoreMenu";
+import Buffer from "../St2Logics/Buffer";
 
 interface ReusingLogicProps {
   InEditor: RefObject<HTMLElement>;
@@ -37,6 +38,7 @@ interface ReusingLogicProps {
   CaretLocation: any;
   audioTimeBarValue: HTMLElement;
   audioVolumeBarValue: HTMLElement;
+  audioTimebaseBarBuffer: HTMLElement;
 }
 export default ({
   InEditor,
@@ -67,6 +69,7 @@ export default ({
   CaretLocation,
   audioTimeBarValue,
   audioVolumeBarValue,
+  audioTimebaseBarBuffer,
 }: ReusingLogicProps) => {
   const getAudioCurrentTime = () => {
     audioTimeBarValue.style.width = `100%`;
@@ -185,6 +188,11 @@ export default ({
         audioMoreMenuThumbnail={audioMoreMenuThumbnail}
         setImgSubMenuOp2={setImgSubMenuOp2}
         CaretLocation={CaretLocation}
+      />
+      <Buffer
+        audioPlayer={audioPlayer}
+        audioTimebaseBarBuffer={audioTimebaseBarBuffer}
+        audioInfoMemory={audioInfoMemory}
       />
     </>
   );

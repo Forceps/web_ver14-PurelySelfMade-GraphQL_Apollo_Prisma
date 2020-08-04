@@ -82,6 +82,9 @@ export default ({
   const audioControlsIntro = audioTarget.querySelector(
     ".audioPlayer_controls_intro"
   ) as HTMLElement;
+  const audioTimebaseBarBuffer = audioTarget.querySelector(
+    ".audio_timebase_bar_buffer"
+  ) as HTMLElement;
 
   return (
     <ReusingLogic
@@ -113,6 +116,7 @@ export default ({
       CaretLocation={CaretLocation}
       audioTimeBarValue={audioTimeBarValue}
       audioVolumeBarValue={audioVolumeBarValue}
+      audioTimebaseBarBuffer={audioTimebaseBarBuffer}
     />
   );
 };

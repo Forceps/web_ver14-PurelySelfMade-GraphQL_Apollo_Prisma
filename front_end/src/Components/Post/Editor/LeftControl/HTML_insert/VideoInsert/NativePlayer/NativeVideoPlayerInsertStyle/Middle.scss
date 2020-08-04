@@ -41,13 +41,20 @@
         position: relative;
         height: 3px;
         width: 100%;
-        background-color: rgba(223, 230, 233, 0.6);
+        background-color: rgba(223, 230, 233, 0.3);
         transition-property: transform;
         transition-duration: 0.08s;
         transition-timing-function: ease-out;
         .video_timebase_bar_value {
           height: 100%;
+          position: absolute;
           background-color: #fafafa;
+          transform-origin: 0 0;
+        }
+        .video_timebase_bar_buffer {
+          height: 100%;
+          position: absolute;
+          background-color: rgba(223, 230, 233, 0.5);
           transform-origin: 0 0;
         }
       }

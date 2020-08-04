@@ -36,13 +36,16 @@
       background-color: #fafafa !important;
     }
     & .audio_timebase_bar {
-      background-color: rgba(223, 230, 233, 0.6) !important;
+      background-color: rgba(223, 230, 233, 0.3) !important;
     }
     & .audio_timebase_bar_value {
       background-color: #fafafa !important;
     }
+    & .audio_timebase_bar_buffer {
+      background-color: rgba(223, 230, 233, 0.5) !important;
+    }
     & .audio_volume_bar {
-      background-color: rgba(223, 230, 233, 0.6) !important;
+      background-color: rgba(223, 230, 233, 0.4) !important;
     }
     & .audio_volume_bar_value {
       background-color: #fafafa !important;

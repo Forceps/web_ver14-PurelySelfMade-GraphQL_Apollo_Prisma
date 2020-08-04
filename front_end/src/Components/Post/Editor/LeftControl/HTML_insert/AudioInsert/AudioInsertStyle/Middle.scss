@@ -49,7 +49,14 @@
         background-color: #dfe6e9;
         .audio_timebase_bar_value {
           height: 100%;
+          position: absolute;
           background-color: #636e72;
+          transform-origin: 0 0;
+        }
+        .audio_timebase_bar_buffer {
+          height: 100%;
+          position: absolute;
+          background-color: #b2bec3;
           transform-origin: 0 0;
         }
       }

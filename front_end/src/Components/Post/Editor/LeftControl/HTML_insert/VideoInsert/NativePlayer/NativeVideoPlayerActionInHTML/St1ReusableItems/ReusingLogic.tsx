@@ -8,6 +8,7 @@ import Resizing from "../St2Logics/Resizing";
 import MoreMenu from "../St2Logics/MoreMenu";
 import { MediaClock } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
 import FullScreen from "../St2Logics/FullScreen";
+import Buffer from "../St2Logics/Buffer";
 
 interface ReusingLogicProps {
   InEditor: RefObject<HTMLElement>;
@@ -43,6 +44,7 @@ interface ReusingLogicProps {
   videoPlayerBottom: HTMLElement;
   videoNativeFullscreenIcon: HTMLElement;
   videoPlayerControls: HTMLElement;
+  videoBasebarBuffer: HTMLElement;
 }
 export default ({
   InEditor,
@@ -78,6 +80,7 @@ export default ({
   videoPlayerBottom,
   videoNativeFullscreenIcon,
   videoPlayerControls,
+  videoBasebarBuffer,
 }: ReusingLogicProps) => {
   const getvideoCurrentTime = () => {
     videoTimeBarValue.style.width = `100%`;
@@ -202,6 +205,11 @@ export default ({
         videoMoreMenuThumbnail={videoMoreMenuThumbnail}
         setImgSubMenuOp2={setImgSubMenuOp2}
         CaretLocation={CaretLocation}
+      />
+      <Buffer
+        videoPlayer={videoPlayer}
+        videoBasebarBuffer={videoBasebarBuffer}
+        videoInfoMemory={videoInfoMemory}
       />
     </>
   );

@@ -97,6 +97,9 @@ export default ({
   const videoPlayerControls = videoTarget.querySelector(
     ".videoPlayer_controls"
   ) as HTMLElement;
+  const videoBasebarBuffer = videoTarget.querySelector(
+    ".video_timebase_bar_buffer"
+  ) as HTMLElement;
 
   return (
     <ReusingLogic
@@ -133,6 +136,7 @@ export default ({
       videoPlayerBottom={videoPlayerBottom}
       videoNativeFullscreenIcon={videoNativeFullscreenIcon}
       videoPlayerControls={videoPlayerControls}
+      videoBasebarBuffer={videoBasebarBuffer}
     />
   );
 };
