@@ -1,28 +1,32 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { spaped } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { spaped } from "../../../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { videoHtmlPlayerStructureInEditor } from "../../St1ReusableItems/NativeVideoPlayerTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
 export default ({
-  videoInfoMemory,
-  videoPlayer,
-  videoPlayBtn,
-  videoBackToStartIcon,
-  videoFrontMoveIcon,
-  videoBackMoveIcon,
   videoSetTimeDenote,
-  videoControlsIntro,
   keyboardShortCutAble,
-  videoPlayerControls,
+  videoElem,
 }: St2VideoActionLogicProps) => {
+  const {
+    videoPlayer,
+    videoPlayerControls,
+    top: { ControlsIntro },
+    bottom: {
+      basicButton: { playBtn, backToStartIcon },
+    },
+    memory: { videoInfoMemory },
+  } = videoElem;
+
   const flashClear = useRef(0);
   const handleVideoPlayClick = () => {
     if (videoPlayer.paused) {
       videoPlayer.play();
-      videoPlayBtn.setAttribute("class", "icon-pause-1 videoPlayIcon");
+      playBtn.setAttribute("class", "icon-pause-1 videoPlayIcon");
       if (document.fullscreenElement !== null) {
         flashClear.current = setTimeout(() => {
           videoPlayerControls.setAttribute(
@@ -41,7 +45,7 @@ export default ({
     } else {
       clearTimeout(flashClear.current);
       videoPlayer.pause();
-      videoPlayBtn.setAttribute("class", "icon-play videoPlayIcon");
+      playBtn.setAttribute("class", "icon-play videoPlayIcon");
       videoPlayerControls.setAttribute(
         "class",
         "videoPlayer_controls videoPlayer_controls_at_stop"
@@ -90,27 +94,15 @@ export default ({
   };
 
   useEffect(() => {
-    videoPlayBtn?.addEventListener("click", handleVideoPlayClick);
-    videoBackToStartIcon?.addEventListener("click", videoBackToStart);
-    videoFrontMoveIcon?.addEventListener("click", () => {
-      videoTimeMediumMove("front", 15);
-    });
-    videoBackMoveIcon?.addEventListener("click", () => {
-      videoTimeMediumMove("back", 15);
-    });
-    videoControlsIntro?.addEventListener("click", handleVideoPlayClick);
+    playBtn?.addEventListener("click", handleVideoPlayClick);
+    backToStartIcon?.addEventListener("click", videoBackToStart);
+    ControlsIntro?.addEventListener("click", handleVideoPlayClick);
     document.addEventListener("keydown", keyboardShortCut);
 
     return () => {
-      videoPlayBtn?.removeEventListener("click", handleVideoPlayClick);
-      videoBackToStartIcon?.removeEventListener("click", videoBackToStart);
-      videoFrontMoveIcon?.removeEventListener("click", () => {
-        videoTimeMediumMove("front", 15);
-      });
-      videoBackMoveIcon?.removeEventListener("click", () => {
-        videoTimeMediumMove("back", 15);
-      });
-      videoControlsIntro?.removeEventListener("click", handleVideoPlayClick);
+      playBtn?.removeEventListener("click", handleVideoPlayClick);
+      backToStartIcon?.removeEventListener("click", videoBackToStart);
+      ControlsIntro?.removeEventListener("click", handleVideoPlayClick);
       document.removeEventListener("keydown", keyboardShortCut);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -118,14 +110,7 @@ export default ({
   return <UnnecessaryDiv />;
 };
 interface St2VideoActionLogicProps {
-  videoPlayer: HTMLVideoElement;
-  videoPlayBtn: HTMLElement;
-  videoBackToStartIcon: HTMLElement;
-  videoFrontMoveIcon: HTMLElement;
-  videoBackMoveIcon: HTMLElement;
-  videoInfoMemory: HTMLElement;
   videoSetTimeDenote: any;
-  videoControlsIntro: HTMLElement;
   keyboardShortCutAble: () => boolean;
-  videoPlayerControls: HTMLElement;
+  videoElem: videoHtmlPlayerStructureInEditor;
 }

@@ -46,7 +46,7 @@ export default (address: string, videoInfo?: any) => {
                 <div class="video_time_slash">&nbsp/&nbsp</div>
                 <div class="video_end_time">0:00</div>
               </div>
-              <div class="videoPlayer_controls_volume videoVolumeBarHide">
+              <div class="videoPlayer_controls_volume volumeBarHide">
                 <i class="icon-volume videoVolumeIcon"></i>
                 <div class="video_volume_bar_wide">
                   <div class="video_volume_bar">
@@ -67,8 +67,40 @@ export default (address: string, videoInfo?: any) => {
                 <i class="icon-right-open"></i>
               </div>
             </div>
-            <div class="video_player_three_dot_menu_thumbnail">
-              Thumbnail
+            <div class="video_player_menu_basic">
+              <div class="video_player_menu_playback_speed">
+                Playback speed
+              </div>
+            </div>
+            <div class="video_player_menu_speed">
+              <div class="video_player_menu_speed_back_basic">
+                <i class="icon-left-open"></i>
+                Back
+              </div>
+              <div class="video_player_menu_speed_dot25">
+                0.25
+              </div>
+              <div class="video_player_menu_speed_dot5">
+                0.5
+              </div>
+              <div class="video_player_menu_speed_dot75">
+                0.75
+              </div>
+              <div class="video_player_menu_speed_1">
+                1
+              </div>
+              <div class="video_player_menu_speed_1dot25">
+                1.25
+              </div>
+              <div class="video_player_menu_speed_1dot5">
+                1.5
+              </div>
+              <div class="video_player_menu_speed_1dot75">
+                1.75
+              </div>
+              <div class="video_player_menu_speed_2">
+                2
+              </div>
             </div>
           </div>
         </div>

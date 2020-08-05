@@ -1,3 +1,5 @@
+@import "../../../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar.scss";
+
 .video_player_three_dot_menu {
   display: flex;
   flex-direction: column;
@@ -11,19 +13,34 @@
   transition-duration: 0.13s;
   transition-timing-function: ease;
   color: black;
-  & > div {
+  overflow: hidden;
+  @mixin menuSmallHover {
+    &:hover {
+      background-color: #dfe6e9;
+      cursor: pointer;
+    }
+  }
+  & > div:nth-child(n + 2) {
+    flex-direction: column;
+    width: 100%;
+    @include IncludeScrollBar;
+  }
+  & > div:nth-child(n + 2) > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     height: 30px;
     overflow: hidden;
     white-space: nowrap;
-  }
-  & > div:hover {
-    background-color: #dfe6e9;
-    cursor: pointer;
+    @include menuSmallHover;
   }
   .video_player_three_dot_menu_back {
     display: flex;
     justify-content: flex-end;
+    width: 100%;
+    height: 30px;
+    @include menuSmallHover;
     .video_player_three_dot_menu_back_icon {
       display: flex;
       justify-content: center;
@@ -32,9 +49,10 @@
       height: 30px;
     }
   }
-  .video_player_three_dot_menu_thumbnail {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  .video_player_menu_speed_back_basic {
+    justify-content: flex-start !important;
+  }
+  .video_player_menu_speed {
+    display: none;
   }
 }

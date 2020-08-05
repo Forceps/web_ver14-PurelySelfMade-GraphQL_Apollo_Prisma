@@ -1,20 +1,27 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { spaped } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { spaped } from "../../../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { videoHtmlPlayerStructureInEditor } from "../../St1ReusableItems/NativeVideoPlayerTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
 export default ({
-  videoTarget,
-  videoNativeFullscreenIcon,
   keyboardShortCutAble,
-  videoPlayerControls,
-  videoPlayer,
-  videoVolumeBarValue,
-  videoMoreMenuScreen,
+  videoElem,
 }: St2VideoActionLogicProps) => {
+  const {
+    videoTarget,
+    videoPlayer,
+    videoPlayerControls,
+    bottom: {
+      toolBox: { nativeFullscreenIcon },
+      volume: { volumeBarValue },
+    },
+    menu: { moreMenuScreen },
+  } = videoElem;
+
   const exitFullScreen = () => {
     const exitFullScreenAble = document as Document & {
       mozCancelFullScreen(): Promise<void>;
@@ -32,14 +39,15 @@ export default ({
     }
   };
   const goFullScreen = () => {
+    const videoTargetFA = videoTarget as any;
     if (videoTarget.requestFullscreen) {
       videoTarget.requestFullscreen();
-    } else if (videoTarget.mozRequestFullScreen) {
-      videoTarget.mozRequestFullScreen();
-    } else if (videoTarget.webkitRequestFullscreen) {
-      videoTarget.webkitRequestFullscreen();
-    } else if (videoTarget.msRequestFullscreen) {
-      videoTarget.msRequestFullscreen();
+    } else if (videoTargetFA.mozRequestFullScreen) {
+      videoTargetFA.mozRequestFullScreen();
+    } else if (videoTargetFA.webkitRequestFullscreen) {
+      videoTargetFA.webkitRequestFullscreen();
+    } else if (videoTargetFA.msRequestFullscreen) {
+      videoTargetFA.msRequestFullscreen();
     }
   };
   const stopGoAtFullscreen = () => {
@@ -75,10 +83,10 @@ export default ({
   };
   const nativeVideoFullscreenDesignProcess = () => {
     if (document.fullscreenElement !== null) {
-      videoNativeFullscreenIcon.removeEventListener("click", exitFullScreen);
-      videoNativeFullscreenIcon.removeEventListener("click", goFullScreen);
-      videoNativeFullscreenIcon.addEventListener("click", exitFullScreen);
-      videoNativeFullscreenIcon.setAttribute(
+      nativeFullscreenIcon.removeEventListener("click", exitFullScreen);
+      nativeFullscreenIcon.removeEventListener("click", goFullScreen);
+      nativeFullscreenIcon.addEventListener("click", exitFullScreen);
+      nativeFullscreenIcon.setAttribute(
         "class",
         "icon-noun_fullscreen_1399010 video_native_fullscreen"
       );
@@ -91,10 +99,10 @@ export default ({
       fullscreenChangeEntailVolumeWidth(120);
     } else {
       fullscreenFlashClear();
-      videoNativeFullscreenIcon.removeEventListener("click", goFullScreen);
-      videoNativeFullscreenIcon.removeEventListener("click", exitFullScreen);
-      videoNativeFullscreenIcon.addEventListener("click", goFullScreen);
-      videoNativeFullscreenIcon.setAttribute(
+      nativeFullscreenIcon.removeEventListener("click", goFullScreen);
+      nativeFullscreenIcon.removeEventListener("click", exitFullScreen);
+      nativeFullscreenIcon.addEventListener("click", goFullScreen);
+      nativeFullscreenIcon.setAttribute(
         "class",
         "icon-noun_fullscreen_1399012 video_native_fullscreen"
       );
@@ -113,10 +121,10 @@ export default ({
       }
       fullscreenChangeEntailVolumeWidth(80);
     }
-    videoMoreMenuScreen.style.width = "0px";
+    moreMenuScreen.style.width = "0px";
   };
   const fullscreenChangeEntailVolumeWidth = (length: number) => {
-    videoVolumeBarValue.style.width = `${videoPlayer.volume * length}px`;
+    volumeBarValue.style.width = `${videoPlayer.volume * length}px`;
   };
   const keyboardShortCut = (e: any) => {
     if (keyboardShortCutAble()) {
@@ -133,7 +141,7 @@ export default ({
   };
 
   useEffect(() => {
-    videoNativeFullscreenIcon?.addEventListener("click", goFullScreen);
+    nativeFullscreenIcon?.addEventListener("click", goFullScreen);
     videoTarget.addEventListener(
       "fullscreenchange",
       nativeVideoFullscreenDesignProcess
@@ -141,8 +149,8 @@ export default ({
     document.addEventListener("keydown", keyboardShortCut);
 
     return () => {
-      videoNativeFullscreenIcon?.removeEventListener("click", goFullScreen);
-      videoNativeFullscreenIcon.removeEventListener("click", exitFullScreen);
+      nativeFullscreenIcon?.removeEventListener("click", goFullScreen);
+      nativeFullscreenIcon.removeEventListener("click", exitFullScreen);
       videoTarget.removeEventListener(
         "fullscreenchange",
         nativeVideoFullscreenDesignProcess
@@ -154,11 +162,6 @@ export default ({
   return <UnnecessaryDiv />;
 };
 interface St2VideoActionLogicProps {
-  videoTarget: any;
-  videoNativeFullscreenIcon: HTMLElement;
   keyboardShortCutAble: () => boolean;
-  videoPlayerControls: HTMLElement;
-  videoPlayer: HTMLVideoElement;
-  videoVolumeBarValue: HTMLElement;
-  videoMoreMenuScreen: HTMLElement;
+  videoElem: videoHtmlPlayerStructureInEditor;
 }

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import getBlobDuration from "get-blob-duration";
 import { MediaClock } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
 import { mediaStateRenewalCycle } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Formula";
+import { videoHtmlPlayerStructureInEditor } from "../St1ReusableItems/NativeVideoPlayerTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
@@ -10,15 +11,21 @@ const UnnecessaryDiv = styled.div`
 
 export default ({
   InEditor,
-  videoPlayer,
-  videoPlayBtn,
-  videoEndTime,
-  getvideoCurrentTime,
+  getcurrentTime,
   statusBarMoving,
-  videoInfoMemory,
   mediaTargetId,
   playerClicked,
+  videoElem,
 }: St2VideoActionLogicProps) => {
+  const {
+    videoPlayer,
+    bottom: {
+      timeNumber: { endTime },
+      basicButton: { playBtn },
+    },
+    memory: { videoInfoMemory },
+  } = videoElem;
+
   const getVideoDuration = async (videoPlayer: any) => {
     let duration: number;
     if (!isFinite(videoPlayer.duration)) {
@@ -33,12 +40,12 @@ export default ({
   };
   const timeGo2 = useRef(0);
   const setVideoTotalTime = async () => {
-    if (videoPlayer && videoEndTime) {
+    if (videoPlayer && endTime) {
       videoPlayer.volume = 0.5;
       const Duration = await getVideoDuration(videoPlayer);
       videoInfoMemory.textContent = `${Duration}`;
       const totalTimeString = MediaClock(Duration);
-      videoEndTime.textContent = totalTimeString;
+      endTime.textContent = totalTimeString;
       timeGo2.current = setInterval(
         statusBarMoving,
         mediaStateRenewalCycle(Duration)
@@ -47,7 +54,7 @@ export default ({
   };
   const handleVideoEnded = () => {
     videoPlayer?.pause();
-    videoPlayBtn?.setAttribute("class", "icon-play videoPlayIcon");
+    playBtn?.setAttribute("class", "icon-play videoPlayIcon");
   };
   const clickPlayer = (e: any) => {
     const plau = e.target.closest(".videoPlayer");
@@ -65,7 +72,7 @@ export default ({
     setVideoTotalTime();
     videoPlayer?.addEventListener("loadedmetadata", setVideoTotalTime);
     videoPlayer?.addEventListener("ended", handleVideoEnded);
-    const timeGo1 = setInterval(getvideoCurrentTime, 1000);
+    const timeGo1 = setInterval(getcurrentTime, 1000);
     document.addEventListener("click", clickPlayer);
 
     return () => {
@@ -83,12 +90,9 @@ export default ({
 
 interface St2VideoActionLogicProps {
   InEditor: RefObject<HTMLElement>;
-  videoPlayer: HTMLVideoElement;
-  videoPlayBtn: HTMLElement;
-  videoEndTime: HTMLElement;
-  getvideoCurrentTime: () => void;
+  getcurrentTime: () => void;
   statusBarMoving: () => void;
-  videoInfoMemory: HTMLElement;
   mediaTargetId: any;
   playerClicked: React.MutableRefObject<boolean>;
+  videoElem: videoHtmlPlayerStructureInEditor;
 }

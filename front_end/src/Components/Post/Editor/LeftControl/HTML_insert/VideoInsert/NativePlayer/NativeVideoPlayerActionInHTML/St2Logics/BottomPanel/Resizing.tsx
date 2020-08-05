@@ -1,17 +1,22 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
+import { videoHtmlPlayerStructureInEditor } from "../../St1ReusableItems/NativeVideoPlayerTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
-export default ({
-  videoTarget,
-  videoResizeHandle,
-  videoPlayer,
-}: St2VideoActionLogicProps) => {
+export default ({ videoElem }: St2VideoActionLogicProps) => {
+  const {
+    videoTarget,
+    videoPlayer,
+    bottom: {
+      toolBox: { resizeHandle },
+    },
+  } = videoElem;
+
   const resizeHandleActive = useRef(false);
-  const videoResizeHandleMouseMove = (e: any) => {
+  const resizeHandleMouseMove = (e: any) => {
     if (videoTarget) {
       let width = 0;
       width =
@@ -40,15 +45,15 @@ export default ({
       resizeHandleActive.current = true;
     }
   };
-  const videoResizeHandleMouseDown = (e: any) => {
+  const resizeHandleMouseDown = (e: any) => {
     if (e.button === 0) {
-      videoResizeHandleMouseMove(e);
-      document.addEventListener("mousemove", videoResizeHandleMouseMove);
+      resizeHandleMouseMove(e);
+      document.addEventListener("mousemove", resizeHandleMouseMove);
     }
   };
-  const videoResizeHandleMouseUp = (e: any) => {
+  const resizeHandleMouseUp = (e: any) => {
     if (e.button === 0) {
-      document.removeEventListener("mousemove", videoResizeHandleMouseMove);
+      document.removeEventListener("mousemove", resizeHandleMouseMove);
       if (resizeHandleActive.current) {
         document.execCommand("insertHTML", false, "<div></div>");
         resizeHandleActive.current = false;
@@ -57,18 +62,12 @@ export default ({
   };
 
   useEffect(() => {
-    videoResizeHandle?.addEventListener(
-      "mousedown",
-      videoResizeHandleMouseDown
-    );
-    document?.addEventListener("mouseup", videoResizeHandleMouseUp);
+    resizeHandle?.addEventListener("mousedown", resizeHandleMouseDown);
+    document?.addEventListener("mouseup", resizeHandleMouseUp);
 
     return () => {
-      videoResizeHandle?.removeEventListener(
-        "mousedown",
-        videoResizeHandleMouseDown
-      );
-      document?.removeEventListener("mouseup", videoResizeHandleMouseUp);
+      resizeHandle?.removeEventListener("mousedown", resizeHandleMouseDown);
+      document?.removeEventListener("mouseup", resizeHandleMouseUp);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -76,7 +75,5 @@ export default ({
 };
 
 interface St2VideoActionLogicProps {
-  videoTarget: Element;
-  videoResizeHandle: HTMLElement;
-  videoPlayer: HTMLVideoElement;
+  videoElem: videoHtmlPlayerStructureInEditor;
 }

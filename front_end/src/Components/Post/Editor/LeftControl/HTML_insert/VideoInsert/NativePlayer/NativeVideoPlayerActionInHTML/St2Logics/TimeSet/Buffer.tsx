@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { videoHtmlPlayerStructureInEditor } from "../../St1ReusableItems/NativeVideoPlayerTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
-export default ({
-  videoPlayer,
-  videoBasebarBuffer,
-  videoInfoMemory,
-}: St2VideoActionLogicProps) => {
+export default ({ videoElem }: St2VideoActionLogicProps) => {
+  const {
+    videoPlayer,
+    middle: {
+      timeAppoint: { basebarBuffer },
+    },
+    memory: { videoInfoMemory },
+  } = videoElem;
+
   const setBufferWidth = async () => {
     if (videoInfoMemory.textContent) {
       for (let i = 0; i < videoPlayer.buffered.length; i++) {
@@ -18,7 +23,7 @@ export default ({
         const curr = videoPlayer.currentTime;
         if (curr > start && curr < end) {
           const progressRatio = end / parseInt(videoInfoMemory.textContent);
-          videoBasebarBuffer.style.width = `${progressRatio * 100}%`;
+          basebarBuffer.style.width = `${progressRatio * 100}%`;
           break;
         }
       }
@@ -38,7 +43,5 @@ export default ({
 };
 
 interface St2VideoActionLogicProps {
-  videoPlayer: HTMLVideoElement;
-  videoBasebarBuffer: HTMLElement;
-  videoInfoMemory: HTMLElement;
+  videoElem: videoHtmlPlayerStructureInEditor;
 }

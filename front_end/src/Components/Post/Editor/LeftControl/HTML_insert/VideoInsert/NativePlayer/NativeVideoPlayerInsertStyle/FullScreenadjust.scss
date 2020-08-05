@@ -12,12 +12,15 @@
     }
     & .video_player_three_dot_menu {
       font-size: 1.3rem;
-      & > div {
+      & > div:nth-child(n + 2) > div {
         height: 45px;
       }
-      & .video_player_three_dot_menu_back_icon {
-        width: 45px;
+      & .video_player_three_dot_menu_back {
         height: 45px;
+        & .video_player_three_dot_menu_back_icon {
+          width: 45px;
+          height: 45px;
+        }
       }
     }
     & .video_time_navigation {
@@ -85,10 +88,10 @@
             }
           }
         }
-        & .videoVolumeBarHide {
+        & .volumeBarHide {
           width: 50px;
         }
-        & .videoVolumeBarShow {
+        & .volumeBarShow {
           width: 180px;
         }
         & .video_tool_box {
