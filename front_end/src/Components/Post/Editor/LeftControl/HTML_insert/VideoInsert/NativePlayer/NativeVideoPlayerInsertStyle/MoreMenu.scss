@@ -14,7 +14,10 @@
   transition-timing-function: ease;
   color: black;
   overflow: hidden;
-  @mixin menuSmallHover {
+  @mixin MenuCell {
+    width: 100%;
+    height: 30px;
+    align-items: center;
     &:hover {
       background-color: #dfe6e9;
       cursor: pointer;
@@ -25,22 +28,18 @@
     width: 100%;
     @include IncludeScrollBar;
   }
-  & > div:nth-child(n + 2) > div {
+  .video_player_menu_basic > div {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 30px;
     overflow: hidden;
     white-space: nowrap;
-    @include menuSmallHover;
+    @include MenuCell;
   }
   .video_player_three_dot_menu_back {
     display: flex;
     justify-content: flex-end;
-    width: 100%;
-    height: 30px;
-    @include menuSmallHover;
+    @include MenuCell;
     .video_player_three_dot_menu_back_icon {
       display: flex;
       justify-content: center;
@@ -50,9 +49,15 @@
     }
   }
   .video_player_menu_speed_back_basic {
-    justify-content: flex-start !important;
+    align-items: center;
+    @include MenuCell;
   }
   .video_player_menu_speed {
     display: none;
+    & > div:nth-child(n + 2) {
+      display: grid;
+      grid-template-columns: 1fr 3fr;
+      @include MenuCell;
+    }
   }
 }

@@ -69,7 +69,7 @@ export default (address: string, videoInfo?: any) => {
             </div>
             <div class="video_player_menu_basic">
               <div class="video_player_menu_playback_speed">
-                Playback speed
+                Speed
               </div>
             </div>
             <div class="video_player_menu_speed">
@@ -78,28 +78,36 @@ export default (address: string, videoInfo?: any) => {
                 Back
               </div>
               <div class="video_player_menu_speed_dot25">
-                0.25
+                <div></div>
+                <div>0.25</div> 
               </div>
               <div class="video_player_menu_speed_dot5">
-                0.5
+                <div></div>
+                <div>0.5</div>
               </div>
               <div class="video_player_menu_speed_dot75">
-                0.75
+                <div></div>
+                <div>0.75</div>
               </div>
               <div class="video_player_menu_speed_1">
-                1
+                <div></div>
+                <div>1</div> 
               </div>
               <div class="video_player_menu_speed_1dot25">
-                1.25
+                <div></div>
+                <div>1.25</div>
               </div>
               <div class="video_player_menu_speed_1dot5">
-                1.5
+                <div></div>
+                <div>1.5</div>
               </div>
               <div class="video_player_menu_speed_1dot75">
-                1.75
+                <div></div>
+                <div>1.75</div>
               </div>
               <div class="video_player_menu_speed_2">
-                2
+                <div></div>
+                <div>2</div>
               </div>
             </div>
           </div>

@@ -30,7 +30,7 @@ export default ({ videoElem }: St2VideoActionLogicProps) => {
     playBackSpeed.style.display = "none";
   };
   const changeInSpeed = (n: number) => {
-    videoPlayer.defaultPlaybackRate = n;
+    videoPlayer.playbackRate = n;
     backToBasic();
   };
 

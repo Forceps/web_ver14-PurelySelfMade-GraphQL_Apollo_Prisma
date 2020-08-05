@@ -23,7 +23,7 @@ export default ({
     if (document.fullscreenElement !== null) {
       moreMenuScreen.style.width = "300px";
     } else {
-      moreMenuScreen.style.width = "150px";
+      moreMenuScreen.style.width = "120px";
     }
     CaretLocation.current = saveSelection();
   };
