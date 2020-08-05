@@ -1,3 +1,5 @@
+@import "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per.scss";
+
 .audioPlayer_controls_manipulator {
   display: grid;
   grid-template-columns: 125px 130px 1fr;
@@ -51,6 +53,7 @@
     justify-content: flex-end;
     position: relative;
     min-width: 60px;
+    @include WH100per;
     .audio_end_time {
       margin: -5px 0 0 0;
       padding-right: 6px;

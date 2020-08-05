@@ -1,16 +1,16 @@
-.WH100per {
+@mixin WH100per {
   width: 100%;
   height: 100%;
 }
 
-.WH100perAc {
+@mixin WH100perAc {
   display: flex;
   align-items: center;
   width: 100%;
   height: 100%;
 }
 
-.WH100perAcJc {
+@mixin WH100perAcJc {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,6 +18,6 @@
   height: 100%;
 }
 
-.opacity_0 {
+@mixin opacity_0 {
   opacity: 0;
 }

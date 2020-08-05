@@ -1,6 +1,5 @@
 import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
-import "../IteratePattern/WH100per.scss";
 
 interface GlobalStyleProps {
   theme: any;

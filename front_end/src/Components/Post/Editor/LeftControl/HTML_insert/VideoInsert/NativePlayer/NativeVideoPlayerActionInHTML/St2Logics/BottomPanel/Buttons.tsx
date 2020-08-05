@@ -14,6 +14,7 @@ export default ({
 }: St2VideoActionLogicProps) => {
   const {
     videoPlayer,
+    videoTarget,
     videoPlayerControls,
     top: { ControlsIntro },
     bottom: {
@@ -23,11 +24,13 @@ export default ({
   } = videoElem;
 
   const flashClear = useRef(0);
+  const flashClear2 = useRef(0);
   const handleVideoPlayClick = () => {
     if (videoPlayer.paused) {
       videoPlayer.play();
       playBtn.setAttribute("class", "icon-pause-1 videoPlayIcon");
       if (document.fullscreenElement !== null) {
+        clearTimeout(flashClear2.current);
         flashClear.current = setTimeout(() => {
           videoPlayerControls.setAttribute(
             "class",
@@ -35,7 +38,8 @@ export default ({
           );
         }, 1000);
       } else {
-        flashClear.current = setTimeout(() => {
+        clearTimeout(flashClear.current);
+        flashClear2.current = setTimeout(() => {
           videoPlayerControls.setAttribute(
             "class",
             "videoPlayer_controls videoPlayer_controls_at_play"
@@ -44,6 +48,7 @@ export default ({
       }
     } else {
       clearTimeout(flashClear.current);
+      clearTimeout(flashClear2.current);
       videoPlayer.pause();
       playBtn.setAttribute("class", "icon-play videoPlayIcon");
       videoPlayerControls.setAttribute(
@@ -92,18 +97,27 @@ export default ({
       }
     }
   };
+  const fullscreenChangeProcess = () => {
+    clearTimeout(flashClear.current);
+    clearTimeout(flashClear2.current);
+  };
 
   useEffect(() => {
     playBtn?.addEventListener("click", handleVideoPlayClick);
     backToStartIcon?.addEventListener("click", videoBackToStart);
     ControlsIntro?.addEventListener("click", handleVideoPlayClick);
     document.addEventListener("keydown", keyboardShortCut);
+    videoTarget.addEventListener("fullscreenchange", fullscreenChangeProcess);
 
     return () => {
       playBtn?.removeEventListener("click", handleVideoPlayClick);
       backToStartIcon?.removeEventListener("click", videoBackToStart);
       ControlsIntro?.removeEventListener("click", handleVideoPlayClick);
       document.removeEventListener("keydown", keyboardShortCut);
+      videoTarget.removeEventListener(
+        "fullscreenchange",
+        fullscreenChangeProcess
+      );
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

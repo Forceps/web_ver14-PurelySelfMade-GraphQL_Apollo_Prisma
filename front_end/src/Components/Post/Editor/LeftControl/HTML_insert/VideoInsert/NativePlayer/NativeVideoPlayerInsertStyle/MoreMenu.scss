@@ -49,14 +49,16 @@
     }
   }
   .video_player_menu_speed_back_basic {
-    align-items: center;
+    display: flex;
+    padding: 0 0 0 5px;
     @include MenuCell;
   }
   .video_player_menu_speed {
     display: none;
     & > div:nth-child(n + 2) {
-      display: grid;
-      grid-template-columns: 1fr 3fr;
+      display: flex;
+      padding: 0 0 0 20px;
+      font-size: 0.9rem;
       @include MenuCell;
     }
   }

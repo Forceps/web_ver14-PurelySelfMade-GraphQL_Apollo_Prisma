@@ -16,7 +16,7 @@ export default (address: string, videoInfo?: any) => {
           <div class="videoPlayer_controls_intro">
             <div class="video_caption">${videoInfo.caption}</div>
             <div class="videoPlayer_more_menu">
-              <i class="icon-ellipsis-vert video_more_menu_icon"></i>
+              <i class="icon-menu video_more_menu_icon"></i>
             </div>
           </div>
           <div class="videoPlayer_controls_timebase_padding">
@@ -54,7 +54,7 @@ export default (address: string, videoInfo?: any) => {
                   </div>
                 </div>
               </div>
-              <div class="video_tool_box WH100per">
+              <div class="video_tool_box">
                 <i class="icon-noun_fullscreen_1399012 video_native_fullscreen"></i>
                 <div class="video_info_memory">0</div>
                 <div class="video_resize_handle"></div>
@@ -78,36 +78,28 @@ export default (address: string, videoInfo?: any) => {
                 Back
               </div>
               <div class="video_player_menu_speed_dot25">
-                <div></div>
-                <div>0.25</div> 
+                0.25
               </div>
               <div class="video_player_menu_speed_dot5">
-                <div></div>
-                <div>0.5</div>
+                0.5
               </div>
               <div class="video_player_menu_speed_dot75">
-                <div></div>
-                <div>0.75</div>
+                0.75
               </div>
               <div class="video_player_menu_speed_1">
-                <div></div>
-                <div>1</div> 
+                1
               </div>
               <div class="video_player_menu_speed_1dot25">
-                <div></div>
-                <div>1.25</div>
+                1.25
               </div>
               <div class="video_player_menu_speed_1dot5">
-                <div></div>
-                <div>1.5</div>
+                1.5
               </div>
               <div class="video_player_menu_speed_1dot75">
-                <div></div>
-                <div>1.75</div>
+                1.75
               </div>
               <div class="video_player_menu_speed_2">
-                <div></div>
-                <div>2</div>
+                2
               </div>
             </div>
           </div>

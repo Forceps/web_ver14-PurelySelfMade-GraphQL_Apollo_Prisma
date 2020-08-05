@@ -2,7 +2,7 @@
   & .videoPlayer_controls {
     grid-template-rows: 1fr 27px 66px !important;
     & .videoPlayer_controls_intro {
-      padding: 10px 5px 0 10px;
+      padding: 10px 10px 0 10px;
       & .video_caption {
         font-size: 1.25rem;
       }
@@ -20,6 +20,11 @@
         & .video_player_three_dot_menu_back_icon {
           width: 45px;
           height: 45px;
+        }
+      }
+      & .video_player_menu_speed {
+        & > div:nth-child(n + 2) {
+          font-size: 1rem;
         }
       }
     }

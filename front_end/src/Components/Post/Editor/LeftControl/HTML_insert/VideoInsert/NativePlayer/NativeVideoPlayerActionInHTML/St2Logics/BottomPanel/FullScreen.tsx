@@ -98,7 +98,6 @@ export default ({
       stopGoAtFullscreen();
       fullscreenChangeEntailVolumeWidth(120);
     } else {
-      fullscreenFlashClear();
       nativeFullscreenIcon.removeEventListener("click", goFullScreen);
       nativeFullscreenIcon.removeEventListener("click", exitFullScreen);
       nativeFullscreenIcon.addEventListener("click", goFullScreen);
@@ -108,6 +107,7 @@ export default ({
       );
       videoTarget.setAttribute("class", "videoPlayer");
       videoTarget.removeEventListener("mousemove", videoPlayerControlerFlash);
+      fullscreenFlashClear();
       if (!videoPlayer.paused) {
         videoPlayerControls.setAttribute(
           "class",

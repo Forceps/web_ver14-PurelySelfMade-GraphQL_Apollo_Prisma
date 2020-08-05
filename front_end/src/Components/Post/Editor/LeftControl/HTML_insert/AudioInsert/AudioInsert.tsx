@@ -51,7 +51,7 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
                 </div>
               </div>
             </div>
-            <div class="audio_end_time_box WH100per">
+            <div class="audio_end_time_box">
               <div class="audio_end_time">0:00</div>
               <div class="audio_info_memory">0</div>
               <div class="audio_resize_handle"></div>

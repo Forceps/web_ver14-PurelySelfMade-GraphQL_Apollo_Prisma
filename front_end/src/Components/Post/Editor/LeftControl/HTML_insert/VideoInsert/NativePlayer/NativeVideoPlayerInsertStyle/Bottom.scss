@@ -1,3 +1,5 @@
+@import "../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per.scss";
+
 .videoPlayer_bottom {
   display: grid;
   grid-template-rows: 20px 1fr;
@@ -37,7 +39,7 @@
       display: flex;
     }
     .video_time_slash {
-      padding: 0 0 1.3px 0;
+      padding: 0 0 1px 0;
     }
     .video_end_time {
       display: flex;
@@ -90,6 +92,7 @@
     justify-content: flex-end;
     position: relative;
     min-width: 60px;
+    @include WH100per;
     .video_native_fullscreen {
       display: flex;
       padding: 3px;
