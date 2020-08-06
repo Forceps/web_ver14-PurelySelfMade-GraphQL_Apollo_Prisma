@@ -29,8 +29,9 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
               <div class="audio_timebase_number">0:00</div>
               <div class="audio_timebase_bar_container">
                 <div class="audio_timebase_bar">
-                <div class="audio_timebase_bar_buffer"></div>
-                <div class="audio_timebase_bar_value"></div>
+                  <div class="audio_timebase_navigate"></div>
+                  <div class="audio_timebase_bar_buffer"></div>
+                  <div class="audio_timebase_bar_value"></div>
                 </div>
                 <div class="audio_timebase_bar_handle"></div>
               </div>

@@ -2,7 +2,7 @@
   display: flex;
   position: relative;
   height: 100%;
-  width: calc(100% - 6px);
+  width: 100%;
   .video_time_navigate_number {
     display: none;
     position: absolute;
@@ -41,21 +41,24 @@
         position: relative;
         height: 3px;
         width: 100%;
-        background-color: rgba(223, 230, 233, 0.3);
+        background-color: rgba(223, 230, 233, 0.21);
         transition-property: transform;
         transition-duration: 0.08s;
         transition-timing-function: ease-out;
-        .video_timebase_bar_value {
+        & > div {
           height: 100%;
           position: absolute;
-          background-color: #fafafa;
           transform-origin: 0 0;
         }
+        .video_timebase_bar_value {
+          background-color: #fafafa;
+        }
         .video_timebase_bar_buffer {
-          height: 100%;
-          position: absolute;
-          background-color: rgba(223, 230, 233, 0.4);
-          transform-origin: 0 0;
+          background-color: rgba(223, 230, 233, 0.28);
+        }
+        .video_timebase_navigate {
+          display: none;
+          background-color: rgba(223, 230, 233, 0.28);
         }
       }
       .video_timebase_bar_handle {

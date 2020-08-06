@@ -9,7 +9,7 @@ const RestZone = styled(WH100per)`
   position: relative;
   min-width: 60px;
 `;
-const EndTime = styled.div`
+const AudioEndTime = styled.div`
   margin: -5px 0 0 0;
   padding-right: 6px;
 `;
@@ -44,7 +44,7 @@ export default ({ TotalTime, WithImg, audioTarget }: RestZoneProps) => {
 
   return (
     <RestZone>
-      <EndTime>{MediaClock(TotalTime)}</EndTime>
+      <AudioEndTime>{MediaClock(TotalTime)}</AudioEndTime>
       <ResizeHandle
         WithImg={WithImg}
         onMouseDown={(e) => {

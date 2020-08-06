@@ -63,13 +63,13 @@ const TimebaseBarHandle = styled.div`
 
 export default ({
   CurrentTime,
-  audioTimeBar,
-  audioBarHandle,
+  timeBar,
+  barHandle,
   Navigation,
   NavigateNumber,
   baseNum,
   baseBarConRef,
-  audioCurrentTimeControlMouseMove,
+  currentTimeControlMouseMove,
   audioTimeNavigate,
 }: TimeBarProps) => {
   return (
@@ -84,10 +84,10 @@ export default ({
             ref={baseBarConRef}
             onMouseDown={(e) => {
               if (e.button === 0) {
-                audioCurrentTimeControlMouseMove(e);
+                currentTimeControlMouseMove(e);
                 document.addEventListener(
                   "mousemove",
-                  audioCurrentTimeControlMouseMove
+                  currentTimeControlMouseMove
                 );
               }
             }}
@@ -95,7 +95,7 @@ export default ({
               if (e.button === 0) {
                 document.removeEventListener(
                   "mousemove",
-                  audioCurrentTimeControlMouseMove
+                  currentTimeControlMouseMove
                 );
               }
             }}
@@ -113,8 +113,8 @@ export default ({
               }
             }}
           >
-            <TimebaseBar value="0" max="1" ref={audioTimeBar} />
-            <TimebaseBarHandle ref={audioBarHandle} />
+            <TimebaseBar value="0" max="1" ref={timeBar} />
+            <TimebaseBarHandle ref={barHandle} />
           </TimebaseBarContainer>
         </Timebase>
       </TimebasePadding>
@@ -123,12 +123,12 @@ export default ({
 };
 interface TimeBarProps {
   CurrentTime: string;
-  audioTimeBar: RefObject<HTMLProgressElement>;
-  audioBarHandle: RefObject<HTMLDivElement>;
+  timeBar: RefObject<HTMLProgressElement>;
+  barHandle: RefObject<HTMLDivElement>;
   Navigation: RefObject<HTMLDivElement>;
   NavigateNumber: RefObject<HTMLDivElement>;
   baseNum: RefObject<HTMLDivElement>;
   baseBarConRef: RefObject<HTMLDivElement>;
-  audioCurrentTimeControlMouseMove: (e: any) => void;
+  currentTimeControlMouseMove: (e: any) => void;
   audioTimeNavigate: (e: any) => void;
 }

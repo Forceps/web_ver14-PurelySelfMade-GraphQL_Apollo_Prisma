@@ -1,13 +1,13 @@
 import React, { RefObject, useRef } from "react";
 import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
-import Buttons from "../St2Logics/Buttons";
+import Buttons from "../St2Logics/BottomPanel/Buttons";
 import Initiate from "../St2Logics/Initiate";
-import TimeNavigate from "../St2Logics/TimeNavigate";
-import Volume from "../St2Logics/Volume";
-import TimeAppointing from "../St2Logics/TimeAppointing";
-import Resizing from "../St2Logics/Resizing";
-import MoreMenu from "../St2Logics/MoreMenu";
-import Buffer from "../St2Logics/Buffer";
+import TimeNavigate from "../St2Logics/TimeSet/TimeNavigate";
+import Volume from "../St2Logics/BottomPanel/Volume";
+import TimeAppointing from "../St2Logics/TimeSet/TimeAppointing";
+import Resizing from "../St2Logics/BottomPanel/Resizing";
+import MoreMenu from "../St2Logics/MoreMenu/MoreMenu";
+import Buffer from "../St2Logics/TimeSet/Buffer";
 import { audioHtmlPlayerStructureInEditor } from "./AudioTargetSpecific";
 
 interface ReusingLogicProps {
@@ -28,44 +28,37 @@ export default ({
     audioPlayer,
     audioTarget,
     middle: {
-      timeAppoint: {
-        audioTimeBarValue,
-        audioCurrentTime,
-        audioTimeBar,
-        audioBarHandle,
-      },
+      timeAppoint: { timeBarValue, currentTime, timeBar, barHandle },
     },
     memory: { audioInfoMemory },
   } = audioElem;
 
-  const getAudioCurrentTime = () => {
-    audioTimeBarValue.style.width = `100%`;
-    if (audioPlayer && audioCurrentTime) {
-      audioCurrentTime.textContent = MediaClock(
-        Math.floor(audioPlayer.currentTime)
-      );
+  const getcurrentTime = () => {
+    timeBarValue.style.width = `100%`;
+    if (audioPlayer && currentTime) {
+      currentTime.textContent = MediaClock(Math.floor(audioPlayer.currentTime));
     }
   };
   const statusBarMoving = () => {
     if (
       audioPlayer &&
-      audioTimeBar &&
-      audioTimeBarValue &&
+      timeBar &&
+      timeBarValue &&
       audioInfoMemory.textContent &&
       parseInt(audioInfoMemory.textContent)
     ) {
       const progressRatio =
         audioPlayer.currentTime / parseInt(audioInfoMemory.textContent);
-      let HandleLocation = audioTimeBar?.clientWidth * progressRatio;
-      audioTimeBarValue.style.transform = `scaleX(${progressRatio})`;
+      let HandleLocation = timeBar?.clientWidth * progressRatio;
+      timeBarValue.style.transform = `scaleX(${progressRatio})`;
       if (HandleLocation < 5) {
         HandleLocation = 0;
-      } else if (HandleLocation > audioTimeBar?.clientWidth - 5) {
-        HandleLocation = audioTimeBar?.clientWidth - 10;
+      } else if (HandleLocation > timeBar?.clientWidth - 5) {
+        HandleLocation = timeBar?.clientWidth - 10;
       } else {
         HandleLocation = HandleLocation - 5;
       }
-      audioBarHandle.style.transform = `translateX(${HandleLocation}px)`;
+      barHandle.style.transform = `translateX(${HandleLocation}px)`;
     }
   };
   const audioGauge_x_axis = (e: any, viewNode: any, clickNode?: any) => {
@@ -81,7 +74,7 @@ export default ({
     return x;
   };
   const audioSetTimeDenote = () => {
-    getAudioCurrentTime();
+    getcurrentTime();
     statusBarMoving();
   };
   const playerClicked = useRef(false);
@@ -97,7 +90,7 @@ export default ({
     <>
       <Initiate
         InEditor={InEditor}
-        getAudioCurrentTime={getAudioCurrentTime}
+        getcurrentTime={getcurrentTime}
         statusBarMoving={statusBarMoving}
         mediaTargetId={mediaTargetId}
         playerClicked={playerClicked}

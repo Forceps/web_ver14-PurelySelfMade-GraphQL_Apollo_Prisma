@@ -36,64 +36,44 @@
       background-color: #fafafa !important;
     }
     & .audio_timebase_bar {
-      background-color: rgba(223, 230, 233, 0.3) !important;
-    }
-    & .audio_timebase_bar_value {
-      background-color: #fafafa !important;
-    }
-    & .audio_timebase_bar_buffer {
-      background-color: rgba(223, 230, 233, 0.4) !important;
+      background-color: rgba(223, 230, 233, 0.21) !important;
+      & .audio_timebase_bar_value {
+        background-color: #fafafa !important;
+      }
+      & .audio_timebase_bar_buffer {
+        background-color: rgba(223, 230, 233, 0.28) !important;
+      }
+      & .audio_timebase_navigate {
+        background-color: rgba(223, 230, 233, 0.28) !important;
+      }
     }
     & .audio_volume_bar {
       background-color: rgba(223, 230, 233, 0.4) !important;
+      & .audio_volume_bar_value {
+        background-color: #fafafa !important;
+      }
     }
-    & .audio_volume_bar_value {
-      background-color: #fafafa !important;
-    }
+  }
+  @mixin innerShadow {
+    box-shadow: 0px 100px 30px -70px rgba(0, 0, 0, 0.3) inset,
+      0px -150px 50px -60px rgba(0, 0, 0, 0.4) inset;
   }
   .audioPlayer_controls_with_img_playing {
     &:hover {
-      box-shadow: 0px 100px 30px -70px rgba(0, 0, 0, 0.3) inset,
-        0px -150px 50px -60px rgba(0, 0, 0, 0.3) inset;
-      & .audio_time_navigation {
-        opacity: 1;
-      }
-      & .audioPlayer_controls_timebase_padding {
-        opacity: 1;
-      }
-      & .audioPlayer_controls_manipulator {
-        opacity: 1;
-      }
-      & .audio_player_three_dot_menu {
-        opacity: 1;
-      }
+      @include innerShadow();
+      opacity: 1;
     }
     transition-property: box-shadow;
     transition-duration: 0.18s;
     transition-timing-function: ease;
     @include audioBackImgExist;
-    @mixin audioBlickerTransition {
-      opacity: 0;
-      transition-property: opacity;
-      transition-duration: 0.18s;
-      transition-timing-function: ease;
-    }
-    & .audio_time_navigation {
-      @include audioBlickerTransition;
-    }
-    & .audioPlayer_controls_timebase_padding {
-      @include audioBlickerTransition;
-    }
-    & .audioPlayer_controls_manipulator {
-      @include audioBlickerTransition;
-    }
-    & .audio_player_three_dot_menu {
-      @include audioBlickerTransition;
-    }
+    opacity: 0;
+    transition-property: opacity;
+    transition-duration: 0.18s;
+    transition-timing-function: ease;
   }
   .audioPlayer_controls_with_img_stop {
-    box-shadow: 0px 100px 30px -70px rgba(0, 0, 0, 0.3) inset,
-      0px -150px 50px -60px rgba(0, 0, 0, 0.3) inset;
+    @include innerShadow();
     @include audioBackImgExist;
   }
 }

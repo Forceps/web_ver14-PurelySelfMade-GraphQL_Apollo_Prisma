@@ -5,8 +5,8 @@ import TimeBarPre from "./TimeBarPre";
 export default ({
   audioTag,
   CurrentTime,
-  audioTimeBar,
-  audioBarHandle,
+  timeBar,
+  barHandle,
   TotalTime,
   audioSetTimeDenote,
   audioGauge_x_axis,
@@ -16,13 +16,9 @@ export default ({
   const baseNum = useRef<HTMLDivElement>(null);
   const baseBarConRef = useRef<HTMLDivElement>(null);
 
-  const audioCurrentTimeControlMouseMove = (e: any) => {
+  const currentTimeControlMouseMove = (e: any) => {
     if (audioTag) {
-      const movedValue = audioGauge_x_axis(
-        e,
-        audioTimeBar.current,
-        e.currentTarget
-      );
+      const movedValue = audioGauge_x_axis(e, timeBar.current, e.currentTarget);
       audioTag.currentTime = movedValue * TotalTime;
       audioSetTimeDenote();
     }
@@ -58,13 +54,13 @@ export default ({
   return (
     <TimeBarPre
       CurrentTime={CurrentTime}
-      audioTimeBar={audioTimeBar}
-      audioBarHandle={audioBarHandle}
+      timeBar={timeBar}
+      barHandle={barHandle}
       Navigation={Navigation}
       NavigateNumber={NavigateNumber}
       baseNum={baseNum}
       baseBarConRef={baseBarConRef}
-      audioCurrentTimeControlMouseMove={audioCurrentTimeControlMouseMove}
+      currentTimeControlMouseMove={currentTimeControlMouseMove}
       audioTimeNavigate={audioTimeNavigate}
     />
   );
@@ -72,8 +68,8 @@ export default ({
 interface TimeBarProps {
   audioTag: HTMLAudioElement | null;
   CurrentTime: string;
-  audioTimeBar: RefObject<HTMLProgressElement>;
-  audioBarHandle: RefObject<HTMLDivElement>;
+  timeBar: RefObject<HTMLProgressElement>;
+  barHandle: RefObject<HTMLDivElement>;
   TotalTime: number;
   audioSetTimeDenote: () => void;
   audioGauge_x_axis: (e: any, viewNode: any, clickNode?: any) => number;

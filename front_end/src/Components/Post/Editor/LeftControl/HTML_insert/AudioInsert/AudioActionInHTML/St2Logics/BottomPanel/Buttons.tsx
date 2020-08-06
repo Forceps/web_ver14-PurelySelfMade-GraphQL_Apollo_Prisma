@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { spaped } from "../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
+import { spaped } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { audioHtmlPlayerStructureInEditor } from "../../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
@@ -15,14 +15,9 @@ export default ({
   const {
     audioPlayer,
     audioTarget,
-    top: { audioControlsIntro },
+    top: { controlsIntro },
     bottom: {
-      basicButton: {
-        audioPlayBtn,
-        audioBackToStartIcon,
-        audioFrontMoveIcon,
-        audioBackMoveIcon,
-      },
+      basicButton: { playBtn, backToStartIcon, frontMoveIcon, backMoveIcon },
     },
     memory: { audioInfoMemory },
   } = audioElem;
@@ -30,7 +25,7 @@ export default ({
   const handleAudioPlayClick = () => {
     if (audioPlayer.paused) {
       audioPlayer.play();
-      audioPlayBtn.setAttribute("class", "icon-pause-1 audioPlayIcon");
+      playBtn.setAttribute("class", "icon-pause-1 audioPlayIcon");
       const playerControle = audioTarget.querySelector(
         ".audioPlayer_controls_with_img_stop"
       );
@@ -44,7 +39,7 @@ export default ({
       }
     } else {
       audioPlayer.pause();
-      audioPlayBtn.setAttribute("class", "icon-play audioPlayIcon");
+      playBtn.setAttribute("class", "icon-play audioPlayIcon");
       const playerControle = audioTarget.querySelector(
         ".audioPlayer_controls_with_img_playing"
       );
@@ -98,27 +93,27 @@ export default ({
   };
 
   useEffect(() => {
-    audioPlayBtn.addEventListener("click", handleAudioPlayClick);
-    audioBackToStartIcon.addEventListener("click", audioBackToStart);
-    audioFrontMoveIcon.addEventListener("click", () => {
+    playBtn.addEventListener("click", handleAudioPlayClick);
+    backToStartIcon.addEventListener("click", audioBackToStart);
+    frontMoveIcon.addEventListener("click", () => {
       audioTimeMediumMove("front", 15);
     });
-    audioBackMoveIcon.addEventListener("click", () => {
+    backMoveIcon.addEventListener("click", () => {
       audioTimeMediumMove("back", 15);
     });
-    audioControlsIntro.addEventListener("click", handleAudioPlayClick);
+    controlsIntro.addEventListener("click", handleAudioPlayClick);
     document.addEventListener("keydown", keyboardShortCut);
 
     return () => {
-      audioPlayBtn.removeEventListener("click", handleAudioPlayClick);
-      audioBackToStartIcon.removeEventListener("click", audioBackToStart);
-      audioFrontMoveIcon.removeEventListener("click", () => {
+      playBtn.removeEventListener("click", handleAudioPlayClick);
+      backToStartIcon.removeEventListener("click", audioBackToStart);
+      frontMoveIcon.removeEventListener("click", () => {
         audioTimeMediumMove("front", 15);
       });
-      audioBackMoveIcon.removeEventListener("click", () => {
+      backMoveIcon.removeEventListener("click", () => {
         audioTimeMediumMove("back", 15);
       });
-      audioControlsIntro.removeEventListener("click", handleAudioPlayClick);
+      controlsIntro.removeEventListener("click", handleAudioPlayClick);
       document.removeEventListener("keydown", keyboardShortCut);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps

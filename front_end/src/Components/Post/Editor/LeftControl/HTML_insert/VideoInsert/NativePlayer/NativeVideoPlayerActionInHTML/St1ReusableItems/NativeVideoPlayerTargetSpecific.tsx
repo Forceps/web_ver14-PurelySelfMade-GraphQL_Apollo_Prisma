@@ -37,6 +37,7 @@ export default ({
         timeBarContainer: factor(".video_timebase_bar_container"),
         barHandle: factor(".video_timebase_bar_handle"),
         basebarBuffer: factor(".video_timebase_bar_buffer"),
+        timebaseNavigate: factor(".video_timebase_navigate"),
       },
     },
     bottom: {
@@ -124,6 +125,7 @@ export interface videoHtmlPlayerStructureInEditor {
       timeBarContainer: HTMLElement;
       barHandle: HTMLElement;
       basebarBuffer: HTMLElement;
+      timebaseNavigate: HTMLElement;
     };
   };
   bottom: {

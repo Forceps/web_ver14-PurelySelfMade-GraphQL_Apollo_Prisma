@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
+import { audioHtmlPlayerStructureInEditor } from "../../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;

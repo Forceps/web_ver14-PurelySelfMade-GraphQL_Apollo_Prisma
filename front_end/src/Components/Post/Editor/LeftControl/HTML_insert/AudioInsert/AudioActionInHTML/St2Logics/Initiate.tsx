@@ -11,7 +11,7 @@ const UnnecessaryDiv = styled.div`
 
 export default ({
   InEditor,
-  getAudioCurrentTime,
+  getcurrentTime,
   statusBarMoving,
   mediaTargetId,
   playerClicked,
@@ -20,8 +20,8 @@ export default ({
   const {
     audioPlayer,
     bottom: {
-      basicButton: { audioPlayBtn },
-      endTimeBox: { audioEndTime },
+      basicButton: { playBtn },
+      endTimeBox: { endTime },
     },
     memory: { audioInfoMemory },
   } = audioElem;
@@ -44,7 +44,7 @@ export default ({
     const Duration = await getAudioDuration(audioPlayer);
     audioInfoMemory.textContent = `${Duration}`;
     const totalTimeString = MediaClock(Duration);
-    audioEndTime.textContent = totalTimeString;
+    endTime.textContent = totalTimeString;
     timeGo2.current = setInterval(
       statusBarMoving,
       mediaStateRenewalCycle(Duration)
@@ -52,7 +52,7 @@ export default ({
   };
   const handleAudioEnded = () => {
     audioPlayer?.pause();
-    audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
+    playBtn?.setAttribute("class", "icon-play audioPlayIcon");
   };
   const clickPlayer = (e: any) => {
     const plau = e.target.closest(".audioPlayer");
@@ -70,7 +70,7 @@ export default ({
     setAudioTotalTime();
     audioPlayer?.addEventListener("loadedmetadata", setAudioTotalTime);
     audioPlayer?.addEventListener("ended", handleAudioEnded);
-    const timeGo1 = setInterval(getAudioCurrentTime, 1000);
+    const timeGo1 = setInterval(getcurrentTime, 1000);
     document.addEventListener("click", clickPlayer);
 
     return () => {
@@ -88,7 +88,7 @@ export default ({
 
 interface St2AudioActionLogicProps {
   InEditor: RefObject<HTMLElement>;
-  getAudioCurrentTime: () => void;
+  getcurrentTime: () => void;
   statusBarMoving: () => void;
   mediaTargetId: any;
   playerClicked: React.MutableRefObject<boolean>;

@@ -29,6 +29,7 @@ export default (address: string, videoInfo?: any) => {
               <div class="videoPlayer_controls_timebase">
                 <div class="video_timebase_bar_container">
                   <div class="video_timebase_bar">
+                    <div class="video_timebase_navigate"></div>
                     <div class="video_timebase_bar_buffer"></div>
                     <div class="video_timebase_bar_value"></div>
                   </div>

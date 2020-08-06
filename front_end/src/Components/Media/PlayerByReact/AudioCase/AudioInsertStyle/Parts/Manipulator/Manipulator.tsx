@@ -28,27 +28,27 @@ export default ({
   audioTarget,
 }: ManipulatorProps) => {
   const [CurrentTime, setCurrentTime] = useState("0:00");
-  const audioTimeBar = useRef<HTMLProgressElement>(null);
-  const audioBarHandle = useRef<HTMLDivElement>(null);
+  const timeBar = useRef<HTMLProgressElement>(null);
+  const barHandle = useRef<HTMLDivElement>(null);
 
-  const getAudioCurrentTime = () => {
+  const getcurrentTime = () => {
     if (audioTag) {
       setCurrentTime(MediaClock(Math.floor(audioTag.currentTime)));
     }
   };
   const statusBarMoving = () => {
-    if (audioTag && audioTimeBar.current && audioBarHandle.current) {
+    if (audioTag && timeBar.current && barHandle.current) {
       const progressRatio = audioTag.currentTime / TotalTime;
-      audioTimeBar.current?.setAttribute("value", `${progressRatio}`);
-      let HandleLocation = audioTimeBar.current?.clientWidth * progressRatio;
+      timeBar.current?.setAttribute("value", `${progressRatio}`);
+      let HandleLocation = timeBar.current?.clientWidth * progressRatio;
       if (HandleLocation < 4) {
         HandleLocation = 0;
-      } else if (HandleLocation > audioTimeBar.current?.clientWidth - 5) {
-        HandleLocation = audioTimeBar.current?.clientWidth - 9;
+      } else if (HandleLocation > timeBar.current?.clientWidth - 5) {
+        HandleLocation = timeBar.current?.clientWidth - 9;
       } else {
         HandleLocation = HandleLocation - 4;
       }
-      audioBarHandle.current.style.left = `${HandleLocation}px`;
+      barHandle.current.style.left = `${HandleLocation}px`;
     }
   };
   const audioGauge_x_axis = (
@@ -68,12 +68,12 @@ export default ({
     return x;
   };
   const audioSetTimeDenote = () => {
-    getAudioCurrentTime();
+    getcurrentTime();
     statusBarMoving();
   };
 
   useEffect(() => {
-    const timeGo1 = setInterval(getAudioCurrentTime, 1000);
+    const timeGo1 = setInterval(getcurrentTime, 1000);
     const timeGo2 = setInterval(statusBarMoving, 100);
     return () => {
       window.clearInterval(timeGo1);
@@ -87,8 +87,8 @@ export default ({
       <TimeBar
         audioTag={audioTag}
         CurrentTime={CurrentTime}
-        audioTimeBar={audioTimeBar}
-        audioBarHandle={audioBarHandle}
+        timeBar={timeBar}
+        barHandle={barHandle}
         TotalTime={TotalTime}
         audioSetTimeDenote={audioSetTimeDenote}
         audioGauge_x_axis={audioGauge_x_axis}

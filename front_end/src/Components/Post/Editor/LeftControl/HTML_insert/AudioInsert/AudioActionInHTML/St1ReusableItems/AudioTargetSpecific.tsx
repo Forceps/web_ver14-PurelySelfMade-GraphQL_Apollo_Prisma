@@ -22,44 +22,63 @@ export default ({
     audioTarget,
     audioPlayer: audioTarget.querySelector("audio") as HTMLAudioElement,
     top: {
-      audioControlsIntro: factor(".audioPlayer_controls_intro"),
-      audioMoreMenuIcon: factor(".audio_more_menu_icon"),
+      controlsIntro: factor(".audioPlayer_controls_intro"),
+      moreMenuIcon: factor(".audio_more_menu_icon"),
     },
     middle: {
       timeNavigate: {
-        audioTimeNavigation: factor(".audio_time_navigation"),
-        audioTimeNavigateNumber: factor(".audio_time_navigate_number"),
+        timeNavigation: factor(".audio_time_navigation"),
+        timeNavigateNumber: factor(".audio_time_navigate_number"),
       },
       timeAppoint: {
-        audioCurrentTime: factor(".audio_timebase_number"),
-        audioTimeBar: factor(".audio_timebase_bar"),
-        audioTimeBarValue: factor(".audio_timebase_bar_value"),
-        audioTimeBarContainer: factor(".audio_timebase_bar_container"),
-        audioBarHandle: factor(".audio_timebase_bar_handle"),
-        audioTimebaseBarBuffer: factor(".audio_timebase_bar_buffer"),
+        currentTime: factor(".audio_timebase_number"),
+        timeBar: factor(".audio_timebase_bar"),
+        timeBarValue: factor(".audio_timebase_bar_value"),
+        timeBarContainer: factor(".audio_timebase_bar_container"),
+        barHandle: factor(".audio_timebase_bar_handle"),
+        timebaseBarBuffer: factor(".audio_timebase_bar_buffer"),
+        timebaseNavigate: factor(".audio_timebase_navigate"),
       },
     },
     bottom: {
       basicButton: {
-        audioPlayBtn: factor(".audioPlayIcon"),
-        audioBackToStartIcon: factor(".audioBackToStart"),
-        audioFrontMoveIcon: factor(".audioFrontMove"),
-        audioBackMoveIcon: factor(".audioBackMove"),
+        playBtn: factor(".audioPlayIcon"),
+        backToStartIcon: factor(".audioBackToStart"),
+        frontMoveIcon: factor(".audioFrontMove"),
+        backMoveIcon: factor(".audioBackMove"),
       },
       volume: {
-        audioVolumeBtn: factor(".audioVolumeIcon"),
-        audioVolumeBar: factor(".audio_volume_bar"),
-        audioVolumeBarValue: factor(".audio_volume_bar_value"),
+        volumeBtn: factor(".audioVolumeIcon"),
+        volumeBar: factor(".audio_volume_bar"),
+        volumeBarValue: factor(".audio_volume_bar_value"),
       },
       endTimeBox: {
-        audioEndTime: factor(".audio_end_time"),
+        endTime: factor(".audio_end_time"),
         audioResizeHandle: factor(".audio_resize_handle"),
       },
     },
     menu: {
-      audioMoreMenuScreen: factor(".audio_player_three_dot_menu"),
-      audioMoreMenuClose: factor(".audio_player_three_dot_menu_back"),
-      audioMoreMenuThumbnail: factor(".audio_player_three_dot_menu_thumbnail"),
+      moreMenuScreen: factor(".audio_player_three_dot_menu"),
+      moreMenuClose: factor(".audio_player_three_dot_menu_back"),
+      screenKinds: {
+        basic: factor(".audio_player_menu_basic"),
+        playBackSpeed: factor(".audio_player_menu_speed"),
+      },
+      basic: {
+        moreMenuThumbnail: factor(".audio_player_three_dot_menu_thumbnail"),
+        playSpeedMenu: factor(".audio_player_menu_playback_speed"),
+      },
+      playBackSpeed: {
+        back_to_basic: factor(".audio_player_menu_speed_back_basic"),
+        at_dot25: factor(".audio_player_menu_speed_dot25"),
+        at_dot5: factor(".audio_player_menu_speed_dot5"),
+        at_dot75: factor(".audio_player_menu_speed_dot75"),
+        at_1: factor(".audio_player_menu_speed_1"),
+        at_1dot25: factor(".audio_player_menu_speed_1dot25"),
+        at_1dot5: factor(".audio_player_menu_speed_1dot5"),
+        at_1dot75: factor(".audio_player_menu_speed_1dot75"),
+        at_2: factor(".audio_player_menu_speed_2"),
+      },
     },
     memory: {
       audioInfoMemory: factor(".audio_info_memory"),
@@ -81,44 +100,63 @@ export interface audioHtmlPlayerStructureInEditor {
   audioTarget: Element;
   audioPlayer: HTMLAudioElement;
   top: {
-    audioControlsIntro: HTMLElement;
-    audioMoreMenuIcon: HTMLElement;
+    controlsIntro: HTMLElement;
+    moreMenuIcon: HTMLElement;
   };
   middle: {
     timeNavigate: {
-      audioTimeNavigation: HTMLElement;
-      audioTimeNavigateNumber: HTMLElement;
+      timeNavigation: HTMLElement;
+      timeNavigateNumber: HTMLElement;
     };
     timeAppoint: {
-      audioCurrentTime: HTMLElement;
-      audioTimeBar: HTMLElement;
-      audioTimeBarValue: HTMLElement;
-      audioTimeBarContainer: HTMLElement;
-      audioBarHandle: HTMLElement;
-      audioTimebaseBarBuffer: HTMLElement;
+      currentTime: HTMLElement;
+      timeBar: HTMLElement;
+      timeBarValue: HTMLElement;
+      timeBarContainer: HTMLElement;
+      barHandle: HTMLElement;
+      timebaseBarBuffer: HTMLElement;
+      timebaseNavigate: HTMLElement;
     };
   };
   bottom: {
     basicButton: {
-      audioPlayBtn: HTMLElement;
-      audioBackToStartIcon: HTMLElement;
-      audioFrontMoveIcon: HTMLElement;
-      audioBackMoveIcon: HTMLElement;
+      playBtn: HTMLElement;
+      backToStartIcon: HTMLElement;
+      frontMoveIcon: HTMLElement;
+      backMoveIcon: HTMLElement;
     };
     volume: {
-      audioVolumeBtn: HTMLElement;
-      audioVolumeBar: HTMLElement;
-      audioVolumeBarValue: HTMLElement;
+      volumeBtn: HTMLElement;
+      volumeBar: HTMLElement;
+      volumeBarValue: HTMLElement;
     };
     endTimeBox: {
-      audioEndTime: HTMLElement;
+      endTime: HTMLElement;
       audioResizeHandle: HTMLElement;
     };
   };
   menu: {
-    audioMoreMenuScreen: HTMLElement;
-    audioMoreMenuClose: HTMLElement;
-    audioMoreMenuThumbnail: HTMLElement;
+    moreMenuScreen: HTMLElement;
+    moreMenuClose: HTMLElement;
+    screenKinds: {
+      basic: HTMLElement;
+      playBackSpeed: HTMLElement;
+    };
+    basic: {
+      moreMenuThumbnail: HTMLElement;
+      playSpeedMenu: HTMLElement;
+    };
+    playBackSpeed: {
+      back_to_basic: HTMLElement;
+      at_dot25: HTMLElement;
+      at_dot5: HTMLElement;
+      at_dot75: HTMLElement;
+      at_1: HTMLElement;
+      at_1dot25: HTMLElement;
+      at_1dot5: HTMLElement;
+      at_1dot75: HTMLElement;
+      at_2: HTMLElement;
+    };
   };
   memory: {
     audioInfoMemory: HTMLElement;

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
+import { audioHtmlPlayerStructureInEditor } from "../../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
@@ -10,7 +10,7 @@ export default ({ audioElem }: St2VideoActionLogicProps) => {
   const {
     audioPlayer,
     middle: {
-      timeAppoint: { audioTimebaseBarBuffer },
+      timeAppoint: { timebaseBarBuffer },
     },
     memory: { audioInfoMemory },
   } = audioElem;
@@ -23,7 +23,7 @@ export default ({ audioElem }: St2VideoActionLogicProps) => {
         const curr = audioPlayer.currentTime;
         if (curr > start && curr < end) {
           const progressRatio = end / parseInt(audioInfoMemory.textContent);
-          audioTimebaseBarBuffer.style.width = `${progressRatio * 100}%`;
+          timebaseBarBuffer.style.width = `${progressRatio * 100}%`;
           break;
         }
       }

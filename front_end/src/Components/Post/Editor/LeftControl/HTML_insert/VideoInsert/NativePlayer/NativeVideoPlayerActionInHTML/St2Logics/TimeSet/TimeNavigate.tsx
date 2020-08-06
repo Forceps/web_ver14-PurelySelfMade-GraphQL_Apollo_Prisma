@@ -11,7 +11,7 @@ export default ({ videoGauge_x_axis, videoElem }: St2videoActionLogicProps) => {
   const {
     middle: {
       timeNavigate: { timeNavigateNumber, timeNavigation },
-      timeAppoint: { timeBarContainer },
+      timeAppoint: { timeBarContainer, timebaseNavigate },
     },
     memory: { videoInfoMemory },
   } = videoElem;
@@ -24,7 +24,7 @@ export default ({ videoGauge_x_axis, videoElem }: St2videoActionLogicProps) => {
       );
       timeNavigateNumber.textContent = virtualTime;
 
-      const gapSize = timeNavigateNumber.offsetWidth;
+      const gapSize = timeNavigateNumber.offsetWidth || 29.344;
       const MousePosition =
         e.pageX - timeNavigation.getBoundingClientRect().left;
       let x = 0;
@@ -36,27 +36,28 @@ export default ({ videoGauge_x_axis, videoElem }: St2videoActionLogicProps) => {
         x = MousePosition - gapSize / 2;
       }
       timeNavigateNumber.style.left = `${x}px`;
+      timebaseNavigate.style.width = `${MousePosition}px`;
     }
   };
   const videoTimeNavigateShow = (e: any) => {
     videoTimeNavigate(e);
     timeNavigateNumber.style.display = "flex";
-    timeBarContainer?.addEventListener("mousemove", videoTimeNavigate);
+    timebaseNavigate.style.display = "flex";
+    timeBarContainer.addEventListener("mousemove", videoTimeNavigate);
   };
   const videoTimeNavigateHide = () => {
-    if (timeNavigateNumber) {
-      timeNavigateNumber.style.display = "none";
-      timeBarContainer?.removeEventListener("mousemove", videoTimeNavigate);
-    }
+    timeNavigateNumber.style.display = "none";
+    timebaseNavigate.style.display = "none";
+    timeBarContainer.removeEventListener("mousemove", videoTimeNavigate);
   };
 
   useEffect(() => {
-    timeBarContainer?.addEventListener("mouseover", videoTimeNavigateShow);
-    timeBarContainer?.addEventListener("mouseout", videoTimeNavigateHide);
+    timeBarContainer.addEventListener("mouseover", videoTimeNavigateShow);
+    timeBarContainer.addEventListener("mouseout", videoTimeNavigateHide);
 
     return () => {
-      timeBarContainer?.removeEventListener("mouseover", videoTimeNavigateShow);
-      timeBarContainer?.removeEventListener("mouseout", videoTimeNavigateHide);
+      timeBarContainer.removeEventListener("mouseover", videoTimeNavigateShow);
+      timeBarContainer.removeEventListener("mouseout", videoTimeNavigateHide);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

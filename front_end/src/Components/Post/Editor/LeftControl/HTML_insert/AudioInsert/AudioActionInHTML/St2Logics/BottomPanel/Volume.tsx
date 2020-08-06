@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import { spaped } from "../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
+import { spaped } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { audioHtmlPlayerStructureInEditor } from "../../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
@@ -15,38 +15,36 @@ export default ({
   const {
     audioPlayer,
     bottom: {
-      volume: { audioVolumeBar, audioVolumeBtn, audioVolumeBarValue },
+      volume: { volumeBar, volumeBtn, volumeBarValue },
     },
   } = audioElem;
 
   const handleAudioVolumeClick = () => {
     if (audioPlayer.muted) {
       audioPlayer.muted = false;
-      audioVolumeBtn.setAttribute("class", "icon-volume audioVolumeIcon");
-      audioVolumeBarValue.style.width = `${
-        audioPlayer.volume * audioVolumeBar.clientWidth
+      volumeBtn.setAttribute("class", "icon-volume audioVolumeIcon");
+      volumeBarValue.style.width = `${
+        audioPlayer.volume * volumeBar.clientWidth
       }px`;
     } else {
       audioPlayer.muted = true;
-      audioVolumeBtn.setAttribute("class", "icon-volume-off audioVolumeIcon");
-      audioVolumeBarValue.style.width = "0px";
+      volumeBtn.setAttribute("class", "icon-volume-off audioVolumeIcon");
+      volumeBarValue.style.width = "0px";
     }
   };
   const audioVolumeIconChange = () => {
     if (audioPlayer.volume > 0.5) {
-      audioVolumeBtn.setAttribute("class", "icon-volume audioVolumeIcon");
+      volumeBtn.setAttribute("class", "icon-volume audioVolumeIcon");
     } else if (audioPlayer.volume > 0) {
-      audioVolumeBtn.setAttribute("class", "icon-volume-down audioVolumeIcon");
+      volumeBtn.setAttribute("class", "icon-volume-down audioVolumeIcon");
     } else {
-      audioVolumeBtn.setAttribute("class", "icon-volume-off audioVolumeIcon");
+      volumeBtn.setAttribute("class", "icon-volume-off audioVolumeIcon");
     }
   };
   const audioVolumeControlMouseMove = (e: any) => {
     if (audioPlayer) {
-      const movedValue = audioGauge_x_axis(e, audioVolumeBar);
-      audioVolumeBarValue.style.width = `${
-        movedValue * audioVolumeBar.clientWidth
-      }px`;
+      const movedValue = audioGauge_x_axis(e, volumeBar);
+      volumeBarValue.style.width = `${movedValue * volumeBar.clientWidth}px`;
       audioPlayer.volume = movedValue;
       audioVolumeIconChange();
     }
@@ -76,8 +74,8 @@ export default ({
         audioPlayer.volume = audioPlayer.volume - degree;
       }
     }
-    audioVolumeBarValue.style.width = `${
-      audioPlayer.volume * audioVolumeBar.clientWidth
+    volumeBarValue.style.width = `${
+      audioPlayer.volume * volumeBar.clientWidth
     }px`;
     audioVolumeIconChange();
   };
@@ -103,20 +101,17 @@ export default ({
   };
 
   useEffect(() => {
-    audioVolumeBtn.addEventListener("click", handleAudioVolumeClick);
-    audioVolumeBar.addEventListener("mousedown", audioVolumeControlMouseDown);
+    volumeBtn.addEventListener("click", handleAudioVolumeClick);
+    volumeBar.addEventListener("mousedown", audioVolumeControlMouseDown);
     document.addEventListener("mouseup", audioVolumeControlMouseUp);
     document.addEventListener("keydown", keyboardShortCut);
-    audioVolumeBar.addEventListener("wheel", mouseWheelVolume);
+    volumeBar.addEventListener("wheel", mouseWheelVolume);
     return () => {
-      audioVolumeBtn.removeEventListener("click", handleAudioVolumeClick);
-      audioVolumeBar.removeEventListener(
-        "mousedown",
-        audioVolumeControlMouseDown
-      );
+      volumeBtn.removeEventListener("click", handleAudioVolumeClick);
+      volumeBar.removeEventListener("mousedown", audioVolumeControlMouseDown);
       document.removeEventListener("mouseup", audioVolumeControlMouseUp);
       document.removeEventListener("keydown", keyboardShortCut);
-      audioVolumeBar.removeEventListener("wheel", mouseWheelVolume);
+      volumeBar.removeEventListener("wheel", mouseWheelVolume);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
