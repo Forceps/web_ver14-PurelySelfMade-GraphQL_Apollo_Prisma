@@ -86,6 +86,12 @@ export default ({
     memory: {
       videoInfoMemory: factor(".video_info_memory"),
     },
+    operationIndication: {
+      plate: factor(".native_video_operation_indication"),
+      icon: {
+        play: factor(".voiPlay"),
+      },
+    },
   };
 
   return (
@@ -166,5 +172,11 @@ export interface videoHtmlPlayerStructureInEditor {
   };
   memory: {
     videoInfoMemory: HTMLElement;
+  };
+  operationIndication: {
+    plate: HTMLElement;
+    icon: {
+      play: HTMLElement;
+    };
   };
 }

@@ -1,15 +1,20 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
-export default ({
-  audioPlayer,
-  audioTimebaseBarBuffer,
-  audioInfoMemory,
-}: St2VideoActionLogicProps) => {
+export default ({ audioElem }: St2VideoActionLogicProps) => {
+  const {
+    audioPlayer,
+    middle: {
+      timeAppoint: { audioTimebaseBarBuffer },
+    },
+    memory: { audioInfoMemory },
+  } = audioElem;
+
   const setBufferWidth = async () => {
     if (audioInfoMemory.textContent) {
       for (let i = 0; i < audioPlayer.buffered.length; i++) {
@@ -38,7 +43,5 @@ export default ({
 };
 
 interface St2VideoActionLogicProps {
-  audioPlayer: HTMLAudioElement;
-  audioTimebaseBarBuffer: HTMLElement;
-  audioInfoMemory: HTMLElement;
+  audioElem: audioHtmlPlayerStructureInEditor;
 }

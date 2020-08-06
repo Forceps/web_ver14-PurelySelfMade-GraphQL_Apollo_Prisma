@@ -39,9 +39,9 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
           <div class="audioPlayer_controls_manipulator">
             <div class="audioPlayer_controls_buttons">
               <i class="icon-play audioPlayIcon"></i>
-              <i class="icon-to-start audioRestIcon audioBackToStart"></i>
-              <i class="icon-fast-bw audioRestIcon audioBackMove"></i>
-              <i class="icon-fast-fw audioRestIcon audioFrontMove"></i>
+              <i class="icon-to-start audioBackToStart"></i>
+              <i class="icon-fast-bw audioBackMove"></i>
+              <i class="icon-fast-fw audioFrontMove"></i>
             </div>
             <div class="audioPlayer_controls_volume">
               <i class="icon-volume audioVolumeIcon"></i>
@@ -63,8 +63,43 @@ export const AudioHtmlInsert = (address: string, audioInfo?: any) => {
                 <i class="icon-right-open"></i>
               </div>
             </div>
-            <div class="audio_player_three_dot_menu_thumbnail">
-              Thumbnail
+            <div class="audio_player_menu_basic">
+              <div class="audio_player_three_dot_menu_thumbnail">
+                Thumbnail
+              </div>
+              <div class="audio_player_menu_playback_speed">
+                Speed
+              </div>
+            </div>
+            <div class="audio_player_menu_speed">
+              <div class="audio_player_menu_speed_back_basic">
+                <i class="icon-left-open"></i>
+                Back
+              </div>
+              <div class="audio_player_menu_speed_dot25">
+                0.25
+              </div>
+              <div class="audio_player_menu_speed_dot5">
+                0.5
+              </div>
+              <div class="audio_player_menu_speed_dot75">
+                0.75
+              </div>
+              <div class="audio_player_menu_speed_1">
+                1
+              </div>
+              <div class="audio_player_menu_speed_1dot25">
+                1.25
+              </div>
+              <div class="audio_player_menu_speed_1dot5">
+                1.5
+              </div>
+              <div class="audio_player_menu_speed_1dot75">
+                1.75
+              </div>
+              <div class="audio_player_menu_speed_2">
+                2
+              </div>
             </div>
           </div>
         </div>

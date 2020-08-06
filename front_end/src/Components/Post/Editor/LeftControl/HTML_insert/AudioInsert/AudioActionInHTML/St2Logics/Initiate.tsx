@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
 import getBlobDuration from "get-blob-duration";
 import { mediaStateRenewalCycle } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Formula";
+import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
@@ -10,15 +11,21 @@ const UnnecessaryDiv = styled.div`
 
 export default ({
   InEditor,
-  audioPlayer,
-  audioPlayBtn,
-  audioEndTime,
   getAudioCurrentTime,
   statusBarMoving,
-  audioInfoMemory,
   mediaTargetId,
   playerClicked,
+  audioElem,
 }: St2AudioActionLogicProps) => {
+  const {
+    audioPlayer,
+    bottom: {
+      basicButton: { audioPlayBtn },
+      endTimeBox: { audioEndTime },
+    },
+    memory: { audioInfoMemory },
+  } = audioElem;
+
   const getAudioDuration = async (audioPlayer: any) => {
     let duration: number;
     if (!isFinite(audioPlayer.duration)) {
@@ -33,17 +40,15 @@ export default ({
   };
   const timeGo2 = useRef(0);
   const setAudioTotalTime = async () => {
-    if (audioPlayer && audioEndTime) {
-      audioPlayer.volume = 0.5;
-      const Duration = await getAudioDuration(audioPlayer);
-      audioInfoMemory.textContent = `${Duration}`;
-      const totalTimeString = MediaClock(Duration);
-      audioEndTime.textContent = totalTimeString;
-      timeGo2.current = setInterval(
-        statusBarMoving,
-        mediaStateRenewalCycle(Duration)
-      );
-    }
+    audioPlayer.volume = 0.5;
+    const Duration = await getAudioDuration(audioPlayer);
+    audioInfoMemory.textContent = `${Duration}`;
+    const totalTimeString = MediaClock(Duration);
+    audioEndTime.textContent = totalTimeString;
+    timeGo2.current = setInterval(
+      statusBarMoving,
+      mediaStateRenewalCycle(Duration)
+    );
   };
   const handleAudioEnded = () => {
     audioPlayer?.pause();
@@ -83,12 +88,9 @@ export default ({
 
 interface St2AudioActionLogicProps {
   InEditor: RefObject<HTMLElement>;
-  audioPlayer: HTMLAudioElement;
-  audioPlayBtn: HTMLElement;
-  audioEndTime: HTMLElement;
   getAudioCurrentTime: () => void;
   statusBarMoving: () => void;
-  audioInfoMemory: HTMLElement;
   mediaTargetId: any;
   playerClicked: React.MutableRefObject<boolean>;
+  audioElem: audioHtmlPlayerStructureInEditor;
 }

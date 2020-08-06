@@ -1,29 +1,44 @@
+@import "../../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar.scss";
+
 .audio_player_three_dot_menu {
   display: flex;
   flex-direction: column;
   width: 0px;
   height: 100%;
-  backdrop-filter: saturate(200%) blur(10px);
-  background-color: rgba(223, 230, 233, 0.37);
+  // backdrop-filter: saturate(200%) blur(10px);
+  background-color: rgba(223, 230, 233, 0.4);
   position: absolute;
   justify-self: end;
   overflow: hidden;
   transition-property: width;
   transition-duration: 0.13s;
   transition-timing-function: ease;
-  & > div {
+  @mixin MenuCell {
     width: 100%;
     height: 30px;
+    align-items: center;
+    &:hover {
+      background-color: #dfe6e9;
+      cursor: pointer;
+    }
+  }
+  & > div:nth-child(n + 2) {
+    flex-direction: column;
+    width: 100%;
+    @include IncludeScrollBar;
+  }
+  .audio_player_menu_basic > div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
     white-space: nowrap;
-  }
-  & > div:hover {
-    background-color: #dfe6e9;
-    cursor: pointer;
+    @include MenuCell;
   }
   .audio_player_three_dot_menu_back {
     display: flex;
     justify-content: flex-end;
+    @include MenuCell;
     .audio_player_three_dot_menu_back_icon {
       display: flex;
       justify-content: center;
@@ -36,5 +51,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+  .audio_player_menu_speed_back_basic {
+    display: flex;
+    padding: 0 0 0 5px;
+    @include MenuCell;
+  }
+  .audio_player_menu_speed {
+    display: none;
+    & > div:nth-child(n + 2) {
+      display: flex;
+      padding: 0 0 0 20px;
+      font-size: 0.9rem;
+      @include MenuCell;
+    }
   }
 }

@@ -1,32 +1,35 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { spaped } from "../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
 export default ({
-  audioPlayer,
-  audioVolumeBtn,
-  audioVolumeBar,
   audioGauge_x_axis,
-  audioVolumeBarValue,
   keyboardShortCutAble,
+  audioElem,
 }: St2AudioActionLogicProps) => {
+  const {
+    audioPlayer,
+    bottom: {
+      volume: { audioVolumeBar, audioVolumeBtn, audioVolumeBarValue },
+    },
+  } = audioElem;
+
   const handleAudioVolumeClick = () => {
-    if (audioPlayer) {
-      if (audioPlayer.muted) {
-        audioPlayer.muted = false;
-        audioVolumeBtn.setAttribute("class", "icon-volume audioVolumeIcon");
-        audioVolumeBarValue.style.width = `${
-          audioPlayer.volume * audioVolumeBar.clientWidth
-        }px`;
-      } else {
-        audioPlayer.muted = true;
-        audioVolumeBtn.setAttribute("class", "icon-volume-off audioVolumeIcon");
-        audioVolumeBarValue.style.width = "0px";
-      }
+    if (audioPlayer.muted) {
+      audioPlayer.muted = false;
+      audioVolumeBtn.setAttribute("class", "icon-volume audioVolumeIcon");
+      audioVolumeBarValue.style.width = `${
+        audioPlayer.volume * audioVolumeBar.clientWidth
+      }px`;
+    } else {
+      audioPlayer.muted = true;
+      audioVolumeBtn.setAttribute("class", "icon-volume-off audioVolumeIcon");
+      audioVolumeBarValue.style.width = "0px";
     }
   };
   const audioVolumeIconChange = () => {
@@ -120,10 +123,7 @@ export default ({
   return <UnnecessaryDiv />;
 };
 interface St2AudioActionLogicProps {
-  audioPlayer: HTMLAudioElement;
-  audioVolumeBtn: HTMLElement;
-  audioVolumeBar: HTMLElement;
   audioGauge_x_axis: any;
-  audioVolumeBarValue: HTMLElement;
   keyboardShortCutAble: () => boolean;
+  audioElem: audioHtmlPlayerStructureInEditor;
 }

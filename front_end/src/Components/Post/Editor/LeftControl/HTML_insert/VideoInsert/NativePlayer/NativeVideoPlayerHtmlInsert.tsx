@@ -103,6 +103,9 @@ export default (address: string, videoInfo?: any) => {
               </div>
             </div>
           </div>
+          <div class="native_video_operation_indication native_video_operation_indication_hide">
+            <i class="icon-play voiPlay"></i>
+          </div>
         </div>
       </div></div>
 

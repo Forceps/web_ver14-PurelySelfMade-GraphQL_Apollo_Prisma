@@ -10,6 +10,7 @@ import { MediaClock } from "../../../../../../../../../GlobalLib/RecycleFunction
 import FullScreen from "../St2Logics/BottomPanel/FullScreen";
 import Buffer from "../St2Logics/TimeSet/Buffer";
 import { videoHtmlPlayerStructureInEditor } from "./NativeVideoPlayerTargetSpecific";
+import OperationIndication from "../St2Logics/etc/OperationIndication";
 
 interface ReusingLogicProps {
   InEditor: RefObject<HTMLElement>;
@@ -124,6 +125,7 @@ export default ({
         videoElem={videoElem}
       />
       <Buffer videoElem={videoElem} />
+      <OperationIndication videoElem={videoElem} />
     </>
   );
 };

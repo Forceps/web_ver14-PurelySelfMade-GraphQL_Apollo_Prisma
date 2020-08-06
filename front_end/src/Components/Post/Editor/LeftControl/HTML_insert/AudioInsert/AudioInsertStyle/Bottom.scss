@@ -3,8 +3,7 @@
 .audioPlayer_controls_manipulator {
   display: grid;
   grid-template-columns: 125px 130px 1fr;
-  height: 100%;
-  width: 100%;
+  @include WH100per;
   .audioPlayer_controls_buttons {
     display: flex;
     align-items: flex-end;
@@ -13,7 +12,7 @@
       font-size: 1.4rem;
       cursor: pointer;
     }
-    .audioRestIcon {
+    & > i:nth-child(n + 2) {
       font-size: 0.8rem;
       padding: 3px;
       margin: 0 2px 0 2px;

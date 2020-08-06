@@ -1,14 +1,19 @@
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
+import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
-export default ({
-  audioTarget,
-  audioResizeHandle,
-}: St2AudioActionLogicProps) => {
+export default ({ audioElem }: St2AudioActionLogicProps) => {
+  const {
+    audioTarget,
+    bottom: {
+      endTimeBox: { audioResizeHandle },
+    },
+  } = audioElem;
+
   const resizeHandleActive = useRef(false);
   const audioResizeHandleMouseMove = (e: any) => {
     if (audioTarget) {
@@ -67,6 +72,5 @@ export default ({
 };
 
 interface St2AudioActionLogicProps {
-  audioTarget: Element;
-  audioResizeHandle: HTMLElement;
+  audioElem: audioHtmlPlayerStructureInEditor;
 }

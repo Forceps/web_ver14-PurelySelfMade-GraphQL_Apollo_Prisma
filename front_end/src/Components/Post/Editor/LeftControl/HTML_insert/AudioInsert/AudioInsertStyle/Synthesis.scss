@@ -64,7 +64,7 @@
       & .audioPlayer_controls_manipulator {
         opacity: 1;
       }
-      & .audioPlayer_more_menu {
+      & .audio_player_three_dot_menu {
         opacity: 1;
       }
     }
@@ -87,7 +87,7 @@
     & .audioPlayer_controls_manipulator {
       @include audioBlickerTransition;
     }
-    & .audioPlayer_more_menu {
+    & .audio_player_three_dot_menu {
       @include audioBlickerTransition;
     }
   }

@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { saveSelection } from "../../../../../EditorLib";
+import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
 export default ({
-  audioMoreMenuIcon,
-  audioMoreMenuScreen,
-  audioMoreMenuClose,
-  audioMoreMenuThumbnail,
   setImgSubMenuOp2,
   CaretLocation,
+  audioElem,
 }: St2AudioActionLogicProps) => {
+  const {
+    top: { audioMoreMenuIcon },
+    menu: { audioMoreMenuScreen, audioMoreMenuClose, audioMoreMenuThumbnail },
+  } = audioElem;
+
   const audioMoreMenuIconClick = (e: any) => {
     e.stopPropagation();
     audioMoreMenuScreen.style.width = "100px";
@@ -47,10 +50,7 @@ export default ({
   return <UnnecessaryDiv />;
 };
 interface St2AudioActionLogicProps {
-  audioMoreMenuIcon: HTMLElement;
-  audioMoreMenuScreen: HTMLElement;
-  audioMoreMenuClose: HTMLElement;
-  audioMoreMenuThumbnail: HTMLElement;
   setImgSubMenuOp2: any;
   CaretLocation: any;
+  audioElem: audioHtmlPlayerStructureInEditor;
 }

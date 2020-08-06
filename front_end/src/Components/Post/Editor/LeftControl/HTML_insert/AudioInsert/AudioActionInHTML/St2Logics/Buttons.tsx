@@ -1,27 +1,36 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import { spaped } from "../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
 export default ({
-  audioTarget,
-  audioInfoMemory,
-  audioPlayer,
-  audioPlayBtn,
-  audioBackToStartIcon,
-  audioFrontMoveIcon,
-  audioBackMoveIcon,
   audioSetTimeDenote,
-  audioControlsIntro,
   keyboardShortCutAble,
+  audioElem,
 }: St2AudioActionLogicProps) => {
+  const {
+    audioPlayer,
+    audioTarget,
+    top: { audioControlsIntro },
+    bottom: {
+      basicButton: {
+        audioPlayBtn,
+        audioBackToStartIcon,
+        audioFrontMoveIcon,
+        audioBackMoveIcon,
+      },
+    },
+    memory: { audioInfoMemory },
+  } = audioElem;
+
   const handleAudioPlayClick = () => {
-    if (audioPlayer?.paused) {
+    if (audioPlayer.paused) {
       audioPlayer.play();
-      audioPlayBtn?.setAttribute("class", "icon-pause-1 audioPlayIcon");
+      audioPlayBtn.setAttribute("class", "icon-pause-1 audioPlayIcon");
       const playerControle = audioTarget.querySelector(
         ".audioPlayer_controls_with_img_stop"
       );
@@ -34,8 +43,8 @@ export default ({
         }, 1000);
       }
     } else {
-      audioPlayer?.pause();
-      audioPlayBtn?.setAttribute("class", "icon-play audioPlayIcon");
+      audioPlayer.pause();
+      audioPlayBtn.setAttribute("class", "icon-play audioPlayIcon");
       const playerControle = audioTarget.querySelector(
         ".audioPlayer_controls_with_img_playing"
       );
@@ -54,7 +63,7 @@ export default ({
     }
   };
   const audioTimeMediumMove = (direction: string, degree: number) => {
-    if (audioPlayer && audioInfoMemory.textContent) {
+    if (audioInfoMemory.textContent) {
       if (direction === "front") {
         const totaltime = parseInt(audioInfoMemory.textContent);
         if (totaltime > audioPlayer.currentTime + degree) {
@@ -89,27 +98,27 @@ export default ({
   };
 
   useEffect(() => {
-    audioPlayBtn?.addEventListener("click", handleAudioPlayClick);
-    audioBackToStartIcon?.addEventListener("click", audioBackToStart);
-    audioFrontMoveIcon?.addEventListener("click", () => {
+    audioPlayBtn.addEventListener("click", handleAudioPlayClick);
+    audioBackToStartIcon.addEventListener("click", audioBackToStart);
+    audioFrontMoveIcon.addEventListener("click", () => {
       audioTimeMediumMove("front", 15);
     });
-    audioBackMoveIcon?.addEventListener("click", () => {
+    audioBackMoveIcon.addEventListener("click", () => {
       audioTimeMediumMove("back", 15);
     });
-    audioControlsIntro?.addEventListener("click", handleAudioPlayClick);
+    audioControlsIntro.addEventListener("click", handleAudioPlayClick);
     document.addEventListener("keydown", keyboardShortCut);
 
     return () => {
-      audioPlayBtn?.removeEventListener("click", handleAudioPlayClick);
-      audioBackToStartIcon?.removeEventListener("click", audioBackToStart);
-      audioFrontMoveIcon?.removeEventListener("click", () => {
+      audioPlayBtn.removeEventListener("click", handleAudioPlayClick);
+      audioBackToStartIcon.removeEventListener("click", audioBackToStart);
+      audioFrontMoveIcon.removeEventListener("click", () => {
         audioTimeMediumMove("front", 15);
       });
-      audioBackMoveIcon?.removeEventListener("click", () => {
+      audioBackMoveIcon.removeEventListener("click", () => {
         audioTimeMediumMove("back", 15);
       });
-      audioControlsIntro?.removeEventListener("click", handleAudioPlayClick);
+      audioControlsIntro.removeEventListener("click", handleAudioPlayClick);
       document.removeEventListener("keydown", keyboardShortCut);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -117,14 +126,7 @@ export default ({
   return <UnnecessaryDiv />;
 };
 interface St2AudioActionLogicProps {
-  audioTarget: Element;
-  audioPlayer: HTMLAudioElement;
-  audioPlayBtn: HTMLElement;
-  audioBackToStartIcon: HTMLElement;
-  audioFrontMoveIcon: HTMLElement;
-  audioBackMoveIcon: HTMLElement;
-  audioInfoMemory: HTMLElement;
   audioSetTimeDenote: any;
-  audioControlsIntro: HTMLElement;
   keyboardShortCutAble: () => boolean;
+  audioElem: audioHtmlPlayerStructureInEditor;
 }

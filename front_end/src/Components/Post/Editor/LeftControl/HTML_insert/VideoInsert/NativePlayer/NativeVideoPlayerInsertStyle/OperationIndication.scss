@@ -1,0 +1,24 @@
+.native_video_operation_indication {
+  display: flex;
+  position: absolute;
+  justify-self: center;
+  align-self: center;
+  width: 70px;
+  height: 70px;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.45);
+  font-size: 2.1rem;
+  & > i {
+    display: none;
+  }
+}
+.native_video_operation_indication_show {
+  opacity: 1;
+}
+.native_video_operation_indication_hide {
+  opacity: 0;
+  transition-property: opacity;
+  transition-duration: 0.8s;
+  transition-timing-function: cubic-bezier(0.6, 0.05, 0.85, 0.66);
+}

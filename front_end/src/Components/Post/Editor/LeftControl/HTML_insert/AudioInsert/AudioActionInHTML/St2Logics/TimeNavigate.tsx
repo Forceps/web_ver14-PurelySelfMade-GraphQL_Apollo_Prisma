@@ -1,28 +1,23 @@
 import React, { useEffect } from "react";
 import { MediaClock } from "../../../../../../../../GlobalLib/RecycleFunction/etc/Math/Time";
 import styled from "styled-components";
+import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
-export default ({
-  audioInfoMemory,
-  audioCurrentTime,
-  audioTimeBar,
-  audioTimeBarContainer,
-  audioTimeNavigation,
-  audioTimeNavigateNumber,
-  audioGauge_x_axis,
-}: St2AudioActionLogicProps) => {
+export default ({ audioGauge_x_axis, audioElem }: St2AudioActionLogicProps) => {
+  const {
+    middle: {
+      timeNavigate: { audioTimeNavigation, audioTimeNavigateNumber },
+      timeAppoint: { audioTimeBarContainer, audioCurrentTime },
+    },
+    memory: { audioInfoMemory },
+  } = audioElem;
+
   const audioTimeNavigate = (e: any) => {
-    if (
-      audioTimeNavigateNumber &&
-      audioTimeBar &&
-      audioTimeBarContainer &&
-      audioInfoMemory.textContent &&
-      audioTimeNavigation
-    ) {
+    if (audioInfoMemory.textContent) {
       const movedValue = audioGauge_x_axis(e, audioTimeBarContainer);
       const virtualTime = MediaClock(
         movedValue * parseInt(audioInfoMemory.textContent)
@@ -82,11 +77,6 @@ export default ({
 };
 
 interface St2AudioActionLogicProps {
-  audioInfoMemory: HTMLElement;
-  audioCurrentTime: HTMLElement;
-  audioTimeBar: HTMLElement;
-  audioTimeBarContainer: HTMLElement;
-  audioTimeNavigation: HTMLElement;
-  audioTimeNavigateNumber: HTMLElement;
   audioGauge_x_axis: any;
+  audioElem: audioHtmlPlayerStructureInEditor;
 }

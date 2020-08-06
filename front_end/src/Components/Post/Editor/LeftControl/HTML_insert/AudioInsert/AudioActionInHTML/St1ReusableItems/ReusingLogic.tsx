@@ -8,69 +8,36 @@ import TimeAppointing from "../St2Logics/TimeAppointing";
 import Resizing from "../St2Logics/Resizing";
 import MoreMenu from "../St2Logics/MoreMenu";
 import Buffer from "../St2Logics/Buffer";
+import { audioHtmlPlayerStructureInEditor } from "./AudioTargetSpecific";
 
 interface ReusingLogicProps {
   InEditor: RefObject<HTMLElement>;
-  audioTarget: Element;
-  audioPlayer: HTMLAudioElement;
-  audioPlayBtn: HTMLElement;
-  audioVolumeBtn: HTMLElement;
-  audioVolumeBar: HTMLElement;
-  audioCurrentTime: HTMLElement;
-  audioEndTime: HTMLElement;
-  audioTimeBar: HTMLElement;
-  audioTimeBarContainer: HTMLElement;
-  audioBackToStartIcon: HTMLElement;
-  audioFrontMoveIcon: HTMLElement;
-  audioBackMoveIcon: HTMLElement;
-  audioBarHandle: HTMLElement;
-  audioTimeNavigation: HTMLElement;
-  audioTimeNavigateNumber: HTMLElement;
-  audioInfoMemory: HTMLElement;
-  audioResizeHandle: HTMLElement;
-  audioMoreMenuIcon: HTMLElement;
-  audioMoreMenuScreen: HTMLElement;
-  audioMoreMenuClose: HTMLElement;
-  audioMoreMenuThumbnail: HTMLElement;
   mediaTargetId: any;
   setImgSubMenuOp2?: any;
-  audioControlsIntro: HTMLElement;
   CaretLocation: any;
-  audioTimeBarValue: HTMLElement;
-  audioVolumeBarValue: HTMLElement;
-  audioTimebaseBarBuffer: HTMLElement;
+  audioElem: audioHtmlPlayerStructureInEditor;
 }
 export default ({
   InEditor,
-  audioTarget,
-  audioPlayer,
-  audioPlayBtn,
-  audioVolumeBtn,
-  audioVolumeBar,
-  audioCurrentTime,
-  audioEndTime,
-  audioTimeBar,
-  audioTimeBarContainer,
-  audioBackToStartIcon,
-  audioFrontMoveIcon,
-  audioBackMoveIcon,
-  audioBarHandle,
-  audioTimeNavigation,
-  audioTimeNavigateNumber,
-  audioInfoMemory,
-  audioResizeHandle,
-  audioMoreMenuIcon,
-  audioMoreMenuScreen,
-  audioMoreMenuClose,
-  audioMoreMenuThumbnail,
   mediaTargetId,
   setImgSubMenuOp2,
-  audioControlsIntro,
   CaretLocation,
-  audioTimeBarValue,
-  audioVolumeBarValue,
-  audioTimebaseBarBuffer,
+  audioElem,
 }: ReusingLogicProps) => {
+  const {
+    audioPlayer,
+    audioTarget,
+    middle: {
+      timeAppoint: {
+        audioTimeBarValue,
+        audioCurrentTime,
+        audioTimeBar,
+        audioBarHandle,
+      },
+    },
+    memory: { audioInfoMemory },
+  } = audioElem;
+
   const getAudioCurrentTime = () => {
     audioTimeBarValue.style.width = `100%`;
     if (audioPlayer && audioCurrentTime) {
@@ -130,70 +97,38 @@ export default ({
     <>
       <Initiate
         InEditor={InEditor}
-        audioPlayer={audioPlayer}
-        audioPlayBtn={audioPlayBtn}
-        audioEndTime={audioEndTime}
         getAudioCurrentTime={getAudioCurrentTime}
         statusBarMoving={statusBarMoving}
-        audioInfoMemory={audioInfoMemory}
         mediaTargetId={mediaTargetId}
         playerClicked={playerClicked}
+        audioElem={audioElem}
       />
       <Buttons
-        audioTarget={audioTarget}
-        audioInfoMemory={audioInfoMemory}
-        audioPlayer={audioPlayer}
-        audioPlayBtn={audioPlayBtn}
-        audioBackToStartIcon={audioBackToStartIcon}
-        audioFrontMoveIcon={audioFrontMoveIcon}
-        audioBackMoveIcon={audioBackMoveIcon}
         audioSetTimeDenote={audioSetTimeDenote}
-        audioControlsIntro={audioControlsIntro}
         keyboardShortCutAble={keyboardShortCutAble}
+        audioElem={audioElem}
       />
       <TimeNavigate
-        audioInfoMemory={audioInfoMemory}
-        audioCurrentTime={audioCurrentTime}
-        audioTimeBar={audioTimeBar}
-        audioTimeBarContainer={audioTimeBarContainer}
-        audioTimeNavigation={audioTimeNavigation}
-        audioTimeNavigateNumber={audioTimeNavigateNumber}
         audioGauge_x_axis={audioGauge_x_axis}
+        audioElem={audioElem}
       />
       <TimeAppointing
-        audioInfoMemory={audioInfoMemory}
-        audioPlayer={audioPlayer}
-        audioCurrentTime={audioCurrentTime}
-        audioTimeBar={audioTimeBar}
-        audioTimeBarContainer={audioTimeBarContainer}
         audioGauge_x_axis={audioGauge_x_axis}
         audioSetTimeDenote={audioSetTimeDenote}
+        audioElem={audioElem}
       />
       <Volume
-        audioPlayer={audioPlayer}
-        audioVolumeBtn={audioVolumeBtn}
-        audioVolumeBar={audioVolumeBar}
         audioGauge_x_axis={audioGauge_x_axis}
-        audioVolumeBarValue={audioVolumeBarValue}
         keyboardShortCutAble={keyboardShortCutAble}
+        audioElem={audioElem}
       />
-      <Resizing
-        audioTarget={audioTarget}
-        audioResizeHandle={audioResizeHandle}
-      />
+      <Resizing audioElem={audioElem} />
       <MoreMenu
-        audioMoreMenuIcon={audioMoreMenuIcon}
-        audioMoreMenuScreen={audioMoreMenuScreen}
-        audioMoreMenuClose={audioMoreMenuClose}
-        audioMoreMenuThumbnail={audioMoreMenuThumbnail}
         setImgSubMenuOp2={setImgSubMenuOp2}
         CaretLocation={CaretLocation}
+        audioElem={audioElem}
       />
-      <Buffer
-        audioPlayer={audioPlayer}
-        audioTimebaseBarBuffer={audioTimebaseBarBuffer}
-        audioInfoMemory={audioInfoMemory}
-      />
+      <Buffer audioElem={audioElem} />
     </>
   );
 };

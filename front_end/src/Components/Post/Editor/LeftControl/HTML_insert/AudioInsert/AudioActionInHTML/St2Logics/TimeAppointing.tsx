@@ -1,21 +1,26 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
+import { audioHtmlPlayerStructureInEditor } from "../St1ReusableItems/AudioTargetSpecific";
 
 const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
 export default ({
-  audioInfoMemory,
-  audioPlayer,
-  audioCurrentTime,
-  audioTimeBar,
-  audioTimeBarContainer,
   audioGauge_x_axis,
   audioSetTimeDenote,
+  audioElem,
 }: St2AudioActionLogicProps) => {
+  const {
+    audioPlayer,
+    middle: {
+      timeAppoint: { audioTimeBar, audioTimeBarContainer },
+    },
+    memory: { audioInfoMemory },
+  } = audioElem;
+
   const audioCurrentTimeControlMouseMove = (e: any) => {
-    if (audioPlayer && audioCurrentTime && audioInfoMemory.textContent) {
+    if (audioInfoMemory.textContent) {
       const movedValue = audioGauge_x_axis(
         e,
         audioTimeBar,
@@ -60,11 +65,7 @@ export default ({
   return <UnnecessaryDiv />;
 };
 interface St2AudioActionLogicProps {
-  audioInfoMemory: HTMLElement;
-  audioPlayer: HTMLAudioElement;
-  audioCurrentTime: HTMLElement;
-  audioTimeBar: HTMLElement;
-  audioTimeBarContainer: HTMLElement;
   audioGauge_x_axis: any;
   audioSetTimeDenote: any;
+  audioElem: audioHtmlPlayerStructureInEditor;
 }
