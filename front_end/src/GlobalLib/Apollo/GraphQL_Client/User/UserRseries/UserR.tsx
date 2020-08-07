@@ -38,6 +38,8 @@ export const ME = gql`
       email
       avatar
       back_img
+      guaranteed_capacity
+      daily_allocated_capacity
     }
   }
 `;

@@ -52,11 +52,6 @@ const ImgBox = styled.div`
   display: grid;
   grid-template-rows: 170px 35px;
   margin: 5px;
-  @media (max-width: 1300px) {
-    &:nth-child(4) {
-      display: none;
-    }
-  }
   &:hover {
     box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
       0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
@@ -92,6 +87,10 @@ const VideoBox = styled.div`
       display: none;
     }
   }
+  &:hover {
+    box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
+      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  }
   cursor: pointer;
 `;
 interface ThumbnailProp {
@@ -104,9 +103,10 @@ const Thumbnail = styled(WH100per)<ThumbnailProp>`
 `;
 const AudioFiles = styled(MediaFiles)``;
 const AudioBox = styled.div`
-  width: 50%;
-  height: 35px;
-  padding: 0 10px 0 10px;
+  display: flex;
+  align-items: center;
+  width: 250px;
+  padding: 8px 10px 10px 10px;
   &:hover {
     background-color: rgba(99, 110, 114, 0.2);
   }

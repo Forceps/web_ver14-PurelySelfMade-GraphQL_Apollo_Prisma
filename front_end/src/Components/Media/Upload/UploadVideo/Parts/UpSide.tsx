@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import WH100per, {
   W100per,
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { byteUnitConversion } from "../../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
+import { byteIntoUnit } from "../../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
 import { typeNameCutting } from "../../MediaUploadLib";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import useGetImgExist from "../../../../../GlobalLib/RecycleFunction/Hooks/useGetImgExist";
@@ -122,7 +122,8 @@ export default ({
         <VideoName>{ImSelected.FInfo.name}</VideoName>
         <VideoSizeSbj>Size</VideoSizeSbj>
         <VideoSize>
-          {byteUnitConversion(ImSelected.FInfo.size)} ({ImSelected.FInfo.size}{" "}
+          {byteIntoUnit(ImSelected.FInfo.size).number}{" "}
+          {byteIntoUnit(ImSelected.FInfo.size).unit} ({ImSelected.FInfo.size}{" "}
           bytes)
         </VideoSize>
         <VideoTypeSbj>Type</VideoTypeSbj>

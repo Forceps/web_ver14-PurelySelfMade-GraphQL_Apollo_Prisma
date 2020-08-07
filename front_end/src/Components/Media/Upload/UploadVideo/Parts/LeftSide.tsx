@@ -7,7 +7,7 @@ import WH100per, {
   WH100perI,
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import IncludeScrollBar from "../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
-import { byteUnitConversion } from "../../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
+import { byteIntoUnit } from "../../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
 import { totalVolum } from "../../MediaUploadLib";
 
 const Left = styled(H100per)`
@@ -126,7 +126,8 @@ export default ({
         <Sbj>Video upload</Sbj>
         {Selected && (
           <TTSize>
-            Total size: {byteUnitConversion(totalVolum(files))}
+            Total size: {byteIntoUnit(totalVolum(files)).number}{" "}
+            {byteIntoUnit(totalVolum(files)).unit}
             <TTbytes>({totalVolum(files)} bytes)</TTbytes>
           </TTSize>
         )}

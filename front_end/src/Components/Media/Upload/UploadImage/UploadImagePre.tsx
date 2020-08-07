@@ -10,7 +10,7 @@ import WH100per, {
 import DirAppoint from "../../../Post/Editor/RightControl/DirSetting/DirAppoint";
 import { useDirMode } from "../../../../GlobalLib/Context/ProfileContext/DirMode";
 import { totalVolum, typeNameCutting } from "../MediaUploadLib";
-import { byteUnitConversion } from "../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
+import { byteIntoUnit } from "../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 type zIndex = {
@@ -228,7 +228,7 @@ export default ({
   EachDirSet,
   files,
 }: UploadImagePreProps) => {
-  const DC = useDirMode();
+  const { DirData } = useDirMode();
   return (
     <Wrapper zIndex={zIndex}>
       <TemporaryBackground
@@ -244,7 +244,7 @@ export default ({
             <Sbj>Image upload</Sbj>
             {Selected && (
               <TTSize>
-                Total size: {byteUnitConversion(totalVolum(files))}
+                Total size: {byteIntoUnit(totalVolum(files)).number}
                 <TTbytes>({totalVolum(files)} bytes)</TTbytes>
               </TTSize>
             )}
@@ -305,7 +305,7 @@ export default ({
             <ImgName>{ImSelected?.FInfo?.name}</ImgName>
             <ImgSizeSbj>Size</ImgSizeSbj>
             <ImgSize>
-              {byteUnitConversion(ImSelected?.FInfo?.size)} (
+              {byteIntoUnit(ImSelected?.FInfo?.size).number} (
               {ImSelected?.FInfo?.size} bytes)
             </ImgSize>
             <ImgTypeSbj>Type</ImgTypeSbj>
@@ -317,7 +317,7 @@ export default ({
               }}
             >
               <i className="icon-folder" />
-              {DC?.DirData?.name}
+              {DirData?.name}
             </ManifestDir>
           </Right>
         )}

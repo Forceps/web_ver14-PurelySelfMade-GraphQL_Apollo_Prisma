@@ -10,7 +10,7 @@ import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/Includ
 import { useDirMode } from "../../../../GlobalLib/Context/ProfileContext/DirMode";
 import TemporaryBackground from "../../../ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { byteUnitConversion } from "../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
+import { byteIntoUnit } from "../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
 import { totalVolum, typeNameCutting } from "../MediaUploadLib";
 import DirAppoint from "../../../Post/Editor/RightControl/DirSetting/DirAppoint";
 
@@ -294,7 +294,7 @@ export default ({
 }: // thumbnailPathInsert,
 // ThumbnailPath,
 UploadImagePreProps) => {
-  const DC = useDirMode();
+  const { DirData } = useDirMode();
   const dynamicBool = ImSelected && Selected;
   return (
     <Wrapper zIndex={zIndex}>
@@ -325,7 +325,8 @@ UploadImagePreProps) => {
                 <>
                   <TTSize>
                     <div>
-                      Total size: {byteUnitConversion(totalVolum(files))}
+                      Total size: {byteIntoUnit(totalVolum(files)).number}{" "}
+                      {byteIntoUnit(totalVolum(files)).unit}
                       <TTbytes>({totalVolum(files)} bytes)</TTbytes>
                     </div>
                   </TTSize>
@@ -376,7 +377,7 @@ UploadImagePreProps) => {
                 <AudioName>{ImSelected.FInfo.name}</AudioName>
                 <AudioSizeSbj>Size</AudioSizeSbj>
                 <AudioSize>
-                  {byteUnitConversion(ImSelected.FInfo.size)}
+                  {byteIntoUnit(ImSelected.FInfo.size).number}
                   <br />({ImSelected.FInfo.size} bytes)
                 </AudioSize>
                 <AudioTypeSbj>Type</AudioTypeSbj>
@@ -388,7 +389,7 @@ UploadImagePreProps) => {
                   }}
                 >
                   <i className="icon-folder" />
-                  {DC.DirData.name}
+                  {DirData.name}
                 </ManifestDir>
               </AudioInfo>
             </Right>

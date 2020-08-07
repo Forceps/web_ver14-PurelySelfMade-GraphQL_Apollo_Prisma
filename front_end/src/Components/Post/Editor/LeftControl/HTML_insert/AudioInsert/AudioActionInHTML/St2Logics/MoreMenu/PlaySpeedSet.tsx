@@ -36,7 +36,7 @@ export default ({ audioElem }: St2VideoActionLogicProps) => {
     for (let i = 1; i < list.length; i++) {
       if (list[i] === e.currentTarget) {
         audioPlayer.playbackRate = 0.25 * i;
-        list[i].style.borderLeft = "4px solid #2d3436";
+        list[i].style.borderLeftWidth = "4px";
         break;
       }
     }

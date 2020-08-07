@@ -10,7 +10,7 @@ import { ME } from "../../Apollo/GraphQL_Client/User/UserRseries/UserR";
 import { useLoginCheck } from "./IsLoggedIn";
 
 interface MeContext {
-  MEdata: any;
+  MEdata: MedataStructure;
   MEloading: boolean;
 }
 const MeContext = createContext<MeContext | undefined>(undefined);
@@ -37,3 +37,13 @@ export const useMyInfo = () => {
   if (!state) throw new Error("MeContext not found");
   return state;
 };
+
+export interface MedataStructure {
+  user_id: string;
+  username: string;
+  email: string;
+  avatar: string;
+  back_img: string;
+  guaranteed_capacity: string;
+  daily_allocated_capacity: string;
+}

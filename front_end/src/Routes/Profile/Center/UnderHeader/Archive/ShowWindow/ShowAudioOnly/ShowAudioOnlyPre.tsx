@@ -46,9 +46,10 @@ const AddMedia = styled(WH100perI)`
   cursor: pointer;
 `;
 const AudioBox = styled.div`
-  width: 50%;
-  height: 35px;
-  padding: 0 10px 0 10px;
+  display: flex;
+  align-items: center;
+  width: 250px;
+  padding: 8px 10px 10px 10px;
   &:hover {
     background-color: rgba(99, 110, 114, 0.2);
   }

@@ -9,15 +9,15 @@ datasource db {
 
 model chat {
   chat_id         Int       @default(autoincrement()) @id
+  user            Int
+  room            Int
   comment         String
+  year            Int
+  month           Int
   day             Int
   hour            Int
   minute          Int
-  month           Int
-  room            Int
   second          Int
-  user            Int
-  year            Int
   chat_room       chat_room @relation(fields: [room], references: [chat_room_id])
   user_chatTouser user      @relation(fields: [user], references: [user_id])
 
@@ -27,8 +27,8 @@ model chat {
 
 model chat_member {
   chat_member_id         Int       @default(autoincrement()) @id
-  room                   Int
   user                   Int
+  room                   Int
   chat_room              chat_room @relation(fields: [room], references: [chat_room_id])
   user_chat_memberTouser user      @relation(fields: [user], references: [user_id])
 
@@ -44,17 +44,17 @@ model chat_room {
 }
 
 model comment {
-  comment            String
   comment_id         Int     @default(autoincrement()) @id
-  converted          Boolean @default(false)
-  day                Int
-  hour               Int
-  likes              Int     @default(0)
-  minute             Int
-  month              Int
   post               Int
   user               Int
+  comment            String
+  likes              Int     @default(0)
   year               Int
+  month              Int
+  day                Int
+  hour               Int
+  minute             Int
+  converted          Boolean @default(false)
   post_commentTopost post    @relation(fields: [post], references: [post_id])
   user_commentTouser user    @relation(fields: [user], references: [user_id])
 
@@ -64,11 +64,11 @@ model comment {
 
 model directory {
   directory_id           Int         @default(autoincrement()) @id
-  group                  Int?
   name                   String
   parent_id              Int?
-  root                   Boolean     @default(false)
   user                   Int?
+  group                  Int?
+  root                   Boolean     @default(false)
   group_directoryTogroup group?      @relation(fields: [group], references: [group_id])
   directory              directory?  @relation("directoryTodirectory_parent_id", fields: [parent_id], references: [directory_id])
   user_directoryTouser   user?       @relation(fields: [user], references: [user_id])
@@ -84,10 +84,10 @@ model directory {
 }
 
 model friend {
-  consent                      Boolean @default(false)
   friend_id                    Int     @default(autoincrement()) @id
   proposer                     Int
   respondent                   Int
+  consent                      Boolean @default(false)
   user_friend_proposerTouser   user    @relation("friend_proposerTouser", fields: [proposer], references: [user_id])
   user_friend_respondentTouser user    @relation("friend_respondentTouser", fields: [respondent], references: [user_id])
 
@@ -96,13 +96,13 @@ model friend {
 }
 
 model group {
-  administrator                                         Int
   group_id                                              Int          @default(autoincrement()) @id
-  identiti_back_img                                     String?
-  identiti_profile_img                                  String?
   name                                                  String
-  participation_system                                  Int
   purpose                                               String       @unique
+  administrator                                         Int
+  identiti_profile_img                                  String?
+  identiti_back_img                                     String?
+  participation_system                                  Int
   withdrawal_system                                     Int
   user                                                  user         @relation(fields: [administrator], references: [user_id])
   group_system_group_participation_systemTogroup_system group_system @relation("group_participation_systemTogroup_system", fields: [participation_system], references: [group_system_id])
@@ -116,20 +116,20 @@ model group {
 }
 
 model group_system {
-  category                                       String
   group_system_id                                Int     @default(autoincrement()) @id
+  category                                       String
   name                                           String
   group_group_participation_systemTogroup_system group[] @relation("group_participation_systemTogroup_system")
   group_group_withdrawal_systemTogroup_system    group[] @relation("group_withdrawal_systemTogroup_system")
 }
 
 model image {
+  image_id                   Int       @default(autoincrement()) @id
   address                    String
   caption                    String
   directory                  Int
-  image_id                   Int       @default(autoincrement()) @id
-  type                       String?
   volume                     Int
+  type                       String?
   directory_directoryToimage directory @relation(fields: [directory], references: [directory_id])
 
   @@index([directory], name: "image_dir_idx")
@@ -137,8 +137,8 @@ model image {
 
 model liked {
   liked_id         Int  @default(autoincrement()) @id
-  post             Int
   user             Int
+  post             Int
   post_likedTopost post @relation(fields: [post], references: [post_id])
   user_likedTouser user @relation(fields: [user], references: [user_id])
 
@@ -147,12 +147,12 @@ model liked {
 }
 
 model music {
+  music_id                   Int       @default(autoincrement()) @id
   address                    String
   caption                    String
   directory                  Int
-  music_id                   Int       @default(autoincrement()) @id
-  type                       String?
   volume                     Int
+  type                       String?
   directory_directoryTomusic directory @relation(fields: [directory], references: [directory_id])
 
   @@index([directory], name: "music_dir_idx")
@@ -163,38 +163,38 @@ model ngram_post_stopwords {
 }
 
 model notification {
+  notification_id         Int    @default(autoincrement()) @id
+  title                   String
   content                 String
+  user                    Int
+  sender                  String @default("Administrator")
+  year                    Int
+  month                   Int
   day                     Int
   hour                    Int
   minute                  Int
-  month                   Int
-  notification_id         Int    @default(autoincrement()) @id
   second                  Int
-  sender                  String @default("Administrator")
-  title                   String
-  user                    Int
-  year                    Int
   user_notificationTouser user   @relation(fields: [user], references: [user_id])
 
   @@index([user], name: "to_who_idx")
 }
 
 model post {
+  post_id                                   Int              @default(autoincrement()) @id
+  user                                      Int
   caption                                   String
   content                                   String?
-  day                                       Int
   directory                                 Int
-  face                                      String?
-  face_type                                 post_face_type   @default(text)
-  hour                                      Int
-  likes                                     Int              @default(0)
-  minute                                    Int
-  month                                     Int
-  post_id                                   Int              @default(autoincrement()) @id
-  second                                    Int
-  user                                      Int
   views                                     Int              @default(0)
+  likes                                     Int              @default(0)
+  face                                      String?
   year                                      Int
+  month                                     Int
+  day                                       Int
+  hour                                      Int
+  minute                                    Int
+  second                                    Int
+  face_type                                 post_face_type   @default(text)
   directory_directoryTopost                 directory        @relation(fields: [directory], references: [directory_id])
   user_postTouser                           user             @relation(fields: [user], references: [user_id])
   comment                                   comment[]
@@ -209,10 +209,10 @@ model post {
 }
 
 model post_relevance {
-  degree                          Int
+  post_relevance_id               Int  @default(autoincrement()) @id
   post1                           Int
   post2                           Int
-  post_relevance_id               Int  @default(autoincrement()) @id
+  degree                          Int
   post_postTopost_relevance_post1 post @relation("postTopost_relevance_post1", fields: [post1], references: [post_id])
   post_postTopost_relevance_post2 post @relation("postTopost_relevance_post2", fields: [post2], references: [post_id])
 
@@ -221,9 +221,9 @@ model post_relevance {
 }
 
 model subscriber {
+  subscriber_id                Int  @default(autoincrement()) @id
   author                       Int
   reader                       Int
-  subscriber_id                Int  @default(autoincrement()) @id
   user_subscriber_authorTouser user @relation("subscriber_authorTouser", fields: [author], references: [user_id])
   user_subscriber_readerTouser user @relation("subscriber_readerTouser", fields: [reader], references: [user_id])
 
@@ -234,16 +234,16 @@ model subscriber {
 }
 
 model user {
+  user_id                                   Int              @default(autoincrement()) @id
+  username                                  String
+  email                                     String           @unique
+  password                                  String
+  creator                                   Int              @default(0)
+  phone_number                              Int?
   avatar                                    String?
   back_img                                  String?
-  creator                                   Int              @default(0)
-  daily_allocated_capacity                  Int              @default(50)
-  email                                     String           @unique
   guaranteed_capacity                       Int              @default(300)
-  password                                  String
-  phone_number                              Int?
-  username                                  String
-  user_id                                   Int              @default(autoincrement()) @id
+  daily_allocated_capacity                  Int              @default(50)
   chat                                      chat[]
   chat_member                               chat_member[]
   comment                                   comment[]
@@ -264,10 +264,10 @@ model user {
 }
 
 model user_relevance {
-  degree                          Int
+  user_relevance_id               Int  @default(autoincrement()) @id
   user1                           Int
   user2                           Int
-  user_relevance_id               Int  @default(autoincrement()) @id
+  degree                          Int
   user_userTouser_relevance_user1 user @relation("userTouser_relevance_user1", fields: [user1], references: [user_id])
   user_userTouser_relevance_user2 user @relation("userTouser_relevance_user2", fields: [user2], references: [user_id])
 
@@ -276,25 +276,25 @@ model user_relevance {
 }
 
 model video {
+  video_id                   Int       @default(autoincrement()) @id
   address                    String
   caption                    String
   directory                  Int
-  thumbnail                  String?
-  type                       String?
-  video_id                   Int       @default(autoincrement()) @id
   volume                     Int
+  type                       String?
+  thumbnail                  String?
   directory_directoryTovideo directory @relation(fields: [directory], references: [directory_id])
 
   @@index([directory], name: "video_dir_idx")
 }
 
 model watched {
-  count              Int  @default(1)
-  deprecated         Int  @default(0)
-  interest           Int
-  post               Int
-  user               Int
   watched_id         Int  @default(autoincrement()) @id
+  user               Int
+  post               Int
+  count              Int  @default(1)
+  interest           Int
+  deprecated         Int  @default(0)
   post_postTowatched post @relation(fields: [post], references: [post_id])
   user_userTowatched user @relation(fields: [user], references: [user_id])
 

@@ -6,6 +6,8 @@ type User {
   avatar: String
   back_img: String
   phone_number: Int
+  guaranteed_capacity: Int!
+  daily_allocated_capacity: Int!
 
   comment: [Comment]
   directory: [Directory]!
