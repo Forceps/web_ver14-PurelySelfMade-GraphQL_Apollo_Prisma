@@ -1,10 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { rootPostDir } from "../../../../LibForGQL/findByPrisma/findRootDir";
+import { contextType } from "../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
   Mutation: {
-    editPost: async (_: void, args, { req, isAuthenticated }: any) => {
+    editPost: async (_: void, args, { req, isAuthenticated }: contextType) => {
       isAuthenticated(req);
       const { post_id, caption, content, directory_id, face, face_type } = args;
       let face_type_t: "image" | "text" = "text";

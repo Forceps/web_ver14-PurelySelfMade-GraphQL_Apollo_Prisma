@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { SetBackImgMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -7,7 +8,7 @@ export default {
     setBackImg: async (
       _: void,
       args: SetBackImgMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { back_img } = args;

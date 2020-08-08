@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { S_N_to_N } from "../../../../../../GlobalLib/recycleFunction/type_convert";
 import { SeeRoomsQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -8,7 +9,7 @@ export default {
     seeRooms: async (
       _: void,
       { skip, take }: SeeRoomsQueryArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       try {
         isAuthenticated(req);

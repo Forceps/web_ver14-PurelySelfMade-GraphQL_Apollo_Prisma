@@ -1,4 +1,5 @@
 import { PrismaClient } from "@prisma/client";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -6,7 +7,7 @@ export default {
     seeRoom: async (
       _: void,
       { chat_room_id },
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       try {
         isAuthenticated(req);

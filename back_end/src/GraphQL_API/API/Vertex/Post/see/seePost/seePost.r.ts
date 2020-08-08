@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { SeePostQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
 import { watchingLoging } from "../../../../../../Abyss/Interconnectedness/Injection/watched";
 import { S_N_to_N } from "../../../../../../GlobalLib/recycleFunction/type_convert";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 // import PythonPlay from "../../../GlobalLib/PythonPlay";
 
@@ -10,7 +11,7 @@ export default {
     seePost: async (
       _: void,
       args: SeePostQueryArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       const { post_id } = args;
       // PythonPlay(

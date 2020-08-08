@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { AddLikeMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -7,7 +8,7 @@ export default {
     addLike: async (
       _: void,
       args: AddLikeMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { user } = req;

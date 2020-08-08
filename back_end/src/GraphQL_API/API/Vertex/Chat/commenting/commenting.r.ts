@@ -3,6 +3,7 @@ import { CommentingMutationArgs } from "../../../../LibForGQL/mergedSchema/types
 import when_is_it_now from "../../../../../GlobalLib/recycleFunction/when_is_it_now";
 import { S_N_to_N } from "../../../../../GlobalLib/recycleFunction/type_convert";
 import { pubSub } from "../../../../../server";
+import { contextType } from "../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -10,7 +11,7 @@ export default {
     commenting: async (
       _: void,
       args: CommentingMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const user_id = S_N_to_N(req.user.user_id);

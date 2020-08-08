@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client";
 import { MakeGroupMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 import { S_N_to_N } from "../../../../../GlobalLib/recycleFunction/type_convert";
 import { groupSystemId } from "../../../../LibForGQL/findByPrisma/findGroupSystemId";
+import { contextType } from "../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -16,7 +17,7 @@ export default {
         identiti_back_img,
         identiti_profile_img,
       }: MakeGroupMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const user_id = S_N_to_N(req.user.user_id);

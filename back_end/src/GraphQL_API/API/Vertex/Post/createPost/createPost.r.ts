@@ -3,13 +3,14 @@ const prisma = new PrismaClient();
 import { rootPostDir } from "../../../../LibForGQL/findByPrisma/findRootDir";
 import { CreatePostMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 import when_is_it_now from "../../../../../GlobalLib/recycleFunction/when_is_it_now";
+import { contextType } from "../../../../LibForGQL/typesLib";
 
 export default {
   Mutation: {
     createPost: async (
       _: void,
       args: CreatePostMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { user } = req;

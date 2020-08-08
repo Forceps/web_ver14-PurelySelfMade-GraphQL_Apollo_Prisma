@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { SetAvatarMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -7,7 +8,7 @@ export default {
     setAvatar: async (
       _: void,
       args: SetAvatarMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { avatar } = args;

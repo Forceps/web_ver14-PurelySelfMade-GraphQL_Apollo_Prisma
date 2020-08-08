@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { S_N_to_N } from "../../../../../../GlobalLib/recycleFunction/type_convert";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -7,7 +8,7 @@ export default {
     createRoom: async (
       _: void,
       { name, users },
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const user_id = S_N_to_N(req.user.user_id);

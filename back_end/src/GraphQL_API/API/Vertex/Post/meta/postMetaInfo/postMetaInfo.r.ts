@@ -1,30 +1,24 @@
 import { PrismaClient } from "@prisma/client";
-import { ImgGetQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
 import { contextType } from "../../../../../LibForGQL/typesLib";
+
 const prisma = new PrismaClient();
 
 export default {
   Query: {
-    imgGet: async (
+    postMetaInfo: async (
       _: void,
-      { skip, take }: ImgGetQueryArgs,
+      __: void,
       { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { user } = req;
       try {
-        return prisma.image.findMany({
+        const postCount = await prisma.post.count({
           where: {
-            directory_directoryToimage: {
-              user: user.user_id,
-            },
+            user: user.user_id,
           },
-          orderBy: {
-            image_id: "desc",
-          },
-          skip: skip ? skip : 0,
-          take: take ? take : 4,
         });
+        return { postCount };
       } catch (e) {
         console.log(e);
         return null;

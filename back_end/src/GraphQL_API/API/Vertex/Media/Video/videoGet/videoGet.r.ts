@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { VideoGetQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -7,7 +8,7 @@ export default {
     videoGet: async (
       _: void,
       args: VideoGetQueryArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { user } = req;

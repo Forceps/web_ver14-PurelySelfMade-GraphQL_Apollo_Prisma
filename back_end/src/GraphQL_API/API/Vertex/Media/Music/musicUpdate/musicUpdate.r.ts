@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { rootArchiveDir } from "../../../../../LibForGQL/findByPrisma/findRootDir";
 import { MusicUpdateMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -8,7 +9,7 @@ export default {
     musicUpdate: async (
       _: void,
       args: MusicUpdateMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { user } = req;

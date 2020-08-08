@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { rootArchiveDir } from "../../../../../LibForGQL/findByPrisma/findRootDir";
 import { ImgUpdateMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -8,7 +9,7 @@ export default {
     imgUpdate: async (
       _: void,
       args: ImgUpdateMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { image_id, caption, directory_id } = args;

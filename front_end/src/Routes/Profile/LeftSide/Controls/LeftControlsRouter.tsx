@@ -3,6 +3,7 @@ import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/Pro
 import ArchiveCtrlCon from "./ArchiveCtrl/ArchiveCtrlCon";
 import styled from "styled-components";
 import WH100per from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import PostCtrlCon from "./PostCtrl/PostCtrlCon";
 
 const Pack = styled(WH100per)`
   overflow: hidden;
@@ -10,5 +11,7 @@ const Pack = styled(WH100per)`
 
 export default () => {
   const { Mode } = useProfileMode();
-  return <Pack>{Mode[0] === "Archive" ? <ArchiveCtrlCon /> : <div />}</Pack>;
+  return (
+    <Pack>{Mode[0] === "Archive" ? <ArchiveCtrlCon /> : <PostCtrlCon />}</Pack>
+  );
 };

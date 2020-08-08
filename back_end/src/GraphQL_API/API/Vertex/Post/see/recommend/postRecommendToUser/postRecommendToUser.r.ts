@@ -1,11 +1,12 @@
 import stF_result from "../../../../../../../Abyss/Interconnectedness/Extraction/postRecommendToUser/stF_result";
+import { contextType } from "../../../../../../LibForGQL/typesLib";
 
 export default {
   Query: {
     postRecommendToUser: async (
       _: void,
       { user_id }: { user_id: number },
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       try {

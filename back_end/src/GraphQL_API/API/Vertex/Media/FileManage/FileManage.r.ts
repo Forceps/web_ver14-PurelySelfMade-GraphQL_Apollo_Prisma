@@ -1,10 +1,15 @@
 import { PrismaClient } from "@prisma/client";
+import { contextType } from "../../../../LibForGQL/typesLib";
 
 const prisma = new PrismaClient();
 
 export default {
   Query: {
-    FileManage: async (_: void, __: void, { req, isAuthenticated }: any) => {
+    fileManage: async (
+      _: void,
+      __: void,
+      { req, isAuthenticated }: contextType
+    ) => {
       isAuthenticated(req);
       const { user } = req;
       try {

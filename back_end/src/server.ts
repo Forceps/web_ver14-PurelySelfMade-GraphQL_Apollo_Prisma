@@ -5,7 +5,7 @@ import logger from "morgan";
 import cors from "cors";
 import helmet from "helmet";
 import { authenticateJwt } from "./GlobalLib/authSystem/passport";
-import { isAuthenticated } from "./REST_API/middleware/authVerify";
+import { isAuthenticated } from "./GlobalLib/authSystem/authVerify";
 import {
   localUploadProcessByMulter,
   localUploadResponse,

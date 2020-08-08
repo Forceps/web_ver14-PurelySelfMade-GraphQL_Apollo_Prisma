@@ -1,12 +1,12 @@
 type Query {
-  FileManage(skip: Int, take: Int): mediaVolumeInfo
+  fileManage: mediaVolumeInfo
 }
 type mediaVolumeInfo {
-  images: volumeWithCount
-  musics: volumeWithCount
-  videos: volumeWithCount
+  images: volumeWithCount!
+  musics: volumeWithCount!
+  videos: volumeWithCount!
 }
 type volumeWithCount {
-  count: Int
-  volume: Int
+  count: Int!
+  volume: Int!
 }

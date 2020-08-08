@@ -1,0 +1,6 @@
+type Query {
+  postMetaInfo: postMetaInfoType
+}
+type postMetaInfoType {
+  postCount: Int!
+}

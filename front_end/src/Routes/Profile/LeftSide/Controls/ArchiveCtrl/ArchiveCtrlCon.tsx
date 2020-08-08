@@ -9,6 +9,6 @@ export default () => {
   return MEloading || loading ? (
     <div />
   ) : (
-    <ArchiveCtrlPre MEdata={MEdata} data={data?.FileManage} />
+    <ArchiveCtrlPre MEdata={MEdata} data={data?.fileManage} />
   );
 };

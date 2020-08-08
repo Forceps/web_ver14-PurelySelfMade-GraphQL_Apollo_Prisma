@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { AddCommentMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
 import when_is_it_now from "../../../../../GlobalLib/recycleFunction/when_is_it_now";
+import { contextType } from "../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -8,7 +9,7 @@ export default {
     addComment: async (
       _: void,
       args: AddCommentMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { user } = req;

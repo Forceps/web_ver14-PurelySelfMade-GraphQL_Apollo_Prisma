@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { rootArchiveDir } from "../../../../../LibForGQL/findByPrisma/findRootDir";
 import { VideoUploadMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
@@ -8,7 +9,7 @@ export default {
     videoUpload: async (
       _: void,
       args: VideoUploadMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { user } = req;

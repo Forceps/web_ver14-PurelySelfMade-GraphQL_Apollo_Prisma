@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { ViewPostMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
+import { ViewPostMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
 export default {

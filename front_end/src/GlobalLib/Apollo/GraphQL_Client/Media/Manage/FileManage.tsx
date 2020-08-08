@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 
 export const FILE_MANAGE = gql`
-  query FileManage {
-    FileManage {
+  query fileManage {
+    fileManage {
       images {
         count
         volume

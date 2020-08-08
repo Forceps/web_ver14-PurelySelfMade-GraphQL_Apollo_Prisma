@@ -3,13 +3,14 @@ const prisma = new PrismaClient();
 import fs from "fs";
 import { binaryFileLocation } from "../../../../../../GlobalLib/assets/im_here";
 import { VideoDeleteMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 
 export default {
   Mutation: {
     videoDelete: async (
       _: void,
       { video_id }: VideoDeleteMutationArgs,
-      { req, isAuthenticated }: any
+      { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       try {
