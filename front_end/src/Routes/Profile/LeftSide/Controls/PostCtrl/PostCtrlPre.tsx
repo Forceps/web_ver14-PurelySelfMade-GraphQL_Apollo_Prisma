@@ -13,7 +13,6 @@ const AvailTotal = styled(W100per)`
 `;
 
 export default ({ data }: ArchiveCtrlPreProps) => {
-  console.log(data);
   const { postCount } = data;
   return (
     <Suburb>
