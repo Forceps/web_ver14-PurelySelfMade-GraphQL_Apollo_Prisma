@@ -13,6 +13,7 @@ export const WH100perI = styled.i`
 export const WH100perInput = styled.input`
   width: 100%;
   height: 100%;
+  background-color: transparent;
 `;
 export const W100per = styled.div`
   width: 100%;
