@@ -11,7 +11,7 @@ import NativeVideoActionInHTML from "../LeftControl/HTML_insert/VideoInsert/Nati
 
 const Editor = styled(ContentEditable)`
   display: block;
-  padding: 10px;
+  padding: 20px 10px 10px 10px;
   border: 0;
   width: 100%;
   height: calc(100% - 10px);
@@ -21,7 +21,7 @@ const Editor = styled(ContentEditable)`
   word-break: break-all;
 `;
 
-export const CediPre = ({
+const CediPre = ({
   InEditor,
   Html,
   setImgSubMenuOp2,
