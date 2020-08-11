@@ -8,7 +8,7 @@ import React, {
 import ContentEditorPre from "./ContentEditorPre";
 import ImgInSCon from "../../../Media/Insert/ImgInsertScreen/ImgInSCon";
 import { restoreSelection } from "../EditorLib";
-import { audioStyleChange } from "./ContentEditorConLib";
+import { audioStyleChange } from "./ContentEditorLib";
 
 const CediCon = ({
   InEditor,

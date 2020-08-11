@@ -28,6 +28,13 @@ export default createGlobalStyle<GlobalStyleProps>`
   input:focus{
     outline:none;
   }
+  input {    
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  }
+  input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
   img {
     border: 0;
   }

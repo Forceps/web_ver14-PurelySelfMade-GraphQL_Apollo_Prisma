@@ -14,27 +14,11 @@ const Editor = styled(ContentEditable)`
   padding: 10px;
   border: 0;
   width: 100%;
-  margin-top: 10px;
   height: calc(100% - 10px);
   min-height: 200px;
   max-height: 720px;
-  background-color: #fafafa;
   outline-style: none;
   word-break: break-all;
-  overflow: auto;
-  &::-webkit-scrollbar {
-    width: 6px;
-    height: calc(100% - 10px);
-  }
-  &::-webkit-scrollbar-thumb {
-    background-color: #636e72;
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: #768185;
-  }
-  &::-webkit-scrollbar-thumb:active {
-    background-color: #2d3436;
-  }
 `;
 
 export const CediPre = ({

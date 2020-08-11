@@ -5,6 +5,7 @@ import WH100per, {
   WH100perInput,
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import WritePostCon from "../../../../../Components/Post/WritePost/WritePostCon";
+import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 const Suburb = styled(W100per)`
   display: flex;
@@ -38,6 +39,42 @@ const SearchBtn = styled(WH100per)`
 const Pagination = styled(W100per)`
   margin: 10px 0 15px 0;
 `;
+const PgnSbj = styled(W100per)``;
+const PgnNumList = styled(W100per)`
+  display: flex;
+  justify-content: flex-start;
+  margin: 7px 0 12px 0;
+`;
+const PageNum = styled.div`
+  padding: 4px 5px 4px 5px;
+  margin: 1px 3px 1px 3px;
+  cursor: pointer;
+  &:hover {
+    background-color: #dfe6e9;
+  }
+`;
+const WrBtn = styled(W100per)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  padding: 5px;
+  margin: 0 15px 10px 0;
+  background-color: #dfe6e9;
+  cursor: pointer;
+  &:hover {
+    background-color: #b2bec3;
+  }
+`;
+const Icon = styled.i`
+  margin: 0 0 0 8px;
+`;
+const ScaleInfoSbj = styled(W100per)`
+  margin: 0 0 10px 0;
+`;
+const ScaleInfoMain = styled(W100per)`
+  padding: 0 0 0 7px;
+`;
 
 export default ({
   data,
@@ -45,6 +82,7 @@ export default ({
   create_post_toggle,
   SearchKeyWord,
   Search,
+  PagenationNum,
 }: PostCtrlPreProps) => {
   const { postCount } = data;
   return (
@@ -65,11 +103,29 @@ export default ({
           <i className="icon-search" />
         </SearchBtn>
       </SearchBox>
-      <Pagination>Pagination</Pagination>
-
+      <Pagination>
+        <PgnSbj>Pagination</PgnSbj>
+        <PgnNumList>
+          {PagenationNum.map((n) => (
+            <PageNum>{n}</PageNum>
+          ))}
+        </PgnNumList>
+      </Pagination>
+      <WrBtn
+        onClick={(e) => {
+          spaped(e);
+          create_post_toggle();
+        }}
+      >
+        Write
+        <Icon className="icon-pencil-alt" />
+      </WrBtn>
       <Achievement>
         <AvailTotal>
-          {postCount} {"posts"}
+          <ScaleInfoSbj>Scale</ScaleInfoSbj>
+          <ScaleInfoMain>
+            {postCount} {postCount === 1 ? "post" : "posts"}
+          </ScaleInfoMain>
         </AvailTotal>
       </Achievement>
       {createPost && <WritePostCon create_post_toggle={create_post_toggle} />}
@@ -83,4 +139,5 @@ interface PostCtrlPreProps {
   create_post_toggle: () => void;
   Search: (e: any) => void;
   SearchKeyWord: any;
+  PagenationNum: number[];
 }

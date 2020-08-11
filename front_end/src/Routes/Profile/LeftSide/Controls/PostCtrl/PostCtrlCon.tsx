@@ -9,6 +9,7 @@ export default () => {
   const TSP = useTargetsShown();
   const { data, loading } = PostMetaInfoRequest();
   const [createPost, setCreatePost] = useState(false);
+  const [PagenationNum] = useState([1]);
   const SearchKeyWord = useInput("");
   const create_post_toggle = () => {
     setCreatePost((p) => !p);
@@ -32,6 +33,7 @@ export default () => {
       create_post_toggle={create_post_toggle}
       Search={Search}
       SearchKeyWord={SearchKeyWord}
+      PagenationNum={PagenationNum}
     />
   );
 };

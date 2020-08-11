@@ -1,27 +1,11 @@
 import React from "react";
-import styled from "styled-components";
 import { saveSelection } from "../../../EditorLib";
 import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-
-const EdBtn = styled.div`
-  display: flex;
-  display: relative;
-  width: 95px;
-  height: 60px;
-  margin: 0 5px 5px 0;
-  justify-content: center;
-  align-items: center;
-  font-size: 1rem;
-  background-color: white;
-  &:hover {
-    background-color: #dfe6e9;
-  }
-  cursor: pointer;
-`;
+import { EdBtn2dot2 } from "../GenControls";
 
 export default ({ CaretLocation, setAnchorInputOpen }: AnchorInsertBtn) => {
   return (
-    <EdBtn
+    <EdBtn2dot2
       onMouseDown={async (e) => {
         spaped(e);
         CaretLocation.current = saveSelection();
@@ -32,7 +16,7 @@ export default ({ CaretLocation, setAnchorInputOpen }: AnchorInsertBtn) => {
       }}
     >
       <i className="icon-link" />
-    </EdBtn>
+    </EdBtn2dot2>
   );
 };
 type AnchorInsertBtn = {

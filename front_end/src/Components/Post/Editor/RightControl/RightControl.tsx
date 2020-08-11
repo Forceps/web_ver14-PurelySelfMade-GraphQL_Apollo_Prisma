@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useDirMode } from "../../../../GlobalLib/Context/ProfileContext/DirMode";
 import DirAppoint from "./DirSetting/DirAppoint";
-import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import { useDummyState } from "../../../../GlobalLib/Context/Lib/DummyState";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import TitleImgAppointmentCon from "./TitleImgAppointment/TitleImgAppointmentCon";
+import { EdBtn2 } from "../LeftControl/ButtonPart/GenControls";
 
 interface ControlsRProps {
   zIndex: number;
@@ -16,7 +16,7 @@ const ControlsR = styled.div<ControlsRProps>`
   flex-direction: row;
   align-items: flex-start;
   position: absolute;
-  top: 25px;
+  top: 30px;
   left: 20px;
   width: 200px;
   z-index: ${(p) => p.zIndex};
@@ -42,15 +42,29 @@ const RestButn = styled.div`
 const RestButnPGap = styled(RestButn)`
   margin-top: 5px;
 `;
+const SubmitButton = styled(EdBtn2)`
+  background-color: #2d3436;
+  color: white;
+  &:hover {
+    background-color: #636e72;
+  }
+  outline-style: none;
+`;
 
 type RightControlProps = {
-  Exit: any;
   zIndex: number;
   TitleImg: string;
   setTitleImg: any;
+  Mutation: any;
+  Mode: any;
 };
-export default ({ Exit, zIndex, TitleImg, setTitleImg }: RightControlProps) => {
-  const Pmode = useProfileMode();
+export default ({
+  zIndex,
+  TitleImg,
+  setTitleImg,
+  Mutation,
+  Mode,
+}: RightControlProps) => {
   const DC = useDirMode();
   const DS = useDummyState();
   const [DirApOpen, setDirApOpen] = useState(false);
@@ -61,20 +75,18 @@ export default ({ Exit, zIndex, TitleImg, setTitleImg }: RightControlProps) => {
   return (
     <Dmm>
       <ControlsR zIndex={zIndex}>
-        <RestButn>
-          <i className="icon-floppy" />
-          Temporary Save
-        </RestButn>
-        <RestButn
-          onClick={(e) => {
+        <SubmitButton
+          onClick={(e: any) => {
             spaped(e);
-            Pmode.setMode(Pmode.rememberLatestMode.current);
-            DC.setLocation(DC.rememberLocation.current);
-            Exit(false);
+            Mutation();
           }}
         >
-          <i className="icon-noun_x_2939490" />
-        </RestButn>
+          {Mode && Mode.current === "update" ? "Update" : "Write"}
+        </SubmitButton>
+        <EdBtn2>
+          <i className="icon-floppy" />
+          Save
+        </EdBtn2>
         <RestButnPGap
           onClick={(e) => {
             spaped(e);

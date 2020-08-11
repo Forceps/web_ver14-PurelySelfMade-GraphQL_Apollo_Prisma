@@ -1,10 +1,7 @@
 import React from "react";
 import FontSizeColor from "./FontSizeColor";
 import GenControls from "./GenControls";
-import ImgInsertBtn from "./InsertConnection/ImgInsertBtn";
-import AnchorInsertBtn from "./InsertConnection/AnchorInsertBtn";
-import VideoInsertBtn from "./InsertConnection/VideoInsertBtn";
-import AudioInsertBtn from "./InsertConnection/AudioInsertBtn";
+import InsertBtnCollection from "./InsertBtnCollection";
 
 type BtnCollectionProps = {
   FcOpen: boolean;
@@ -29,27 +26,14 @@ export default ({
   return (
     <>
       <GenControls />
-      <VideoInsertBtn
+      <InsertBtnCollection
         CaretLocation={CaretLocation}
-        setVideoSubMenuOp={setVideoSubMenuOp}
-      />
-      <AnchorInsertBtn
         setAnchorInputOpen={setAnchorInputOpen}
-        CaretLocation={CaretLocation}
-      />
-      <AudioInsertBtn
-        CaretLocation={CaretLocation}
+        setImgSubMenuOp={setImgSubMenuOp}
+        setVideoSubMenuOp={setVideoSubMenuOp}
         setAudioSubMenuOp={setAudioSubMenuOp}
       />
-      <ImgInsertBtn
-        CaretLocation={CaretLocation}
-        setImgSubMenuOp={setImgSubMenuOp}
-      />
-      <FontSizeColor
-        FcOpen={FcOpen}
-        setFcOpen={setFcOpen}
-        ColorPiked={ColorPiked}
-      />
+      <FontSizeColor />
     </>
   );
 };

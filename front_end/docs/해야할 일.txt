@@ -26,4 +26,3 @@
 
 11. profile post의 list, tiles를 최신순, 인기순으로 교체
 
-12. profile post의 control에 pagination구현
