@@ -5,12 +5,11 @@ import PostDetailT from "../../../../../../../GlobalLib/Context/PostContext/Post
 import Tile from "../../../../../../../Components/Post/Shape/Tile/TileCon";
 import styled from "styled-components";
 import WH100per from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import ControlsH from "../../Controls/ControlsH";
 import IncludeScrollBar from "../../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 
 const Embosom = styled(WH100per)`
   display: grid;
-  grid-template-rows: 100px 1fr;
+  grid-template-rows: 50px 1fr;
   max-height: 100%;
   overflow: hidden;
 `;
@@ -20,13 +19,19 @@ const RestArea = styled(IncludeScrollBar)`
   max-width: 1300px;
   max-height: 100%;
 `;
+const Classification = styled(WH100per)`
+  display: flex;
+  align-items: center;
+  padding: 10px 0 0 11px;
+  font-size: 1.2rem;
+`;
 
 export default () => {
   const TSP = useTargetsShown();
   const PD = usePostDetail();
   return (
     <Embosom>
-      <ControlsH />
+      <Classification>Recent</Classification>
       <RestArea>
         {TSP.posts?.map((post: any) => (
           <Tile key={post.post_id} post={post} />

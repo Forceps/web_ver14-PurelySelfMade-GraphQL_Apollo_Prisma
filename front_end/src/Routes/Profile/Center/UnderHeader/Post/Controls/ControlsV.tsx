@@ -24,7 +24,6 @@ const SearchTxt = styled(WH100perInput)`
   padding: 5px;
   font-size: 1rem;
   border: 0;
-  background-color: #fafafa;
   border-bottom: 1px solid #2d3436;
   margin-bottom: 10px;
 `;
