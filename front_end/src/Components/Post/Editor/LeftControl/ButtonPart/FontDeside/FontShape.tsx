@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Operation } from "../../EditorLib";
-import { SetOfBtn, EdBtn3 } from "./GenControls";
+import { Operation } from "../../../EditorLib";
+import { SetOfBtn, EdBtn3 } from "../ParagraphShape";
 import WH100per, {
   W100per,
-} from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+} from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 
 const FontSizeContainer = styled(W100per)`
   display: grid;
@@ -34,12 +34,12 @@ const SizeSpec = styled(WH100per)`
   cursor: pointer;
 `;
 
-const FontSizeColor = () => {
+const FontSize = () => {
   return (
     <SetOfBtn>
       {[
         ["strikeThrough", <i className="icon-strike" />],
-        ["italic", <i className="icon-underline" />],
+        ["italic", <i className="icon-italic" />],
         ["underline", <i className="icon-underline" />],
       ].map((iT: any[]) => (
         <EdBtn3
@@ -73,4 +73,4 @@ const FontSizeColor = () => {
 
 interface FontSizeColorProps {}
 
-export default React.memo(FontSizeColor);
+export default React.memo(FontSize);

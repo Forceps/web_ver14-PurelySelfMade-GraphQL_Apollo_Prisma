@@ -1,31 +1,28 @@
-import React from "react";
-import FontSizeColor from "./FontSizeColor";
-import GenControls from "./GenControls";
+import React, { RefObject } from "react";
+import FontShape from "./FontDeside/FontShape";
+import ParagraphShape from "./ParagraphShape";
 import InsertBtnCollection from "./InsertBtnCollection";
+import FontColor from "./FontDeside/FontColor";
 
 type BtnCollectionProps = {
-  FcOpen: boolean;
-  setFcOpen: any;
-  ColorPiked: any;
   CaretLocation: any;
   setAnchorInputOpen: any;
   setImgSubMenuOp: any;
   setVideoSubMenuOp: any;
   setAudioSubMenuOp: any;
+  InEditor: RefObject<HTMLElement>;
 };
 export default ({
-  FcOpen,
-  setFcOpen,
-  ColorPiked,
   CaretLocation,
   setAnchorInputOpen,
   setImgSubMenuOp,
   setVideoSubMenuOp,
   setAudioSubMenuOp,
+  InEditor,
 }: BtnCollectionProps) => {
   return (
     <>
-      <GenControls />
+      <ParagraphShape />
       <InsertBtnCollection
         CaretLocation={CaretLocation}
         setAnchorInputOpen={setAnchorInputOpen}
@@ -33,7 +30,8 @@ export default ({
         setVideoSubMenuOp={setVideoSubMenuOp}
         setAudioSubMenuOp={setAudioSubMenuOp}
       />
-      <FontSizeColor />
+      <FontShape />
+      <FontColor CaretLocation={CaretLocation} />
     </>
   );
 };

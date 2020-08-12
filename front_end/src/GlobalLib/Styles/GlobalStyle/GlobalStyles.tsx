@@ -9,6 +9,9 @@ export default createGlobalStyle<GlobalStyleProps>`
   * {
     box-sizing: border-box;
   }
+  *::selection {
+    background: rgba(45, 52, 54, 0.2);
+  }
   body {
     background-color: ${(props) => props.theme.bgColor};
     color: ${(props) => props.theme.balckColor};

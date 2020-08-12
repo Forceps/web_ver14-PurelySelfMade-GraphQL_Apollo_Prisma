@@ -4,24 +4,10 @@ import LeftControlPre from "./LeftControlPre";
 
 type LeftControlConProps = {
   CaretLocation: any;
-  FcOpen: boolean;
-  setFcOpen: any;
-  ColorPiked: any;
-  setColorPiked: any;
-  IroColor: any;
   zIndex: number;
   InEditor: RefObject<HTMLElement>;
 };
-export default ({
-  InEditor,
-  CaretLocation,
-  FcOpen,
-  setFcOpen,
-  ColorPiked,
-  setColorPiked,
-  IroColor,
-  zIndex,
-}: LeftControlConProps) => {
+export default ({ InEditor, CaretLocation, zIndex }: LeftControlConProps) => {
   const [AnchorInputOpen, setAnchorInputOpen] = useState(false);
   const URLText = useInput("");
   const VideoURLText = useInput("");
@@ -32,11 +18,6 @@ export default ({
   return (
     <LeftControlPre
       InEditor={InEditor}
-      FcOpen={FcOpen}
-      setFcOpen={setFcOpen}
-      ColorPiked={ColorPiked}
-      setColorPiked={setColorPiked}
-      IroColor={IroColor}
       CaretLocation={CaretLocation}
       AnchorInputOpen={AnchorInputOpen}
       setAnchorInputOpen={setAnchorInputOpen}

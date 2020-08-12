@@ -1,7 +1,7 @@
 import React from "react";
 import { saveSelection } from "../../../EditorLib";
 import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { EdBtn2dot2 } from "../GenControls";
+import { EdBtn2dot2 } from "../ParagraphShape";
 
 type ImgInsertBtn = {
   CaretLocation: any;

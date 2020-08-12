@@ -68,11 +68,6 @@ export default ({
   Mutation,
   Exit,
   Html,
-  FcOpen,
-  setFcOpen,
-  ColorPiked,
-  setColorPiked,
-  IroColor,
   Mode,
   CaretLocation,
   zIndex,
@@ -85,11 +80,6 @@ export default ({
     <Template zIndex={zIndex}>
       <LeftControlCon
         InEditor={InEditor}
-        FcOpen={FcOpen}
-        setFcOpen={setFcOpen}
-        ColorPiked={ColorPiked}
-        setColorPiked={setColorPiked}
-        IroColor={IroColor}
         CaretLocation={CaretLocation}
         zIndex={zIndex + 10}
       />
@@ -107,6 +97,7 @@ export default ({
                 Mutation();
               }
             }}
+            autoComplete="false"
           />
           <ContourCon>
             <Contour />
@@ -147,11 +138,6 @@ type EditorPreProps = {
   Mutation: any;
   Exit: any;
   Html: MutableRefObject<string>;
-  FcOpen: boolean;
-  setFcOpen: any;
-  ColorPiked: any;
-  setColorPiked: any;
-  IroColor: any;
   Mode?: any;
   CaretLocation: any;
   zIndex: number;

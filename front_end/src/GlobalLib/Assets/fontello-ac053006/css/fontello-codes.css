@@ -107,6 +107,7 @@
 .icon-noun_sign-out_1713306:before { content: '\e869'; } /* '' */
 .icon-noun_fullscreen_1399012:before { content: '\e86a'; } /* '' */
 .icon-noun_fullscreen_1399010:before { content: '\e86b'; } /* '' */
+.icon-italic:before { content: '\e86c'; } /* '' */
 .icon-down-open-1:before { content: '\f004'; } /* '' */
 .icon-up-open-1:before { content: '\f005'; } /* '' */
 .icon-right-open-1:before { content: '\f006'; } /* '' */
@@ -145,6 +146,7 @@
 .icon-bell-off:before { content: '\f1f6'; } /* '' */
 .icon-bell-off-empty:before { content: '\f1f7'; } /* '' */
 .icon-trash-1:before { content: '\f1f8'; } /* '' */
+.icon-brush:before { content: '\f1fc'; } /* '' */
 .icon-cart-plus:before { content: '\f217'; } /* '' */
 .icon-cart-arrow-down:before { content: '\f218'; } /* '' */
 .icon-user-plus:before { content: '\f234'; } /* '' */

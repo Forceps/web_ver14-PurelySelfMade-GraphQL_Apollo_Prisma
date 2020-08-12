@@ -3,7 +3,7 @@ import VideoInsertBtn from "./InsertConnection/VideoInsertBtn";
 import AnchorInsertBtn from "./InsertConnection/AnchorInsertBtn";
 import AudioInsertBtn from "./InsertConnection/AudioInsertBtn";
 import ImgInsertBtn from "./InsertConnection/ImgInsertBtn";
-import { SetOfBtn } from "./GenControls";
+import { SetOfBtn } from "./ParagraphShape";
 
 export default ({
   CaretLocation,

@@ -1,41 +1,24 @@
 import React, { RefObject } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import HiddenScreen from "./ToggleScreen/HiddenScreenCon";
 import BtnCollection from "./ButtonPart/BtnCollection";
-import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
-interface ControlsLProp {
-  FcOpen: boolean;
+interface ControlsLProps {
   zIndex: number;
 }
-const ControlsL = styled.div<ControlsLProp>`
+const ControlsL = styled.div<ControlsLProps>`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   align-items: flex-start;
   position: absolute;
-  ${(prop) => {
-    if (prop.FcOpen) {
-      return css`
-        top: 55px;
-      `;
-    } else {
-      return css`
-        top: 70px;
-      `;
-    }
-  }}
+  top: 70px;
   left: -220px;
   width: 200px;
   z-index: ${(p) => p.zIndex};
 `;
 
 export default ({
-  FcOpen,
-  setFcOpen,
-  ColorPiked,
-  setColorPiked,
-  IroColor,
   CaretLocation,
   AnchorInputOpen,
   setAnchorInputOpen,
@@ -52,25 +35,14 @@ export default ({
 }: LeftControlPreProps) => {
   return (
     <>
-      <ControlsL
-        FcOpen={FcOpen}
-        onMouseUp={(e) => {
-          spaped(e);
-          if (FcOpen) {
-            setColorPiked(IroColor.current.color.rgbString);
-          }
-        }}
-        zIndex={zIndex}
-      >
+      <ControlsL zIndex={zIndex}>
         <BtnCollection
-          FcOpen={FcOpen}
-          setFcOpen={setFcOpen}
-          ColorPiked={ColorPiked}
           CaretLocation={CaretLocation}
           setAnchorInputOpen={setAnchorInputOpen}
           setImgSubMenuOp={setImgSubMenuOp}
           setVideoSubMenuOp={setVideoSubMenuOp}
           setAudioSubMenuOp={setAudioSubMenuOp}
+          InEditor={InEditor}
         />
       </ControlsL>
       <HiddenScreen
@@ -92,11 +64,6 @@ export default ({
   );
 };
 type LeftControlPreProps = {
-  FcOpen: boolean;
-  setFcOpen: any;
-  ColorPiked: any;
-  setColorPiked: any;
-  IroColor: any;
   CaretLocation: any;
   AnchorInputOpen: boolean;
   setAnchorInputOpen: any;

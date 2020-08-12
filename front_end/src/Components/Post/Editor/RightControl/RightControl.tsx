@@ -5,7 +5,7 @@ import DirAppoint from "./DirSetting/DirAppoint";
 import { useDummyState } from "../../../../GlobalLib/Context/Lib/DummyState";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import TitleImgAppointmentCon from "./TitleImgAppointment/TitleImgAppointmentCon";
-import { EdBtn2 } from "../LeftControl/ButtonPart/GenControls";
+import { EdBtn2 } from "../LeftControl/ButtonPart/ParagraphShape";
 
 interface ControlsRProps {
   zIndex: number;

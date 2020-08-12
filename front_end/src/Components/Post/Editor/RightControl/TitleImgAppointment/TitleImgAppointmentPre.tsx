@@ -6,15 +6,15 @@ import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrev
 
 const RestButn = styled.div`
   display: grid;
-  grid-template-rows: 30px 1fr;
+  grid-template-columns: 1fr 1fr;
   width: 195px;
-  height: 215px;
+  height: 97.5px;
   margin: 0 5px 5px 0;
   background-color: white;
 `;
 const SbjNCtrlSet = styled(WH100per)`
   display: grid;
-  grid-template-columns: 1fr 30px;
+  grid-template-rows: 1fr 30px;
 `;
 const Sbj = styled(WH100per)`
   display: flex;

@@ -41,7 +41,7 @@ export default () => {
       {[
         ["undo", <i className="icon-left-open" />],
         ["redo", <i className="icon-right-open" />],
-      ]?.map((iT: any[]) => (
+      ].map((iT: any[]) => (
         <EdBtn2
           key={iT[0]}
           onMouseDown={async (e) => {
@@ -56,7 +56,7 @@ export default () => {
           ["justifyLeft", <i className="icon-indent-left" />],
           ["justifyCenter", <i className="icon-align-center" />],
           ["justifyRight", <i className="icon-indent-right" />],
-        ]?.map((iT: any[]) => (
+        ].map((iT: any[]) => (
           <EdBtn3
             key={iT[0]}
             onMouseDown={async (e) => {
@@ -69,7 +69,7 @@ export default () => {
         {[
           ["outdent", <i className="icon-indent-left-1" />],
           ["indent", <i className="icon-indent-right-1" />],
-        ]?.map((iT: any[]) => (
+        ].map((iT: any[]) => (
           <EdBtn2dot2
             key={iT[0]}
             onMouseDown={async (e) => {
