@@ -7,6 +7,7 @@ import {
   H100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Avatar from "../../../../Components/User/Avatar";
+import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
 
 const Identi = styled(W100per)`
   padding: 0 20px 0 10px;
@@ -82,16 +83,21 @@ export default ({
   MenuMode,
   setMenuMode,
 }: IdentityProps) => {
+  const { Mode } = useProfileMode();
   return (
     <Identi>
       <Upside>
-        <Menu
-          onClick={() => {
-            setMenuMode((p: boolean) => !p);
-          }}
-        >
-          {MenuMode ? "Control" : "Menu"}
-        </Menu>
+        {Mode[0] === "Post" || Mode[0] === "Archive" ? (
+          <Menu
+            onClick={() => {
+              setMenuMode((p: boolean) => !p);
+            }}
+          >
+            {MenuMode ? "Control" : "Menu"}
+          </Menu>
+        ) : (
+          <div />
+        )}
         {UserDataLoading ? (
           <LoadingCon>
             <LoadingTxt>Loading...</LoadingTxt>

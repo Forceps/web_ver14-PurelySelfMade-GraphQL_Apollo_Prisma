@@ -31,7 +31,7 @@ export default () => {
   const PD = usePostDetail();
   return (
     <Embosom>
-      <Classification>Recent</Classification>
+      <Classification>Recent All</Classification>
       <RestArea>
         {TSP.posts?.map((post: any) => (
           <Tile key={post.post_id} post={post} />

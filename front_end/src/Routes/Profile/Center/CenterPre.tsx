@@ -5,6 +5,7 @@ import PostMode from "./UnderHeader/Post/PostMode";
 import { useProfileMode } from "../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import ArchiveMode from "./UnderHeader/Archive/ArchiveMode";
 import FormCon from "./UnderHeader/Form/FormCon";
+import SettingsMode from "./UnderHeader/Settings/SettingsMode";
 
 const Wrapper = styled.div`
   display: grid;
@@ -20,6 +21,8 @@ export default ({ UserData, UserDataLoading }: CenterPre) => {
         <ArchiveMode />
       ) : Mode[0] === "Form" ? (
         <FormCon />
+      ) : Mode[0] === "Settings" ? (
+        <SettingsMode />
       ) : (
         <PostMode UserData={UserData} UserDataLoading={UserDataLoading} />
       )}

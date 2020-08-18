@@ -29,8 +29,8 @@ const Subject = styled.div`
 `;
 const SelectBar = styled(H100per)`
   display: grid;
-  grid-template-columns: 70px 80px;
-  font-size: 1.2rem;
+  grid-template-columns: 110px 80px;
+  font-size: 1.1rem;
   justify-self: right;
   align-items: center;
 `;
@@ -104,7 +104,7 @@ export default () => {
               }}
               PfDM={PfDM.Mode}
             >
-              List
+              Popularity
             </ItemList>
             <ItemTL
               onClick={() => {
@@ -112,7 +112,7 @@ export default () => {
               }}
               PfDM={PfDM.Mode}
             >
-              Tiles
+              Recent
             </ItemTL>
           </SelectBar>
         </Left>
