@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
-import { SetBackImgMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
-import { contextType } from "../../../../LibForGQL/typesLib";
+import { SetBackImgMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {

@@ -114,7 +114,7 @@ export default ({
         keyboardShortCutAble={keyboardShortCutAble}
         videoElem={videoElem}
       />
-      <Resizing videoElem={videoElem} />
+      <Resizing videoElem={videoElem} InEditor={InEditor} />
       <FullScreen
         keyboardShortCutAble={keyboardShortCutAble}
         videoElem={videoElem}
