@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, RefObject } from "react";
 import styled from "styled-components";
 import { audioHtmlPlayerStructureInEditor } from "../../St1ReusableItems/AudioTargetSpecific";
 
@@ -6,7 +6,7 @@ const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
-export default ({ audioElem }: St2AudioActionLogicProps) => {
+export default ({ audioElem, InEditor }: St2AudioActionLogicProps) => {
   const {
     audioTarget,
     bottom: {
@@ -16,13 +16,18 @@ export default ({ audioElem }: St2AudioActionLogicProps) => {
 
   const resizeHandleActive = useRef(false);
   const audioResizeHandleMouseMove = (e: any) => {
-    if (audioTarget) {
+    if (InEditor && InEditor.current) {
+      const editorInnerWidth =
+        InEditor.current.getBoundingClientRect().width - 20;
       let width = 0;
       width =
         e.pageX -
         audioTarget.getBoundingClientRect().left +
         window.pageXOffset +
         5;
+      if (width > editorInnerWidth) {
+        width = editorInnerWidth;
+      }
       let height = 0;
       height =
         e.pageY -
@@ -31,7 +36,7 @@ export default ({ audioElem }: St2AudioActionLogicProps) => {
         5;
       audioTarget.setAttribute(
         "style",
-        `width: ${width}px; height: ${height}px;`
+        `width: ${width}px; height: ${height}px`
       );
       resizeHandleActive.current = true;
     }
@@ -73,4 +78,5 @@ export default ({ audioElem }: St2AudioActionLogicProps) => {
 
 interface St2AudioActionLogicProps {
   audioElem: audioHtmlPlayerStructureInEditor;
+  InEditor: RefObject<HTMLElement>;
 }

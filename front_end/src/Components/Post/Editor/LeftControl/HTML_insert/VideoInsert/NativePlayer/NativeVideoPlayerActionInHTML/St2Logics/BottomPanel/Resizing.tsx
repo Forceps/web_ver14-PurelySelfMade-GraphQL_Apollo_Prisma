@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, RefObject } from "react";
 import styled from "styled-components";
 import { videoHtmlPlayerStructureInEditor } from "../../St1ReusableItems/NativeVideoPlayerTargetSpecific";
 
@@ -6,7 +6,7 @@ const UnnecessaryDiv = styled.div`
   display: none;
 `;
 
-export default ({ videoElem }: St2VideoActionLogicProps) => {
+export default ({ videoElem, InEditor }: St2VideoActionLogicProps) => {
   const {
     videoTarget,
     videoPlayer,
@@ -17,7 +17,9 @@ export default ({ videoElem }: St2VideoActionLogicProps) => {
 
   const resizeHandleActive = useRef(false);
   const resizeHandleMouseMove = (e: any) => {
-    if (videoTarget) {
+    if (InEditor && InEditor.current) {
+      const editorInnerWidth =
+        InEditor.current.getBoundingClientRect().width - 20;
       let width = 0;
       width =
         e.pageX -
@@ -37,6 +39,9 @@ export default ({ videoElem }: St2VideoActionLogicProps) => {
       }
       if (height > videoPlayer.clientHeight) {
         height = videoPlayer.clientHeight;
+      }
+      if (width > editorInnerWidth) {
+        width = editorInnerWidth;
       }
       videoTarget.setAttribute(
         "style",
@@ -76,4 +81,5 @@ export default ({ videoElem }: St2VideoActionLogicProps) => {
 
 interface St2VideoActionLogicProps {
   videoElem: videoHtmlPlayerStructureInEditor;
+  InEditor: RefObject<HTMLElement>;
 }

@@ -1,0 +1,3 @@
+type Query {
+  see_My_Subs: [User]
+}

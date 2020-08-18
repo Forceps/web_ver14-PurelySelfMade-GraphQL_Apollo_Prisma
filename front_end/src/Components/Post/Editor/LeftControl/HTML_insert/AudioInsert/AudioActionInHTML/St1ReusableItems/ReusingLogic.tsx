@@ -115,7 +115,7 @@ export default ({
         keyboardShortCutAble={keyboardShortCutAble}
         audioElem={audioElem}
       />
-      <Resizing audioElem={audioElem} />
+      <Resizing audioElem={audioElem} InEditor={InEditor} />
       <MoreMenu
         setImgSubMenuOp2={setImgSubMenuOp2}
         CaretLocation={CaretLocation}
