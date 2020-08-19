@@ -10,7 +10,7 @@ export default () => {
   const { data, loading } = SeePostRequest(post_id);
   const [AddCommentOpen, setAddCommentOpen] = useState(true);
   const [LoginOpen, setLoginOpen] = useState(false);
-  const [AuthorWorkOpen, setAuthorWorkOpen] = useState(true);
+  const [AuthorWorkOpen, setAuthorWorkOpen] = useState(false);
 
   return loading ? (
     <div />
