@@ -34,6 +34,9 @@ const Item = styled(W100per)`
   &:hover {
     background-color: #dfe6e9;
   }
+  transition-property: background-color;
+  transition-duration: 0.12s;
+  transition-timing-function: ease;
   cursor: pointer;
 `;
 const LittleItem = styled(Item)`

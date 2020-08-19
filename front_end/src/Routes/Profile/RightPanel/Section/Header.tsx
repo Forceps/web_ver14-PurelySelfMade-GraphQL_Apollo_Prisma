@@ -4,6 +4,7 @@ import { useDirMode } from "../../../../GlobalLib/Context/ProfileContext/DirMode
 import { useDirSelectorMode } from "../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
 import HeadRootSbj from "./HeadRootSbj";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { WH100perI } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 
 const SbJCon = styled.div`
   display: grid;
@@ -21,12 +22,18 @@ const SbJ = styled.div`
   font-size: 1.3rem;
   overflow: hidden;
 `;
-const Folding = styled.i`
-  display: grid;
-  height: 30px;
+const Folding = styled(WH100perI)`
+  display: flex;
   justify-content: center;
   align-items: center;
+  &:hover {
+    background-color: rgba(45, 52, 54, 0.8);
+    color: white;
+  }
   cursor: pointer;
+  transition-property: background-color;
+  transition-duration: 0.18s;
+  transition-timing-function: ease;
 `;
 const SbJCon2 = styled.div`
   display: grid;

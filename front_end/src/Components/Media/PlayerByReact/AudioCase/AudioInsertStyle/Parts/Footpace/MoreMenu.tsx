@@ -12,7 +12,7 @@ const Bailey = styled(H100per)<BaileyProps>`
   display: flex;
   flex-direction: column;
   width: ${(p) => (p.MoreMenuOpen ? "100px" : "0px")};
-  backdrop-filter: saturate(200%) blur(10px);
+  backdrop-filter: blur(10px);
   background-color: rgba(223, 230, 233, 0.5);
   position: absolute;
   justify-self: end;

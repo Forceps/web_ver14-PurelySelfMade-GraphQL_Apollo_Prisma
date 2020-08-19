@@ -108,8 +108,12 @@ const DirSelectorOpen = styled.div`
   justify-content: center;
   align-items: center;
   &:hover {
-    background-color: #dfe6e9;
+    background-color: rgba(45, 52, 54, 0.8);
+    color: white;
   }
+  transition-property: background-color;
+  transition-duration: 0.18s;
+  transition-timing-function: ease;
   cursor: pointer;
 `;
 const DSOpenIcon = styled.i`
@@ -182,16 +186,14 @@ export default () => {
       )}
       <Right>
         {!DSC.Mode && (
-          <>
-            <DirSelectorOpen
-              onClick={(e) => {
-                spaped(e);
-                DSC.setMode(true);
-              }}
-            >
-              <DSOpenIcon className="icon-left-open" />
-            </DirSelectorOpen>
-          </>
+          <DirSelectorOpen
+            onClick={(e) => {
+              spaped(e);
+              DSC.setMode(true);
+            }}
+          >
+            <DSOpenIcon className="icon-left-open" />
+          </DirSelectorOpen>
         )}
       </Right>
     </Container>

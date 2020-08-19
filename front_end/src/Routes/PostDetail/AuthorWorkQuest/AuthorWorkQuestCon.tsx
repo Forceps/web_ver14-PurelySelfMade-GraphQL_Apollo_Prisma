@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import AuthorWorkQuestPre from "./AuthorWorkQuestPre";
 
 const AuthorWorkQuestCon = ({
@@ -6,11 +6,17 @@ const AuthorWorkQuestCon = ({
   post,
   setAuthorWorkOpen,
 }: AuthorWorkQuestConProps) => {
+  const [ChoosedDir, setChoosedDir] = useState<[number, string]>([
+    0,
+    "Recent all",
+  ]);
   return (
     <AuthorWorkQuestPre
       zIndex={zIndex}
       post={post}
       setAuthorWorkOpen={setAuthorWorkOpen}
+      ChoosedDir={ChoosedDir}
+      setChoosedDir={setChoosedDir}
     />
   );
 };

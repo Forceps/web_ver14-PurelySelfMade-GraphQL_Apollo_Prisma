@@ -3,14 +3,11 @@ import PDHeaderPre from "./PDHeaderPre";
 
 export default ({
   post,
-  loading,
   setLoginOpen,
   setAuthorWorkOpen,
   zIndex = 20,
 }: PDHeaderConProps) => {
-  return loading ? (
-    <div />
-  ) : (
+  return (
     <PDHeaderPre
       zIndex={zIndex}
       post={post}
@@ -22,7 +19,6 @@ export default ({
 
 interface PDHeaderConProps {
   post: any;
-  loading: boolean;
   setLoginOpen: any;
   setAuthorWorkOpen: any;
   zIndex?: number;

@@ -12,11 +12,12 @@ export default () => {
   const [LoginOpen, setLoginOpen] = useState(false);
   const [AuthorWorkOpen, setAuthorWorkOpen] = useState(true);
 
-  return (
+  return loading ? (
+    <div />
+  ) : (
     <PostDetailPre
       post_id={post_id}
       post={data?.seePost}
-      loading={loading}
       AddCommentOpen={AddCommentOpen}
       setAddCommentOpen={setAddCommentOpen}
       LoginOpen={LoginOpen}

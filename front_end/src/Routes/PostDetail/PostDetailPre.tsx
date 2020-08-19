@@ -12,7 +12,6 @@ const Divistion = styled(WH100per)``;
 export default ({
   post_id,
   post,
-  loading,
   AddCommentOpen,
   setAddCommentOpen,
   LoginOpen,
@@ -24,7 +23,6 @@ export default ({
     <Divistion>
       <PDHeaderCon
         post={post}
-        loading={loading}
         setLoginOpen={setLoginOpen}
         setAuthorWorkOpen={setAuthorWorkOpen}
         zIndex={20}
@@ -32,21 +30,18 @@ export default ({
       <ContentSectionCon
         post_id={post_id}
         post={post}
-        loading={loading}
         AddCommentOpen={AddCommentOpen}
         setAddCommentOpen={setAddCommentOpen}
       />
-      {!loading && (
-        <UndersCon
-          post_id={post_id}
-          post={post}
-          AddCommentOpen={AddCommentOpen}
-        />
-      )}
+      <UndersCon
+        post_id={post_id}
+        post={post}
+        AddCommentOpen={AddCommentOpen}
+      />
       {LoginOpen && (
         <LoginModalCon zIndex={30} setLoginModalOpen={setLoginOpen} />
       )}
-      {AuthorWorkOpen && !loading && (
+      {AuthorWorkOpen && (
         <AuthorWorkQuestCon
           setAuthorWorkOpen={setAuthorWorkOpen}
           zIndex={30}
@@ -60,7 +55,6 @@ export default ({
 interface PostDetailPreProps {
   post_id: number;
   post: any;
-  loading: boolean;
   AddCommentOpen: boolean;
   setAddCommentOpen: any;
   LoginOpen: boolean;

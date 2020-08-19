@@ -2,17 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import WH100per, {
   H100per,
-  W100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Avatar from "../../../../Components/User/Avatar";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import DirListFoldingSystem from "../../../../Components/ElementEtc/DirListFoldingSystem/DirListFoldingSystem";
+import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 
 const Panel = styled(WH100per)`
   display: grid;
   grid-template-rows: 50px 1fr;
   backdrop-filter: blur(5px);
-  background-color: rgba(223, 230, 233, 0.4);
+  background-color: rgba(223, 230, 233, 0.8);
 `;
 const AuthorInfo = styled(WH100per)`
   display: flex;
@@ -43,13 +43,22 @@ const CloseBtn = styled(WH100per)`
   transition-timing-function: ease;
 `;
 const PanelBottom = styled(WH100per)`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: 40px 1fr;
   padding: 10px 0 0 0;
+  overflow: hidden;
 `;
-const Sbj = styled(W100per)`
-  padding: 15px 15px 15px 8px;
+const Sbj = styled(WH100per)`
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 15px 0 0;
+  font-size: 1.2rem;
   cursor: pointer;
+`;
+const ScrollZone = styled(IncludeScrollBar)`
+  width: 100%;
+  height: 100%;
 `;
 
 const PanelPre = ({
@@ -80,18 +89,20 @@ const PanelPre = ({
         <Sbj
           onClick={(e) => {
             spaped(e);
-            setChoosedDir(0);
+            setChoosedDir([0, "Recent all"]);
           }}
         >
           Category
         </Sbj>
-        <DirListFoldingSystem
-          RootDirData={RootDirData}
-          RootDirDataLoad={RootDirDataLoad}
-          ChoosedDir={ChoosedDir}
-          setChoosedDir={setChoosedDir}
-          hoverBackColor={"#ccd4d9"}
-        />
+        <ScrollZone>
+          <DirListFoldingSystem
+            RootDirData={RootDirData}
+            RootDirDataLoad={RootDirDataLoad}
+            ChoosedDir={ChoosedDir}
+            setChoosedDir={setChoosedDir}
+            hoverBackColor={"#b2bec3"}
+          />
+        </ScrollZone>
       </PanelBottom>
     </Panel>
   );
@@ -102,7 +113,7 @@ interface PanelPreProps {
   setAuthorWorkOpen: any;
   RootDirData: any;
   RootDirDataLoad: boolean;
-  ChoosedDir: number;
+  ChoosedDir: [number, string];
   setChoosedDir: any;
 }
 

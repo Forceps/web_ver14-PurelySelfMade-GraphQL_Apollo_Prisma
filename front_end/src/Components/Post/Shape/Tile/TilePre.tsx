@@ -49,6 +49,9 @@ const Menifesting = styled(WH100per)`
   &:hover {
     background-color: rgba(45, 52, 54, 0.45);
   }
+  transition-property: background-color;
+  transition-duration: 0.12s;
+  transition-timing-function: ease;
   cursor: pointer;
 `;
 const AdditionalInfo = styled(WH100per)``;
@@ -70,6 +73,7 @@ const TitleImgSubstitude = styled.div`
 const Capsel = styled(WH100per)`
   display: flex;
   padding: 35px 0 0 3px;
+  background-color: #fafafa;
 `;
 
 export default ({ post, zIndex }: EachPostProps) => {

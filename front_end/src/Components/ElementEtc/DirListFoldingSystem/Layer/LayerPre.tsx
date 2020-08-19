@@ -8,7 +8,7 @@ import { useDummyState } from "../../../../GlobalLib/Context/Lib/DummyState";
 
 export interface BarProps {
   NUM: number;
-  ChoosedDir: number;
+  ChoosedDir: [number, string];
   hoverBackColor: string;
 }
 export const Bar = styled(W100per)<BarProps>`
@@ -16,15 +16,18 @@ export const Bar = styled(W100per)<BarProps>`
   &:hover {
     background-color: ${(p) => p.hoverBackColor};
   }
-  cursor: pointer;
   ${(p) => {
-    if (p.NUM === p.ChoosedDir) {
+    if (p.NUM === p.ChoosedDir[0]) {
       return css`
         border-right: 3px solid #2d3436;
         background-color: ${p.hoverBackColor};
       `;
     }
   }}
+  transition-property: background-color;
+  transition-duration: 0.12s;
+  transition-timing-function: ease;
+  cursor: pointer;
 `;
 const Indent = styled.div`
   padding: 0 0 0 8px;
@@ -49,9 +52,9 @@ export default ({
             setDummyState((p: number) => p + 1);
             setOpen((p) => !p);
 
-            ChoosedDir === directory_id
-              ? setChoosedDir(0)
-              : setChoosedDir(directory_id);
+            ChoosedDir[0] === directory_id
+              ? setChoosedDir([0, "Recent all"])
+              : setChoosedDir([directory_id, d.name]);
           }}
           NUM={directory_id}
           ChoosedDir={ChoosedDir}
@@ -79,7 +82,7 @@ export default ({
 };
 interface LayerPreProps {
   DirByIdData: any;
-  ChoosedDir: number;
+  ChoosedDir: [number, string];
   setChoosedDir: any;
   hoverBackColor: string;
 }

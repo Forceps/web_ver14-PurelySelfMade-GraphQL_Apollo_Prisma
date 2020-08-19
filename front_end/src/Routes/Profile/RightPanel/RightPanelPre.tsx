@@ -20,7 +20,7 @@ const RightRootPanel = styled.div<RightRootPanelProps>`
   z-index: 3;
   font-size: 1rem;
   margin-right: ${(p) => (p.Mode ? "0px" : "-345px")};
-  backdrop-filter: saturate(100%) blur(5px);
+  backdrop-filter: blur(5px);
   background-color: rgba(223, 230, 233, 0.5);
   overflow: hidden;
   transition-property: margin-right;

@@ -83,7 +83,7 @@ export default ({
         <Sbj
           onClick={(e) => {
             spaped(e);
-            setChoosedDir(0);
+            setChoosedDir([0, "Recent all"]);
           }}
         >
           Category
@@ -135,7 +135,7 @@ interface DisplayPreProps {
   WpLoading: boolean;
   RootDirData: any;
   RootDirDataLoad: boolean;
-  ChoosedDir: number;
+  ChoosedDir: [number, string];
   setChoosedDir: any;
   PostSortBy: string;
   setPostSortBy: any;

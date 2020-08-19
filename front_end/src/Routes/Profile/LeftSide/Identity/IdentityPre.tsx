@@ -73,6 +73,10 @@ const Menu = styled(H100per)`
   font-size: 1.1rem;
   cursor: pointer;
 `;
+const SelectText = styled.div`
+  font-size: 0.9rem;
+  padding: 0 0 0 5px;
+`;
 
 export default ({
   UserDataLoading,
@@ -93,7 +97,8 @@ export default ({
               setMenuMode((p: boolean) => !p);
             }}
           >
-            {MenuMode ? "Control" : "Menu"}
+            <i className={MenuMode ? "icon-wrench" : "icon-th-list"} />
+            <SelectText>{MenuMode ? "Control" : "Menu"}</SelectText>
           </Menu>
         ) : (
           <div />

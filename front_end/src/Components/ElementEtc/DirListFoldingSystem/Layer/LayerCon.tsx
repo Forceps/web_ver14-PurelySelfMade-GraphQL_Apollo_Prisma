@@ -25,7 +25,7 @@ export default ({
 };
 
 interface LayerConProps {
-  ChoosedDir: number;
+  ChoosedDir: [number, string];
   setChoosedDir: any;
   ParentId: number;
   hoverBackColor: string;

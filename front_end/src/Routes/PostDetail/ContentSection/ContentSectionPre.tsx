@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import ContentEditable from "react-contenteditable";
 import MetaInfoCon from "./MetaInfo/MetaInfoCon";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
@@ -55,58 +54,49 @@ const ScrollToTop = styled(CommentToggle)`
 export default ({
   post_id,
   post,
-  loading,
   AddCommentOpen,
   setAddCommentOpen,
   FirstImgSrc,
 }: ContentSectionPreProps) => {
   return (
     <Surrounding>
-      {loading ? (
-        <Loading />
-      ) : (
-        <>
-          <Intro post={post} FirstImgSrc={FirstImgSrc} />
-          <Mean>
-            <LocateMiddle>
-              <OnePost
-                className="editable"
-                tagName="article"
-                html={post.content}
-                spellCheck="false"
-                disabled={true}
-              />
-              {!loading && (
-                <MetaInfoCon
-                  post_id={post_id}
-                  post={post}
-                  setAddCommentOpen={setAddCommentOpen}
-                />
-              )}
-              <ScrollToTop
-                onClick={(e: any) => {
-                  spaped(e);
-                  window.scrollTo(0, 0);
-                }}
-              >
-                <i className="icon-up-big" />
-              </ScrollToTop>
-              <CommentToggle
-                onClick={(e) => {
-                  spaped(e);
-                  setAddCommentOpen((p: boolean) => !p);
-                }}
-              >
-                {AddCommentOpen ? (
-                  <i className="icon-th-large" />
-                ) : (
-                  <i className="icon-commenting-o" />
-                )}
-              </CommentToggle>
-            </LocateMiddle>
-          </Mean>
-        </>
-      )}
+      <Intro post={post} FirstImgSrc={FirstImgSrc} />
+      <Mean>
+        <LocateMiddle>
+          <OnePost
+            className="editable"
+            tagName="article"
+            html={post.content}
+            spellCheck="false"
+            disabled={true}
+          />
+          <MetaInfoCon
+            post_id={post_id}
+            post={post}
+            setAddCommentOpen={setAddCommentOpen}
+          />
+          <ScrollToTop
+            onClick={(e: any) => {
+              spaped(e);
+              window.scrollTo(0, 0);
+            }}
+          >
+            <i className="icon-up-big" />
+          </ScrollToTop>
+          <CommentToggle
+            onClick={(e) => {
+              spaped(e);
+              setAddCommentOpen((p: boolean) => !p);
+            }}
+          >
+            {AddCommentOpen ? (
+              <i className="icon-th-large" />
+            ) : (
+              <i className="icon-commenting-o" />
+            )}
+          </CommentToggle>
+        </LocateMiddle>
+      </Mean>
     </Surrounding>
   );
 };
@@ -114,7 +104,6 @@ export default ({
 interface ContentSectionPreProps {
   post_id: number;
   post: any;
-  loading: boolean;
   AddCommentOpen: boolean;
   setAddCommentOpen: any;
   FirstImgSrc: string;

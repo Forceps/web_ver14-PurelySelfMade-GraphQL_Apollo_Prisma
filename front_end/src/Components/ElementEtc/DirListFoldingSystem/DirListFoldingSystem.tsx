@@ -37,7 +37,7 @@ const DirListFoldingSystem = ({
 interface DirListFoldingSystemProps {
   RootDirData: any;
   RootDirDataLoad: boolean;
-  ChoosedDir: number;
+  ChoosedDir: [number, string];
   setChoosedDir: any;
   hoverBackColor?: string;
 }
@@ -59,9 +59,9 @@ const RootLayer = ({
         onClick={(e) => {
           spaped(e);
           DirOpen ? setDirOpen(false) : setDirOpen(true);
-          ChoosedDir === directory_id
-            ? setChoosedDir(0)
-            : setChoosedDir(directory_id);
+          ChoosedDir[0] === directory_id
+            ? setChoosedDir([0, "Recent all"])
+            : setChoosedDir([directory_id, dirs.name]);
         }}
         NUM={directory_id}
         ChoosedDir={ChoosedDir}
@@ -88,7 +88,7 @@ const RootLayer = ({
 };
 interface RootLayerProps {
   dirs: any;
-  ChoosedDir: number;
+  ChoosedDir: [number, string];
   setChoosedDir: any;
   hoverBackColor: string;
 }
