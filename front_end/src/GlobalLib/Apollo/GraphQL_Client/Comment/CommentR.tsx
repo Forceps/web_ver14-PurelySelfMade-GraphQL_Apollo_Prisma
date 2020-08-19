@@ -23,3 +23,14 @@ export const SeeCommentsRequest = (post_id: number) =>
   useQuery(SEE_COMMENTS, {
     variables: { post_id },
   });
+export const COUNT_COMMENTS = gql`
+  query countComments($post_id: Int!) {
+    countComments(post_id: $post_id) {
+      commentsCount
+    }
+  }
+`;
+export const CountCommentsRequest = (post_id: number) =>
+  useQuery(COUNT_COMMENTS, {
+    variables: { post_id },
+  });

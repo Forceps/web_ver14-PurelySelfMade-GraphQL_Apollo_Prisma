@@ -8,7 +8,7 @@ import {
 import { useMutation } from "@apollo/client";
 import { ADD_COMMENT } from "../../../GlobalLib/Apollo/GraphQL_Client/Comment/CommentCUD";
 
-export default ({ post_id, setAddCommentOpen }: CommentsPartConProps) => {
+export default ({ post_id }: CommentsPartConProps) => {
   const commentInput = useInput("");
   const submitCheck = commentInput.value.length > 300;
   const [LoginOpen, setLoginOpen] = useState(false);
@@ -40,7 +40,6 @@ export default ({ post_id, setAddCommentOpen }: CommentsPartConProps) => {
 
   return (
     <CommentsPartPre
-      setAddCommentOpen={setAddCommentOpen}
       commentInput={commentInput}
       commentSubmit={commentSubmit}
       commentsLoading={commentsLoading}

@@ -13,10 +13,12 @@ import ToggleMenuCon from "./ToggleMenu/ToggleMenuCon";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
+import Avatar from "../../../Components/User/Avatar";
 
 interface EnclosingProps {
   Position: any;
   Direction: number;
+  zIndex: number;
 }
 const Enclosing = styled(W100per)<EnclosingProps>`
   ${(prop) => {
@@ -31,13 +33,13 @@ const Enclosing = styled(W100per)<EnclosingProps>`
       `;
     }
   }}
-  grid-template-columns: 270px 1fr 270px;
+  grid-template-columns: 550px 1fr 550px;
   position: fixed;
   height: 50px;
   background-color: #fafafa;
   box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
-  z-index: 20;
+  z-index: ${(p) => p.zIndex};
 `;
 const Left = styled(WH100per)`
   display: flex;
@@ -64,6 +66,7 @@ const LogoText = styled(({ ...rest }) => <FatText {...rest} />)`
   display: inline-block;
   font-size: 20px;
   color: black;
+  white-space: nowrap;
 `;
 const MyName = styled.div`
   margin: 0 0 0 30px;
@@ -74,13 +77,10 @@ const Center = styled(WH100per)`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0 0 0 11px;
 `;
-const SearchBox = styled.div`
+const SearchBox = styled(W100per)`
   display: grid;
   grid-template-columns: 1fr 35px;
-  min-width: 370px;
-  width: 50%;
   height: 35px;
 `;
 const SearchTxt = styled(WH100perInput)`
@@ -107,23 +107,40 @@ const Right = styled(WH100per)`
 const HMenu = styled(H100per)`
   display: flex;
   align-items: center;
+  position: relative;
   padding: 0 5px 0 5px;
-  cursor: pointer;
+  margin: 0 0 0 30px;
   &:hover {
     & > div:nth-child(2) {
       display: flex;
     }
   }
+  cursor: pointer;
 `;
 const MenuIcon = styled.i``;
+const AuthorInfo = styled(H100per)`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+`;
+const UserName = styled.div`
+  font-size: 1rem;
+  padding: 0 10px 0 15px;
+  margin: 0 10px 0 0;
+`;
 
-export default ({ setLoginOpen }: PDHeaderPreProps) => {
+export default ({
+  post,
+  setLoginOpen,
+  setAuthorWorkOpen,
+  zIndex,
+}: PDHeaderPreProps) => {
   const { MEloading, MEdata } = useMyInfo();
   const { SearchKeyWord, Search } = useSearch();
   const { Position, Direction } = useScroll();
   const { isLoggedIn } = useLoginCheck();
   return (
-    <Enclosing Direction={Direction} Position={Position}>
+    <Enclosing Direction={Direction} Position={Position} zIndex={zIndex}>
       <Left>
         <LogoLink to="/home">
           <LI>
@@ -145,6 +162,10 @@ export default ({ setLoginOpen }: PDHeaderPreProps) => {
         ) : (
           <MyName>{MEdata.username}</MyName>
         )}
+        <HMenu>
+          <MenuIcon className="icon-menu" />
+          <ToggleMenuCon />
+        </HMenu>
       </Left>
       <Center>
         <SearchBox>
@@ -169,15 +190,23 @@ export default ({ setLoginOpen }: PDHeaderPreProps) => {
         </SearchBox>
       </Center>
       <Right>
-        <HMenu>
-          <MenuIcon className="icon-menu" />
-          <ToggleMenuCon />
-        </HMenu>
+        <AuthorInfo
+          onClick={(e) => {
+            spaped(e);
+            setAuthorWorkOpen(true);
+          }}
+        >
+          <Avatar url={post.user_postTouser.avatar} size={35} />
+          <UserName>{post.user_postTouser.username}'s works</UserName>
+        </AuthorInfo>
       </Right>
     </Enclosing>
   );
 };
 
 interface PDHeaderPreProps {
+  zIndex: number;
+  post: any;
   setLoginOpen: any;
+  setAuthorWorkOpen: any;
 }

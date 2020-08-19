@@ -61,14 +61,14 @@ const AuthorInfo = styled(WH100per)`
   display: grid;
   grid-template-columns: 60px 1fr;
 `;
-const UserName = styled(WH100perLink)`
+const UserName = styled(WH100perLink)<TitleBackImgProps>`
   display: flex;
   padding: 0 0 0 10px;
   font-size: 1.1rem;
   word-break: normal;
   overflow: hidden;
   line-height: 1.8rem;
-  color: white;
+  color: ${(p) => (p.FirstImgSrc ? "white" : "black")};
   cursor: pointer;
 `;
 
@@ -85,7 +85,10 @@ export default ({ post, FirstImgSrc }: IntroProps) => {
               size={60}
               link={`/blog/${post.user_postTouser.user_id}`}
             />
-            <UserName to={`/blog/${post.user_postTouser.user_id}`}>
+            <UserName
+              to={`/blog/${post.user_postTouser.user_id}`}
+              FirstImgSrc={FirstImgSrc}
+            >
               {post.user_postTouser.username}
             </UserName>
           </AuthorInfo>

@@ -1,12 +1,11 @@
 import React from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import ContentEditable from "react-contenteditable";
 import MetaInfoCon from "./MetaInfo/MetaInfoCon";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import Intro from "./Intro/Intro";
-// import AudioActionInHTML from "../../../Components/Post/Editor/LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/AudioActionInHTML";
 
 const Surrounding = styled(W100per)`
   display: flex;
@@ -49,28 +48,16 @@ const CommentToggle = styled.div`
   }
   cursor: pointer;
 `;
-interface ScrollToTopProps {
-  AddCommentOpen: boolean;
-}
-const ScrollToTop = styled(CommentToggle)<ScrollToTopProps>`
-  ${(p) => {
-    if (p.AddCommentOpen) {
-      return css`
-        bottom: calc(40px + 2.7rem + 10px);
-      `;
-    } else {
-      return css`
-        bottom: 40px;
-      `;
-    }
-  }}
+const ScrollToTop = styled(CommentToggle)`
+  bottom: calc(40px + 2.7rem + 10px);
 `;
 
 export default ({
+  post_id,
   post,
   loading,
-  setAddCommentOpen,
   AddCommentOpen,
+  setAddCommentOpen,
   FirstImgSrc,
 }: ContentSectionPreProps) => {
   return (
@@ -91,6 +78,7 @@ export default ({
               />
               {!loading && (
                 <MetaInfoCon
+                  post_id={post_id}
                   post={post}
                   setAddCommentOpen={setAddCommentOpen}
                 />
@@ -100,23 +88,34 @@ export default ({
                   spaped(e);
                   window.scrollTo(0, 0);
                 }}
-                AddCommentOpen={AddCommentOpen}
               >
                 <i className="icon-up-big" />
               </ScrollToTop>
+              <CommentToggle
+                onClick={(e) => {
+                  spaped(e);
+                  setAddCommentOpen((p: boolean) => !p);
+                }}
+              >
+                {AddCommentOpen ? (
+                  <i className="icon-th-large" />
+                ) : (
+                  <i className="icon-commenting-o" />
+                )}
+              </CommentToggle>
             </LocateMiddle>
           </Mean>
         </>
       )}
-      {/* <AudioActionInHTML rerenderingPoint={post} /> */}
     </Surrounding>
   );
 };
 
 interface ContentSectionPreProps {
+  post_id: number;
   post: any;
   loading: boolean;
-  setAddCommentOpen: any;
   AddCommentOpen: boolean;
+  setAddCommentOpen: any;
   FirstImgSrc: string;
 }

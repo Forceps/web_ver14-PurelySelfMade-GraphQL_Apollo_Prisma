@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import styled, { css } from "styled-components";
 import WH100per, {
   W100per,
@@ -6,9 +6,7 @@ import WH100per, {
 import Loading from "../../../../Components/ElementEtc/Effect/Loading";
 import Tile from "../../../../Components/Post/Shape/Tile/TileCon";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";
-import LayerCon from "./Layer/LayerCon";
-import { Bar } from "./Layer/LayerPre";
+import DirListFoldingSystem from "../../../../Components/ElementEtc/DirListFoldingSystem/DirListFoldingSystem";
 
 const Cover = styled(W100per)`
   display: grid;
@@ -33,10 +31,6 @@ const Sbj = styled(WH100per)`
   padding: 0 0 0 9px;
   font-size: 1.3rem;
   cursor: pointer;
-`;
-const Fold = styled(WH100per)`
-  display: flex;
-  flex-direction: column;
 `;
 const Sorting = styled(WH100per)`
   display: grid;
@@ -94,44 +88,12 @@ export default ({
         >
           Category
         </Sbj>
-        <Fold>
-          {!RootDirDataLoad &&
-            RootDirData?.other_directory.map((d: any) => {
-              const [DirOpen, setDirOpen] = useState(false);
-              const FurtherDownExist = d.other_directory?.length !== 0;
-              const directory_id = S_N_to_N(d.directory_id);
-              return (
-                <div key={directory_id}>
-                  <Bar
-                    onClick={(e) => {
-                      spaped(e);
-                      DirOpen ? setDirOpen(false) : setDirOpen(true);
-                      ChoosedDir === directory_id
-                        ? setChoosedDir(0)
-                        : setChoosedDir(directory_id);
-                    }}
-                    NUM={directory_id}
-                    ChoosedDir={ChoosedDir}
-                  >
-                    {FurtherDownExist &&
-                      (!DirOpen ? (
-                        <i className="icon-right-dir" />
-                      ) : (
-                        <i className="icon-down-dir" />
-                      ))}
-                    {d.name}
-                  </Bar>
-                  {DirOpen && FurtherDownExist && (
-                    <LayerCon
-                      ParentId={directory_id}
-                      setChoosedDir={setChoosedDir}
-                      ChoosedDir={ChoosedDir}
-                    />
-                  )}
-                </div>
-              );
-            })}
-        </Fold>
+        <DirListFoldingSystem
+          RootDirData={RootDirData}
+          RootDirDataLoad={RootDirDataLoad}
+          ChoosedDir={ChoosedDir}
+          setChoosedDir={setChoosedDir}
+        />
       </Category>
       <Nucleus>
         <Sorting>

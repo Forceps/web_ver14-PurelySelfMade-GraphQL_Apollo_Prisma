@@ -10,7 +10,7 @@ const OutlineBox = styled.div`
   flex-direction: column;
   position: absolute;
   top: 25px;
-  right: 25px;
+  left: 25px;
   width: 150px;
   background-color: #fafafa;
   box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
@@ -34,7 +34,7 @@ const Icon = styled.i`
 `;
 
 export default ({ localLogOutMutation }: LeftSideMenuPreProps) => {
-  const ME = useMyInfo();
+  const { MEdata, MEloading } = useMyInfo();
 
   return (
     <OutlineBox>
@@ -44,19 +44,19 @@ export default ({ localLogOutMutation }: LeftSideMenuPreProps) => {
       <Item>
         <Icon className="icon-comment-empty" /> Chat
       </Item>
-      {ME?.MEloading ? (
+      {MEloading ? (
         <>
           <Item />
           <Item />
         </>
       ) : (
         <>
-          <Link to={`/bookmark/${ME?.MEdata?.user_id}`}>
+          <Link to={`/bookmark/${MEdata?.user_id}`}>
             <Item>
               <Icon className="icon-bookmark-empty" /> Bookmark
             </Item>
           </Link>
-          <Link to={`/profile/${ME?.MEdata?.user_id}`}>
+          <Link to={`/profile/${MEdata?.user_id}`}>
             <Item>
               <Icon
                 className="icon-noun_user_856030"

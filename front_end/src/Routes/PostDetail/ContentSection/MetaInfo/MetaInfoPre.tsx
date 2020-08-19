@@ -8,7 +8,7 @@ import LoginModalCon from "../../../../Components/User/Auth/LoginModal/LoginModa
 
 const MetaInfo = styled(W100per)`
   display: grid;
-  grid-template-columns: 1fr 80px;
+  grid-template-columns: 1fr 1fr;
   bottom: 0;
   height: 40px;
   font-size: 1rem;
@@ -23,14 +23,13 @@ const IntegerInfo = styled(WH100per)`
 `;
 const NonIntegerInfo = styled(WH100per)`
   display: flex;
+  justify-content: flex-end;
   align-items: center;
 `;
 const Commentable = styled.div`
+  display: flex;
   font-size: 1.4rem;
   color: #b2bec3;
-  &:hover {
-    text-decoration: underline;
-  }
   cursor: pointer;
 `;
 const Shareable = styled(Commentable)`
@@ -44,6 +43,11 @@ const ILike = styled.div`
   }
   cursor: pointer;
 `;
+const CountNum = styled.div`
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+`;
 
 export default ({
   post,
@@ -53,6 +57,7 @@ export default ({
   LikeClicked,
   LoginOpen,
   setLoginOpen,
+  commentsCount,
 }: MetaInfoPreProps) => {
   return (
     <>
@@ -81,6 +86,7 @@ export default ({
               setAddCommentOpen((p: boolean) => !p);
             }}
           >
+            <CountNum>{commentsCount}</CountNum>
             <NearUnderI className="icon-commenting-o" />
           </Commentable>
           <Shareable>
@@ -101,4 +107,5 @@ interface MetaInfoPreProps {
   LikeClicked: boolean;
   LoginOpen: boolean;
   setLoginOpen: any;
+  commentsCount: number;
 }

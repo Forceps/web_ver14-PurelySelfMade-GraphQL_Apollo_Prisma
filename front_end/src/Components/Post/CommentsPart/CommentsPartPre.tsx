@@ -75,25 +75,6 @@ const CommentSubmit = styled(WH100per)<AddingProps>`
   }}
   cursor: pointer;
 `;
-const CommentToggle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  bottom: 40px;
-  right: 60px;
-  width: 2.7rem;
-  height: 2.7rem;
-  background-color: #b2bec3;
-  font-size: 1.4rem;
-  border-radius: 50%;
-  color: white;
-  overflow: hidden;
-  &:hover {
-    background-color: #636e72;
-  }
-  cursor: pointer;
-`;
 const CommentCell = styled(W100per)`
   display: grid;
   grid-template-columns: 45px 1fr;
@@ -147,7 +128,6 @@ const CommentUpdateIcon = styled.i`
 `;
 
 export default ({
-  setAddCommentOpen,
   commentInput,
   commentSubmit,
   commentsLoading,
@@ -229,22 +209,11 @@ export default ({
       ) : (
         <Loading />
       )}
-      {setAddCommentOpen && (
-        <CommentToggle
-          onClick={(e) => {
-            spaped(e);
-            setAddCommentOpen(false);
-          }}
-        >
-          <i className="icon-th-large" />
-        </CommentToggle>
-      )}
     </Comments>
   );
 };
 
 interface CommentsPartPreProps {
-  setAddCommentOpen?: any;
   commentInput: any;
   commentSubmit: () => void;
   commentsLoading: boolean;

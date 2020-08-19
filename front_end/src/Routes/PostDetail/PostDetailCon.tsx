@@ -10,6 +10,7 @@ export default () => {
   const { data, loading } = SeePostRequest(post_id);
   const [AddCommentOpen, setAddCommentOpen] = useState(true);
   const [LoginOpen, setLoginOpen] = useState(false);
+  const [AuthorWorkOpen, setAuthorWorkOpen] = useState(true);
 
   return (
     <PostDetailPre
@@ -20,6 +21,8 @@ export default () => {
       setAddCommentOpen={setAddCommentOpen}
       LoginOpen={LoginOpen}
       setLoginOpen={setLoginOpen}
+      AuthorWorkOpen={AuthorWorkOpen}
+      setAuthorWorkOpen={setAuthorWorkOpen}
     />
   );
 };

@@ -1,0 +1,6 @@
+type Query {
+  countComments(post_id: Int!): commentsCount
+}
+type commentsCount {
+  commentsCount: Int!
+}

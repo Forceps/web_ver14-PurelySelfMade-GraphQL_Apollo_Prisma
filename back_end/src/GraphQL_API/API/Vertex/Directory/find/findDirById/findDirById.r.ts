@@ -13,7 +13,11 @@ export default {
             directory: true,
             other_directory: {
               include: {
-                directory: true,
+                other_directory: {
+                  select: {
+                    directory_id: true,
+                  },
+                },
               },
             },
             post: true,

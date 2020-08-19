@@ -4,8 +4,9 @@ import { useMutation } from "@apollo/client";
 import { LIKE_POST } from "../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostCUD";
 import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { useLoginCheck } from "../../../../GlobalLib/Context/UserContext/IsLoggedIn";
+import { CountCommentsRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Comment/CommentR";
 
-export default ({ post, setAddCommentOpen }: MetaInfoConProps) => {
+export default ({ post_id, post, setAddCommentOpen }: MetaInfoConProps) => {
   const { isLoggedIn } = useLoginCheck();
   const [likePostMutation] = useMutation(LIKE_POST);
   const [InitLikes, setInitLikes] = useState(post.likes);
@@ -28,7 +29,10 @@ export default ({ post, setAddCommentOpen }: MetaInfoConProps) => {
       setLoginOpen(true);
     }
   };
-  return (
+  const { data, loading } = CountCommentsRequest(post_id);
+  return loading ? (
+    <div />
+  ) : (
     <MetaInfoPre
       post={post}
       setAddCommentOpen={setAddCommentOpen}
@@ -37,11 +41,13 @@ export default ({ post, setAddCommentOpen }: MetaInfoConProps) => {
       postLikeIncrease={postLikeIncrease}
       LoginOpen={LoginOpen}
       setLoginOpen={setLoginOpen}
+      commentsCount={data?.countComments?.commentsCount}
     />
   );
 };
 
 interface MetaInfoConProps {
+  post_id: number;
   post: any;
   setAddCommentOpen: any;
 }

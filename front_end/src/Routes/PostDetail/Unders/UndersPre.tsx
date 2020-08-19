@@ -10,10 +10,13 @@ import { LocateMiddle } from "../ContentSection/ContentSectionPre";
 
 const Wrp = styled(W100per)`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   margin: 15px 0 0 0;
 `;
-const PieceOfWork = styled(W100per)``;
+const PieceOfWork = styled(W100per)`
+  margin: 90px 0 0 0;
+`;
 const HemIn = styled(W100per)`
   display: grid;
   grid-template-rows: 40px 1fr;
@@ -34,39 +37,34 @@ export default ({
   AuthorPost,
   AuthorPostLoading,
   AddCommentOpen,
-  setAddCommentOpen,
 }: UndersPreProps) => {
   return (
     <Wrp>
-      {AddCommentOpen ? (
+      {AddCommentOpen && (
         <LocateMiddle>
-          <CommentsPartCon
-            post_id={post_id}
-            setAddCommentOpen={setAddCommentOpen}
-          />
+          <CommentsPartCon post_id={post_id} />
         </LocateMiddle>
-      ) : (
-        <PieceOfWork>
-          <HemIn>
-            <WriterName>{AuthorName}'s Other Work</WriterName>
-            <PostBoxes>
-              {AuthorPostLoading ? (
-                <Loading />
-              ) : (
-                <>
-                  {AuthorPost.map((post: any) => (
-                    <Tile key={post.post_id} post={post} />
-                  ))}
-                </>
-              )}
-            </PostBoxes>
-          </HemIn>
-          <HemIn>
-            <WriterName>Related</WriterName>
-            <PostBoxes></PostBoxes>
-          </HemIn>
-        </PieceOfWork>
       )}
+      <PieceOfWork>
+        <HemIn>
+          <WriterName>{AuthorName}'s Other Work</WriterName>
+          <PostBoxes>
+            {AuthorPostLoading ? (
+              <Loading />
+            ) : (
+              <>
+                {AuthorPost.map((post: any) => (
+                  <Tile key={post.post_id} post={post} />
+                ))}
+              </>
+            )}
+          </PostBoxes>
+        </HemIn>
+        <HemIn>
+          <WriterName>Related</WriterName>
+          <PostBoxes></PostBoxes>
+        </HemIn>
+      </PieceOfWork>
     </Wrp>
   );
 };
@@ -76,5 +74,4 @@ interface UndersPreProps {
   AuthorPost: any;
   AuthorPostLoading: boolean;
   AddCommentOpen: boolean;
-  setAddCommentOpen: any;
 }
