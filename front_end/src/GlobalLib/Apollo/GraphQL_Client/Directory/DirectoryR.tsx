@@ -79,11 +79,6 @@ export const WHOSE_POST_DIR = gql`
           directory_id
         }
       }
-      post {
-        post_id
-        caption
-        content
-      }
     }
   }
 `;
@@ -107,11 +102,6 @@ export const FIND_DIR_BY_ID = gql`
         other_directory {
           directory_id
         }
-      }
-      post {
-        post_id
-        caption
-        content
       }
     }
   }

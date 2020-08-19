@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import WH100per from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import PanelCon from "./Panel/PanelCon";
+import TilesShowWindowCon from "./TilesShowWindow/TilesShowWindowCon";
 
 interface WindowWrapProps {
   zIndex: number;
@@ -14,10 +15,6 @@ const WindowWrap = styled(WH100per)<WindowWrapProps>`
   left: 0;
   z-index: ${(p) => p.zIndex};
 `;
-const TilesShowWindow = styled(WH100per)`
-  background-color: #636e72;
-  opacity: 0.6;
-`;
 
 const AuthorWorkQuestPre = ({
   zIndex,
@@ -26,7 +23,7 @@ const AuthorWorkQuestPre = ({
 }: AuthorWorkQuestPreProps) => {
   return (
     <WindowWrap zIndex={zIndex}>
-      <TilesShowWindow></TilesShowWindow>
+      <TilesShowWindowCon />
       <PanelCon post={post} setAuthorWorkOpen={setAuthorWorkOpen} />
     </WindowWrap>
   );

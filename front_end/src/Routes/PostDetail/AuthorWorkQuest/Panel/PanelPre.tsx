@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import WH100per, {
   H100per,
+  W100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Avatar from "../../../../Components/User/Avatar";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
@@ -46,6 +47,10 @@ const PanelBottom = styled(WH100per)`
   flex-direction: column;
   padding: 10px 0 0 0;
 `;
+const Sbj = styled(W100per)`
+  padding: 15px 15px 15px 8px;
+  cursor: pointer;
+`;
 
 const PanelPre = ({
   post,
@@ -72,6 +77,14 @@ const PanelPre = ({
         </CloseBtn>
       </PanelTop>
       <PanelBottom>
+        <Sbj
+          onClick={(e) => {
+            spaped(e);
+            setChoosedDir(0);
+          }}
+        >
+          Category
+        </Sbj>
         <DirListFoldingSystem
           RootDirData={RootDirData}
           RootDirDataLoad={RootDirDataLoad}

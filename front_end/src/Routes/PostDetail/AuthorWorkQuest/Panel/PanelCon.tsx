@@ -7,7 +7,6 @@ const PanelCon = ({ post, setAuthorWorkOpen }: PanelConProps) => {
   const { data: RootDirData, loading: RootDirDataLoad } = WhosePostDirRequest(
     S_N_to_N(post.user_postTouser.user_id)
   );
-  console.log(RootDirData);
   const [ChoosedDir, setChoosedDir] = useState(0);
   return (
     <PanelPre
