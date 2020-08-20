@@ -29,8 +29,12 @@ const PostCtrlEach = styled(H100per)`
   width: 50%;
   color: black;
   &:hover {
-    background-color: #dfe6e9;
+    background-color: rgba(45, 52, 54, 0.8);
+    color: white;
   }
+  transition-property: background-color;
+  transition-duration: 0.18s;
+  transition-timing-function: ease;
   cursor: pointer;
   z-index: 5;
 `;
