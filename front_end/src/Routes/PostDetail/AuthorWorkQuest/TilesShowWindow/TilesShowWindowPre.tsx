@@ -3,7 +3,7 @@ import styled from "styled-components";
 import WH100per from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import TileCon from "../../../../Components/Post/Shape/Tile/TileCon";
 
-const LowerJaw = styled(WH100per)`
+export const LowerJaw = styled(WH100per)`
   display: grid;
   grid-template-rows: 70px 1fr;
   background-color: rgba(99, 110, 114, 0.85);
@@ -57,4 +57,4 @@ interface TilesShowWindowPreProps {
   currentDirName: string;
 }
 
-export default TilesShowWindowPre;
+export default React.memo(TilesShowWindowPre);

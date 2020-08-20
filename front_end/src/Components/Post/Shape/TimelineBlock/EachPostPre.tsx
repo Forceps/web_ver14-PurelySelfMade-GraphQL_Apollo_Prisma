@@ -6,8 +6,12 @@ import WH100per, {
   WH100perLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import PostHeader from "./PostHeader";
-import ContentEditable from "react-contenteditable";
 import Avatar from "../../../User/Avatar";
+import Duo from "./BlockType/Duo";
+import Solo from "./BlockType/Solo";
+import Trio from "./BlockType/Trio";
+import Quartet from "./BlockType/Quartet";
+import Quintet from "./BlockType/Quintet";
 
 interface InclosureProps {
   zIndex: number;
@@ -15,7 +19,7 @@ interface InclosureProps {
 const Inclosure = styled(W100per)<InclosureProps>`
   display: grid;
   grid-template-columns: 60px 1fr;
-  margin: 20px 0 20px 0;
+  margin: 20px 0 40px 0;
   z-index: ${(prop) => prop.zIndex};
 `;
 const Wrapper = styled(W100per)`
@@ -56,54 +60,21 @@ const Divid = styled(WH100per)`
   display: grid;
   grid-template-columns: 1fr 230px;
 `;
-const VisualPost = styled(W100per)`
-  display: grid;
-`;
-const Partition = styled(W100per)`
-  display: flex;
-  flex-direction: column;
-`;
-const Text = styled(W100per)`
-  max-height: 100px;
-  /* white-space: pre; */
-  font-size: 0.9rem;
-  word-break: break-all;
-  padding: 5px 5px 15px 5px;
-  line-height: 1.2rem;
-  overflow: hidden;
-`;
-const Images = styled(W100per)`
-  height: 300px;
-  max-height: 320px;
-  padding: 5px;
-`;
-interface BackImgProp {
-  url: string;
-}
-const BackImg = styled(WH100per)<BackImgProp>`
-  background-image: url(${(props: any) => props.url});
-  background-size: cover;
-  background-position: center center;
-`;
-const VisualContents = styled(({ ...rest }) => <ContentEditable {...rest} />)`
-  display: inline-block;
-  min-height: 120px;
-  max-height: 370px;
-  width: 100%;
-  padding: 5px;
-  overflow: hidden;
-  font-size: 0.9rem;
-  word-break: break-all;
-  z-index: 5;
-`;
 
 interface EachPostPreProps {
   post: any;
   Texts: string;
-  ImgSamples: any;
+  ImgSamples: [any, boolean];
   zIndex: number;
+  PartitionLevel: number;
 }
-export default ({ post, Texts, ImgSamples, zIndex }: EachPostPreProps) => {
+export default ({
+  post,
+  Texts,
+  ImgSamples,
+  zIndex,
+  PartitionLevel,
+}: EachPostPreProps) => {
   const PD = usePostDetail();
   return (
     <>
@@ -132,31 +103,22 @@ export default ({ post, Texts, ImgSamples, zIndex }: EachPostPreProps) => {
               PD.setOpenSeePostDetail(true);
             }}
           >
-            {ImgSamples[1] === true &&
-              (ImgSamples[0].length === 0 ? (
-                <VisualPost>
-                  <VisualContents
-                    className="postCells"
-                    tagName="article"
-                    html={post.content}
-                    spellCheck="false"
-                    disabled={true}
-                  />
-                </VisualPost>
-              ) : (
-                <Partition>
-                  <Text>{Texts}</Text>
-                  {ImgSamples[0][0]?.src && (
-                    <Images>
-                      <BackImg url={ImgSamples[0][0].src} />
-                    </Images>
-                  )}
-                </Partition>
-              ))}
+            {PartitionLevel === 0 ? (
+              <div />
+            ) : PartitionLevel === 1 ? (
+              <Solo Texts={Texts} ImgSamples={ImgSamples} />
+            ) : PartitionLevel === 2 ? (
+              <Duo Texts={Texts} ImgSamples={ImgSamples} />
+            ) : PartitionLevel === 3 ? (
+              <Trio Texts={Texts} ImgSamples={ImgSamples} />
+            ) : PartitionLevel === 4 ? (
+              <Quartet Texts={Texts} ImgSamples={ImgSamples} />
+            ) : (
+              <Quintet Texts={Texts} ImgSamples={ImgSamples} />
+            )}
           </EachContain>
         </Wrapper>
       </Inclosure>
-      {/* <Contour /> */}
     </>
   );
 };
