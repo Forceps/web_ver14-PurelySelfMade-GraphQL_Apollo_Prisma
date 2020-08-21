@@ -9,17 +9,14 @@ const Partition = styled(W100per)`
 `;
 const Text = styled(WH100per)`
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   font-size: 0.9rem;
   min-height: 50px;
   max-height: 330px;
   line-height: 1.2rem;
   overflow: hidden;
   padding: 10px 5px 10px 5px;
-  border-left: 3px solid #636e72;
-  white-space: pre-line;
-  word-break: break-all;
-  word-wrap: break-word;
+  /* border-left: 3px solid #636e72; */
 `;
 const Images = styled(W100per)`
   height: 380px;
