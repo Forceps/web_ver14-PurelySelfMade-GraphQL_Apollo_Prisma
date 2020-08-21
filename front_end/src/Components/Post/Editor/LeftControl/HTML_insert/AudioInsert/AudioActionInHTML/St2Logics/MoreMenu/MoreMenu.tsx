@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { saveSelection } from "../../../../../../EditorLib";
 import { audioHtmlPlayerStructureInEditor } from "../../St1ReusableItems/AudioTargetSpecific";
 import PlaySpeedSet from "./PlaySpeedSet";
+import { spaped } from "../../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 export default ({
   setImgSubMenuOp2,
@@ -27,6 +28,7 @@ export default ({
     moreMenuScreen.style.width = "0px";
   };
   const moreMenuThumbnailClick = (e: any) => {
+    spaped(e);
     setImgSubMenuOp2(true);
   };
   const enterPlaySpeedChoiceScreen = () => {

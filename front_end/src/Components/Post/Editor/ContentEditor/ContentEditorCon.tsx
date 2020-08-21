@@ -4,6 +4,7 @@ import React, {
   useRef,
   RefObject,
   MutableRefObject,
+  useCallback,
 } from "react";
 import ContentEditorPre from "./ContentEditorPre";
 import ImgInSCon from "../../../Media/Insert/ImgInsertScreen/ImgInSCon";
@@ -29,17 +30,17 @@ const CediCon = ({
     audioStyleChange(mediaTargetId.current, address);
     setImgSubMenuOp2(false);
   };
+  const pastInEditor = useCallback((e: any) => {
+    e.preventDefault();
+    const pastedData = e.clipboardData;
+    const textData = pastedData.getData("Text").replace(/\r\n/gi, "<br>");
+    document.execCommand("insertHTML", false, textData);
+  }, []);
 
   useEffect(() => {
     if (Imgs && Imgs[0] && Imgs[0].src && OnlyOnce) {
       setTitleImg(Imgs[0].src);
       setOnlyOnce(false);
-    }
-    const ddd = InEditor.current?.getElementsByClassName("audioPlayer") || [];
-    for (let i = 0; i < ddd.length; i++) {
-      if (!ddd[i].querySelector("source")) {
-        ddd[i].parentNode?.removeChild(ddd[i]);
-      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [HtmlChange]);
@@ -54,6 +55,7 @@ const CediCon = ({
         setHtmlChange={setHtmlChange}
         HtmlChange={HtmlChange}
         CaretLocation={CaretLocation}
+        pastInEditor={pastInEditor}
       />
       {ImgSubMenuOp2 && (
         <ImgInSCon

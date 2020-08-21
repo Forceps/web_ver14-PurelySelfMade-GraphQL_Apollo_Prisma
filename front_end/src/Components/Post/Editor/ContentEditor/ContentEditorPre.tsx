@@ -29,6 +29,7 @@ const CediPre = ({
   setHtmlChange,
   HtmlChange,
   CaretLocation,
+  pastInEditor,
 }: ContentEditorProps) => {
   return (
     <>
@@ -43,6 +44,9 @@ const CediPre = ({
           setHtmlChange((p) => p + 1);
         }}
         spellCheck="false"
+        onPaste={(e) => {
+          pastInEditor(e);
+        }}
       />
       <AudioActionInHTML
         InEditor={InEditor}
@@ -69,6 +73,7 @@ interface ContentEditorProps {
   setHtmlChange: Dispatch<SetStateAction<number>>;
   HtmlChange: number;
   CaretLocation: any;
+  pastInEditor: (e: any) => void;
 }
 
 export default React.memo(CediPre);

@@ -2,42 +2,17 @@ import React from "react";
 import styled from "styled-components";
 import WH100per, {
   W100per,
-  H100per,
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { BackImgForTimeline } from "./Solo";
+import { TextForTimeline } from "./Duo";
 
-const Partition1 = styled(W100per)`
+const Partition = styled(W100per)`
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: 380px;
 `;
-const Partition2 = styled(W100per)`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  height: 380px;
-`;
-const Text = styled(H100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 0.9rem;
-  width: 45%;
+const Text = styled(TextForTimeline)`
   left: 15%;
-  position: absolute;
-  word-break: break-all;
-  padding: 5px 5px 15px 5px;
-  line-height: 1.2rem;
-  overflow: hidden;
-  backdrop-filter: blur(3px);
-  background-color: rgba(223, 230, 233, 0.7);
-`;
-const Images = styled(WH100per)``;
-interface BackImgProp {
-  url: string;
-}
-const BackImg = styled(WH100per)<BackImgProp>`
-  background-image: url(${(props: any) => props.url});
-  background-size: cover;
-  background-position: center center;
 `;
 const Left = styled(WH100per)`
   display: grid;
@@ -50,45 +25,31 @@ const Right = styled(WH100per)`
 
 const Quartet = ({ Texts, ImgSamples }: QuartetProps) => {
   return Texts ? (
-    <Partition1>
+    <Partition>
       <Text>{Texts}</Text>
-      <Images>
-        <BackImg url={ImgSamples[0][0].src} />
-      </Images>
+      <BackImgForTimeline url={ImgSamples[0][0]} />
       <Right>
-        <Images>
-          <BackImg url={ImgSamples[0][1].src} />
-        </Images>
-        <Images>
-          <BackImg url={ImgSamples[0][2].src} />
-        </Images>
+        <BackImgForTimeline url={ImgSamples[0][1]} />
+        <BackImgForTimeline url={ImgSamples[0][2]} />
       </Right>
-    </Partition1>
+    </Partition>
   ) : (
-    <Partition2>
+    <Partition>
       <Left>
-        <Images>
-          <BackImg url={ImgSamples[0][0].src} />
-        </Images>
-        <Images>
-          <BackImg url={ImgSamples[0][1].src} />
-        </Images>
+        <BackImgForTimeline url={ImgSamples[0][0]} />
+        <BackImgForTimeline url={ImgSamples[0][1]} />
       </Left>
       <Right>
-        <Images>
-          <BackImg url={ImgSamples[0][2].src} />
-        </Images>
-        <Images>
-          <BackImg url={ImgSamples[0][3].src} />
-        </Images>
+        <BackImgForTimeline url={ImgSamples[0][2]} />
+        <BackImgForTimeline url={ImgSamples[0][3]} />
       </Right>
-    </Partition2>
+    </Partition>
   );
 };
 
 interface QuartetProps {
   Texts: string;
-  ImgSamples: [any, boolean];
+  ImgSamples: [string[], boolean];
 }
 
 export default Quartet;

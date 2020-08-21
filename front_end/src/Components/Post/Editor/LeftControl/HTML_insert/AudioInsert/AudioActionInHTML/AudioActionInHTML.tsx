@@ -1,7 +1,7 @@
 import React, { useEffect, useState, RefObject } from "react";
 import AudioTargetSpecific from "./St1ReusableItems/AudioTargetSpecific";
 
-export default ({
+const AudioActionInHTML = ({
   rerenderingPoint,
   InEditor,
   mediaTargetId,
@@ -48,3 +48,5 @@ interface AudioActionInHTMLProps {
   setImgSubMenuOp2?: any;
   CaretLocation: any;
 }
+
+export default React.memo(AudioActionInHTML);

@@ -71,14 +71,14 @@ export default ({
     audioPlayer?.addEventListener("loadedmetadata", setAudioTotalTime);
     audioPlayer?.addEventListener("ended", handleAudioEnded);
     const timeGo1 = setInterval(getcurrentTime, 1000);
-    document.addEventListener("click", clickPlayer);
+    document.addEventListener("mousedown", clickPlayer);
 
     return () => {
       audioPlayer?.removeEventListener("loadedmetadata", setAudioTotalTime);
       audioPlayer?.removeEventListener("ended", handleAudioEnded);
       window.clearInterval(timeGo1);
       window.clearInterval(timeGo2.current);
-      document.removeEventListener("click", clickPlayer);
+      document.removeEventListener("mousedown", clickPlayer);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

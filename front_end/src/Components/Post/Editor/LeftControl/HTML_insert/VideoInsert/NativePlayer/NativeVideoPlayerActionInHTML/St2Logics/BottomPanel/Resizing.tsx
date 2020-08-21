@@ -27,11 +27,7 @@ export default ({ videoElem, InEditor }: St2VideoActionLogicProps) => {
         window.pageXOffset +
         5;
       let height = 0;
-      height =
-        e.pageY -
-        videoTarget.getBoundingClientRect().top +
-        window.pageYOffset +
-        5;
+      height = e.pageY - videoTarget.getBoundingClientRect().top + 5;
       if (width > (height * 16) / 9) {
         height = (width * 9) / 16;
       } else {

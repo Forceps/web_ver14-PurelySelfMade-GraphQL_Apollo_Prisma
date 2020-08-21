@@ -29,11 +29,7 @@ export default ({ audioElem, InEditor }: St2AudioActionLogicProps) => {
         width = editorInnerWidth;
       }
       let height = 0;
-      height =
-        e.pageY -
-        audioTarget.getBoundingClientRect().top +
-        window.pageYOffset +
-        5;
+      height = e.pageY - audioTarget.getBoundingClientRect().top + 5;
       audioTarget.setAttribute(
         "style",
         `width: ${width}px; height: ${height}px`

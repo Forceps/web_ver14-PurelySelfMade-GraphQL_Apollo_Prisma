@@ -16,7 +16,6 @@ const Text = styled(WH100per)`
   line-height: 1.2rem;
   overflow: hidden;
   padding: 10px 5px 10px 5px;
-  /* border-left: 3px solid #636e72; */
 `;
 const Images = styled(W100per)`
   height: 380px;
@@ -25,7 +24,7 @@ const Images = styled(W100per)`
 interface BackImgProp {
   url: string;
 }
-const BackImg = styled(WH100per)<BackImgProp>`
+export const BackImgForTimeline = styled(WH100per)<BackImgProp>`
   background-image: url(${(props: any) => props.url});
   background-size: cover;
   background-position: center center;
@@ -38,7 +37,7 @@ const Solo = ({ Texts, ImgSamples }: SoloProps) => {
         <Text>{Texts}</Text>
       ) : (
         <Images>
-          <BackImg url={ImgSamples[0][0].src} />
+          <BackImgForTimeline url={ImgSamples[0][0]} />
         </Images>
       )}
     </Partition>
@@ -47,7 +46,7 @@ const Solo = ({ Texts, ImgSamples }: SoloProps) => {
 
 interface SoloProps {
   Texts: string;
-  ImgSamples: [any, boolean];
+  ImgSamples: [string[], boolean];
 }
 
 export default Solo;

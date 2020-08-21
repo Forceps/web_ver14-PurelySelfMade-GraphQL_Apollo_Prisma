@@ -64,7 +64,7 @@ const Divid = styled(WH100per)`
 interface EachPostPreProps {
   post: any;
   Texts: string;
-  ImgSamples: [any, boolean];
+  ImgSamples: [string[], boolean];
   zIndex: number;
   PartitionLevel: number;
 }

@@ -8,7 +8,11 @@ interface ImgURLProps {
   ImgInsert: any;
   zIndex?: number;
 }
-export default ({ setImgSubMenuOp, ImgInsert, zIndex = 20 }: ImgURLProps) => {
+const ImgInSCon = ({
+  setImgSubMenuOp,
+  ImgInsert,
+  zIndex = 20,
+}: ImgURLProps) => {
   const [imgSelectMode, setimgSelectMode] = useState("URL");
   const ImgURLText = useInput("");
   const {
@@ -39,3 +43,5 @@ export default ({ setImgSubMenuOp, ImgInsert, zIndex = 20 }: ImgURLProps) => {
     />
   );
 };
+
+export default React.memo(ImgInSCon);
