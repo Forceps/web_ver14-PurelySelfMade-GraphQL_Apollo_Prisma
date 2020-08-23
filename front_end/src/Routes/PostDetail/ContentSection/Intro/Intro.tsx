@@ -5,11 +5,11 @@ import WH100per, {
   W100per,
   WH100perLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../../Components/User/Avatar";
+import Avatar from "../../../../Components/User/Avatar/Avatar";
 
 const Intro = styled(W100per)`
   position: relative;
-  height: 220px;
+  height: calc(17vw + 50px);
 `;
 interface TitleBackImgProps {
   FirstImgSrc: string;
@@ -56,6 +56,7 @@ const CentreBox = styled(H100per)`
 const Title = styled(WH100per)`
   display: flex;
   font-size: 1.5rem;
+  padding-top: 50px;
 `;
 const AuthorInfo = styled(WH100per)`
   display: grid;

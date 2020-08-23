@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { W100per } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../User/Avatar";
+import Avatar from "../../../User/Avatar/Avatar";
 
 interface FontSizeProps {
   fontSize: number;

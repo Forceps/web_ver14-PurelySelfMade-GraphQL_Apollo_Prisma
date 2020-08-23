@@ -6,7 +6,7 @@ import {
   W100per,
   H100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../../Components/User/Avatar";
+import Avatar from "../../../../Components/User/Avatar/Avatar";
 import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
 
 const Identi = styled(W100per)`

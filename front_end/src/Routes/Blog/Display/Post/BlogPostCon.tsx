@@ -11,7 +11,8 @@ export default ({ user_id }: DisplayCon) => {
   const [PostSortBy, setPostSortBy] = useState("recent");
   const { data: WpData, loading: WpLoading } = PostsByDirIdRequest(
     user_id,
-    ChoosedDir[0]
+    ChoosedDir[0],
+    PostSortBy
   );
   const { data: RootDirData, loading: RootDirDataLoad } = WhosePostDirRequest(
     user_id

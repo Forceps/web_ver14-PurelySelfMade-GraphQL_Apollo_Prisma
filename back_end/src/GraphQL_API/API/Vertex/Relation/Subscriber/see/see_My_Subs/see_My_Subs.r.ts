@@ -6,18 +6,16 @@ export default {
   Query: {
     see_My_Subs: async (
       _: void,
-      __: void,
+      { user_id }: { user_id: number },
       { req, isAuthenticated }: contextType
     ) => {
-      isAuthenticated(req);
-      const { user } = req;
       try {
         const TheySubscribeMe = prisma.user.findMany({
           where: {
             subscriber_subscriber_readerTouser: {
               some: {
                 user_subscriber_authorTouser: {
-                  user_id: user.user_id,
+                  user_id: user_id === 0 ? req.user.user_id : user_id,
                 },
               },
             },

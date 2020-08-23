@@ -6,7 +6,7 @@ import WH100per, {
   WH100perLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import PostHeader from "./PostHeader";
-import Avatar from "../../../User/Avatar";
+import Avatar from "../../../User/Avatar/Avatar";
 import Duo from "./BlockType/Duo";
 import Solo from "./BlockType/Solo";
 import Trio from "./BlockType/Trio";

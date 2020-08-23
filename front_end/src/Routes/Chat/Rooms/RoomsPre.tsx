@@ -3,7 +3,7 @@ import styled from "styled-components";
 import WH100per, {
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../Components/User/Avatar";
+import Avatar from "../../../Components/User/Avatar/Avatar";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import Conversation from "../../../Components/Chat/Conversation/Conversation";

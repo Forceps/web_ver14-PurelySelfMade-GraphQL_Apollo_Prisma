@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import WH100per, {
   WH100perInput,
   H100per,
@@ -12,14 +12,33 @@ import ToggleMenuCon from "./ToggleMenu/ToggleMenuCon";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
+import useScroll from "../../../GlobalLib/RecycleFunction/Hooks/useScroll";
 
-const Enclosing = styled(W100per)`
+interface EnclosingProps {
+  Position: any;
+  Direction: number;
+  zIndex: number;
+}
+const Enclosing = styled(W100per)<EnclosingProps>`
+  ${(p) => {
+    if (p.Direction === -1 || p.Position.y < 150) {
+      return css`
+        top: 0px;
+      `;
+    } else {
+      return css`
+        top: -50px;
+      `;
+    }
+  }}
   display: grid;
   height: 50px;
   transition: top 0.2s ease-in-out;
   grid-template-columns: 270px 1fr 270px;
-  background-color: #fafafa;
-  z-index: 20;
+  background-color: rgba(250, 250, 250, 0.8);
+  position: fixed;
+  left: 0;
+  z-index: ${(p) => p.zIndex};
 `;
 const Left = styled(WH100per)`
   display: flex;
@@ -99,12 +118,13 @@ const HMenu = styled(H100per)`
 `;
 const MenuIcon = styled.i``;
 
-export default ({ setLoginOpen }: BlogHeaderPreProps) => {
+export default ({ setLoginOpen, zIndex }: BlogHeaderPreProps) => {
   const { MEloading, MEdata } = useMyInfo();
   const { SearchKeyWord, Search } = useSearch();
   const { isLoggedIn } = useLoginCheck();
+  const { Position, Direction } = useScroll();
   return (
-    <Enclosing>
+    <Enclosing Direction={Direction} Position={Position} zIndex={zIndex}>
       <Left>
         <LogoLink to="/home">
           <LI>
@@ -161,4 +181,5 @@ export default ({ setLoginOpen }: BlogHeaderPreProps) => {
 
 interface BlogHeaderPreProps {
   setLoginOpen: any;
+  zIndex: number;
 }

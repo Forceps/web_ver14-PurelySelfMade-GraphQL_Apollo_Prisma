@@ -15,7 +15,7 @@ export default ({ user_id, Mode }: DisplayPreProps) => {
   return (
     <Cover>
       {Mode === "relation" ? (
-        <BlogRelationCon />
+        <BlogRelationCon user_id={user_id} />
       ) : (
         <BlogPostCon user_id={user_id} />
       )}

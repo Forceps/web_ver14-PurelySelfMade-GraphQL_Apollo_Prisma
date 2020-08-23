@@ -13,22 +13,29 @@ export const AmISubscribeOneRequest = (author: number) =>
   });
 
 export const SEE_I_SUBS = gql`
-  query see_I_Subs {
-    see_I_Subs {
+  query see_I_Subs($user_id: Int!) {
+    see_I_Subs(user_id: $user_id) {
       user_id
       avatar
       username
     }
   }
 `;
-export const See_I_subsRequest = () => useQuery(SEE_I_SUBS);
+export const See_I_subsRequest = (user_id: number) =>
+  useQuery(SEE_I_SUBS, {
+    variables: { user_id },
+  });
+
 export const SEE_MY_SUBS = gql`
-  query see_My_Subs {
-    see_My_Subs {
+  query see_My_Subs($user_id: Int!) {
+    see_My_Subs(user_id: $user_id) {
       user_id
       avatar
       username
     }
   }
 `;
-export const See_My_SubsRequest = () => useQuery(SEE_MY_SUBS);
+export const See_My_SubsRequest = (user_id: number) =>
+  useQuery(SEE_MY_SUBS, {
+    variables: { user_id },
+  });

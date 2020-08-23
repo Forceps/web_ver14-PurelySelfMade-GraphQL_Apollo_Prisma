@@ -1,8 +1,12 @@
 import { gql, useQuery } from "@apollo/client";
 
 export const POSTS_BY_DIR_ID = gql`
-  query postsByDirId($author_id: Int!, $directory_id: Int!) {
-    postsByDirId(author_id: $author_id, directory_id: $directory_id) {
+  query postsByDirId($author_id: Int!, $directory_id: Int!, $sortBy: String!) {
+    postsByDirId(
+      author_id: $author_id
+      directory_id: $directory_id
+      sortBy: $sortBy
+    ) {
       post_id
       caption
       user_postTouser {
@@ -17,7 +21,11 @@ export const POSTS_BY_DIR_ID = gql`
     }
   }
 `;
-export const PostsByDirIdRequest = (author_id: number, directory_id: number) =>
+export const PostsByDirIdRequest = (
+  author_id: number,
+  directory_id: number,
+  sortBy: string
+) =>
   useQuery(POSTS_BY_DIR_ID, {
-    variables: { author_id, directory_id },
+    variables: { author_id, directory_id, sortBy },
   });

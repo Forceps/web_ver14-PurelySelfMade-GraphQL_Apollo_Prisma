@@ -10,7 +10,7 @@ const Surrounding = styled(W100per)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 50px 0 5px 0;
+  padding: 0 0 5px 0;
 `;
 const Mean = styled(W100per)`
   display: flex;

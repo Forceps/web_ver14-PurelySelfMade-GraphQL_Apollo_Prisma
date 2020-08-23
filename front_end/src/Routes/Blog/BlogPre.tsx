@@ -28,7 +28,7 @@ export default ({
         <Loading />
       ) : (
         <>
-          <BlogHeaderCon setLoginOpen={setLoginOpen} />
+          <BlogHeaderCon setLoginOpen={setLoginOpen} zIndex={20} />
           <ProfileSectionCon
             user_id={user_id}
             UserData={UserData}

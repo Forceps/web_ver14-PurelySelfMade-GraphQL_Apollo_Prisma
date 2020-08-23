@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
-import Avatar from "../../../Components/User/Avatar";
+import Avatar from "../../../Components/User/Avatar/Avatar";
 import WH100per, {
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";

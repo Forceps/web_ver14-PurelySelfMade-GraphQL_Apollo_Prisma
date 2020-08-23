@@ -13,7 +13,7 @@ import ToggleMenuCon from "./ToggleMenu/ToggleMenuCon";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
-import Avatar from "../../../Components/User/Avatar";
+import Avatar from "../../../Components/User/Avatar/Avatar";
 
 interface EnclosingProps {
   Position: any;
@@ -24,19 +24,21 @@ const Enclosing = styled(W100per)<EnclosingProps>`
   ${(prop) => {
     if (prop.Direction === -1 || prop.Position.y < 150) {
       return css`
-        display: grid;
-        transition: top 0.2s ease-in-out;
+        top: 0px;
       `;
     } else {
       return css`
-        display: none;
+        top: -50px;
       `;
     }
   }}
+  display: grid;
+  transition: top 0.2s ease-in-out;
   grid-template-columns: 550px 1fr 550px;
   position: fixed;
   height: 50px;
-  background-color: #fafafa;
+  left: 0;
+  background-color: rgba(250, 250, 250, 0.9);
   box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
   z-index: ${(p) => p.zIndex};

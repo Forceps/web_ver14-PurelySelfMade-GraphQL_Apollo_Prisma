@@ -4,7 +4,7 @@ import LeftSideMenuCon from "../../../Components/ElementEtc/LeftSideMenu/LeftSid
 import WH100per, {
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../Components/User/Avatar";
+import Avatar from "../../../Components/User/Avatar/Avatar";
 
 const Wrapper = styled.div`
   display: flex;

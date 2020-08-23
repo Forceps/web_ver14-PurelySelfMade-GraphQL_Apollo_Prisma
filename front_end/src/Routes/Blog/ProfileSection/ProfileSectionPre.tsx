@@ -8,7 +8,7 @@ import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
-import Avatar from "../../../Components/User/Avatar";
+import Avatar from "../../../Components/User/Avatar/Avatar";
 
 const Circling = styled(W100per)`
   display: grid;
@@ -21,7 +21,7 @@ interface BackImgProp {
   url: string;
 }
 const BackImg = styled(W100per)<BackImgProp>`
-  height: 20vw;
+  height: calc(23vw + 50px);
   background-color: #b2bec3;
   background-image: url(${(props: any) => props.url});
   background-size: cover;

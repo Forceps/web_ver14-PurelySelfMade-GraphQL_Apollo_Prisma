@@ -6,7 +6,7 @@ import WH100per, {
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import IncludeScrollBar from "../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
-import Avatar from "../../User/Avatar";
+import Avatar from "../../User/Avatar/Avatar";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { useDummyState } from "../../../GlobalLib/Context/Lib/DummyState";
 

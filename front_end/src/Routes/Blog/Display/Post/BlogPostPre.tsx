@@ -12,7 +12,6 @@ const Cover = styled(W100per)`
   display: grid;
   grid-template-columns: 300px 1fr;
   min-height: 100px;
-  min-height: 100px;
 `;
 const Category = styled(WH100per)`
   display: grid;
@@ -36,29 +35,19 @@ const Sorting = styled(WH100per)`
   display: grid;
   grid-template-columns: 70px 100px 1fr;
 `;
-const Smode = styled(WH100per)`
+interface SmodeProps {
+  PostSortBy: string;
+  myType: string;
+}
+const Smode = styled(WH100per)<SmodeProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 3px 0 3px 0;
+  text-transform: capitalize;
   cursor: pointer;
-`;
-interface SmodeProps {
-  PostSortBy: string;
-}
-const Smode1 = styled(Smode)<SmodeProps>`
   ${(p) => {
-    if (p.PostSortBy === "recent") {
-      return css`
-        border-top: 3px solid black;
-        padding: 0 0 3px 0;
-      `;
-    }
-  }}
-`;
-const Smode2 = styled(Smode)<SmodeProps>`
-  ${(p) => {
-    if (p.PostSortBy === "popularity") {
+    if (p.PostSortBy === p.myType) {
       return css`
         border-top: 3px solid black;
         padding: 0 0 3px 0;
@@ -97,22 +86,17 @@ export default ({
       </Category>
       <Nucleus>
         <Sorting>
-          <Smode1
-            onClick={() => {
-              setPostSortBy("recent");
-            }}
-            PostSortBy={PostSortBy}
-          >
-            Recent
-          </Smode1>
-          <Smode2
-            onClick={() => {
-              setPostSortBy("popularity");
-            }}
-            PostSortBy={PostSortBy}
-          >
-            Popularity
-          </Smode2>
+          {["recent", "popularity"].map((str) => (
+            <Smode
+              onClick={() => {
+                setPostSortBy(str);
+              }}
+              PostSortBy={PostSortBy}
+              myType={str}
+            >
+              {str}
+            </Smode>
+          ))}
         </Sorting>
         <Cells>
           {WpLoading ? (
