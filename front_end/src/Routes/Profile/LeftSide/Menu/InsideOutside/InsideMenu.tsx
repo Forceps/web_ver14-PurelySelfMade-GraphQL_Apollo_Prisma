@@ -3,6 +3,8 @@ import styled, { css } from "styled-components";
 import { W100per } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useProfileMode } from "../../../../../GlobalLib/Context/ProfileContext/ProfileMode";
+import { useHistory } from "react-router-dom";
+import { useMyInfo } from "../../../../../GlobalLib/Context/UserContext/Me";
 
 interface MenuItemProps {
   curMode?: string;
@@ -59,40 +61,36 @@ const MenuTxt = styled.div`
 
 export default () => {
   const { Mode, setMode } = useProfileMode();
+  const { MEdata } = useMyInfo();
+  const history = useHistory();
   return (
     <>
+      {[
+        ["Post", "pinboard"],
+        ["Archive", "folder"],
+        ["Social", "group"],
+        ["Settings", "sliders"],
+      ].map((c) => (
+        <MenuItem
+          onClick={(e: any) => {
+            spaped(e);
+            setMode([c[0]]);
+          }}
+          curMode={Mode[0]}
+          staMode={c[0]}
+        >
+          <MenuIcon className={`icon-${c[1]} hovMenuIcon`} />
+          <MenuTxt className="hovMenuTxt">{c[0]}</MenuTxt>
+        </MenuItem>
+      ))}
       <MenuItem
         onClick={(e: any) => {
           spaped(e);
-          setMode(["Post"]);
+          history.push(`/blog/${MEdata?.user_id}`);
         }}
-        curMode={Mode[0]}
-        staMode={"Post"}
       >
-        <MenuIcon className="icon-pinboard hovMenuIcon" />
-        <MenuTxt className="hovMenuTxt">Post</MenuTxt>
-      </MenuItem>
-      <MenuItem
-        onClick={(e: any) => {
-          spaped(e);
-          setMode(["Archive"]);
-        }}
-        curMode={Mode[0]}
-        staMode={"Archive"}
-      >
-        <MenuIcon className="icon-folder hovMenuIcon" />
-        <MenuTxt className="hovMenuTxt">Archive</MenuTxt>
-      </MenuItem>
-      <MenuItem
-        onClick={(e: any) => {
-          spaped(e);
-          setMode(["Settings"]);
-        }}
-        curMode={Mode[0]}
-        staMode={"Settings"}
-      >
-        <MenuIcon className="icon-sliders hovMenuIcon" />
-        <MenuTxt className="hovMenuTxt">Settings</MenuTxt>
+        <MenuIcon className="icon-vector-pencil hovMenuIcon" />
+        <MenuTxt className="hovMenuTxt">My blog</MenuTxt>
       </MenuItem>
     </>
   );

@@ -30,7 +30,7 @@ const LogoText = styled(({ size, ...rest }) => <FatText {...rest} />)<
   color: black;
 `;
 
-export default ({ size = 27 }: LogoProps) => {
+const Logo = ({ size = 27 }: LogoProps) => {
   return (
     <LogoLink to="/">
       <LI size={size}>
@@ -44,3 +44,5 @@ export default ({ size = 27 }: LogoProps) => {
 interface LogoProps {
   size?: number;
 }
+
+export default React.memo(Logo);

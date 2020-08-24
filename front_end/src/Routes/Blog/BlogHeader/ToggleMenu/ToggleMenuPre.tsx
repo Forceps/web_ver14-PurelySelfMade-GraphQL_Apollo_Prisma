@@ -56,7 +56,7 @@ export default ({ localLogOutMutation }: LeftSideMenuPreProps) => {
               <Icon className="icon-bookmark-empty" /> Bookmark
             </Item>
           </Link>
-          <Link to={`/profile/${ME?.MEdata?.user_id}`}>
+          <Link to={`/profile`}>
             <Item>
               <Icon
                 className="icon-noun_user_856030"

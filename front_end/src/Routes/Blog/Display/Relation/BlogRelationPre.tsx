@@ -87,6 +87,12 @@ const AvatarContainer = styled.div`
 const Gab = styled(W100per)`
   height: 40px;
 `;
+const FriendStatus = styled(W100per)`
+  display: flex;
+  align-items: center;
+  padding: 7px;
+  border-left: 3px solid #636e72;
+`;
 
 const BlogRelationPre = ({
   RelationSortBy,
@@ -101,6 +107,9 @@ const BlogRelationPre = ({
   user_id,
   AddFriendConfirm,
   setAddFriendConfirm,
+  addFriendFunc,
+  FcData,
+  friendCheckLoad,
 }: BlogRelationPreProps) => {
   const IsMe = S_N_to_N(MEdata.user_id) === user_id;
   return (
@@ -108,22 +117,31 @@ const BlogRelationPre = ({
       <Functionality>
         <Sbj>Function</Sbj>
         <Function>
-          {(RelationSortBy === "all" || RelationSortBy === "friends") && !IsMe && (
-            <AddFriendBtn
-              onClick={() => {
-                setAddFriendConfirm(true);
-              }}
-            >
-              Add friend
-            </AddFriendBtn>
-          )}
+          {friendCheckLoad &&
+            (RelationSortBy === "all" || RelationSortBy === "friends") &&
+            !IsMe &&
+            FcData &&
+            (FcData.length === 0 ? (
+              <AddFriendBtn
+                onClick={() => {
+                  setAddFriendConfirm(true);
+                }}
+              >
+                Add friend
+              </AddFriendBtn>
+            ) : !FcData[0].consent ? (
+              <FriendStatus>On request (Friend)</FriendStatus>
+            ) : (
+              <FriendStatus>Already Friend</FriendStatus>
+            ))}
         </Function>
         {AddFriendConfirm && (
           <ConfirmationModal
-            subject={"Sample"}
-            message={"this is a message"}
+            subject={"Add friend"}
+            message={"Would you like to request a friend?"}
             setConfirmationModalOpen={setAddFriendConfirm}
             zIndex={30}
+            functionExecute={addFriendFunc}
           />
         )}
       </Functionality>
@@ -221,6 +239,9 @@ interface BlogRelationPreProps {
   user_id: number;
   AddFriendConfirm: boolean;
   setAddFriendConfirm: any;
+  addFriendFunc: () => void;
+  FcData: any;
+  friendCheckLoad: boolean;
 }
 
 export default React.memo(BlogRelationPre);

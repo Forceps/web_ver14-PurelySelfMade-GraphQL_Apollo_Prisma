@@ -9,6 +9,7 @@ import WH100per, {
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import LeftControlsRouter from "./Controls/LeftControlsRouter";
+import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 
 const Den1Left = styled(W100per)`
   display: grid;
@@ -40,13 +41,14 @@ const BackImg = styled(Den2Up)<BackImgProp>`
   background-position: center center;
 `;
 
-export default ({ UserDataLoading, UserData }: LeftSideProps) => {
+export default () => {
+  const { MEdata } = useMyInfo();
   const BII = useBackImgInS();
   const [MenuMode, setMenuMode] = useState(false);
   return (
     <>
       <Den1Left>
-        {UserDataLoading || !UserData?.seeUser?.back_img ? (
+        {!MEdata?.back_img ? (
           <Den2Up
             onClick={(e: any) => {
               spaped(e);
@@ -55,7 +57,7 @@ export default ({ UserDataLoading, UserData }: LeftSideProps) => {
           />
         ) : (
           <BackImg
-            url={UserData?.seeUser?.back_img}
+            url={MEdata?.back_img}
             onClick={(e: any) => {
               spaped(e);
               BII.setDesignateBackImg(true);
@@ -64,12 +66,7 @@ export default ({ UserDataLoading, UserData }: LeftSideProps) => {
         )}
 
         <Den2Down>
-          <Identity
-            UserDataLoading={UserDataLoading}
-            UserData={UserData}
-            MenuMode={MenuMode}
-            setMenuMode={setMenuMode}
-          />
+          <Identity MenuMode={MenuMode} setMenuMode={setMenuMode} />
           {MenuMode ? <Menu /> : <LeftControlsRouter />}
         </Den2Down>
       </Den1Left>
@@ -82,8 +79,4 @@ export default ({ UserDataLoading, UserData }: LeftSideProps) => {
       )}
     </>
   );
-};
-type LeftSideProps = {
-  UserDataLoading: boolean;
-  UserData: any;
 };

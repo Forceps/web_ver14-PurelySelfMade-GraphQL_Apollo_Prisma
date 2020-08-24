@@ -107,7 +107,7 @@ export default ({
         <PgnSbj>Pagination</PgnSbj>
         <PgnNumList>
           {PagenationNum.map((n) => (
-            <PageNum>{n}</PageNum>
+            <PageNum key={n}>{n}</PageNum>
           ))}
         </PgnNumList>
       </Pagination>

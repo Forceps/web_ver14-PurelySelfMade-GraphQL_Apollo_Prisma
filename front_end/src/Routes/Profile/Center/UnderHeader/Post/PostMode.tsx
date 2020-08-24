@@ -4,15 +4,10 @@ import KernelsCon from "./Kernels/KernelsCon";
 
 const Under = styled.div``;
 
-export default ({ UserData, UserDataLoading }: PostModeProps) => {
+export default () => {
   return (
     <Under>
-      <KernelsCon UserData={UserData} UserDataLoading={UserDataLoading} />
+      <KernelsCon />
     </Under>
   );
-};
-
-type PostModeProps = {
-  UserData: any;
-  UserDataLoading: boolean;
 };

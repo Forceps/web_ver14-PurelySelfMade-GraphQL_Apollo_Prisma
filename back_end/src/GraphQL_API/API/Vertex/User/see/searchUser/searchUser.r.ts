@@ -18,14 +18,15 @@ export default {
           return oneWordUser;
         } else {
           let I_found = await prisma.queryRaw`
-          SELECT user_id, username,
-          MATCH (username)
-          AGAINST(${keyWord}) 
-          AS Score FROM user
-          WHERE MATCH (username)
-          AGAINST(${keyWord})
-          ORDER BY score DESC
-          LIMIT 10;`;
+            SELECT user_id, username,
+            MATCH (username)
+            AGAINST(${keyWord}) 
+            AS Score FROM user
+            WHERE MATCH (username)
+            AGAINST(${keyWord})
+            ORDER BY score DESC
+            LIMIT 10;
+          `;
 
           const exact = await I_found.findIndex(
             (u: any) => u.username === keyWord

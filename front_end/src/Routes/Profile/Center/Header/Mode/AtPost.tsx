@@ -49,7 +49,7 @@ interface pSM {
 }
 const ItemList = styled(Item)<pSM>`
   ${(prop) => {
-    if (prop.PfDM === "List") {
+    if (prop.PfDM === "popularity") {
       return css`
         border-bottom: 3px solid #636e72;
         padding: 3px 0 0 0;
@@ -59,7 +59,7 @@ const ItemList = styled(Item)<pSM>`
 `;
 const ItemTL = styled(Item)<pSM>`
   ${(prop) => {
-    if (prop.PfDM === "TimeLine") {
+    if (prop.PfDM === "recent") {
       return css`
         border-bottom: 3px solid #636e72;
         padding: 3px 0 0 0;
@@ -98,13 +98,13 @@ export default () => {
   const DSC = useDirSelectorMode();
   return (
     <Container>
-      {(PfDM.Mode === "List" || PfDM.Mode === "TimeLine") && (
+      {(PfDM.Mode === "popularity" || PfDM.Mode === "recent") && (
         <Left>
           <Subject>{Mode.Mode}</Subject>
           <SelectBar>
             <ItemList
               onClick={() => {
-                PfDM.setMode("List");
+                PfDM.setMode("popularity");
               }}
               PfDM={PfDM.Mode}
             >
@@ -112,7 +112,7 @@ export default () => {
             </ItemList>
             <ItemTL
               onClick={() => {
-                PfDM.setMode("TimeLine");
+                PfDM.setMode("recent");
               }}
               PfDM={PfDM.Mode}
             >

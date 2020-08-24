@@ -2,53 +2,73 @@ import React from "react";
 import styled from "styled-components";
 import TemporaryBackground from "./TemporaryBackground";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import WH100per, {
+  W100per,
+} from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 
-interface ConsolProps {
+interface EncompassProps {
   zIndex: number;
 }
-const Consol = styled.div<ConsolProps>`
+const Encompass = styled(WH100per)<EncompassProps>`
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   position: fixed;
-  align-self: center;
-  justify-self: center;
-  min-width: 400px;
+  top: 0;
+  left: 0;
+  z-index: ${(p) => p.zIndex};
+`;
+const Consol = styled.div<EncompassProps>`
+  display: grid;
+  grid-template-rows: 40px 1fr 40px;
+  width: 380px;
   min-height: 270px;
-  padding: 30px;
+  padding: 10px;
   background-color: #fafafa;
   z-index: ${(p) => p.zIndex};
 `;
-const Sbj = styled.div`
+const Sbj = styled(W100per)`
   display: flex;
-  text-align: center;
-  font-size: 1.4rem;
-  width: 100%;
-  padding: 10px;
-  margin-top: 22px;
-`;
-const SubSbj = styled.div`
+  justify-content: flex-end;
   font-size: 1.2rem;
 `;
-const Submit = styled.button`
-  display: grid;
-  width: 100%;
-  margin-top: 40px;
-  padding: 10px;
-  text-align: center;
+const Intent = styled(W100per)`
+  display: flex;
+  flex-direction: column;
+`;
+const Decision = styled(WH100per)`
+  display: flex;
+  justify-content: flex-end;
+`;
+const SubSbj = styled.div`
+  font-size: 1.1rem;
+`;
+const BtnGen = styled.button`
+  display: flex;
+  width: 70px;
+  height: 100%;
+  margin-left: 8px;
+  justify-content: center;
   align-items: center;
-  background-color: #2d3436;
-  color: white;
+  border: 1px solid black;
   user-select: none;
   font-size: 0.9rem;
-  border: 0;
   outline-style: none;
   &:hover {
-    background-color: #636e72;
+    background-color: #dfe6e9;
   }
   cursor: pointer;
 `;
+const Submit = styled(BtnGen)`
+  background-color: #2d3436;
+  color: white;
+  border: 0;
+  &:hover {
+    background-color: #636e72;
+  }
+`;
 const Explain = styled.div`
-  margin-top: 20px;
+  padding: 20px 0 20px 0;
   font-size: 1rem;
   line-height: 1.5rem;
   color: #636e72;
@@ -58,37 +78,52 @@ const ConfirmationModal = ({
   subject,
   message,
   setConfirmationModalOpen,
+  functionExecute,
   zIndex = 20,
 }: DeleteDirPreProps) => {
   return (
-    <>
+    <Encompass zIndex={zIndex}>
       <TemporaryBackground
         onClick={(e: any) => {
           spaped(e);
           setConfirmationModalOpen(false);
         }}
-        zIndex={zIndex}
+        zIndex={zIndex + 1}
       />
-      <Consol zIndex={zIndex}>
-        <Sbj>
-          Confirmation - <SubSbj>{subject}</SubSbj>
-        </Sbj>
-        <Explain>{message}</Explain>
-        <Submit
-          onClick={(e) => {
-            setConfirmationModalOpen(false);
-          }}
-        >
-          Delete
-        </Submit>
+      <Consol zIndex={zIndex + 2}>
+        <Sbj>Confirmation</Sbj>
+        <Intent>
+          <SubSbj>{subject ? subject : "Subject"}</SubSbj>
+          <Explain>{message ? message : "This is a message"}</Explain>
+        </Intent>
+        <Decision>
+          <Submit
+            onClick={(e) => {
+              spaped(e);
+              functionExecute && functionExecute();
+              setConfirmationModalOpen(false);
+            }}
+          >
+            Yes
+          </Submit>
+          <BtnGen
+            onClick={(e) => {
+              spaped(e);
+              setConfirmationModalOpen(false);
+            }}
+          >
+            Cancel
+          </BtnGen>
+        </Decision>
       </Consol>
-    </>
+    </Encompass>
   );
 };
 type DeleteDirPreProps = {
-  subject: string;
-  message: string;
+  subject?: string;
+  message?: string;
   setConfirmationModalOpen: any;
+  functionExecute?: () => void;
   zIndex?: number;
 };
 

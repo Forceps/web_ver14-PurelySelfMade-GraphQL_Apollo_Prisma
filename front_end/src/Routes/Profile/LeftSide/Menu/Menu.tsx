@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import HiddenLMore from "./HiddenLMore";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import WH100per, {
   W100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
@@ -117,7 +116,6 @@ const MetaItem2 = styled(MetaItem)<InsideProp>`
 `;
 
 export default () => {
-  const { MEdata } = useMyInfo();
   const [More, setMore] = useState(false);
   const [Inside, setInside] = useState(true);
   return (
@@ -151,7 +149,7 @@ export default () => {
               spaped(e);
               setMore(true);
             }}
-            to={`/profile/${MEdata?.user_id}`}
+            to={`/profile`}
           >
             <MenuIcon className="icon-dot-3" />
             <MenuTxt className="hovMenuTxt">More</MenuTxt>

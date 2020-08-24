@@ -8,6 +8,7 @@ import {
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Avatar from "../../../../Components/User/Avatar/Avatar";
 import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
+import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 
 const Identi = styled(W100per)`
   padding: 0 20px 0 10px;
@@ -56,12 +57,6 @@ const UserName = styled.div`
   line-height: 1.6rem;
   text-align: left;
 `;
-const LoadingCon = styled(Con)`
-  font-size: 1.2rem;
-`;
-const LoadingTxt = styled.div`
-  margin: 10px 0 0 10px;
-`;
 const Upside = styled(W100per)`
   display: grid;
   grid-template-columns: 1fr 150px;
@@ -79,14 +74,13 @@ const SelectText = styled.div`
 `;
 
 export default ({
-  UserDataLoading,
-  UserData,
   DesignateAvatar,
   setDesignateAvatar,
   AvatarPathInsert,
   MenuMode,
   setMenuMode,
 }: IdentityProps) => {
+  const { MEdata } = useMyInfo();
   const { Mode } = useProfileMode();
   return (
     <Identi>
@@ -103,15 +97,11 @@ export default ({
         ) : (
           <div />
         )}
-        {UserDataLoading ? (
-          <LoadingCon>
-            <LoadingTxt>Loading...</LoadingTxt>
-          </LoadingCon>
-        ) : UserData.avatar ? (
+        {MEdata.avatar ? (
           <Positioning>
             <Avatar
               size={120}
-              url={UserData.avatar}
+              url={MEdata.avatar}
               func={() => {
                 setDesignateAvatar(true);
               }}
@@ -128,11 +118,9 @@ export default ({
           </DACon>
         )}
       </Upside>
-      {!UserDataLoading && (
-        <UserNameCon>
-          <UserName>{UserData.username}</UserName>
-        </UserNameCon>
-      )}
+      <UserNameCon>
+        <UserName>{MEdata.username}</UserName>
+      </UserNameCon>
       {DesignateAvatar && (
         <ImgIsScnCon
           setImgSubMenuOp={setDesignateAvatar}
@@ -145,8 +133,6 @@ export default ({
 };
 
 type IdentityProps = {
-  UserDataLoading: boolean;
-  UserData: any;
   DesignateAvatar: boolean;
   setDesignateAvatar: any;
   AvatarPathInsert: any;

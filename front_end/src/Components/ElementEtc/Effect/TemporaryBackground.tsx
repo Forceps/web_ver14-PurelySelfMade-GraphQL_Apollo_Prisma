@@ -12,17 +12,22 @@ const LookLike = styled.div<zIndex>`
   height: 100%;
   background-color: #636e72;
   opacity: 0.6;
-  ${prop => {
+  ${(prop) => {
     return css`
       z-index: ${prop.zIndex};
     `;
   }}
 `;
 
-export default ({ onClick, zIndex = 10 }: TemporaryBackgroundProps) => {
+const TemporaryBackground = ({
+  onClick,
+  zIndex = 10,
+}: TemporaryBackgroundProps) => {
   return <LookLike onClick={onClick} zIndex={zIndex} />;
 };
 type TemporaryBackgroundProps = {
   onClick?: any;
   zIndex?: number;
 };
+
+export default React.memo(TemporaryBackground);

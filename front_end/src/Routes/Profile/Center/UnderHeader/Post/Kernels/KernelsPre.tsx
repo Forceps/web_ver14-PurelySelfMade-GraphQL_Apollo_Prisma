@@ -1,13 +1,12 @@
 import React from "react";
 import styled from "styled-components";
-import ThingsWall from "./type/ThingsWall";
+import ThingsWall from "./ThingsWall";
 import Loading from "../../../../../../Components/ElementEtc/Effect/Loading";
 import { useProfileDetailMode } from "../../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
-import { useTargetsShown } from "../../../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
-import PostList from "./type/PostList";
 import IncludeScrollBar from "../../../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useBackImgInS } from "../../../../../../GlobalLib/Context/ProfileContext/BackImgInS";
+import { useMyInfo } from "../../../../../../GlobalLib/Context/UserContext/Me";
 
 const LSec = styled(IncludeScrollBar)`
   min-width: 550px;
@@ -50,26 +49,26 @@ const UserName = styled.div`
   text-align: left;
 `;
 
-export default ({ UserData, UserDataLoading }: LSIpre) => {
+const KernelsPre = ({ data, loading }: KermelsPreProps) => {
+  const { MEdata } = useMyInfo();
   const PfDM = useProfileDetailMode();
-  const TSP = useTargetsShown();
   const BII = useBackImgInS();
   return (
     <LSec>
-      {UserDataLoading || !UserData?.seeUser?.back_img ? (
+      {!MEdata.back_img ? (
         <BackImgDefault
           onClick={(e: any) => {
             spaped(e);
             BII.setDesignateBackImg(true);
           }}
         >
-          <UserName>{UserData?.seeUser?.username}</UserName>
+          <UserName>{MEdata.username}</UserName>
         </BackImgDefault>
       ) : PfDM.Mode === "PostDetail" ? (
         <div />
       ) : (
         <BackImg
-          url={UserData?.seeUser?.back_img}
+          url={MEdata.back_img}
           onClick={(e: any) => {
             spaped(e);
             BII.setDesignateBackImg(true);
@@ -78,21 +77,21 @@ export default ({ UserData, UserDataLoading }: LSIpre) => {
       )}
 
       <Posts>
-        {TSP.posts_loading ? (
+        {loading ? (
           <LDWrap>
             <Loading />
           </LDWrap>
-        ) : PfDM.Mode === "TimeLine" ? (
-          <ThingsWall />
         ) : (
-          <PostList />
+          <ThingsWall data={data} />
         )}
       </Posts>
     </LSec>
   );
 };
 
-interface LSIpre {
-  UserData: any;
-  UserDataLoading: boolean;
+interface KermelsPreProps {
+  data: any;
+  loading: boolean;
 }
+
+export default React.memo(KernelsPre);

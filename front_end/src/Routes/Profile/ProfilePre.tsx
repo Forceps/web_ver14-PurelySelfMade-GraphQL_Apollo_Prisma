@@ -16,13 +16,13 @@ const BottomBody = styled.div`
   }
 `;
 
-export default ({ UserData, UserDataLoading, PD, UP }: ProfilePreProps) => {
+export default ({ PD, UP }: ProfilePreProps) => {
   const PfM = useProfileMode();
   return (
     <Wrapper>
       <BottomBody>
-        <LeftSide UserDataLoading={UserDataLoading} UserData={UserData} />
-        <CenterCon UserData={UserData} UserDataLoading={UserDataLoading} />
+        <LeftSide />
+        <CenterCon />
       </BottomBody>
       {(PfM.Mode[0] === "Post" || PfM.Mode[0] === "Archive") && (
         <RightPanelCon />
@@ -35,8 +35,6 @@ export default ({ UserData, UserDataLoading, PD, UP }: ProfilePreProps) => {
   );
 };
 type ProfilePreProps = {
-  UserData: any;
-  UserDataLoading: boolean;
   PD: any;
   UP: any;
 };

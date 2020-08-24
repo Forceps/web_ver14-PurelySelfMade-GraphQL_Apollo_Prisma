@@ -12,9 +12,9 @@ export const ProfileDetailModeProvider = ({
 }: {
   children: ReactNode;
 }) => {
-  const [Mode, setMode] = useState("TimeLine"); //Mode = "List", "TimeLine"
+  const [Mode, setMode] = useState("recent"); //Mode = "popularity", "recent"
   const [AcMode, setAcMode] = useState("All"); //AcMode = "All", "Image", "Video", "Music"
-  const recentState = useRef("TimeLine");
+  const recentState = useRef("Recent");
   const Obj = { Mode, setMode, recentState, AcMode, setAcMode };
   return (
     <ProfileDetailMode.Provider value={Obj}>

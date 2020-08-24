@@ -19,8 +19,8 @@ export const Bar = styled(W100per)<BarProps>`
   ${(p) => {
     if (p.NUM === p.ChoosedDir[0]) {
       return css`
-        border-right: 3px solid #2d3436;
-        background-color: ${p.hoverBackColor};
+        border-left: 3px solid #2d3436;
+        padding-left: 5px;
       `;
     }
   }}

@@ -16,7 +16,7 @@ const LoggedInRoutes = () => (
     <Route exact path="/" component={HomeCon} />
     <Route exact path="/post/detail/:post_id" component={PostDetailCon} />
     <Route exact path="/bookmark/:user_id" component={BookmarkCon} />
-    <Route exact path="/profile/:user_id" component={ProfileCon} />
+    <Route exact path="/profile" component={ProfileCon} />
     <Route exact path="/blog/:user_id" component={BlogCon} />
     <Route exact path="/group/:group_id" component={EachGroupsCon} />
     <Route exact path="/chat" component={ChatCon} />

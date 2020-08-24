@@ -1,16 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BlogRelationPre from "./BlogRelationPre";
-import { SeeFriendsRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Friend/FriendR";
+import {
+  SeeFriendsRequest,
+  FriendCheckLazyRequest,
+  FRIEND_CHECK,
+} from "../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Friend/FriendR";
 import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import {
   See_I_subsRequest,
   See_My_SubsRequest,
 } from "../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Subscriber/SubscriberR";
+import { ADD_FRIEND } from "../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Friend/FriendCUD";
+import { useMutation } from "@apollo/client";
+import { useLoginCheck } from "../../../../GlobalLib/Context/UserContext/IsLoggedIn";
 
 export default ({ user_id }: BlogRelationConProps) => {
   const { MEdata, MEloading } = useMyInfo();
+  const { isLoggedIn } = useLoginCheck();
   const [RelationSortBy, setRelationSortBy] = useState("all");
-  const [AddFriendConfirm, setAddFriendConfirm] = useState(true);
+  const [AddFriendConfirm, setAddFriendConfirm] = useState(false);
   const { data: friendsData, loading: friendsLoading } = SeeFriendsRequest(
     user_id
   );
@@ -20,6 +28,39 @@ export default ({ user_id }: BlogRelationConProps) => {
   const { data: My_SubsData, loading: My_SubsLoading } = See_My_SubsRequest(
     user_id
   );
+  const [
+    FcloadGreeting,
+    { called: FcCalled, data: FcData, loading: FcLoading },
+  ] = FriendCheckLazyRequest(user_id);
+  const friendCheckLoad = isLoggedIn && FcCalled && !FcLoading;
+  const [createRoomMutation] = useMutation(ADD_FRIEND, {
+    refetchQueries: () => [
+      {
+        query: FRIEND_CHECK,
+        variables: {
+          user_id,
+        },
+      },
+    ],
+  });
+  const addFriendFunc = async () => {
+    try {
+      await createRoomMutation({
+        variables: {
+          respondent: user_id,
+        },
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      FcloadGreeting();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn]);
   return MEloading ? (
     <div />
   ) : (
@@ -36,6 +77,9 @@ export default ({ user_id }: BlogRelationConProps) => {
       user_id={user_id}
       AddFriendConfirm={AddFriendConfirm}
       setAddFriendConfirm={setAddFriendConfirm}
+      addFriendFunc={addFriendFunc}
+      FcData={FcData?.friendCheck}
+      friendCheckLoad={friendCheckLoad}
     />
   );
 };

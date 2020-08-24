@@ -12,7 +12,7 @@ const Wrapper = styled.div`
   grid-template-rows: 40px 1fr;
 `;
 
-export default ({ UserData, UserDataLoading }: CenterPre) => {
+export default () => {
   const { Mode } = useProfileMode();
   return (
     <Wrapper>
@@ -24,13 +24,8 @@ export default ({ UserData, UserDataLoading }: CenterPre) => {
       ) : Mode[0] === "Settings" ? (
         <SettingsMode />
       ) : (
-        <PostMode UserData={UserData} UserDataLoading={UserDataLoading} />
+        <PostMode />
       )}
     </Wrapper>
   );
-};
-
-type CenterPre = {
-  UserData: any;
-  UserDataLoading: boolean;
 };

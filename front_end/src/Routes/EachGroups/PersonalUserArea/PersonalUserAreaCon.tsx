@@ -69,7 +69,7 @@ export default () => {
       {ME.MEloading ? (
         <Loading />
       ) : (
-        <Header to={`/profile/${ME?.MEdata?.user_id}`}>
+        <Header to={`/profile`}>
           {ME.MEdata.back_img ? (
             <BgImg url={ME.MEdata.back_img} />
           ) : (

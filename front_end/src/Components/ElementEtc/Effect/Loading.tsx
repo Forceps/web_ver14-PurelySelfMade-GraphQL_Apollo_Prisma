@@ -139,9 +139,9 @@ const LoadingText = styled.div`
   font-size: 20px;
 `;
 
-type LoadingIconProps = {
+interface LoadingIconProps {
   size?: number;
-};
+}
 export const LoadingIcon = ({ size = 80 }: LoadingIconProps) => {
   const [Phase, setPhase] = useState(1);
   useEffect(() => {
@@ -167,7 +167,7 @@ export const LoadingIcon = ({ size = 80 }: LoadingIconProps) => {
     </Icon>
   );
 };
-export default () => {
+const Loading = () => {
   const [AppearDelay, setAppearDelay] = useState(true);
   useEffect(() => {
     const Temping = setTimeout(() => {
@@ -186,3 +186,5 @@ export default () => {
     </Wrapper>
   );
 };
+
+export default React.memo(Loading);

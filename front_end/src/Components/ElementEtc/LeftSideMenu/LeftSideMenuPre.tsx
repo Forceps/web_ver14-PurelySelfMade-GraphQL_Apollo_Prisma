@@ -116,7 +116,7 @@ export default ({
                   </Item>
                 </Link>
               )}
-              <Link to={`/profile/${MEdata?.user_id}`}>
+              <Link to={`/profile`}>
                 <Item>
                   <Icon
                     className="icon-noun_user_856030"

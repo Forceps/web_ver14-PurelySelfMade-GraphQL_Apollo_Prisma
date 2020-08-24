@@ -11,7 +11,7 @@ export default {
               {
                 friend_friend_proposerTouser: {
                   some: {
-                    proposer: user_id,
+                    respondent: user_id,
                     consent: true,
                   },
                 },
@@ -19,7 +19,7 @@ export default {
               {
                 friend_friend_respondentTouser: {
                   some: {
-                    respondent: user_id,
+                    proposer: user_id,
                     consent: true,
                   },
                 },
