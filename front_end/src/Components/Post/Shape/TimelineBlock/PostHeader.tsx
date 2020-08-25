@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import { usePostDetail } from "../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
-import { useDeletePost } from "../../../../GlobalLib/Context/PostContext/PostCRUD/DeletePost";
 import { useUpdatePost } from "../../../../GlobalLib/Context/PostContext/PostCRUD/UpdatePost";
 import WH100per, {
   H100per,
@@ -50,11 +49,11 @@ const PostCtrl = styled(WH100per)`
 `;
 type PostHeaderProps = {
   post: any;
+  setPostDeleteConfirm: any;
 };
-export default ({ post }: PostHeaderProps) => {
+export default ({ post, setPostDeleteConfirm }: PostHeaderProps) => {
   const { MEloading, MEdata } = useMyInfo();
   const PD = usePostDetail();
-  const DP = useDeletePost();
   const UP = useUpdatePost();
   return (
     <PostHeader>
@@ -84,7 +83,7 @@ export default ({ post }: PostHeaderProps) => {
               <DeletePost
                 onClick={(e) => {
                   spaped(e);
-                  DP.PostDeleteProcess(post.post_id);
+                  setPostDeleteConfirm(true);
                 }}
               >
                 <i className="icon-noun_x_2939490" />

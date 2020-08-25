@@ -20,6 +20,7 @@ export default ({ post, zIndex = 0 }: EachPostConProps) => {
     [],
     false,
   ]);
+  const [PostDeleteConfirm, setPostDeleteConfirm] = useState(false);
   const [PartitionLevel, setPartitionLevel] = useState(0);
   useEffect(() => {
     if (post) {
@@ -75,6 +76,8 @@ export default ({ post, zIndex = 0 }: EachPostConProps) => {
         ImgSamples={ImgSamples}
         zIndex={zIndex}
         PartitionLevel={PartitionLevel}
+        PostDeleteConfirm={PostDeleteConfirm}
+        setPostDeleteConfirm={setPostDeleteConfirm}
       />
       <AnalysisTarget id={post.post_id}>
         <Contents

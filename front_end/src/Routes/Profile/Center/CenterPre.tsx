@@ -5,7 +5,7 @@ import PostMode from "./UnderHeader/Post/PostMode";
 import { useProfileMode } from "../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import ArchiveMode from "./UnderHeader/Archive/ArchiveMode";
 import FormCon from "./UnderHeader/Form/FormCon";
-import SettingsMode from "./UnderHeader/Settings/SettingsMode";
+import SettingsMode from "./UnderHeader/Settings/SettingsModeCon";
 
 const Wrapper = styled.div`
   display: grid;

@@ -41,4 +41,8 @@ export default createGlobalStyle<GlobalStyleProps>`
   img {
     border: 0;
   }
+  button {
+    border: 1px solid black;
+    background-color: transparent;
+  }
 `;

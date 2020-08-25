@@ -10,6 +10,7 @@ import WH100per, {
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import LeftControlsRouter from "./Controls/LeftControlsRouter";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
+import { useProfileMode } from "../../../GlobalLib/Context/ProfileContext/ProfileMode";
 
 const Den1Left = styled(W100per)`
   display: grid;
@@ -44,7 +45,8 @@ const BackImg = styled(Den2Up)<BackImgProp>`
 export default () => {
   const { MEdata } = useMyInfo();
   const BII = useBackImgInS();
-  const [MenuMode, setMenuMode] = useState(false);
+  const { Mode } = useProfileMode();
+  const [MenuMode, setMenuMode] = useState(true);
   return (
     <>
       <Den1Left>
@@ -67,7 +69,11 @@ export default () => {
 
         <Den2Down>
           <Identity MenuMode={MenuMode} setMenuMode={setMenuMode} />
-          {MenuMode ? <Menu /> : <LeftControlsRouter />}
+          {MenuMode || (Mode[0] !== "Archive" && Mode[0] !== "Post") ? (
+            <Menu />
+          ) : (
+            <LeftControlsRouter />
+          )}
         </Den2Down>
       </Den1Left>
       {BII.DesignateBackImg && (

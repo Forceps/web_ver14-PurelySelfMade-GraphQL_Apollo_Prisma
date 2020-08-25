@@ -12,6 +12,8 @@ import Solo from "./BlockType/Solo";
 import Trio from "./BlockType/Trio";
 import Quartet from "./BlockType/Quartet";
 import Quintet from "./BlockType/Quintet";
+import ConfirmationModal from "../../../ElementEtc/Effect/ConfirmationModal";
+import { useDeletePost } from "../../../../GlobalLib/Context/PostContext/PostCRUD/DeletePost";
 
 interface InclosureProps {
   zIndex: number;
@@ -67,6 +69,8 @@ interface EachPostPreProps {
   ImgSamples: [string[], boolean];
   zIndex: number;
   PartitionLevel: number;
+  PostDeleteConfirm: boolean;
+  setPostDeleteConfirm: any;
 }
 export default ({
   post,
@@ -74,8 +78,11 @@ export default ({
   ImgSamples,
   zIndex,
   PartitionLevel,
+  PostDeleteConfirm,
+  setPostDeleteConfirm,
 }: EachPostPreProps) => {
   const PD = usePostDetail();
+  const DP = useDeletePost();
   return (
     <>
       <Inclosure zIndex={zIndex}>
@@ -86,7 +93,10 @@ export default ({
         />
         <Wrapper>
           <Rest>
-            <PostHeader post={post} />
+            <PostHeader
+              post={post}
+              setPostDeleteConfirm={setPostDeleteConfirm}
+            />
             <Divid>
               <UName to={`/blog/${post.user_postTouser.user_id}`}>
                 {post.user_postTouser.username}
@@ -118,6 +128,18 @@ export default ({
             )}
           </EachContain>
         </Wrapper>
+        {PostDeleteConfirm && (
+          <ConfirmationModal
+            subject={"Delete post"}
+            message={"Are you sure you want to delete this post?"}
+            setConfirmationModalOpen={setPostDeleteConfirm}
+            functionExecute={() => {
+              DP.PostDeleteProcess(post.post_id);
+            }}
+            zIndex={zIndex + 10}
+            yesName={"Delete"}
+          />
+        )}
       </Inclosure>
     </>
   );

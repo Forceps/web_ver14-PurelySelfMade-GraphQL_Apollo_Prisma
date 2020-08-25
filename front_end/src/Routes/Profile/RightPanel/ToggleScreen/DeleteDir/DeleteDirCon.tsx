@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useMutation } from "@apollo/client";
-import DeleteDirPre from "./DeleteDirPre";
 import { useDirMode } from "../../../../../GlobalLib/Context/ProfileContext/DirMode";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { DELETE_DIR } from "../../../../../GlobalLib/Apollo/GraphQL_Client/Directory/DirectoryCUD";
 import { S_N_to_N } from "../../../../../GlobalLib/RecycleFunction/etc/type_convert";
+import ConfirmationModal from "../../../../../Components/ElementEtc/Effect/ConfirmationModal";
 
 export default ({
   setDeleteDirOpen,
@@ -13,8 +13,7 @@ export default ({
   setDKeyActive,
 }: DeleteDirConProps) => {
   const DC = useDirMode();
-  const DeleteDirTrigger = async (e: any) => {
-    spaped(e);
+  const DeleteDirTrigger = async () => {
     try {
       await DeleteDirMutation();
     } catch (e) {
@@ -32,7 +31,7 @@ export default ({
   const EnterKeyTrigger = (e: any) => {
     spaped(e);
     if (DKeyActive === true && e.keyCode === 13) {
-      DeleteDirTrigger(e);
+      DeleteDirTrigger();
       setDKeyActive(false);
     }
   };
@@ -44,10 +43,15 @@ export default ({
   }, []);
 
   return (
-    <DeleteDirPre
-      setDeleteDirOpen={setDeleteDirOpen}
-      DeleteDirTrigger={DeleteDirTrigger}
-      setDKeyActive={setDKeyActive}
+    <ConfirmationModal
+      setConfirmationModalOpen={setDeleteDirOpen}
+      subject={"Delete Directory"}
+      message={
+        "Are you sure you want to delete the folder and its sub-contents as well?"
+      }
+      functionExecute={DeleteDirTrigger}
+      zIndex={36}
+      yesName={"Delete"}
     />
   );
 };

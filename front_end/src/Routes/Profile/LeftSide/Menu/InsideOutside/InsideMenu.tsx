@@ -69,7 +69,7 @@ export default () => {
         ["Post", "pinboard"],
         ["Archive", "folder"],
         ["Social", "group"],
-        ["Settings", "sliders"],
+        ["Settings", "cog"],
       ].map((c) => (
         <MenuItem
           onClick={(e: any) => {
