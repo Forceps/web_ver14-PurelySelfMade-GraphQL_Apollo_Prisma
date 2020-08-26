@@ -1,7 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import InstantMessagePre from "./InstantMessagePre";
 
-const InstantMessageCon = ({ Subject, Message }: InstantMessageConProps) => {
+const InstantMessageCon = ({
+  myTempId,
+  Subject,
+  Message,
+  setMserise,
+}: InstantMessageConProps) => {
+  const BoxEl = useRef<HTMLDivElement>(null);
   const TimeSec = 5;
   const progressValue = useRef(1);
   const progressBar = useRef<HTMLDivElement>(null);
@@ -38,6 +44,7 @@ const InstantMessageCon = ({ Subject, Message }: InstantMessageConProps) => {
 
   return (
     <InstantMessagePre
+      BoxEl={BoxEl}
       Subject={Subject}
       Message={Message}
       progressBar={progressBar}
@@ -48,8 +55,10 @@ const InstantMessageCon = ({ Subject, Message }: InstantMessageConProps) => {
 };
 
 interface InstantMessageConProps {
+  myTempId: string;
   Subject?: string;
   Message?: string;
+  setMserise: React.Dispatch<React.SetStateAction<string[][]>>;
 }
 
 export default React.memo(InstantMessageCon);

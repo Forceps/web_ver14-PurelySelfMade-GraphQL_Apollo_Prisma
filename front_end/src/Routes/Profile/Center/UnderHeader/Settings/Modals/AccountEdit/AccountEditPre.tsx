@@ -7,7 +7,6 @@ import TemporaryBackground from "../../../../../../../Components/ElementEtc/Effe
 import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useInputReturn } from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { NOrU } from "../../../../../../../GlobalLib/RecycleFunction/etc/type_convert";
-import InstantMessage from "../../../../../../../GlobalLib/Context/EtcContext/ShortMessage/InstantMessage/InstantMessageCon";
 
 interface EncompassProps {
   zIndex: number;
@@ -176,10 +175,6 @@ const AccountEditPre = ({
               >
                 Confirm
               </CheckEntPasswordBtn>
-              <InstantMessage
-                Subject="Current password"
-                Message="Current password is incorrect. Please try again"
-              />
             </EntBtnZone>
           </Entrance>
           <EmailEdit>

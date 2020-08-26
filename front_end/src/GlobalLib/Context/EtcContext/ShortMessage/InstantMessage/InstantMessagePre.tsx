@@ -17,6 +17,9 @@ const Box = styled.div`
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
   cursor: pointer;
   overflow: hidden;
+  transition-property: left;
+  transition-duration: 0.5;
+  transition-timing-function: ease;
 `;
 const Content = styled(WH100per)`
   display: grid;
@@ -64,6 +67,7 @@ const Off = styled(WH100per)`
 `;
 
 const InstantMessagePre = ({
+  BoxEl,
   Subject,
   Message,
   progressBar,
@@ -76,6 +80,7 @@ const InstantMessagePre = ({
         spaped(e);
         ProgressStop();
       }}
+      ref={BoxEl}
     >
       <ExtinctivePrescription>
         <Progressed ref={progressBar} />
@@ -95,6 +100,7 @@ const InstantMessagePre = ({
 };
 
 interface InstantMessagePreProps {
+  BoxEl: React.RefObject<HTMLDivElement>;
   Subject?: string;
   Message?: string;
   progressBar: React.RefObject<HTMLDivElement>;

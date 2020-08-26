@@ -1,5 +1,6 @@
 import React, { createContext, ReactNode, useContext, useState } from "react";
 import InstantMessageCon from "./InstantMessage/InstantMessageCon";
+import cryptoRandomString from "crypto-random-string";
 
 interface ShortMessageContext {
   addMessage: (Subject: string, Message: string) => void;
@@ -8,11 +9,12 @@ const ShortMessageContext = createContext<ShortMessageContext | undefined>(
   undefined
 );
 export const ShortMessageProvider = ({ children }: { children: ReactNode }) => {
-  const [Mserise, setMserise] = useState < [][(string, string)] > [];
-
+  const [Mserise, setMserise] = useState<string[][]>([]);
   const addMessage = (Subject: string, Message: string) => {
-    let arr = Mserise;
-    arr = arr.concat([[Subject, Message]]);
+    const arr = Mserise.concat([
+      [cryptoRandomString({ length: 20 }), Subject, Message],
+    ]);
+    setMserise(arr);
   };
 
   const value = { addMessage };
@@ -21,7 +23,13 @@ export const ShortMessageProvider = ({ children }: { children: ReactNode }) => {
     <ShortMessageContext.Provider value={value}>
       {children}
       {Mserise.map((li) => (
-        <InstantMessageCon />
+        <InstantMessageCon
+          key={li[0]}
+          myTempId={li[0]}
+          Subject={li[1]}
+          Message={li[2]}
+          setMserise={setMserise}
+        />
       ))}
     </ShortMessageContext.Provider>
   );

@@ -19,6 +19,7 @@ import { MeProvider } from "./GlobalLib/Context/UserContext/Me";
 import { DummyStateProvider } from "./GlobalLib/Context/Lib/DummyState";
 import { PModeProvider } from "./GlobalLib/Context/ProfileContext/ProfileMode";
 import { LoginCheckingProvider } from "./GlobalLib/Context/UserContext/IsLoggedIn";
+import { ShortMessageProvider } from "./GlobalLib/Context/EtcContext/ShortMessage/ShortMessage";
 
 export default () => {
   return (
@@ -39,6 +40,7 @@ export default () => {
           DummyStateProvider,
           PModeProvider,
           LoginCheckingProvider,
+          ShortMessageProvider,
         ]} //위에 배치될수록 더 하위의 컴포넌트가 된다.
       >
         <BrowserRouter>

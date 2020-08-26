@@ -4,11 +4,13 @@ import useInput from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useIn
 import { useMyInfo } from "../../../../../../../GlobalLib/Context/UserContext/Me";
 import { useMutation } from "@apollo/client";
 import { CURRENT_PASSWORD_CONFIRM } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
+import { useShortMessage } from "../../../../../../../GlobalLib/Context/EtcContext/ShortMessage/ShortMessage";
 
 const AccountEditCon = ({
   setAccountEditOpen,
   zIndex = 20,
 }: AccountEditProps) => {
+  const { addMessage } = useShortMessage();
   const { MEdata } = useMyInfo();
   const [CurPwConfirmed, setCurPwConfirmed] = useState(false);
   const EnPasswordStr = useInput("");
@@ -24,6 +26,10 @@ const AccountEditCon = ({
     }
   );
   const currntPasswordConfirm = async () => {
+    addMessage(
+      "Current password",
+      "Current password is incorrect. Please try again"
+    );
     if (!CurPwConfirmed) {
       try {
         const checkResult = await currentPasswordConfirmMutation();
