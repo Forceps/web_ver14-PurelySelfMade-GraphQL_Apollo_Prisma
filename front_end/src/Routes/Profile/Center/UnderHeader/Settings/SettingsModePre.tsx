@@ -4,7 +4,8 @@ import WH100per, {
   W100per,
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { useMyInfo } from "../../../../../GlobalLib/Context/UserContext/Me";
-import ProfileEditCon from "./Modals/ProfileEditCon";
+import ProfileEditCon from "./Modals/ProfileEdit/ProfileEditCon";
+import AccountEditCon from "./Modals/AccountEdit/AccountEditCon";
 
 const SettingsMain = styled(WH100per)`
   display: flex;
@@ -69,6 +70,8 @@ const Themes = styled(W100per)`
 const SettingsModePre = ({
   ProfileEditOpen,
   setProfileEditOpen,
+  AccountEditOpen,
+  setAccountEditOpen,
 }: SettingsModePreProps) => {
   const {
     MEdata: { username, email },
@@ -98,7 +101,11 @@ const SettingsModePre = ({
           {ProfileEditOpen && (
             <ProfileEditCon setProfileEditOpen={setProfileEditOpen} />
           )}
-          <Theme>
+          <Theme
+            onClick={() => {
+              setAccountEditOpen(true);
+            }}
+          >
             <Sbj>Account</Sbj>
             <CurrentSet>
               <InfoPiece>
@@ -111,6 +118,9 @@ const SettingsModePre = ({
               </InfoPiece>
             </CurrentSet>
           </Theme>
+          {AccountEditOpen && (
+            <AccountEditCon setAccountEditOpen={setAccountEditOpen} />
+          )}
           <Theme></Theme>
         </Themes>
       </Territory>
@@ -121,6 +131,8 @@ const SettingsModePre = ({
 interface SettingsModePreProps {
   ProfileEditOpen: boolean;
   setProfileEditOpen: any;
+  AccountEditOpen: boolean;
+  setAccountEditOpen: any;
 }
 
 export default React.memo(SettingsModePre);

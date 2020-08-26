@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import WH100per from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import TemporaryBackground from "../../../../../../Components/ElementEtc/Effect/TemporaryBackground";
-import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import WH100per from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import TemporaryBackground from "../../../../../../../Components/ElementEtc/Effect/TemporaryBackground";
+import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { useInputReturn } from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 
 interface EncompassProps {
   zIndex: number;
@@ -58,7 +59,7 @@ const Submit = styled(BtnGen)`
 const Intent = styled(WH100per)`
   display: grid;
   grid-template-rows: 1fr 1fr;
-  padding: 10px 0 10px 0;
+  padding: 10px 0 10px 5px;
 `;
 const UsernameEdit = styled(WH100per)`
   display: flex;
@@ -74,9 +75,15 @@ const EditTxtInput = styled.input`
   border: 0;
   border-bottom: 1px solid #2d3436;
   background-color: transparent;
+  width: 75%;
 `;
 
-const ProfileEditPre = ({ setProfileEditOpen, zIndex }: ProfileEditProps) => {
+const ProfileEditPre = ({
+  setProfileEditOpen,
+  zIndex,
+  usernameStr,
+  phoneNumberStr,
+}: ProfileEditProps) => {
   return (
     <Encompass zIndex={zIndex}>
       <TemporaryBackground
@@ -94,6 +101,7 @@ const ProfileEditPre = ({ setProfileEditOpen, zIndex }: ProfileEditProps) => {
               type="text"
               placeholder="user name"
               spellCheck="false"
+              {...usernameStr}
             />
           </UsernameEdit>
           <PhoneNumberEdit>
@@ -101,6 +109,7 @@ const ProfileEditPre = ({ setProfileEditOpen, zIndex }: ProfileEditProps) => {
               type="text"
               placeholder="phone number"
               spellCheck="false"
+              {...phoneNumberStr}
             />
           </PhoneNumberEdit>
         </Intent>
@@ -129,6 +138,8 @@ const ProfileEditPre = ({ setProfileEditOpen, zIndex }: ProfileEditProps) => {
 interface ProfileEditProps {
   setProfileEditOpen: any;
   zIndex: number;
+  usernameStr: useInputReturn;
+  phoneNumberStr: useInputReturn;
 }
 
 export default React.memo(ProfileEditPre);

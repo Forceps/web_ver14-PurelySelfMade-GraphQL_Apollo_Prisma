@@ -1,6 +1,6 @@
 import { PrismaClient, user } from "@prisma/client";
-import { generateToken } from "../../../../../GlobalLib/authSystem/utils";
-import { LoginUserMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
+import { generateToken } from "../../../../../../GlobalLib/authSystem/utils";
+import { LoginUserMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
 const prisma = new PrismaClient();
 
 export default {

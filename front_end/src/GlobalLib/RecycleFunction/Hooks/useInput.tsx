@@ -13,7 +13,7 @@ export default (defaultValue: string): useInputReturn => {
   return { value, onChange, setValue };
 };
 
-interface useInputReturn {
+export interface useInputReturn {
   value: string;
   onChange: (e: any) => void;
   setValue: React.Dispatch<React.SetStateAction<string>>;
