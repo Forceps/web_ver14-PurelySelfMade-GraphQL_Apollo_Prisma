@@ -1,11 +1,13 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import WH100per, {
   W100per,
 } from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import TemporaryBackground from "../../../../../../../Components/ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useInputReturn } from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
+import { NOrU } from "../../../../../../../GlobalLib/RecycleFunction/etc/type_convert";
+import InstantMessage from "../../../../../../../GlobalLib/Context/EtcContext/ShortMessage/InstantMessage/InstantMessageCon";
 
 interface EncompassProps {
   zIndex: number;
@@ -72,7 +74,11 @@ const PasswordEdit = styled(WH100per)`
   flex-direction: column;
   justify-content: center;
 `;
-const EditTxtInput = styled.input`
+interface EditTxtInputProps {
+  CurPwConfirmed?: boolean;
+  reverse?: boolean;
+}
+const EditTxtInput = styled.input<EditTxtInputProps>`
   padding: 5px;
   font-size: 1rem;
   border: 0;
@@ -80,6 +86,15 @@ const EditTxtInput = styled.input`
   background-color: transparent;
   width: 280px;
   margin: 5px 0 5px 0;
+  ${(p) => {
+    const bool = !NOrU(p.CurPwConfirmed) && !p.CurPwConfirmed;
+    if (p.reverse ? !bool : bool) {
+      return css`
+        border-bottom: 0;
+        border-left: 3px solid #2d3436;
+      `;
+    }
+  }}
 `;
 const Entrance = styled(WH100per)`
   display: grid;
@@ -93,17 +108,26 @@ const EntBtnZone = styled(WH100per)`
   display: flex;
   align-items: center;
 `;
-const CheckEntPasswordBtn = styled(W100per)`
+interface CheckEntPasswordBtnProps {
+  CurPwConfirmed: boolean;
+}
+const CheckEntPasswordBtn = styled(W100per)<CheckEntPasswordBtnProps>`
   display: flex;
   justify-content: center;
   align-items: center;
   height: 35px;
   background-color: #636e72;
   color: white;
-  &:hover {
-    background-color: #2d3436;
-  }
-  cursor: pointer;
+  ${(p) => {
+    if (!p.CurPwConfirmed) {
+      return css`
+        &:hover {
+          background-color: #2d3436;
+        }
+        cursor: pointer;
+      `;
+    }
+  }}
 `;
 
 const AccountEditPre = ({
@@ -138,17 +162,24 @@ const AccountEditPre = ({
                 spellCheck="false"
                 {...EnPasswordStr}
                 readOnly={CurPwConfirmed}
+                CurPwConfirmed={CurPwConfirmed}
+                reverse={true}
               />
             </EntInputZone>
             <EntBtnZone>
               <CheckEntPasswordBtn
-                onClick={async (e) => {
+                onClick={(e) => {
                   spaped(e);
-                  await currntPasswordConfirm();
+                  currntPasswordConfirm();
                 }}
+                CurPwConfirmed={CurPwConfirmed}
               >
                 Confirm
               </CheckEntPasswordBtn>
+              <InstantMessage
+                Subject="Current password"
+                Message="Current password is incorrect. Please try again"
+              />
             </EntBtnZone>
           </Entrance>
           <EmailEdit>
@@ -158,6 +189,7 @@ const AccountEditPre = ({
               spellCheck="false"
               {...emailStr}
               readOnly={!CurPwConfirmed}
+              CurPwConfirmed={CurPwConfirmed}
             />
           </EmailEdit>
           <PasswordEdit>
@@ -167,6 +199,7 @@ const AccountEditPre = ({
               spellCheck="false"
               {...passwordStr}
               readOnly={!CurPwConfirmed}
+              CurPwConfirmed={CurPwConfirmed}
             />
             <EditTxtInput
               type="password"
@@ -174,6 +207,7 @@ const AccountEditPre = ({
               spellCheck="false"
               {...password2Str}
               readOnly={!CurPwConfirmed}
+              CurPwConfirmed={CurPwConfirmed}
             />
           </PasswordEdit>
         </Intent>
@@ -181,8 +215,10 @@ const AccountEditPre = ({
           <Submit
             onClick={(e) => {
               spaped(e);
+              if (CurPwConfirmed) {
+                setAccountEditOpen(false);
+              }
               setCurPwConfirmed(false);
-              setAccountEditOpen(false);
             }}
           >
             Save

@@ -8,6 +8,9 @@ export default createGlobalStyle<GlobalStyleProps>`
   ${reset};
   * {
     box-sizing: border-box;
+    transition-property: background-color;
+    transition-duration: 0.12s;
+    transition-timing-function: ease;
   }
   *::selection {
     background: rgba(45, 52, 54, 0.2);

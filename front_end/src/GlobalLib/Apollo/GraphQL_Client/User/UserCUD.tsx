@@ -29,3 +29,8 @@ export const SET_BACKIMG = gql`
     setBackImg(back_img: $back_img)
   }
 `;
+export const CURRENT_PASSWORD_CONFIRM = gql`
+  mutation currentPasswordConfirm($current_password: String!) {
+    currentPasswordConfirm(current_password: $current_password)
+  }
+`;

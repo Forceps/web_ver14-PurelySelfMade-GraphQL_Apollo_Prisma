@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import AccountEditPre from "./AccountEditPre";
 import useInput from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useMyInfo } from "../../../../../../../GlobalLib/Context/UserContext/Me";
+import { useMutation } from "@apollo/client";
+import { CURRENT_PASSWORD_CONFIRM } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
 
 const AccountEditCon = ({
   setAccountEditOpen,
@@ -13,12 +15,27 @@ const AccountEditCon = ({
   const emailStr = useInput(MEdata.email);
   const passwordStr = useInput("");
   const password2Str = useInput("");
-  const currntPasswordConfirm = () => {
-    if (EnPasswordStr) {
-      setCurPwConfirmed(true);
-    } else {
+  const [currentPasswordConfirmMutation] = useMutation(
+    CURRENT_PASSWORD_CONFIRM,
+    {
+      variables: {
+        current_password: EnPasswordStr.value,
+      },
+    }
+  );
+  const currntPasswordConfirm = async () => {
+    if (!CurPwConfirmed) {
+      try {
+        const checkResult = await currentPasswordConfirmMutation();
+        if (checkResult) {
+          setCurPwConfirmed(checkResult.data.currentPasswordConfirm);
+        }
+      } catch (e) {
+        console.log(e);
+      }
     }
   };
+
   return (
     <AccountEditPre
       setAccountEditOpen={setAccountEditOpen}
