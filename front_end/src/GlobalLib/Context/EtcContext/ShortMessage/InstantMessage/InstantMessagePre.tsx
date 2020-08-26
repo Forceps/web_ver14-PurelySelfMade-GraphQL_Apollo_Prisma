@@ -3,12 +3,16 @@ import styled from "styled-components";
 import WH100per from "../../../../Styles/IteratePattern/WH100per";
 import { spaped } from "../../../../RecycleFunction/etc/StopAndPrevent";
 
-const Box = styled.div`
+interface BoxProps {
+  Show: boolean;
+  Hide: boolean;
+}
+const Box = styled.div<BoxProps>`
   display: grid;
   grid-template-columns: 3px 1fr;
   position: fixed;
   bottom: 40px;
-  left: 20px;
+  left: ${(p) => (p.Hide ? "-400px" : p.Show ? "20px" : "-400px")};
   width: 300px;
   height: 150px;
   background-color: #fafafa;
@@ -17,9 +21,9 @@ const Box = styled.div`
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
   cursor: pointer;
   overflow: hidden;
-  transition-property: left;
-  transition-duration: 0.5;
-  transition-timing-function: ease;
+  transition-property: left, bottom;
+  transition-duration: 0.8s;
+  transition-timing-function: cubic-bezier(0.02, 0.86, 0.4, 0.98);
 `;
 const Content = styled(WH100per)`
   display: grid;
@@ -73,6 +77,9 @@ const InstantMessagePre = ({
   progressBar,
   ProgressStop,
   Stop,
+  Show,
+  Hide,
+  setHide,
 }: InstantMessagePreProps) => {
   return (
     <Box
@@ -81,6 +88,9 @@ const InstantMessagePre = ({
         ProgressStop();
       }}
       ref={BoxEl}
+      Show={Show}
+      Hide={Hide}
+      className="instantMessageBox"
     >
       <ExtinctivePrescription>
         <Progressed ref={progressBar} />
@@ -89,7 +99,12 @@ const InstantMessagePre = ({
         <Header>
           <Sbj>{Subject ? Subject : "Subject"}</Sbj>
           <Fasten>{Stop && <i className="icon-pinboard" />}</Fasten>
-          <Off>
+          <Off
+            onClick={(e) => {
+              spaped(e);
+              setHide(true);
+            }}
+          >
             <i className="icon-noun_x_2939490" />
           </Off>
         </Header>
@@ -106,6 +121,9 @@ interface InstantMessagePreProps {
   progressBar: React.RefObject<HTMLDivElement>;
   ProgressStop: () => void;
   Stop: boolean;
+  Show: boolean;
+  Hide: boolean;
+  setHide: any;
 }
 
 export default React.memo(InstantMessagePre);

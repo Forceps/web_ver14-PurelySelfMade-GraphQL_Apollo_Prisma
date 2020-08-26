@@ -1,6 +1,13 @@
-import React, { createContext, ReactNode, useContext, useState } from "react";
+import React, {
+  createContext,
+  ReactNode,
+  useContext,
+  useState,
+  useEffect,
+} from "react";
 import InstantMessageCon from "./InstantMessage/InstantMessageCon";
 import cryptoRandomString from "crypto-random-string";
+import { useDummyState } from "../../Lib/DummyState";
 
 interface ShortMessageContext {
   addMessage: (Subject: string, Message: string) => void;
@@ -9,13 +16,36 @@ const ShortMessageContext = createContext<ShortMessageContext | undefined>(
   undefined
 );
 export const ShortMessageProvider = ({ children }: { children: ReactNode }) => {
+  const { setDummyState } = useDummyState();
   const [Mserise, setMserise] = useState<string[][]>([]);
+  const [DeleteTarget, setDeleteTarget] = useState("");
   const addMessage = (Subject: string, Message: string) => {
     const arr = Mserise.concat([
       [cryptoRandomString({ length: 20 }), Subject, Message],
     ]);
     setMserise(arr);
   };
+
+  useEffect(() => {
+    console.log(Mserise);
+    const idx = Mserise.findIndex((i) => {
+      return i[0] === DeleteTarget;
+    });
+    let newArr = Mserise;
+    newArr.splice(idx, 1);
+    console.log(newArr);
+    setMserise(newArr);
+    setDummyState((p: number) => p + 1);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [DeleteTarget]);
+  useEffect(() => {
+    const Boxes = document.getElementsByClassName(
+      "instantMessageBox"
+    ) as HTMLCollectionOf<HTMLDivElement>;
+    for (let i = 0; i < Boxes.length; i++) {
+      Boxes[Boxes.length - i - 1].style.bottom = `${40 + 160 * i}px`;
+    }
+  }, [Mserise]);
 
   const value = { addMessage };
 
@@ -28,7 +58,7 @@ export const ShortMessageProvider = ({ children }: { children: ReactNode }) => {
           myTempId={li[0]}
           Subject={li[1]}
           Message={li[2]}
-          setMserise={setMserise}
+          setDeleteTarget={setDeleteTarget}
         />
       ))}
     </ShortMessageContext.Provider>
@@ -40,13 +70,3 @@ export const useShortMessage = () => {
   if (!state) throw new Error("ShortMessageContext not found");
   return state;
 };
-
-export interface MedataStructure {
-  user_id: string;
-  username: string;
-  email: string;
-  avatar: string;
-  back_img: string;
-  guaranteed_capacity: string;
-  daily_allocated_capacity: string;
-}

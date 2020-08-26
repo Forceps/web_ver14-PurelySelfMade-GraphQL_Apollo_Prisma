@@ -37,10 +37,10 @@ export default () => {
           BackImgInSProvider,
           PostDetailProvider,
           MeProvider,
-          DummyStateProvider,
           PModeProvider,
           LoginCheckingProvider,
           ShortMessageProvider,
+          DummyStateProvider,
         ]} //위에 배치될수록 더 하위의 컴포넌트가 된다.
       >
         <BrowserRouter>

@@ -72,6 +72,7 @@ export default () => {
         ["Settings", "cog"],
       ].map((c) => (
         <MenuItem
+          key={c[0]}
           onClick={(e: any) => {
             spaped(e);
             setMode([c[0]]);

@@ -31,7 +31,7 @@ splice함수는 추출함수여서 추출되고 남은 부분은 원래 정의�
 
 9. css에서 부모의 position을 relative로, 자식의 position을 absolute로 지정해주면 부모 안의 자식의 크기의 width와 height 값을 백분율로 표시할 수 있게 되고 요소를 서로 겹치게 할 수 있다. 서로 겹치게 될 때 z-index를 쓰려면 display를 static을 제외한 나머지로 설정해 줘야 한다.
 
-10. css에서 display속성을 inline이나 inline-block으로 지정하면 내가 설정하지도 않은 작은 틈새를 멋대로 벌리는데 이선 개발자도구에서 잡히지도 않는다. 준 만능해결사인 grid를 써라.
+10. css에서 display속성을 inline이나 inline-block으로 지정하면 내가 설정하지도 않은 작은 틈새를 멋대로 벌리는데 이선 개발자도구에서 잡히지도 않는다. 준 만능해결사인 grid나 flex를 써라.
 
 11. "The left-hand side of an assignment expression may not be an optional property access."이런 에러가 나오면 typescript에서 optional chaining 연산자 "?."를 쓴 경우일 수 있다. 조건문을 서서 제거해보자.
 
