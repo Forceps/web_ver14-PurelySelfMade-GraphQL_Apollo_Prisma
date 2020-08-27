@@ -83,6 +83,7 @@ const ProfileEditPre = ({
   zIndex,
   usernameStr,
   phoneNumberStr,
+  saveProfileInfo,
 }: ProfileEditProps) => {
   return (
     <Encompass zIndex={zIndex}>
@@ -117,7 +118,7 @@ const ProfileEditPre = ({
           <Submit
             onClick={(e) => {
               spaped(e);
-              setProfileEditOpen(false);
+              saveProfileInfo();
             }}
           >
             Save
@@ -140,6 +141,7 @@ interface ProfileEditProps {
   zIndex: number;
   usernameStr: useInputReturn;
   phoneNumberStr: useInputReturn;
+  saveProfileInfo: () => Promise<void>;
 }
 
 export default React.memo(ProfileEditPre);

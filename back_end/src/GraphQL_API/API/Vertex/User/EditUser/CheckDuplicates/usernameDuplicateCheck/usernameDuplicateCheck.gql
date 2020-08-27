@@ -1,0 +1,3 @@
+type Mutation {
+  usernameDuplicateCheck(username: String!): Boolean!
+}

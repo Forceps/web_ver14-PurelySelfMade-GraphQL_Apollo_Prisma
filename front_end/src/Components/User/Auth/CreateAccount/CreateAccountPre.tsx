@@ -97,7 +97,9 @@ const Button = styled.button`
 interface ConnectLineProps {
   Assurance: boolean;
 }
-const SignUp = styled(({ ...rest }) => <Button {...rest} />)<ConnectLineProps>`
+const SignUp = styled(({ Assurance, ...rest }) => <Button {...rest} />)<
+  ConnectLineProps
+>`
   display: flex;
   align-items: center;
   justify-content: center;

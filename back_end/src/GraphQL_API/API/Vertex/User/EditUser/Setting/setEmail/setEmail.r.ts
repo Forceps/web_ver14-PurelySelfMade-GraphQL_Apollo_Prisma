@@ -1,25 +1,21 @@
 import { PrismaClient } from "@prisma/client";
-import { SetAvatarMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
-import { contextType } from "../../../../../LibForGQL/typesLib";
+import { contextType } from "../../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
   Mutation: {
-    setAvatar: async (
+    setEmail: async (
       _: void,
-      args: SetAvatarMutationArgs,
+      { email },
       { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
-      const { avatar } = args;
-      const { user } = req;
-
       try {
         await prisma.user.update({
           data: {
-            avatar,
+            email,
           },
-          where: { user_id: user.user_id },
+          where: { user_id: req.user.user_id },
         });
         return true;
       } catch (e) {

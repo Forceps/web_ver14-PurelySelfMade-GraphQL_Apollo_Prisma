@@ -3,8 +3,14 @@ import AccountEditPre from "./AccountEditPre";
 import useInput from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useMyInfo } from "../../../../../../../GlobalLib/Context/UserContext/Me";
 import { useMutation } from "@apollo/client";
-import { CURRENT_PASSWORD_CONFIRM } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
+import {
+  CURRENT_PASSWORD_CONFIRM,
+  SET_EMAIL,
+  SET_PASSWORD,
+} from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
 import { useShortMessage } from "../../../../../../../GlobalLib/Context/EtcContext/ShortMessage/ShortMessage";
+import { ME } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/User/UserRseries/UserR";
+import { emailRegex } from "../../../../../../../Components/User/Auth/CreateAccount/CreateAccountCon";
 
 const AccountEditCon = ({
   setAccountEditOpen,
@@ -45,6 +51,63 @@ const AccountEditCon = ({
     }
   };
 
+  const [setEmailMutation] = useMutation(SET_EMAIL, {
+    variables: {
+      email: emailStr.value,
+    },
+    refetchQueries: () => [{ query: ME }],
+  });
+  const [setPasswordMutation] = useMutation(SET_PASSWORD, {
+    variables: {
+      password: passwordStr.value,
+    },
+    refetchQueries: () => [{ query: ME }],
+  });
+  const invalidEmail = () => {
+    if (emailStr.value !== "" && emailStr.value !== MEdata.email) {
+      if (emailStr.value.length > 150) {
+        addMessage("e-mail", "must be less than 150 characters.");
+      } else if (!emailRegex.test(emailStr.value)) {
+        addMessage("e-mail", "email is invalid");
+      }
+    }
+  };
+  const invalidPassword = () => {
+    if (passwordStr.value.length < 7 || passwordStr.value.length > 45) {
+      addMessage(
+        "Password",
+        "must be at least 10 characters and less than 45 characters."
+      );
+    }
+  };
+  const invalidCfmPw = () => {
+    if (passwordStr.value !== password2Str.value) {
+      addMessage("Password", "password and confirm password do not match");
+    }
+  };
+  const saveAccountInfo = async () => {
+    try {
+      if (
+        emailStr.value !== "" &&
+        emailStr.value !== MEdata.email &&
+        emailRegex.test(emailStr.value) &&
+        emailStr.value.length <= 150
+      ) {
+        await setEmailMutation();
+      }
+      if (
+        passwordStr.value.length >= 10 &&
+        passwordStr.value.length <= 45 &&
+        passwordStr.value === password2Str.value
+      ) {
+        await setPasswordMutation();
+      }
+      setAccountEditOpen(false);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
     <AccountEditPre
       setAccountEditOpen={setAccountEditOpen}
@@ -56,6 +119,10 @@ const AccountEditCon = ({
       CurPwConfirmed={CurPwConfirmed}
       setCurPwConfirmed={setCurPwConfirmed}
       currntPasswordConfirm={currntPasswordConfirm}
+      invalidEmail={invalidEmail}
+      invalidPassword={invalidPassword}
+      invalidCfmPw={invalidCfmPw}
+      saveAccountInfo={saveAccountInfo}
     />
   );
 };

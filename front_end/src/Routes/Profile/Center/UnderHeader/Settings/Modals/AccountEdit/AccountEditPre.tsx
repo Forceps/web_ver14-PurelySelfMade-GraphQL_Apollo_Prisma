@@ -7,6 +7,7 @@ import TemporaryBackground from "../../../../../../../Components/ElementEtc/Effe
 import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useInputReturn } from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { NOrU } from "../../../../../../../GlobalLib/RecycleFunction/etc/type_convert";
+import { useShortMessage } from "../../../../../../../GlobalLib/Context/EtcContext/ShortMessage/ShortMessage";
 
 interface EncompassProps {
   zIndex: number;
@@ -139,7 +140,12 @@ const AccountEditPre = ({
   CurPwConfirmed,
   setCurPwConfirmed,
   currntPasswordConfirm,
+  invalidEmail,
+  invalidPassword,
+  invalidCfmPw,
+  saveAccountInfo,
 }: AccountEditProps) => {
+  const { addMessage } = useShortMessage();
   return (
     <Encompass zIndex={zIndex}>
       <TemporaryBackground
@@ -185,6 +191,9 @@ const AccountEditPre = ({
               {...emailStr}
               readOnly={!CurPwConfirmed}
               CurPwConfirmed={CurPwConfirmed}
+              onBlur={() => {
+                invalidEmail();
+              }}
             />
           </EmailEdit>
           <PasswordEdit>
@@ -195,6 +204,9 @@ const AccountEditPre = ({
               {...passwordStr}
               readOnly={!CurPwConfirmed}
               CurPwConfirmed={CurPwConfirmed}
+              onBlur={() => {
+                invalidPassword();
+              }}
             />
             <EditTxtInput
               type="password"
@@ -203,6 +215,9 @@ const AccountEditPre = ({
               {...password2Str}
               readOnly={!CurPwConfirmed}
               CurPwConfirmed={CurPwConfirmed}
+              onBlur={() => {
+                invalidCfmPw();
+              }}
             />
           </PasswordEdit>
         </Intent>
@@ -211,7 +226,13 @@ const AccountEditPre = ({
             onClick={(e) => {
               spaped(e);
               if (CurPwConfirmed) {
+                saveAccountInfo();
                 setAccountEditOpen(false);
+              } else {
+                addMessage(
+                  "Before save",
+                  "Please verify your current password"
+                );
               }
               setCurPwConfirmed(false);
             }}
@@ -242,6 +263,10 @@ interface AccountEditProps {
   CurPwConfirmed: boolean;
   setCurPwConfirmed: any;
   currntPasswordConfirm: () => void;
+  invalidEmail: () => void;
+  invalidPassword: () => void;
+  invalidCfmPw: () => void;
+  saveAccountInfo: () => void;
 }
 
 export default React.memo(AccountEditPre);

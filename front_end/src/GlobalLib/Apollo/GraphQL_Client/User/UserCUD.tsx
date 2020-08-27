@@ -34,3 +34,23 @@ export const CURRENT_PASSWORD_CONFIRM = gql`
     currentPasswordConfirm(current_password: $current_password)
   }
 `;
+export const SET_USERNAME = gql`
+  mutation setUsername($username: String!) {
+    setUsername(username: $username)
+  }
+`;
+export const SET_PHONE_NUMBER = gql`
+  mutation setPhonNnumber($phone_number: String!) {
+    setPhonNnumber(phone_number: $phone_number)
+  }
+`;
+export const SET_EMAIL = gql`
+  mutation setEmail($email: String!) {
+    setEmail(email: $email)
+  }
+`;
+export const SET_PASSWORD = gql`
+  mutation setPassword($password: String!) {
+    setPassword(password: $password)
+  }
+`;
