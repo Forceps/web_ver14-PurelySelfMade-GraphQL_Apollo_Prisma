@@ -41,6 +41,14 @@ const ProfileEditCon = ({
       }
     }
   };
+  const invalidUsername = () => {
+    if (usernameStr.value.length < 2 || usernameStr.value.length > 60) {
+      addMessage(
+        "Password",
+        "must be at least 2 characters and less than 60 characters."
+      );
+    }
+  };
 
   const [setUsernameMutation] = useMutation(SET_USERNAME, {
     variables: {
@@ -59,7 +67,9 @@ const ProfileEditCon = ({
       if (
         usernameStr.value !== "" &&
         usernameStr.value !== MEdata.username &&
-        !UsernameDuple
+        !UsernameDuple &&
+        usernameStr.value.length >= 2 &&
+        usernameStr.value.length <= 60
       ) {
         await setUsernameMutation();
       }
@@ -80,6 +90,7 @@ const ProfileEditCon = ({
       saveProfileInfo={saveProfileInfo}
       UsernameDuple={UsernameDuple}
       usernameDuplicateCheckFunc={usernameDuplicateCheckFunc}
+      invalidUsername={invalidUsername}
     />
   );
 };

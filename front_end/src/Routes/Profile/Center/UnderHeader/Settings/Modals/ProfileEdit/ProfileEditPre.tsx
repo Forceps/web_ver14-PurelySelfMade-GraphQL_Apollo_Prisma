@@ -124,6 +124,7 @@ const ProfileEditPre = ({
   saveProfileInfo,
   UsernameDuple,
   usernameDuplicateCheckFunc,
+  invalidUsername,
 }: ProfileEditPreProps) => {
   return (
     <Encompass zIndex={zIndex}>
@@ -145,6 +146,9 @@ const ProfileEditPre = ({
               {...usernameStr}
               readOnly={!UsernameDuple}
               UsernameDuple={UsernameDuple}
+              onBlur={() => {
+                invalidUsername();
+              }}
             />
             <UsernameDupleCheckBtn
               onClick={(e) => {
@@ -195,6 +199,7 @@ interface ProfileEditPreProps {
   saveProfileInfo: () => Promise<void>;
   UsernameDuple: boolean;
   usernameDuplicateCheckFunc: () => Promise<void>;
+  invalidUsername: () => void;
 }
 
 export default React.memo(ProfileEditPre);

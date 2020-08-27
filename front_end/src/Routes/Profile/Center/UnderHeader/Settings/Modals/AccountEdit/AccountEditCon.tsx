@@ -105,7 +105,10 @@ const AccountEditCon = ({
   };
   const invalidCfmPw = () => {
     if (passwordStr.value !== password2Str.value) {
-      addMessage("Password", "password and confirm password do not match");
+      addMessage(
+        "Confirm Password",
+        "password and confirm password do not match"
+      );
     }
   };
   const saveAccountInfo = async () => {

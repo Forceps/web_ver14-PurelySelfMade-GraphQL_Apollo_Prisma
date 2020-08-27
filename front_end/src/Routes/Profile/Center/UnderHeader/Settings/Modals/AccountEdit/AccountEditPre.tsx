@@ -250,7 +250,7 @@ const AccountEditPre = ({
               readOnly={!CurPwConfirmed}
               CurPwConfirmed={CurPwConfirmed}
               onBlur={() => {
-                invalidPassword();
+                if (CurPwConfirmed) invalidPassword();
               }}
             />
             <EditTxtInput
@@ -261,7 +261,7 @@ const AccountEditPre = ({
               readOnly={!CurPwConfirmed}
               CurPwConfirmed={CurPwConfirmed}
               onBlur={() => {
-                invalidCfmPw();
+                if (CurPwConfirmed) invalidCfmPw();
               }}
             />
           </PasswordEdit>
