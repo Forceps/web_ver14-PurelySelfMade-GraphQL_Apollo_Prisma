@@ -114,7 +114,8 @@ const AccountEditCon = ({
         emailStr.value !== "" &&
         emailStr.value !== MEdata.email &&
         emailRegex.test(emailStr.value) &&
-        emailStr.value.length <= 150
+        emailStr.value.length <= 150 &&
+        !EmailDuple
       ) {
         await setEmailMutation();
       }
