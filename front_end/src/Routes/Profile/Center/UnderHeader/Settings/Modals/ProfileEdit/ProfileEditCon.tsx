@@ -1,4 +1,4 @@
-import React, { useState, useState } from "react";
+import React, { useState } from "react";
 import ProfileEditPre from "./ProfileEditPre";
 import useInput from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useMyInfo } from "../../../../../../../GlobalLib/Context/UserContext/Me";
@@ -19,11 +19,11 @@ const ProfileEditCon = ({
   const { MEdata } = useMyInfo();
   const usernameStr = useInput(MEdata.username);
   const phoneNumberStr = useInput("");
-  const [UsernameDuple,setUsernameDuple]=useState(true)
+  const [UsernameDuple, setUsernameDuple] = useState(true);
   const [setUsernameDuplicateMutation] = useMutation(USERNAME_DUPLICATE_CHECK, {
     variables: {
       username: usernameStr.value,
-    }
+    },
   });
   const usernameDuplicateCheckFunc = async () => {
     if (UsernameDuple && usernameStr.value !== "") {
@@ -33,16 +33,14 @@ const ProfileEditCon = ({
           const bool = checkResult.data.usernameDuplicateCheck;
           setUsernameDuple(!bool);
           if (!bool) {
-            addMessage(
-              "Username",
-              "Username is duplicate. Please try again"
-            );
+            addMessage("Username", "Username is duplicate. Please try again");
           }
         }
       } catch (e) {
         console.log(e);
       }
     }
+  };
 
   const [setUsernameMutation] = useMutation(SET_USERNAME, {
     variables: {
@@ -58,7 +56,11 @@ const ProfileEditCon = ({
   });
   const saveProfileInfo = async () => {
     try {
-      if (usernameStr.value !== "" && usernameStr.value !== MEdata.username) {
+      if (
+        usernameStr.value !== "" &&
+        usernameStr.value !== MEdata.username &&
+        !UsernameDuple
+      ) {
         await setUsernameMutation();
       }
       if (phoneNumberStr.value !== "") {
@@ -77,7 +79,7 @@ const ProfileEditCon = ({
       phoneNumberStr={phoneNumberStr}
       saveProfileInfo={saveProfileInfo}
       UsernameDuple={UsernameDuple}
-usernameDuplicateCheckFunc={usernameDuplicateCheckFunc}
+      usernameDuplicateCheckFunc={usernameDuplicateCheckFunc}
     />
   );
 };

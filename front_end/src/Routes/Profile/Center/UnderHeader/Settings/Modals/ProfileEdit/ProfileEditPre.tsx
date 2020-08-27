@@ -4,6 +4,7 @@ import WH100per from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100
 import TemporaryBackground from "../../../../../../../Components/ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useInputReturn } from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
+import { NOrU } from "../../../../../../../GlobalLib/RecycleFunction/etc/type_convert";
 
 interface EncompassProps {
   zIndex: number;
@@ -63,26 +64,43 @@ const Intent = styled(WH100per)`
 `;
 const UsernameEdit = styled(WH100per)`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 `;
 const PhoneNumberEdit = styled(WH100per)`
   display: flex;
   align-items: center;
 `;
-const EditTxtInput = styled.input`
+interface EditTxtInputProps {
+  UsernameDuple?: boolean;
+}
+const EditTxtInput = styled.input<EditTxtInputProps>`
   padding: 5px;
   font-size: 1rem;
   border: 0;
   border-bottom: 1px solid #2d3436;
+  ${(p) => {
+    if (!NOrU(p.UsernameDuple) && !p.UsernameDuple) {
+      return css`
+        border-bottom: 0;
+        border-left: 3px solid #2d3436;
+      `;
+    }
+  }}
   background-color: transparent;
   width: 280px;
 `;
-interface;
-const UsernameDupleCheckBtn = styled.div`
+interface UsernameDupleCheckBtnProps {
+  UsernameDuple: boolean;
+}
+const UsernameDupleCheckBtn = styled.div<UsernameDupleCheckBtnProps>`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 35px;
+  align-self: flex-end;
+  width: 120px;
+  height: 28px;
+  margin: 7px 0 0 0;
   background-color: #636e72;
   color: white;
   font-size: 0.9rem;
@@ -125,10 +143,13 @@ const ProfileEditPre = ({
               placeholder="user name"
               spellCheck="false"
               {...usernameStr}
+              readOnly={!UsernameDuple}
+              UsernameDuple={UsernameDuple}
             />
             <UsernameDupleCheckBtn
               onClick={(e) => {
                 spaped(e);
+                usernameDuplicateCheckFunc();
               }}
               UsernameDuple={UsernameDuple}
             >

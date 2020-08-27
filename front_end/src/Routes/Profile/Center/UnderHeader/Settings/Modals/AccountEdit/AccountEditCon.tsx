@@ -7,6 +7,7 @@ import {
   CURRENT_PASSWORD_CONFIRM,
   SET_EMAIL,
   SET_PASSWORD,
+  EMAIL_DUPLICATE_CHECK,
 } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
 import { useShortMessage } from "../../../../../../../GlobalLib/Context/EtcContext/ShortMessage/ShortMessage";
 import { ME } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/User/UserRseries/UserR";
@@ -19,6 +20,7 @@ const AccountEditCon = ({
   const { addMessage } = useShortMessage();
   const { MEdata } = useMyInfo();
   const [CurPwConfirmed, setCurPwConfirmed] = useState(false);
+  const [EmailDuple, setEmailDuple] = useState(true);
   const EnPasswordStr = useInput("");
   const emailStr = useInput(MEdata.email);
   const passwordStr = useInput("");
@@ -43,6 +45,27 @@ const AccountEditCon = ({
               "Current password",
               "Current password is incorrect. Please try again"
             );
+          }
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+  };
+  const [setEmailDuplicateMutation] = useMutation(EMAIL_DUPLICATE_CHECK, {
+    variables: {
+      email: emailStr.value,
+    },
+  });
+  const emailDuplicateCheckFunc = async () => {
+    if (EmailDuple && emailStr.value !== "") {
+      try {
+        const checkResult = await setEmailDuplicateMutation();
+        if (checkResult) {
+          const bool = checkResult.data.emailDuplicateCheck;
+          setEmailDuple(!bool);
+          if (!bool) {
+            addMessage("e-mail", "email is duplicate. Please try again");
           }
         }
       } catch (e) {
@@ -123,6 +146,8 @@ const AccountEditCon = ({
       invalidPassword={invalidPassword}
       invalidCfmPw={invalidCfmPw}
       saveAccountInfo={saveAccountInfo}
+      EmailDuple={EmailDuple}
+      emailDuplicateCheckFunc={emailDuplicateCheckFunc}
     />
   );
 };

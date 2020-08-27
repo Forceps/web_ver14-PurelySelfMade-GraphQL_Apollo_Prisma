@@ -67,7 +67,8 @@ const Intent = styled(WH100per)`
 `;
 const EmailEdit = styled(WH100per)`
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
 `;
 const PasswordEdit = styled(WH100per)`
   display: flex;
@@ -77,6 +78,7 @@ const PasswordEdit = styled(WH100per)`
 interface EditTxtInputProps {
   CurPwConfirmed?: boolean;
   reverse?: boolean;
+  EmailDuple?: boolean;
 }
 const EditTxtInput = styled.input<EditTxtInputProps>`
   padding: 5px;
@@ -89,6 +91,12 @@ const EditTxtInput = styled.input<EditTxtInputProps>`
   ${(p) => {
     const bool = !NOrU(p.CurPwConfirmed) && !p.CurPwConfirmed;
     if (p.reverse ? !bool : bool) {
+      return css`
+        border-bottom: 0;
+        border-left: 3px solid #2d3436;
+      `;
+    }
+    if (!NOrU(p.EmailDuple) && !p.EmailDuple) {
       return css`
         border-bottom: 0;
         border-left: 3px solid #2d3436;
@@ -129,6 +137,31 @@ const CheckEntPasswordBtn = styled(W100per)<CheckEntPasswordBtnProps>`
     }
   }}
 `;
+interface EmailDupleCheckBtnProps {
+  EmailDuple: boolean;
+}
+const EmailDupleCheckBtn = styled.div<EmailDupleCheckBtnProps>`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+  width: 120px;
+  height: 28px;
+  margin: 7px 0 0 0;
+  background-color: #636e72;
+  color: white;
+  font-size: 0.9rem;
+  ${(p) => {
+    if (p.EmailDuple) {
+      return css`
+        &:hover {
+          background-color: #2d3436;
+        }
+        cursor: pointer;
+      `;
+    }
+  }}
+`;
 
 const AccountEditPre = ({
   setAccountEditOpen,
@@ -144,6 +177,8 @@ const AccountEditPre = ({
   invalidPassword,
   invalidCfmPw,
   saveAccountInfo,
+  EmailDuple,
+  emailDuplicateCheckFunc,
 }: AccountEditProps) => {
   const { addMessage } = useShortMessage();
   return (
@@ -189,12 +224,22 @@ const AccountEditPre = ({
               placeholder="email"
               spellCheck="false"
               {...emailStr}
-              readOnly={!CurPwConfirmed}
+              readOnly={!CurPwConfirmed || !EmailDuple}
               CurPwConfirmed={CurPwConfirmed}
               onBlur={() => {
                 invalidEmail();
               }}
+              EmailDuple={EmailDuple}
             />
+            <EmailDupleCheckBtn
+              onClick={(e) => {
+                spaped(e);
+                if (CurPwConfirmed) emailDuplicateCheckFunc();
+              }}
+              EmailDuple={EmailDuple && CurPwConfirmed}
+            >
+              Duplicate check
+            </EmailDupleCheckBtn>
           </EmailEdit>
           <PasswordEdit>
             <EditTxtInput
@@ -267,6 +312,8 @@ interface AccountEditProps {
   invalidPassword: () => void;
   invalidCfmPw: () => void;
   saveAccountInfo: () => void;
+  EmailDuple: boolean;
+  emailDuplicateCheckFunc: () => void;
 }
 
 export default React.memo(AccountEditPre);
