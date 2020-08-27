@@ -13,7 +13,6 @@ const InstantMessageCon = ({
   const progressBar = useRef<HTMLDivElement>(null);
   const inteval = useRef(0);
   const endTimeout = useRef(0);
-  const [Show, setShow] = useState(false);
   const [Stop, setStop] = useState(false);
   const [Hide, setHide] = useState(false);
   const [During, setDuring] = useState(false);
@@ -46,7 +45,6 @@ const InstantMessageCon = ({
   };
 
   useEffect(() => {
-    setShow(true);
     setDuring(true);
     inteval.current = setInterval(statusBarMoving, 40);
     return () => {
@@ -74,7 +72,6 @@ const InstantMessageCon = ({
       progressBar={progressBar}
       ProgressStop={ProgressStop}
       Stop={Stop}
-      Show={Show}
       Hide={Hide}
       setHide={setHide}
     />

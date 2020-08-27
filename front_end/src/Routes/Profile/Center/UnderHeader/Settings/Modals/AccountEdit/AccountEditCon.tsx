@@ -26,15 +26,18 @@ const AccountEditCon = ({
     }
   );
   const currntPasswordConfirm = async () => {
-    addMessage(
-      "Current password",
-      "Current password is incorrect. Please try again"
-    );
     if (!CurPwConfirmed) {
       try {
         const checkResult = await currentPasswordConfirmMutation();
         if (checkResult) {
-          setCurPwConfirmed(checkResult.data.currentPasswordConfirm);
+          const bool = checkResult.data.currentPasswordConfirm;
+          setCurPwConfirmed(bool);
+          if (!bool) {
+            addMessage(
+              "Current password",
+              "Current password is incorrect. Please try again"
+            );
+          }
         }
       } catch (e) {
         console.log(e);

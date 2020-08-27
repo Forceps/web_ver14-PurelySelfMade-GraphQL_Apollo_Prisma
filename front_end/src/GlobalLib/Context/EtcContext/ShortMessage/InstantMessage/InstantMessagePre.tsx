@@ -1,10 +1,23 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import WH100per from "../../../../Styles/IteratePattern/WH100per";
 import { spaped } from "../../../../RecycleFunction/etc/StopAndPrevent";
 
+const appear = keyframes`
+  from{
+  left: -400px;
+  }to{
+  left: 20px;
+  }
+`;
+const disappear = keyframes`
+  from{
+  left: 20px;
+  }to{
+  left: -400px;
+  }
+`;
 interface BoxProps {
-  Show: boolean;
   Hide: boolean;
 }
 const Box = styled.div<BoxProps>`
@@ -12,16 +25,18 @@ const Box = styled.div<BoxProps>`
   grid-template-columns: 3px 1fr;
   position: fixed;
   bottom: 40px;
-  left: ${(p) => (p.Hide ? "-400px" : p.Show ? "20px" : "-400px")};
+  left: -400px;
   width: 300px;
   height: 150px;
   background-color: #fafafa;
+  animation: ${(p) => (p.Hide ? disappear : appear)} 0.8s
+    cubic-bezier(0.02, 0.86, 0.4, 0.98) 0s 1 alternate forwards;
   z-index: 8000;
   box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
     0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
   cursor: pointer;
   overflow: hidden;
-  transition-property: left, bottom;
+  transition-property: bottom;
   transition-duration: 0.8s;
   transition-timing-function: cubic-bezier(0.02, 0.86, 0.4, 0.98);
 `;
@@ -77,7 +92,6 @@ const InstantMessagePre = ({
   progressBar,
   ProgressStop,
   Stop,
-  Show,
   Hide,
   setHide,
 }: InstantMessagePreProps) => {
@@ -88,7 +102,6 @@ const InstantMessagePre = ({
         ProgressStop();
       }}
       ref={BoxEl}
-      Show={Show}
       Hide={Hide}
       className="instantMessageBox"
     >
@@ -121,7 +134,6 @@ interface InstantMessagePreProps {
   progressBar: React.RefObject<HTMLDivElement>;
   ProgressStop: () => void;
   Stop: boolean;
-  Show: boolean;
   Hide: boolean;
   setHide: any;
 }
