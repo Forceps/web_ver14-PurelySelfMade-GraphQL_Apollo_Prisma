@@ -32,7 +32,7 @@ const AccountEditCon = ({
     }
   );
   const currntPasswordConfirm = async () => {
-    if (!CurPwConfirmed) {
+    if (!CurPwConfirmed && EnPasswordStr.value !== "") {
       try {
         const checkResult = await currentPasswordConfirmMutation();
         if (checkResult) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useState } from "react";
 import ProfileEditPre from "./ProfileEditPre";
 import useInput from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useMyInfo } from "../../../../../../../GlobalLib/Context/UserContext/Me";
@@ -6,16 +6,44 @@ import { useMutation } from "@apollo/client";
 import {
   SET_USERNAME,
   SET_PHONE_NUMBER,
+  USERNAME_DUPLICATE_CHECK,
 } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
 import { ME } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/User/UserRseries/UserR";
+import { useShortMessage } from "../../../../../../../GlobalLib/Context/EtcContext/ShortMessage/ShortMessage";
 
 const ProfileEditCon = ({
   setProfileEditOpen,
   zIndex = 20,
-}: ProfileEditProps) => {
+}: ProfileEditConProps) => {
+  const { addMessage } = useShortMessage();
   const { MEdata } = useMyInfo();
   const usernameStr = useInput(MEdata.username);
   const phoneNumberStr = useInput("");
+  const [UsernameDuple,setUsernameDuple]=useState(true)
+  const [setUsernameDuplicateMutation] = useMutation(USERNAME_DUPLICATE_CHECK, {
+    variables: {
+      username: usernameStr.value,
+    }
+  });
+  const usernameDuplicateCheckFunc = async () => {
+    if (UsernameDuple && usernameStr.value !== "") {
+      try {
+        const checkResult = await setUsernameDuplicateMutation();
+        if (checkResult) {
+          const bool = checkResult.data.usernameDuplicateCheck;
+          setUsernameDuple(!bool);
+          if (!bool) {
+            addMessage(
+              "Username",
+              "Username is duplicate. Please try again"
+            );
+          }
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    }
+
   const [setUsernameMutation] = useMutation(SET_USERNAME, {
     variables: {
       username: usernameStr.value,
@@ -48,10 +76,12 @@ const ProfileEditCon = ({
       usernameStr={usernameStr}
       phoneNumberStr={phoneNumberStr}
       saveProfileInfo={saveProfileInfo}
+      UsernameDuple={UsernameDuple}
+usernameDuplicateCheckFunc={usernameDuplicateCheckFunc}
     />
   );
 };
-interface ProfileEditProps {
+interface ProfileEditConProps {
   setProfileEditOpen: any;
   zIndex?: number;
 }

@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import SettingsModePre from "./SettingsModePre";
 
 const SettingsModeCon = () => {
-  const [ProfileEditOpen, setProfileEditOpen] = useState(false);
-  const [AccountEditOpen, setAccountEditOpen] = useState(true);
+  const [ProfileEditOpen, setProfileEditOpen] = useState(true);
+  const [AccountEditOpen, setAccountEditOpen] = useState(false);
   return (
     <SettingsModePre
       ProfileEditOpen={ProfileEditOpen}

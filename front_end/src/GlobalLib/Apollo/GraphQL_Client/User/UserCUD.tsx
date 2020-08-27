@@ -54,3 +54,13 @@ export const SET_PASSWORD = gql`
     setPassword(password: $password)
   }
 `;
+export const USERNAME_DUPLICATE_CHECK = gql`
+  mutation usernameDuplicateCheck($username: String!) {
+    usernameDuplicateCheck(username: $username)
+  }
+`;
+export const EMAIL_DUPLICATE_CHECK = gql`
+  mutation emailDuplicateCheck($email: String!) {
+    emailDuplicateCheck(email: $email)
+  }
+`;

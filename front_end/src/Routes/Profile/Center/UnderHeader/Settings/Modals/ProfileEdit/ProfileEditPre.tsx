@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import WH100per from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import TemporaryBackground from "../../../../../../../Components/ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
@@ -75,7 +75,27 @@ const EditTxtInput = styled.input`
   border: 0;
   border-bottom: 1px solid #2d3436;
   background-color: transparent;
-  width: 75%;
+  width: 280px;
+`;
+interface;
+const UsernameDupleCheckBtn = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 35px;
+  background-color: #636e72;
+  color: white;
+  font-size: 0.9rem;
+  ${(p) => {
+    if (p.UsernameDuple) {
+      return css`
+        &:hover {
+          background-color: #2d3436;
+        }
+        cursor: pointer;
+      `;
+    }
+  }}
 `;
 
 const ProfileEditPre = ({
@@ -84,7 +104,9 @@ const ProfileEditPre = ({
   usernameStr,
   phoneNumberStr,
   saveProfileInfo,
-}: ProfileEditProps) => {
+  UsernameDuple,
+  usernameDuplicateCheckFunc,
+}: ProfileEditPreProps) => {
   return (
     <Encompass zIndex={zIndex}>
       <TemporaryBackground
@@ -104,6 +126,14 @@ const ProfileEditPre = ({
               spellCheck="false"
               {...usernameStr}
             />
+            <UsernameDupleCheckBtn
+              onClick={(e) => {
+                spaped(e);
+              }}
+              UsernameDuple={UsernameDuple}
+            >
+              Duplicate check
+            </UsernameDupleCheckBtn>
           </UsernameEdit>
           <PhoneNumberEdit>
             <EditTxtInput
@@ -136,12 +166,14 @@ const ProfileEditPre = ({
     </Encompass>
   );
 };
-interface ProfileEditProps {
+interface ProfileEditPreProps {
   setProfileEditOpen: any;
   zIndex: number;
   usernameStr: useInputReturn;
   phoneNumberStr: useInputReturn;
   saveProfileInfo: () => Promise<void>;
+  UsernameDuple: boolean;
+  usernameDuplicateCheckFunc: () => Promise<void>;
 }
 
 export default React.memo(ProfileEditPre);
