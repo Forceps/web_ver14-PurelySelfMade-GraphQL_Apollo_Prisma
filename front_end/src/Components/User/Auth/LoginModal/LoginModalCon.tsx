@@ -6,12 +6,13 @@ import {
   LOGIN_USER,
   LOCAL_LOG_IN,
 } from "../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
+import { useShortMessage } from "../../../../GlobalLib/Context/EtcContext/ShortMessage/ShortMessage";
 
 export default ({ zIndex = 10, setLoginModalOpen }: LoginModalConProps) => {
+  const { addMessage } = useShortMessage();
   const email = useInput("");
   const PW = useInput("");
   const [SignUpMode, setSignUpMode] = useState(false);
-  const [LoginDisable, setLoginDisable] = useState([false, ""]);
   const [loginUserMutation] = useMutation(LOGIN_USER, {
     variables: { password: PW.value, email: email.value },
   });
@@ -22,13 +23,12 @@ export default ({ zIndex = 10, setLoginModalOpen }: LoginModalConProps) => {
         data: { loginUser: result },
       } = await loginUserMutation();
       if (result === "emailNotExist") {
-        setLoginDisable([true, "emailNotExist"]);
+        addMessage("e-mail", "email does not exist");
       } else if (result === "WorngPW") {
-        setLoginDisable([true, "WorngPW"]);
+        addMessage("Password", "Worng Password");
       } else {
         if (result !== "" && result !== undefined) {
           localLogInMutation({ variables: { token: result } });
-          setLoginDisable([false, ""]);
         } else {
           throw Error();
         }
@@ -46,7 +46,6 @@ export default ({ zIndex = 10, setLoginModalOpen }: LoginModalConProps) => {
       SignUpMode={SignUpMode}
       setSignUpMode={setSignUpMode}
       LogInTrigger={LogInTrigger}
-      LoginDisable={LoginDisable}
     />
   );
 };

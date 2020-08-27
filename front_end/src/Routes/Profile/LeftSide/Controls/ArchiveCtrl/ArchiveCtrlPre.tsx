@@ -9,6 +9,7 @@ import {
   byteIntoUnit,
   unitIntoByte,
 } from "../../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
+import { useProfileDetailMode } from "../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
 
 const Suburb = styled(W100per)`
   display: flex;
@@ -76,9 +77,11 @@ const CPlink = styled(Link)`
   }
 `;
 
-export default ({ data, MEdata }: ArchiveCtrlPreProps) => {
-  const { images, videos, musics } = data;
-  const { daily_allocated_capacity, guaranteed_capacity } = MEdata;
+export default ({
+  data: { images, videos, musics },
+  MEdata: { daily_allocated_capacity, guaranteed_capacity },
+}: ArchiveCtrlPreProps) => {
+  const { AcMode } = useProfileDetailMode();
   const used = images.volume + videos.volume + musics.volume;
   const total = unitIntoByte(300, "MB");
   return (
@@ -99,44 +102,55 @@ export default ({ data, MEdata }: ArchiveCtrlPreProps) => {
         {byteIntoUnit(total - used).unit} (
         {Math.round((100 * (total - used)) / total)}%)
       </Avail>
-      <Circumstance>
-        <i className="icon-picture" /> Image
-        <CountAndVol>
-          count: {images.count} &nbsp; volume:{" "}
-          {byteIntoUnit(images.volume).number}{" "}
-          {byteIntoUnit(images.volume).unit}
-        </CountAndVol>
-      </Circumstance>
-      <Circumstance>
-        <i className="icon-video" /> Video
-        <CountAndVol>
-          count: {videos.count} &nbsp; volume:{" "}
-          {byteIntoUnit(videos.volume).number}{" "}
-          {byteIntoUnit(videos.volume).unit}
-        </CountAndVol>
-      </Circumstance>
-      <Circumstance>
-        <i className="icon-music" /> Music
-        <CountAndVol>
-          count: {musics.count} &nbsp; volume:{" "}
-          {byteIntoUnit(musics.volume).number}{" "}
-          {byteIntoUnit(musics.volume).unit}
-        </CountAndVol>
-      </Circumstance>
-      <CapacityManipulation>
-        <Contour />
-        <DailyBenefits>
-          Daily extra amount
-          <AmountNum>{daily_allocated_capacity} MB</AmountNum>
-        </DailyBenefits>
-        <MinimumGuaranteed>
-          Minimum guaranteed capacity
-          <AmountNum>{guaranteed_capacity} MB</AmountNum>
-        </MinimumGuaranteed>
-        <CapacityPayment>
-          <CPlink to={`/`}>Increase capacity</CPlink>
-        </CapacityPayment>
-      </CapacityManipulation>
+      {(AcMode === "Image" || AcMode === "All") && (
+        <Circumstance>
+          <i className="icon-picture" /> Image
+          <CountAndVol>
+            count: {images.count} &nbsp; volume:{" "}
+            {byteIntoUnit(images.volume).number}{" "}
+            {byteIntoUnit(images.volume).unit}
+          </CountAndVol>
+        </Circumstance>
+      )}
+      {(AcMode === "Video" || AcMode === "All") && (
+        <Circumstance>
+          <i className="icon-video" /> Video
+          <CountAndVol>
+            count: {videos.count} &nbsp; volume:{" "}
+            {byteIntoUnit(videos.volume).number}{" "}
+            {byteIntoUnit(videos.volume).unit}
+          </CountAndVol>
+        </Circumstance>
+      )}
+      {(AcMode === "Music" || AcMode === "All") && (
+        <Circumstance>
+          <i className="icon-music" /> Music
+          <CountAndVol>
+            count: {musics.count} &nbsp; volume:{" "}
+            {byteIntoUnit(musics.volume).number}{" "}
+            {byteIntoUnit(musics.volume).unit}
+          </CountAndVol>
+        </Circumstance>
+      )}
+      {AcMode !== "All" && (
+        <Circumstance>Pagination, 선택모드, 추가</Circumstance>
+      )}
+      {AcMode === "All" && (
+        <CapacityManipulation>
+          <Contour />
+          <DailyBenefits>
+            Daily extra amount
+            <AmountNum>{daily_allocated_capacity} MB</AmountNum>
+          </DailyBenefits>
+          <MinimumGuaranteed>
+            Minimum guaranteed capacity
+            <AmountNum>{guaranteed_capacity} MB</AmountNum>
+          </MinimumGuaranteed>
+          <CapacityPayment>
+            <CPlink to={`/`}>Increase capacity</CPlink>
+          </CapacityPayment>
+        </CapacityManipulation>
+      )}
     </Suburb>
   );
 };

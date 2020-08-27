@@ -7,6 +7,7 @@ import {
   LOGIN_USER,
   LOCAL_LOG_IN,
 } from "../../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
+import { useShortMessage } from "../../../../GlobalLib/Context/EtcContext/ShortMessage/ShortMessage";
 
 export const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
@@ -15,6 +16,7 @@ interface CreateAccountConProps {
   setSignUpMode: any;
 }
 export default ({ zIndex = 20, setSignUpMode }: CreateAccountConProps) => {
+  const { addMessage } = useShortMessage();
   const username = useInput("");
   const email = useInput("");
   const password = useInput("");
@@ -30,11 +32,6 @@ export default ({ zIndex = 20, setSignUpMode }: CreateAccountConProps) => {
     variables: { password: password.value, email: email.value },
   });
   const [localLogInMutation] = useMutation(LOCAL_LOG_IN);
-  const [UN_Valid, setUN_Valid] = useState(false);
-  const [EmailValid, setEmailValid] = useState([false, ""]);
-  const [PW_Valid, setPW_Valid] = useState(false);
-  const [CPW_Valid, setCPW_Valid] = useState(false);
-  const [SignUp_Valid, setSignUp_Valid] = useState([false, ""]);
   const [Assurance, setAssurance] = useState(false);
   const UN_Bool = username.value.length > 60 || username.value.length < 2;
   const Email_Bool1 = email.value.length > 150;
@@ -43,24 +40,28 @@ export default ({ zIndex = 20, setSignUpMode }: CreateAccountConProps) => {
   const CPW_Bool = password.value !== Confirmpassword.value;
   const totalBool =
     !UN_Bool && !Email_Bool1 && !Email_Bool2 && !PW_Bool && !CPW_Bool;
+
   const UN_ValidPop = () => {
-    setUN_Valid(false);
     if (UN_Bool && username.value.length !== 0) {
-      setUN_Valid(true);
+      addMessage(
+        "User name",
+        "must be more than 1 characters and less than 60 characters."
+      );
     }
   };
   const EmailValidPop = () => {
-    setEmailValid([false, ""]);
     if (Email_Bool1) {
-      setEmailValid([true, "length"]);
+      addMessage("e-mail", "must be less than 150 characters.");
     } else if (Email_Bool2 && email.value.length !== 0) {
-      setEmailValid([true, "Regex"]);
+      addMessage("e-mail", "email is invalid");
     }
   };
   const PW_ValidPop = () => {
-    setPW_Valid(false);
     if (PW_Bool && password.value.length !== 0) {
-      setPW_Valid(true);
+      addMessage(
+        "Password",
+        "must be at least 10 characters and less than 45 characters."
+      );
     }
   };
   const Assur = () => {
@@ -70,21 +71,22 @@ export default ({ zIndex = 20, setSignUpMode }: CreateAccountConProps) => {
     }
   };
   const CPW_ValidPop = () => {
-    setCPW_Valid(false);
     if (CPW_Bool) {
-      setCPW_Valid(true);
+      addMessage(
+        "Confirm password",
+        "Password and Confirm password do not match."
+      );
     }
     Assur();
   };
   const AccountCreate = async () => {
-    setSignUp_Valid([false, ""]);
     if (totalBool) {
       try {
         const {
           data: { createAccount },
         } = await createAccountMutation();
         if (createAccount) {
-          setSignUp_Valid([true, "loading"]);
+          addMessage("welcome", "Loading...");
           const {
             data: { loginUser: result },
           } = await loginUserMutation();
@@ -93,12 +95,12 @@ export default ({ zIndex = 20, setSignUpMode }: CreateAccountConProps) => {
         }
       } catch (e) {
         console.log(e);
-        setSignUp_Valid([true, "error2"]);
+        addMessage("e-mail", "The email was already taken, Log in instead");
         console.log("email taken", "Log in instead");
         return false;
       }
     } else {
-      setSignUp_Valid([true, "error1"]);
+      addMessage("Empty value exists", "Please fill in all fields");
     }
   };
   return (
@@ -110,15 +112,10 @@ export default ({ zIndex = 20, setSignUpMode }: CreateAccountConProps) => {
       password={password}
       Confirmpassword={Confirmpassword}
       AccountCreate={AccountCreate}
-      UN_Valid={UN_Valid}
-      EmailValid={EmailValid}
-      PW_Valid={PW_Valid}
-      CPW_Valid={CPW_Valid}
       UN_ValidPop={UN_ValidPop}
       EmailValidPop={EmailValidPop}
       PW_ValidPop={PW_ValidPop}
       CPW_ValidPop={CPW_ValidPop}
-      SignUp_Valid={SignUp_Valid}
       Assurance={Assurance}
       Assur={Assur}
     />

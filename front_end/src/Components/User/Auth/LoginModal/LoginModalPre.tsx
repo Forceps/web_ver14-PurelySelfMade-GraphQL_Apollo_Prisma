@@ -3,6 +3,7 @@ import styled from "styled-components";
 import CreateAccountCon from "../CreateAccount/CreateAccountCon";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import TemporaryBackground from "../../../ElementEtc/Effect/TemporaryBackground";
+import { W100per } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 
 interface zIndexProp {
   zIndex: number;
@@ -21,7 +22,7 @@ const Wrapper = styled.div<zIndexProp>`
 `;
 const Templeate = styled.div<zIndexProp>`
   display: grid;
-  grid-template-rows: 80px 184px 40px 1fr 56px;
+  grid-template-rows: 80px 184px 1fr 56px;
   position: relative;
   width: 300px;
   height: 540px;
@@ -29,9 +30,8 @@ const Templeate = styled.div<zIndexProp>`
   background-color: #fafafa;
   z-index: ${(p) => p.zIndex};
 `;
-const Column = styled.div`
+const Column = styled(W100per)`
   display: grid;
-  width: 100%;
   align-items: center;
 `;
 const Column2dot1 = styled(Column)`
@@ -42,10 +42,6 @@ const Column2dot2 = styled(Column)`
   flex-direction: column;
   justify-content: right;
   padding: 5px 25px 5px 5px;
-`;
-const Column2dot3 = styled(Column)`
-  padding: 0 10px 0 10px;
-  line-height: 1.15rem;
 `;
 const Column2dot4 = styled(Column)`
   display: grid;
@@ -130,7 +126,6 @@ type LoginModalPreProps = {
   SignUpMode: boolean;
   setSignUpMode: any;
   LogInTrigger: any;
-  LoginDisable: any[];
 };
 export default ({
   zIndex,
@@ -140,7 +135,6 @@ export default ({
   SignUpMode,
   setSignUpMode,
   LogInTrigger,
-  LoginDisable,
 }: LoginModalPreProps) => {
   return (
     <Wrapper zIndex={zIndex}>
@@ -179,15 +173,6 @@ export default ({
             Login
           </LoginButton>
         </Column2dot2>
-        <Column2dot3>
-          {LoginDisable[0]
-            ? LoginDisable[1] === "emailNotExist"
-              ? "email does not exist"
-              : LoginDisable[1] === "WorngPW"
-              ? "Worng Password"
-              : null
-            : null}
-        </Column2dot3>
         <Column2dot4>
           <GoogleLogin>
             <GoogleLogo>

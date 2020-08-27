@@ -18,22 +18,22 @@ export default ({
   setShowOneOpen,
   setDetailInfo,
 }: ShowWindowProps) => {
-  const PfDM = useProfileDetailMode();
+  const { AcMode } = useProfileDetailMode();
   return (
     <ShowWindow>
-      {PfDM.AcMode === "Image" ? (
+      {AcMode === "Image" ? (
         <ShowImgOnlyCon
           setAddImgScn={setAddImgScn}
           setShowOneOpen={setShowOneOpen}
           setDetailInfo={setDetailInfo}
         />
-      ) : PfDM.AcMode === "Video" ? (
+      ) : AcMode === "Video" ? (
         <ShowVideoOnlyCon
           setAddVideoScn={setAddVideoScn}
           setShowOneOpen={setShowOneOpen}
           setDetailInfo={setDetailInfo}
         />
-      ) : PfDM.AcMode === "Music" ? (
+      ) : AcMode === "Music" ? (
         <ShowAudioOnlyCon
           setAddAudioScn={setAddAudioScn}
           setShowOneOpen={setShowOneOpen}

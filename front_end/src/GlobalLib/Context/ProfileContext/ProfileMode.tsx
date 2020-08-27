@@ -8,7 +8,7 @@ import React, {
 
 const PMode = createContext<DirSelectorModeObj | undefined>(undefined);
 export const PModeProvider = ({ children }: { children: ReactNode }) => {
-  const [Mode, setMode] = useState(["Settings"]);
+  const [Mode, setMode] = useState(["Archive"]);
   //"Post", "Archive", "Chat", "Settings", "Social"
   const rememberLatestMode = useRef(["Post"]);
   const Obj = { Mode, setMode, rememberLatestMode };

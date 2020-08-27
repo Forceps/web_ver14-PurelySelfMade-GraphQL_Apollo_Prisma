@@ -14,6 +14,7 @@ const TilesContainer = styled(IncludeScrollBar)`
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
+  align-content: flex-start;
   width: 100%;
   height: 100%;
 `;
