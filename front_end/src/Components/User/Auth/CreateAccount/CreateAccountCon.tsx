@@ -85,18 +85,26 @@ export default ({ zIndex = 20, setSignUpMode }: CreateAccountConProps) => {
         const {
           data: { createAccount },
         } = await createAccountMutation();
-        if (createAccount) {
-          addMessage("welcome", "Loading...");
-          const {
-            data: { loginUser: result },
-          } = await loginUserMutation();
-          await localLogInMutation({ variables: { token: result } });
-          return true;
+        switch (createAccount) {
+          case "created":
+            addMessage("welcome", "Loading...");
+            const {
+              data: { loginUser: result },
+            } = await loginUserMutation();
+            await localLogInMutation({ variables: { token: result } });
+            return true;
+          case "This email is already taken":
+            addMessage("e-mail", "The email was already taken, Log in instead");
+            return false;
+          case "This username is already taken":
+            addMessage(
+              "User name",
+              "The username was already taken, Log in instead"
+            );
+            return false;
         }
       } catch (e) {
         console.log(e);
-        addMessage("e-mail", "The email was already taken, Log in instead");
-        console.log("email taken", "Log in instead");
         return false;
       }
     } else {

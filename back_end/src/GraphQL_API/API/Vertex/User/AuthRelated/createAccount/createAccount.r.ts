@@ -8,9 +8,12 @@ export default {
     createAccount: async (_: void, args: CreateAccountMutationArgs) => {
       const { username, email, password } = args;
       try {
-        const exists = await prisma.user.findOne({ where: { email } });
-        if (exists) {
-          throw Error("This email is already taken");
+        const exists1 = await prisma.user.findOne({ where: { email } });
+        const exists2 = await prisma.user.findOne({ where: { username } });
+        if (exists1) {
+          return "This email is already taken";
+        } else if (exists2) {
+          return "This username is already taken";
         }
         const OurMember = await prisma.user.create({
           data: {
@@ -40,10 +43,10 @@ export default {
             },
           });
         }
-        return true;
+        return "created";
       } catch (e) {
         console.log(e);
-        return false;
+        return "error occured at 'createAccount.r.ts'";
       }
     },
   },
