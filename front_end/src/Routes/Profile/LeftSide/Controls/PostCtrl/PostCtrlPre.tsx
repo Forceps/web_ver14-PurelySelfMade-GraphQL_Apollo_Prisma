@@ -36,7 +36,7 @@ const SearchBtn = styled(WH100per)`
   font-size: 1.1rem;
   cursor: pointer;
 `;
-const Pagination = styled(W100per)`
+const Pagenation = styled(W100per)`
   margin: 10px 0 15px 0;
 `;
 const PgnSbj = styled(W100per)``;
@@ -103,14 +103,14 @@ export default ({
           <i className="icon-search" />
         </SearchBtn>
       </SearchBox>
-      <Pagination>
-        <PgnSbj>Pagination</PgnSbj>
+      <Pagenation>
+        <PgnSbj>Pagenation</PgnSbj>
         <PgnNumList>
           {PagenationNum.map((n) => (
             <PageNum key={n}>{n}</PageNum>
           ))}
         </PgnNumList>
-      </Pagination>
+      </Pagenation>
       <WrBtn
         onClick={(e) => {
           spaped(e);

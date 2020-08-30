@@ -121,7 +121,6 @@ const SettingsModePre = ({
           {AccountEditOpen && (
             <AccountEditCon setAccountEditOpen={setAccountEditOpen} />
           )}
-          <Theme></Theme>
         </Themes>
       </Territory>
     </SettingsMain>

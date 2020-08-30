@@ -133,7 +133,7 @@ export default ({
         </Circumstance>
       )}
       {AcMode !== "All" && (
-        <Circumstance>Pagination, 선택모드, 추가</Circumstance>
+        <Circumstance>pagenation, 선택모드, 추가</Circumstance>
       )}
       {AcMode === "All" && (
         <CapacityManipulation>
