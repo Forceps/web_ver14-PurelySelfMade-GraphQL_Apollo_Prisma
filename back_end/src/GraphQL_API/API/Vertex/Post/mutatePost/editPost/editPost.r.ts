@@ -1,25 +1,18 @@
 import { PrismaClient } from "@prisma/client";
+import { rootPostDir } from "../../../../../LibForGQL/findByPrisma/findRootDir";
+import { contextType } from "../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
-import { rootPostDir } from "../../../../LibForGQL/findByPrisma/findRootDir";
-import { CreatePostMutationArgs } from "../../../../LibForGQL/mergedSchema/types/graph";
-import when_is_it_now from "../../../../../GlobalLib/recycleFunction/when_is_it_now";
-import { contextType } from "../../../../LibForGQL/typesLib";
 
 export default {
   Mutation: {
-    createPost: async (
-      _: void,
-      args: CreatePostMutationArgs,
-      { req, isAuthenticated }: contextType
-    ) => {
+    editPost: async (_: void, args, { req, isAuthenticated }: contextType) => {
       isAuthenticated(req);
-      const { user } = req;
-      const { caption, content, directory_id, face, face_type } = args;
+      const { post_id, caption, content, directory_id, face, face_type } = args;
       let face_type_t: "image" | "text" = "text";
       if (face_type === "image") {
         face_type_t = "image";
       }
-      const { year, month, day, hour, minute, second } = when_is_it_now();
+      const { user } = req;
       let directory: any = null;
       try {
         directory_id === 0
@@ -30,23 +23,17 @@ export default {
       }
 
       try {
-        await prisma.post.create({
+        await prisma.post.update({
           data: {
             caption,
             content,
-            user_postTouser: { connect: { user_id: user.user_id } },
             directory_directoryTopost: {
               connect: { directory_id: directory },
             },
             face: face ? face : "",
             face_type: face_type_t,
-            year,
-            month,
-            day,
-            hour,
-            minute,
-            second,
           },
+          where: { post_id },
         });
         return true;
       } catch (e) {
