@@ -29,24 +29,22 @@ export default () => {
     }
   };
 
-  useEffect(() => {
-    const divide = Math.ceil(PfDM.TotalPostCount / PfDM.PostOneTimeShow);
-    const divideU = Math.ceil(divide / 10);
+  const divide = Math.ceil(PfDM.TotalPostCount / PfDM.PostOneTimeShow);
+  const divideU = Math.ceil(divide / 10);
 
+  useEffect(() => {
     let arrU: number[] = [];
     for (let i = 1; i <= divideU; i++) {
       arrU = arrU.concat(i);
     }
     setUpperUnitPageNum(arrU);
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [PfDM.TotalPostCount]);
+  useEffect(() => {
     let arr: number[] = [];
     if (CurrentUUP === divideU) {
-      for (
-        let i = (divideU - 1) * 10 + 1;
-        i <= divide - (divideU - 1) * 10;
-        i++
-      ) {
-        arr = arr.concat(i);
+      for (let i = 1; i <= divide - (divideU - 1) * 10; i++) {
+        arr = arr.concat(i + (divideU - 1) * 10);
       }
     } else {
       for (let i = 1; i <= 10; i++) {
@@ -55,7 +53,7 @@ export default () => {
     }
     setPagenationNum(arr);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [PfDM.TotalPostCount]);
+  }, [CurrentUUP]);
 
   return loading ? (
     <div />
@@ -68,6 +66,7 @@ export default () => {
       SearchKeyWord={SearchKeyWord}
       PagenationNum={PagenationNum}
       UpperUnitPageNum={UpperUnitPageNum}
+      CurrentUUP={CurrentUUP}
       setCurrentUUP={setCurrentUUP}
     />
   );

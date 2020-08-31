@@ -188,13 +188,13 @@ model post {
   views                                     Int              @default(0)
   likes                                     Int              @default(0)
   face                                      String?
+  face_type                                 post_face_type   @default(text)
   year                                      Int
   month                                     Int
   day                                       Int
   hour                                      Int
   minute                                    Int
   second                                    Int
-  face_type                                 post_face_type   @default(text)
   directory_directoryTopost                 directory        @relation(fields: [directory], references: [directory_id])
   user_postTouser                           user             @relation(fields: [user], references: [user_id])
   comment                                   comment[]

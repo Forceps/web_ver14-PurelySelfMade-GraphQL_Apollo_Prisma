@@ -18,7 +18,7 @@ export default () => {
     Location,
     PfDM.Mode,
     (PfDM.CurrentPostPage - 1) * PfDM.PostOneTimeShow,
-    PfDM.CurrentPostPage * PfDM.PostOneTimeShow
+    PfDM.PostOneTimeShow
   );
   const { data: WpcData, loading: WpcLoading } = CountPostByDirIdRequest(
     S_N_to_N(user_id),

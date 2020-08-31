@@ -77,6 +77,10 @@ const ScaleInfoSbj = styled(W100per)`
 const ScaleInfoMain = styled(W100per)`
   padding: 0 0 0 7px;
 `;
+const ReversalPlay = styled(PageNum)`
+  display: flex;
+  transform: scaleX(-1);
+`;
 
 export default ({
   data,
@@ -86,10 +90,12 @@ export default ({
   Search,
   PagenationNum,
   UpperUnitPageNum,
+  CurrentUUP,
   setCurrentUUP,
 }: PostCtrlPreProps) => {
   const PfDM = useProfileDetailMode();
   const { postCount } = data;
+  const Uuplast = UpperUnitPageNum[UpperUnitPageNum.length - 1];
   return (
     <Suburb>
       <SearchBox>
@@ -119,13 +125,21 @@ export default ({
           >
             <i className="icon-fast-bw" />
           </PageNum>
-          <PageNum
-            onClick={() => {
-              setCurrentUUP((p: number) => p - 1);
-            }}
-          >
-            <i className="icon-play" />
-          </PageNum>
+          {CurrentUUP !== 1 && (
+            <ReversalPlay
+              onClick={() => {
+                setCurrentUUP((p: number) => {
+                  if (p > 1) {
+                    return p - 1;
+                  } else {
+                    return 1;
+                  }
+                });
+              }}
+            >
+              <i className="icon-play" />
+            </ReversalPlay>
+          )}
           {PagenationNum.map((n) => (
             <PageNum
               key={n}
@@ -136,17 +150,28 @@ export default ({
               {n}
             </PageNum>
           ))}
+          {CurrentUUP !== Uuplast && (
+            <PageNum
+              onClick={() => {
+                setCurrentUUP((p: number) => p + 1);
+                setCurrentUUP((p: number) => {
+                  if (p < Uuplast) {
+                    return p + 1;
+                  } else {
+                    return Uuplast;
+                  }
+                });
+              }}
+            >
+              <i className="icon-play" />
+            </PageNum>
+          )}
           <PageNum
             onClick={() => {
-              setCurrentUUP((p: number) => p + 1);
-            }}
-          >
-            <i className="icon-play" />
-          </PageNum>
-          <PageNum
-            onClick={() => {
-              setCurrentUUP(UpperUnitPageNum[UpperUnitPageNum.length - 1]);
-              PfDM.setCurrentPostPage(PagenationNum[PagenationNum.length - 1]);
+              setCurrentUUP(Uuplast);
+              PfDM.setCurrentPostPage(
+                Math.ceil(PfDM.TotalPostCount / PfDM.PostOneTimeShow)
+              );
             }}
           >
             <i className="icon-fast-fw" />
@@ -183,5 +208,6 @@ interface PostCtrlPreProps {
   SearchKeyWord: any;
   PagenationNum: number[];
   UpperUnitPageNum: number[];
+  CurrentUUP: number;
   setCurrentUUP: any;
 }
