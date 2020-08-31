@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import HeadRootSbj from "./HeadRootSbj";
 import { useDirMode } from "../../../../../GlobalLib/Context/ProfileContext/DirMode";
-import { useDirSelectorMode } from "../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 const SbJCon = styled.div`
@@ -50,7 +49,6 @@ const BackStep = styled.div`
 
 export default () => {
   const DC = useDirMode();
-  const DirSelectorMode = useDirSelectorMode();
   return (
     <>
       {DC.DirData?.parent_id === null || DC.DirData === null ? (
@@ -60,7 +58,6 @@ export default () => {
             className="icon-right-open"
             onClick={(e) => {
               spaped(e);
-              DirSelectorMode.setMode(false);
             }}
           />
         </SbJCon>
@@ -84,7 +81,6 @@ export default () => {
             className="icon-right-open"
             onClick={(e) => {
               spaped(e);
-              DirSelectorMode.setMode(false);
             }}
           />
         </SbJCon2>

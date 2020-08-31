@@ -111,6 +111,21 @@ export default ({
       <Pagenation>
         <PgnSbj>Pagenation</PgnSbj>
         <PgnNumList>
+          <PageNum
+            onClick={() => {
+              setCurrentUUP(1);
+              PfDM.setCurrentPostPage(1);
+            }}
+          >
+            <i className="icon-fast-bw" />
+          </PageNum>
+          <PageNum
+            onClick={() => {
+              setCurrentUUP((p: number) => p - 1);
+            }}
+          >
+            <i className="icon-play" />
+          </PageNum>
           {PagenationNum.map((n) => (
             <PageNum
               key={n}
@@ -121,6 +136,21 @@ export default ({
               {n}
             </PageNum>
           ))}
+          <PageNum
+            onClick={() => {
+              setCurrentUUP((p: number) => p + 1);
+            }}
+          >
+            <i className="icon-play" />
+          </PageNum>
+          <PageNum
+            onClick={() => {
+              setCurrentUUP(UpperUnitPageNum[UpperUnitPageNum.length - 1]);
+              PfDM.setCurrentPostPage(PagenationNum[PagenationNum.length - 1]);
+            }}
+          >
+            <i className="icon-fast-fw" />
+          </PageNum>
         </PgnNumList>
       </Pagenation>
       <WrBtn
