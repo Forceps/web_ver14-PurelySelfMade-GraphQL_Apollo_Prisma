@@ -19,7 +19,7 @@ export default {
       //   "hello.py"
       // );
       try {
-        prisma.$executeRaw`UPDATE square_post.post SET views = views + 1 WHERE post_id = ${post_id}`;
+        prisma.executeRaw`UPDATE square_post.post SET views = views + 1 WHERE post_id = ${post_id}`;
         if (req && req?.user && req?.user?.user_id) {
           isAuthenticated(req);
           watchingLoging(S_N_to_N(req.user.user_id), post_id);
