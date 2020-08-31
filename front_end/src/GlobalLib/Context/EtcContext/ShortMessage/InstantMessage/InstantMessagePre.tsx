@@ -2,6 +2,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import WH100per from "../../../../Styles/IteratePattern/WH100per";
 import { spaped } from "../../../../RecycleFunction/etc/StopAndPrevent";
+import { FlexCenter100per } from "../../../../Styles/IteratePattern/ToCenter";
 
 const appear = keyframes`
   from{
@@ -69,15 +70,8 @@ const Header = styled(WH100per)`
   display: grid;
   grid-template-columns: 1fr 30px 30px;
 `;
-const Fasten = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-const Off = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Fasten = styled(FlexCenter100per)``;
+const Off = styled(FlexCenter100per)`
   &:hover {
     background-color: #2d3436;
     color: #fafafa;

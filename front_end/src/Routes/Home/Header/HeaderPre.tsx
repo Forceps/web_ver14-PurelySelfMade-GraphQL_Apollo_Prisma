@@ -8,6 +8,7 @@ import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import useSearch from "../../../GlobalLib/RecycleFunction/Hooks/useSearch";
 import LoginModalCon from "../../../Components/User/Auth/LoginModal/LoginModalCon";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
+import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Wrapper = styled(WH100per)`
   display: grid;
@@ -26,10 +27,7 @@ const SearchTxt = styled(WH100perInput)`
   border: 0;
   border-bottom: 1px solid #636e72;
 `;
-const SearchBtn = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const SearchBtn = styled(FlexCenter100per)`
   font-size: 1.2rem;
   cursor: pointer;
 `;

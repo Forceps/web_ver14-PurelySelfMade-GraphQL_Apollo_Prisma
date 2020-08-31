@@ -6,6 +6,7 @@ import WH100per, {
 import { useSearchUser } from "../../../../GlobalLib/Context/UserContext/SearchUser";
 import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import { useSeeFriends } from "../../../../GlobalLib/Context/UserContext/SeeFriends";
+import { FlexCenter } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Area = styled(W100per)`
   margin: 20px 0 0 0;
@@ -19,10 +20,8 @@ const Cell = styled(W100per)`
 interface PfImgProps {
   url: string;
 }
-const DefaultPfImg = styled(W100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const DefaultPfImg = styled(FlexCenter)`
+  width: 100%;
   height: 100px;
   background-color: #dfe6e9;
 `;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import WH100per from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import TemporaryBackground from "../../../../../../Components/ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { FlexCenter } from "../../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface EnvironProps {
   zIndex: number;
@@ -16,10 +17,7 @@ const Environ = styled(WH100per)<EnvironProps>`
   align-items: center;
   z-index: ${(prop) => prop.zIndex};
 `;
-const Template = styled.div<EnvironProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Template = styled(FlexCenter)<EnvironProps>`
   position: relative;
   width: 70vw;
   height: 92vh;

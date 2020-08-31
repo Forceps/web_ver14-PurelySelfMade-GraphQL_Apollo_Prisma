@@ -3,6 +3,7 @@ import styled from "styled-components";
 import TemporaryBackground from "../../../../../Components/ElementEtc/Effect/TemporaryBackground";
 import DirAppoint from "../../../../../Components/Post/Editor/RightControl/DirSetting/DirAppoint";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { FlexCenter } from "../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Consol = styled.div`
   display: flex;
@@ -63,10 +64,7 @@ const DirSetting = styled.div`
   margin: 30px 0 0 0;
   align-items: center;
 `;
-const DirLocation = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const DirLocation = styled(FlexCenter)`
   width: calc(100% - 70px);
   height: 40px;
   background-color: #dfe6e9;

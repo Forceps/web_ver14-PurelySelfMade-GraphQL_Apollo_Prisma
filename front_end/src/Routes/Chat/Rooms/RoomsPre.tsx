@@ -9,6 +9,7 @@ import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import Conversation from "../../../Components/Chat/Conversation/Conversation";
 import { useSubscription } from "@apollo/client";
 import { CHAT_LISTENING } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatSub";
+import { FlexCenter } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Tent = styled(W100per)``;
 const Sbj = styled(W100per)`
@@ -70,10 +71,7 @@ const ChatIcon = styled.i`
   font-size: 2.7rem;
   margin: 0 0 10px 0;
 `;
-const RoomPlus = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const RoomPlus = styled(FlexCenter)`
   width: 23px;
   margin: 0 0 0 10px;
   &:hover {

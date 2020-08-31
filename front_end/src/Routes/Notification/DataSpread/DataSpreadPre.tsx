@@ -8,6 +8,7 @@ import Loading from "../../../Components/ElementEtc/Effect/Loading";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { LogClock } from "../../../GlobalLib/RecycleFunction/etc/Math/Time";
+import { FlexCenter } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const DataSpread = styled(WH100per)`
   display: flex;
@@ -87,10 +88,7 @@ const Sender = styled.div`
   flex-direction: row;
   padding: 5px 0 8px 0;
 `;
-const IdentiImg = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const IdentiImg = styled(FlexCenter)`
   width: 32px;
   height: 32px;
   background-color: #b2bec3;

@@ -3,6 +3,7 @@ import styled, { css } from "styled-components";
 import { H100per } from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import ImgInSCon from "../../../../../Insert/ImgInsertScreen/ImgInSCon";
 import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { FlexCenter } from "../../../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface BaileyProps {
   MoreMenuOpen: boolean;
@@ -42,21 +43,13 @@ const CloseMenu = styled.div`
   display: flex;
   justify-content: flex-end;
 `;
-const MenuBackIconContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const MenuBackIconContainer = styled(FlexCenter)`
   width: 30px;
   height: 30px;
 `;
-const RestMenu = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
+const RestMenu = styled(FlexCenter)``;
 
 export default ({
-  audioTag,
   WithImg,
   MoreMenuOpen,
   setMoreMenuOpen,
@@ -102,7 +95,6 @@ export default ({
   );
 };
 interface MoreMenuProps {
-  audioTag: HTMLAudioElement | null;
   WithImg: boolean;
   MoreMenuOpen: boolean;
   setMoreMenuOpen: Dispatch<SetStateAction<boolean>>;

@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import WH100per, {
-  WH100perInput,
-} from "../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { WH100perInput } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import WritePostCon from "../../../Components/Post/WritePost/WritePostCon";
 import RecommendPostCon from "./RecommendBlock/RecommendPost/RecommendPostCon";
 import RecommendAuthorCon from "./RecommendBlock/RecommendAuthor/RecommendAuthorCon";
+import {
+  FlexCenter100per,
+  FlexCenter,
+} from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Wrapper = styled.div`
   display: flex;
@@ -29,10 +31,7 @@ const SearchTxt = styled(WH100perInput)`
   border: 0;
   border-left: 2px solid #636e72;
 `;
-const SearchBtn = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const SearchBtn = styled(FlexCenter100per)`
   font-size: 1.2rem;
   cursor: pointer;
 `;
@@ -41,10 +40,7 @@ const Sbj = styled.div`
   font-size: 1rem;
   margin: 10px 0 -5px 0;
 `;
-const Post = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Post = styled(FlexCenter)`
   width: 250px;
   height: 35px;
   margin: 8px 0 0 8px;

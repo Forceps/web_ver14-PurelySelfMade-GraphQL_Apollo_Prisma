@@ -5,14 +5,12 @@ import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import WH100per, {
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface EncompassProps {
   zIndex: number;
 }
-const Encompass = styled(WH100per)<EncompassProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Encompass = styled(FlexCenter100per)<EncompassProps>`
   position: fixed;
   top: 0;
   left: 0;

@@ -7,6 +7,7 @@ import WH100per, {
 import useScroll from "../../../GlobalLib/RecycleFunction/Hooks/useScroll";
 import ToggleMenuCon from "./ToggleMenu/ToggleMenuCon";
 import Logo from "../../../Components/ElementEtc/Effect/Logo";
+import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface EnclosingProps {
   Position: any;
@@ -36,10 +37,7 @@ const Left = styled(WH100per)`
   align-items: center;
   padding: 0 0 0 20px;
 `;
-const Center = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Center = styled(FlexCenter100per)`
   padding: 0 0 0 11px;
 `;
 const Right = styled(WH100per)`

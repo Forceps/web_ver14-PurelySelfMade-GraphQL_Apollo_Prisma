@@ -3,11 +3,10 @@ import styled from "styled-components";
 import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 import { usePostDetail } from "../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
 import { useUpdatePost } from "../../../../GlobalLib/Context/PostContext/PostCRUD/UpdatePost";
-import WH100per, {
-  H100per,
-} from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import WH100per from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { Link } from "react-router-dom";
+import { FlexCenter } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const PostHeader = styled(WH100per)`
   display: grid;
@@ -21,11 +20,9 @@ const Title = styled(Link)`
   color: black;
   cursor: pointer;
 `;
-const PostCtrlEach = styled(H100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const PostCtrlEach = styled(FlexCenter)`
   width: 50%;
+  height: 100%;
   color: black;
   &:hover {
     background-color: rgba(45, 52, 54, 0.8);

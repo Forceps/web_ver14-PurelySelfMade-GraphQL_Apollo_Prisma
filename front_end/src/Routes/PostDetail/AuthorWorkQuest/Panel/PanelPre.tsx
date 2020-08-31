@@ -7,6 +7,7 @@ import Avatar from "../../../../Components/User/Avatar/Avatar";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import DirListFoldingSystem from "../../../../Components/ElementEtc/DirListFoldingSystem/DirListFoldingSystem";
 import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
+import { FlexCenter100per } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Panel = styled(WH100per)`
   display: grid;
@@ -30,10 +31,7 @@ const PanelTop = styled(WH100per)`
   grid-template-columns: 1fr 30px;
   cursor: pointer;
 `;
-const CloseBtn = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const CloseBtn = styled(FlexCenter100per)`
   &:hover {
     background-color: rgba(45, 52, 54, 0.8);
     color: white;

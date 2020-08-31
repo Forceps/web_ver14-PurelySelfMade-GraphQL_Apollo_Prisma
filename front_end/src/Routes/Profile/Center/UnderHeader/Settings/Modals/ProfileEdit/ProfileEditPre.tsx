@@ -5,14 +5,15 @@ import TemporaryBackground from "../../../../../../../Components/ElementEtc/Effe
 import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useInputReturn } from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { NOrU } from "../../../../../../../GlobalLib/RecycleFunction/etc/type_convert";
+import {
+  FlexCenter100per,
+  FlexCenter,
+} from "../../../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface EncompassProps {
   zIndex: number;
 }
-const Encompass = styled(WH100per)<EncompassProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Encompass = styled(FlexCenter100per)<EncompassProps>`
   position: fixed;
   top: 0;
   left: 0;
@@ -93,10 +94,7 @@ const EditTxtInput = styled.input<EditTxtInputProps>`
 interface UsernameDupleCheckBtnProps {
   UsernameDuple: boolean;
 }
-const UsernameDupleCheckBtn = styled.div<UsernameDupleCheckBtnProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const UsernameDupleCheckBtn = styled(FlexCenter)<UsernameDupleCheckBtnProps>`
   align-self: flex-end;
   width: 120px;
   height: 28px;

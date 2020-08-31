@@ -5,11 +5,7 @@ export default {
   Query: {
     postsByDirId: async (
       _: void,
-      {
-        author_id,
-        directory_id,
-        sortBy,
-      }: { author_id: number; directory_id: number; sortBy: string }
+      { author_id, directory_id, sortBy, skip, take }
     ) => {
       try {
         let p_by_dir_id: any[] = [];
@@ -33,6 +29,8 @@ export default {
               : {
                   views: "desc",
                 },
+          skip: skip ? skip : 0,
+          take: take ? take : 15,
         });
         return p_by_dir_id;
       } catch (e) {

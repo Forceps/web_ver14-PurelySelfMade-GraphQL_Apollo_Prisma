@@ -4,6 +4,9 @@ import React, {
   useRef,
   ReactNode,
   useContext,
+  Dispatch,
+  SetStateAction,
+  MutableRefObject,
 } from "react";
 
 const ProfileDetailMode = createContext<PfDM_Obj | undefined>(undefined);
@@ -15,7 +18,23 @@ export const ProfileDetailModeProvider = ({
   const [Mode, setMode] = useState("recent"); //Mode = "popularity", "recent"
   const [AcMode, setAcMode] = useState("All"); //AcMode = "All", "Image", "Video", "Music"
   const recentState = useRef("Recent");
-  const Obj = { Mode, setMode, recentState, AcMode, setAcMode };
+  const [CurrentPostPage, setCurrentPostPage] = useState(1);
+  const [TotalPostCount, setTotalPostCount] = useState(0);
+  const [PostOneTimeShow, setPostOneTimeShow] = useState(1);
+
+  const Obj = {
+    Mode,
+    setMode,
+    recentState,
+    AcMode,
+    setAcMode,
+    CurrentPostPage,
+    setCurrentPostPage,
+    TotalPostCount,
+    setTotalPostCount,
+    PostOneTimeShow,
+    setPostOneTimeShow,
+  };
   return (
     <ProfileDetailMode.Provider value={Obj}>
       {children}
@@ -24,10 +43,16 @@ export const ProfileDetailModeProvider = ({
 };
 interface PfDM_Obj {
   Mode: string;
-  setMode: any;
-  recentState: any;
+  setMode: Dispatch<SetStateAction<string>>;
   AcMode: string;
-  setAcMode: any;
+  setAcMode: Dispatch<SetStateAction<string>>;
+  recentState: MutableRefObject<string>;
+  CurrentPostPage: number;
+  setCurrentPostPage: Dispatch<SetStateAction<number>>;
+  TotalPostCount: number;
+  setTotalPostCount: Dispatch<SetStateAction<number>>;
+  PostOneTimeShow: number;
+  setPostOneTimeShow: Dispatch<SetStateAction<number>>;
 }
 export const useProfileDetailMode = () => {
   const state = useContext(ProfileDetailMode);

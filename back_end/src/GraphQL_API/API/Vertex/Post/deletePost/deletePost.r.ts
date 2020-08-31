@@ -13,7 +13,7 @@ export default {
       isAuthenticated(req);
       const { post_id } = args;
       try {
-        await prisma.executeRaw`DELETE FROM square_post.post WHERE post_id = ${post_id};`;
+        await prisma.$executeRaw`DELETE FROM square_post.post WHERE post_id = ${post_id};`;
         return true;
       } catch (e) {
         console.log(e);

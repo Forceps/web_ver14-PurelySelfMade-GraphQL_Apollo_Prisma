@@ -9,6 +9,10 @@ import IncludeScrollBar from "../../../GlobalLib/Styles/IteratePattern/IncludeSc
 import Avatar from "../../User/Avatar/Avatar";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { useDummyState } from "../../../GlobalLib/Context/Lib/DummyState";
+import {
+  FlexCenter,
+  FlexCenter100per,
+} from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface WrapperProps {
   zIndex: number;
@@ -75,10 +79,7 @@ const SubSbj = styled(WH100per)`
 const Enumeration = styled(WH100per)`
   padding: 10px 0 0 0;
 `;
-const SituationMessage = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const SituationMessage = styled(FlexCenter100per)`
   padding: 10px 0 0 10px;
 `;
 const FaceBlock = styled(W100per)`
@@ -109,10 +110,7 @@ const FaceBlock1 = styled(FaceBlock)<FaceBlock1Prop>`
   }}
 `;
 const FaceBlock2 = styled(FaceBlock)``;
-const SubmitBtn = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const SubmitBtn = styled(FlexCenter)`
   width: 100px;
   height: 35px;
   background-color: #dfe6e9;

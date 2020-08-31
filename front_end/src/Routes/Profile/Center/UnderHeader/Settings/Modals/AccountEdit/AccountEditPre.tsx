@@ -1,21 +1,20 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import WH100per, {
-  W100per,
-} from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import WH100per from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import TemporaryBackground from "../../../../../../../Components/ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useInputReturn } from "../../../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { NOrU } from "../../../../../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { useShortMessage } from "../../../../../../../GlobalLib/Context/EtcContext/ShortMessage/ShortMessage";
+import {
+  FlexCenter100per,
+  FlexCenter,
+} from "../../../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface EncompassProps {
   zIndex: number;
 }
-const Encompass = styled(WH100per)<EncompassProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Encompass = styled(FlexCenter100per)<EncompassProps>`
   position: fixed;
   top: 0;
   left: 0;
@@ -119,10 +118,8 @@ const EntBtnZone = styled(WH100per)`
 interface CheckEntPasswordBtnProps {
   CurPwConfirmed: boolean;
 }
-const CheckEntPasswordBtn = styled(W100per)<CheckEntPasswordBtnProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const CheckEntPasswordBtn = styled(FlexCenter)<CheckEntPasswordBtnProps>`
+  width: 100%;
   height: 35px;
   background-color: #636e72;
   color: white;
@@ -140,10 +137,7 @@ const CheckEntPasswordBtn = styled(W100per)<CheckEntPasswordBtnProps>`
 interface EmailDupleCheckBtnProps {
   EmailDuple: boolean;
 }
-const EmailDupleCheckBtn = styled.div<EmailDupleCheckBtnProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const EmailDupleCheckBtn = styled(FlexCenter)<EmailDupleCheckBtnProps>`
   align-self: flex-end;
   width: 120px;
   height: 28px;

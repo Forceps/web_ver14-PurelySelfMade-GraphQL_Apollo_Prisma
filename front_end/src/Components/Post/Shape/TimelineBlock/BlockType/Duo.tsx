@@ -1,10 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import {
-  W100per,
-  H100per,
-} from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { W100per } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { BackImgForTimeline } from "./Solo";
+import { FlexCenter } from "../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Partition1 = styled(W100per)`
   display: flex;
@@ -13,12 +11,10 @@ const Partition2 = styled(W100per)`
   display: grid;
   grid-template-columns: 1fr 1fr;
 `;
-export const TextForTimeline = styled(H100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const TextForTimeline = styled(FlexCenter)`
   font-size: 0.9rem;
   width: 45%;
+  height: 100%;
   position: absolute;
   padding: 5px 5px 15px 5px;
   line-height: 1.2rem;

@@ -1,9 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import {
-  H100per,
-  W100per,
-} from "../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { W100per } from "../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { FlexCenter } from "../../../../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Footer = styled(W100per)`
   display: flex;
@@ -14,11 +12,9 @@ interface FazeNumProps {
   num: number;
   NextActivateCondition: any;
 }
-const FazeNum = styled(H100per)<FazeNumProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const FazeNum = styled(FlexCenter)<FazeNumProps>`
   width: 27px;
+  height: 100%;
   padding: 1px 0 1px 0;
   font-size: 1rem;
   &:hover {

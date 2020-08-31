@@ -7,6 +7,7 @@ import WH100per, {
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import OutsideMenu from "./InsideOutside/OutsideMenu";
 import InsideMenu from "./InsideOutside/InsideMenu";
+import { FlexCenter100per } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Wrapper = styled.div`
   display: grid;
@@ -86,10 +87,7 @@ const MetaSelect = styled(WH100per)`
   padding: 0 7px 0 7px;
   font-size: 1.1rem;
 `;
-const MetaItem = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const MetaItem = styled(FlexCenter100per)`
   border-bottom: 1px solid #b2bec3;
   cursor: pointer;
 `;

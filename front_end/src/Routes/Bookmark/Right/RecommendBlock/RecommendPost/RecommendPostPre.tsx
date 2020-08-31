@@ -5,6 +5,7 @@ import WH100per, {
   H100per,
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import Avatar from "../../../../../Components/User/Avatar/Avatar";
+import { FlexCenter100per } from "../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const RecommendBlock = styled.div`
   display: grid;
@@ -38,11 +39,7 @@ const Rectangle = styled(W100per)`
   }
   cursor: pointer;
 `;
-const Face = styled(WH100per)``;
-const FaceT = styled(Face)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const FaceT = styled(FlexCenter100per)`
   font-size: 1rem;
   padding: 5px;
   background-color: #dfe6e9;
@@ -50,7 +47,7 @@ const FaceT = styled(Face)`
 interface TitleImageProp {
   url: string;
 }
-const FaceI = styled(Face)<TitleImageProp>`
+const FaceI = styled(WH100per)<TitleImageProp>`
   background-image: url(${(p: any) => p.url});
   background-size: cover;
   background-position: center center;

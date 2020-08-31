@@ -9,6 +9,10 @@ import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
 import Avatar from "../../../Components/User/Avatar/Avatar";
+import {
+  FlexCenter,
+  FlexCenter100per,
+} from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Circling = styled(W100per)`
   display: grid;
@@ -66,10 +70,7 @@ const Additional = styled(WH100per)`
   flex-direction: column;
   padding: 0 0 0 5px;
 `;
-const SubscribeBtn = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const SubscribeBtn = styled(FlexCenter)`
   padding: 8px;
   height: 30px;
   max-width: 90px;
@@ -90,10 +91,7 @@ const SelectBar = styled(WH100per)`
   display: grid;
   grid-template-columns: 1fr 60px 100px;
 `;
-const ModeCp = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const ModeCp = styled(FlexCenter100per)`
   padding: 3px 0 3px 0;
   font-size: 1rem;
   cursor: pointer;

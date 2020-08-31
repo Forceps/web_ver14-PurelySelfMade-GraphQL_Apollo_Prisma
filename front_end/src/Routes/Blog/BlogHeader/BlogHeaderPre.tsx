@@ -13,6 +13,7 @@ import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
 import useScroll from "../../../GlobalLib/RecycleFunction/Hooks/useScroll";
+import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface EnclosingProps {
   Position: any;
@@ -71,10 +72,7 @@ const MyName = styled.div`
   font-size: 1rem;
   cursor: pointer;
 `;
-const Center = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Center = styled(FlexCenter100per)`
   padding: 0 0 0 11px;
 `;
 const SearchBox = styled.div`
@@ -90,10 +88,7 @@ const SearchTxt = styled(WH100perInput)`
   border: 0;
   border-bottom: 1px solid #636e72;
 `;
-const SearchBtn = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const SearchBtn = styled(FlexCenter100per)`
   font-size: 1.2rem;
   cursor: pointer;
 `;

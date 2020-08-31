@@ -5,6 +5,7 @@ import { SetOfBtn } from "../ParagraphShape";
 import WH100per from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { spaped } from "../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import ColorPicker from "./ColorPicker";
+import { FlexCenter100per } from "../../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const SetOfBtnDevide = styled(SetOfBtn)`
   display: grid;
@@ -20,10 +21,7 @@ const Caption = styled(WH100per)`
   align-items: center;
   padding: 0 0 0 10px;
 `;
-const PickerShowBtn = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const PickerShowBtn = styled(FlexCenter100per)`
   &:hover {
     background-color: #dfe6e9;
   }

@@ -6,6 +6,11 @@ import WH100per, {
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import WritePostCon from "../../../../../Components/Post/WritePost/WritePostCon";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { useProfileDetailMode } from "../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
+import {
+  FlexCenter100per,
+  FlexCenter,
+} from "../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Suburb = styled(W100per)`
   display: flex;
@@ -41,22 +46,19 @@ const Pagenation = styled(W100per)`
 `;
 const PgnSbj = styled(W100per)``;
 const PgnNumList = styled(W100per)`
-  display: flex;
-  justify-content: flex-start;
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  height: 25px;
   margin: 7px 0 12px 0;
 `;
-const PageNum = styled.div`
-  padding: 4px 5px 4px 5px;
-  margin: 1px 3px 1px 3px;
+const PageNum = styled(FlexCenter100per)`
   cursor: pointer;
   &:hover {
     background-color: #dfe6e9;
   }
 `;
-const WrBtn = styled(W100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const WrBtn = styled(FlexCenter)`
+  width: 100%;
   height: 35px;
   padding: 5px;
   margin: 0 15px 10px 0;
@@ -83,7 +85,10 @@ export default ({
   SearchKeyWord,
   Search,
   PagenationNum,
+  UpperUnitPageNum,
+  setCurrentUUP,
 }: PostCtrlPreProps) => {
+  const PfDM = useProfileDetailMode();
   const { postCount } = data;
   return (
     <Suburb>
@@ -107,7 +112,14 @@ export default ({
         <PgnSbj>Pagenation</PgnSbj>
         <PgnNumList>
           {PagenationNum.map((n) => (
-            <PageNum key={n}>{n}</PageNum>
+            <PageNum
+              key={n}
+              onClick={() => {
+                PfDM.setCurrentPostPage(n);
+              }}
+            >
+              {n}
+            </PageNum>
           ))}
         </PgnNumList>
       </Pagenation>
@@ -140,4 +152,6 @@ interface PostCtrlPreProps {
   Search: (e: any) => void;
   SearchKeyWord: any;
   PagenationNum: number[];
+  UpperUnitPageNum: number[];
+  setCurrentUUP: any;
 }

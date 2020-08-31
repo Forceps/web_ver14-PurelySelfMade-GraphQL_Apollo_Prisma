@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import BlogPostPre from "./BlogPostPre";
 import { WhosePostDirRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Directory/DirectoryR";
 import { PostsByDirIdRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostByDirId";
+import { CountPostByDirIdRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostCount/PostCount";
 
 export default ({ user_id }: DisplayCon) => {
   const [ChoosedDir, setChoosedDir] = useState<[number, string]>([
@@ -12,7 +13,13 @@ export default ({ user_id }: DisplayCon) => {
   const { data: WpData, loading: WpLoading } = PostsByDirIdRequest(
     user_id,
     ChoosedDir[0],
-    PostSortBy
+    PostSortBy,
+    0,
+    15
+  );
+  const { data: WpcData, loading: WpcLoading } = CountPostByDirIdRequest(
+    user_id,
+    ChoosedDir[0]
   );
   const { data: RootDirData, loading: RootDirDataLoad } = WhosePostDirRequest(
     user_id
@@ -21,7 +28,7 @@ export default ({ user_id }: DisplayCon) => {
   return (
     <BlogPostPre
       WpData={WpData?.postsByDirId}
-      WpLoading={WpLoading}
+      WpLoading={WpLoading || WpcLoading}
       RootDirData={RootDirData?.whosePostDir}
       RootDirDataLoad={RootDirDataLoad}
       ChoosedDir={ChoosedDir}

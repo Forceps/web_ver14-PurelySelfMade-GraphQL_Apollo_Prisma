@@ -5,6 +5,7 @@ import ContentEditable from "react-contenteditable";
 import MetaInfoCon from "./MetaInfo/MetaInfoCon";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import Intro from "./Intro/Intro";
+import { FlexCenter } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Surrounding = styled(W100per)`
   display: flex;
@@ -28,10 +29,7 @@ const OnePost = styled(({ ...rest }) => <ContentEditable {...rest} />)`
   width: 100%;
   word-break: break-all;
 `;
-const CommentToggle = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const CommentToggle = styled(FlexCenter)`
   position: fixed;
   bottom: 40px;
   right: 60px;

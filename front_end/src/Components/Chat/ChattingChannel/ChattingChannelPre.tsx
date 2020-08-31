@@ -5,6 +5,7 @@ import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import WH100per from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import IncludeScrollBar from "../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 import Conversation from "../Conversation/Conversation";
+import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface WrapperProps {
   zIndex: number;
@@ -47,10 +48,7 @@ const SmallInput = styled(WH100per)`
   background-color: #dfe6e9;
 `;
 const ChatInput = styled(WH100per)``;
-const Raising = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Raising = styled(FlexCenter100per)`
   background-color: #636e72;
   color: white;
   &:hover {

@@ -1,0 +1,3 @@
+type Query {
+  countPostByDirId(author_id: Int!, directory_id: Int!): Int
+}

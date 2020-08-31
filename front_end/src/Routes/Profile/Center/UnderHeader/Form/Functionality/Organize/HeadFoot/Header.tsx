@@ -2,6 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 import WH100per from "../../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { spaped } from "../../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { FlexCenter100per } from "../../../../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Header = styled(WH100per)`
   display: grid;
@@ -20,10 +21,7 @@ const SubTitle = styled.div`
 interface NextProps {
   NextActivateCondition: () => boolean;
 }
-const Next = styled(WH100per)<NextProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Next = styled(FlexCenter100per)<NextProps>`
   font-size: 1.1rem;
   ${(prop) => {
     if (prop.NextActivateCondition()) {
@@ -46,10 +44,7 @@ const NextIcon = styled.div`
 interface FinishProps {
   SatisfiedAll: () => boolean;
 }
-const Finish = styled(WH100per)<FinishProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Finish = styled(FlexCenter100per)<FinishProps>`
   font-size: 1.1rem;
   ${(prop) => {
     if (prop.SatisfiedAll()) {

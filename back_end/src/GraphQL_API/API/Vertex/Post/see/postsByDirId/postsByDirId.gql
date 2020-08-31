@@ -1,3 +1,9 @@
 type Query {
-  postsByDirId(author_id: Int!, directory_id: Int!, sortBy: String!): [Post]
+  postsByDirId(
+    author_id: Int!
+    directory_id: Int!
+    sortBy: String!
+    skip: Int!
+    take: Int!
+  ): [Post]
 }

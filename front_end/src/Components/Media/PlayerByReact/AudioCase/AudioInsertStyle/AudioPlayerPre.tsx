@@ -128,7 +128,6 @@ export default ({
             audioTarget={audioTarget}
           />
           <MoreMenu
-            audioTag={audioTag.current}
             WithImg={WithImg}
             MoreMenuOpen={MoreMenuOpen}
             setMoreMenuOpen={setMoreMenuOpen}

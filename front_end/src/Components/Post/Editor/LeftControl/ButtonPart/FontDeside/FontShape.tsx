@@ -5,6 +5,7 @@ import { SetOfBtn, EdBtn3 } from "../ParagraphShape";
 import WH100per, {
   W100per,
 } from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { FlexCenter100per } from "../../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const FontSizeContainer = styled(W100per)`
   display: grid;
@@ -24,10 +25,7 @@ const FsS = styled(WH100per)`
   justify-content: center;
   text-align: center;
 `;
-const SizeSpec = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const SizeSpec = styled(FlexCenter100per)`
   &:hover {
     background-color: #dfe6e9;
   }

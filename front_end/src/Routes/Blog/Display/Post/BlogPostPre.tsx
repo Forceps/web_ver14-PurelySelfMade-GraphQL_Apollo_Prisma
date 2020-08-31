@@ -7,6 +7,7 @@ import Loading from "../../../../Components/ElementEtc/Effect/Loading";
 import Tile from "../../../../Components/Post/Shape/Tile/TileCon";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import DirListFoldingSystem from "../../../../Components/ElementEtc/DirListFoldingSystem/DirListFoldingSystem";
+import { FlexCenter100per } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Cover = styled(W100per)`
   display: grid;
@@ -39,10 +40,7 @@ interface SmodeProps {
   PostSortBy: string;
   myType: string;
 }
-const Smode = styled(WH100per)<SmodeProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Smode = styled(FlexCenter100per)<SmodeProps>`
   padding: 3px 0 3px 0;
   text-transform: capitalize;
   cursor: pointer;

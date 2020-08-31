@@ -10,6 +10,7 @@ import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import LoginModalCon from "../../User/Auth/LoginModal/LoginModalCon";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
 import Avatar from "../../User/Avatar/Avatar";
+import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Comments = styled(W100per)`
   display: flex;
@@ -49,10 +50,7 @@ const Adding = styled(({ submitCheck, ...rest }) => (
     outline: none;
   }
 `;
-const CommentSubmit = styled(WH100per)<AddingProps>`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const CommentSubmit = styled(FlexCenter100per)<AddingProps>`
   background-color: #b2bec3;
   font-size: 1.3rem;
   color: white;

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import WH100per from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import ImgInSCon from "../../../../Media/Insert/ImgInsertScreen/ImgInSCon";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
+import { FlexCenter100per } from "../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const RestButn = styled.div`
   display: grid;
@@ -21,10 +22,7 @@ const Sbj = styled(WH100per)`
   align-items: center;
   padding: 0 0 0 6px;
 `;
-const Sample = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Sample = styled(FlexCenter100per)`
   position: relative;
   color: #636e72;
   &:hover {
@@ -32,10 +30,7 @@ const Sample = styled(WH100per)`
   }
   cursor: pointer;
 `;
-const Reset = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const Reset = styled(FlexCenter100per)`
   &:hover {
     background-color: #dfe6e9;
   }

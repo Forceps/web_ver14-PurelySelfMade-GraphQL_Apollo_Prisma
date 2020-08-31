@@ -13,6 +13,7 @@ import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent
 import { byteIntoUnit } from "../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
 import { totalVolum, typeNameCutting } from "../MediaUploadLib";
 import DirAppoint from "../../../Post/Editor/RightControl/DirSetting/DirAppoint";
+import { FlexCenter100per } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 type zIndex = {
   zIndex: number;
@@ -76,10 +77,7 @@ const SearchUsersLocal = styled(WH100per)`
     color: white;
   }
 `;
-const AudioBack = styled(WH100per)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+const AudioBack = styled(FlexCenter100per)`
   flex-direction: column;
 `;
 const AddToList = styled(SearchUsersLocal)`
