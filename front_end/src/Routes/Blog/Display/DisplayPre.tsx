@@ -5,9 +5,7 @@ import BlogPostCon from "./Post/BlogPostCon";
 import BlogRelationCon from "./Relation/BlogRelationCon";
 
 const Cover = styled(W100per)`
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  min-height: 100px;
+  display: flex;
   min-height: 100px;
 `;
 

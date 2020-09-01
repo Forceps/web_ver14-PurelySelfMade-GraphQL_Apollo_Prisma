@@ -1,6 +1,6 @@
 import React from "react";
 import ShowAllPre from "./ShowAllPre";
-import { ImgGetUpToN } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Image/ImageR";
+import { ImgGetByDirIdRequest } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Image/ImageR";
 import { VideoGetUpToN } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoR";
 import { AudioGetUpToN } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Audio/AudioR";
 
@@ -11,13 +11,13 @@ export default ({
   setShowOneOpen,
   setDetailInfo,
 }: ShowAllCase) => {
-  const { data: ImgAll, loading: ImgAllLod } = ImgGetUpToN();
+  const { data: ImgAll, loading: ImgAllLod } = ImgGetByDirIdRequest(0, 0, 0, 4);
   const { data: VideoAll, loading: VideoAllLod } = VideoGetUpToN();
   const { data: AudioAll, loading: AudioAllLod } = AudioGetUpToN();
   return (
     <ShowAllPre
       setAddImgScn={setAddImgScn}
-      ImgAll={ImgAll}
+      ImgAll={ImgAll?.imgGetByDirId}
       ImgAllLod={ImgAllLod}
       setAddVideoScn={setAddVideoScn}
       VideoAll={VideoAll}

@@ -8,7 +8,7 @@ export default () => {
   const { user_id: user_id_extract }: any = useParams();
   const user_id = S_N_to_N(user_id_extract);
   const { data: UserData, loading: UserDataLoading } = SeeUserRequest(user_id);
-  const [Mode, setMode] = useState("relation");
+  const [Mode, setMode] = useState("post");
 
   return (
     <BlogPre

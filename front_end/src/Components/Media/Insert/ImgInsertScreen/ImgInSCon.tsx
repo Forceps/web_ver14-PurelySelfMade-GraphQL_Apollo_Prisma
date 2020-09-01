@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ImgInSPre from "./ImgInSPre";
 import useInput from "../../../../GlobalLib/RecycleFunction/Hooks/useInput";
-import { ImgGetUpToN } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Image/ImageR";
+import { ImgGetByDirIdRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Image/ImageR";
 
 interface ImgURLProps {
   setImgSubMenuOp: any;
@@ -19,7 +19,7 @@ const ImgInSCon = ({
     data: ImgList,
     loading: ImgListLod,
     refetch: ImgListRefetch,
-  } = ImgGetUpToN(0, 10);
+  } = ImgGetByDirIdRequest(0, 0, 0, 10);
   const [AddImgOpen, setAddImgOpen] = useState(false);
 
   useEffect(() => {

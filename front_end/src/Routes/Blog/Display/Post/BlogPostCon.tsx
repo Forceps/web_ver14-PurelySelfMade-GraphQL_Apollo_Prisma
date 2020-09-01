@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BlogPostPre from "./BlogPostPre";
 import { WhosePostDirRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Directory/DirectoryR";
 import { PostsByDirIdRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostByDirId";
 import { CountPostByDirIdRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostCount/PostCount";
 
-export default ({ user_id }: DisplayCon) => {
+const BlogPostCon = ({ user_id }: DisplayCon) => {
   const [ChoosedDir, setChoosedDir] = useState<[number, string]>([
     0,
     "Recent all",
   ]);
   const [PostSortBy, setPostSortBy] = useState("recent");
+  const [CurrentPostPage, setCurrentPostPage] = useState(1);
+  const [PostOneTimeShow] = useState(15);
+  const [TotalPostCount, setTotalPostCount] = useState(0);
+
   const { data: WpData, loading: WpLoading } = PostsByDirIdRequest(
     user_id,
     ChoosedDir[0],
     PostSortBy,
-    0,
-    15
+    (CurrentPostPage - 1) * PostOneTimeShow,
+    PostOneTimeShow
   );
   const { data: WpcData, loading: WpcLoading } = CountPostByDirIdRequest(
     user_id,
@@ -24,6 +28,14 @@ export default ({ user_id }: DisplayCon) => {
   const { data: RootDirData, loading: RootDirDataLoad } = WhosePostDirRequest(
     user_id
   );
+
+  useEffect(() => {
+    if (WpcData) {
+      setTotalPostCount(WpcData.countPostByDirId);
+      setCurrentPostPage(1);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [WpcData, ChoosedDir]);
 
   return (
     <BlogPostPre
@@ -35,6 +47,11 @@ export default ({ user_id }: DisplayCon) => {
       setChoosedDir={setChoosedDir}
       PostSortBy={PostSortBy}
       setPostSortBy={setPostSortBy}
+      CurrentPostPage={CurrentPostPage}
+      setCurrentPostPage={setCurrentPostPage}
+      PostOneTimeShow={PostOneTimeShow}
+      TotalPostCount={TotalPostCount}
+      WpcLoading={WpcLoading}
     />
   );
 };
@@ -42,3 +59,5 @@ export default ({ user_id }: DisplayCon) => {
 interface DisplayCon {
   user_id: number;
 }
+
+export default React.memo(BlogPostCon);

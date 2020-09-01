@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PostDetailPre from "./PostDetailPre";
 import { useParams } from "react-router-dom";
 import { SeePostRequest } from "../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostR";
@@ -11,6 +11,10 @@ export default () => {
   const [AddCommentOpen, setAddCommentOpen] = useState(true);
   const [LoginOpen, setLoginOpen] = useState(false);
   const [AuthorWorkOpen, setAuthorWorkOpen] = useState(false);
+
+  useEffect(() => {
+    setAuthorWorkOpen(false);
+  }, [data]);
 
   return loading ? (
     <div />

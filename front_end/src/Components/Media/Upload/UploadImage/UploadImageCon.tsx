@@ -15,7 +15,7 @@ import { removeDuplicatesArray } from "../../../../GlobalLib/RecycleFunction/etc
 import FileTransmissionAndResponse from "../../../../GlobalLib/RecycleFunction/etc/FileTransmissionAndResponse";
 import { DefaultNumPros } from "../MediaUploadLib";
 import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
-import { IMG_GET } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Image/ImageR";
+import { IMG_GET_BY_DIR_ID } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Image/ImageR";
 import { IMG_UPLOAD } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Image/ImageCUD";
 
 type UploadImageConProps = {
@@ -67,7 +67,7 @@ export default ({
     }
   };
   const [uploadMutation] = useMutation(IMG_UPLOAD, {
-    refetchQueries: () => [{ query: IMG_GET }],
+    refetchQueries: () => [{ query: IMG_GET_BY_DIR_ID }],
   });
   const handleSubmit = async (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
     spaped(e);

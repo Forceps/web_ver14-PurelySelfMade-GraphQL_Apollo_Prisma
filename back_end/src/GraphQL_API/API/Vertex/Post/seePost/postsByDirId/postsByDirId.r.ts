@@ -8,8 +8,7 @@ export default {
       { author_id, directory_id, sortBy, skip, take }
     ) => {
       try {
-        let p_by_dir_id: any[] = [];
-        p_by_dir_id = await prisma.post.findMany({
+        const p_by_dir_id = await prisma.post.findMany({
           where:
             directory_id === 0
               ? {

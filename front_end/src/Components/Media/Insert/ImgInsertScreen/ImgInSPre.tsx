@@ -282,7 +282,7 @@ export default ({
                 Add Image?
                 <AddImgPlus className="icon-plus-1" />
               </AddImg>
-              {ImgList?.imgGet?.map((item: any) => (
+              {ImgList?.imgGetByDirId?.map((item: any) => (
                 <ImgBox
                   key={item.address}
                   onClick={(e: any) => {

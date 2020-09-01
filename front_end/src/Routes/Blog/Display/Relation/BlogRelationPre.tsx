@@ -7,10 +7,7 @@ import Avatar from "../../../../Components/User/Avatar/Avatar";
 import { MedataStructure } from "../../../../GlobalLib/Context/UserContext/Me";
 import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";
 import ConfirmationModal from "../../../../Components/ElementEtc/Effect/ConfirmationModal";
-import {
-  FlexCenter100per,
-  FlexCenter,
-} from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
+import { FlexCenter } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Encirclement = styled(W100per)`
   display: grid;
@@ -43,7 +40,7 @@ interface SmodeProps {
   RelationSortBy: string;
   myType: string;
 }
-const Smode = styled(FlexCenter100per)<SmodeProps>`
+const Smode = styled(FlexCenter)<SmodeProps>`
   padding: 3px 10px 3px 10px;
   text-transform: capitalize;
   cursor: pointer;

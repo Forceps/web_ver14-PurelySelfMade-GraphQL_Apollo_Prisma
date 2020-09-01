@@ -20,7 +20,7 @@ export const ProfileDetailModeProvider = ({
   const recentState = useRef("Recent");
   const [CurrentPostPage, setCurrentPostPage] = useState(1);
   const [TotalPostCount, setTotalPostCount] = useState(0);
-  const [PostOneTimeShow, setPostOneTimeShow] = useState(1);
+  const [PostOneTimeShow, setPostOneTimeShow] = useState(15);
 
   const Obj = {
     Mode,

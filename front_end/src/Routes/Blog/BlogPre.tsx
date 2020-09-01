@@ -11,10 +11,10 @@ const Compass = styled(W100per)`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 0 420px 0;
+  padding: 0 0 230px 0;
 `;
 
-export default ({
+const BlogPre = ({
   user_id,
   UserData,
   UserDataLoading,
@@ -53,3 +53,5 @@ interface BlogPreProps {
   Mode: string;
   setMode: any;
 }
+
+export default React.memo(BlogPre);

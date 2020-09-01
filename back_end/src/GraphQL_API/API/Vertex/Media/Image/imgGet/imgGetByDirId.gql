@@ -1,0 +1,8 @@
+type Query {
+  imgGetByDirId(
+    author_id: Int!
+    directory_id: Int!
+    skip: Int!
+    take: Int!
+  ): [Image]
+}

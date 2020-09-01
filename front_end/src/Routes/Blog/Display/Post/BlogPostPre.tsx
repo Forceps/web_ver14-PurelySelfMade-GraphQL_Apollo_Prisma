@@ -8,6 +8,7 @@ import Tile from "../../../../Components/Post/Shape/Tile/TileCon";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import DirListFoldingSystem from "../../../../Components/ElementEtc/DirListFoldingSystem/DirListFoldingSystem";
 import { FlexCenter100per } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
+import PagenationCon from "../../../../Components/ElementEtc/Pagenation/PagenationCon";
 
 const Cover = styled(W100per)`
   display: grid;
@@ -21,11 +22,12 @@ const Category = styled(WH100per)`
 `;
 const Nucleus = styled(WH100per)`
   display: grid;
-  grid-template-rows: 35px 1fr;
+  grid-template-rows: 35px 1fr 100px;
 `;
 const Cells = styled(WH100per)`
   padding: 12px 0 0 0;
   display: flex;
+  flex-wrap: wrap;
 `;
 const Sbj = styled(WH100per)`
   padding: 0 0 0 9px;
@@ -53,8 +55,14 @@ const Smode = styled(FlexCenter100per)<SmodeProps>`
     }
   }}
 `;
+const PgCon = styled(W100per)`
+  display: flex;
+  height: 100px;
+  padding: 0 0 0 10px;
+  align-items: flex-end;
+`;
 
-export default ({
+const BlogPostPre = ({
   WpData,
   WpLoading,
   RootDirData,
@@ -63,6 +71,11 @@ export default ({
   setChoosedDir,
   PostSortBy,
   setPostSortBy,
+  CurrentPostPage,
+  setCurrentPostPage,
+  PostOneTimeShow,
+  TotalPostCount,
+  WpcLoading,
 }: DisplayPreProps) => {
   return (
     <Cover>
@@ -86,6 +99,7 @@ export default ({
         <Sorting>
           {["recent", "popularity"].map((str) => (
             <Smode
+              key={str}
               onClick={() => {
                 setPostSortBy(str);
               }}
@@ -107,6 +121,16 @@ export default ({
             </>
           )}
         </Cells>
+        {!WpcLoading && (
+          <PgCon>
+            <PagenationCon
+              CurrentPostPage={CurrentPostPage}
+              setCurrentPostPage={setCurrentPostPage}
+              PostOneTimeShow={PostOneTimeShow}
+              TotalPostCount={TotalPostCount}
+            />
+          </PgCon>
+        )}
       </Nucleus>
     </Cover>
   );
@@ -121,4 +145,11 @@ interface DisplayPreProps {
   setChoosedDir: any;
   PostSortBy: string;
   setPostSortBy: any;
+  CurrentPostPage: number;
+  setCurrentPostPage: any;
+  PostOneTimeShow: number;
+  TotalPostCount: number;
+  WpcLoading: boolean;
 }
+
+export default React.memo(BlogPostPre);

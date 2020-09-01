@@ -27,13 +27,11 @@ export const ShortMessageProvider = ({ children }: { children: ReactNode }) => {
   };
 
   useEffect(() => {
-    console.log(Mserise);
     const idx = Mserise.findIndex((i) => {
       return i[0] === DeleteTarget;
     });
     let newArr = Mserise;
     newArr.splice(idx, 1);
-    console.log(newArr);
     setMserise(newArr);
     setDummyState((p: number) => p + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps

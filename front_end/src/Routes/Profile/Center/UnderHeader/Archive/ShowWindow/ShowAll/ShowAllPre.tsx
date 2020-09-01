@@ -156,7 +156,7 @@ export default ({
         </Header>
         <MediaFiles>
           {!ImgAllLod &&
-            ImgAll?.imgGet?.map((item: any) => (
+            ImgAll?.map((item: any) => (
               <ImgBox
                 key={item.address}
                 onClick={(e) => {

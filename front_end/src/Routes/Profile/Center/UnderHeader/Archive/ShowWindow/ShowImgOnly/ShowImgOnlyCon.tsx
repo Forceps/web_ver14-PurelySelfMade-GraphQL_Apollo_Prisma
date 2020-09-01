@@ -1,13 +1,13 @@
 import React from "react";
 import ShowImgOnlyPre from "./ShowImgOnlyPre";
-import { ImgGetUpToN } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Image/ImageR";
+import { ImgGetByDirIdRequest } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Image/ImageR";
 
-export default ({
+const ShowImgOnlyCon = ({
   setAddImgScn,
   setShowOneOpen,
   setDetailInfo,
 }: ShowImgOnlyConProps) => {
-  const { data: Imgs, loading: ImgsLod } = ImgGetUpToN(0, 9);
+  const { data: Imgs, loading: ImgsLod } = ImgGetByDirIdRequest(0, 0, 0, 9);
   return (
     <ShowImgOnlyPre
       setAddImgScn={setAddImgScn}
@@ -18,8 +18,11 @@ export default ({
     />
   );
 };
+
 interface ShowImgOnlyConProps {
   setAddImgScn: any;
   setShowOneOpen: any;
   setDetailInfo: any;
 }
+
+export default React.memo(ShowImgOnlyCon);
