@@ -19,7 +19,7 @@ export default ({
     data: VideoList,
     loading: VideoListLod,
     refetch: VideoListRefetch,
-  } = VideoGetByDirIdRequest(0, 10);
+  } = VideoGetByDirIdRequest(0, 0, 0, 10);
   const [AddVideoOpen, setAddVideoOpen] = useState(false);
 
   useEffect(() => {

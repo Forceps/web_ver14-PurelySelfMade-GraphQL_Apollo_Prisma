@@ -10,9 +10,12 @@ const Pagenation = styled(W100per)`
   margin: 14px 0 15px 0;
 `;
 const PgnSbj = styled(W100per)``;
-const PgnNumList = styled(W100per)`
+interface PgnNumListProps {
+  NumberOfDigits: number;
+}
+const PgnNumList = styled(W100per)<PgnNumListProps>`
   display: grid;
-  grid-template-columns: 1fr 1fr 10fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr ${(p) => p.NumberOfDigits + 1}fr 1fr 1fr;
   height: 25px;
   margin: 13px 0 12px 0;
 `;
@@ -63,7 +66,7 @@ export default ({
   return (
     <Pagenation>
       <PgnSbj>Pagenation</PgnSbj>
-      <PgnNumList>
+      <PgnNumList NumberOfDigits={NumberOfDigits}>
         <PageMoveBtn
           onClick={() => {
             setCurrentUUP(1);

@@ -20,9 +20,14 @@ export const VIDEO_GET_BY_DIR_ID = gql`
     }
   }
 `;
-export const VideoGetByDirIdRequest = (skip?: number, take?: number) =>
+export const VideoGetByDirIdRequest = (
+  directory_id: number,
+  author_id: number,
+  skip: number,
+  take: number
+) =>
   useQuery(VIDEO_GET_BY_DIR_ID, {
-    variables: { skip, take },
+    variables: { directory_id, author_id, skip, take },
   });
 
 export const VIDEO_COUNT_BY_DIR_ID = gql`

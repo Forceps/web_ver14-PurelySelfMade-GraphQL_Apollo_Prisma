@@ -29,7 +29,7 @@ export default ({
 
   useEffect(() => {
     if (AudioC) {
-      PfDM.setTotalCount(AudioC.imgCountByDirId);
+      PfDM.setTotalCount(AudioC.musicCountByDirId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [AudioC, PM.Mode, Location, PfDM.Mode]);

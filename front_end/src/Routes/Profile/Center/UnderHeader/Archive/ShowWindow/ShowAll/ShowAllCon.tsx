@@ -12,7 +12,12 @@ export default ({
   setDetailInfo,
 }: ShowAllCase) => {
   const { data: ImgAll, loading: ImgAllLod } = ImgGetByDirIdRequest(0, 0, 0, 4);
-  const { data: VideoAll, loading: VideoAllLod } = VideoGetByDirIdRequest();
+  const { data: VideoAll, loading: VideoAllLod } = VideoGetByDirIdRequest(
+    0,
+    0,
+    0,
+    4
+  );
   const { data: AudioAll, loading: AudioAllLod } = AudioGetByDirIdRequest(
     0,
     0,
