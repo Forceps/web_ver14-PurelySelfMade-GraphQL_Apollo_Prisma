@@ -28,3 +28,16 @@ export const ImgGetByDirIdRequest = (
   useQuery(IMG_GET_BY_DIR_ID, {
     variables: { directory_id, author_id, skip, take },
   });
+
+export const IMG_COUNT_BY_DIR_ID = gql`
+  query imgCountByDirId($author_id: Int!, $directory_id: Int!) {
+    imgCountByDirId(author_id: $author_id, directory_id: $directory_id)
+  }
+`;
+export const ImgCountByDirIdRequest = (
+  author_id: number,
+  directory_id: number
+) =>
+  useQuery(IMG_COUNT_BY_DIR_ID, {
+    variables: { author_id, directory_id },
+  });

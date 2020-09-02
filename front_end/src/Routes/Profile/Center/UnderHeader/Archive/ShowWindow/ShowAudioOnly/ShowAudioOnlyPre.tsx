@@ -92,7 +92,7 @@ export default ({
       </Header>
       <MediaFiles>
         {!AudiosLod &&
-          Audios?.musicGet?.map((item: any) => (
+          Audios?.musicGetByDirId?.map((item: any) => (
             <AudioBox
               key={item.address}
               onClick={(e) => {

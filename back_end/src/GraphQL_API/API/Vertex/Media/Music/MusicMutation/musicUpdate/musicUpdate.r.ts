@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
-import { rootArchiveDir } from "../../../../../LibForGQL/findByPrisma/findRootDir";
-import { MusicUpdateMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
-import { contextType } from "../../../../../LibForGQL/typesLib";
+import { rootArchiveDir } from "../../../../../../LibForGQL/findByPrisma/findRootDir";
+import { MusicUpdateMutationArgs } from "../../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {

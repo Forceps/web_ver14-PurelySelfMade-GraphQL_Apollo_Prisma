@@ -1,35 +1,36 @@
 import { PrismaClient } from "@prisma/client";
-import { rootArchiveDir } from "../../../../../LibForGQL/findByPrisma/findRootDir";
-import { ImgUploadMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
-import { contextType } from "../../../../../LibForGQL/typesLib";
+import { rootArchiveDir } from "../../../../../../LibForGQL/findByPrisma/findRootDir";
+import { VideoUploadMutationArgs } from "../../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
   Mutation: {
-    imgUpload: async (
+    videoUpload: async (
       _: void,
-      args: ImgUploadMutationArgs,
+      args: VideoUploadMutationArgs,
       { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { user } = req;
-      const { address, caption, volume, directory_id, type } = args;
+      const { address, caption, volume, directory_id, type, thumbnail } = args;
 
       try {
-        const RootDir = await rootArchiveDir(user.user_id);
+        const rootDir = await rootArchiveDir(user.user_id);
         for (let i = 0; i < address.length; i++) {
-          await prisma.image.create({
+          await prisma.video.create({
             data: {
               address: address[i],
               caption: caption[i],
               type: type ? type[i] : null,
               volume: volume[i],
-              directory_directoryToimage: {
+              directory_directoryTovideo: {
                 connect: {
                   directory_id:
-                    directory_id[i] === 0 ? RootDir : directory_id[i],
+                    directory_id[i] === 0 ? rootDir : directory_id[i],
                 },
               },
+              thumbnail: thumbnail ? thumbnail[i] : null,
             },
           });
         }

@@ -17,8 +17,8 @@ export default () => {
     S_N_to_N(user_id),
     Location,
     PfDM.Mode,
-    (PfDM.CurrentPostPage - 1) * PfDM.PostOneTimeShow,
-    PfDM.PostOneTimeShow
+    (PfDM.CurrentPage - 1) * PfDM.OneTimeShow,
+    PfDM.OneTimeShow
   );
   const { data: WpcData, loading: WpcLoading } = CountPostByDirIdRequest(
     S_N_to_N(user_id),
@@ -27,8 +27,8 @@ export default () => {
 
   useEffect(() => {
     if (WpcData) {
-      PfDM.setTotalPostCount(WpcData.countPostByDirId);
-      PfDM.setCurrentPostPage(1);
+      PfDM.setTotalCount(WpcData.countPostByDirId);
+      PfDM.setCurrentPage(1);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [WpcData, Location]);

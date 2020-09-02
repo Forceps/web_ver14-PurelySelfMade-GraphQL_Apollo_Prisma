@@ -196,7 +196,7 @@ export default ({
         </Header>
         <MediaFiles>
           {!VideoAllLod &&
-            VideoAll.videoGet?.map((item: any) => (
+            VideoAll.videoGetByDirId?.map((item: any) => (
               <VideoBox
                 key={item.address}
                 onClick={(e) => {
@@ -234,7 +234,7 @@ export default ({
         </Header>
         <AudioFiles>
           {!AudioAllLod &&
-            AudioAll.musicGet?.map((item: any) => (
+            AudioAll.musicGetByDirId?.map((item: any) => (
               <AudioBox
                 key={item.address}
                 onClick={(e) => {

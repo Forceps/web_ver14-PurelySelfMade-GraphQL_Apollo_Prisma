@@ -34,7 +34,7 @@ export default ({
       AudioSelectMode={AudioSelectMode}
       setAudioSelectMode={setAudioSelectMode}
       zIndex={zIndex}
-      AudioList={AudioList?.musicGet}
+      AudioList={AudioList?.musicGetByDirId}
       AudioListLod={AudioListLod}
       AudioListRefetch={AudioListRefetch}
       AddAudioOpen={AddAudioOpen}

@@ -1,30 +1,33 @@
 import { PrismaClient } from "@prisma/client";
-import { MusicGetQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
-import { contextType } from "../../../../../LibForGQL/typesLib";
+import { contextType } from "../../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
   Query: {
-    musicGet: async (
+    musicGetByDirId: async (
       _: void,
-      args: MusicGetQueryArgs,
+      { author_id, directory_id, skip, take },
       { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { user } = req;
-      const { skip, take } = args;
       try {
         return prisma.music.findMany({
-          where: {
-            directory_directoryTomusic: {
-              user: user.user_id,
-            },
-          },
+          where:
+            directory_id === 0
+              ? {
+                  directory_directoryTomusic: {
+                    user: author_id === 0 ? user.user_id : author_id,
+                  },
+                }
+              : {
+                  directory: directory_id,
+                },
           orderBy: {
             music_id: "desc",
           },
           skip: skip ? skip : 0,
-          take: take ? take : 6,
+          take: take ? take : 4,
         });
       } catch (e) {
         console.log(e);

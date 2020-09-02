@@ -1,18 +1,18 @@
 import { PrismaClient } from "@prisma/client";
-import { rootArchiveDir } from "../../../../../LibForGQL/findByPrisma/findRootDir";
-import { VideoUpdateMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
-import { contextType } from "../../../../../LibForGQL/typesLib";
+import { rootArchiveDir } from "../../../../../../LibForGQL/findByPrisma/findRootDir";
+import { ImgUpdateMutationArgs } from "../../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
   Mutation: {
-    videoUpdate: async (
+    imgUpdate: async (
       _: void,
-      args: VideoUpdateMutationArgs,
+      args: ImgUpdateMutationArgs,
       { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
-      const { video_id, caption, directory_id } = args;
+      const { image_id, caption, directory_id } = args;
       const { user } = req;
       let directory: any = null;
       try {
@@ -26,14 +26,14 @@ export default {
       }
 
       try {
-        await prisma.video.update({
+        await prisma.image.update({
           data: {
             caption,
-            directory_directoryTovideo: {
+            directory_directoryToimage: {
               connect: { directory_id: directory },
             },
           },
-          where: { video_id },
+          where: { image_id },
         });
         return true;
       } catch (e) {

@@ -1,30 +1,33 @@
 import { PrismaClient } from "@prisma/client";
-import { VideoGetQueryArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
-import { contextType } from "../../../../../LibForGQL/typesLib";
+import { contextType } from "../../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
   Query: {
-    videoGet: async (
+    videoGetByDirId: async (
       _: void,
-      args: VideoGetQueryArgs,
+      { author_id, directory_id, skip, take },
       { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       const { user } = req;
-      const { skip, take } = args;
       try {
         return prisma.video.findMany({
-          where: {
-            directory_directoryTovideo: {
-              user: user.user_id,
-            },
-          },
+          where:
+            directory_id === 0
+              ? {
+                  directory_directoryTovideo: {
+                    user: author_id === 0 ? user.user_id : author_id,
+                  },
+                }
+              : {
+                  directory: directory_id,
+                },
           orderBy: {
             video_id: "desc",
           },
           skip: skip ? skip : 0,
-          take: take ? take : 6,
+          take: take ? take : 4,
         });
       } catch (e) {
         console.log(e);

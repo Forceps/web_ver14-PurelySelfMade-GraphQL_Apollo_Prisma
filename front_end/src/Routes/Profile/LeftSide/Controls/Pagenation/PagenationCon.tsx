@@ -10,9 +10,9 @@ export default () => {
   const [NumberOfDigits] = useState(8);
 
   const divide =
-    Math.ceil(PfDM.TotalPostCount / PfDM.PostOneTimeShow) === 0
+    Math.ceil(PfDM.TotalCount / PfDM.OneTimeShow) === 0
       ? 1
-      : Math.ceil(PfDM.TotalPostCount / PfDM.PostOneTimeShow);
+      : Math.ceil(PfDM.TotalCount / PfDM.OneTimeShow);
   const divideU = Math.ceil(divide / NumberOfDigits);
 
   useEffect(() => {
@@ -22,7 +22,7 @@ export default () => {
     }
     setUpperUnitPageNum(arrU);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [PfDM.TotalPostCount]);
+  }, [PfDM.TotalCount]);
   useEffect(() => {
     let arr: number[] = [];
     if (CurrentUUP === divideU) {
@@ -36,7 +36,7 @@ export default () => {
     }
     setPagenationNum(arr);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [CurrentUUP]);
+  }, [CurrentUUP, PfDM.TotalCount]);
 
   return (
     <PagenationPre

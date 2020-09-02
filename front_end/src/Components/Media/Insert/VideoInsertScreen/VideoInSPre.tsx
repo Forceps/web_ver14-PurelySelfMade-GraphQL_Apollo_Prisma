@@ -318,7 +318,7 @@ export default ({
                   Add Video?
                   <AddVdoPlus className="icon-plus-1" />
                 </AddVdo>
-                {VideoList?.videoGet?.map((item: any) => (
+                {VideoList?.videoGetByDirId?.map((item: any) => (
                   <VideoBox
                     key={item.address}
                     onClick={(e) => {

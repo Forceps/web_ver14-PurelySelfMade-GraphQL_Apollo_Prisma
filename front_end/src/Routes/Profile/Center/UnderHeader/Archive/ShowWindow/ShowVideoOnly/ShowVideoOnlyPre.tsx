@@ -108,7 +108,7 @@ export default ({
       </Header>
       <MediaFiles>
         {!VideosLod &&
-          Videos?.videoGet?.map((item: any) => (
+          Videos?.videoGetByDirId?.map((item: any) => (
             <VideoBox
               key={item.address}
               onClick={(e) => {

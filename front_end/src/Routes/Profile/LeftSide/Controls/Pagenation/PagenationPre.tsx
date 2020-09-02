@@ -30,12 +30,12 @@ const PageMoveBtn = styled(FlexCenter100per)`
   }
 `;
 interface PageNumProps {
-  currentPostPage: number;
+  CurrentPage: number;
   inherenceNum: number;
 }
 const PageNum = styled(PageMoveBtn)<PageNumProps>`
   ${(p) => {
-    if (p.currentPostPage === p.inherenceNum) {
+    if (p.CurrentPage === p.inherenceNum) {
       return css`
         background-color: #2d3436;
         color: #fafafa;
@@ -67,7 +67,7 @@ export default ({
         <PageMoveBtn
           onClick={() => {
             setCurrentUUP(1);
-            PfDM.setCurrentPostPage(1);
+            PfDM.setCurrentPage(1);
           }}
         >
           <i className="icon-fast-bw" />
@@ -94,9 +94,9 @@ export default ({
             <PageNum
               key={n}
               onClick={() => {
-                PfDM.setCurrentPostPage(n);
+                PfDM.setCurrentPage(n);
               }}
-              currentPostPage={PfDM.CurrentPostPage}
+              CurrentPage={PfDM.CurrentPage}
               inherenceNum={n}
             >
               {n}
@@ -123,9 +123,7 @@ export default ({
         <PageMoveBtn
           onClick={() => {
             setCurrentUUP(Uuplast);
-            PfDM.setCurrentPostPage(
-              Math.ceil(PfDM.TotalPostCount / PfDM.PostOneTimeShow)
-            );
+            PfDM.setCurrentPage(Math.ceil(PfDM.TotalCount / PfDM.OneTimeShow));
           }}
         >
           <i className="icon-fast-fw" />

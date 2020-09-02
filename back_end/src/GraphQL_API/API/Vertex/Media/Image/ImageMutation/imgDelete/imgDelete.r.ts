@@ -1,9 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import fs from "fs";
-import { binaryFileLocation } from "../../../../../../GlobalLib/assets/im_here";
-import { ImgDeleteMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
-import { contextType } from "../../../../../LibForGQL/typesLib";
+import { binaryFileLocation } from "../../../../../../../GlobalLib/assets/im_here";
+import { ImgDeleteMutationArgs } from "../../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../../LibForGQL/typesLib";
 
 export default {
   Mutation: {

@@ -1,3 +1,0 @@
-type Query {
-  videoGet(skip: Int, take: Int): [Video]
-}

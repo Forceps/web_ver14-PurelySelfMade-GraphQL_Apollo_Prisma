@@ -1,21 +1,21 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 import fs from "fs";
-import { binaryFileLocation } from "../../../../../../GlobalLib/assets/im_here";
-import { MusicDeleteMutationArgs } from "../../../../../LibForGQL/mergedSchema/types/graph";
-import { contextType } from "../../../../../LibForGQL/typesLib";
+import { binaryFileLocation } from "../../../../../../../GlobalLib/assets/im_here";
+import { VideoDeleteMutationArgs } from "../../../../../../LibForGQL/mergedSchema/types/graph";
+import { contextType } from "../../../../../../LibForGQL/typesLib";
 
 export default {
   Mutation: {
-    musicDelete: async (
-      _: null,
-      { music_id }: MusicDeleteMutationArgs,
+    videoDelete: async (
+      _: void,
+      { video_id }: VideoDeleteMutationArgs,
       { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
       try {
-        const fileThing = await prisma.music.delete({
-          where: { music_id },
+        const fileThing = await prisma.video.delete({
+          where: { video_id },
           select: { address: true },
         });
         fs.unlinkSync(binaryFileLocation(fileThing.address));
