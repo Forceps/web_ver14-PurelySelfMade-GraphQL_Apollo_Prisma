@@ -15,7 +15,7 @@ import { removeDuplicatesArray } from "../../../../GlobalLib/RecycleFunction/etc
 import FileTransmissionAndResponse from "../../../../GlobalLib/RecycleFunction/etc/FileTransmissionAndResponse";
 import { DefaultNumPros } from "../MediaUploadLib";
 import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
-import { MUSIC_GET } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Audio/AudioR";
+import { MUSIC_GET_BY_DIR_ID } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Audio/AudioR";
 import { AUDIO_UPLOAD } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Audio/AudioCUD";
 
 type UploadAudioConProps = {
@@ -80,7 +80,7 @@ export default ({
     console.log();
   };
   const [uploadMutation] = useMutation(AUDIO_UPLOAD, {
-    refetchQueries: () => [{ query: MUSIC_GET }],
+    refetchQueries: () => [{ query: MUSIC_GET_BY_DIR_ID }],
   });
   const handleSubmit = async (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
     spaped(e);

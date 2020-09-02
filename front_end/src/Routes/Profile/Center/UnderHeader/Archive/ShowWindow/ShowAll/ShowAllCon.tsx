@@ -1,8 +1,8 @@
 import React from "react";
 import ShowAllPre from "./ShowAllPre";
 import { ImgGetByDirIdRequest } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Image/ImageR";
-import { VideoGetByDirIdUpToN } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoR";
-import { AudioGetUpToN } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Audio/AudioR";
+import { VideoGetByDirIdRequest } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoR";
+import { AudioGetByDirIdRequest } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Audio/AudioR";
 
 export default ({
   setAddImgScn,
@@ -12,8 +12,13 @@ export default ({
   setDetailInfo,
 }: ShowAllCase) => {
   const { data: ImgAll, loading: ImgAllLod } = ImgGetByDirIdRequest(0, 0, 0, 4);
-  const { data: VideoAll, loading: VideoAllLod } = VideoGetByDirIdUpToN();
-  const { data: AudioAll, loading: AudioAllLod } = AudioGetUpToN();
+  const { data: VideoAll, loading: VideoAllLod } = VideoGetByDirIdRequest();
+  const { data: AudioAll, loading: AudioAllLod } = AudioGetByDirIdRequest(
+    0,
+    0,
+    0,
+    4
+  );
   return (
     <ShowAllPre
       setAddImgScn={setAddImgScn}

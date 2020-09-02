@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import VideoInSPre from "./VideoInSPre";
 import useInput from "../../../../GlobalLib/RecycleFunction/Hooks/useInput";
-import { VideoGetByDirIdUpToN } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoR";
+import { VideoGetByDirIdRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoR";
 
 type VideoURLProps = {
   setVideoSubMenuOp: any;
@@ -19,7 +19,7 @@ export default ({
     data: VideoList,
     loading: VideoListLod,
     refetch: VideoListRefetch,
-  } = VideoGetByDirIdUpToN(0, 10);
+  } = VideoGetByDirIdRequest(0, 10);
   const [AddVideoOpen, setAddVideoOpen] = useState(false);
 
   useEffect(() => {

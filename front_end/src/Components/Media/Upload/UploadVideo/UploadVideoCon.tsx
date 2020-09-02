@@ -16,7 +16,7 @@ import FileTransmissionAndResponse from "../../../../GlobalLib/RecycleFunction/e
 import { DefaultNumPros } from "../MediaUploadLib";
 import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import { VIDEO_UPLOAD } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoCUD";
-import { VIDEO_GET } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoR";
+import { VIDEO_GET_BY_DIR_ID } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoR";
 
 type UploadVideoConProps = {
   setAddVideoScn: any;
@@ -80,7 +80,7 @@ export default ({
     console.log();
   };
   const [uploadMutation] = useMutation(VIDEO_UPLOAD, {
-    refetchQueries: () => [{ query: VIDEO_GET }],
+    refetchQueries: () => [{ query: VIDEO_GET_BY_DIR_ID }],
   });
   const handleSubmit = async (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
     spaped(e);

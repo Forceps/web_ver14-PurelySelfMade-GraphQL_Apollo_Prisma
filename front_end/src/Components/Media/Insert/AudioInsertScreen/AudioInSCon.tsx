@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import AudioInSPre from "./AudioInSPre";
 import useInput from "../../../../GlobalLib/RecycleFunction/Hooks/useInput";
-import { AudioGetUpToN } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Audio/AudioR";
+import { AudioGetByDirIdRequest } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Audio/AudioR";
 
 type AudioURLProps = {
   setAudioSubMenuOp: any;
@@ -19,7 +19,7 @@ export default ({
     data: AudioList,
     loading: AudioListLod,
     refetch: AudioListRefetch,
-  } = AudioGetUpToN(0, 10);
+  } = AudioGetByDirIdRequest(0, 0, 0, 10);
   const [AddAudioOpen, setAddAudioOpen] = useState(false);
   useEffect(() => {
     document.getElementById("AudioURLTextInput")?.focus();

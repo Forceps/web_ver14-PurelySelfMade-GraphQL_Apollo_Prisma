@@ -32,7 +32,7 @@ const ShowImgOnlyCon = ({
       PfDM.setTotalCount(ImgsC.imgCountByDirId);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ImgsC, PM.Mode, Location]);
+  }, [ImgsC, PM.Mode, Location, PfDM.Mode]);
 
   return (
     <ShowImgOnlyPre

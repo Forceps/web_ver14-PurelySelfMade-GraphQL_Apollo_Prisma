@@ -1,13 +1,13 @@
 import React from "react";
 import ShowVideoOnlyPre from "./ShowVideoOnlyPre";
-import { VideoGetByDirIdUpToN } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoR";
+import { VideoGetByDirIdRequest } from "../../../../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoR";
 
 export default ({
   setAddVideoScn,
   setShowOneOpen,
   setDetailInfo,
 }: ShowVideoOnlyConProps) => {
-  const { data: Videos, loading: VideosLod } = VideoGetByDirIdUpToN(0, 9);
+  const { data: Videos, loading: VideosLod } = VideoGetByDirIdRequest(0, 9);
   return (
     <ShowVideoOnlyPre
       setAddVideoScn={setAddVideoScn}

@@ -19,7 +19,7 @@ export const MUSIC_GET_BY_DIR_ID = gql`
     }
   }
 `;
-export const AudioGetUpToN = (
+export const AudioGetByDirIdRequest = (
   directory_id: number,
   author_id: number,
   skip: number,
@@ -34,7 +34,7 @@ export const MUSIC_COUNT_BY_DIR_ID = gql`
     musicCountByDirId(author_id: $author_id, directory_id: $directory_id)
   }
 `;
-export const ImgCountByDirIdRequest = (
+export const AudioCountByDirIdRequest = (
   author_id: number,
   directory_id: number
 ) =>
