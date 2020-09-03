@@ -83,7 +83,7 @@ export default ({ post, zIndex = 0 }: EachPostConProps) => {
         <Contents
           className="postCells"
           tagName="article"
-          html={post.content}
+          html={post.content || ""}
           spellCheck="false"
           disabled={true}
         />

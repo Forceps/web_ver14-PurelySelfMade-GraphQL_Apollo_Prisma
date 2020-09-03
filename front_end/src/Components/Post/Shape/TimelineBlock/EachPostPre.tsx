@@ -22,6 +22,9 @@ const Inclosure = styled(W100per)<InclosureProps>`
   display: grid;
   grid-template-columns: 60px 1fr;
   margin: 20px 0 40px 0;
+  &:first-child {
+    margin-top: 0;
+  }
   z-index: ${(prop) => prop.zIndex};
 `;
 const Wrapper = styled(W100per)`

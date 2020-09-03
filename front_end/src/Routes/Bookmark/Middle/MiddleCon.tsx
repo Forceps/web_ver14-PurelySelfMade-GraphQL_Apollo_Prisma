@@ -1,50 +1,58 @@
-import React from "react";
-import styled from "styled-components";
-import PostTimelineCon from "./PostTimeline/PostTimelineCon";
-import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { useSearchUser } from "../../../GlobalLib/Context/UserContext/SearchUser";
-import SearchedUser from "./SearchedUser/SearchedUserCon";
-
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: calc(50vw - 550px + 190px);
-  width: 600px;
-  z-index: 0;
-`;
-const SmallTitle = styled(W100per)`
-  display: grid;
-  align-items: center;
-  padding: 14px 0 0 10px;
-  font-size: 1.3rem;
-`;
-const SmallerTitle = styled(W100per)`
-  display: grid;
-  align-items: center;
-  padding: 14px 0 0 10px;
-  font-size: 1.1rem;
-`;
+import React, { useState, useEffect, useRef } from "react";
+import MiddlePre from "./MiddlePre";
 
 export default ({ SeeMode }: MiddleConProps) => {
-  const SU = useSearchUser();
+  const [Turn, setTurn] = useState([0, 1]);
+  const [LoadCount] = useState(6);
+  const OnlyOnce = useRef(true);
+  const Finish = useRef(false);
+
+  const LoadMore = () => {
+    if (!Finish.current) {
+      const getDocumentHeight = Math.max(
+        document.body.scrollHeight,
+        document.body.offsetHeight,
+        document.documentElement.clientHeight,
+        document.documentElement.scrollHeight,
+        document.documentElement.offsetHeight
+      );
+      const getScrollTop =
+        window.pageYOffset !== undefined
+          ? window.pageYOffset
+          : (
+              document.documentElement ||
+              document.body.parentNode ||
+              document.body
+            ).scrollTop;
+      if (getScrollTop + window.innerHeight + 50 > getDocumentHeight) {
+        if (OnlyOnce.current) {
+          setTurn((a) => {
+            const newA = a.concat(a[a.length - 1] + 1);
+            return newA;
+          });
+          OnlyOnce.current = false;
+        }
+      } else {
+        OnlyOnce.current = true;
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", LoadMore);
+    return () => {
+      window.removeEventListener("scroll", LoadMore);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <Wrapper>
-      {SeeMode === "Search" && SU.called ? (
-        <>
-          <SmallTitle>Search</SmallTitle>
-          <SmallerTitle>User</SmallerTitle>
-          <SearchedUser />
-          <SmallerTitle>Post</SmallerTitle>
-          <PostTimelineCon />
-        </>
-      ) : (
-        <>
-          <SmallTitle>New</SmallTitle>
-          <PostTimelineCon />
-        </>
-      )}
-    </Wrapper>
+    <MiddlePre
+      SeeMode={SeeMode}
+      Turn={Turn}
+      LoadCount={LoadCount}
+      Finish={Finish}
+    />
   );
 };
 

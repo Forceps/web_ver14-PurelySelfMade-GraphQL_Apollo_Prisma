@@ -6,7 +6,7 @@ export default {
   Query: {
     subscriptionPost: async (
       _: void,
-      __: void,
+      { skip, take },
       { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
@@ -31,7 +31,8 @@ export default {
           },
           include: { user_postTouser: true },
           orderBy: { post_id: "desc" },
-          take: 15,
+          skip: skip ? skip : 0,
+          take: take ? take : 15,
         });
       } catch (e) {
         console.log(e);

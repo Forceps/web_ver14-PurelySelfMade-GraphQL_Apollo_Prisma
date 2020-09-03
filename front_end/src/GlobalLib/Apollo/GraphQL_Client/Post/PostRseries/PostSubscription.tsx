@@ -1,8 +1,8 @@
 import { gql, useQuery } from "@apollo/client";
 
 export const SUBSCRIPTION_POST = gql`
-  query subscriptionPost {
-    subscriptionPost {
+  query subscriptionPost($skip: Int!, $take: Int!) {
+    subscriptionPost(skip: $skip, take: $take) {
       post_id
       caption
       content
@@ -18,4 +18,7 @@ export const SUBSCRIPTION_POST = gql`
     }
   }
 `;
-export const SubscriptionPostRequest = () => useQuery(SUBSCRIPTION_POST);
+export const SubscriptionPostRequest = (skip: number, take: number) =>
+  useQuery(SUBSCRIPTION_POST, {
+    variables: { skip, take },
+  });

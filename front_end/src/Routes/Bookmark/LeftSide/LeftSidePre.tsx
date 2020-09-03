@@ -47,7 +47,7 @@ export default ({ Isubs }: LeftSidePreProps) => {
         <Sbj>Subscribers</Sbj>
         <Blocks>
           {Isubs.map((s: any) => (
-            <AvCons>
+            <AvCons key={s.user_id}>
               <Avatar size={55} url={s.avatar} />
               <Introduce>{s.username}</Introduce>
             </AvCons>

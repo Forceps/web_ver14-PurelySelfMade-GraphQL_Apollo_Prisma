@@ -16,7 +16,7 @@ const LoadingWrapper = styled.div`
 `;
 const Posts = styled.div`
   display: inline-block;
-  padding: 11px;
+  padding: 0 11px 0 11px;
   width: 100%;
 `;
 
