@@ -27,6 +27,7 @@ export default ({
   UP,
   SeeMode,
   OntTimeShow,
+  Finish,
 }: PostTimelinePreProps) => {
   const SU = useSearchUser();
   return (
@@ -36,7 +37,7 @@ export default ({
       </SmallTitle>
       <Posts>
         {List.map((i) => (
-          <TilesBundle skip={i * OntTimeShow} take={(i + 1) * OntTimeShow} />
+          <TilesBundle skip={i * OntTimeShow} take={12} Finish={Finish} />
         ))}
       </Posts>
       {PD.OpenSeePostDetail && <PostDetailT />}
@@ -54,4 +55,5 @@ interface PostTimelinePreProps {
   UP: any;
   SeeMode: string;
   OntTimeShow: number;
+  Finish: any;
 }

@@ -46,6 +46,7 @@ export default ({ SeeMode = "general" }: RecentPostsConProps) => {
       UP={UP}
       SeeMode={SeeMode}
       OntTimeShow={OntTimeShow}
+      Finish={Finish}
     />
   );
 };
