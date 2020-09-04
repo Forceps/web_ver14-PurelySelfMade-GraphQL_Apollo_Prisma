@@ -26,7 +26,7 @@ const SmallerTitle = styled(W100per)`
   font-size: 1.1rem;
 `;
 
-export default ({ SeeMode, Turn, LoadCount, Finish }: MiddlePreProps) => {
+export default ({ SeeMode, List, LoadCount, Finish }: MiddlePreProps) => {
   const SU = useSearchUser();
 
   return (
@@ -37,7 +37,7 @@ export default ({ SeeMode, Turn, LoadCount, Finish }: MiddlePreProps) => {
           <SmallerTitle>User</SmallerTitle>
           <SearchedUser />
           <SmallerTitle>Post</SmallerTitle>
-          {Turn.map((t) => (
+          {List.map((t) => (
             <PostTimelineCon
               key={t}
               turn={t}
@@ -49,7 +49,7 @@ export default ({ SeeMode, Turn, LoadCount, Finish }: MiddlePreProps) => {
       ) : (
         <>
           <SmallTitle>New</SmallTitle>
-          {Turn.map((t) => (
+          {List.map((t) => (
             <PostTimelineCon
               key={t}
               turn={t}
@@ -65,7 +65,7 @@ export default ({ SeeMode, Turn, LoadCount, Finish }: MiddlePreProps) => {
 
 interface MiddlePreProps {
   SeeMode: string;
-  Turn: number[];
+  List: number[];
   LoadCount: number;
   Finish: any;
 }

@@ -10,7 +10,7 @@ const Body = styled.div`
 `;
 const UpAndDown = styled.div`
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-rows: 50px 1fr 50px;
 `;
 
 export default ({ SeeMode, setSeeMode }: HomePreProps) => {
@@ -20,6 +20,7 @@ export default ({ SeeMode, setSeeMode }: HomePreProps) => {
       <UpAndDown>
         <HeaderCon setSeeMode={setSeeMode} />
         <MiddleCon SeeMode={SeeMode} />
+        <div />
       </UpAndDown>
     </Body>
   );
