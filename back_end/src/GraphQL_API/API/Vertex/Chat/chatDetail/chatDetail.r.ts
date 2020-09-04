@@ -19,7 +19,7 @@ export default {
             user_chatTouser: true,
           },
           orderBy: { chat_id: "desc" },
-          skip: skip ? skip : 0,
+          skip: typeof skip === "number" ? skip : 0,
           take: take ? take : 4,
         });
         return result;

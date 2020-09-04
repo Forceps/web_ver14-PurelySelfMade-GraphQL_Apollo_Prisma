@@ -31,7 +31,7 @@ export default {
           },
           include: { user_postTouser: true },
           orderBy: { post_id: "desc" },
-          skip: skip ? skip : 0,
+          skip: typeof skip === "number" ? skip : 0,
           take: take ? take : 15,
         });
       } catch (e) {

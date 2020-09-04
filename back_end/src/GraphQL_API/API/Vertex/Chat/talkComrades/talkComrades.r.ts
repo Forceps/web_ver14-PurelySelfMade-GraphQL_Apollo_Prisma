@@ -27,7 +27,7 @@ export default {
               },
             },
           },
-          skip: skip ? skip : 0,
+          skip: typeof skip === "number" ? skip : 0,
           take: take ? take : 6,
         });
 

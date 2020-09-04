@@ -29,8 +29,8 @@ export const SeePostRequest = (post_id: number) =>
   });
 
 export const SEE_POST_ALL = gql`
-  {
-    seePosts {
+  query postsByDirId($skip: Int!, $take: Int!) {
+    seePosts(skip: $skip, take: $take) {
       post_id
       caption
       user_postTouser {
@@ -46,7 +46,10 @@ export const SEE_POST_ALL = gql`
     }
   }
 `;
-export const SeePostAllRequest = () => useQuery(SEE_POST_ALL);
+export const SeePostAllRequest = (skip: number, take: number) =>
+  useQuery(SEE_POST_ALL, {
+    variables: { skip, take },
+  });
 
 export const SEE_WHOSE_POSTS = gql`
   query seeWhosePosts($user: Int!) {

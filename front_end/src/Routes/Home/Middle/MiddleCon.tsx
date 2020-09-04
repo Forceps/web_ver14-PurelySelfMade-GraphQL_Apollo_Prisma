@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import TspPostsCon from "./ParallelTiles/TspPosts/TspPostsCon";
+import RecentPostsCon from "./ParallelTiles/RecentPosts/RecentPostsCon";
 import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { useSearchUser } from "../../../GlobalLib/Context/UserContext/SearchUser";
 import SearchedUser from "./SearchedUser/SearchedUserCon";
@@ -36,12 +36,12 @@ export default ({ SeeMode }: MiddleConProps) => {
           <SmallTitle>Search</SmallTitle>
           <SmallerTitle>User</SmallerTitle>
           <SearchedUser />
-          <TspPostsCon SeeMode={SeeMode} />
+          <RecentPostsCon SeeMode={SeeMode} />
         </>
       ) : (
         <>
           {isLoggedIn && <RecommendPostsCon />}
-          <TspPostsCon />
+          <RecentPostsCon />
         </>
       )}
     </Wrapper>

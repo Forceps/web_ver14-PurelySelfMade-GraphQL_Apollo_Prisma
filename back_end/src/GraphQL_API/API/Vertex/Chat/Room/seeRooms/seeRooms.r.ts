@@ -30,7 +30,7 @@ export default {
             },
           },
           orderBy: { chat_room_id: "desc" },
-          skip: skip ? skip : 0,
+          skip: typeof skip === "number" ? skip : 0,
           take: take ? take : 6,
         });
         return result;

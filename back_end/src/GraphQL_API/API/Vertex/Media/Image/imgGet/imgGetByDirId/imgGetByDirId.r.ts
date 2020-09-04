@@ -26,7 +26,7 @@ export default {
           orderBy: {
             image_id: "desc",
           },
-          skip: skip ? skip : 0,
+          skip: typeof skip === "number" ? skip : 0,
           take: take ? take : 4,
         });
         return img_by_dir_id;

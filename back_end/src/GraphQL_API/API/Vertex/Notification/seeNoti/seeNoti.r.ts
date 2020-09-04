@@ -18,7 +18,7 @@ export default {
             user,
           },
           orderBy: { notification_id: "desc" },
-          skip: skip ? skip : 0,
+          skip: typeof skip === "number" ? skip : 0,
           take: take ? take : 9,
         });
         return result.reverse();

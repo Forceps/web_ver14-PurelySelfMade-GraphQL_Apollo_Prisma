@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { S_N_to_N } from "../../../RecycleFunction/etc/type_convert";
 import {
-  SeePostAllRequest,
   SeeWhosePostsLazyRequest,
   SeeSearchPostsRequest,
 } from "../../../Apollo/GraphQL_Client/Post/PostRseries/PostR";
@@ -24,7 +23,6 @@ export const TargetsShownProvider = ({ children }: { children: ReactNode }) => {
   const [posts, setPosts] = useState(null);
   const [posts_loading, setPosts_loading] = useState(true);
   const [posts_refetch, setPosts_refetch]: any = useState(null);
-  const { data, loading, refetch } = SeePostAllRequest();
   const [
     WsloadGreeting,
     { called: WsCalled, data: WsData, loading: WsLoading, refetch: WsRefetch },
@@ -43,22 +41,16 @@ export const TargetsShownProvider = ({ children }: { children: ReactNode }) => {
       setPosts(SrData?.searchPost);
       setPosts_loading(SrLoading);
       setPosts_refetch(() => SrRefetch);
-    } else {
-      setPosts(data?.seePosts);
-      setPosts_loading(loading);
-      setPosts_refetch(() => refetch);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     PostTargetMode,
     WsLoading,
     SrLoading,
-    loading,
     Whose,
     KeyWord,
     WsData,
     SrData,
-    data,
     WsCalled,
     SrCalled,
   ]);
