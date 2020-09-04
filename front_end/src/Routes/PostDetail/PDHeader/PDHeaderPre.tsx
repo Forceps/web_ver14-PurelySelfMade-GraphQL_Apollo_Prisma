@@ -19,11 +19,18 @@ import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCen
 interface EnclosingProps {
   Position: any;
   Direction: number;
+  FirstImgSrc: any;
   zIndex: number;
 }
 const Enclosing = styled(W100per)<EnclosingProps>`
-  ${(prop) => {
-    if (prop.Direction === -1 || prop.Position.y < 150) {
+  display: grid;
+  transition: all 0.2s ease-in-out;
+  grid-template-columns: 550px 1fr 550px;
+  position: fixed;
+  height: 50px;
+  left: 0;
+  ${(p) => {
+    if (p.Direction === -1 || p.Position.y < 150) {
       return css`
         top: 0px;
       `;
@@ -33,15 +40,38 @@ const Enclosing = styled(W100per)<EnclosingProps>`
       `;
     }
   }}
-  display: grid;
-  transition: top 0.2s ease-in-out;
-  grid-template-columns: 550px 1fr 550px;
-  position: fixed;
-  height: 50px;
-  left: 0;
-  background-color: rgba(250, 250, 250, 0.9);
-  box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
-    0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+  ${(p) => {
+    if (p.Position.y < 260 && p.FirstImgSrc) {
+      return css`
+        background-color: rgba(250, 250, 250, 0);
+        color: #fafafa;
+        & input {
+          border-bottom: 1px solid #fafafa;
+          color: #fafafa;
+          &::placeholder {
+            color: #fafafa;
+          }
+        }
+        & span {
+          color: #fafafa;
+        }
+        & .LI_in_PDHeader {
+          background-color: #fafafa;
+        }
+        & .LIT_in_PDHeader {
+          color: black;
+          font-weight: 500;
+        }
+      `;
+    } else {
+      return css`
+        background-color: rgba(250, 250, 250, 0.9);
+        box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
+          0 8px 16px -8px rgba(0, 0, 0, 0.3),
+          0 -6px 16px -6px rgba(0, 0, 0, 0.025);
+      `;
+    }
+  }}
   z-index: ${(p) => p.zIndex};
 `;
 const Left = styled(WH100per)`
@@ -129,6 +159,7 @@ export default ({
   post,
   setLoginOpen,
   setAuthorWorkOpen,
+  FirstImgSrc,
   zIndex,
 }: PDHeaderPreProps) => {
   const { MEloading, MEdata } = useMyInfo();
@@ -136,11 +167,16 @@ export default ({
   const { Position, Direction } = useScroll();
   const { isLoggedIn } = useLoginCheck();
   return (
-    <Enclosing Direction={Direction} Position={Position} zIndex={zIndex}>
+    <Enclosing
+      Direction={Direction}
+      Position={Position}
+      FirstImgSrc={FirstImgSrc}
+      zIndex={zIndex}
+    >
       <Left>
         <LogoLink to="/home">
-          <LI>
-            <LIT>S</LIT>
+          <LI className="LI_in_PDHeader">
+            <LIT className="LIT_in_PDHeader">S</LIT>
           </LI>
           <LogoText text="quare Post" />
         </LogoLink>
@@ -204,5 +240,6 @@ interface PDHeaderPreProps {
   zIndex: number;
   post: any;
   setLoginOpen: any;
+  FirstImgSrc: any;
   setAuthorWorkOpen: any;
 }

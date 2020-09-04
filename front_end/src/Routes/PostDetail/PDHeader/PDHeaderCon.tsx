@@ -5,6 +5,7 @@ export default ({
   post,
   setLoginOpen,
   setAuthorWorkOpen,
+  FirstImgSrc,
   zIndex = 20,
 }: PDHeaderConProps) => {
   return (
@@ -13,6 +14,7 @@ export default ({
       post={post}
       setLoginOpen={setLoginOpen}
       setAuthorWorkOpen={setAuthorWorkOpen}
+      FirstImgSrc={FirstImgSrc}
     />
   );
 };
@@ -21,5 +23,6 @@ interface PDHeaderConProps {
   post: any;
   setLoginOpen: any;
   setAuthorWorkOpen: any;
+  FirstImgSrc: any;
   zIndex?: number;
 }

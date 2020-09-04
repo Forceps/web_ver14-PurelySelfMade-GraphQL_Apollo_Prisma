@@ -18,6 +18,8 @@ export default ({
   setLoginOpen,
   AuthorWorkOpen,
   setAuthorWorkOpen,
+  FirstImgSrc,
+  setFirstImgSrc,
 }: PostDetailPreProps) => {
   return (
     <Divistion>
@@ -25,6 +27,7 @@ export default ({
         post={post}
         setLoginOpen={setLoginOpen}
         setAuthorWorkOpen={setAuthorWorkOpen}
+        FirstImgSrc={FirstImgSrc}
         zIndex={20}
       />
       <ContentSectionCon
@@ -32,6 +35,8 @@ export default ({
         post={post}
         AddCommentOpen={AddCommentOpen}
         setAddCommentOpen={setAddCommentOpen}
+        FirstImgSrc={FirstImgSrc}
+        setFirstImgSrc={setFirstImgSrc}
       />
       <UndersCon
         post_id={post_id}
@@ -61,4 +66,6 @@ interface PostDetailPreProps {
   setLoginOpen: any;
   AuthorWorkOpen: boolean;
   setAuthorWorkOpen: any;
+  FirstImgSrc: any;
+  setFirstImgSrc: any;
 }

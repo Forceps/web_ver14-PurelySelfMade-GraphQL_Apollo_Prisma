@@ -11,6 +11,7 @@ export default () => {
   const [AddCommentOpen, setAddCommentOpen] = useState(true);
   const [LoginOpen, setLoginOpen] = useState(false);
   const [AuthorWorkOpen, setAuthorWorkOpen] = useState(false);
+  const [FirstImgSrc, setFirstImgSrc] = useState<any>(undefined);
 
   useEffect(() => {
     setAuthorWorkOpen(false);
@@ -28,6 +29,8 @@ export default () => {
       setLoginOpen={setLoginOpen}
       AuthorWorkOpen={AuthorWorkOpen}
       setAuthorWorkOpen={setAuthorWorkOpen}
+      FirstImgSrc={FirstImgSrc}
+      setFirstImgSrc={setFirstImgSrc}
     />
   );
 };

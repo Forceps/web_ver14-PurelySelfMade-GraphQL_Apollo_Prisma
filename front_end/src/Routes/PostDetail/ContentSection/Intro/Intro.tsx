@@ -1,7 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import WH100per, {
-  H100per,
   W100per,
   WH100perLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
@@ -35,6 +34,7 @@ const TitleBackImg = styled(WH100per)<TitleBackImgProps>`
 const Cover = styled(WH100per)<TitleBackImgProps>`
   display: flex;
   justify-content: center;
+  align-items: flex-end;
   position: absolute;
   ${(p) => {
     if (p.FirstImgSrc) {
@@ -45,21 +45,22 @@ const Cover = styled(WH100per)<TitleBackImgProps>`
     }
   }}
 `;
-const CentreBox = styled(H100per)`
+const CentreBox = styled.div`
   display: grid;
-  grid-template-rows: 1fr 60px;
+  grid-template-rows: 70px 60px;
   min-width: 500px;
   max-width: 700px;
   width: 60vw;
-  padding: 25px 0 15px 0;
+  padding: 25px 0 30px 0;
 `;
-const Title = styled(WH100per)`
+const Title = styled(W100per)`
   display: flex;
+  align-items: center;
   font-size: 1.5rem;
-  padding-top: 50px;
 `;
-const AuthorInfo = styled(WH100per)`
+const AuthorInfo = styled(W100per)`
   display: grid;
+  height: 60px;
   grid-template-columns: 60px 1fr;
 `;
 const UserName = styled(WH100perLink)<TitleBackImgProps>`

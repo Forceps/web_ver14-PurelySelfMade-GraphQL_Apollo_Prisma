@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import ContentSectionPre from "./ContentSectionPre";
 
 export default ({
@@ -6,16 +6,20 @@ export default ({
   post,
   AddCommentOpen,
   setAddCommentOpen,
+  FirstImgSrc,
+  setFirstImgSrc,
 }: ContentSectionConProps) => {
-  const [FirstImgSrc, setTagExtract] = useState<any>(undefined);
   useEffect(() => {
     const InArticle = document.getElementsByTagName("article")[0];
     const firstImg = InArticle.getElementsByTagName("img")[0];
     if (firstImg) {
-      console.log(firstImg.src);
-      setTagExtract(firstImg.src);
+      setFirstImgSrc(firstImg.src);
+    } else {
+      setFirstImgSrc(undefined);
     }
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [post_id]);
+
   return (
     <ContentSectionPre
       post_id={post_id}
@@ -32,4 +36,6 @@ interface ContentSectionConProps {
   post: any;
   AddCommentOpen: boolean;
   setAddCommentOpen: any;
+  FirstImgSrc: any;
+  setFirstImgSrc: any;
 }

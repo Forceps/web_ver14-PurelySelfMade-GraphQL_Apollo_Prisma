@@ -8,7 +8,7 @@ export default {
       const { post_id } = args;
 
       try {
-        await prisma.executeRaw`UPDATE square_post.post SET views = views + 1 WHERE post_id = ${post_id}`;
+        await prisma.$executeRaw`UPDATE square_post.post SET views = views + 1 WHERE post_id = ${post_id}`;
 
         return true;
       } catch (e) {
