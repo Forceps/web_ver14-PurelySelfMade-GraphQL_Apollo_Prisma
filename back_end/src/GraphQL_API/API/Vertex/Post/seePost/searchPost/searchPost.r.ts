@@ -18,7 +18,7 @@ export default {
           return oneWordCaption;
         } else {
           let ResultBarrel: any[] = [];
-          let I_found = await prisma.queryRaw`
+          let I_found = await prisma.$queryRaw`
             SELECT post_id, caption,
             MATCH (caption, content)
             AGAINST(${keyWord}) 

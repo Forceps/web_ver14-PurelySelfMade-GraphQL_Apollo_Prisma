@@ -17,7 +17,7 @@ export default {
           });
           return oneWordUser;
         } else {
-          let I_found = await prisma.queryRaw`
+          let I_found = await prisma.$queryRaw`
             SELECT user_id, username,
             MATCH (username)
             AGAINST(${keyWord}) 
