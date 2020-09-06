@@ -23,15 +23,16 @@ export default ({ post_id }: CommentsPartConProps) => {
       },
     ],
   });
-  const commentSubmit = () => {
+  const commentSubmit = async () => {
     if (!submitCheck) {
       try {
-        addCommentMutation({
+        await addCommentMutation({
           variables: {
             post_id,
             comment: commentInput.value,
           },
         });
+        commentInput.setValue("");
       } catch (e) {
         console.log(e);
       }

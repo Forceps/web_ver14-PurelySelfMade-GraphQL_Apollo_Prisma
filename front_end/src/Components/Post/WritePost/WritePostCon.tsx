@@ -2,7 +2,6 @@ import React, { useState, useRef } from "react";
 import WritePostPre from "./WritePostPre";
 import { useMutation } from "@apollo/client";
 import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
-import { useTargetsShown } from "../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
 import { useDirMode } from "../../../GlobalLib/Context/ProfileContext/DirMode";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { CREATE_POST } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostCUD";
@@ -17,7 +16,6 @@ type WritePostConProps = {
   create_post_toggle: any;
 };
 export default ({ create_post_toggle }: WritePostConProps) => {
-  const { posts_refetch } = useTargetsShown();
   const caption = useInput("");
   const { Location, DirData_refetch } = useDirMode();
   const { MEdata } = useMyInfo();
@@ -47,7 +45,6 @@ export default ({ create_post_toggle }: WritePostConProps) => {
     } catch (e) {
       console.log(e);
     } finally {
-      posts_refetch();
       DirData_refetch();
     }
   };
