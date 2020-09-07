@@ -13,7 +13,7 @@ import ToggleMenuCon from "./ToggleMenu/ToggleMenuCon";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
-import Avatar from "../../../Components/User/Avatar/Avatar";
+import Avatar from "../../../Components/User/HumanBlock/Avatar";
 import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface EnclosingProps {

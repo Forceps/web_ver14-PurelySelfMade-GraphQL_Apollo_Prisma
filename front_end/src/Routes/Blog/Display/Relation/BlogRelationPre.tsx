@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import WH100per, {
   W100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../../Components/User/Avatar/Avatar";
+import Avatar from "../../../../Components/User/HumanBlock/Avatar";
 import { MedataStructure } from "../../../../GlobalLib/Context/UserContext/Me";
 import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";
 import ConfirmationModal from "../../../../Components/ElementEtc/Effect/ConfirmationModal";
@@ -103,7 +103,7 @@ const BlogRelationPre = ({
   user_id,
   AddFriendConfirm,
   setAddFriendConfirm,
-  addFriendFunc,
+  requestFriendFunc,
   FcData,
   friendCheckLoad,
 }: BlogRelationPreProps) => {
@@ -137,7 +137,7 @@ const BlogRelationPre = ({
             message={"Would you like to request a friend?"}
             setConfirmationModalOpen={setAddFriendConfirm}
             zIndex={30}
-            functionExecute={addFriendFunc}
+            functionExecute={requestFriendFunc}
           />
         )}
       </Functionality>
@@ -235,7 +235,7 @@ interface BlogRelationPreProps {
   user_id: number;
   AddFriendConfirm: boolean;
   setAddFriendConfirm: any;
-  addFriendFunc: () => void;
+  requestFriendFunc: () => void;
   FcData: any;
   friendCheckLoad: boolean;
 }

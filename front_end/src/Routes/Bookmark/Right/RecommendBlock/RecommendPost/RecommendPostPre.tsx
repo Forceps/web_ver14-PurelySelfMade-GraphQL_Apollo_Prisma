@@ -4,7 +4,7 @@ import WH100per, {
   W100per,
   H100per,
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../../../Components/User/Avatar/Avatar";
+import Avatar from "../../../../../Components/User/HumanBlock/Avatar";
 import { FlexCenter100per } from "../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const RecommendBlock = styled.div`

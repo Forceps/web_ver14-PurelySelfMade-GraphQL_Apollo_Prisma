@@ -18,6 +18,7 @@ export const SEE_I_SUBS = gql`
       user_id
       avatar
       username
+      back_img
     }
   }
 `;

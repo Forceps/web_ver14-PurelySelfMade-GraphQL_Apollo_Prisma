@@ -4,7 +4,7 @@ import WH100per, {
   W100per,
   GoodLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../User/Avatar/Avatar";
+import Avatar from "../../../User/HumanBlock/Avatar";
 import { useHistory } from "react-router-dom";
 
 interface zindexProp {

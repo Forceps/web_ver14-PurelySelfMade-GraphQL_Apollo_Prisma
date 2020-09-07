@@ -66,7 +66,7 @@ const Already = styled.div`
   color: #b2bec3;
 `;
 
-export default ({ addFriend }: SearchedUserPreProps) => {
+export default ({ requestFriend }: SearchedUserPreProps) => {
   const SU = useSearchUser();
   const ME = useMyInfo();
   const SF = useSeeFriends();
@@ -91,7 +91,7 @@ export default ({ addFriend }: SearchedUserPreProps) => {
                   }) === -1 ? (
                     <AddFriend
                       onClick={() => {
-                        addFriend(item.user_id);
+                        requestFriend(item.user_id);
                       }}
                     >
                       <Icon className="icon-plus" /> friends
@@ -110,5 +110,5 @@ export default ({ addFriend }: SearchedUserPreProps) => {
 };
 
 interface SearchedUserPreProps {
-  addFriend: (partner: number) => void;
+  requestFriend: (partner: number) => void;
 }

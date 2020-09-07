@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import WH100per from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { S_N_to_N } from "../../../../GlobalLib/RecycleFunction/etc/type_convert";
-import Avatar from "../../../../Components/User/Avatar/Avatar";
+import Avatar from "../../../../Components/User/HumanBlock/Avatar";
 import Conversation from "../../../../Components/Chat/Conversation/Conversation";
 
 export const Barrier = styled.div`

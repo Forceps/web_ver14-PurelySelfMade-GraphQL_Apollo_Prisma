@@ -6,6 +6,7 @@ export const SEE_FRIENDS = gql`
       user_id
       username
       avatar
+      back_img
     }
   }
 `;
@@ -29,7 +30,16 @@ export const FriendCheckLazyRequest = (user_id: number) =>
   useLazyQuery(FRIEND_CHECK, {
     variables: { user_id },
   });
-export const FriendCheckRequest = (user_id: number) =>
-  useQuery(FRIEND_CHECK, {
-    variables: { user_id },
-  });
+
+export const FRIEND_REQUEST_RECEIVED = gql`
+  query friendRequestReceived {
+    friendRequestReceived {
+      user_id
+      username
+      avatar
+      back_img
+    }
+  }
+`;
+export const FriendRequestReceivedRequest = () =>
+  useQuery(FRIEND_REQUEST_RECEIVED);

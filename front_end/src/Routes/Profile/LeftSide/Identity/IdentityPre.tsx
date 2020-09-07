@@ -6,7 +6,7 @@ import {
   W100per,
   H100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../../Components/User/Avatar/Avatar";
+import Avatar from "../../../../Components/User/HumanBlock/Avatar";
 import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
 
@@ -85,7 +85,7 @@ export default ({
   return (
     <Identi>
       <Upside>
-        {Mode[0] === "Post" || Mode[0] === "Archive" ? (
+        {Mode[0] === "Post" || Mode[0] === "Archive" || Mode[0] === "Social" ? (
           <Menu
             onClick={() => {
               setMenuMode((p: boolean) => !p);

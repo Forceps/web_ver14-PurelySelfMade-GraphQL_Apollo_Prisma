@@ -10,7 +10,7 @@ import {
   See_I_subsRequest,
   See_My_SubsRequest,
 } from "../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Subscriber/SubscriberR";
-import { ADD_FRIEND } from "../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Friend/FriendCUD";
+import { REQUEST_FRIEND } from "../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Friend/FriendCUD";
 import { useMutation } from "@apollo/client";
 import { useLoginCheck } from "../../../../GlobalLib/Context/UserContext/IsLoggedIn";
 
@@ -33,7 +33,7 @@ export default ({ user_id }: BlogRelationConProps) => {
     { called: FcCalled, data: FcData, loading: FcLoading },
   ] = FriendCheckLazyRequest(user_id);
   const friendCheckLoad = isLoggedIn && FcCalled && !FcLoading;
-  const [createRoomMutation] = useMutation(ADD_FRIEND, {
+  const [createRoomMutation] = useMutation(REQUEST_FRIEND, {
     refetchQueries: () => [
       {
         query: FRIEND_CHECK,
@@ -43,7 +43,7 @@ export default ({ user_id }: BlogRelationConProps) => {
       },
     ],
   });
-  const addFriendFunc = async () => {
+  const requestFriendFunc = async () => {
     try {
       await createRoomMutation({
         variables: {
@@ -77,7 +77,7 @@ export default ({ user_id }: BlogRelationConProps) => {
       user_id={user_id}
       AddFriendConfirm={AddFriendConfirm}
       setAddFriendConfirm={setAddFriendConfirm}
-      addFriendFunc={addFriendFunc}
+      requestFriendFunc={requestFriendFunc}
       FcData={FcData?.friendCheck}
       friendCheckLoad={friendCheckLoad}
     />

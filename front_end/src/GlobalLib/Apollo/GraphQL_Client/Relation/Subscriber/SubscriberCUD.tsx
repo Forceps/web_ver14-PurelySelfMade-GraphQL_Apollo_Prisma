@@ -5,3 +5,9 @@ export const ADD_SUBSCRIBER = gql`
     addSubscriber(author: $author)
   }
 `;
+
+export const REMOVE_SUBSCRIBER = gql`
+  mutation removeSubscriber($author: Int!) {
+    removeSubscriber(author: $author)
+  }
+`;

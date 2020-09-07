@@ -9,7 +9,7 @@ import Loading from "../../ElementEtc/Effect/Loading";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import LoginModalCon from "../../User/Auth/LoginModal/LoginModalCon";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
-import Avatar from "../../User/Avatar/Avatar";
+import Avatar from "../../User/HumanBlock/Avatar";
 import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Comments = styled(W100per)`

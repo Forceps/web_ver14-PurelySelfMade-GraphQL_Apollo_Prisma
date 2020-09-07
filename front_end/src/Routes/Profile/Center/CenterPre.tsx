@@ -4,7 +4,7 @@ import Header from "./Header/Header";
 import PostMode from "./UnderHeader/Post/PostMode";
 import { useProfileMode } from "../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import ArchiveMode from "./UnderHeader/Archive/ArchiveMode";
-import FormCon from "./UnderHeader/Form/FormCon";
+import SocialCon from "./UnderHeader/Social/SocialCon";
 import SettingsMode from "./UnderHeader/Settings/SettingsModeCon";
 
 const Wrapper = styled.div`
@@ -19,8 +19,8 @@ export default () => {
       <Header />
       {Mode[0] === "Archive" ? (
         <ArchiveMode />
-      ) : Mode[0] === "Form" ? (
-        <FormCon />
+      ) : Mode[0] === "Social" ? (
+        <SocialCon />
       ) : Mode[0] === "Settings" ? (
         <SettingsMode />
       ) : (

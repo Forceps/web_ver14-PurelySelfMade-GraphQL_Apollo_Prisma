@@ -5,6 +5,7 @@ import { ADD_SUBSCRIBER } from "../../../GlobalLib/Apollo/GraphQL_Client/Relatio
 import {
   AmISubscribeOneRequest,
   AM_I_SUBSCRIBE_ONE,
+  SEE_I_SUBS,
 } from "../../../GlobalLib/Apollo/GraphQL_Client/Relation/Subscriber/SubscriberR";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
 
@@ -32,6 +33,10 @@ export default ({
       {
         query: AM_I_SUBSCRIBE_ONE,
         variables: { author: user_id },
+      },
+      {
+        query: SEE_I_SUBS,
+        variables: { user_id: 0 },
       },
     ],
   });

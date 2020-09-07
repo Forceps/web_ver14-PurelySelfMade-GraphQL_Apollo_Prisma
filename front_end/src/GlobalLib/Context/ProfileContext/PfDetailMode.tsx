@@ -20,6 +20,7 @@ export const ProfileDetailModeProvider = ({
   const PM = useProfileMode();
   const [Mode, setMode] = useState("recent"); //Mode = "popularity", "recent"
   const [AcMode, setAcMode] = useState("All"); //AcMode = "All", "Image", "Video", "Music"
+  const [ScMode, setScMode] = useState("Subscribe"); //Mode = "Subscribe", "Friends"
   const recentState = useRef("Recent");
   const [CurrentPage, setCurrentPage] = useState(1);
   const [TotalCount, setTotalCount] = useState(0);
@@ -40,6 +41,8 @@ export const ProfileDetailModeProvider = ({
     recentState,
     AcMode,
     setAcMode,
+    ScMode,
+    setScMode,
     CurrentPage,
     setCurrentPage,
     TotalCount,
@@ -58,6 +61,8 @@ interface PfDM_Obj {
   setMode: Dispatch<SetStateAction<string>>;
   AcMode: string;
   setAcMode: Dispatch<SetStateAction<string>>;
+  ScMode: string;
+  setScMode: Dispatch<SetStateAction<string>>;
   recentState: MutableRefObject<string>;
   CurrentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;

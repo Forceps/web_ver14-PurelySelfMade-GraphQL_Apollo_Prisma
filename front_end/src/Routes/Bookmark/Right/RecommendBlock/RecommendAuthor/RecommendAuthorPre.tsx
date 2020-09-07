@@ -3,7 +3,7 @@ import styled from "styled-components";
 import WH100per, {
   W100per,
 } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../../../Components/User/Avatar/Avatar";
+import Avatar from "../../../../../Components/User/HumanBlock/Avatar";
 
 const RecommendBlock = styled.div`
   display: grid;

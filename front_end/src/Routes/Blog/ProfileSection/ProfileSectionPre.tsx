@@ -8,7 +8,7 @@ import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
-import Avatar from "../../../Components/User/Avatar/Avatar";
+import Avatar from "../../../Components/User/HumanBlock/Avatar";
 import {
   FlexCenter,
   FlexCenter100per,

@@ -69,7 +69,10 @@ export default () => {
 
         <Den2Down>
           <Identity MenuMode={MenuMode} setMenuMode={setMenuMode} />
-          {MenuMode || (Mode[0] !== "Archive" && Mode[0] !== "Post") ? (
+          {MenuMode ||
+          (Mode[0] !== "Archive" &&
+            Mode[0] !== "Post" &&
+            Mode[0] !== "Social") ? (
             <Menu />
           ) : (
             <LeftControlsRouter />

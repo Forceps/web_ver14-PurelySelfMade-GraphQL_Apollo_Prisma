@@ -4,7 +4,7 @@ import WH100per, {
   W100per,
   WH100perLink,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../../Components/User/Avatar/Avatar";
+import Avatar from "../../../../Components/User/HumanBlock/Avatar";
 
 const Intro = styled(W100per)`
   position: relative;
