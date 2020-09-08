@@ -21,24 +21,35 @@ const Wrapper = styled(WH100per)<WrapperProps>`
 `;
 const Template = styled(IncludeScrollBar)<WrapperProps>`
   position: relative;
-  width: 400px;
-  height: 85vh;
-  min-height: 600px;
+  min-width: 300px;
+  width: 25vw;
+  max-width: 410px;
+  height: 78vh;
+  min-height: 500px;
   background-color: #fafafa;
   overflow: auto;
   z-index: ${(prop) => prop.zIndex};
   display: grid;
-  grid-template-rows: 40px 50px 1fr 150px;
+  grid-template-rows: 40px 30px 1fr 100px;
 `;
 const Header = styled(WH100per)`
+  display: grid;
+  grid-template-columns: 1fr 40px;
+`;
+const RoomName = styled(WH100per)`
   display: flex;
   align-items: center;
   padding: 0 0 0 10px;
-  font-size: 1.3rem;
 `;
-const StatusZone = styled(WH100per)`
-  background-color: #dfe6e9;
+const RoomSettingBtn = styled(FlexCenter100per)`
+  font-size: 1.1rem;
+  &:hover {
+    background-color: #2d3436;
+    color: #fafafa;
+  }
+  cursor: pointer;
 `;
+const StatusZone = styled(WH100per)``;
 const ChatMain = styled(WH100per)`
   overflow: hidden;
 `;
@@ -92,7 +103,6 @@ export default ({
   commenting,
   chatListenData,
   chatListenLoad,
-  swatchRefetch,
 }: ChattingChannelPrePorops) => {
   return (
     <Wrapper zIndex={zIndex}>
@@ -100,13 +110,17 @@ export default ({
         onClick={(e: any) => {
           spaped(e);
           refetch();
-          swatchRefetch();
           setRoomEnter(false);
         }}
         zIndex={zIndex + 1}
       />
       <Template zIndex={zIndex + 2}>
-        <Header>{loading ? "Loading..." : data.name}</Header>
+        <Header>
+          <RoomName>{loading ? "Loading..." : data.name}</RoomName>
+          <RoomSettingBtn>
+            <i className="icon-cog" />
+          </RoomSettingBtn>
+        </Header>
         <StatusZone></StatusZone>
         <ChatMain>
           <Conversation
@@ -147,5 +161,4 @@ interface ChattingChannelPrePorops {
   commenting: () => void;
   chatListenLoad: boolean;
   chatListenData: any;
-  swatchRefetch: any;
 }

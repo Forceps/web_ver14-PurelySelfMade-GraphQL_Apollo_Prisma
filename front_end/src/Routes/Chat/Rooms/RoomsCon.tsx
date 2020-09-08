@@ -1,6 +1,6 @@
 import React from "react";
 import RoomsPre from "./RoomsPre";
-import { SeeRoomsRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/ChatR";
+import { SeeRoomsRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Chat/RoomR";
 
 export default ({
   setMakeRoomOp,

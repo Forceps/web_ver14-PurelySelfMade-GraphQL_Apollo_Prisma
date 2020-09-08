@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import PagenationPre from "./PagenationPre";
+import PaginationPre from "./PaginationPre";
 
-const PagenationCon = ({
+const PaginationCon = ({
   CurrentPostPage,
   setCurrentPostPage,
   PostOneTimeShow,
   TotalPostCount,
   color = "black",
-}: PagenationConProps) => {
-  const [PagenationNum, setPagenationNum] = useState([1]);
+}: PaginationConProps) => {
+  const [PaginationNum, setPaginationNum] = useState([1]);
   const [UpperUnitPageNum, setUpperUnitPageNum] = useState([1]);
   const [CurrentUUP, setCurrentUUP] = useState(1);
   const [NumberOfDigits] = useState(10);
@@ -38,13 +38,13 @@ const PagenationCon = ({
         arr = arr.concat((CurrentUUP - 1) * NumberOfDigits + i);
       }
     }
-    setPagenationNum(arr);
+    setPaginationNum(arr);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [TotalPostCount, CurrentUUP]);
 
   return (
-    <PagenationPre
-      PagenationNum={PagenationNum}
+    <PaginationPre
+      PaginationNum={PaginationNum}
       UpperUnitPageNum={UpperUnitPageNum}
       CurrentUUP={CurrentUUP}
       setCurrentUUP={setCurrentUUP}
@@ -57,7 +57,7 @@ const PagenationCon = ({
     />
   );
 };
-interface PagenationConProps {
+interface PaginationConProps {
   CurrentPostPage: number;
   setCurrentPostPage: any;
   PostOneTimeShow: number;
@@ -65,4 +65,4 @@ interface PagenationConProps {
   color?: string;
 }
 
-export default React.memo(PagenationCon);
+export default React.memo(PaginationCon);

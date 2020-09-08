@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { contextType } from "../../../../../LibForGQL/typesLib";
+import { contextType } from "../../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {

@@ -1,22 +1,23 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
-import WH100per from "../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { FlexCenter100per } from "../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
+import WH100per, {
+  W100per,
+} from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { useProfileDetailMode } from "../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
 
-interface PagenationProps {
-  colorTheme: string;
-}
-const Pagenation = styled.div<PagenationProps>`
-  display: grid;
-  grid-template-rows: 30px 1fr;
-  width: 400px;
-  height: 58px;
-  color: ${(p) => (p.colorTheme === "black" ? "#2d3436" : "#fafafa")};
+const Pagination = styled(W100per)`
+  margin: 14px 0 15px 0;
 `;
-const PgnSbj = styled(WH100per)``;
-const PgnNumList = styled(WH100per)`
+const PgnSbj = styled(W100per)``;
+interface PgnNumListProps {
+  NumberOfDigits: number;
+}
+const PgnNumList = styled(W100per)<PgnNumListProps>`
   display: grid;
-  grid-template-columns: 1fr 1fr 10fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr ${(p) => p.NumberOfDigits + 1}fr 1fr 1fr;
+  height: 25px;
+  margin: 13px 0 12px 0;
 `;
 interface NumsProps {
   NumberOfDigits: number;
@@ -25,41 +26,26 @@ const Nums = styled(WH100per)<NumsProps>`
   display: grid;
   grid-template-columns: repeat(${(p) => p.NumberOfDigits}, 1fr);
 `;
-interface PageMoveBtnProps {
-  colorTheme: string;
-}
-const PageMoveBtn = styled(FlexCenter100per)<PageMoveBtnProps>`
+const PageMoveBtn = styled(FlexCenter100per)`
   cursor: pointer;
   &:hover {
-    background-color: ${(p) =>
-      p.colorTheme === "black" ? "#dfe6e9" : "#2d3436"};
+    background-color: #dfe6e9;
   }
 `;
 interface PageNumProps {
-  currentPostPage: number;
+  CurrentPage: number;
   inherenceNum: number;
-  colorTheme: string;
 }
 const PageNum = styled(PageMoveBtn)<PageNumProps>`
   ${(p) => {
-    if (p.currentPostPage === p.inherenceNum) {
-      if (p.colorTheme === "black") {
-        return css`
-          background-color: #2d3436;
-          color: #fafafa;
-          &:hover {
-            background-color: #636e72;
-          }
-        `;
-      } else {
-        return css`
-          background-color: #dfe6e9;
-          color: black;
-          &:hover {
-            background-color: #b2bec3;
-          }
-        `;
-      }
+    if (p.CurrentPage === p.inherenceNum) {
+      return css`
+        background-color: #2d3436;
+        color: #fafafa;
+        &:hover {
+          background-color: #636e72;
+        }
+      `;
     }
   }}
 `;
@@ -68,29 +54,24 @@ const ReversalPlay = styled(PageMoveBtn)`
   transform: scaleX(-1);
 `;
 
-const PagenationPre = ({
-  PagenationNum,
+export default ({
+  PaginationNum,
   UpperUnitPageNum,
   CurrentUUP,
   setCurrentUUP,
   NumberOfDigits,
-  CurrentPostPage,
-  setCurrentPostPage,
-  TotalPostCount,
-  PostOneTimeShow,
-  color,
-}: PagenationPreProps) => {
+}: PaginationPreProps) => {
+  const PfDM = useProfileDetailMode();
   const Uuplast = UpperUnitPageNum[UpperUnitPageNum.length - 1];
   return (
-    <Pagenation colorTheme={color}>
-      <PgnSbj>Pagenation</PgnSbj>
-      <PgnNumList>
+    <Pagination>
+      <PgnSbj>Pagination</PgnSbj>
+      <PgnNumList NumberOfDigits={NumberOfDigits}>
         <PageMoveBtn
           onClick={() => {
             setCurrentUUP(1);
-            setCurrentPostPage(1);
+            PfDM.setCurrentPage(1);
           }}
-          colorTheme={color}
         >
           <i className="icon-fast-bw" />
         </PageMoveBtn>
@@ -107,21 +88,19 @@ const PagenationPre = ({
                 }
               });
             }}
-            colorTheme={color}
           >
             <i className="icon-play" />
           </ReversalPlay>
         )}
         <Nums NumberOfDigits={NumberOfDigits}>
-          {PagenationNum.map((n) => (
+          {PaginationNum.map((n) => (
             <PageNum
               key={n}
               onClick={() => {
-                setCurrentPostPage(n);
+                PfDM.setCurrentPage(n);
               }}
-              currentPostPage={CurrentPostPage}
+              CurrentPage={PfDM.CurrentPage}
               inherenceNum={n}
-              colorTheme={color}
             >
               {n}
             </PageNum>
@@ -140,7 +119,6 @@ const PagenationPre = ({
                 }
               });
             }}
-            colorTheme={color}
           >
             <i className="icon-play" />
           </PageMoveBtn>
@@ -148,28 +126,20 @@ const PagenationPre = ({
         <PageMoveBtn
           onClick={() => {
             setCurrentUUP(Uuplast);
-            setCurrentPostPage(Math.ceil(TotalPostCount / PostOneTimeShow));
+            PfDM.setCurrentPage(Math.ceil(PfDM.TotalCount / PfDM.OneTimeShow));
           }}
-          colorTheme={color}
         >
           <i className="icon-fast-fw" />
         </PageMoveBtn>
       </PgnNumList>
-    </Pagenation>
+    </Pagination>
   );
 };
 
-interface PagenationPreProps {
-  PagenationNum: number[];
+interface PaginationPreProps {
+  PaginationNum: number[];
   UpperUnitPageNum: number[];
   CurrentUUP: number;
   setCurrentUUP: any;
   NumberOfDigits: number;
-  CurrentPostPage: number;
-  setCurrentPostPage: any;
-  TotalPostCount: number;
-  PostOneTimeShow: number;
-  color: string;
 }
-
-export default React.memo(PagenationPre);

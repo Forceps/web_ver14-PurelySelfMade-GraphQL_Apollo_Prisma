@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { W100per } from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { byteIntoUnit } from "../../../../../../GlobalLib/RecycleFunction/etc/Math/Arithmetic";
-import PagenationCon from "../../Pagenation/PagenationCon";
+import PaginationCon from "../../Pagination/PaginationCon";
 
 const Circumstance = styled(W100per)`
   padding: 16px 0 16px 0;
@@ -23,7 +23,7 @@ export default ({ data: { musics } }: MusicProps) => {
         </CountAndVol>
       </Circumstance>
       <Circumstance>
-        <PagenationCon />
+        <PaginationCon />
       </Circumstance>
       <Circumstance>선택모드, 추가</Circumstance>
     </>

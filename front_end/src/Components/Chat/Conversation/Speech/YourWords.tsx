@@ -11,7 +11,7 @@ interface sizing {
 }
 const Comments = styled(W100per)<sizing>`
   display: grid;
-  grid-template-columns: ${(p) => `${(p.size * 17) / 15}px`} 1fr;
+  grid-template-columns: ${(p) => `${(p.size * 17) / 15}px`} 2fr 1fr;
   margin: 0 0 10px 0;
 `;
 const CommentBox = styled(W100per)`
@@ -37,7 +37,7 @@ const Coloring = styled.div`
 
 export default ({ data, size, fontSize }: ConversationProps) => {
   return (
-    <Comments key={data?.chat_id} size={size}>
+    <Comments size={size}>
       <Avatar url={data?.user_chatTouser.avatar} size={size} />
       <CommentBox>
         <Username fontSize={fontSize}>
@@ -47,6 +47,7 @@ export default ({ data, size, fontSize }: ConversationProps) => {
           <Coloring>{data?.comment}</Coloring>
         </Content>
       </CommentBox>
+      <div />
     </Comments>
   );
 };

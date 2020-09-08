@@ -8,7 +8,7 @@ import Tile from "../../../../Components/Post/Shape/Tile/TileCon";
 import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import DirListFoldingSystem from "../../../../Components/ElementEtc/DirListFoldingSystem/DirListFoldingSystem";
 import { FlexCenter100per } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
-import PagenationCon from "../../../../Components/ElementEtc/Pagenation/PagenationCon";
+import PaginationCon from "../../../../Components/ElementEtc/Pagination/PaginationCon";
 
 const Cover = styled(W100per)`
   display: grid;
@@ -123,7 +123,7 @@ const BlogPostPre = ({
         </Cells>
         {!WpcLoading && (
           <PgCon>
-            <PagenationCon
+            <PaginationCon
               CurrentPostPage={CurrentPostPage}
               setCurrentPostPage={setCurrentPostPage}
               PostOneTimeShow={PostOneTimeShow}

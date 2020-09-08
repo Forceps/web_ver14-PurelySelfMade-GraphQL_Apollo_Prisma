@@ -26,7 +26,7 @@ const Scr = styled(IncludeScrollBar)`
   padding: 5px;
 `;
 
-export default ({
+const Conversation = ({
   room_id,
   size = 30,
   skip = 0,
@@ -60,7 +60,7 @@ export default ({
       setAccumulate(data?.chatDetail);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [data, loading]);
 
   return (
     <Rails fontSize={fontSize} justiConten={justiConten}>
@@ -72,9 +72,19 @@ export default ({
         ) : (
           Accumulate.map((l: any) =>
             S_N_to_N(l.user) === S_N_to_N(MEdata?.user_id) ? (
-              <MyWords data={l} size={size} fontSize={fontSize} />
+              <MyWords
+                key={l.chat_id}
+                data={l}
+                size={size}
+                fontSize={fontSize}
+              />
             ) : (
-              <YourWords data={l} size={size} fontSize={fontSize} />
+              <YourWords
+                key={l.chat_id}
+                data={l}
+                size={size}
+                fontSize={fontSize}
+              />
             )
           )
         )}
@@ -93,3 +103,5 @@ interface ConversationProps {
   chatListenLoad?: boolean;
   fixNum?: number;
 }
+
+export default React.memo(Conversation);

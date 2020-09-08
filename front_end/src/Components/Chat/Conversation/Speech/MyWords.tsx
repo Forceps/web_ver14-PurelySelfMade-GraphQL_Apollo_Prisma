@@ -1,31 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { W100per } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import Avatar from "../../../User/HumanBlock/Avatar";
 
-interface FontSizeProps {
-  fontSize: number;
-}
 interface sizing {
   size: number;
 }
 const CommentsM = styled(W100per)<sizing>`
-  display: grid;
-  grid-template-columns: 1fr ${(p) => `${(p.size * 17) / 15}px`};
-  margin: 0 0 10px 0;
-`;
-const CommentBoxM = styled(W100per)`
-  display: flex;
-  flex-direction: column;
-`;
-const Justify = styled(W100per)`
-  display: grid;
-  justify-content: right;
-`;
-const UsernameM = styled(W100per)<FontSizeProps>`
   display: flex;
   justify-content: flex-end;
-  height: ${(p) => `${(p.fontSize * 25) / 17}rem`};
+  margin: 0 0 10px 0;
+`;
+const CommentBoxM = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  min-width: 160px;
 `;
 const ContentM = styled(W100per)`
   display: flex;
@@ -44,21 +33,17 @@ const ColoringM = styled.div`
 
 export default ({ data, size, fontSize }: MyWordsProps) => {
   return (
-    <CommentsM key={data.chat_id} size={size}>
+    <CommentsM size={size}>
+      <div />
       <CommentBoxM>
-        <UsernameM fontSize={fontSize}>
-          {data.user_chatTouser.username}
-        </UsernameM>
         <ContentM>
           <ColoringM>{data.comment}</ColoringM>
         </ContentM>
       </CommentBoxM>
-      <Justify>
-        <Avatar url={data.user_chatTouser.avatar} size={size} />
-      </Justify>
     </CommentsM>
   );
 };
+
 interface MyWordsProps {
   data: any;
   size: number;

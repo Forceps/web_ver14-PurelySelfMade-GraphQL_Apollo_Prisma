@@ -3,7 +3,7 @@ import styled from "styled-components";
 import WH100per from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import TileCon from "../../../../Components/Post/Shape/Tile/TileCon";
 import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
-import PagenationCon from "../../../../Components/ElementEtc/Pagenation/PagenationCon";
+import PaginationCon from "../../../../Components/ElementEtc/Pagination/PaginationCon";
 
 const LowerJaw = styled(IncludeScrollBar)`
   display: grid;
@@ -63,7 +63,7 @@ const TilesShowWindowPre = ({
         {!loading && posts.map((p) => <TileCon key={p.post_id} post={p} />)}
       </TilesContainer>
       <PgCon>
-        <PagenationCon
+        <PaginationCon
           CurrentPostPage={CurrentPostPage}
           setCurrentPostPage={setCurrentPostPage}
           PostOneTimeShow={PostOneTimeShow}

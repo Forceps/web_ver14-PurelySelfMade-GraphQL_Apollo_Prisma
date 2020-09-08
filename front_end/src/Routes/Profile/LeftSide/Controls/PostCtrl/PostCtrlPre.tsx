@@ -7,7 +7,7 @@ import WH100per, {
 import WritePostCon from "../../../../../Components/Post/WritePost/WritePostCon";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { FlexCenter } from "../../../../../GlobalLib/Styles/IteratePattern/ToCenter";
-import PagenationCon from "../Pagenation/PagenationCon";
+import PaginationCon from "../Pagination/PaginationCon";
 
 const Suburb = styled(W100per)`
   display: flex;
@@ -84,7 +84,7 @@ export default ({
           <i className="icon-search" />
         </SearchBtn>
       </SearchBox>
-      <PagenationCon />
+      <PaginationCon />
       <WrBtn
         onClick={(e) => {
           spaped(e);
