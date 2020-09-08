@@ -52,7 +52,7 @@ const CurrentFriendsPre = ({
   RoomEnter,
   setRoomEnter,
   ParticularRoom,
-  setParticularRoom,
+  chatStart,
 }: CurrentFriendsPreProps) => {
   const history = useHistory();
 
@@ -76,8 +76,7 @@ const CurrentFriendsPre = ({
                 </BtnInCard>
                 <BtnInCard
                   onClick={() => {
-                    setRoomEnter(true);
-                    setParticularRoom(S_N_to_N(i.user_id));
+                    chatStart(S_N_to_N(i.user_id));
                   }}
                 >
                   <i className="icon-comment-empty" />
@@ -125,7 +124,7 @@ interface CurrentFriendsPreProps {
   RoomEnter: boolean;
   setRoomEnter: any;
   ParticularRoom: number;
-  setParticularRoom: any;
+  chatStart: (opponent: number) => Promise<void>;
 }
 
 export default React.memo(CurrentFriendsPre);

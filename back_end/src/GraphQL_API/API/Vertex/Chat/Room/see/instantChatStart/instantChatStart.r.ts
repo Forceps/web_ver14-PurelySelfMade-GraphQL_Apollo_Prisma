@@ -3,13 +3,14 @@ import { contextType } from "../../../../../../LibForGQL/typesLib";
 const prisma = new PrismaClient();
 
 export default {
-  Query: {
-    findRoomByUserId: async (
+  Mutation: {
+    instantChatStart: async (
       _: void,
       { opponent },
       { req, isAuthenticated }: contextType
     ) => {
       isAuthenticated(req);
+      const object = [req.user.user_id, opponent];
       try {
         const roomInYouAndI = await prisma.chat_room.findMany({
           where: {
@@ -17,14 +18,14 @@ export default {
               {
                 chat_member: {
                   some: {
-                    user: req.user.user_id,
+                    user: object[0],
                   },
                 },
               },
               {
                 chat_member: {
                   some: {
-                    user: opponent,
+                    user: object[1],
                   },
                 },
               },
@@ -37,11 +38,32 @@ export default {
         const filtered = roomInYouAndI.filter(
           (i) => i.chat_member.length === 2
         );
-        const result = filtered[0].chat_room_id;
-        return result;
+
+        if (filtered.length === 0) {
+          const newMade = await prisma.chat_room.create({
+            data: {
+              name: "chat room",
+            },
+          });
+          for (let i = 0; i < object.length; i++) {
+            await prisma.chat_member.create({
+              data: {
+                chat_room: {
+                  connect: { chat_room_id: newMade.chat_room_id },
+                },
+                user_chat_memberTouser: {
+                  connect: { user_id: object[i] },
+                },
+              },
+            });
+          }
+          return newMade.chat_room_id;
+        } else {
+          return filtered[0].chat_room_id;
+        }
       } catch (e) {
         console.log(e);
-        return null;
+        return 0;
       }
     },
   },

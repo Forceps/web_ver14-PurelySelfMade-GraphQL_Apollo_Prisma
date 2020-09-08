@@ -23,6 +23,9 @@ export const SEE_ROOM = gql`
     seeRoom(chat_room_id: $chat_room_id) {
       chat_room_id
       name
+      chat_member {
+        user
+      }
     }
   }
 `;
@@ -31,14 +34,8 @@ export const SeeRoomRequest = (chat_room_id: number) =>
     variables: { chat_room_id },
   });
 
-export const FIND_ROOM_BY_USER_ID = gql`
-  query findRoomByUserId($opponent: Int!) {
-    findRoomByUserId(opponent: $opponent) {
-      chat_room_id
-    }
+export const INSTANT_CHAT_START = gql`
+  mutation instantChatStart($opponent: Int!) {
+    instantChatStart(opponent: $opponent)
   }
 `;
-export const FindRoomByUserIdRequest = (opponent: number) =>
-  useQuery(FIND_ROOM_BY_USER_ID, {
-    variables: { opponent },
-  });

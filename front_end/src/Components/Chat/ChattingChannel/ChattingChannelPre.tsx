@@ -49,7 +49,12 @@ const RoomSettingBtn = styled(FlexCenter100per)`
   }
   cursor: pointer;
 `;
-const StatusZone = styled(WH100per)``;
+const StatusZone = styled(WH100per)`
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 8px 0 8px;
+`;
 const ChatMain = styled(WH100per)`
   overflow: hidden;
 `;
@@ -96,7 +101,6 @@ export default ({
   zIndex,
   setRoomEnter,
   ParticularRoom,
-  loading,
   data,
   refetch,
   chatText,
@@ -116,12 +120,14 @@ export default ({
       />
       <Template zIndex={zIndex + 2}>
         <Header>
-          <RoomName>{loading ? "Loading..." : data.name}</RoomName>
+          <RoomName>{data.name}</RoomName>
           <RoomSettingBtn>
             <i className="icon-cog" />
           </RoomSettingBtn>
         </Header>
-        <StatusZone></StatusZone>
+        <StatusZone>
+          <i className="icon-group" /> {data.chat_member.length}
+        </StatusZone>
         <ChatMain>
           <Conversation
             size={40}
@@ -154,7 +160,6 @@ interface ChattingChannelPrePorops {
   zIndex: number;
   setRoomEnter: any;
   ParticularRoom: number;
-  loading: boolean;
   data: any;
   refetch: any;
   chatText: any;

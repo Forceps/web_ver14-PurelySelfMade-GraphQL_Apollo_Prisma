@@ -36,12 +36,13 @@ const ChattingChannelCon = ({
       console.log(e);
     }
   };
-  return (
+  return loading ? (
+    <div />
+  ) : (
     <ChattingChannelPre
       zIndex={zIndex}
       setRoomEnter={setRoomEnter}
       ParticularRoom={ParticularRoom}
-      loading={loading}
       data={data?.seeRoom}
       refetch={refetch}
       chatText={chatText}

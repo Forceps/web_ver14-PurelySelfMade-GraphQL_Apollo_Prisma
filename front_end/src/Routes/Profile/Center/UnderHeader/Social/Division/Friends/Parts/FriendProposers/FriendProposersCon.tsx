@@ -50,7 +50,7 @@ const FriendProposersCon = () => {
     <div />
   ) : (
     <FriendProposersPre
-      moorageFriendsData={moorageFriendsData}
+      moorageFriendsData={moorageFriendsData?.friendRequestReceived}
       acceptFriendRequest={acceptFriendRequest}
       setFdRejectModalOp={setFdRejectModalOp}
       setDeleteTarget={setDeleteTarget}

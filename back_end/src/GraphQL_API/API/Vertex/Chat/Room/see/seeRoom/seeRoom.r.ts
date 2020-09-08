@@ -15,6 +15,9 @@ export default {
           where: {
             chat_room_id,
           },
+          include: {
+            chat_member: true,
+          },
         });
         return result;
       } catch (e) {

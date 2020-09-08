@@ -5,6 +5,7 @@ import { S_N_to_N } from "../../../../../../../../../GlobalLib/RecycleFunction/e
 import { SeeFriendsRequest } from "../../../../../../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Friend/FriendR";
 import { useMutation } from "@apollo/client";
 import { REMOVE_FRIEND } from "../../../../../../../../../GlobalLib/Apollo/GraphQL_Client/Relation/Friend/FriendCUD";
+import { INSTANT_CHAT_START } from "../../../../../../../../../GlobalLib/Apollo/GraphQL_Client/Chat/RoomR";
 
 const CurrentFriendsCon = () => {
   const { MEdata } = useMyInfo();
@@ -34,14 +35,27 @@ const CurrentFriendsCon = () => {
       }
     }
   };
-  const {} = FindRoomByUserIdRequest();
-  const chatStart = () => {};
+
+  const [instantChatStartMutation] = useMutation(INSTANT_CHAT_START);
+  const chatStart = async (opponent: number) => {
+    try {
+      const { data } = await instantChatStartMutation({
+        variables: {
+          opponent,
+        },
+      });
+      setParticularRoom(S_N_to_N(data.instantChatStart));
+      setRoomEnter(true);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return friendsLoading ? (
     <div />
   ) : (
     <CurrentFriendsPre
-      friendsData={friendsData}
+      friendsData={friendsData?.seeFriends}
       setFdRemoveModalOp={setFdRemoveModalOp}
       setDeleteTarget={setDeleteTarget}
       FdRemoveModalOp={FdRemoveModalOp}
@@ -49,7 +63,7 @@ const CurrentFriendsCon = () => {
       RoomEnter={RoomEnter}
       setRoomEnter={setRoomEnter}
       ParticularRoom={ParticularRoom}
-      setParticularRoom={setParticularRoom}
+      chatStart={chatStart}
     />
   );
 };
