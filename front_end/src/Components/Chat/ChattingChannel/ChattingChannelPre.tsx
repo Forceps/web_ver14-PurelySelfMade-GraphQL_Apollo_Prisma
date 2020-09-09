@@ -26,7 +26,7 @@ const Template = styled(IncludeScrollBar)<WrapperProps>`
   max-width: 410px;
   height: 78vh;
   min-height: 500px;
-  background-color: #fafafa;
+  background-color: rgba(235, 239, 242, 1);
   overflow: auto;
   z-index: ${(prop) => prop.zIndex};
   display: grid;
@@ -78,7 +78,7 @@ const Input = styled.textarea`
   padding: 5px;
   border: 0;
   font-size: 1rem;
-  background-color: #dfe6e9;
+  background-color: #fafafa;
   outline-style: none;
   resize: none;
   overflow: auto;

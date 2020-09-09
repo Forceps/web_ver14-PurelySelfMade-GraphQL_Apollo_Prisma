@@ -4,8 +4,7 @@ import WH100per, {
   WH100perI,
 } from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { useProfileDetailMode } from "../../../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
-import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { mediaSummon } from "../ShowAll/ShowAllLib";
+import AudioBox from "./AudioBox";
 
 const Block = styled.div`
   min-height: 60px;
@@ -45,24 +44,6 @@ const AddMedia = styled(WH100perI)`
   }
   cursor: pointer;
 `;
-const AudioBox = styled.div`
-  display: flex;
-  align-items: center;
-  width: 250px;
-  padding: 8px 10px 10px 10px;
-  &:hover {
-    background-color: rgba(99, 110, 114, 0.2);
-  }
-  cursor: pointer;
-  @media (max-width: 800px) {
-    width: 100%;
-  }
-`;
-const MusicCaption = styled(WH100per)`
-  display: flex;
-  font-size: 1rem;
-  align-items: center;
-`;
 
 export default ({
   setAddAudioScn,
@@ -95,18 +76,10 @@ export default ({
           Audios?.musicGetByDirId?.map((item: any) => (
             <AudioBox
               key={item.address}
-              onClick={(e) => {
-                spaped(e);
-                setDetailInfo({
-                  MediaType: "audio",
-                  URL: mediaSummon(item.address, "audio"),
-                  Title: item.caption,
-                });
-                setShowOneOpen(true);
-              }}
-            >
-              <MusicCaption>{item.caption}</MusicCaption>
-            </AudioBox>
+              A_Info={item}
+              setShowOneOpen={setShowOneOpen}
+              setDetailInfo={setDetailInfo}
+            />
           ))}
       </MediaFiles>
     </Block>

@@ -28,7 +28,7 @@ const Content = styled(W100per)`
 const Coloring = styled.div`
   display: inline-block;
   padding: 5px;
-  background-color: rgba(178, 190, 195, 0.4);
+  background-color: #fafafa;
   border-radius: 8px;
   white-space: pre-line;
   word-break: break-all;

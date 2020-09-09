@@ -58,8 +58,19 @@ const ScaleInfoSbj = styled(W100per)`
 const ScaleInfoMain = styled(W100per)`
   padding: 0 0 0 7px;
 `;
+const SelectModeBtn = styled(FlexCenter)`
+  width: 50%;
+  height: 35px;
+  padding: 5px;
+  margin: 0 15px 10px 0;
+  background-color: #dfe6e9;
+  cursor: pointer;
+  &:hover {
+    background-color: #b2bec3;
+  }
+`;
 
-export default ({
+const PostCtrlPre = ({
   data: { postCount },
   createPost,
   create_post_toggle,
@@ -102,6 +113,7 @@ export default ({
           </ScaleInfoMain>
         </AvailTotal>
       </Achievement>
+      <SelectModeBtn>Select mode</SelectModeBtn>
       {createPost && <WritePostCon create_post_toggle={create_post_toggle} />}
     </Suburb>
   );
@@ -114,3 +126,5 @@ interface PostCtrlPreProps {
   Search: (e: any) => void;
   SearchKeyWord: any;
 }
+
+export default React.memo(PostCtrlPre);

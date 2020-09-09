@@ -2,11 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import WH100per, {
   WH100perI,
-  W100per,
 } from "../../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { useProfileDetailMode } from "../../../../../../../GlobalLib/Context/ProfileContext/PfDetailMode";
-import { spaped } from "../../../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
-import { mediaSummon } from "./ShowAllLib";
+import VideoBox from "../ShowVideoOnly/VideoBox";
+import ImgBox from "../ShowImgOnly/ImgBox";
+import AudioBox from "../ShowAudioOnly/AudioBox";
 
 const Collection = styled(WH100per)``;
 const Block = styled.div`
@@ -47,79 +47,7 @@ const AddMedia = styled(WH100perI)`
   }
   cursor: pointer;
 `;
-const ImgBox = styled.div`
-  width: 190px;
-  display: grid;
-  grid-template-rows: 170px 35px;
-  margin: 5px;
-  &:hover {
-    box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
-      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
-  }
-  cursor: pointer;
-`;
-const ImgSample = styled(WH100per)`
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  padding: 5px;
-`;
-const ImgCaption = styled(W100per)`
-  display: grid;
-  justify-content: center;
-  overflow: hidden;
-  word-break: break-all;
-  font-size: 1rem;
-  padding: 0 5px 0 5px;
-`;
-const ImgPrev = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: scale-down;
-`;
-const VideoBox = styled.div`
-  width: 190px;
-  display: grid;
-  grid-template-rows: 106.875px 35px;
-  margin: 5px;
-  @media (max-width: 1300px) {
-    &:nth-child(4) {
-      display: none;
-    }
-  }
-  &:hover {
-    box-shadow: 0 13px 27px -60px rgba(50, 50, 93, 0.25),
-      0 8px 16px -8px rgba(0, 0, 0, 0.3), 0 -6px 16px -6px rgba(0, 0, 0, 0.025);
-  }
-  cursor: pointer;
-`;
-interface ThumbnailProp {
-  url: string;
-}
-const Thumbnail = styled(WH100per)<ThumbnailProp>`
-  background-image: url(${(props: any) => props.url});
-  background-size: cover;
-  background-position: center center;
-`;
 const AudioFiles = styled(MediaFiles)``;
-const AudioBox = styled.div`
-  display: flex;
-  align-items: center;
-  width: 250px;
-  padding: 8px 10px 10px 10px;
-  &:hover {
-    background-color: rgba(99, 110, 114, 0.2);
-  }
-  cursor: pointer;
-  @media (max-width: 800px) {
-    width: 100%;
-  }
-`;
-const MusicCaption = styled(WH100per)`
-  display: flex;
-  font-size: 1rem;
-  align-items: center;
-`;
 
 export default ({
   setAddImgScn,
@@ -159,21 +87,10 @@ export default ({
             ImgAll?.map((item: any) => (
               <ImgBox
                 key={item.address}
-                onClick={(e) => {
-                  spaped(e);
-                  setDetailInfo({
-                    MediaType: "img",
-                    URL: mediaSummon(item.address),
-                    Title: item.caption,
-                  });
-                  setShowOneOpen(true);
-                }}
-              >
-                <ImgSample>
-                  <ImgPrev src={mediaSummon(item.address)} alt="image" />
-                </ImgSample>
-                <ImgCaption>{item.caption}</ImgCaption>
-              </ImgBox>
+                I_Info={item}
+                setShowOneOpen={setShowOneOpen}
+                setDetailInfo={setDetailInfo}
+              />
             ))}
         </MediaFiles>
       </Block>
@@ -199,20 +116,10 @@ export default ({
             VideoAll.videoGetByDirId?.map((item: any) => (
               <VideoBox
                 key={item.address}
-                onClick={(e) => {
-                  spaped(e);
-                  setDetailInfo({
-                    MediaType: "video",
-                    URL: mediaSummon(item.address, "video"),
-                    Title: item.caption,
-                    thumbnail: item.thumbnail,
-                  });
-                  setShowOneOpen(true);
-                }}
-              >
-                <Thumbnail url={item.thumbnail.replace(/\\/gi, "/")} />
-                <ImgCaption>{item.caption}</ImgCaption>
-              </VideoBox>
+                v_info={item}
+                setDetailInfo={setDetailInfo}
+                setShowOneOpen={setShowOneOpen}
+              />
             ))}
         </MediaFiles>
       </Block>
@@ -238,18 +145,10 @@ export default ({
             AudioAll.musicGetByDirId?.map((item: any) => (
               <AudioBox
                 key={item.address}
-                onClick={(e) => {
-                  spaped(e);
-                  setDetailInfo({
-                    MediaType: "audio",
-                    URL: mediaSummon(item.address, "audio"),
-                    Title: item.caption,
-                  });
-                  setShowOneOpen(true);
-                }}
-              >
-                <MusicCaption>{item.caption}</MusicCaption>
-              </AudioBox>
+                A_Info={item}
+                setShowOneOpen={setShowOneOpen}
+                setDetailInfo={setDetailInfo}
+              />
             ))}
         </AudioFiles>
       </Block>

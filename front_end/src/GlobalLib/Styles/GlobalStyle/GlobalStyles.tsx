@@ -48,4 +48,7 @@ export default createGlobalStyle<GlobalStyleProps>`
     border: 1px solid black;
     background-color: transparent;
   }
+  video {    
+    object-fit: cover;
+  }
 `;

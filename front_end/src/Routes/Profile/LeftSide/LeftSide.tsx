@@ -46,7 +46,7 @@ export default () => {
   const { MEdata } = useMyInfo();
   const BII = useBackImgInS();
   const { Mode } = useProfileMode();
-  const [MenuMode, setMenuMode] = useState(true);
+  const [MenuMode, setMenuMode] = useState(false);
   return (
     <>
       <Den1Left>

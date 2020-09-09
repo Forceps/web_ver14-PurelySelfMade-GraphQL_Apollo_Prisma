@@ -5,7 +5,7 @@ import useInput from "../../../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import { useTargetsShown } from "../../../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
 
-export default () => {
+const PostCtrlCon = () => {
   const TSP = useTargetsShown();
   const { data, loading } = PostMetaInfoRequest();
   const [createPost, setCreatePost] = useState(false);
@@ -36,3 +36,5 @@ export default () => {
     />
   );
 };
+
+export default React.memo(PostCtrlCon);

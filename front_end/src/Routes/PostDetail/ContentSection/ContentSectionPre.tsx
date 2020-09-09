@@ -27,6 +27,7 @@ export const LocateMiddle = styled.div`
 `;
 const OnePost = styled(({ ...rest }) => <ContentEditable {...rest} />)`
   width: 100%;
+  min-height: 300px;
   word-break: break-all;
 `;
 const CommentToggle = styled(FlexCenter)`
@@ -40,6 +41,7 @@ const CommentToggle = styled(FlexCenter)`
   border-radius: 50%;
   color: white;
   overflow: hidden;
+  z-index: 10;
   &:hover {
     background-color: #636e72;
   }
@@ -49,7 +51,7 @@ const ScrollToTop = styled(CommentToggle)`
   bottom: calc(40px + 2.7rem + 10px);
 `;
 
-export default ({
+const ContentSectionPre = ({
   post_id,
   post,
   AddCommentOpen,
@@ -73,28 +75,28 @@ export default ({
             post={post}
             setAddCommentOpen={setAddCommentOpen}
           />
-          <ScrollToTop
-            onClick={(e: any) => {
-              spaped(e);
-              window.scrollTo(0, 0);
-            }}
-          >
-            <i className="icon-up-big" />
-          </ScrollToTop>
-          <CommentToggle
-            onClick={(e) => {
-              spaped(e);
-              setAddCommentOpen((p: boolean) => !p);
-            }}
-          >
-            {AddCommentOpen ? (
-              <i className="icon-th-large" />
-            ) : (
-              <i className="icon-commenting-o" />
-            )}
-          </CommentToggle>
         </LocateMiddle>
       </Mean>
+      <ScrollToTop
+        onClick={(e: any) => {
+          spaped(e);
+          window.scrollTo(0, 0);
+        }}
+      >
+        <i className="icon-up-big" />
+      </ScrollToTop>
+      <CommentToggle
+        onClick={(e) => {
+          spaped(e);
+          setAddCommentOpen((p: boolean) => !p);
+        }}
+      >
+        {AddCommentOpen ? (
+          <i className="icon-th-large" />
+        ) : (
+          <i className="icon-commenting-o" />
+        )}
+      </CommentToggle>
     </Surrounding>
   );
 };
@@ -106,3 +108,5 @@ interface ContentSectionPreProps {
   setAddCommentOpen: any;
   FirstImgSrc: string;
 }
+
+export default React.memo(ContentSectionPre);

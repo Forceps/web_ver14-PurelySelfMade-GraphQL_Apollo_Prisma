@@ -51,7 +51,6 @@ const VideoPrev = styled.video`
   min-height: 40px;
   max-width: 100%;
   max-height: 100%;
-  object-fit: cover;
 `;
 const AudioPrev = styled.audio`
   display: flex;
