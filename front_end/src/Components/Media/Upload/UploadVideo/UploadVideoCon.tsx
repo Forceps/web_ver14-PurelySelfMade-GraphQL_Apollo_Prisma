@@ -16,14 +16,8 @@ import FileTransmissionAndResponse from "../../../../GlobalLib/RecycleFunction/e
 import { DefaultNumPros } from "../MediaUploadLib";
 import { useProfileMode } from "../../../../GlobalLib/Context/ProfileContext/ProfileMode";
 import { VIDEO_UPLOAD } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoCUD";
-import { VIDEO_GET_BY_DIR_ID } from "../../../../GlobalLib/Apollo/GraphQL_Client/Media/Video/VideoR";
 
-type UploadVideoConProps = {
-  setAddVideoScn: any;
-  zIndex?: number;
-  refetch?: any;
-};
-export default ({
+const UploadVideoCon = ({
   setAddVideoScn,
   zIndex = 20,
   refetch,
@@ -79,9 +73,7 @@ export default ({
     }
     console.log();
   };
-  const [uploadMutation] = useMutation(VIDEO_UPLOAD, {
-    refetchQueries: () => [{ query: VIDEO_GET_BY_DIR_ID }],
-  });
+  const [uploadMutation] = useMutation(VIDEO_UPLOAD);
   const handleSubmit = async (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
     spaped(e);
     if (!UploadLoading) {
@@ -123,9 +115,14 @@ export default ({
       p.splice(num, 1, address);
       return p;
     });
+    const videoR = document.getElementsByClassName(`video_in_video_upload`)[
+      num
+    ] as HTMLVideoElement;
+    videoR?.setAttribute("poster", address);
     setThumbnailPath(address);
     setAddThumbnail(false);
   };
+
   useEffect(() => {
     DS.setDummyState((p: number) => p + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -134,6 +131,7 @@ export default ({
     setMode(["Archive"]);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <UploadVideoPre
       setAddVideoScn={setAddVideoScn}
@@ -156,3 +154,11 @@ export default ({
     />
   );
 };
+
+interface UploadVideoConProps {
+  setAddVideoScn: any;
+  zIndex?: number;
+  refetch?: any;
+}
+
+export default React.memo(UploadVideoCon);

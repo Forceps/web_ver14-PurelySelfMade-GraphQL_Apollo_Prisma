@@ -205,6 +205,7 @@ export default ({
                     MediaType: "video",
                     URL: mediaSummon(item.address, "video"),
                     Title: item.caption,
+                    thumbnail: item.thumbnail,
                   });
                   setShowOneOpen(true);
                 }}

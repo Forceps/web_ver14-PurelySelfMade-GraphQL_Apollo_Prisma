@@ -58,18 +58,19 @@ export default ({
               key={url[1]}
               OrgNum={url[0]}
               SelectedNum={ImSelected.num}
+              className={`video_in_video_upload`}
               controls
             >
-              <source src={url[1]} type="video/mp4" />
-              <source src={url[1]} type="video/ogg" />
-              <source src={url[1]} type="video/avi" />
-              <source src={url[1]} type="video/x-ms-wmv" />
-              <source src={url[1]} type="video/mov" />
-              <source src={url[1]} type="video/rm" />
-              <source src={url[1]} type="video/ram" />
-              <source src={url[1]} type="video/swf" />
-              <source src={url[1]} type="video/flv" />
-              <source src={url[1]} type="video/webm" />
+              <source src={`${url[1]}#t=0.1`} type="video/mp4" />
+              <source src={`${url[1]}#t=0.1`} type="video/ogg" />
+              <source src={`${url[1]}#t=0.1`} type="video/avi" />
+              <source src={`${url[1]}#t=0.1`} type="video/x-ms-wmv" />
+              <source src={`${url[1]}#t=0.1`} type="video/mov" />
+              <source src={`${url[1]}#t=0.1`} type="video/rm" />
+              <source src={`${url[1]}#t=0.1`} type="video/ram" />
+              <source src={`${url[1]}#t=0.1`} type="video/swf" />
+              <source src={`${url[1]}#t=0.1`} type="video/flv" />
+              <source src={`${url[1]}#t=0.1`} type="video/webm" />
             </VideoPrev>
           ))}
         </VideoBack>

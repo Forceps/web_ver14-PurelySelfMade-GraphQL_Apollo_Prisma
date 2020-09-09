@@ -19,6 +19,7 @@ export default () => {
     MediaType: "img",
     URL: "",
     Title: "null",
+    thumbnail: "",
   });
   return (
     <>
@@ -45,6 +46,7 @@ export default () => {
           type={DetailInfo.MediaType}
           url={DetailInfo.URL}
           title={DetailInfo.Title}
+          thumbnail={DetailInfo.thumbnail}
         />
       )}
     </>

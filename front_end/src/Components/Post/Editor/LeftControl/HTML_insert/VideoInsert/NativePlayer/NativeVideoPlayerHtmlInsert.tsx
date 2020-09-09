@@ -1,7 +1,7 @@
 import "./NativeVideoPlayerInsertStyle/Synthesis.scss";
 import cryptoRandomString from "crypto-random-string";
 
-export default (address: string, videoInfo?: any) => {
+export default (address: string, videoInfo?: any, thumbnail?: string) => {
   const temp_id = cryptoRandomString({ length: 20 });
   return new Promise((sol, jec) => {
     if (address) {
@@ -9,7 +9,7 @@ export default (address: string, videoInfo?: any) => {
       <div><br></div>
 
       <div><div id="${temp_id}" class="videoPlayer" contenteditable="false">
-        <video class="video_tag">
+        <video poster="${thumbnail}" class="video_tag">
           <source src="${address}" >
         </video>
         <div class="videoPlayer_controls videoPlayer_controls_at_stop">

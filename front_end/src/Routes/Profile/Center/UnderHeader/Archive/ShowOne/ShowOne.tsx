@@ -51,7 +51,7 @@ const VideoPrev = styled.video`
   min-height: 40px;
   max-width: 100%;
   max-height: 100%;
-  object-fit: scale-down;
+  object-fit: cover;
 `;
 const AudioPrev = styled.audio`
   display: flex;
@@ -65,7 +65,14 @@ const AudioPrev = styled.audio`
   background-color: white;
 `;
 
-export default ({ zIndex = 10, setOpen, type, url, title }: ShowOneProps) => {
+export default ({
+  zIndex = 10,
+  setOpen,
+  type,
+  url,
+  title,
+  thumbnail,
+}: ShowOneProps) => {
   return (
     <Environ zIndex={zIndex}>
       <TemporaryBackground
@@ -95,7 +102,7 @@ export default ({ zIndex = 10, setOpen, type, url, title }: ShowOneProps) => {
             <source src={url} />
           </AudioPrev>
         ) : type === "video" ? (
-          <VideoPrev controls>
+          <VideoPrev poster={thumbnail} controls>
             <source src={url} type="video/mp4" />
             <source src={url} type="video/ogg" />
             <source src={url} type="video/avi" />
@@ -120,4 +127,5 @@ interface ShowOneProps {
   type: string;
   url: string;
   title: string;
+  thumbnail?: string;
 }
