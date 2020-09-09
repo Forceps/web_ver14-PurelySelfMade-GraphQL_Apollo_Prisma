@@ -1,16 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, post } from "@prisma/client";
 const prisma = new PrismaClient();
 
 export default {
   Query: {
     postRecommendByPost: async (_: void, { post_id, skip, take }) => {
       try {
-        const result = await prisma.post.findMany({
-          include: { user_postTouser: true, directory_directoryTopost: true },
-          orderBy: { post_id },
-          skip: typeof skip === "number" ? skip : 0,
-          take: take ? take : 15,
-        });
         const ranks = await prisma.post_relevance.findMany({
           where: {
             OR: [
@@ -42,7 +36,22 @@ export default {
           skip: typeof skip === "number" ? skip : 0,
           take: take ? take : 15,
         });
-        return result;
+
+        let postProsed: post[] = [];
+        for (let i = 0; i < ranks.length; i++) {
+          const {
+            post_postTopost_relevance_post1,
+            post_postTopost_relevance_post2,
+          } = ranks[i];
+          if (post_postTopost_relevance_post1.post_id === post_id) {
+            postProsed = postProsed.concat(post_postTopost_relevance_post2);
+          } else {
+            postProsed = postProsed.concat(post_postTopost_relevance_post1);
+          }
+        }
+
+        console.log(postProsed);
+        return postProsed;
       } catch (e) {
         console.log(e);
         return null;
