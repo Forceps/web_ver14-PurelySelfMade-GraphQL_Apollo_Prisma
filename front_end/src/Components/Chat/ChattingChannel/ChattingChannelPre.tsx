@@ -108,6 +108,7 @@ export default ({
   chatListenData,
   chatListenLoad,
   ChattingChannelRef,
+  List,
 }: ChattingChannelPrePorops) => {
   return (
     <Wrapper zIndex={zIndex} ref={ChattingChannelRef}>
@@ -135,7 +136,7 @@ export default ({
             room_id={ParticularRoom}
             fontSize={1}
             justiConten={"flex-end"}
-            take={40}
+            take={List.length * 3}
             chatListenData={chatListenData}
             chatListenLoad={chatListenLoad}
           />
@@ -168,4 +169,5 @@ interface ChattingChannelPrePorops {
   chatListenLoad: boolean;
   chatListenData: any;
   ChattingChannelRef: React.RefObject<HTMLDivElement>;
+  List: number[];
 }
