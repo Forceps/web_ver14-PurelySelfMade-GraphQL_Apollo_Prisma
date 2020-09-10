@@ -22,7 +22,7 @@
     "noImplicitAny": false,
     "strictNullChecks": true,
     "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true,
+    "noUnusedLocals": false,
     "emitDecoratorMetadata": true
   },
   "include": ["src"],

@@ -1,4 +1,4 @@
-import stF_result from "../../../../../../../Abyss/Interconnectedness/Extraction/postRecommendToUser/stF_result";
+import stF_result from "../../../../../../../Abyss/Interconnectedness/Extraction/PostRecommend/ToUser/stF_result";
 import { contextType } from "../../../../../../LibForGQL/typesLib";
 
 export default {

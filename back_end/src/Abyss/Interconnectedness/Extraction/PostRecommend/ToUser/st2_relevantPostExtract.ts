@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { interestFadeSigmoid } from "../../../AbyssLib/formula";
+import { interestFadeSigmoid } from "../../../../AbyssLib/formula";
 import st1_watchingLogExtract from "./st1_watchingLogExtract";
 
 const prisma = new PrismaClient();

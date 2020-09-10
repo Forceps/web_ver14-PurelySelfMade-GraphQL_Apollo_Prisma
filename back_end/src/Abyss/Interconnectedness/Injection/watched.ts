@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { interestSigmoid } from "../../AbyssLib/formula";
-import { PostInterconnection } from "./PostToPost";
+import { PostInterconnection } from "./PostToPost/stF_result";
 import { UserInterconnection } from "./UserToUser";
 
 const prisma = new PrismaClient();
