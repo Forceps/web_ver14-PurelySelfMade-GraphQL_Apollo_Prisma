@@ -27,8 +27,8 @@ export const PostRecommendToUserRequest = (user_id: number) =>
   });
 
 export const POST_RECOMMEND_BY_POST = gql`
-  query postRecommendByPost($user_id: Int!) {
-    postRecommendByPost(user_id: $user_id) {
+  query postRecommendByPost($post_ids: [Int!]!, $skip: Int!, $take: Int!) {
+    postRecommendByPost(post_ids: $post_ids, skip: $skip, take: $take) {
       post_id
       caption
       user_postTouser {
@@ -43,7 +43,11 @@ export const POST_RECOMMEND_BY_POST = gql`
     }
   }
 `;
-export const PostRecommendByPostRequest = (user_id: number) =>
-  useQuery(POST_RECOMMEND_TO_USER, {
-    variables: { user_id },
+export const PostRecommendByPostRequest = (
+  post_ids: number[],
+  skip: number,
+  take: number
+) =>
+  useQuery(POST_RECOMMEND_BY_POST, {
+    variables: { post_ids, skip, take },
   });

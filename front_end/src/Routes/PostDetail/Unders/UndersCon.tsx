@@ -1,24 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 import UndersPre from "./UndersPre";
-import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
-import { SeeWhosePostsRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostR";
+import { PostRecommendByPostRequest } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostRecommend";
 
-export default ({ post_id, post, AddCommentOpen }: UndersConProps) => {
-  const { data: AuthorPost, loading: AuthorPostLoading } = SeeWhosePostsRequest(
-    S_N_to_N(post.user_postTouser.user_id)
-  );
+const UndersCon = ({ post_id, AddCommentOpen }: UndersConProps) => {
+  const [CommentDeploy, setCommentDeploy] = useState(false);
+  const {
+    data: relatedPost,
+    loading: relatedPostLoading,
+  } = PostRecommendByPostRequest([post_id], 0, 15);
+
   return (
     <UndersPre
       post_id={post_id}
-      AuthorName={post.user_postTouser.username}
-      AuthorPost={AuthorPost?.seeWhosePosts}
-      AuthorPostLoading={AuthorPostLoading}
+      relatedPost={relatedPost?.postRecommendByPost}
+      relatedPostLoading={relatedPostLoading}
       AddCommentOpen={AddCommentOpen}
+      CommentDeploy={CommentDeploy}
+      setCommentDeploy={setCommentDeploy}
     />
   );
 };
 interface UndersConProps {
   post_id: number;
-  post: any;
   AddCommentOpen: boolean;
 }
+
+export default React.memo(UndersCon);

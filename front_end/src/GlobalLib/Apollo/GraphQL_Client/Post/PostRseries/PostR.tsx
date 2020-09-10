@@ -51,33 +51,6 @@ export const SeePostAllRequest = (skip: number, take: number) =>
     variables: { skip, take },
   });
 
-export const SEE_WHOSE_POSTS = gql`
-  query seeWhosePosts($user: Int!) {
-    seeWhosePosts(user: $user) {
-      post_id
-      caption
-      user_postTouser {
-        user_id
-        username
-        avatar
-      }
-      directory
-      views
-      likes
-      face
-      face_type
-    }
-  }
-`;
-export const SeeWhosePostsLazyRequest = (user: number) =>
-  useLazyQuery(SEE_WHOSE_POSTS, {
-    variables: { user },
-  });
-export const SeeWhosePostsRequest = (user: number) =>
-  useQuery(SEE_WHOSE_POSTS, {
-    variables: { user },
-  });
-
 export const SEE_SEARCH_POSTS = gql`
   query searchPost($keyWord: String!) {
     searchPost(keyWord: $keyWord) {

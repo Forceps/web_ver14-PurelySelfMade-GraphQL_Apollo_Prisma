@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import ChattingChannelPre from "./ChattingChannelPre";
 import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useMutation, useSubscription } from "@apollo/client";
@@ -11,6 +11,7 @@ const ChattingChannelCon = ({
   setRoomEnter,
   ParticularRoom,
 }: ChattingChannelConPorops) => {
+  const ChattingChannelRef = useRef<HTMLDivElement>(null);
   const { loading, data, refetch } = SeeRoomRequest(ParticularRoom);
   const { data: chatListenData, loading: chatListenLoad } = useSubscription(
     CHAT_LISTENING,
@@ -32,10 +33,19 @@ const ChattingChannelCon = ({
         },
       });
       chatText.setValue("");
+      ChattingChannelRef.current
+        ?.getElementsByClassName("scroll_in_chat_conversation")[0]
+        .scrollIntoView(false);
     } catch (e) {
       console.log(e);
     }
   };
+
+  useEffect(() => {
+    refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return loading ? (
     <div />
   ) : (
@@ -49,6 +59,7 @@ const ChattingChannelCon = ({
       commenting={commenting}
       chatListenData={chatListenData}
       chatListenLoad={chatListenLoad}
+      ChattingChannelRef={ChattingChannelRef}
     />
   );
 };

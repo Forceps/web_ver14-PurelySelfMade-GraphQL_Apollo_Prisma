@@ -1,4 +1,3 @@
-import { PrismaClient } from "@prisma/client";
 import { postRecommendByPostLogic } from "../../../../../../../Abyss/Interconnectedness/Extraction/PostRecommend/ByPost/stF_result";
 
 export default {

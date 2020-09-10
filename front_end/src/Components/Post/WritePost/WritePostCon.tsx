@@ -3,32 +3,21 @@ import WritePostPre from "./WritePostPre";
 import { useMutation } from "@apollo/client";
 import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
 import { useDirMode } from "../../../GlobalLib/Context/ProfileContext/DirMode";
-import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { CREATE_POST } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostCUD";
-import {
-  SEE_POST_ALL,
-  SEE_WHOSE_POSTS,
-} from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostR";
+import { SEE_POST_ALL } from "../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostR";
 import { S_N_to_N } from "../../../GlobalLib/RecycleFunction/etc/type_convert";
 import { titleImgSubstitute } from "../Editor/EditorLib";
 
-type WritePostConProps = {
+interface WritePostConProps {
   create_post_toggle: any;
-};
+}
 export default ({ create_post_toggle }: WritePostConProps) => {
   const caption = useInput("");
   const { Location, DirData_refetch } = useDirMode();
-  const { MEdata } = useMyInfo();
   const Html = useRef(``);
   const [TitleImg, setTitleImg] = useState("");
   const [createPostMutation] = useMutation(CREATE_POST, {
-    refetchQueries: () => [
-      { query: SEE_POST_ALL },
-      {
-        query: SEE_WHOSE_POSTS,
-        variables: { user: S_N_to_N(MEdata?.user_id) },
-      },
-    ],
+    refetchQueries: () => [{ query: SEE_POST_ALL }],
   });
   const createPostTrigger = async () => {
     try {

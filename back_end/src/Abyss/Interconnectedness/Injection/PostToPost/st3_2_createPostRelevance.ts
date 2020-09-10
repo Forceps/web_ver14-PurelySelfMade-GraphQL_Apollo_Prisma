@@ -57,7 +57,7 @@ export default async (
         post_relevance_id: relevMade.post_relevance_id,
       },
       data: {
-        degree: relevMade.degree / 10,
+        degree: Math.floor(relevMade.degree / 10),
       },
     });
   }

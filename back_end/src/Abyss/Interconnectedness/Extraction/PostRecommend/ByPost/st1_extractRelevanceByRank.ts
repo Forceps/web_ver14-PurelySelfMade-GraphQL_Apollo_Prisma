@@ -25,13 +25,11 @@ export default async (post_ids: number[], skip: number, take: number) => {
       post_postTopost_relevance_post1: {
         include: {
           user_postTouser: true,
-          directory_directoryTopost: true,
         },
       },
       post_postTopost_relevance_post2: {
         include: {
           user_postTouser: true,
-          directory_directoryTopost: true,
         },
       },
     },

@@ -38,11 +38,7 @@ export default ({
         FirstImgSrc={FirstImgSrc}
         setFirstImgSrc={setFirstImgSrc}
       />
-      <UndersCon
-        post_id={post_id}
-        post={post}
-        AddCommentOpen={AddCommentOpen}
-      />
+      <UndersCon post_id={post_id} AddCommentOpen={AddCommentOpen} />
       {LoginOpen && (
         <LoginModalCon zIndex={30} setLoginModalOpen={setLoginOpen} />
       )}

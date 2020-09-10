@@ -4,7 +4,7 @@ import TemporaryBackground from "../../ElementEtc/Effect/TemporaryBackground";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 import WH100per from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import IncludeScrollBar from "../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
-import Conversation from "../Conversation/Conversation";
+import Conversation from "../Conversation/ConversationCon";
 import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 interface WrapperProps {
@@ -107,9 +107,10 @@ export default ({
   commenting,
   chatListenData,
   chatListenLoad,
+  ChattingChannelRef,
 }: ChattingChannelPrePorops) => {
   return (
-    <Wrapper zIndex={zIndex}>
+    <Wrapper zIndex={zIndex} ref={ChattingChannelRef}>
       <TemporaryBackground
         onClick={(e: any) => {
           spaped(e);
@@ -134,7 +135,7 @@ export default ({
             room_id={ParticularRoom}
             fontSize={1}
             justiConten={"flex-end"}
-            take={100}
+            take={40}
             chatListenData={chatListenData}
             chatListenLoad={chatListenLoad}
           />
@@ -166,4 +167,5 @@ interface ChattingChannelPrePorops {
   commenting: () => void;
   chatListenLoad: boolean;
   chatListenData: any;
+  ChattingChannelRef: React.RefObject<HTMLDivElement>;
 }

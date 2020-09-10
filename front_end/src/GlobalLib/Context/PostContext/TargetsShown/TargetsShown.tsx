@@ -5,18 +5,14 @@ import React, {
   useContext,
   useEffect,
 } from "react";
-import { S_N_to_N } from "../../../RecycleFunction/etc/type_convert";
-import {
-  SeeWhosePostsLazyRequest,
-  SeeSearchPostsRequest,
-} from "../../../Apollo/GraphQL_Client/Post/PostRseries/PostR";
+import { SeeSearchPostsRequest } from "../../../Apollo/GraphQL_Client/Post/PostRseries/PostR";
 
 const TargetsShown = createContext<TargetsShownContext | undefined>(undefined);
 export const TargetsShownProvider = ({ children }: { children: ReactNode }) => {
   const [PostTargetMode, setPostTargetMode] = useState(
     "All"
   ); /*그 종류에는 
-  All, Whose, Search 가 있다.*/
+  All, Search 가 있다.*/
   const [Whose, setWhose] = useState(0);
   const [KeyWord, setKeyWord] = useState("");
 
@@ -24,36 +20,18 @@ export const TargetsShownProvider = ({ children }: { children: ReactNode }) => {
   const [posts_loading, setPosts_loading] = useState(true);
   const [posts_refetch, setPosts_refetch]: any = useState(null);
   const [
-    WsloadGreeting,
-    { called: WsCalled, data: WsData, loading: WsLoading, refetch: WsRefetch },
-  ] = SeeWhosePostsLazyRequest(S_N_to_N(Whose));
-  const [
     SrloadGreeting,
     { called: SrCalled, data: SrData, loading: SrLoading, refetch: SrRefetch },
   ] = SeeSearchPostsRequest(KeyWord);
 
   useEffect(() => {
-    if (PostTargetMode === "Whose") {
-      setPosts(WsData?.seeWhosePosts);
-      setPosts_loading(WsLoading);
-      setPosts_refetch(() => WsRefetch);
-    } else if (PostTargetMode === "Search") {
+    if (PostTargetMode === "Search") {
       setPosts(SrData?.searchPost);
       setPosts_loading(SrLoading);
       setPosts_refetch(() => SrRefetch);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    PostTargetMode,
-    WsLoading,
-    SrLoading,
-    Whose,
-    KeyWord,
-    WsData,
-    SrData,
-    WsCalled,
-    SrCalled,
-  ]);
+  }, [PostTargetMode, SrLoading, Whose, KeyWord, SrData, SrCalled]);
 
   useEffect(() => {
     if (posts_refetch) {
@@ -71,8 +49,6 @@ export const TargetsShownProvider = ({ children }: { children: ReactNode }) => {
     posts,
     posts_loading,
     posts_refetch,
-    WsloadGreeting,
-    WsCalled,
     SrloadGreeting,
     SrCalled,
   };
@@ -87,8 +63,6 @@ interface TargetsShownContext {
   posts: any;
   posts_loading: any;
   posts_refetch: any;
-  WsloadGreeting: any;
-  WsCalled: boolean;
   SrloadGreeting: any;
   SrCalled: boolean;
 }
