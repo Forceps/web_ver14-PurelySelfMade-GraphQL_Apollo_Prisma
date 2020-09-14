@@ -14,7 +14,7 @@ import { useProfileMode } from "../../../GlobalLib/Context/ProfileContext/Profil
 
 const Den1Left = styled(W100per)`
   display: grid;
-  grid-template-rows: 180px 1fr;
+  grid-template-rows: 160px 1fr;
   @media (max-width: 1300px) {
     display: flex;
     min-width: 0;
@@ -31,7 +31,6 @@ const Den2Up = styled.div`
 const Den2Down = styled(WH100per)`
   display: flex;
   flex-direction: column;
-  background-color: rgba(223, 230, 233, 0.25);
 `;
 interface BackImgProp {
   url: string;

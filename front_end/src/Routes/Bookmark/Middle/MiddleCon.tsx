@@ -5,9 +5,7 @@ import useInfiniteScroll from "../../../GlobalLib/RecycleFunction/Hooks/useInfin
 export default ({ SeeMode }: MiddleConProps) => {
   const { List, Finish } = useInfiniteScroll();
 
-  return (
-    <MiddlePre SeeMode={SeeMode} List={List} LoadCount={6} Finish={Finish} />
-  );
+  return <MiddlePre List={List} LoadCount={6} Finish={Finish} />;
 };
 
 interface MiddleConProps {

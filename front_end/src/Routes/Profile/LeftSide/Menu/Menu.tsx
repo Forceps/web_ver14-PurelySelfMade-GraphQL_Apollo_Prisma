@@ -9,22 +9,17 @@ import OutsideMenu from "./InsideOutside/OutsideMenu";
 import InsideMenu from "./InsideOutside/InsideMenu";
 import { FlexCenter100per } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
-const Wrapper = styled.div`
+const Wrapper = styled(W100per)`
   display: grid;
   grid-template-rows: 35px 1fr;
-  width: 100%;
   margin-top: 10px;
   user-select: none;
 `;
-const LeftMenu = styled.div`
+const LeftMenu = styled(W100per)`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  width: 310px;
   margin-top: 10px;
-  @media (max-width: 1300px) {
-    width: 100%;
-  }
 `;
 interface MenuItemProps {
   curMode?: string;

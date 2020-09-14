@@ -16,7 +16,7 @@ const ChattingChannelCon = ({
   const scrollElement = ChattingChannelRef.current?.getElementsByClassName(
     "scroll_in_chat_conversation"
   )[0] as HTMLElement;
-  const { List, Finish } = useInfiniteScroll(scrollElement, true);
+  const { List } = useInfiniteScroll(scrollElement, true);
   const { loading, data, refetch } = SeeRoomRequest(ParticularRoom);
   const { data: chatListenData, loading: chatListenLoad } = useSubscription(
     CHAT_LISTENING,

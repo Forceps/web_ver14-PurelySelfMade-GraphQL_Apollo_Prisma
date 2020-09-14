@@ -1,13 +1,13 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import WH100per, {
-  WH100perInput,
+  // WH100perInput,
   H100per,
   W100per,
 } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
 import { Link } from "react-router-dom";
 import FatText from "../../../GlobalLib/Styles/IteratePattern/FatText";
-import useSearch from "../../../GlobalLib/RecycleFunction/Hooks/useSearch";
+// import useSearch from "../../../GlobalLib/RecycleFunction/Hooks/useSearch";
 import ToggleMenuCon from "./ToggleMenu/ToggleMenuCon";
 import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
 import { spaped } from "../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
@@ -75,23 +75,23 @@ const MyName = styled.div`
 const Center = styled(FlexCenter100per)`
   padding: 0 0 0 11px;
 `;
-const SearchBox = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 35px;
-  min-width: 370px;
-  width: 50%;
-  height: 35px;
-`;
-const SearchTxt = styled(WH100perInput)`
-  padding: 5px;
-  font-size: 1rem;
-  border: 0;
-  border-bottom: 1px solid #636e72;
-`;
-const SearchBtn = styled(FlexCenter100per)`
-  font-size: 1.2rem;
-  cursor: pointer;
-`;
+// const SearchBox = styled.div`
+//   display: grid;
+//   grid-template-columns: 1fr 35px;
+//   min-width: 370px;
+//   width: 50%;
+//   height: 35px;
+// `;
+// const SearchTxt = styled(WH100perInput)`
+//   padding: 5px;
+//   font-size: 1rem;
+//   border: 0;
+//   border-bottom: 1px solid #636e72;
+// `;
+// const SearchBtn = styled(FlexCenter100per)`
+//   font-size: 1.2rem;
+//   cursor: pointer;
+// `;
 const Right = styled(WH100per)`
   display: flex;
   justify-content: flex-end;
@@ -113,9 +113,9 @@ const HMenu = styled(H100per)`
 `;
 const MenuIcon = styled.i``;
 
-export default ({ setLoginOpen, zIndex }: BlogHeaderPreProps) => {
+export default ({ setLoginOpen, zIndex }: BookmarkHeaderPreProps) => {
   const { MEloading, MEdata } = useMyInfo();
-  const { SearchKeyWord, Search } = useSearch();
+  // const { SearchKeyWord, Search } = useSearch();
   const { isLoggedIn } = useLoginCheck();
   const { Position, Direction } = useScroll();
   return (
@@ -143,7 +143,7 @@ export default ({ setLoginOpen, zIndex }: BlogHeaderPreProps) => {
         )}
       </Left>
       <Center>
-        <SearchBox>
+        {/* <SearchBox>
           <SearchTxt
             type="text"
             placeholder="Search"
@@ -162,7 +162,7 @@ export default ({ setLoginOpen, zIndex }: BlogHeaderPreProps) => {
           >
             <i className="icon-search" />
           </SearchBtn>
-        </SearchBox>
+        </SearchBox> */}
       </Center>
       <Right>
         <HMenu>
@@ -174,7 +174,7 @@ export default ({ setLoginOpen, zIndex }: BlogHeaderPreProps) => {
   );
 };
 
-interface BlogHeaderPreProps {
+interface BookmarkHeaderPreProps {
   setLoginOpen: any;
   zIndex: number;
 }

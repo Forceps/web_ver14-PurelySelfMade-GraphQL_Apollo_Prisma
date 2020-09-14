@@ -1,70 +1,31 @@
 import React from "react";
 import styled from "styled-components";
-import PostTimelineCon from "./PostTimeline/PostTimelineCon";
 import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { useSearchUser } from "../../../GlobalLib/Context/UserContext/SearchUser";
-import SearchedUser from "./SearchedUser/SearchedUserCon";
+import PostTimelineCon from "./PostTimeline/PostTimelineCon";
 
-const Wrapper = styled.div`
+const Wrapper = styled(W100per)`
   display: flex;
-  flex-direction: column;
-  position: absolute;
-  left: calc(50vw - 550px + 190px);
-  width: 600px;
-  z-index: 0;
-`;
-const SmallTitle = styled(W100per)`
-  display: grid;
-  align-items: center;
-  padding: 14px 0 30px 10px;
-  font-size: 1.3rem;
-`;
-const SmallerTitle = styled(W100per)`
-  display: grid;
-  align-items: center;
-  padding: 14px 0 0 10px;
-  font-size: 1.1rem;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  padding: 20px 0 0 0;
 `;
 
-export default ({ SeeMode, List, LoadCount, Finish }: MiddlePreProps) => {
-  const SU = useSearchUser();
-
+export default ({ List, LoadCount, Finish }: MiddlePreProps) => {
   return (
     <Wrapper>
-      {SeeMode === "Search" && SU.called ? (
-        <>
-          <SmallTitle>Search</SmallTitle>
-          <SmallerTitle>User</SmallerTitle>
-          <SearchedUser />
-          <SmallerTitle>Post</SmallerTitle>
-          {List.map((t) => (
-            <PostTimelineCon
-              key={t}
-              turn={t}
-              LoadCount={LoadCount}
-              Finish={Finish}
-            />
-          ))}
-        </>
-      ) : (
-        <>
-          <SmallTitle>New</SmallTitle>
-          {List.map((t) => (
-            <PostTimelineCon
-              key={t}
-              turn={t}
-              LoadCount={LoadCount}
-              Finish={Finish}
-            />
-          ))}
-        </>
-      )}
+      {List.map((t) => (
+        <PostTimelineCon
+          key={t}
+          turn={t}
+          LoadCount={LoadCount}
+          Finish={Finish}
+        />
+      ))}
     </Wrapper>
   );
 };
 
 interface MiddlePreProps {
-  SeeMode: string;
   List: number[];
   LoadCount: number;
   Finish: any;

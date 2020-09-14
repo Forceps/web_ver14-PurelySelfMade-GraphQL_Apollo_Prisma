@@ -10,6 +10,7 @@ import SettingsMode from "./UnderHeader/Settings/SettingsModeCon";
 const Wrapper = styled.div`
   display: grid;
   grid-template-rows: 40px 1fr;
+  padding: 0 0 0 20px;
 `;
 
 export default () => {
