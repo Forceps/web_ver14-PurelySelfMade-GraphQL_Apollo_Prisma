@@ -47,7 +47,7 @@ const Menifesting = styled(WH100per)`
   color: white;
   background-color: rgba(45, 52, 54, 0.3);
   &:hover {
-    background-color: rgba(45, 52, 54, 0.45);
+    background-color: rgba(45, 52, 54, 0.2);
   }
   transition-property: background-color;
   transition-duration: 0.12s;

@@ -16,7 +16,6 @@ const Embosom = styled(WH100per)`
 const RestArea = styled(IncludeScrollBar)`
   display: flex;
   flex-wrap: wrap;
-  max-width: 1300px;
   max-height: 100%;
 `;
 const Classification = styled(WH100per)`
