@@ -51,7 +51,7 @@ const ItemList = styled(Item)<pSM>`
   ${(prop) => {
     if (prop.PfDM === "popularity") {
       return css`
-        border-bottom: 3px solid #636e72;
+        border-bottom: 3px solid #2d3436;
         padding: 3px 0 0 0;
       `;
     }
@@ -61,7 +61,7 @@ const ItemTL = styled(Item)<pSM>`
   ${(prop) => {
     if (prop.PfDM === "recent") {
       return css`
-        border-bottom: 3px solid #636e72;
+        border-bottom: 3px solid #2d3436;
         padding: 3px 0 0 0;
       `;
     }

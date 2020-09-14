@@ -17,7 +17,7 @@ const RightRootPanel = styled.div<RightRootPanelProps>`
   right: 0;
   width: 345px;
   height: 100vh;
-  z-index: 3;
+  z-index: 10;
   font-size: 1rem;
   margin-right: ${(p) => (p.Mode ? "0px" : "-345px")};
   backdrop-filter: blur(5px);

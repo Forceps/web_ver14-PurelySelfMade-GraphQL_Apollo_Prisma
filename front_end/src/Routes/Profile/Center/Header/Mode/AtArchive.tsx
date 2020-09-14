@@ -59,7 +59,7 @@ const ItemAll = styled(Item)<pSM>`
   ${(prop) => {
     if (prop.PfDM === "All") {
       return css`
-        border-bottom: 3px solid #636e72;
+        border-bottom: 3px solid #2d3436;
         padding: 3px 0 0 0;
       `;
     }
@@ -69,7 +69,7 @@ const ItemImg = styled(Item)<pSM>`
   ${(prop) => {
     if (prop.PfDM === "Image") {
       return css`
-        border-bottom: 3px solid #636e72;
+        border-bottom: 3px solid #2d3436;
         padding: 3px 0 0 0;
       `;
     }
@@ -79,7 +79,7 @@ const ItemVideo = styled(Item)<pSM>`
   ${(prop) => {
     if (prop.PfDM === "Video") {
       return css`
-        border-bottom: 3px solid #636e72;
+        border-bottom: 3px solid #2d3436;
         padding: 3px 0 0 0;
       `;
     }
@@ -89,7 +89,7 @@ const ItemMusic = styled(Item)<pSM>`
   ${(prop) => {
     if (prop.PfDM === "Music") {
       return css`
-        border-bottom: 3px solid #636e72;
+        border-bottom: 3px solid #2d3436;
         padding: 3px 0 0 0;
       `;
     }

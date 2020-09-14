@@ -23,7 +23,7 @@ interface BoxProps {
 }
 const Box = styled.div<BoxProps>`
   display: grid;
-  grid-template-columns: 3px 1fr;
+  grid-template-columns: 2px 1fr;
   position: fixed;
   bottom: 40px;
   left: -400px;

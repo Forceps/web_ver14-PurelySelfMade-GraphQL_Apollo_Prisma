@@ -11,7 +11,7 @@ const Wrapper = styled.div``;
 const BottomBody = styled.div`
   display: grid;
   grid-template-columns: 280px 1fr;
-  padding: 60px 40px 40px 40px;
+  padding: 60px 30px 40px 30px;
 `;
 
 export default ({ PD, UP }: ProfilePreProps) => {

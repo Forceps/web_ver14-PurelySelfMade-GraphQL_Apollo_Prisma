@@ -26,7 +26,8 @@ const MenuItem = styled(W100per)<MenuItemProps>`
     if (p.curMode && p.staMode) {
       if (p.curMode === p.staMode) {
         return css`
-          border-left: 4px solid #2d3436;
+          border-left: 3px solid #2d3436;
+          padding: 0 0 0 7px;
         `;
       }
     }
