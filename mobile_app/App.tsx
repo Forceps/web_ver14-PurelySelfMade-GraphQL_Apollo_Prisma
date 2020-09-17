@@ -1,7 +1,7 @@
 import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
 import { AppLoading } from "expo";
 import { StatusBar } from "expo-status-bar";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AppRegistry, StyleSheet, Text, View } from "react-native";
 
 const client = new ApolloClient({
@@ -10,6 +10,10 @@ const client = new ApolloClient({
 
 const App = () => {
   const [Loaded, setLoaded] = useState(false);
+  const preLoad = () => {};
+  useEffect(() => {
+    preLoad();
+  }, []);
   return (
     <ApolloProvider client={client}>
       {Loaded ? (
