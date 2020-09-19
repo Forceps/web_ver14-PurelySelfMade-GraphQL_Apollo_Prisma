@@ -4,16 +4,15 @@ import AsyncStorage from "@react-native-community/async-storage";
 import { persistCache } from "apollo-cache-persist";
 import { PersistentStorage } from "apollo-cache-persist/types";
 import * as Font from "expo-font";
-import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useState } from "react";
-import { AppRegistry, Text, View } from "react-native";
+import { AppRegistry } from "react-native";
 import { ThemeProvider } from "styled-components";
 import Loading from "./src/Components/ElementEtc/Effect/Loading";
 import { client } from "./src/GlobalLib/Apollo/ApolloConnection";
 import { cache } from "./src/GlobalLib/Apollo/LocalState/LocalState";
 import { NOrU } from "./src/GlobalLib/RecycleFunction/etc/type_convert";
 import Theme from "./src/GlobalLib/Styles/GlobalStyle/Theme";
-import NavController from "./src/Routes/NavController";
+import ContextApply from "./src/Routes/AppRoot/ContextApply";
 
 const App = () => {
   const [Loaded, setLoaded] = useState(false);
@@ -47,7 +46,7 @@ const App = () => {
   return Loaded && isLoggedIn !== null ? (
     <ApolloProvider client={client}>
       <ThemeProvider theme={Theme}>
-        <NavController isLoggedIn={isLoggedIn} />
+        <ContextApply isLoggedIn={isLoggedIn} />
       </ThemeProvider>
     </ApolloProvider>
   ) : (

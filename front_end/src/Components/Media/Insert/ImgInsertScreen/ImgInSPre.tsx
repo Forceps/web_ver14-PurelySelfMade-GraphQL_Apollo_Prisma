@@ -9,7 +9,7 @@ import { spaped } from "../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent
 import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
 import UploadImageCon from "../../Upload/UploadImage/UploadImageCon";
 import useGetImgExist from "../../../../GlobalLib/RecycleFunction/Hooks/useGetImgExist";
-import { mediaSummon } from "../../../../Routes/Profile/Center/UnderHeader/Archive/ShowWindow/ShowAll/ShowAllLib";
+import { mediaSummon } from "../../../../Routes/OnlyForMember/Profile/Center/UnderHeader/Archive/ShowWindow/ShowAll/ShowAllLib";
 
 const Container = styled(WH100per)<ConsoleProps>`
   display: flex;

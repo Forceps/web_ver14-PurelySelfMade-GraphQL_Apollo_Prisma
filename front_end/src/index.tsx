@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import "./GlobalLib/Assets/fontello-ac053006/css/fontello.css";
 import { ApolloProvider } from "@apollo/client";
 import { client } from "./GlobalLib/Apollo/ApolloConnection";
-import App from "./App";
+import ContextApply from "./Routes/AppRoot/ContextApply";
 
 ReactDOM.render(
   <ApolloProvider client={client}>
@@ -16,7 +16,7 @@ ReactDOM.render(
       />
     </Helmet>
     <React.StrictMode>
-      <App />
+      <ContextApply />
     </React.StrictMode>
   </ApolloProvider>,
   document.getElementById("root")

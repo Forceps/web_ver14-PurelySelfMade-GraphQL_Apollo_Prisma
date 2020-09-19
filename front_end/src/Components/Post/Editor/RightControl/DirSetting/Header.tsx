@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDirMode } from "../../../../../GlobalLib/Context/ProfileContext/DirMode";
-import HeadRootSbj from "../../../../../Routes/Profile/RightPanel/Section/HeadRootSbj";
+import HeadRootSbj from "../../../../../Routes/OnlyForMember/Profile/RightPanel/Section/HeadRootSbj";
 import { spaped } from "../../../../../GlobalLib/RecycleFunction/etc/StopAndPrevent";
 
 const SbJCon = styled.div`

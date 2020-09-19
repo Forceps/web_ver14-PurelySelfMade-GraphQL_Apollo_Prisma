@@ -9,7 +9,7 @@ import WH100per, {
   H100per,
 } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
 import IncludeScrollBar from "../../../../GlobalLib/Styles/IteratePattern/IncludeScrollBar";
-import { mediaSummon } from "../../../../Routes/Profile/Center/UnderHeader/Archive/ShowWindow/ShowAll/ShowAllLib";
+import { mediaSummon } from "../../../../Routes/OnlyForMember/Profile/Center/UnderHeader/Archive/ShowWindow/ShowAll/ShowAllLib";
 
 const Container = styled(WH100per)<ConsoleProps>`
   display: flex;
