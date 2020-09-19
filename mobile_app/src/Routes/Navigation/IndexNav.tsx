@@ -1,11 +1,11 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
-import AuthNavigation from "./Stack/AuthNavigation";
+import TabNavigation from "./Tab/TabNavigation";
 
 const IndexNav = () => {
   return (
     <NavigationContainer>
-      <AuthNavigation />
+      <TabNavigation />
     </NavigationContainer>
   );
 };

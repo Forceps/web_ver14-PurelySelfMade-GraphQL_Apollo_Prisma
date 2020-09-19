@@ -1,9 +1,9 @@
 import React from "react";
-import { View } from "react-native";
+import IndexNav from "../Navigation/IndexNav";
 import AuthNavigation from "../Navigation/Stack/AuthNavigation";
 
 export default ({ isLoggedIn }: NavControllerProps) => {
-  return isLoggedIn ? <View /> : <AuthNavigation />;
+  return isLoggedIn ? <IndexNav /> : <AuthNavigation />;
 };
 
 interface NavControllerProps {

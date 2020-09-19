@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import constants from "../../constants";
 import AuthButton from "../../components/AuthButton";
+import { useNavigation } from "@react-navigation/native";
 
 const View = styled.View`
   justify-content: center;
@@ -23,20 +24,19 @@ const LoginLinkText = styled.Text`
   font-weight: 600;
 `;
 
-export default ({ navigation }) => (
-  <View>
-    <Image
-      resizeMode={"contain"}
-      source={require("../../assets/Instagram_logo.png")}
-    />
-    <AuthButton
-      text={"Create New Account"}
-      onPress={() => navigation.navigate("Signup")}
-    />
-    <Touchable onPress={() => navigation.navigate("Login")}>
-      <LoginLink>
-        <LoginLinkText>Log in</LoginLinkText>
-      </LoginLink>
-    </Touchable>
-  </View>
-);
+export default () => {
+  const navigation = useNavigation();
+  return (
+    <View>
+      <AuthButton
+        text={"Create New Account"}
+        onPress={() => navigation.navigate("SignUp")}
+      />
+      <Touchable onPress={() => navigation.navigate("Login")}>
+        <LoginLink>
+          <LoginLinkText>Log in</LoginLinkText>
+        </LoginLink>
+      </Touchable>
+    </View>
+  );
+};

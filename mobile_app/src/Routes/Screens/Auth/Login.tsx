@@ -4,8 +4,9 @@ import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
 import { Alert, TouchableWithoutFeedback, Keyboard } from "react-native";
-import { useMutation } from "react-apollo-hooks";
-import { LOG_IN } from "./AuthQueries";
+import { useNavigation } from "@react-navigation/native";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
 
 const View = styled.View`
   justify-content: center;
@@ -13,12 +14,14 @@ const View = styled.View`
   flex: 1;
 `;
 
-export default ({ navigation }) => {
+export default () => {
+  const navigation = useNavigation();
   const emailInput = useInput(navigation.getParam("email", ""));
   const [loading, setLoading] = useState(false);
-  const [requestSecretMutation] = useMutation(LOG_IN, {
+  const [requestSecretMutation] = useMutation(LOGIN_USER, {
     variables: {
       email: emailInput.value,
+      password: "1111111111",
     },
   });
   const handleLogin = async () => {
@@ -42,7 +45,7 @@ export default ({ navigation }) => {
         return;
       } else {
         Alert.alert("Account not found");
-        navigation.navigate("Signup", { email: value });
+        navigation.navigate("SignUp", { email: value });
       }
     } catch (err) {
       console.log(err);

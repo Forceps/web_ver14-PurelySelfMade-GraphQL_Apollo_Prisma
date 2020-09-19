@@ -6,7 +6,8 @@ import useInput from "../../hooks/useInput";
 import { Alert, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useMutation } from "react-apollo-hooks";
 import { LOG_IN, CONFIRM_SECRET } from "./AuthQueries";
-import { useLogIn } from "../../AuthContext";
+import { useNavigation } from "@react-navigation/native";
+import { useLoginAuth } from "../../../GlobalLib/Context/UserContext/LoginAuth";
 
 const View = styled.View`
   justify-content: center;
@@ -14,9 +15,10 @@ const View = styled.View`
   flex: 1;
 `;
 
-export default ({ navigation }) => {
+export default () => {
+  const navigation = useNavigation();
   const confirmInput = useInput("");
-  const logIn = useLogIn();
+  const { logUserIn } = useLoginAuth();
   const [loading, setLoading] = useState(false);
   const [confirmSecretMutation] = useMutation(CONFIRM_SECRET, {
     variables: {
@@ -35,7 +37,7 @@ export default ({ navigation }) => {
         data: { confirmSecret },
       } = await confirmSecretMutation();
       if (confirmSecret !== "" || confirmSecret !== false) {
-        logIn(confirmSecret);
+        logUserIn(confirmSecret);
       } else {
         Alert.alert("Wrong secret!");
       }

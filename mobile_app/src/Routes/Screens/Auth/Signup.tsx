@@ -4,8 +4,9 @@ import AuthButton from "../../components/AuthButton";
 import AuthInput from "../../components/AuthInput";
 import useInput from "../../hooks/useInput";
 import { Alert, TouchableWithoutFeedback, Keyboard } from "react-native";
-import { useMutation } from "react-apollo-hooks";
-import { LOG_IN, CREATE_ACCOUNT } from "./AuthQueries";
+import { useNavigation } from "@react-navigation/native";
+import { useMutation } from "@apollo/client";
+import { CREATE_ACCOUNT } from "../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
 
 const View = styled.View`
   justify-content: center;
@@ -13,34 +14,29 @@ const View = styled.View`
   flex: 1;
 `;
 
-export default ({ navigation }) => {
-  const fNameInput = useInput("");
-  const lNameInput = useInput("");
+export default () => {
+  const navigation = useNavigation();
   const nameInput = useInput("");
   const emailInput = useInput(navigation.getParam("email", ""));
+  const PwInput = useInput("");
   const [loading, setLoading] = useState(false);
   const [createAccountMutation] = useMutation(CREATE_ACCOUNT, {
     variables: {
-      name: nameInput.value,
+      username: nameInput.value,
       email: emailInput.value,
-      firstName: fNameInput.value,
-      lastName: lNameInput.value,
+      password: PwInput.value,
     },
   });
   const handleSignup = async () => {
-    const { value: fName } = fNameInput;
-    const { value: lName } = lNameInput;
+    const { value: PW } = PwInput;
     const { value: name } = nameInput;
     const { value: email } = emailInput;
     const emailRegex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!emailRegex.test(email)) {
       return Alert.alert("That email is invalid");
     }
-    if (fName === "") {
+    if (PW === "") {
       return Alert.alert("First name is empty");
-    }
-    if (fName === "") {
-      return Alert.alert("Invalid name");
     }
     try {
       setLoading(true);
@@ -63,16 +59,10 @@ export default ({ navigation }) => {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View>
         <AuthInput
-          {...fNameInput}
-          placeholder="First name"
+          {...nameInput}
+          placeholder="User name"
+          returnKeyType="send"
           autoCorrect={false}
-          autoCapitalize="words"
-        />
-        <AuthInput
-          {...lNameInput}
-          placeholder="Last name"
-          autoCorrect={false}
-          autoCapitalize="words"
         />
         <AuthInput
           {...emailInput}
@@ -81,12 +71,7 @@ export default ({ navigation }) => {
           returnKeyType="send"
           autoCorrect={false}
         />
-        <AuthInput
-          {...nameInput}
-          placeholder="User name"
-          returnKeyType="send"
-          autoCorrect={false}
-        />
+        <AuthInput {...PwInput} placeholder="Password" autoCorrect={false} />
         <AuthButton loading={loading} onPress={handleSignup} text="Sign up" />
       </View>
     </TouchableWithoutFeedback>

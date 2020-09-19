@@ -1,7 +1,7 @@
 import Axios from "axios";
 import { http_BackEnd } from "../../Apollo/apolloSetting/BackendWay";
 
-export default async (files: any) => {
+export default async (files: FileList | null) => {
   const formData = new FormData();
   if (files) {
     for (let i = 0; i < files.length; i++) {
