@@ -1,0 +1,2 @@
+1. ScrollView보다 같은 기능을 하는 FlatList가 훨씬 더 성능이 좋다. 나중에 활용하게 되면 FlatList를 사용할 것.
+

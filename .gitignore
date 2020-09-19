@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules
+node_modules/**/*
 /.pnp
 .pnp.js
 schema.backup.prisma
@@ -32,3 +33,15 @@ debug.log
 uploadedFiles
 
 yarn.lock
+
+.expo/*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+
+# macOS
+.DS_Store
