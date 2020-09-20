@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/native";
+import StackFactory from "../../Navigation/Stack/StackFactory";
 
 const View = styled.View`
   justify-content: center;
@@ -9,8 +10,19 @@ const View = styled.View`
 
 const Text = styled.Text``;
 
-export default () => (
-  <View>
-    <Text>Notification</Text>
-  </View>
-);
+const NotificationScreen = () => {
+  return (
+    <View>
+      <Text>Notification</Text>
+    </View>
+  );
+};
+
+export default () => {
+  return (
+    <StackFactory
+      initialRoute={NotificationScreen}
+      customConfig={{ title: "Notifications" }}
+    />
+  );
+};

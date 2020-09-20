@@ -1,13 +1,20 @@
 import React from "react";
-import { ScrollView } from "react-native";
-import Loading from "../../../Components/ElementEtc/Effect/Loading";
-import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
+import { ScrollView, Text } from "react-native";
+import StackFactory from "../../Navigation/Stack/StackFactory";
 
-export default () => {
-  const { MEloading, MEdata } = useMyInfo();
+const ProfileScreen = () => {
   return (
     <ScrollView>
-      {MEloading ? <Loading /> : MEdata && <UserProfile {...MEdata} />}
+      <Text>Profile</Text>
     </ScrollView>
+  );
+};
+
+export default () => {
+  return (
+    <StackFactory
+      initialRoute={ProfileScreen}
+      customConfig={{ title: "Profile" }}
+    />
   );
 };

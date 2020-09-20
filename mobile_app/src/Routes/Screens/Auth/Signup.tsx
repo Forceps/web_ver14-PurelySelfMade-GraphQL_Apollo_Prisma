@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import AuthButton from "../../components/AuthButton";
-import AuthInput from "../../components/AuthInput";
-import useInput from "../../hooks/useInput";
 import { Alert, TouchableWithoutFeedback, Keyboard } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useMutation } from "@apollo/client";
 import { CREATE_ACCOUNT } from "../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
+import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
 
 const View = styled.View`
   justify-content: center;
@@ -17,7 +15,7 @@ const View = styled.View`
 export default () => {
   const navigation = useNavigation();
   const nameInput = useInput("");
-  const emailInput = useInput(navigation.getParam("email", ""));
+  const emailInput = useInput("");
   const PwInput = useInput("");
   const [loading, setLoading] = useState(false);
   const [createAccountMutation] = useMutation(CREATE_ACCOUNT, {
@@ -57,23 +55,7 @@ export default () => {
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View>
-        <AuthInput
-          {...nameInput}
-          placeholder="User name"
-          returnKeyType="send"
-          autoCorrect={false}
-        />
-        <AuthInput
-          {...emailInput}
-          placeholder="email"
-          keyboardType="email-address"
-          returnKeyType="send"
-          autoCorrect={false}
-        />
-        <AuthInput {...PwInput} placeholder="Password" autoCorrect={false} />
-        <AuthButton loading={loading} onPress={handleSignup} text="Sign up" />
-      </View>
+      <View>Sign Up</View>
     </TouchableWithoutFeedback>
   );
 };

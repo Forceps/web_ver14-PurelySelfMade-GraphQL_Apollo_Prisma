@@ -7,6 +7,7 @@ const Wrapper = styled(WH100per)`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #fafafa;
 `;
 
 const Loading = () => {

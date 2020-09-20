@@ -1,20 +1,15 @@
 import React from "react";
-import Home from "../../screens/Tabs/Home";
+import Home from "../../Screens/Tabs/Home";
 import Search from "../../Screens/Tabs/Search";
 import Notifications from "../../Screens/Tabs/Notifications";
 import Profile from "../../Screens/Tabs/Profile";
-import { Platform } from "react-native";
+import { Platform, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import StackFactory from "../Stack/StackFactory";
 import Icon from "../../../Components/ElementEtc/Icon";
-import { useNavigation } from "@react-navigation/native";
-import MessagesLink from "../../../Components/ElementEtc/MessagesLink";
-import PhotoNavigation from "../Stack/PhotoNavigation";
 
 const Tab = createBottomTabNavigator();
 
 export default () => {
-  const navigation = useNavigation();
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -24,15 +19,7 @@ export default () => {
     >
       <Tab.Screen
         name="Home"
-        component={() => (
-          <StackFactory
-            initialRoute={Home}
-            customConfig={{
-              headerRight: () => <MessagesLink />,
-              headerTitle: () => <Icon name="logo-instagram" size={36} />,
-            }}
-          />
-        )}
+        component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon
@@ -44,21 +31,7 @@ export default () => {
       />
       <Tab.Screen
         name="Search"
-        component={() => (
-          <StackFactory
-            initialRoute={Search}
-            customConfig={{
-              headerTitle: () => {
-                return (
-                  <Icon
-                    size={28}
-                    name={Platform.OS === "ios" ? "ios-search" : "md-search"}
-                  />
-                );
-              },
-            }}
-          />
-        )}
+        component={Search}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon
@@ -70,7 +43,7 @@ export default () => {
       />
       <Tab.Screen
         name="Add"
-        component={PhotoNavigation}
+        component={View}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon
@@ -82,12 +55,7 @@ export default () => {
       />
       <Tab.Screen
         name="Notifications"
-        component={() => (
-          <StackFactory
-            initialRoute={Notifications}
-            customConfig={{ title: "Notifications" }}
-          />
-        )}
+        component={Notifications}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon
@@ -107,12 +75,7 @@ export default () => {
       />
       <Tab.Screen
         name="Profile"
-        component={() => (
-          <StackFactory
-            initialRoute={Profile}
-            customConfig={{ title: "Profile" }}
-          />
-        )}
+        component={Profile}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon

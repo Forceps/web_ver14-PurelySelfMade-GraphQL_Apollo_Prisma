@@ -1,8 +1,9 @@
 import React from "react";
 import styled from "styled-components/native";
-import constants from "../../constants";
-import AuthButton from "../../components/AuthButton";
 import { useNavigation } from "@react-navigation/native";
+import Theme from "../../../GlobalLib/Styles/GlobalStyle/Theme";
+import constants from "../../../GlobalLib/RecycleFunction/etc/constants";
+import { Text, TouchableOpacity } from "react-native";
 
 const View = styled.View`
   justify-content: center;
@@ -20,7 +21,7 @@ const Touchable = styled.TouchableOpacity``;
 
 const LoginLink = styled.View``;
 const LoginLinkText = styled.Text`
-  color: ${(props) => props.theme.blueColor};
+  color: ${Theme.blueColor};
   font-weight: 600;
 `;
 
@@ -28,10 +29,9 @@ export default () => {
   const navigation = useNavigation();
   return (
     <View>
-      <AuthButton
-        text={"Create New Account"}
-        onPress={() => navigation.navigate("SignUp")}
-      />
+      <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+        <Text>Create New Account</Text>
+      </TouchableOpacity>
       <Touchable onPress={() => navigation.navigate("Login")}>
         <LoginLink>
           <LoginLinkText>Log in</LoginLinkText>

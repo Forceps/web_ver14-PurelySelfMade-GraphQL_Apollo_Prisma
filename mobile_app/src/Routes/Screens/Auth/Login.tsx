@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import styled from "styled-components/native";
-import AuthButton from "../../components/AuthButton";
-import AuthInput from "../../components/AuthInput";
-import useInput from "../../hooks/useInput";
-import { Alert, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Alert, TouchableWithoutFeedback, Keyboard, Text } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../../../GlobalLib/Apollo/GraphQL_Client/User/UserCUD";
+import useInput from "../../../GlobalLib/RecycleFunction/Hooks/useInput";
 
 const View = styled.View`
   justify-content: center;
@@ -16,7 +14,7 @@ const View = styled.View`
 
 export default () => {
   const navigation = useNavigation();
-  const emailInput = useInput(navigation.getParam("email", ""));
+  const emailInput = useInput("");
   const [loading, setLoading] = useState(false);
   const [requestSecretMutation] = useMutation(LOGIN_USER, {
     variables: {
@@ -56,17 +54,7 @@ export default () => {
   };
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <View>
-        <AuthInput
-          {...emailInput}
-          placeholder="email"
-          keyboardType="email-address"
-          returnKeyType="send"
-          onSubmitEditing={handleLogin}
-          autoCorrect={false}
-        />
-        <AuthButton loading={loading} onPress={handleLogin} text="Log in" />
-      </View>
+      <Text>Log in</Text>
     </TouchableWithoutFeedback>
   );
 };

@@ -3,16 +3,14 @@ import { useRoute } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { ComponentClass, FunctionComponent } from "react";
 import Theme from "../../../GlobalLib/Styles/GlobalStyle/Theme";
+import { View } from "react-native";
 
 const { Navigator, Screen } = createStackNavigator();
 
 const StackFactory = ({ initialRoute, customConfig }: StackFactoryProps) => {
-  const {
-    params: { name },
-  } = useRoute();
+  const { params } = useRoute<any>();
   return (
     <Navigator
-      headerMode="none"
       initialRouteName="initialRoute"
       screenOptions={{
         headerStyle: { backgroundColor: "#FAFAFA" },
@@ -28,16 +26,16 @@ const StackFactory = ({ initialRoute, customConfig }: StackFactoryProps) => {
       />
       <Screen
         name="Detail"
-        component={Detail}
+        component={View}
         options={{
           title: "Photo",
         }}
       />
       <Screen
         name="UserDetail"
-        component={UserDetail}
+        component={View}
         options={{
-          title: name,
+          title: params?.name ?? "user",
         }}
       />
     </Navigator>
