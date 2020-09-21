@@ -3,12 +3,12 @@ import styled from "styled-components";
 import WH100per, {
   WH100perInput,
   W100per,
-} from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { useMyInfo } from "../../../GlobalLib/Context/UserContext/Me";
-import useSearch from "../../../GlobalLib/RecycleFunction/Hooks/useSearch";
-import LoginModalCon from "../../../Components/User/Auth/LoginModal/LoginModalCon";
-import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
-import { FlexCenter100per } from "../../../GlobalLib/Styles/IteratePattern/ToCenter";
+} from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { useMyInfo } from "../../../../GlobalLib/Context/UserContext/Me";
+import useSearch from "../../../../GlobalLib/RecycleFunction/Hooks/useSearch";
+import LoginModalCon from "../../../../Components/User/Auth/LoginModal/LoginModalCon";
+import { useLoginCheck } from "../../../../GlobalLib/Context/UserContext/IsLoggedIn";
+import { FlexCenter100per } from "../../../../GlobalLib/Styles/IteratePattern/ToCenter";
 
 const Wrapper = styled(WH100per)`
   display: grid;

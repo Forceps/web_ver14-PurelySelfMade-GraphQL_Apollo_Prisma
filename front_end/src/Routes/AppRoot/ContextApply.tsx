@@ -4,7 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import Theme from "../../GlobalLib/Styles/GlobalStyle/Theme";
 import Router from "./Router";
 import GlobalStyles from "../../GlobalLib/Styles/GlobalStyle/GlobalStyles";
-import "./GlobalLib/Styles/GlobalStyle/GlobalStyles.scss";
+import "../../GlobalLib/Styles/GlobalStyle/GlobalStyles.scss";
 import ContextProvider from "../../GlobalLib/Context/Lib/ContextProvider";
 import { SearchUserProvider } from "../../GlobalLib/Context/UserContext/SearchUser";
 import { SeeFriendsProvider } from "../../GlobalLib/Context/UserContext/SeeFriends";

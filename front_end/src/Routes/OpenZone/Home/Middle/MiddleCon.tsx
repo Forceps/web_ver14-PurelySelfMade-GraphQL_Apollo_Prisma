@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 import RecentPostsCon from "./ParallelTiles/RecentPosts/RecentPostsCon";
-import { W100per } from "../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { useSearchUser } from "../../../GlobalLib/Context/UserContext/SearchUser";
+import { W100per } from "../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { useSearchUser } from "../../../../GlobalLib/Context/UserContext/SearchUser";
 import SearchedUser from "./SearchedUser/SearchedUserCon";
 import RecommendPostsCon from "./ParallelTiles/RecommendPosts/RecommendPostsCon";
-import { useLoginCheck } from "../../../GlobalLib/Context/UserContext/IsLoggedIn";
+import { useLoginCheck } from "../../../../GlobalLib/Context/UserContext/IsLoggedIn";
 
 const Wrapper = styled(W100per)`
   display: flex;

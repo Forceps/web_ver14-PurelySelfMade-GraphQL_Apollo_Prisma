@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import HomePre from "./HomePre";
-import { useTargetsShown } from "../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
-import { useDummyState } from "../../GlobalLib/Context/Lib/DummyState";
+import { useTargetsShown } from "../../../GlobalLib/Context/PostContext/TargetsShown/TargetsShown";
+import { useDummyState } from "../../../GlobalLib/Context/Lib/DummyState";
 
 export default () => {
   const DS = useDummyState();

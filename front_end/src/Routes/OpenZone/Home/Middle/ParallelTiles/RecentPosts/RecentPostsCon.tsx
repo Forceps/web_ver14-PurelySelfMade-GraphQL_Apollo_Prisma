@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import RecentPostsPre from "./RecentPostsPre";
-import { usePostDetail } from "../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
-import { useDummyState } from "../../../../../GlobalLib/Context/Lib/DummyState";
-import { useUpdatePost } from "../../../../../GlobalLib/Context/PostContext/PostCRUD/UpdatePost";
-import { useProfileMode } from "../../../../../GlobalLib/Context/ProfileContext/ProfileMode";
-import { useDirMode } from "../../../../../GlobalLib/Context/ProfileContext/DirMode";
-import useInfiniteScroll from "../../../../../GlobalLib/RecycleFunction/Hooks/useInfiniteScroll";
+import { usePostDetail } from "../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetail";
+import { useDummyState } from "../../../../../../GlobalLib/Context/Lib/DummyState";
+import { useUpdatePost } from "../../../../../../GlobalLib/Context/PostContext/PostCRUD/UpdatePost";
+import { useProfileMode } from "../../../../../../GlobalLib/Context/ProfileContext/ProfileMode";
+import { useDirMode } from "../../../../../../GlobalLib/Context/ProfileContext/DirMode";
+import useInfiniteScroll from "../../../../../../GlobalLib/RecycleFunction/Hooks/useInfiniteScroll";
 
 export default ({ SeeMode = "general" }: RecentPostsConProps) => {
   const PD = usePostDetail();

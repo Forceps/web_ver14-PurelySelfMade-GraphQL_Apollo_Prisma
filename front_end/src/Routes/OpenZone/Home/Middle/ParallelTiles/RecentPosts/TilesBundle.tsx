@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
-import Tile from "../../../../../Components/Post/Shape/Tile/TileCon";
-import { SeePostAllRequest } from "../../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostR";
+import Tile from "../../../../../../Components/Post/Shape/Tile/TileCon";
+import { SeePostAllRequest } from "../../../../../../GlobalLib/Apollo/GraphQL_Client/Post/PostRseries/PostR";
 import styled from "styled-components";
-import { W100per } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { W100per } from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
 
 const Bundle = styled(W100per)`
   display: flex;

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import UpdatePostCon from "../../../../../Components/Post/UpdatePost/UpdatePostCon";
-import PostDetailT from "../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetailT";
-import { W100per } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import { useSearchUser } from "../../../../../GlobalLib/Context/UserContext/SearchUser";
+import UpdatePostCon from "../../../../../../Components/Post/UpdatePost/UpdatePostCon";
+import PostDetailT from "../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetailT";
+import { W100per } from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import { useSearchUser } from "../../../../../../GlobalLib/Context/UserContext/SearchUser";
 import TilesBundle from "./TilesBundle";
 
 const Wrapper = styled(W100per)`

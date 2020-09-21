@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { W100per } from "../../../../../GlobalLib/Styles/IteratePattern/WH100per";
-import PostDetailT from "../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetailT";
-import TileCon from "../../../../../Components/Post/Shape/Tile/TileCon";
-import UpdatePostCon from "../../../../../Components/Post/UpdatePost/UpdatePostCon";
+import { W100per } from "../../../../../../GlobalLib/Styles/IteratePattern/WH100per";
+import PostDetailT from "../../../../../../GlobalLib/Context/PostContext/PostDetail/PostDetailT";
+import TileCon from "../../../../../../Components/Post/Shape/Tile/TileCon";
+import UpdatePostCon from "../../../../../../Components/Post/UpdatePost/UpdatePostCon";
 
 const Wrapper = styled(W100per)`
   display: grid;
