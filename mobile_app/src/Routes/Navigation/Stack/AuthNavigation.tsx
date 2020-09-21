@@ -19,4 +19,4 @@ const AuthNavigation = () => {
   );
 };
 
-export default AuthNavigation;
+export default React.memo(AuthNavigation);

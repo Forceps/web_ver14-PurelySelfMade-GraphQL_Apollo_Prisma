@@ -21,4 +21,4 @@ const IndexNav = () => {
   );
 };
 
-export default IndexNav;
+export default React.memo(IndexNav);

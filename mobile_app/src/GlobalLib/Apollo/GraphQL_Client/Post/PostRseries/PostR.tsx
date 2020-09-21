@@ -29,7 +29,7 @@ export const SeePostRequest = (post_id: number) =>
   });
 
 export const SEE_POST_ALL = gql`
-  query postsByDirId($skip: Int!, $take: Int!) {
+  query seePosts($skip: Int!, $take: Int!) {
     seePosts(skip: $skip, take: $take) {
       post_id
       caption

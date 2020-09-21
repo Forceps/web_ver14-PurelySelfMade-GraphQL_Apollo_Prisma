@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/native";
 import { useNavigation } from "@react-navigation/native";
 import Theme from "../../../GlobalLib/Styles/GlobalStyle/Theme";
-import constants from "../../../GlobalLib/RecycleFunction/etc/constants";
+import constants from "../../../GlobalLib/Styles/IteratePattern/constants";
 import { Text, TouchableOpacity } from "react-native";
 
 const View = styled.View`

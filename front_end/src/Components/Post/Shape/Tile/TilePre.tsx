@@ -45,13 +45,12 @@ const Menifesting = styled(WH100per)`
   position: absolute;
   padding: 10px;
   color: white;
-  background-color: rgba(45, 52, 54, 0.3);
-  &:hover {
-    background-color: rgba(45, 52, 54, 0.2);
-  }
   transition-property: background-color;
   transition-duration: 0.12s;
   transition-timing-function: ease;
+  &:hover {
+    background-color: rgba(45, 52, 54, 0.2);
+  }
   cursor: pointer;
 `;
 const AdditionalInfo = styled(WH100per)``;
@@ -62,6 +61,10 @@ const TitleImage = styled(WH100per)<TitleImageProp>`
   background-image: url(${(props: any) => props.url});
   background-size: cover;
   background-position: center center;
+  /* background-color: rgba(45, 52, 54, 0.1);
+  &:hover {
+    background-color: rgba(45, 52, 54, 0);
+  } */
 `;
 const TitleImgSubstitude = styled.div`
   white-space: pre-line;
@@ -73,7 +76,7 @@ const TitleImgSubstitude = styled.div`
 const Capsel = styled(WH100per)`
   display: flex;
   padding: 35px 0 0 3px;
-  background-color: #fafafa;
+  background-color: rgba(45, 52, 54, 0.3);
 `;
 
 export default ({ post, zIndex }: EachPostProps) => {

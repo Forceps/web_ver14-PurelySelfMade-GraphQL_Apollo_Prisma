@@ -47,4 +47,4 @@ interface StackFactoryProps {
   customConfig: any;
 }
 
-export default StackFactory;
+export default React.memo(StackFactory);
