@@ -1,6 +1,9 @@
 import React from "react";
-import { useRoute } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
+import { RouteProp, useRoute } from "@react-navigation/native";
+import {
+  createStackNavigator,
+  StackNavigationOptions,
+} from "@react-navigation/stack";
 import { ComponentClass, FunctionComponent } from "react";
 import Theme from "../../../GlobalLib/Styles/GlobalStyle/Theme";
 import { View } from "react-native";
@@ -44,7 +47,13 @@ const StackFactory = ({ initialRoute, customConfig }: StackFactoryProps) => {
 
 interface StackFactoryProps {
   initialRoute: ComponentClass<any, any> | FunctionComponent<any>;
-  customConfig: any;
+  customConfig:
+    | StackNavigationOptions
+    | ((props: {
+        route: RouteProp<Record<string, object | undefined>, "initialRoute">;
+        navigation: any;
+      }) => StackNavigationOptions)
+    | undefined;
 }
 
 export default React.memo(StackFactory);

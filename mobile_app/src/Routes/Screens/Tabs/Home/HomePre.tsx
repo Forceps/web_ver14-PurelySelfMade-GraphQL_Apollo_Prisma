@@ -1,6 +1,4 @@
 import React from "react";
-import { Text } from "react-native";
-import { ScrollView } from "react-native-gesture-handler";
 import styled from "styled-components/native";
 import TileCon from "./Tile/TileCon";
 
@@ -9,6 +7,9 @@ const View = styled.View`
   align-items: center;
   flex: 1;
 `;
+const ScrollZone = styled.ScrollView`
+  padding: 20px 0 0 0;
+`;
 
 const HomePre = ({ newPostData, newPostLoading }: HomePreProps) => {
   return (
@@ -16,11 +17,11 @@ const HomePre = ({ newPostData, newPostLoading }: HomePreProps) => {
       {newPostLoading ? (
         <View />
       ) : (
-        <ScrollView>
+        <ScrollZone>
           {newPostData.map((p: any) => (
             <TileCon key={p.post_id} post={p} />
           ))}
-        </ScrollView>
+        </ScrollZone>
       )}
     </View>
   );

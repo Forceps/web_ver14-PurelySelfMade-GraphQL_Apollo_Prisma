@@ -75,7 +75,8 @@ const TitleImgSubstitude = styled.div`
 `;
 const Capsel = styled(WH100per)`
   display: flex;
-  padding: 35px 0 0 3px;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(45, 52, 54, 0.3);
 `;
 

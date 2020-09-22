@@ -27,22 +27,27 @@ const MiniProfile = styled(W100per)`
   flex-direction: row;
   height: 40px;
 `;
-const UName = styled(W100per)`
+const UName = styled.Text`
   display: flex;
   align-items: center;
   padding: 0 0 0 7px;
+  width: 100%;
+  height: 100%;
+  font-size: 20px;
+  color: white;
 `;
 const PostHeader = styled(W100per)`
   display: flex;
-  height: ${constants.width - 90};
+  height: ${constants.width - 110};
 `;
 const Title = styled.Text`
   color: white;
-  font-size: 16px;
+  font-size: 20px;
 `;
 const AdditionalInfo = styled.Text`
-  height: 30px;
+  height: 35px;
   color: white;
+  font-size: 20px;
 `;
 const TitleImage = styled.ImageBackground`
   width: ${constants.width}px;
@@ -51,7 +56,8 @@ const TitleImage = styled.ImageBackground`
 const TitleImgSubstitude = styled.Text``;
 const Capsel = styled(WH100per)`
   display: flex;
-  padding: 35px 0 0 3px;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(45, 52, 54, 0.17);
 `;
 const Menifesting = styled(WH100per)`
@@ -85,14 +91,14 @@ export default ({ post, zIndex }: EachPostProps) => {
           <Title>{caption}</Title>
         </PostHeader>
         <AdditionalInfo>
-          <Icon name="eye" kind="FontAwesome5" /> {views}
-          <Icon name="heart-o" kind="FontAwesome" /> {likes}
+          <Icon name="eye" color="white" kind="FontAwesome5" size={20} />{" "}
+          {views}{" "}
+          <Icon name="heart-o" color="white" kind="FontAwesome" size={20} />{" "}
+          {likes}
         </AdditionalInfo>
         <MiniProfile>
-          <Avatar url={avatar} size={40} />
-          <UName>
-            <Text>{username}</Text>
-          </UName>
+          <Avatar url={avatar} size={55} />
+          <UName>{username}</UName>
         </MiniProfile>
       </Menifesting>
     </Wrapper>

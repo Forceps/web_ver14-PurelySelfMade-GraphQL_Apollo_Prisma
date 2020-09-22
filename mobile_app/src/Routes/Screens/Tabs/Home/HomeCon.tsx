@@ -24,15 +24,7 @@ export default () => {
     <StackFactory
       initialRoute={HomeScreen}
       customConfig={{
-        headerRight: MessagesLink,
-        headerTitle: () => {
-          return (
-            <Icon
-              size={28}
-              name={Platform.OS === "ios" ? "ios-search" : "md-search"}
-            />
-          );
-        },
+        headerShown: false,
       }}
     />
   );

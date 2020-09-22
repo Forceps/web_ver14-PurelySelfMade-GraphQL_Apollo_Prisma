@@ -1,6 +1,7 @@
 import React from "react";
 import { Platform, ScrollView, Text } from "react-native";
 import Icon from "../../../Components/ElementEtc/Icon";
+import MessagesLink from "../../../Components/ElementEtc/MessagesLink";
 import StackFactory from "../../Navigation/Stack/StackFactory";
 
 const SearchScreen = () => {
@@ -16,6 +17,7 @@ export default () => {
     <StackFactory
       initialRoute={SearchScreen}
       customConfig={{
+        headerRight: MessagesLink,
         headerTitle: () => {
           return (
             <Icon

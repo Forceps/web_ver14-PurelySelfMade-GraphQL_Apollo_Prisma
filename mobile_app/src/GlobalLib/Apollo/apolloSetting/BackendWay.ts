@@ -6,7 +6,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 const PORT = 4002;
 const localhost = `http://127.0.0.1:${PORT}`;
 const localWebSoket = `ws://127.0.0.1:${PORT}`;
-const ngrok = "https://549a9aec4f3f.ngrok.io";
+const ngrok = "https://2f1502cb81e7.ngrok.io";
 const ngrokWs = "ws://549a9aec4f3f.ngrok.io";
 export const http_BackEnd = true ? ngrok : localhost;
 export const webSoket_BackEnd = false ? ngrokWs : localWebSoket;
