@@ -1,7 +1,7 @@
 import React from "react";
-import Home from "../../Screens/Tabs/Home";
-import Search from "../../Screens/Tabs/Search";
-import Notifications from "../../Screens/Tabs/Notifications";
+import Home from "../../Screens/Tabs/Home/HomeCon";
+import Bookmark from "../../Screens/Tabs/Bookmark";
+import Comment from "../../Screens/Tabs/Comment";
 import Profile from "../../Screens/Tabs/Profile";
 import { Platform, View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
@@ -9,7 +9,7 @@ import Icon from "../../../Components/ElementEtc/Icon";
 
 const Tab = createBottomTabNavigator();
 
-export default () => {
+const TabNavigation = () => {
   return (
     <Tab.Navigator
       tabBarOptions={{
@@ -24,19 +24,22 @@ export default () => {
           tabBarIcon: ({ focused }) => (
             <Icon
               focused={focused}
-              name={Platform.OS === "ios" ? "ios-home" : "md-home"}
+              name="home-outline"
+              size={27}
+              kind="MaterialCommunityIcons"
             />
           ),
         }}
       />
       <Tab.Screen
-        name="Search"
-        component={Search}
+        name="Bookmark"
+        component={Bookmark}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon
               focused={focused}
-              name={Platform.OS === "ios" ? "ios-search" : "md-search"}
+              name={focused ? "bookmark" : "bookmark-o"}
+              kind="FontAwesome"
             />
           ),
         }}
@@ -54,21 +57,14 @@ export default () => {
         }}
       />
       <Tab.Screen
-        name="Notifications"
-        component={Notifications}
+        name="Comment"
+        component={Comment}
         options={{
           tabBarIcon: ({ focused }) => (
             <Icon
               focused={focused}
-              name={
-                Platform.OS === "ios"
-                  ? focused
-                    ? "ios-heart"
-                    : "ios-heart-empty"
-                  : focused
-                  ? "md-heart"
-                  : "md-heart-empty"
-              }
+              name={focused ? "comment" : "comment-o"}
+              kind="FontAwesome"
             />
           ),
         }}
@@ -88,3 +84,5 @@ export default () => {
     </Tab.Navigator>
   );
 };
+
+export default React.memo(TabNavigation);

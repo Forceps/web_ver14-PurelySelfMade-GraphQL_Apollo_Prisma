@@ -4,8 +4,12 @@ import { getMainDefinition } from "@apollo/client/utilities";
 import AsyncStorage from "@react-native-community/async-storage";
 
 const PORT = 4002;
-export const http_BackEnd = `http://127.0.0.1:${PORT}`;
-export const webSoket_BackEnd = `ws://127.0.0.1:${PORT}`;
+const localhost = `http://127.0.0.1:${PORT}`;
+const localWebSoket = `ws://127.0.0.1:${PORT}`;
+const ngrok = "https://2f1502cb81e7.ngrok.io";
+const ngrokWs = "ws://549a9aec4f3f.ngrok.io";
+export const http_BackEnd = true ? ngrok : localhost;
+export const webSoket_BackEnd = false ? ngrokWs : localWebSoket;
 export const jwt_header = {
   Authorization: `Bearer ${AsyncStorage.getItem("token")}`,
 };
@@ -27,3 +31,13 @@ export default split(
   wsLink,
   httpLink
 );
+
+export const makeBackEndReceiveCompatible = (uri: string) => {
+  const strFront = uri.substring(0, localhost.length);
+  const strBack = uri.substring(localhost.length, uri.length);
+  if (strFront === localhost) {
+    return http_BackEnd + strBack;
+  } else {
+    return uri;
+  }
+};
