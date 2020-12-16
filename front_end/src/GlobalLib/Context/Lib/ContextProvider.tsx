@@ -4,12 +4,12 @@ export default ({ contexts, children }: ContextProvider) =>
   contexts.reduce(
     (prev: any, context: any) =>
       React.createElement(context, {
-        children: prev
+        children: prev,
       }),
     children
   );
 
-type ContextProvider = {
+interface ContextProvider {
   contexts: any;
   children: any;
-};
+}
