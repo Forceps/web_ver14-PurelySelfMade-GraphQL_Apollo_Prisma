@@ -36,10 +36,6 @@ const LoggedOutRoutes = () => (
 
 const AppRouter = () => {
   const { isLoggedIn } = useLoginCheck();
-  if (isLoggedIn) {
-    return <LoggedInRoutes />;
-  } else {
-    return <LoggedOutRoutes />;
-  }
+  return isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes />;
 };
 export default AppRouter;
