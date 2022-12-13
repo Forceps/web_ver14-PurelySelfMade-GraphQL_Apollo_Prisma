@@ -1,7 +1,6 @@
 ## web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma
 
 
---------------
 ### 1. Purpose
 Building full-stack community web app like instagram 
 
