@@ -31,7 +31,17 @@ Building full-stack community web app like instagram
 
 
 -------------------
-### 3. Mechanism
+### 3. Features
++ Login
++ Posting text, images, video
++ Searching
++ Commenting
++ Following(making friends with other users)
++ Subscribing post
++ Realtime alerting
++ Liking
++ Post Recommending
+
 --------------------------
 ### 4. Implmenting Image
 
