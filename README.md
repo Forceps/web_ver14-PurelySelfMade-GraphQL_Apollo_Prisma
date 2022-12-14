@@ -38,7 +38,7 @@ Building full-stack community web app like instagram
 + Commenting
 + Following(making friends with other users)
 + Subscribing post
-+ Realtime alerting
++ Realtime chating
 + Liking
 
 --------------------------
