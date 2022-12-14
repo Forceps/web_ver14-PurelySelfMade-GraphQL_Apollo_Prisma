@@ -40,7 +40,6 @@ Building full-stack community web app like instagram
 + Subscribing post
 + Realtime alerting
 + Liking
-+ Post Recommending
 
 --------------------------
 ### 4. Implmenting Image
