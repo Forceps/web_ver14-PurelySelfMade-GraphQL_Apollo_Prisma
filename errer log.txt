@@ -1,0 +1,404 @@
+Compiled with problems:
+
+
+ERROR in ./src/GlobalLib/Apollo/ApolloConnection.ts 5:0-60
+
+Module not found: Error: Can't resolve './apolloSetting/requestContext' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\src\GlobalLib\Apollo'
+
+
+ERROR in ./src/GlobalLib/Apollo/ApolloConnection.ts 6:0-56
+
+Module not found: Error: Can't resolve './apolloSetting/ErrorOccured' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\src\GlobalLib\Apollo'
+
+
+ERROR in ./src/GlobalLib/Apollo/ApolloConnection.ts 7:0-52
+
+Module not found: Error: Can't resolve './apolloSetting/BackendWay' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\src\GlobalLib\Apollo'
+
+
+ERROR in ./src/GlobalLib/RecycleFunction/etc/FileTransmissionAndResponse.ts 4:0-69
+
+Module not found: Error: Can't resolve '../../Apollo/apolloSetting/BackendWay' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\src\GlobalLib\RecycleFunction\etc'
+
+
+ERROR in ./src/Routes/OnlyForMember/Profile/Center/UnderHeader/Archive/ShowWindow/ShowAll/ShowAllLib.tsx 3:0-97
+
+Module not found: Error: Can't resolve '../../../../../../../../GlobalLib/Apollo/apolloSetting/BackendWay' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\src\Routes\OnlyForMember\Profile\Center\UnderHeader\Archive\ShowWindow\ShowAll'
+
+
+ERROR in ./node_modules/crypto-random-string/index.js 5:4-19
+
+Module not found: Error: Can't resolve 'util' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\crypto-random-string'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "util": require.resolve("util/") }'
+	- install 'util'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "util": false }
+
+
+ERROR in ./node_modules/crypto-random-string/index.js 6:15-32
+
+Module not found: Error: Can't resolve 'crypto' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\crypto-random-string'
+
+BREAKING CHANGE: webpack < 5 used to include polyfills for node.js core modules by default.
+This is no longer the case. Verify if you need this module and configure a polyfill for it.
+
+If you want to include a polyfill, you need to:
+	- add a fallback 'resolve.fallback: { "crypto": require.resolve("crypto-browserify") }'
+	- install 'crypto-browserify'
+If you don't want to include a polyfill, you can use an empty module like this:
+	resolve.fallback: { "crypto": false }
+
+
+ERROR in ./node_modules/graphql-tag/lib/index.js 62:17-22
+
+export 'parse' (imported as 'parse') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/cache/inmemory/fragmentRegistry.js 109:4-9
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/cache/inmemory/readFromStore.js 185:44-64
+
+export 'Kind' (imported as 'Kind') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/cache/inmemory/writeToStore.js 262:46-66
+
+export 'Kind' (imported as 'Kind') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/core/LocalState.js 108:4-9
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/core/LocalState.js 116:21-26
+
+export 'BREAK' (imported as 'BREAK') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/core/LocalState.js 314:8-13
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/core/LocalState.js 318:45-60
+
+export 'isSelectionNode' (imported as 'isSelectionNode') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/core/LocalState.js 330:45-60
+
+export 'isSelectionNode' (imported as 'isSelectionNode') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/link/http/createHttpLink.js 72:6-11
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/link/http/selectHttpOptionsAndBody.js 60:53-58
+
+export 'print' (imported as 'print') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/utilities/globals/fix-graphql.js 4:16-22
+
+export 'Source' (imported as 'Source') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/utilities/graphql/directives.js 23:2-7
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/utilities/graphql/directives.js 39:2-7
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/utilities/graphql/directives.js 42:15-20
+
+export 'BREAK' (imported as 'BREAK') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/utilities/graphql/transform.js 35:37-42
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/utilities/graphql/transform.js 97:9-14
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/utilities/graphql/transform.js 175:26-31
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/utilities/graphql/transform.js 224:26-31
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/utilities/graphql/transform.js 252:20-25
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/@apollo/client/utilities/graphql/transform.js 272:18-23
+
+export 'visit' (imported as 'visit') was not found in 'graphql' (module has no exports)
+
+
+ERROR in ./node_modules/graphql/index.mjs 25:0-49
+
+Module not found: Error: Can't resolve './version' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\graphql'
+Did you mean 'version.mjs'?
+BREAKING CHANGE: The request './version' failed to resolve only because it was resolved as fully specified
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+The extension in the request is mandatory for it to be fully specified.
+Add the extension to the request.
+
+
+ERROR in ./node_modules/graphql/index.mjs 27:0-49
+
+Module not found: Error: Can't resolve './graphql' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\graphql'
+Did you mean 'graphql.mjs'?
+BREAKING CHANGE: The request './graphql' failed to resolve only because it was resolved as fully specified
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+The extension in the request is mandatory for it to be fully specified.
+Add the extension to the request.
+
+
+ERROR in ./node_modules/graphql/index.mjs 29:0-51:50
+
+Module not found: Error: Can't resolve './type' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\graphql'
+Did you mean 'index.mjs'?
+BREAKING CHANGE: The request './type' failed to resolve only because it was resolved as fully specified
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+The extension in the request is mandatory for it to be fully specified.
+Add the extension to the request.
+
+
+ERROR in ./node_modules/graphql/index.mjs 53:0-65:205
+
+Module not found: Error: Can't resolve './language' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\graphql'
+Did you mean 'index.mjs'?
+BREAKING CHANGE: The request './language' failed to resolve only because it was resolved as fully specified
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+The extension in the request is mandatory for it to be fully specified.
+Add the extension to the request.
+
+
+ERROR in ./node_modules/graphql/index.mjs 67:0-122
+
+Module not found: Error: Can't resolve './execution' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\graphql'
+Did you mean 'index.mjs'?
+BREAKING CHANGE: The request './execution' failed to resolve only because it was resolved as fully specified
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+The extension in the request is mandatory for it to be fully specified.
+Add the extension to the request.
+
+
+ERROR in ./node_modules/graphql/index.mjs 68:0-68
+
+Module not found: Error: Can't resolve './subscription' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\graphql'
+Did you mean 'index.mjs'?
+BREAKING CHANGE: The request './subscription' failed to resolve only because it was resolved as fully specified
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+The extension in the request is mandatory for it to be fully specified.
+Add the extension to the request.
+
+
+ERROR in ./node_modules/graphql/index.mjs 70:0-76:206
+
+Module not found: Error: Can't resolve './validation' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\graphql'
+Did you mean 'index.mjs'?
+BREAKING CHANGE: The request './validation' failed to resolve only because it was resolved as fully specified
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+The extension in the request is mandatory for it to be fully specified.
+Add the extension to the request.
+
+
+ERROR in ./node_modules/graphql/index.mjs 78:0-91
+
+Module not found: Error: Can't resolve './error' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\graphql'
+Did you mean 'index.mjs'?
+BREAKING CHANGE: The request './error' failed to resolve only because it was resolved as fully specified
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+The extension in the request is mandatory for it to be fully specified.
+Add the extension to the request.
+
+
+ERROR in ./node_modules/graphql/index.mjs 80:0-148:42
+
+Module not found: Error: Can't resolve './utilities' in 'J:\web_ver14-PurelySelfMade-GraphQL_Apollo_Prisma\front_end\node_modules\graphql'
+Did you mean 'index.mjs'?
+BREAKING CHANGE: The request './utilities' failed to resolve only because it was resolved as fully specified
+(probably because the origin is strict EcmaScript Module, e. g. a module with javascript mimetype, a '*.mjs' file, or a '*.js' file where the package.json contains '"type": "module"').
+The extension in the request is mandatory for it to be fully specified.
+Add the extension to the request.
+
+
+ERROR in src/Components/Post/Editor/LeftControl/HTML_insert/AudioInsert/AudioActionInHTML/St2Logics/Initiate.tsx:48:5
+
+TS2322: Type 'Timeout' is not assignable to type 'number'.
+    46 |     const totalTimeString = MediaClock(Duration);
+    47 |     endTime.textContent = totalTimeString;
+  > 48 |     timeGo2.current = setInterval(
+       |     ^^^^^^^^^^^^^^^
+    49 |       statusBarMoving,
+    50 |       mediaStateRenewalCycle(Duration)
+    51 |     );
+
+
+ERROR in src/Components/Post/Editor/LeftControl/HTML_insert/VideoInsert/NativePlayer/NativeVideoPlayerActionInHTML/St2Logics/BottomPanel/Buttons.tsx:34:9
+
+TS2322: Type 'Timeout' is not assignable to type 'number'.
+    32 |       if (document.fullscreenElement !== null) {
+    33 |         clearTimeout(flashClear2.current);
+  > 34 |         flashClear.current = setTimeout(() => {
+       |         ^^^^^^^^^^^^^^^^^^
+    35 |           videoPlayerControls.setAttribute(
+    36 |             "class",
+    37 |             "videoPlayer_controls videoPlayer_controls_fullscreen_flash"
+
+
+ERROR in src/Components/Post/Editor/LeftControl/HTML_insert/VideoInsert/NativePlayer/NativeVideoPlayerActionInHTML/St2Logics/BottomPanel/Buttons.tsx:42:9
+
+TS2322: Type 'Timeout' is not assignable to type 'number'.
+    40 |       } else {
+    41 |         clearTimeout(flashClear.current);
+  > 42 |         flashClear2.current = setTimeout(() => {
+       |         ^^^^^^^^^^^^^^^^^^^
+    43 |           videoPlayerControls.setAttribute(
+    44 |             "class",
+    45 |             "videoPlayer_controls videoPlayer_controls_at_play"
+
+
+ERROR in src/Components/Post/Editor/LeftControl/HTML_insert/VideoInsert/NativePlayer/NativeVideoPlayerActionInHTML/St2Logics/BottomPanel/FullScreen.tsx:79:7
+
+TS2322: Type 'Timeout' is not assignable to type 'number'.
+    77 |         "videoPlayer_controls videoPlayer_controls_at_stop"
+    78 |       );
+  > 79 |       mouseMoving.current = setTimeout(stopGoAtFullscreen, 1500);
+       |       ^^^^^^^^^^^^^^^^^^^
+    80 |     } else {
+    81 |       fullscreenFlashClear();
+    82 |     }
+
+
+ERROR in src/Components/Post/Editor/LeftControl/HTML_insert/VideoInsert/NativePlayer/NativeVideoPlayerActionInHTML/St2Logics/Initiate.tsx:49:7
+
+TS2322: Type 'Timeout' is not assignable to type 'number'.
+    47 |       const totalTimeString = MediaClock(Duration);
+    48 |       endTime.textContent = totalTimeString;
+  > 49 |       timeGo2.current = setInterval(
+       |       ^^^^^^^^^^^^^^^
+    50 |         statusBarMoving,
+    51 |         mediaStateRenewalCycle(Duration)
+    52 |       );
+
+
+ERROR in src/GlobalLib/Apollo/ApolloConnection.ts:3:28
+
+TS2307: Cannot find module './apolloSetting/requestContext'.
+    1 | import { ApolloClient, ApolloLink } from "@apollo/client";
+    2 | import { cache, resolvers } from "./LocalState/LocalState";
+  > 3 | import requestContext from "./apolloSetting/requestContext";
+      |                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    4 | import ErrorOccured from "./apolloSetting/ErrorOccured";
+    5 | import BackendWay from "./apolloSetting/BackendWay";
+    6 |
+
+
+ERROR in src/GlobalLib/Apollo/ApolloConnection.ts:4:26
+
+TS2307: Cannot find module './apolloSetting/ErrorOccured'.
+    2 | import { cache, resolvers } from "./LocalState/LocalState";
+    3 | import requestContext from "./apolloSetting/requestContext";
+  > 4 | import ErrorOccured from "./apolloSetting/ErrorOccured";
+      |                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    5 | import BackendWay from "./apolloSetting/BackendWay";
+    6 |
+    7 | export const client = new ApolloClient({
+
+
+ERROR in src/GlobalLib/Apollo/ApolloConnection.ts:5:24
+
+TS2307: Cannot find module './apolloSetting/BackendWay'.
+    3 | import requestContext from "./apolloSetting/requestContext";
+    4 | import ErrorOccured from "./apolloSetting/ErrorOccured";
+  > 5 | import BackendWay from "./apolloSetting/BackendWay";
+      |                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    6 |
+    7 | export const client = new ApolloClient({
+    8 |   link: ApolloLink.from([ErrorOccured, requestContext, BackendWay]),
+
+
+ERROR in src/GlobalLib/Context/EtcContext/ShortMessage/InstantMessage/InstantMessageCon.tsx:36:9
+
+TS2322: Type 'Timeout' is not assignable to type 'number'.
+    34 |       if (Stop) {
+    35 |         setStop(false);
+  > 36 |         inteval.current = setInterval(statusBarMoving, 40);
+       |         ^^^^^^^^^^^^^^^
+    37 |       } else {
+    38 |         setStop(true);
+    39 |         window.clearInterval(inteval.current);
+
+
+ERROR in src/GlobalLib/Context/EtcContext/ShortMessage/InstantMessage/InstantMessageCon.tsx:49:5
+
+TS2322: Type 'Timeout' is not assignable to type 'number'.
+    47 |   useEffect(() => {
+    48 |     setDuring(true);
+  > 49 |     inteval.current = setInterval(statusBarMoving, 40);
+       |     ^^^^^^^^^^^^^^^
+    50 |     return () => {
+    51 |       window.clearInterval(inteval.current);
+    52 |     };
+
+
+ERROR in src/GlobalLib/Context/EtcContext/ShortMessage/InstantMessage/InstantMessageCon.tsx:59:7
+
+TS2322: Type 'Timeout' is not assignable to type 'number'.
+    57 |       setDuring(false);
+    58 |       window.clearInterval(inteval.current);
+  > 59 |       endTimeout.current = setTimeout(end, 800);
+       |       ^^^^^^^^^^^^^^^^^^
+    60 |     }
+    61 |     return () => {
+    62 |       clearTimeout(endTimeout.current);
+
+
+ERROR in src/GlobalLib/RecycleFunction/etc/FileTransmissionAndResponse.ts:2:30
+
+TS2307: Cannot find module '../../Apollo/apolloSetting/BackendWay'.
+    1 | import Axios from "axios";
+  > 2 | import { http_BackEnd } from "../../Apollo/apolloSetting/BackendWay";
+      |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    3 |
+    4 | export default async (files: FileList | null) => {
+    5 |   const formData = new FormData();
+
+
+ERROR in src/Routes/OnlyForMember/Profile/Center/UnderHeader/Archive/ShowWindow/ShowAll/ShowAllLib.tsx:1:30
+
+TS2307: Cannot find module '../../../../../../../../GlobalLib/Apollo/apolloSetting/BackendWay'.
+  > 1 | import { http_BackEnd } from "../../../../../../../../GlobalLib/Apollo/apolloSetting/BackendWay";
+      |                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    2 |
+    3 | export const ImgInfoReturn = (URI: string) => {
+    4 |   let image = new Image();
+
+
